@@ -52,6 +52,13 @@ LF7B6           := $F7B6
 	untrue:
 .endmacro
 
+.macro	lbcs	addr
+	.local	untrue
+	bcc	untrue
+	jmp	addr
+	untrue:
+.endmacro
+
 	.segment "HDR00"
 
 	.word	$FFFF
@@ -3491,11 +3498,8 @@ L59A5:  clc                                     ; 59A5 18                       
         inc     L58EC                           ; 59DE EE EC 58                 ..X
 L59E1:  lda     L58EF                           ; 59E1 AD EF 58                 ..X
         cmp     L58EE                           ; 59E4 CD EE 58                 ..X
-        bcc     L59EC                           ; 59E7 90 03                    ..
-        jmp     L5A32                           ; 59E9 4C 32 5A                 L2Z
-
-; ----------------------------------------------------------------------------
-L59EC:  clc                                     ; 59EC 18                       .
+	lbcs	L5A32
+	clc                                     ; 59EC 18                       .
         lda     L58EB                           ; 59ED AD EB 58                 ..X
         adc     L58EF                           ; 59F0 6D EF 58                 m.X
         sta     $AE                             ; 59F3 85 AE                    ..
@@ -3536,11 +3540,8 @@ L5A32:  jmp     L5CF5                           ; 5A32 4C F5 5C                 
 ; ----------------------------------------------------------------------------
 L5A35:  lda     L58EE                           ; 5A35 AD EE 58                 ..X
         eor     #$42                            ; 5A38 49 42                    IB
-        beq     L5A3F                           ; 5A3A F0 03                    ..
-        jmp     L5A90                           ; 5A3C 4C 90 5A                 L.Z
-
-; ----------------------------------------------------------------------------
-L5A3F:  lda     L58EA                           ; 5A3F AD EA 58                 ..X
+	lbne	L5A90
+	lda     L58EA                           ; 5A3F AD EA 58                 ..X
         sta     L58EC                           ; 5A42 8D EC 58                 ..X
         lda     L58E9                           ; 5A45 AD E9 58                 ..X
         sta     L58EB                           ; 5A48 8D EB 58                 ..X
