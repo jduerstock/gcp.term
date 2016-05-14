@@ -23,7 +23,7 @@ L4253           := $4253
 LD520           := $D520
 LD653           := $D653
 LD831           := $D831
-LE456           := $E456
+CIOV            := $E456
 LE45C           := $E45C
 LE45F           := $E45F
 LE59E           := $E59E
@@ -103,7 +103,7 @@ L4388:  sta     $0344,x                         ; 4388 9D 44 03                 
         lda     $A6                             ; 438B A5 A6                    ..
         adc     #$00                            ; 438D 69 00                    i.
         sta     $0345,x                         ; 438F 9D 45 03                 .E.
-        jmp     LE456                           ; 4392 4C 56 E4                 LV.
+        jmp     CIOV
 
 ; ----------------------------------------------------------------------------
 L4395:  rts                                     ; 4395 60                       `
@@ -125,7 +125,7 @@ L439F:  stx     $A5                             ; 439F 86 A5                    
         lda     #$0B                            ; 43AE A9 0B                    ..
         sta     $0342,x                         ; 43B0 9D 42 03                 .B.
         lda     #$9B                            ; 43B3 A9 9B                    ..
-        jmp     LE456                           ; 43B5 4C 56 E4                 LV.
+        jmp     CIOV
 
 ; ----------------------------------------------------------------------------
 L43B8:  rts                                     ; 43B8 60                       `
@@ -456,7 +456,7 @@ L45A5:  stx     $A4                             ; 45A5 86 A4                    
         sta     $0348,x                         ; 45B3 9D 48 03                 .H.
         sta     $0349,x                         ; 45B6 9D 49 03                 .I.
         tya                                     ; 45B9 98                       .
-        jsr     LE456                           ; 45BA 20 56 E4                  V.
+        jsr     CIOV
         sta     $A0                             ; 45BD 85 A0                    ..
         jmp     L4515                           ; 45BF 4C 15 45                 L.E
 
@@ -1261,19 +1261,17 @@ L49C4:  .byte   $53                             ; 49C4 53                       
         eor     ($54,x)                         ; 49C9 41 54                    AT
         eor     ($52,x)                         ; 49CB 41 52                    AR
         eor     #$D8                            ; 49CD 49 D8                    I.
-        bmi     L49DD                           ; 49CF 30 0C                    0.
+        ;bmi     L49DD                           ; 49CF 30 0C                    0.
+	.byte	$30,$0C
 L49D1:  .byte   $0F                             ; 49D1 0F                       .
 L49D2:  brk                                     ; 49D2 00                       .
 
 L49D3:  prolog
 	stx     L49C4                           ; 49D6 8E C4 49                 ..I
         sta     L49C3                           ; 49D9 8D C3 49                 ..I
-        .byte   $AD                             ; 49DC AD                       .
-L49DD:  .byte   $C3                             ; 49DD C3                       .
-        eor     #$8D                            ; 49DE 49 8D                    I.
-        .byte   $03                             ; 49E0 03                       .
-        bne     L4990                           ; 49E1 D0 AD                    ..
-        cpy     $49                             ; 49E3 C4 49                    .I
+	lda	L49C3
+	sta	$D003
+	lda	L49C4
         eor     L499F                           ; 49E5 4D 9F 49                 M.I
 	lbne	L49EE
 	rts                                     ; 49ED 60                       `
@@ -1393,7 +1391,7 @@ L4ACB:  tya                                     ; 4ACB 98                       
         sta     $0345,x                         ; 4ACC 9D 45 03                 .E.
         lda     $A1                             ; 4ACF A5 A1                    ..
         sta     $0344,x                         ; 4AD1 9D 44 03                 .D.
-        jsr     LE456                           ; 4AD4 20 56 E4                  V.
+        jsr     CIOV
         sty     L4AA4                           ; 4AD7 8C A4 4A                 ..J
         cpy     #$88                            ; 4ADA C0 88                    ..
         bne     L4AE4                           ; 4ADC D0 06                    ..
