@@ -10,6 +10,7 @@
 L000C           := $000C
 L0069           := $0069
 L0078           := $0078
+VDSLST		:= $0200
 L0248           := $0248
 L0A94           := $0A94
 L0ABB           := $0ABB
@@ -20,11 +21,9 @@ L2020           := $2020
 L3272           := $3272
 L3C20           := $3C20
 L4253           := $4253
-LD520           := $D520
-LD653           := $D653
-LD831           := $D831
+HPOSP3		:= $D003
 CIOV            := $E456
-LE45C           := $E45C
+SETVBV          := $E45C
 LE45F           := $E45F
 LE59E           := $E59E
 LE975           := $E975
@@ -38,8 +37,6 @@ LEF40           := $EF40
 LEFC2           := $EFC2
 LF6C2           := $F6C2
 LF7B6           := $F7B6
-LF823           := $F823
-LF82B           := $F82B
 ; ----------------------------------------------------------------------------
 
 .macro	prolog
@@ -1270,7 +1267,7 @@ L49D3:  prolog
 	stx     L49C4                           ; 49D6 8E C4 49                 ..I
         sta     L49C3                           ; 49D9 8D C3 49                 ..I
 	lda	L49C3
-	sta	$D003
+	sta	HPOSP3
 	lda	L49C4
         eor     L499F                           ; 49E5 4D 9F 49                 M.I
 	lbne	L49EE
@@ -1358,7 +1355,7 @@ L4A56:  jsr     L44D5                           ; 4A56 20 D5 44                 
         lda     #$02                            ; 4A8F A9 02                    ..
         sta     $D00B                           ; 4A91 8D 0B D0                 ...
         lda     L4A51                           ; 4A94 AD 51 4A                 .QJ
-        sta     $D003                           ; 4A97 8D 03 D0                 ...
+        sta     HPOSP3
         lda     L4A52                           ; 4A9A AD 52 4A                 .RJ
         sta     L499F                           ; 4A9D 8D 9F 49                 ..I
         rts                                     ; 4AA0 60                       `
@@ -9149,7 +9146,8 @@ L83F8:  ;bne     L83E1                           ; 83F8 D0 E7                   
 L83FB:  .byte   $09                             ; 83FB 09                       .
 L83FC:  ldy     #$B8                            ; 83FC A0 B8                    ..
         ldx     #$20                            ; 83FE A2 20                    . 
-        jsr     LF823                           ; 8400 20 23 F8                  #.
+        ;jsr     LF823                           ; 8400 20 23 F8                  #.
+	.byte	$20,$23,$F8
         lda     #$04                            ; 8403 A9 04                    ..
         .byte   $9D                             ; 8405 9D                       .
         lsr     a                               ; 8406 4A                       J
@@ -14689,7 +14687,7 @@ LAD05:  .byte   $A0                             ; AD05 A0                       
 LAD06:  rts                                     ; AD06 60                       `
 
 ; ----------------------------------------------------------------------------
-        pha                                     ; AD07 48                       H
+LAD07:	pha                                     ; AD07 48                       H
         txa                                     ; AD08 8A                       .
         pha                                     ; AD09 48                       H
         tya                                     ; AD0A 98                       .
@@ -14794,11 +14792,11 @@ LAD88:  lda     #$AD                            ; AD88 A9 AD                    
         ldy     $A2                             ; ADD6 A4 A2                    ..
         ldx     $A1                             ; ADD8 A6 A1                    ..
         lda     #$06                            ; ADDA A9 06                    ..
-        jsr     LE45C                           ; ADDC 20 5C E4                  \.
-        lda     #$AD                            ; ADDF A9 AD                    ..
-        sta     $0201                           ; ADE1 8D 01 02                 ...
-        lda     #$07                            ; ADE4 A9 07                    ..
-        sta     $0200                           ; ADE6 8D 00 02                 ...
+        jsr     SETVBV
+        lda     #>LAD07                         ; ADDF A9 AD                    ..
+        sta     VDSLST+1
+        lda     #<LAD07
+        sta     VDSLST
         rts                                     ; ADE9 60                       `
 
 ; ----------------------------------------------------------------------------
