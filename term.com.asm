@@ -42,6 +42,19 @@ LF823           := $F823
 LF82B           := $F82B
 ; ----------------------------------------------------------------------------
 
+.macro	prolog
+	.local realcode
+	jmp	realcode
+	realcode:
+.endmacro
+
+.macro	lbne	addr
+	.local	untrue
+	beq	untrue
+	jmp	addr
+	untrue:
+.endmacro
+
 	.segment "HDR00"
 
 	.word	$FFFF
@@ -747,8 +760,7 @@ L46FD:  .byte   $52                             ; 46FD 52                       
         .byte   $0C                             ; 4747 0C                       .
         .byte   $20                             ; 4748 20                        
 L4749:  .byte   $4C                             ; 4749 4C                       L
-L474A:  .byte   $4C                             ; 474A 4C                       L
-L474B:  .byte   $47                             ; 474B 47                       G
+L474A:  .addr   L474C
 L474C:  brk                                     ; 474C 00                       .
 L474D:  brk                                     ; 474D 00                       .
 L474E:  brk                                     ; 474E 00                       .
@@ -1252,10 +1264,9 @@ L49C4:  .byte   $53                             ; 49C4 53                       
         bmi     L49DD                           ; 49CF 30 0C                    0.
 L49D1:  .byte   $0F                             ; 49D1 0F                       .
 L49D2:  brk                                     ; 49D2 00                       .
-L49D3:  jmp     L49D6                           ; 49D3 4C D6 49                 L.I
 
-; ----------------------------------------------------------------------------
-L49D6:  stx     L49C4                           ; 49D6 8E C4 49                 ..I
+L49D3:  prolog
+	stx     L49C4                           ; 49D6 8E C4 49                 ..I
         sta     L49C3                           ; 49D9 8D C3 49                 ..I
         .byte   $AD                             ; 49DC AD                       .
 L49DD:  .byte   $C3                             ; 49DD C3                       .
@@ -1264,11 +1275,8 @@ L49DD:  .byte   $C3                             ; 49DD C3                       
         bne     L4990                           ; 49E1 D0 AD                    ..
         cpy     $49                             ; 49E3 C4 49                    .I
         eor     L499F                           ; 49E5 4D 9F 49                 M.I
-        beq     L49ED                           ; 49E8 F0 03                    ..
-        jmp     L49EE                           ; 49EA 4C EE 49                 L.I
-
-; ----------------------------------------------------------------------------
-L49ED:  rts                                     ; 49ED 60                       `
+	lbne	L49EE
+	rts                                     ; 49ED 60                       `
 
 ; ----------------------------------------------------------------------------
 L49EE:  clc                                     ; 49EE 18                       .
@@ -3376,7 +3384,8 @@ L58EE:  .byte   $20                             ; 58EE 20
 L58EF:  .byte   $20                             ; 58EF 20                        
 L58F0:  .byte   $20                             ; 58F0 20                        
 L58F1:  .byte   $20                             ; 58F1 20                        
-L58F2:  jmp     L58F5                           ; 58F2 4C F5 58                 L.X
+
+sub_58F2:  jmp     L58F5                           ; 58F2 4C F5 58                 L.X
 
 ; ----------------------------------------------------------------------------
 L58F5:  jsr     L44D5                           ; 58F5 20 D5 44                  .D
@@ -14446,8 +14455,7 @@ LAB0E:  jsr     L44D5                           ; AB0E 20 D5 44                 
         brk                                     ; AB55 00                       .
 LAB56:  .byte   $14                             ; AB56 14                       .
 LAB57:  .byte   $AB                             ; AB57 AB                       .
-LAB58:  brk                                     ; AB58 00                       .
-LAB59:  brk                                     ; AB59 00                       .
+LAB58:  .addr	$0000
 LAB5A:  brk                                     ; AB5A 00                       .
 LAB5B:  brk                                     ; AB5B 00                       .
 LAB5C:  brk                                     ; AB5C 00                       .
@@ -14463,11 +14471,9 @@ LAB60:  dec     $1E,x                           ; AB60 D6 1E                    
         brk                                     ; AB67 00                       .
 LAB68:  brk                                     ; AB68 00                       .
 LAB69:  brk                                     ; AB69 00                       .
-LAB6A:  .byte   $4C                             ; AB6A 4C                       L
-LAB6B:  .byte   $6D                             ; AB6B 6D                       m
-LAB6C:  .byte   $AB                             ; AB6C AB                       .
+LAB6A:  jmp	LAB6D
 LAB6D:  lda     LAA85                           ; AB6D AD 85 AA                 ...
-LAB70:  sta     LAB59                           ; AB70 8D 59 AB                 .Y.
+LAB70:  sta     LAB58+1                         ; AB70 8D 59 AB                 .Y.
         lda     LAA84                           ; AB73 AD 84 AA                 ...
         sta     LAB58                           ; AB76 8D 58 AB                 .X.
         lda     L48C1+1                         ; AB79 AD C2 48                 ..H
@@ -14557,7 +14563,7 @@ LABEE:  lda     LAB69                           ; ABEE AD 69 AB                 
         lda     #$00                            ; AC1A A9 00                    ..
         rol     a                               ; AC1C 2A                       *
         plp                                     ; AC1D 28                       (
-        adc     LAB59                           ; AC1E 6D 59 AB                 mY.
+        adc     LAB58+1                         ; AC1E 6D 59 AB                 mY.
         sta     $AF                             ; AC21 85 AF                    ..
         iny                                     ; AC23 C8                       .
         lda     ($AE),y                         ; AC24 B1 AE                    ..
@@ -14580,7 +14586,7 @@ LABEE:  lda     LAB69                           ; ABEE AD 69 AB                 
         ldy     #$60                            ; AC47 A0 60                    .`
         ldx     $A1                             ; AC49 A6 A1                    ..
         lda     $A0                             ; AC4B A5 A0                    ..
-        jsr     L58F2                           ; AC4D 20 F2 58                  .X
+        jsr     sub_58F2                        ; AC4D 20 F2 58                  .X
         ldy     #$00                            ; AC50 A0 00                    ..
         sty     LAB69                           ; AC52 8C 69 AB                 .i.
 LAC55:  lda     #$07                            ; AC55 A9 07                    ..
@@ -14837,9 +14843,9 @@ LADED:  lda     L466F                           ; ADED AD 6F 46                 
         sta     $02E6                           ; AE2E 8D E6 02                 ...
         lda     #$27                            ; AE31 A9 27                    .'
         sta     $02E5                           ; AE33 8D E5 02                 ...
-        lda     LAB6C                           ; AE36 AD 6C AB                 .l.
-        sta     L474B                           ; AE39 8D 4B 47                 .KG
-        lda     LAB6B                           ; AE3C AD 6B AB                 .k.
+        lda     LAB6A+2                         ; AE36 AD 6C AB                 .l.
+        sta     L474A+1                         ; AE39 8D 4B 47                 .KG
+        lda     LAB6A+1                         ; AE3C AD 6B AB                 .k.
         sta     L474A                           ; AE3F 8D 4A 47                 .JG
         lda     L8D03                           ; AE42 AD 03 8D                 ...
         sta     L5D66                           ; AE45 8D 66 5D                 .f]
@@ -14857,13 +14863,8 @@ LADED:  lda     L466F                           ; ADED AD 6F 46                 
         jmp     LAE70                           ; AE62 4C 70 AE                 Lp.
 
 ; ----------------------------------------------------------------------------
-        asl     a                               ; AE65 0A                       .
-        .byte   $44                             ; AE66 44                       D
-        .byte   $3A                             ; AE67 3A                       :
-        eor     #$4E                            ; AE68 49 4E                    IN
-        eor     #$54                            ; AE6A 49 54                    IT
-        rol     $414D                           ; AE6C 2E 4D 41                 .MA
-        .byte   $43                             ; AE6F 43                       C
+LAE65:	.byte	10,"D:INIT.MAC"
+
 LAE70:  lda     #$AE                            ; AE70 A9 AE                    ..
         sta     $A3                             ; AE72 85 A3                    ..
         ldy     #$65                            ; AE74 A0 65                    .e
