@@ -1049,11 +1049,11 @@ L4855:	.byte   $03                             ; 4855 03                       .
         pha                                     ; 48B6 48                       H
 L48B7:	.byte   $02,"BB"
 L48BA:	.addr	L48B7
-        ora     ($42,x)                         ; 48BC 01 42                    .B
-        ldy     L4C48,x                         ; 48BE BC 48 4C                 .HL
-L48C1:  .byte   $C3                             ; 48C1 C3                       .
-L48C2:  pha                                     ; 48C2 48                       H
-        .byte   $6B                             ; 48C3 6B                       k
+L48BC:	.byte	$01,"B"
+L48BE:	.addr	L48BC
+	.byte	$4C
+L48C1:  .addr	L48C3
+L48C3:	.byte	$6B                             ; 48C3 6B                       k
         .byte   $47                             ; 48C4 47                       G
         .byte   $6F                             ; 48C5 6F                       o
         .byte   $47                             ; 48C6 47                       G
@@ -14470,7 +14470,7 @@ LAB6D:  lda     LAA85                           ; AB6D AD 85 AA                 
 LAB70:  sta     LAB59                           ; AB70 8D 59 AB                 .Y.
         lda     LAA84                           ; AB73 AD 84 AA                 ...
         sta     LAB58                           ; AB76 8D 58 AB                 .X.
-        lda     L48C2                           ; AB79 AD C2 48                 ..H
+        lda     L48C1+1                         ; AB79 AD C2 48                 ..H
         sta     LAB5B                           ; AB7C 8D 5B AB                 .[.
         lda     L48C1                           ; AB7F AD C1 48                 ..H
         sta     LAB5A                           ; AB82 8D 5A AB                 .Z.
