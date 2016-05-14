@@ -957,17 +957,15 @@ L47DD:  cmp     $0247,y                         ; 47DD D9 47 02                 
         ora     ($42,x)                         ; 484B 01 42                    .B
         .byte   $4B                             ; 484D 4B                       K
         pha                                     ; 484E 48                       H
-        brk                                     ; 484F 00                       .
-        .byte   $4F                             ; 4850 4F                       O
-        pha                                     ; 4851 48                       H
-        brk                                     ; 4852 00                       .
-        .byte   $52                             ; 4853 52                       R
-        pha                                     ; 4854 48                       H
-        .byte   $03                             ; 4855 03                       .
+L484F:	brk                                     ; 484F 00                       .
+	.addr	L484F
+L4852:	brk                                     ; 4852 00                       .
+	.addr	L4852
+L4855:	.byte   $03                             ; 4855 03                       .
         .byte   $44                             ; 4856 44                       D
         .byte   $44                             ; 4857 44                       D
         .byte   $73                             ; 4858 73                       s
-        eor     $48,x                           ; 4859 55 48                    UH
+	.addr	L4855
         ora     ($44,x)                         ; 485B 01 44                    .D
         .byte   $5B                             ; 485D 5B                       [
         pha                                     ; 485E 48                       H
@@ -1049,11 +1047,8 @@ L47DD:  cmp     $0247,y                         ; 47DD D9 47 02                 
         .byte   $42                             ; 48B4 42                       B
         .byte   $B2                             ; 48B5 B2                       .
         pha                                     ; 48B6 48                       H
-        .byte   $02                             ; 48B7 02                       .
-        .byte   $42                             ; 48B8 42                       B
-        .byte   $42                             ; 48B9 42                       B
-        .byte   $B7                             ; 48BA B7                       .
-        pha                                     ; 48BB 48                       H
+L48B7:	.byte   $02,"BB"
+L48BA:	.addr	L48B7
         ora     ($42,x)                         ; 48BC 01 42                    .B
         ldy     L4C48,x                         ; 48BE BC 48 4C                 .HL
 L48C1:  .byte   $C3                             ; 48C1 C3                       .
@@ -1157,8 +1152,7 @@ L492E:  pha                                     ; 492E 48                       
         pha                                     ; 493C 48                       H
         bcs     L4987                           ; 493D B0 48                    .H
         lda     $48,x                           ; 493F B5 48                    .H
-        tsx                                     ; 4941 BA                       .
-        pha                                     ; 4942 48                       H
+	.addr	L48BA
         .byte   $BE                             ; 4943 BE                       .
         pha                                     ; 4944 48                       H
 L4945:  sta     $A0                             ; 4945 85 A0                    ..
