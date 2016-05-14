@@ -1568,9 +1568,7 @@ L4BC9:  sta     $A0                             ; 4BC9 85 A0                    
         rts                                     ; 4BEB 60                       `
 
 ; ----------------------------------------------------------------------------
-L4BEC:  .byte   $20                             ; 4BEC 20                        
-L4BED:  .byte   $72                             ; 4BED 72                       r
-        .byte   $32                             ; 4BEE 32                       2
+L4BEC:	jsr	L3272
         jsr     L4253                           ; 4BEF 20 53 42                  SB
 L4BF2:  jmp     L4BF5                           ; 4BF2 4C F5 4B                 L.K
 
@@ -1584,7 +1582,7 @@ L4BF5:  jsr     L44D5                           ; 4BF5 20 D5 44                 
         lda     #$04                            ; 4C03 A9 04                    ..
         sta     $A4                             ; 4C05 85 A4                    ..
         ldy     #$EE                            ; 4C07 A0 EE                    ..
-        ldx     L4BED                           ; 4C09 AE ED 4B                 ..K
+        ldx     L4BEC+1                         ; 4C09 AE ED 4B                 ..K
         lda     L4BEC                           ; 4C0C AD EC 4B                 ..K
         jsr     L461F                           ; 4C0F 20 1F 46                  .F
         rts                                     ; 4C12 60                       `
