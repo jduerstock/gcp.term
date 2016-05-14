@@ -52,6 +52,13 @@ LF7B6           := $F7B6
 	untrue:
 .endmacro
 
+.macro	lbcc	addr
+	.local	untrue
+	bcs	untrue
+	jmp	addr
+	untrue:
+.endmacro
+
 .macro	lbcs	addr
 	.local	untrue
 	bcc	untrue
@@ -3582,10 +3589,7 @@ L5A53:  lda     L58EB                           ; 5A53 AD EB 58                 
 ; ----------------------------------------------------------------------------
 L5A90:  lda     L58EE                           ; 5A90 AD EE 58                 ..X
         eor     #$43                            ; 5A93 49 43                    IC
-        beq     L5A9A                           ; 5A95 F0 03                    ..
-        jmp     L5ADD                           ; 5A97 4C DD 5A                 L.Z
-
-; ----------------------------------------------------------------------------
+	lbne	L5ADD
 L5A9A:  lda     L58EA                           ; 5A9A AD EA 58                 ..X
         sta     L58EC                           ; 5A9D 8D EC 58                 ..X
         lda     L58E9                           ; 5AA0 AD E9 58                 ..X
@@ -3619,11 +3623,8 @@ L5AAE:  lda     L58EB                           ; 5AAE AD EB 58                 
 ; ----------------------------------------------------------------------------
 L5ADD:  lda     L58EE                           ; 5ADD AD EE 58                 ..X
         eor     #$44                            ; 5AE0 49 44                    ID
-        beq     L5AE7                           ; 5AE2 F0 03                    ..
-        jmp     L5B2A                           ; 5AE4 4C 2A 5B                 L*[
-
-; ----------------------------------------------------------------------------
-L5AE7:  lda     L58EA                           ; 5AE7 AD EA 58                 ..X
+	lbne	L5B2A
+	lda     L58EA                           ; 5AE7 AD EA 58                 ..X
         sta     L58EC                           ; 5AEA 8D EC 58                 ..X
         lda     L58E9                           ; 5AED AD E9 58                 ..X
         sta     L58EB                           ; 5AF0 8D EB 58                 ..X
@@ -3687,11 +3688,8 @@ L5B34:  clc                                     ; 5B34 18                       
         sty     L58EF                           ; 5B6B 8C EF 58                 ..X
 L5B6E:  lda     #$03                            ; 5B6E A9 03                    ..
         cmp     L58EF                           ; 5B70 CD EF 58                 ..X
-        bcs     L5B78                           ; 5B73 B0 03                    ..
-        jmp     L5BBE                           ; 5B75 4C BE 5B                 L.[
-
-; ----------------------------------------------------------------------------
-L5B78:  clc                                     ; 5B78 18                       .
+	lbcc	L5BBE
+	clc                                     ; 5B78 18                       .
         lda     L58EB                           ; 5B79 AD EB 58                 ..X
         adc     L58EF                           ; 5B7C 6D EF 58                 m.X
         sta     $AE                             ; 5B7F 85 AE                    ..
