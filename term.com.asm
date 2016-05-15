@@ -12219,10 +12219,9 @@ L9BCE:  rts                                     ; 9BCE 60                       
 
 ; ----------------------------------------------------------------------------
 L9BCF:  brk                                     ; 9BCF 00                       .
-L9BD0:  jmp     L9BD3                           ; 9BD0 4C D3 9B                 L..
 
-; ----------------------------------------------------------------------------
-L9BD3:  sta     L9BCF                           ; 9BD3 8D CF 9B                 ...
+L9BD0:  prolog
+	sta     L9BCF                           ; 9BD3 8D CF 9B                 ...
         lda     L9BCF                           ; 9BD6 AD CF 9B                 ...
         sta     L46E7                           ; 9BD9 8D E7 46                 ..F
         rts                                     ; 9BDC 60                       `
@@ -12231,10 +12230,9 @@ L9BD3:  sta     L9BCF                           ; 9BD3 8D CF 9B                 
 L9BDD:  brk                                     ; 9BDD 00                       .
 L9BDE:  brk                                     ; 9BDE 00                       .
 L9BDF:  brk                                     ; 9BDF 00                       .
-        jmp     L9BE3                           ; 9BE0 4C E3 9B                 L..
 
-; ----------------------------------------------------------------------------
-L9BE3:  jsr     sub_44D5                           ; 9BE3 20 D5 44                  .D
+L9BE0:	prolog
+	jsr     sub_44D5                           ; 9BE3 20 D5 44                  .D
         cmp     $029B,x                         ; 9BE6 DD 9B 02                 ...
         clc                                     ; 9BE9 18                       .
         lda     L46EB                           ; 9BEA AD EB 46                 ..F
@@ -14290,8 +14288,8 @@ LAA86:	.addr	L6AD5
 	.addr	L7096
 	.addr	L70E2
 	.addr	L9C41
-        cpx     #$9B                            ; AAB6 E0 9B                    ..
-        bne     LAA55                           ; AAB8 D0 9B                    ..
+	.addr	L9BE0
+	.addr	L9BD0
         lda     $2C9C                           ; AABA AD 9C 2C                 ..,
         .byte   $9E                             ; AABD 9E                       .
         sbc     #$7F                            ; AABE E9 7F                    ..
