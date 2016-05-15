@@ -12636,32 +12636,24 @@ L9F74:  beq     L9F79                           ; 9F74 F0 03                    
 L9F79:  jmp     L9F82                           ; 9F79 4C 82 9F                 L..
 
 ; ----------------------------------------------------------------------------
-	ora     $63                             ; 9F7C 05 63                    .c
-	.byte   $42                             ; 9F7E 42                       B
-	.byte   $42                             ; 9F7F 42                       B
-	.byte   $42                             ; 9F80 42                       B
-	.byte   $42                             ; 9F81 42                       B
-L9F82:  lda     #$00                            ; 9F82 A9 00                    ..
-	sta     $A3                             ; 9F84 85 A3                    ..
-	lda     #$00                            ; 9F86 A9 00                    ..
-	sta     $A5                             ; 9F88 85 A5                    ..
+L9F7C:	.byte	$05,"cBBBB"
+
+L9F82:	ldi	$A3, $00
+	ldi	$A5, $00
 	lda     L9E1B                           ; 9F8A AD 1B 9E                 ...
 	sta     $A4                             ; 9F8D 85 A4                    ..
-	lda     #$00                            ; 9F8F A9 00                    ..
-	sta     $A7                             ; 9F91 85 A7                    ..
+	ldi	$A7, $00
 	lda     L9E1C                           ; 9F93 AD 1C 9E                 ...
 	sta     $A6                             ; 9F96 85 A6                    ..
-	lda     #$00                            ; 9F98 A9 00                    ..
-	sta     $A9                             ; 9F9A 85 A9                    ..
+	ldi	$A9, $00
 	lda     L9E19                           ; 9F9C AD 19 9E                 ...
 	sta     $A8                             ; 9F9F 85 A8                    ..
-	lda     #$00                            ; 9FA1 A9 00                    ..
-	sta     $AB                             ; 9FA3 85 AB                    ..
+	ldi	$AB, $00
 	lda     L9E1A                           ; 9FA5 AD 1A 9E                 ...
 	sta     $AA                             ; 9FA8 85 AA                    ..
 	ldy     L9E0F                           ; 9FAA AC 0F 9E                 ...
-	ldx     #$9F                            ; 9FAD A2 9F                    ..
-	lda     #$7C                            ; 9FAF A9 7C                    .|
+	ldx     #>L9F7C
+	lda     #<L9F7C
 	jsr     L55A0                           ; 9FB1 20 A0 55                  .U
 	jmp     L9FDE                           ; 9FB4 4C DE 9F                 L..
 
