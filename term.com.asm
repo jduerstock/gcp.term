@@ -15,6 +15,7 @@ off_84		:= $0084
 off_AE		:= $00AE
 VDSLST		:= $0200
 L0248           := $0248
+DVSTAT		:= $02EA
 L0A94           := $0A94
 L0ABB           := $0ABB
 L0AC1           := $0AC1
@@ -1021,15 +1022,9 @@ L4855:	.byte   $03                             ; 4855 03                       .
 	.byte   $44                             ; 4868 44                       D
 	.byte   $52                             ; 4869 52                       R
 	ror     $48                             ; 486A 66 48                    fH
-	.byte   $03                             ; 486C 03                       .
-	.byte   $42                             ; 486D 42                       B
-	.byte   $44                             ; 486E 44                       D
-	.byte   $73                             ; 486F 73                       s
-	jmp     (L0248)                         ; 4870 6C 48 02                 lH.
-
-; ----------------------------------------------------------------------------
-	.byte   $44                             ; 4873 44                       D
-	.byte   $73                             ; 4874 73                       s
+L486C:	.byte	$03,"BDs"
+	.addr	L486C
+	.byte	$02,"Ds"
 	.byte   $72                             ; 4875 72                       r
 	pha                                     ; 4876 48                       H
 	.byte   $02                             ; 4877 02                       .
@@ -1449,7 +1444,7 @@ sub_4AE6:
 L4B07:  prolog
 	lda     #$02                            ; 4B0A A9 02                    ..
 	jsr     sub_4AE6
-	lda     $02EB                           ; 4B0F AD EB 02                 ...
+	lda     DVSTAT+1
 	sta     $A0                             ; 4B12 85 A0                    ..
 	rts                                     ; 4B14 60                       `
 
@@ -14990,28 +14985,19 @@ LB07D:  jsr     L54FF                           ; B07D 20 FF 54                 
 	sta     LAF36                           ; B082 8D 36 AF                 .6.
 	lda     LAF36                           ; B085 AD 36 AF                 .6.
 	eor     #$01                            ; B088 49 01                    I.
-	beq     LB08F                           ; B08A F0 03                    ..
-	jmp     LB092                           ; B08C 4C 92 B0                 L..
-
-; ----------------------------------------------------------------------------
-LB08F:  jsr     LAB6A                           ; B08F 20 6A AB                  j.
+	lbne	LB092
+	jsr     LAB6A                           ; B08F 20 6A AB                  j.
 LB092:  jsr     L9DCB                           ; B092 20 CB 9D                  ..
 	lda     $A0                             ; B095 A5 A0                    ..
 	eor     #$01                            ; B097 49 01                    I.
-	beq     LB09E                           ; B099 F0 03                    ..
-	jmp     LB0A3                           ; B09B 4C A3 B0                 L..
-
-; ----------------------------------------------------------------------------
-LB09E:  lda     #$00                            ; B09E A9 00                    ..
+	lbne	LB0A3
+	lda     #$00                            ; B09E A9 00                    ..
 	jsr     L4BA7                           ; B0A0 20 A7 4B                  .K
 LB0A3:  jsr     LA9A3                           ; B0A3 20 A3 A9                  ..
 	lda     L4764                           ; B0A6 AD 64 47                 .dG
 	eor     #$01                            ; B0A9 49 01                    I.
-	beq     LB0B0                           ; B0AB F0 03                    ..
-	jmp     LB0B3                           ; B0AD 4C B3 B0                 L..
-
-; ----------------------------------------------------------------------------
-LB0B0:  jsr     LAE81                           ; B0B0 20 81 AE                  ..
+	lbne	LB0B3
+	jsr     LAE81                           ; B0B0 20 81 AE                  ..
 LB0B3:  jsr     L8D01                           ; B0B3 20 01 8D                  ..
 	ldy     #$00                            ; B0B6 A0 00                    ..
 	sty     L464D                           ; B0B8 8C 4D 46                 .MF
