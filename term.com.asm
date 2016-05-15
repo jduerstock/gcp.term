@@ -6266,14 +6266,13 @@ L6EEF:  lda     L6E43                           ; 6EEF AD 43 6E                 
         jmp     L6F65                           ; 6F03 4C 65 6F                 Leo
 
 ; ----------------------------------------------------------------------------
-L6F06:  brk                                     ; 6F06 00                       .
-L6F07:  lda     L6E41                           ; 6F07 AD 41 6E                 .An
-        eor     #$01                            ; 6F0A 49 01                    I.
-        beq     L6F11                           ; 6F0C F0 03                    ..
-        jmp     L6F22                           ; 6F0E 4C 22 6F                 L"o
+L6F06:  .byte	$00				; 6F06 00                       .
 
 ; ----------------------------------------------------------------------------
-L6F11:  ldy     L6E49                           ; 6F11 AC 49 6E                 .In
+L6F07:  lda     L6E41                           ; 6F07 AD 41 6E                 .An
+        eor     #$01                            ; 6F0A 49 01                    I.
+	lbne	L6F22
+	ldy     L6E49                           ; 6F11 AC 49 6E                 .In
         ldx     L6E4C                           ; 6F14 AE 4C 6E                 .Ln
         lda     L6E4B                           ; 6F17 AD 4B 6E                 .Kn
         jsr     L4B97                           ; 6F1A 20 97 4B                  .K
