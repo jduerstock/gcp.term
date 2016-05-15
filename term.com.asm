@@ -12429,7 +12429,7 @@ L9E21:  brk                                     ; 9E21 00                       
 	brk                                     ; 9E25 00                       .
 	brk                                     ; 9E26 00                       .
 	brk                                     ; 9E27 00                       .
-	brk                                     ; 9E28 00                       .
+L9E28:	brk                                     ; 9E28 00                       .
 	brk                                     ; 9E29 00                       .
 L9E2A:  brk                                     ; 9E2A 00                       .
 L9E2B:  brk                                     ; 9E2B 00                       .
@@ -12475,11 +12475,8 @@ L9E73:  sec                                     ; 9E73 38                       
 ; ----------------------------------------------------------------------------
 L9E94:  lda     L46E6                           ; 9E94 AD E6 46                 ..F
 	eor     #$04                            ; 9E97 49 04                    I.
-	beq     L9E9E                           ; 9E99 F0 03                    ..
-	jmp     L9ED7                           ; 9E9B 4C D7 9E                 L..
-
-; ----------------------------------------------------------------------------
-L9E9E:  ldx     L46EA                           ; 9E9E AE EA 46                 ..F
+	lbne	L9ED7
+	ldx     L46EA                           ; 9E9E AE EA 46                 ..F
 	lda     L46E9                           ; 9EA1 AD E9 46                 ..F
 	jsr     L799B                           ; 9EA4 20 9B 79                  .y
 	lda     $A1                             ; 9EA7 A5 A1                    ..
@@ -12488,13 +12485,11 @@ L9E9E:  ldx     L46EA                           ; 9E9E AE EA 46                 
 	sta     L9E14                           ; 9EAE 8D 14 9E                 ...
 	lda     L9E15                           ; 9EB1 AD 15 9E                 ...
 	sta     $A3                             ; 9EB4 85 A3                    ..
-	lda     #$00                            ; 9EB6 A9 00                    ..
-	sta     $A5                             ; 9EB8 85 A5                    ..
-	lda     #$04                            ; 9EBA A9 04                    ..
-	sta     $A4                             ; 9EBC 85 A4                    ..
+	ldi	$A5, $00
+	ldi	$A4, $04
 	ldy     L9E14                           ; 9EBE AC 14 9E                 ...
-	ldx     #$9E                            ; 9EC1 A2 9E                    ..
-	lda     #$28                            ; 9EC3 A9 28                    .(
+	ldx     #>L9E28                         ; 9EC1 A2 9E                    ..
+	lda     #<L9E28                         ; 9EC3 A9 28                    .(
 	jsr     L461F                           ; 9EC5 20 1F 46                  .F
 	lda     L9E2A                           ; 9EC8 AD 2A 9E                 .*.
 	sta     L9E1B                           ; 9ECB 8D 1B 9E                 ...
@@ -12505,21 +12500,15 @@ L9E9E:  ldx     L46EA                           ; 9E9E AE EA 46                 
 ; ----------------------------------------------------------------------------
 L9ED7:  lda     L46E6                           ; 9ED7 AD E6 46                 ..F
 	eor     #$03                            ; 9EDA 49 03                    I.
-	beq     L9EE1                           ; 9EDC F0 03                    ..
-	jmp     L9F69                           ; 9EDE 4C 69 9F                 Li.
-
-; ----------------------------------------------------------------------------
-L9EE1:  lda     L4751                           ; 9EE1 AD 51 47                 .QG
+	lbne	L9F69
+	lda     L4751                           ; 9EE1 AD 51 47                 .QG
 	sta     L9E19                           ; 9EE4 8D 19 9E                 ...
 	lda     L4752                           ; 9EE7 AD 52 47                 .RG
 	sta     L9E1A                           ; 9EEA 8D 1A 9E                 ...
 	lda     L474F                           ; 9EED AD 4F 47                 .OG
 	eor     #$02                            ; 9EF0 49 02                    I.
-	beq     L9EF7                           ; 9EF2 F0 03                    ..
-	jmp     L9F69                           ; 9EF4 4C 69 9F                 Li.
-
-; ----------------------------------------------------------------------------
-L9EF7:  lda     L4750                           ; 9EF7 AD 50 47                 .PG
+	lbne	L9F69
+	lda     L4750                           ; 9EF7 AD 50 47                 .PG
 	jsr     sub_7035
 	lda     $A1                             ; 9EFD A5 A1                    ..
 	sta     L9E11                           ; 9EFF 8D 11 9E                 ...
