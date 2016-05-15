@@ -403,7 +403,7 @@ L4539:  pha                                     ; 4539 48                       
         sta     $05C0,y                         ; 4541 99 C0 05                 ...
         tay                                     ; 4544 A8                       .
         lda     ($A1),y                         ; 4545 B1 A1                    ..
-        sta     $0500                           ; 4547 8D 00 05                 ...
+	sta     $0500                           ; 4547 8D 00 05                 ...
         tay                                     ; 454A A8                       .
         iny                                     ; 454B C8                       .
         lda     #$9B                            ; 454C A9 9B                    ..
@@ -10414,7 +10414,7 @@ L8E22:  brk                                     ; 8E22 00                       
 L8E23:  brk                                     ; 8E23 00                       .
 
 L8E24:	prolog
-	jsr     sub_44D5                           ; 8E27 20 D5 44                  .D
+	jsr     sub_44D5                        ; 8E27 20 D5 44                  .D
         .byte   $1F                             ; 8E2A 1F                       .
         stx     LAD02                           ; 8E2B 8E 02 AD                 ...
         .byte   $1F                             ; 8E2E 1F                       .
@@ -13282,20 +13282,16 @@ LA37D:  jsr     L5E30                           ; A37D 20 30 5E                 
 
 ; ----------------------------------------------------------------------------
 LA381:  brk                                     ; A381 00                       .
-        jmp     LA385                           ; A382 4C 85 A3                 L..
 
-; ----------------------------------------------------------------------------
-LA385:  sta     LA381                           ; A385 8D 81 A3                 ...
+LA382:	prolog
+LA385:	sta     LA381                           ; A385 8D 81 A3                 ...
         jsr     L5E1E                           ; A388 20 1E 5E                  .^
         lda     LA381                           ; A38B AD 81 A3                 ...
         jsr     LA28D                           ; A38E 20 8D A2                  ..
         lda     L4652                           ; A391 AD 52 46                 .RF
         eor     LA381                           ; A394 4D 81 A3                 M..
-        beq     LA39C                           ; A397 F0 03                    ..
-        jmp     LA3A1                           ; A399 4C A1 A3                 L..
-
-; ----------------------------------------------------------------------------
-LA39C:  lda     #$02                            ; A39C A9 02                    ..
+	lbne	LA3A1
+	lda     #$02                            ; A39C A9 02                    ..
         sta     L4652                           ; A39E 8D 52 46                 .RF
 LA3A1:  jsr     L5E30                           ; A3A1 20 30 5E                  0^
         rts                                     ; A3A4 60                       `
@@ -13325,10 +13321,9 @@ LA3B7:  brk                                     ; A3B7 00                       
         brk                                     ; A3BA 00                       .
 LA3BB:  brk                                     ; A3BB 00                       .
 LA3BC:  brk                                     ; A3BC 00                       .
-        jmp     LA3C0                           ; A3BD 4C C0 A3                 L..
 
-; ----------------------------------------------------------------------------
-LA3C0:  jsr     sub_44D5                           ; A3C0 20 D5 44                  .D
+LA3BD:	prolog
+	jsr     sub_44D5                           ; A3C0 20 D5 44                  .D
         lda     $A3                             ; A3C3 A5 A3                    ..
         .byte   $04                             ; A3C5 04                       .
         lda     LA3A5                           ; A3C6 AD A5 A3                 ...
@@ -13534,10 +13529,9 @@ LA541:  brk                                     ; A541 00                       
         brk                                     ; A544 00                       .
 LA545:  brk                                     ; A545 00                       .
 LA546:  brk                                     ; A546 00                       .
-        jmp     LA54A                           ; A547 4C 4A A5                 LJ.
 
-; ----------------------------------------------------------------------------
-LA54A:  jsr     sub_44D5                           ; A54A 20 D5 44                  .D
+LA547:	prolog
+	jsr     sub_44D5                        ; A54A 20 D5 44                  .D
         rol     $03A5                           ; A54D 2E A5 03                 ...
         lda     LA52E                           ; A550 AD 2E A5                 ...
         jsr     L65B0                           ; A553 20 B0 65                  .e
@@ -13547,10 +13541,7 @@ LA54A:  jsr     sub_44D5                           ; A54A 20 D5 44              
         sta     LA534                           ; A55D 8D 34 A5                 .4.
         lda     LA534                           ; A560 AD 34 A5                 .4.
         ora     LA535                           ; A563 0D 35 A5                 .5.
-        beq     LA56B                           ; A566 F0 03                    ..
-        jmp     LA56C                           ; A568 4C 6C A5                 Ll.
-
-; ----------------------------------------------------------------------------
+	lbne	LA56C
 LA56B:  rts                                     ; A56B 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -13749,10 +13740,10 @@ LA6E0:  brk                                     ; A6E0 00                       
         .byte   $64                             ; A6E2 64                       d
         .byte   $6F                             ; A6E3 6F                       o
         ror     $E165                           ; A6E4 6E 65 E1                 ne.
-        ldx     $4C                             ; A6E7 A6 4C                    .L
-        .byte   $EB                             ; A6E9 EB                       .
-        ldx     $20                             ; A6EA A6 20                    . 
-        cmp     $44,x                           ; A6EC D5 44                    .D
+	.byte	$A6
+
+LA6E8:	prolog
+	jsr	sub_44D5
         cld                                     ; A6EE D8                       .
         ldx     $03                             ; A6EF A6 03                    ..
         lda     LA6D8                           ; A6F1 AD D8 A6                 ...
@@ -13855,10 +13846,9 @@ LA7B7:  lda     LA6D9                           ; A7B7 AD D9 A6                 
 LA7C1:  brk                                     ; A7C1 00                       .
 LA7C2:  brk                                     ; A7C2 00                       .
 LA7C3:  brk                                     ; A7C3 00                       .
-        jmp     LA7C7                           ; A7C4 4C C7 A7                 L..
 
-; ----------------------------------------------------------------------------
-LA7C7:  jsr     sub_44D5                           ; A7C7 20 D5 44                  .D
+LA7C4:	prolog
+	jsr     sub_44D5                           ; A7C7 20 D5 44                  .D
         cmp     ($A7,x)                         ; A7CA C1 A7                    ..
         .byte   $02                             ; A7CC 02                       .
         jsr     L5E1E                           ; A7CD 20 1E 5E                  .^
@@ -14300,14 +14290,14 @@ LAA86:	.addr	L6AD5
 	.addr	LA9EC
 	.addr	L968E
 	.addr	L97A1
-        asl     $305E,x                         ; AAD8 1E 5E 30                 .^0
-        lsr     LA2A8,x                         ; AADB 5E A8 A2                 ^..
-        .byte   $82                             ; AADE 82                       .
-        .byte   $A3                             ; AADF A3                       .
-        lda     L47A3,x                         ; AAE0 BD A3 47                 ..G
-        lda     $E8                             ; AAE3 A5 E8                    ..
-        ldx     $C4                             ; AAE5 A6 C4                    ..
-        .byte   $A7                             ; AAE7 A7                       .
+	.addr	L5E1E
+	.addr	L5E30
+	.addr	LA2A8
+	.addr	LA382
+	.addr	LA3BD
+	.addr	LA547
+	.addr	LA6E8
+	.addr	LA7C4
         .byte   $F3                             ; AAE8 F3                       .
         .byte   $A7                             ; AAE9 A7                       .
         dec     L91A6                           ; AAEA CE A6 91                 ...
