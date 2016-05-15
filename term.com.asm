@@ -1975,12 +1975,9 @@ L4EAD:  .byte   $20                             ; 4EAD 20
 L4EAE:  .byte   $67                             ; 4EAE 67                       g
 L4EAF:  .byte   $74                             ; 4EAF 74                       t
 L4EB0:  plp                                     ; 4EB0 28                       (
-L4EB1:  jmp     L4EB4                           ; 4EB1 4C B4 4E                 L.N
 
-; ----------------------------------------------------------------------------
-L4EB4:  jsr     sub_44D5                        ; 4EB4 20 D5 44                  .D
-        .byte   $AB                             ; 4EB7 AB                       .
-        lsr     $1805                           ; 4EB8 4E 05 18                 N..
+L4EB1:  stack_prolog L4EAB, $05
+	clc
         lda     L4EAB                           ; 4EBB AD AB 4E                 ..N
         adc     L4EAF                           ; 4EBE 6D AF 4E                 m.N
         sta     $AE                             ; 4EC1 85 AE                    ..
@@ -2066,10 +2063,9 @@ L4F5A:  ldy     #$01                            ; 4F5A A0 01                    
 L4F6A:  brk                                     ; 4F6A 00                       .
 L4F6B:  brk                                     ; 4F6B 00                       .
 L4F6C:  .byte   $2E                             ; 4F6C 2E                       .
-L4F6D:  jmp     $4F70                           ; 4F6D 4C 70 4F                 LpO
 
-; ----------------------------------------------------------------------------
-        sta     L4F6A                           ; 4F70 8D 6A 4F                 .jO
+L4F6D:  prolog
+	sta     L4F6A                           ; 4F70 8D 6A 4F                 .jO
         jsr     L4BB8                           ; 4F73 20 B8 4B                  .K
         clc                                     ; 4F76 18                       .
         lda     L4F6A                           ; 4F77 AD 6A 4F                 .jO
@@ -2083,10 +2079,7 @@ L4F86:  jsr     L4BB8                           ; 4F86 20 B8 4B                 
         cmp     L4F6B                           ; 4F8B CD 6B 4F                 .kO
         lda     $A1                             ; 4F8E A5 A1                    ..
         sbc     L4F6C                           ; 4F90 ED 6C 4F                 .lO
-        bcc     L4F98                           ; 4F93 90 03                    ..
-        jmp     L4F9B                           ; 4F95 4C 9B 4F                 L.O
-
-; ----------------------------------------------------------------------------
+	lbcs	L4F9B
 L4F98:  jmp     L4F86                           ; 4F98 4C 86 4F                 L.O
 
 ; ----------------------------------------------------------------------------
@@ -2304,19 +2297,13 @@ L511D:  clc                                     ; 511D 18                       
         sta     $AE                             ; 5123 85 AE                    ..
         lda     L4FBF                           ; 5125 AD BF 4F                 ..O
         eor     $AE                             ; 5128 45 AE                    E.
-        beq     L512F                           ; 512A F0 03                    ..
-        jmp     L514C                           ; 512C 4C 4C 51                 LLQ
-
-; ----------------------------------------------------------------------------
-L512F:  sty     L464F                           ; 512F 8C 4F 46                 .OF
+	lbne	L514C
+	sty     L464F                           ; 512F 8C 4F 46                 .OF
         sty     L4FBF                           ; 5132 8C BF 4F                 ..O
         lda     L4FC1                           ; 5135 AD C1 4F                 ..O
         eor     #$0A                            ; 5138 49 0A                    I.
-        beq     L513F                           ; 513A F0 03                    ..
-        jmp     L5147                           ; 513C 4C 47 51                 LGQ
-
-; ----------------------------------------------------------------------------
-L513F:  lda     #$01                            ; 513F A9 01                    ..
+	lbne	L5147
+	lda     #$01                            ; 513F A9 01                    ..
         sta     $A0                             ; 5141 85 A0                    ..
         rts                                     ; 5143 60                       `
 
