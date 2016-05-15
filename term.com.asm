@@ -73,6 +73,13 @@ LEF40           := $EF40
 	untrue:
 .endmacro
 
+.macro	stack_prolog addr, size
+	prolog
+	jsr	sub_44D5
+	.addr	addr
+	.byte	size
+.endmacro
+
 	.segment "HDR00"
 
 	.word	$FFFF
@@ -1348,9 +1355,7 @@ L4A50:  .byte   $49                             ; 4A50 49                       
 L4A51:  .byte   $50                             ; 4A51 50                       P
 L4A52:  .byte   $54                             ; 4A52 54                       T
 
-L4A53:  prolog
-	jsr     sub_44D5                        ; 4A56 20 D5 44                  .D
-        lsr     $044A                           ; 4A59 4E 4A 04                 NJ.
+L4A53:	stack_prolog L4A4E, $04
         lda     #$00                            ; 4A5C A9 00                    ..
         sta     $A3                             ; 4A5E 85 A3                    ..
         ldy     #$80                            ; 4A60 A0 80                    ..
@@ -1536,7 +1541,8 @@ L4B92:  ora     $A0                             ; 4B92 05 A0                    
         rts                                     ; 4B96 60                       `
 
 ; ----------------------------------------------------------------------------
-L4B97:  sta     $AE                             ; 4B97 85 AE                    ..
+sub_4B97:  
+	sta     $AE                             ; 4B97 85 AE                    ..
         stx     $AF                             ; 4B99 86 AF                    ..
 L4B9B:  dey                                     ; 4B9B 88                       .
         bmi     L4BA2                           ; 4B9C 30 04                    0.
@@ -1593,9 +1599,7 @@ L4BC9:  sta     $A0                             ; 4BC9 85 A0                    
 L4BEC:	jsr	L3272
         jsr     L4253                           ; 4BEF 20 53 42                  SB
 
-L4BF2:  prolog
-L4BF5:  jsr     sub_44D5                        ; 4BF5 20 D5 44                  .D
-        cpx     $054B                           ; 4BF8 EC 4B 05                 .K.
+L4BF2:  stack_prolog L4BEC, $05
         lda     #$4B                            ; 4BFB A9 4B                    .K
         sta     $A3                             ; 4BFD 85 A3                    ..
         lda     #$00                            ; 4BFF A9 00                    ..
@@ -1620,10 +1624,7 @@ L4C19:  sei                                     ; 4C19 78                       
 L4C1B:  .byte   $2C                             ; 4C1B 2C                       ,
 L4C1C:  .byte   $20                             ; 4C1C 20                        
 
-L4C1D:  prolog
-	jsr     sub_44D5                        ; 4C20 20 D5 44                  .D
-	.addr	L4C13
-	.byte	$05
+L4C1D:  stack_prolog L4C13, $05
 	lda	L4C16
         sta     $A3                             ; 4C29 85 A3                    ..
 	lda	#$00
@@ -1671,10 +1672,7 @@ L4C72:  .byte   $2B                             ; 4C72 2B                       
 L4C73:  .byte   $79                             ; 4C73 79                       y
 L4C74:  .byte   $2C                             ; 4C74 2C                       ,
 
-L4C75:  prolog
-        jsr     sub_44D5                        ; 4C78 20 D5 44                  .D
-	.addr	L4C6D
-	.byte	$03
+L4C75:  stack_prolog L4C6D, $03
         lda     L4C70                           ; 4C7E AD 70 4C                 .pL
         sta     $A3                             ; 4C81 85 A3                    ..
         lda     #$00                            ; 4C83 A9 00                    ..
@@ -1747,20 +1745,14 @@ L4CF1:  .byte   $44                             ; 4CF1 44                       
 L4CF2:  .byte   $45                             ; 4CF2 45                       E
 L4CF3:  .byte   $53                             ; 4CF3 53                       S
 L4CF4:  .byte   $43                             ; 4CF4 43                       C
-L4CF5:  jmp     L4CF8                           ; 4CF5 4C F8 4C                 L.L
 
-; ----------------------------------------------------------------------------
-L4CF8:  jsr     sub_44D5                        ; 4CF8 20 D5 44                  .D
-        inc     $054C                           ; 4CFB EE 4C 05                 .L.
+L4CF5:  stack_prolog L4CEE, $05
         ldy     #$00                            ; 4CFE A0 00                    ..
         sty     L4CF4                           ; 4D00 8C F4 4C                 ..L
 L4D03:  lda     #$01                            ; 4D03 A9 01                    ..
         cmp     L4CF4                           ; 4D05 CD F4 4C                 ..L
-        bcs     L4D0D                           ; 4D08 B0 03                    ..
-        jmp     L4DCC                           ; 4D0A 4C CC 4D                 L.M
-
-; ----------------------------------------------------------------------------
-L4D0D:  clc                                     ; 4D0D 18                       .
+	lbcc	L4DCC
+	clc                                     ; 4D0D 18                       .
         lda     L4CF2                           ; 4D0E AD F2 4C                 ..L
         adc     L4CF4                           ; 4D11 6D F4 4C                 m.L
         sta     $AE                             ; 4D14 85 AE                    ..
@@ -6275,7 +6267,7 @@ L6F07:  lda     L6E41                           ; 6F07 AD 41 6E                 
 	ldy     L6E49                           ; 6F11 AC 49 6E                 .In
         ldx     L6E4C                           ; 6F14 AE 4C 6E                 .Ln
         lda     L6E4B                           ; 6F17 AD 4B 6E                 .Kn
-        jsr     L4B97                           ; 6F1A 20 97 4B                  .K
+        jsr     sub_4B97
         lda     $A0                             ; 6F1D A5 A0                    ..
         sta     L6E4A                           ; 6F1F 8D 4A 6E                 .Jn
 L6F22:  lda     #$00                            ; 6F22 A9 00                    ..
@@ -10835,7 +10827,7 @@ L90D1:  stx     L90C2                           ; 90D1 8E C2 90                 
         ldy     L90C8                           ; 911F AC C8 90                 ...
         ldx     L90C6                           ; 9122 AE C6 90                 ...
         lda     L90C5                           ; 9125 AD C5 90                 ...
-        jsr     L4B97                           ; 9128 20 97 4B                  .K
+        jsr     sub_4B97
         lda     $A0                             ; 912B A5 A0                    ..
         sta     L90C7                           ; 912D 8D C7 90                 ...
         lda     L90C7                           ; 9130 AD C7 90                 ...
@@ -13425,7 +13417,7 @@ LA47E:  clc                                     ; A47E 18                       
         ldy     LA3AE                           ; A48D AC AE A3                 ...
         ldx     $A1                             ; A490 A6 A1                    ..
         lda     $A0                             ; A492 A5 A0                    ..
-        jsr     L4B97                           ; A494 20 97 4B                  .K
+        jsr     sub_4B97
         lda     $A0                             ; A497 A5 A0                    ..
         sta     LA3B1                           ; A499 8D B1 A3                 ...
 LA49C:  ldy     #$01                            ; A49C A0 01                    ..
