@@ -7135,13 +7135,10 @@ sub_760A:
 	lda     L7606                           ; 7623 AD 06 76                 ..v
 	eor     #$80                            ; 7626 49 80                    I.
 	lbeq	L763E
-	lda     L7608                           ; 762D AD 08 76                 ..v
-	sta     $AE                             ; 7630 85 AE                    ..
-	lda     L7609                           ; 7632 AD 09 76                 ..v
-	sta     $AF                             ; 7635 85 AF                    ..
+	dmv	off_AE, L7608
 	lda     L7606                           ; 7637 AD 06 76                 ..v
 	ldy     #$00                            ; 763A A0 00                    ..
-	sta     ($AE),y                         ; 763C 91 AE                    ..
+	sta     (off_AE),y
 L763E:  lda     L7607                           ; 763E AD 07 76                 ..v
 	eor     #$80                            ; 7641 49 80                    I.
 	lbeq	L765E
@@ -7188,10 +7185,8 @@ L7687:  .byte   $93                             ; 7687 93                       
 L7688:  .byte   $ED                             ; 7688 ED                       .
 	.byte   $20                             ; 7689 20                        
 
-L768A:  prolog
-	jsr     sub_44D5                        ; 768D 20 D5 44                  .D
-	ror     a                               ; 7690 6A                       j
-	ror     $02,x                           ; 7691 76 02                    v.
+sub_768A:  
+	stack_prolog L766A, $02
 	lda     L766A                           ; 7693 AD 6A 76                 .jv
 	jsr     sub_7035
 	lda     $A1                             ; 7699 A5 A1                    ..
@@ -8873,7 +8868,7 @@ L8334:  lda     L81E2                           ; 8334 AD E2 81                 
 L833E:  ldy     #$00                            ; 833E A0 00                    ..
 	ldx     L81D9                           ; 8340 AE D9 81                 ...
 	lda     L4750                           ; 8343 AD 50 47                 .PG
-	jsr     L768A                           ; 8346 20 8A 76                  .v
+	jsr     sub_768A
 	lda     $A0                             ; 8349 A5 A0                    ..
 	beq     L8350                           ; 834B F0 03                    ..
 	jmp     L8386                           ; 834D 4C 86 83                 L..
@@ -8911,7 +8906,7 @@ L837B:  lda     L81E4                           ; 837B AD E4 81                 
 L8386:  ldy     L81DA                           ; 8386 AC DA 81                 ...
 	ldx     #$00                            ; 8389 A2 00                    ..
 	lda     L4750                           ; 838B AD 50 47                 .PG
-	jsr     L768A                           ; 838E 20 8A 76                  .v
+	jsr     sub_768A
 	lda     $A0                             ; 8391 A5 A0                    ..
 	beq     L8398                           ; 8393 F0 03                    ..
 	jmp     L83CE                           ; 8395 4C CE 83                 L..
@@ -14835,7 +14830,7 @@ LB049:  lda     L46E6                           ; B049 AD E6 46                 
 LB053:  ldy     LAF38                           ; B053 AC 38 AF                 .8.
 	ldx     LAF37                           ; B056 AE 37 AF                 .7.
 	lda     L46E9                           ; B059 AD E9 46                 ..F
-	jsr     L768A                           ; B05C 20 8A 76                  .v
+	jsr     sub_768A
 	jmp     LB07D                           ; B05F 4C 7D B0                 L}.
 
 ; ----------------------------------------------------------------------------
