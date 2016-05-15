@@ -7174,7 +7174,8 @@ L7672:  ;beq     $7694                           ; 7672 F0 20                   
 	bcs     L76BA                           ; 7679 B0 3F                    .?
 L767B:  .byte   $20                             ; 767B 20                        
 L767C:  .byte   $75                             ; 767C 75                       u
-L767D:  sbc     #$20                            ; 767D E9 20                    . 
+L767D:  .byte	$E9
+L767E:	.byte	$20
 	.byte   $C2                             ; 767F C2                       .
 L7680:  .byte   $EF                             ; 7680 EF                       .
 L7681:  .byte   $D0                             ; 7681 D0                       .
@@ -7195,23 +7196,17 @@ sub_768A:
 	sta     L766D                           ; 76A0 8D 6D 76                 .mv
 	lda     L766E                           ; 76A3 AD 6E 76                 .nv
 	sta     $A3                             ; 76A6 85 A3                    ..
-	lda     #$00                            ; 76A8 A9 00                    ..
-	sta     $A5                             ; 76AA 85 A5                    ..
-	lda     #$0C                            ; 76AC A9 0C                    ..
-	sta     $A4                             ; 76AE 85 A4                    ..
+	ldi	$A5, $00
+	ldi	$A4, $0C
 	ldy     L766D                           ; 76B0 AC 6D 76                 .mv
-	ldx     #$76                            ; 76B3 A2 76                    .v
-	lda     #$7E                            ; 76B5 A9 7E                    .~
+	ldx     #>L767E                         ; 76B3 A2 76                    .v
+	lda     #<L767E                         ; 76B5 A9 7E                    .~
 	jsr     L461F                           ; 76B7 20 1F 46                  .F
 L76BA:  lda     L7688                           ; 76BA AD 88 76                 ..v
 	beq     L76C7                           ; 76BD F0 08                    ..
 	lda     L7687                           ; 76BF AD 87 76                 ..v
-	beq     L76C7                           ; 76C2 F0 03                    ..
-	jmp     L76CC                           ; 76C4 4C CC 76                 L.v
-
-; ----------------------------------------------------------------------------
-L76C7:  lda     #$00                            ; 76C7 A9 00                    ..
-	sta     $A0                             ; 76C9 85 A0                    ..
+	lbne	L76CC
+L76C7:  ldi	$A0, $00
 	rts                                     ; 76CB 60                       `
 
 ; ----------------------------------------------------------------------------
