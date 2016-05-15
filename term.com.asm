@@ -6990,10 +6990,7 @@ L74BE:
 	ldx     #$00                            ; 74E2 A2 00                    ..
 	lda     #$26                            ; 74E4 A9 26                    .&
 	jsr     L606E                           ; 74E6 20 6E 60                  n`
-	lda     $A1                             ; 74E9 A5 A1                    ..
-	sta     L74BD                           ; 74EB 8D BD 74                 ..t
-	lda     $A0                             ; 74EE A5 A0                    ..
-	sta     L74BC                           ; 74F0 8D BC 74                 ..t
+	rdmv	L74BC, $A0
 	lda     L74B8                           ; 74F3 AD B8 74                 ..t
 	asl     a                               ; 74F6 0A                       .
 	php                                     ; 74F7 08                       .
@@ -7053,8 +7050,7 @@ L7546:  adc     #$00                            ; 7546 69 00                    
 	lda     L74BB                           ; 7568 AD BB 74                 ..t
 	adc     #$00                            ; 756B 69 00                    i.
 	sta     $A3                             ; 756D 85 A3                    ..
-	.byte   $A9                             ; 756F A9                       .
-L7570:  brk                                     ; 7570 00                       .
+	lda	#$00
 	sta     $A5                             ; 7571 85 A5                    ..
 	lda     #$08                            ; 7573 A9 08                    ..
 	sta     $A4                             ; 7575 85 A4                    ..
