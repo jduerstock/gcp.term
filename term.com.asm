@@ -6392,10 +6392,7 @@ L6FEB:	prolog
         sta     L6FE7                           ; 6FF1 8D E7 6F                 ..o
         lda     L4648                           ; 6FF4 AD 48 46                 .HF
         eor     #$FF                            ; 6FF7 49 FF                    I.
-        beq     L6FFE                           ; 6FF9 F0 03                    ..
-        jmp     L6FFF                           ; 6FFB 4C FF 6F                 L.o
-
-; ----------------------------------------------------------------------------
+	lbne	L6FFF
 L6FFE:  rts                                     ; 6FFE 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -6454,10 +6451,9 @@ L705B:  .byte   $66                             ; 705B 66                       
 L705C:  .byte   $3E                             ; 705C 3E                       >
 L705D:  .byte   $06                             ; 705D 06                       .
 L705E:  .byte   $7C                             ; 705E 7C                       |
-        jmp     L7062                           ; 705F 4C 62 70                 Lbp
 
-; ----------------------------------------------------------------------------
-L7062:  stx     L705C                           ; 7062 8E 5C 70                 .\p
+L705F:	prolog
+	stx     L705C                           ; 7062 8E 5C 70                 .\p
         sta     L705B                           ; 7065 8D 5B 70                 .[p
         lda     L705B                           ; 7068 AD 5B 70                 .[p
         jsr     L7035                           ; 706B 20 35 70                  5p
@@ -6483,10 +6479,10 @@ L7090:  brk                                     ; 7090 00                       
 L7091:  .byte   $7C                             ; 7091 7C                       |
 L7092:  .byte   $66                             ; 7092 66                       f
 L7093:  ror     $66                             ; 7093 66 66                    ff
-        ror     $4C                             ; 7095 66 4C                    fL
-        .byte   $99                             ; 7097 99                       .
-        .byte   $70                             ; 7098 70                       p
-L7099:  jsr     sub_44D5                           ; 7099 20 D5 44                  .D
+	.byte	$66
+
+L7096:	prolog
+	jsr     sub_44D5                           ; 7099 20 D5 44                  .D
         .byte   $8F                             ; 709C 8F                       .
         bvs     L70A1                           ; 709D 70 02                    p.
         .byte   $AD                             ; 709F AD                       .
@@ -6528,8 +6524,9 @@ L70DD:  .byte   $36                             ; 70DD 36                       
 L70DE:  brk                                     ; 70DE 00                       .
 L70DF:  brk                                     ; 70DF 00                       .
 L70E0:  brk                                     ; 70E0 00                       .
-L70E1:  ror     $4C                             ; 70E1 66 4C                    fL
-        sbc     $70                             ; 70E3 E5 70                    .p
+L70E1:	.byte	$66
+
+L70E2:	prolog
         jsr     sub_44D5                           ; 70E5 20 D5 44                  .D
         dec     $70,x                           ; 70E8 D6 70                    .p
         .byte   $02                             ; 70EA 02                       .
@@ -7045,8 +7042,9 @@ L74B9:  .byte   $F0                             ; 74B9 F0                       
 L74BA:  .byte   $91                             ; 74BA 91                       .
 L74BB:  .byte   $47                             ; 74BB 47                       G
 L74BC:  clc                                     ; 74BC 18                       .
-L74BD:  lda     $4C                             ; 74BD A5 4C                    .L
-        cmp     ($74,x)                         ; 74BF C1 74                    .t
+L74BD:  .byte	$A5
+
+L74BE:	prolog
         jsr     sub_44D5                        ; 74C1 20 D5 44                  .D
         clv                                     ; 74C4 B8                       .
         .byte   $74                             ; 74C5 74                       t
@@ -7216,10 +7214,9 @@ L7606:  inx                                     ; 7606 E8                       
 L7607:  .byte   $FA                             ; 7607 FA                       .
 L7608:  .byte   $E9                             ; 7608 E9                       .
 L7609:  .byte   $53                             ; 7609 53                       S
-        jmp     L760D                           ; 760A 4C 0D 76                 L.v
 
-; ----------------------------------------------------------------------------
-L760D:  jsr     sub_44D5                        ; 760D 20 D5 44                  .D
+L760A:	prolog
+	jsr     sub_44D5                        ; 760D 20 D5 44                  .D
         ora     $76                             ; 7610 05 76                    .v
         .byte   $02                             ; 7612 02                       .
         lda     L7605                           ; 7613 AD 05 76                 ..v
@@ -7647,10 +7644,10 @@ L793F:  lda     L7824                           ; 793F AD 24 78                 
 ; ----------------------------------------------------------------------------
 L794E:  .byte   $0D                             ; 794E 0D                       .
 L794F:  .byte   $F0                             ; 794F F0                       .
-L7950:  ora     $4C                             ; 7950 05 4C                    .L
-        .byte   $54                             ; 7952 54                       T
-        .byte   $79                             ; 7953 79                       y
-L7954:  sta     L794E                           ; 7954 8D 4E 79                 .Ny
+L7950:  .byte	$05
+
+L7951:	prolog
+	sta     L794E                           ; 7954 8D 4E 79                 .Ny
         lda     L794E                           ; 7957 AD 4E 79                 .Ny
         jsr     L7035                           ; 795A 20 35 70                  5p
         lda     $A1                             ; 795D A5 A1                    ..
@@ -7789,12 +7786,11 @@ L7A52:  .byte   $F0                             ; 7A52 F0                       
 L7A53:  .byte   $F0                             ; 7A53 F0                       .
 L7A54:  .byte   $03                             ; 7A54 03                       .
 L7A55:  .byte   $4C                             ; 7A55 4C                       L
-L7A56:  ldx     $4C,y                           ; 7A56 B6 4C                    .L
-        .byte   $5A                             ; 7A58 5A                       Z
-        .byte   $7A                             ; 7A59 7A                       z
+L7A56:	.byte	$B6
+
+L7A57:	prolog
         jsr     sub_44D5                        ; 7A5A 20 D5 44                  .D
-        .byte   $52                             ; 7A5D 52                       R
-        .byte   $7A                             ; 7A5E 7A                       z
+	.addr	L7A52
         .byte   $02                             ; 7A5F 02                       .
         ldx     L7A53                           ; 7A60 AE 53 7A                 .Sz
         lda     L7A52                           ; 7A63 AD 52 7A                 .Rz
@@ -7828,9 +7824,10 @@ L7A95:  pla                                     ; 7A95 68                       
 L7A96:  .byte   $9D                             ; 7A96 9D                       .
 L7A97:  .byte   $9E                             ; 7A97 9E                       .
 L7A98:  .byte   $F0                             ; 7A98 F0                       .
-L7A99:  lda     #$4C                            ; 7A99 A9 4C                    .L
-        sta     $207A,x                         ; 7A9B 9D 7A 20                 .z 
-        cmp     $44,x                           ; 7A9E D5 44                    .D
+L7A99:  .byte	$A9
+
+L7A9A:	prolog
+	jsr	sub_44D5
         sta     $7A,x                           ; 7AA0 95 7A                    .z
         .byte   $02                             ; 7AA2 02                       .
         ldx     L7A96                           ; 7AA3 AE 96 7A                 ..z
@@ -7945,9 +7942,9 @@ L7B5C:  ora     ($91,x)                         ; 7B5C 01 91                    
         sbc     #$00                            ; 7B62 E9 00                    ..
 L7B64:  sta     ($45),y                         ; 7B64 91 45                    .E
         iny                                     ; 7B66 C8                       .
-L7B67:  lda     #$4C                            ; 7B67 A9 4C                    .L
-        .byte   $6B                             ; 7B69 6B                       k
-        .byte   $7B                             ; 7B6A 7B                       {
+L7B67:  .byte	$A9
+
+L7B68:	prolog
         jsr     sub_44D5                        ; 7B6B 20 D5 44                  .D
         eor     $027B                           ; 7B6E 4D 7B 02                 M{.
         sec                                     ; 7B71 38                       8
@@ -14279,25 +14276,20 @@ LAA86:	.addr	L6AD5
 	.addr	L6F68
 	.addr	L6F91
 	.addr	L6FEB
-        .byte   $57                             ; AA9A 57                       W
-        .byte   $7A                             ; AA9B 7A                       z
-        .byte   $DF                             ; AA9C DF                       .
-        .byte   $7A                             ; AA9D 7A                       z
-        pla                                     ; AA9E 68                       h
-        .byte   $7B                             ; AA9F 7B                       {
-        txs                                     ; AAA0 9A                       .
-        .byte   $7A                             ; AAA1 7A                       z
-        ldx     L5174,y                         ; AAA2 BE 74 51                 .tQ
-        adc     L77A3,y                         ; AAA5 79 A3 77                 y.w
-        rol     a                               ; AAA8 2A                       *
-        sei                                     ; AAA9 78                       x
-        sty     $0A75                           ; AAAA 8C 75 0A                 .u.
-        ror     $5F,x                           ; AAAD 76 5F                    v_
-        bvs     LAA47                           ; AAAF 70 96                    p.
-        ;bvs     LAA95                           ; AAB1 70 E2                    p.
-	.byte	$70,$E2
-        bvs     LAAF6                           ; AAB3 70 41                    pA
-        .byte   $9C                             ; AAB5 9C                       .
+	.addr	L7A57
+	.addr	L7ADF
+	.addr	L7B68
+	.addr	L7A9A
+	.addr	L74BE
+	.addr	L7951
+	.addr	L77A3
+	.addr	L782A
+	.addr	L758C
+	.addr	L760A
+	.addr	L705F
+	.addr	L7096
+	.addr	L70E2
+	.addr	L9C41
         cpx     #$9B                            ; AAB6 E0 9B                    ..
         bne     LAA55                           ; AAB8 D0 9B                    ..
         lda     $2C9C                           ; AABA AD 9C 2C                 ..,
