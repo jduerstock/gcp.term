@@ -10,6 +10,9 @@
 L000C           := $000C
 L0069           := $0069
 L0078           := $0078
+off_82		:= $0082
+off_84		:= $0084
+off_AE		:= $00AE
 VDSLST		:= $0200
 L0248           := $0248
 L0A94           := $0A94
@@ -156,6 +159,7 @@ L43BC:  .byte   $43                             ; 43BC 43                       
 ; ----------------------------------------------------------------------------
         .byte   $13                             ; 43C3 13                       .
         ora     ($01),y                         ; 43C4 11 01                    ..
+
         .byte   $83                             ; 43C6 83                       .
 L43C7:  tsx                                     ; 43C7 BA                       .
         stx     $04C1                           ; 43C8 8E C1 04                 ...
@@ -329,26 +333,26 @@ sub_44D5:
         sty     $A2                             ; 44D9 84 A2                    ..
         clc                                     ; 44DB 18                       .
         pla                                     ; 44DC 68                       h
-        sta     $84                             ; 44DD 85 84                    ..
+        sta     off_84                          ; 44DD 85 84                    ..
         adc     #$03                            ; 44DF 69 03                    i.
         tay                                     ; 44E1 A8                       .
         pla                                     ; 44E2 68                       h
-        sta     $85                             ; 44E3 85 85                    ..
+        sta     off_84+1                        ; 44E3 85 85                    ..
         adc     #$00                            ; 44E5 69 00                    i.
         pha                                     ; 44E7 48                       H
         tya                                     ; 44E8 98                       .
         pha                                     ; 44E9 48                       H
         ldy     #$01                            ; 44EA A0 01                    ..
-        lda     ($84),y                         ; 44EC B1 84                    ..
-        sta     $82                             ; 44EE 85 82                    ..
+        lda     (off_84),y                      ; 44EC B1 84                    ..
+        sta     off_82                          ; 44EE 85 82                    ..
         iny                                     ; 44F0 C8                       .
-        lda     ($84),y                         ; 44F1 B1 84                    ..
-        sta     $83                             ; 44F3 85 83                    ..
+        lda     (off_84),y                      ; 44F1 B1 84                    ..
+        sta     off_82+1                        ; 44F3 85 83                    ..
         iny                                     ; 44F5 C8                       .
-        lda     ($84),y                         ; 44F6 B1 84                    ..
+        lda     (off_84),y                      ; 44F6 B1 84                    ..
         tay                                     ; 44F8 A8                       .
 L44F9:  lda     $A0,y                           ; 44F9 B9 A0 00                 ...
-        sta     ($82),y                         ; 44FC 91 82                    ..
+        sta     (off_82),y                      ; 44FC 91 82                    ..
         dey                                     ; 44FE 88                       .
         bpl     L44F9                           ; 44FF 10 F8                    ..
         lda     $11                             ; 4501 A5 11                    ..
@@ -4076,10 +4080,9 @@ L5E5A:  rts                                     ; 5E5A 60                       
 L5E5B:  brk                                     ; 5E5B 00                       .
 L5E5C:  brk                                     ; 5E5C 00                       .
 L5E5D:  brk                                     ; 5E5D 00                       .
-L5E5E:  .byte   $4C                             ; 5E5E 4C                       L
-L5E5F:  .byte   $61                             ; 5E5F 61                       a
-L5E60:  .byte   $5E                             ; 5E60 5E                       ^
-L5E61:  stx     L5E5C                           ; 5E61 8E 5C 5E                 .\^
+
+sub_5E5E:  prolog
+	stx     L5E5C                           ; 5E61 8E 5C 5E                 .\^
         sta     L5E5B                           ; 5E64 8D 5B 5E                 .[^
         ldy     #$00                            ; 5E67 A0 00                    ..
         sty     L4AA4                           ; 5E69 8C A4 4A                 ..J
@@ -13261,7 +13264,7 @@ LA352:  lda     LA2A2                           ; A352 AD A2 A2                 
         sta     $A1                             ; A359 85 A1                    ..
         ldx     $A1                             ; A35B A6 A1                    ..
         lda     L4AA4                           ; A35D AD A4 4A                 ..J
-        jsr     L5E5E                           ; A360 20 5E 5E                  ^^
+        jsr     sub_5E5E                        ; A360 20 5E 5E                  ^^
         lda     LA2A2                           ; A363 AD A2 A2                 ...
         jsr     LA28D                           ; A366 20 8D A2                  ..
         jmp     LA37D                           ; A369 4C 7D A3                 L}.
@@ -14884,12 +14887,12 @@ LAF36:  brk                                     ; AF36 00                       
 LAF37:  brk                                     ; AF37 00                       .
 LAF38:  brk                                     ; AF38 00                       .
 LAF39:  brk                                     ; AF39 00                       .
-        jmp     LAF3D                           ; AF3A 4C 3D AF                 L=.
 
-; ----------------------------------------------------------------------------
-LAF3D:  lda     L5E60                           ; AF3D AD 60 5E                 .`^
+sub_AF3A:
+	prolog
+	lda     sub_5E5E+2                      ; AF3D AD 60 5E                 .`^
         sta     L43BC                           ; AF40 8D BC 43                 ..C
-        lda     L5E5F                           ; AF43 AD 5F 5E                 ._^
+        lda     sub_5E5E+1                      ; AF43 AD 5F 5E                 ._^
         sta     L43BB                           ; AF46 8D BB 43                 ..C
         jsr     LADEA                           ; AF49 20 EA AD                  ..
 LAF4C:  lda     #$01                            ; AF4C A9 01                    ..
@@ -15094,5 +15097,5 @@ LB0BE:  rts                                     ; B0BE 60                       
 
 	.segment "SEG01"
 
-	.addr	$AF3A
+	.addr	sub_AF3A
 
