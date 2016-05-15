@@ -8542,10 +8542,9 @@ L7FE2:  lda     L7F92                           ; 7FE2 AD 92 7F                 
 
 ; ----------------------------------------------------------------------------
 L7FE8:  brk                                     ; 7FE8 00                       .
-        jmp     L7FEC                           ; 7FE9 4C EC 7F                 L..
 
-; ----------------------------------------------------------------------------
-L7FEC:  sta     L7FE8                           ; 7FEC 8D E8 7F                 ...
+L7FE9:	prolog
+	sta     L7FE8                           ; 7FEC 8D E8 7F                 ...
         lda     L7FE8                           ; 7FEF AD E8 7F                 ...
         lsr     a                               ; 7FF2 4A                       J
         lsr     a                               ; 7FF3 4A                       J
@@ -8560,10 +8559,9 @@ L7FEC:  sta     L7FE8                           ; 7FEC 8D E8 7F                 
 ; ----------------------------------------------------------------------------
 L8001:  brk                                     ; 8001 00                       .
 L8002:  brk                                     ; 8002 00                       .
-L8003:  jmp     L8006                           ; 8003 4C 06 80                 L..
 
-; ----------------------------------------------------------------------------
-L8006:  stx     L8002                           ; 8006 8E 02 80                 ...
+L8003:  prolog
+	stx     L8002                           ; 8006 8E 02 80                 ...
         sta     L8001                           ; 8009 8D 01 80                 ...
         lda     L8001                           ; 800C AD 01 80                 ...
         sta     L474F                           ; 800F 8D 4F 47                 .OG
@@ -8670,8 +8668,10 @@ L80B5:  .byte   $9D                             ; 80B5 9D                       
 L80B6:  clv                                     ; 80B6 B8                       .
         ora     #$C8                            ; 80B7 09 C8                    ..
 L80B9:  inx                                     ; 80B9 E8                       .
-L80BA:  cmp     #$4C                            ; 80BA C9 4C                    .L
-        ldx     L8E80,y                         ; 80BC BE 80 8E                 ...
+L80BA:  .byte	$C9
+
+L80BB:	prolog	
+	.byte	$8E
         .byte   $AB                             ; 80BF AB                       .
         .byte   $80                             ; 80C0 80                       .
         sta     L80AA                           ; 80C1 8D AA 80                 ...
@@ -8763,10 +8763,9 @@ L8179:  rts                                     ; 8179 60                       
 ; ----------------------------------------------------------------------------
 L817A:  .byte   $AD                             ; 817A AD                       .
 L817B:  .byte   $6F                             ; 817B 6F                       o
-        jmp     $817F                           ; 817C 4C 7F 81                 L..
 
-; ----------------------------------------------------------------------------
-        jsr     sub_44D5                           ; 817F 20 D5 44                  .D
+L817C:	prolog
+        jsr     sub_44D5                        ; 817F 20 D5 44                  .D
         .byte   $77                             ; 8182 77                       w
         sta     ($03,x)                         ; 8183 81 03                    ..
         lda     #$81                            ; 8185 A9 81                    ..
@@ -10413,10 +10412,9 @@ L8E20:  brk                                     ; 8E20 00                       
 L8E21:  brk                                     ; 8E21 00                       .
 L8E22:  brk                                     ; 8E22 00                       .
 L8E23:  brk                                     ; 8E23 00                       .
-        jmp     L8E27                           ; 8E24 4C 27 8E                 L'.
 
-; ----------------------------------------------------------------------------
-L8E27:  jsr     sub_44D5                           ; 8E27 20 D5 44                  .D
+L8E24:	prolog
+	jsr     sub_44D5                           ; 8E27 20 D5 44                  .D
         .byte   $1F                             ; 8E2A 1F                       .
         stx     LAD02                           ; 8E2B 8E 02 AD                 ...
         .byte   $1F                             ; 8E2E 1F                       .
@@ -11549,10 +11547,9 @@ L968A:  brk                                     ; 968A 00                       
 L968B:  brk                                     ; 968B 00                       .
 L968C:  brk                                     ; 968C 00                       .
 L968D:  brk                                     ; 968D 00                       .
-        jmp     L9691                           ; 968E 4C 91 96                 L..
 
-; ----------------------------------------------------------------------------
-L9691:  jsr     sub_44D5                           ; 9691 20 D5 44                  .D
+L968E:	prolog
+	jsr     sub_44D5                           ; 9691 20 D5 44                  .D
         .byte   $82                             ; 9694 82                       .
         stx     $02,y                           ; 9695 96 02                    ..
         lda     L9682                           ; 9697 AD 82 96                 ...
@@ -12294,7 +12291,7 @@ L9C2E:  .byte   $9C                             ; 9C2E 9C                       
 L9C41:  jmp     L9C44                           ; 9C41 4C 44 9C                 LD.
 
 ; ----------------------------------------------------------------------------
-L9C44:  jsr     sub_44D5                           ; 9C44 20 D5 44                  .D
+L9C44:  jsr     sub_44D5                        ; 9C44 20 D5 44                  .D
         asl     $9C,x                           ; 9C47 16 9C                    ..
         .byte   $02                             ; 9C49 02                       .
         lda     L9C16                           ; 9C4A AD 16 9C                 ...
@@ -12342,10 +12339,9 @@ L9CAB:  rts                                     ; 9CAB 60                       
 
 ; ----------------------------------------------------------------------------
 L9CAC:  brk                                     ; 9CAC 00                       .
-        jmp     L9CB0                           ; 9CAD 4C B0 9C                 L..
 
-; ----------------------------------------------------------------------------
-L9CB0:  sta     L9CAC                           ; 9CB0 8D AC 9C                 ...
+L9CAD:	prolog
+	sta     L9CAC                           ; 9CB0 8D AC 9C                 ...
         lda     L9CAC                           ; 9CB3 AD AC 9C                 ...
         sta     L46E8                           ; 9CB6 8D E8 46                 ..F
         rts                                     ; 9CB9 60                       `
@@ -12581,10 +12577,9 @@ L9E21:  brk                                     ; 9E21 00                       
         brk                                     ; 9E29 00                       .
 L9E2A:  brk                                     ; 9E2A 00                       .
 L9E2B:  brk                                     ; 9E2B 00                       .
-        jmp     L9E2F                           ; 9E2C 4C 2F 9E                 L/.
 
-; ----------------------------------------------------------------------------
-L9E2F:  sta     L9E0F                           ; 9E2F 8D 0F 9E                 ...
+L9E2C:	prolog
+	sta     L9E0F                           ; 9E2F 8D 0F 9E                 ...
         lda     #$80                            ; 9E32 A9 80                    ..
         sta     L9E19                           ; 9E34 8D 19 9E                 ...
         ldy     #$00                            ; 9E37 A0 00                    ..
@@ -14290,22 +14285,21 @@ LAA86:	.addr	L6AD5
 	.addr	L9C41
 	.addr	L9BE0
 	.addr	L9BD0
-        lda     $2C9C                           ; AABA AD 9C 2C                 ..,
-        .byte   $9E                             ; AABD 9E                       .
-        sbc     #$7F                            ; AABE E9 7F                    ..
-        .byte   $7C                             ; AAC0 7C                       |
-        sta     ($03,x)                         ; AAC1 81 03                    ..
-        .byte   $80                             ; AAC3 80                       .
-        .byte   $BB                             ; AAC4 BB                       .
-        .byte   $80                             ; AAC5 80                       .
-        sbc     L7D8E,x                         ; AAC6 FD 8E 7D                 ..}
-        stx     L8F55                           ; AAC9 8E 55 8F                 .U.
-        bit     $8E                             ; AACC 24 8E                    $.
-        dec     $FBA9,x                         ; AACE DE A9 FB                 ...
-        lda     #$EC                            ; AAD1 A9 EC                    ..
-        lda     #$8E                            ; AAD3 A9 8E                    ..
-        stx     $A1,y                           ; AAD5 96 A1                    ..
-        .byte   $97                             ; AAD7 97                       .
+	.addr	L9CAD
+	.addr	L9E2C
+	.addr	L7FE9
+	.addr	L817C
+	.addr	L8003
+	.addr	L80BB
+	.addr	L8EFD
+	.addr	L8E7D
+	.addr	L8F55
+	.addr	L8E24
+	.addr	LA9DE
+	.addr	LA9FB
+	.addr	LA9EC
+	.addr	L968E
+	.addr	L97A1
         asl     $305E,x                         ; AAD8 1E 5E 30                 .^0
         lsr     LA2A8,x                         ; AADB 5E A8 A2                 ^..
         .byte   $82                             ; AADE 82                       .
