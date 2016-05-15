@@ -86,6 +86,25 @@ LEF40           := $EF40
 	STA	arg1
 .endmacro
 
+.macro   mv	dest,source
+	LDA	source
+	STA	dest
+.endmacro
+
+.macro   dmv	dest,source
+	LDA	source
+	STA	dest
+	LDA	source+1
+	STA	dest+1
+.endmacro
+
+.macro   rdmv	dest,source
+	LDA	source+1
+	STA	dest+1
+	LDA	source
+	STA	dest
+.endmacro
+
 	.segment "HDR00"
 
 	.word	$FFFF
@@ -7411,10 +7430,7 @@ L782A:  prolog
 	sta     L7824                           ; 7830 8D 24 78                 .$x
 	lda     L7824                           ; 7833 AD 24 78                 .$x
 	jsr     sub_7035
-	lda     $A1                             ; 7839 A5 A1                    ..
-	sta     L7829                           ; 783B 8D 29 78                 .)x
-	lda     $A0                             ; 783E A5 A0                    ..
-	sta	L7828
+	rdmv	L7828, $A0
 	lda     L7828                           ; 7843 AD 28 78                 .(x
 	ora     L7829                           ; 7846 0D 29 78                 .)x
 	lbne	L784F
