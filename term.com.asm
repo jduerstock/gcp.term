@@ -4391,11 +4391,8 @@ L6071:  stx     L6065                           ; 6071 8E 65 60                 
         cmp     #$F8                            ; 60A4 C9 F8                    ..
         lda     L6069                           ; 60A6 AD 69 60                 .i`
         sbc     #$07                            ; 60A9 E9 07                    ..
-        bcc     L60B0                           ; 60AB 90 03                    ..
-        jmp     L6177                           ; 60AD 4C 77 61                 Lwa
-
-; ----------------------------------------------------------------------------
-L60B0:  sec                                     ; 60B0 38                       8
+	lbcs	L6177
+	sec                                     ; 60B0 38                       8
         lda     #$F8                            ; 60B1 A9 F8                    ..
         sbc     L6068                           ; 60B3 ED 68 60                 .h`
         sta     $AE                             ; 60B6 85 AE                    ..
@@ -4440,11 +4437,8 @@ L60ED:  lda     L6067                           ; 60ED AD 67 60                 
         cmp     L6066                           ; 610F CD 66 60                 .f`
         lda     L606B                           ; 6112 AD 6B 60                 .k`
         sbc     L6067                           ; 6115 ED 67 60                 .g`
-        bcs     L611D                           ; 6118 B0 03                    ..
-        jmp     L6161                           ; 611A 4C 61 61                 Laa
-
-; ----------------------------------------------------------------------------
-L611D:  lda     L6067                           ; 611D AD 67 60                 .g`
+	lbcc	L6161
+	lda     L6067                           ; 611D AD 67 60                 .g`
         sta     $A3                             ; 6120 85 A3                    ..
         lda     #$00                            ; 6122 A9 00                    ..
         sta     $A4                             ; 6124 85 A4                    ..
@@ -4564,10 +4558,9 @@ L61FF:  brk                                     ; 61FF 00                       
 L6200:  brk                                     ; 6200 00                       .
 L6201:  brk                                     ; 6201 00                       .
 L6202:  brk                                     ; 6202 00                       .
-L6203:  jmp     L6206                           ; 6203 4C 06 62                 L.b
 
-; ----------------------------------------------------------------------------
-L6206:  lda     #$01                            ; 6206 A9 01                    ..
+L6203:  prolog
+	lda     #$01                            ; 6206 A9 01                    ..
         asl     a                               ; 6208 0A                       .
         php                                     ; 6209 08                       .
         clc                                     ; 620A 18                       .
@@ -4615,9 +4608,7 @@ L6206:  lda     #$01                            ; 6206 A9 01                    
         sta     $AF                             ; 625A 85 AF                    ..
         ldy     #$01                            ; 625C A0 01                    ..
         lda     ($AE),y                         ; 625E B1 AE                    ..
-        .byte   $8D                             ; 6260 8D                       .
-L6261:  brk                                     ; 6261 00                       .
-        .byte   $62                             ; 6262 62                       b
+	sta	L6200
         dey                                     ; 6263 88                       .
         lda     ($AE),y                         ; 6264 B1 AE                    ..
         sta     L61FF                           ; 6266 8D FF 61                 ..a
@@ -14281,9 +14272,8 @@ LAA55:  lda     #$00                            ; AA55 A9 00                    
 
 ; ----------------------------------------------------------------------------
         .byte   $4C                             ; AA83 4C                       L
-LAA84:  .byte   $86                             ; AA84 86                       .
-LAA85:  tax                                     ; AA85 AA                       .
-LAA86:  cmp     $6A,x                           ; AA86 D5 6A                    .j
+LAA84:  .addr   LAA86                           ; AA84 86                       .
+LAA86:	.addr	L6AD5
         sta     L0069,x                         ; AA88 95 69                    .i
         cld                                     ; AA8A D8                       .
         .byte   $67                             ; AA8B 67                       g
@@ -14361,16 +14351,15 @@ LAAF6:  lsr     $A8                             ; AAF6 46 A8                    
         tay                                     ; AB05 A8                       .
         .byte   $2B                             ; AB06 2B                       +
         tay                                     ; AB07 A8                       .
-        brk                                     ; AB08 00                       .
+
+LAB08:	brk                                     ; AB08 00                       .
         brk                                     ; AB09 00                       .
         brk                                     ; AB0A 00                       .
-LAB0B:  .byte   $4C                             ; AB0B 4C                       L
-LAB0C:  .byte   $0E                             ; AB0C 0E                       .
-LAB0D:  .byte   $AB                             ; AB0D AB                       .
-LAB0E:  jsr     sub_44D5                           ; AB0E 20 D5 44                  .D
-        php                                     ; AB11 08                       .
-        .byte   $AB                             ; AB12 AB                       .
-        .byte   $02                             ; AB13 02                       .
+
+LAB0B:  prolog
+	jsr     sub_44D5                           ; AB0E 20 D5 44                  .D
+	.addr	LAB08
+	.byte	$02
         .byte   $43                             ; AB14 43                       C
         .byte   $4B                             ; AB15 4B                       K
         .byte   $44                             ; AB16 44                       D
@@ -14381,9 +14370,8 @@ LAB0E:  jsr     sub_44D5                           ; AB0E 20 D5 44              
         lsr     L6463                           ; AB21 4E 63 64                 Ncd
         .byte   $73                             ; AB24 73                       s
         bvs     LAB94                           ; AB25 70 6D                    pm
-        jmp     (L6261)                         ; AB27 6C 61 62                 lab
-
-; ----------------------------------------------------------------------------
+        ;jmp     (L6261)                         ; AB27 6C 61 62                 lab
+	.byte	$6C,$61,$62
         ror     $4A                             ; AB2A 66 4A                    fJ
         ror     a                               ; AB2C 6A                       j
         .byte   $53                             ; AB2D 53                       S
@@ -14433,7 +14421,7 @@ LAB60:  dec     $1E,x                           ; AB60 D6 1E                    
 LAB68:  brk                                     ; AB68 00                       .
 LAB69:  brk                                     ; AB69 00                       .
 LAB6A:  jmp	LAB6D
-LAB6D:  lda     LAA85                           ; AB6D AD 85 AA                 ...
+LAB6D:  lda     LAA84+1                         ; AB6D AD 85 AA                 ...
 LAB70:  sta     LAB58+1                         ; AB70 8D 59 AB                 .Y.
         lda     LAA84                           ; AB73 AD 84 AA                 ...
         sta     LAB58                           ; AB76 8D 58 AB                 .X.
@@ -14528,10 +14516,10 @@ LABEE:  lda     LAB69                           ; ABEE AD 69 AB                 
         sta     $AF                             ; AC21 85 AF                    ..
         iny                                     ; AC23 C8                       .
         lda     ($AE),y                         ; AC24 B1 AE                    ..
-        sta     LAB0D                           ; AC26 8D 0D AB                 ...
+        sta     LAB0B+2                         ; AC26 8D 0D AB                 ...
         dey                                     ; AC29 88                       .
         lda     ($AE),y                         ; AC2A B1 AE                    ..
-        sta     LAB0C                           ; AC2C 8D 0C AB                 ...
+        sta     LAB0B+1                         ; AC2C 8D 0C AB                 ...
         lda     LAB5C                           ; AC2F AD 5C AB                 .\.
         sta     $AE                             ; AC32 85 AE                    ..
         lda     LAB5D                           ; AC34 AD 5D AB                 .].
