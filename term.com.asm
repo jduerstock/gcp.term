@@ -6338,10 +6338,9 @@ L6F8D:  brk                                     ; 6F8D 00                       
 L6F8E:  brk                                     ; 6F8E 00                       .
 L6F8F:  brk                                     ; 6F8F 00                       .
 L6F90:  brk                                     ; 6F90 00                       .
-        jmp     L6F94                           ; 6F91 4C 94 6F                 L.o
 
-; ----------------------------------------------------------------------------
-L6F94:  stx     L6F8C                           ; 6F94 8E 8C 6F                 ..o
+L6F91:	prolog
+	stx     L6F8C                           ; 6F94 8E 8C 6F                 ..o
         sta     L6F8B                           ; 6F97 8D 8B 6F                 ..o
         lda     L4647                           ; 6F9A AD 47 46                 .GF
         eor     #$FF                            ; 6F9D 49 FF                    I.
@@ -6386,10 +6385,10 @@ L6FE7:  .byte   $F0                             ; 6FE7 F0                       
 L6FE8:  .byte   $F0                             ; 6FE8 F0                       .
 L6FE9:  .byte   $F0                             ; 6FE9 F0                       .
 L6FEA:  ;beq     $7038                           ; 6FEA F0 4C                    .L
-	.byte	$F0,$4C
-        .byte   $EE                             ; 6FEC EE                       .
-        .byte   $6F                             ; 6FED 6F                       o
-L6FEE:  stx     L6FE8                           ; 6FEE 8E E8 6F                 ..o
+	.byte	$F0
+
+L6FEB:	prolog
+	stx     L6FE8                           ; 6FEE 8E E8 6F                 ..o
         sta     L6FE7                           ; 6FF1 8D E7 6F                 ..o
         lda     L4648                           ; 6FF4 AD 48 46                 .HF
         eor     #$FF                            ; 6FF7 49 FF                    I.
@@ -14278,9 +14277,8 @@ LAA86:	.addr	L6AD5
 	.addr	L7D4D
 	.addr	L6E61
 	.addr	L6F68
-        sta     ($6F),y                         ; AA96 91 6F                    .o
-        .byte   $EB                             ; AA98 EB                       .
-        .byte   $6F                             ; AA99 6F                       o
+	.addr	L6F91
+	.addr	L6FEB
         .byte   $57                             ; AA9A 57                       W
         .byte   $7A                             ; AA9B 7A                       z
         .byte   $DF                             ; AA9C DF                       .
