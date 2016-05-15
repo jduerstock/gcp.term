@@ -6979,24 +6979,15 @@ L74BB:  .byte   $47                             ; 74BB 47                       
 L74BC:  clc                                     ; 74BC 18                       .
 L74BD:  .byte	$A5
 
-L74BE:	prolog
-	jsr     sub_44D5                        ; 74C1 20 D5 44                  .D
-	clv                                     ; 74C4 B8                       .
-	.byte   $74                             ; 74C5 74                       t
-	.byte   $03                             ; 74C6 03                       .
+L74BE:	
+	stack_prolog L74B8, $03
 	lda     L74B8                           ; 74C7 AD B8 74                 ..t
 	jsr     sub_7035
-	lda     $A1                             ; 74CD A5 A1                    ..
-	sta     L74BD                           ; 74CF 8D BD 74                 ..t
-	lda     $A0                             ; 74D2 A5 A0                    ..
-	sta     L74BC                           ; 74D4 8D BC 74                 ..t
+	rdmv	L74BC, $A0
 	lda     L74BC                           ; 74D7 AD BC 74                 ..t
 	ora     L74BD                           ; 74DA 0D BD 74                 ..t
-	beq     L74E2                           ; 74DD F0 03                    ..
-	jmp     L753B                           ; 74DF 4C 3B 75                 L;u
-
-; ----------------------------------------------------------------------------
-L74E2:  ldx     #$00                            ; 74E2 A2 00                    ..
+	lbne	L753B
+	ldx     #$00                            ; 74E2 A2 00                    ..
 	lda     #$26                            ; 74E4 A9 26                    .&
 	jsr     L606E                           ; 74E6 20 6E 60                  n`
 	lda     $A1                             ; 74E9 A5 A1                    ..
