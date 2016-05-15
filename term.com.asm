@@ -12449,20 +12449,15 @@ L9E2C:	prolog
 	sta     L9E10                           ; 9E4F 8D 10 9E                 ...
 	lda     L9E11                           ; 9E52 AD 11 9E                 ...
 	sta     $A3                             ; 9E55 85 A3                    ..
-	lda     #$00                            ; 9E57 A9 00                    ..
-	sta     $A5                             ; 9E59 85 A5                    ..
-	lda     #$05                            ; 9E5B A9 05                    ..
-	sta     $A4                             ; 9E5D 85 A4                    ..
+	ldi	$A5, $00
+	ldi	$A4, $05
 	ldy     L9E10                           ; 9E5F AC 10 9E                 ...
-	ldx     #$9E                            ; 9E62 A2 9E                    ..
-	lda     #$1D                            ; 9E64 A9 1D                    ..
+	ldx     #>L9E1D                         ; 9E62 A2 9E                    ..
+	lda     #<L9E1D                         ; 9E64 A9 1D                    ..
 	jsr     L461F                           ; 9E66 20 1F 46                  .F
 	lda     L46E6                           ; 9E69 AD E6 46                 ..F
 	eor     #$02                            ; 9E6C 49 02                    I.
-	beq     L9E73                           ; 9E6E F0 03                    ..
-	jmp     L9E94                           ; 9E70 4C 94 9E                 L..
-
-; ----------------------------------------------------------------------------
+	lbne	L9E94
 L9E73:  sec                                     ; 9E73 38                       8
 	lda     #$00                            ; 9E74 A9 00                    ..
 	sbc     L9E1D                           ; 9E76 ED 1D 9E                 ...
