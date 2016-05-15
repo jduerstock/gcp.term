@@ -149,11 +149,11 @@ L439F:  stx     $A5                             ; 439F 86 A5                    
 L43B8:  rts                                     ; 43B8 60                       `
 
 ; ----------------------------------------------------------------------------
-        .byte   $46                             ; 43B9 46                       F
-L43BA:  .byte   $4C                             ; 43BA 4C                       L
-L43BB:  .byte   $BD                             ; 43BB BD                       .
-L43BC:  .byte   $43                             ; 43BC 43                       C
-        sta     $43B9                           ; 43BD 8D B9 43                 ..C
+L43B9:	.byte   $46                             ; 43B9 46                       F
+L43BA:	.byte   $4C                             ; 43BA 4C                       L
+L43BB:  .word   L43BD                           ; 43BB BD                       .
+
+L43BD:	sta     L43B9                           ; 43BD 8D B9 43                 ..C
         jmp     ($0A)                           ; 43C0 6C 0A 00                 l..
 
 ; ----------------------------------------------------------------------------
@@ -6251,11 +6251,8 @@ L6E61:  prolog
         lda     L6E53                           ; 6ED5 AD 53 6E                 .Sn
         sta     L6E4D                           ; 6ED8 8D 4D 6E                 .Mn
         lda     L6E41                           ; 6EDB AD 41 6E                 .An
-        beq     L6EE3                           ; 6EDE F0 03                    ..
-        jmp     L6EEF                           ; 6EE0 4C EF 6E                 L.n
-
-; ----------------------------------------------------------------------------
-L6EE3:  lda     L6E5A                           ; 6EE3 AD 5A 6E                 .Zn
+	lbne	L6EEF
+	lda     L6E5A                           ; 6EE3 AD 5A 6E                 .Zn
         sta     L6E4E                           ; 6EE6 8D 4E 6E                 .Nn
         lda     L6E59                           ; 6EE9 AD 59 6E                 .Yn
         sta     L6E4D                           ; 6EEC 8D 4D 6E                 .Mn
@@ -14891,31 +14888,22 @@ LAF39:  brk                                     ; AF39 00                       
 sub_AF3A:
 	prolog
 	lda     sub_5E5E+2                      ; AF3D AD 60 5E                 .`^
-        sta     L43BC                           ; AF40 8D BC 43                 ..C
+        sta     L43BB+1                         ; AF40 8D BC 43                 ..C
         lda     sub_5E5E+1                      ; AF43 AD 5F 5E                 ._^
         sta     L43BB                           ; AF46 8D BB 43                 ..C
         jsr     LADEA                           ; AF49 20 EA AD                  ..
 LAF4C:  lda     #$01                            ; AF4C A9 01                    ..
         eor     #$01                            ; AF4E 49 01                    I.
-        beq     LAF55                           ; AF50 F0 03                    ..
-        jmp     LB0BE                           ; AF52 4C BE B0                 L..
-
-; ----------------------------------------------------------------------------
-LAF55:  ldy     #$00                            ; AF55 A0 00                    ..
+	lbne	LB0BE
+	ldy     #$00                            ; AF55 A0 00                    ..
         sty     $4D                             ; AF57 84 4D                    .M
         lda     L4652                           ; AF59 AD 52 46                 .RF
         eor     #$02                            ; AF5C 49 02                    I.
-        bne     LAF63                           ; AF5E D0 03                    ..
-        jmp     LAFA2                           ; AF60 4C A2 AF                 L..
-
-; ----------------------------------------------------------------------------
-LAF63:  lda     L4652                           ; AF63 AD 52 46                 .RF
+	lbeq	LAFA2
+LAF63:	lda     L4652                           ; AF63 AD 52 46                 .RF
         eor     #$02                            ; AF66 49 02                    I.
-        bne     LAF6D                           ; AF68 D0 03                    ..
-        jmp     LAF94                           ; AF6A 4C 94 AF                 L..
-
-; ----------------------------------------------------------------------------
-LAF6D:  lda     #$5C                            ; AF6D A9 5C                    .\
+	lbeq	LAF94
+	lda     #$5C                            ; AF6D A9 5C                    .\
         sta     $A3                             ; AF6F 85 A3                    ..
         ldy     #$B2                            ; AF71 A0 B2                    ..
         ldx     #$23                            ; AF73 A2 23                    .#
