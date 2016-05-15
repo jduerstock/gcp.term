@@ -724,8 +724,7 @@ L46E7:  .byte   $1E                             ; 46E7 1E                       
 L46E8:  .byte   $10                             ; 46E8 10                       .
 L46E9:  brk                                     ; 46E9 00                       .
 L46EA:  .byte   $54                             ; 46EA 54                       T
-L46EB:  .byte   $6F                             ; 46EB 6F                       o
-L46EC:  .byte   $41                             ; 46EC 41                       A
+L46EB:  .word   $416F                             ; 46EB 6F                       o
 L46ED:  .byte   $73                             ; 46ED 73                       s
 L46EE:  .byte   $63                             ; 46EE 63                       c
 L46EF:  brk                                     ; 46EF 00                       .
@@ -12124,7 +12123,7 @@ L9BE0:	stack_prolog L9BDD, $02
 	lda     L46EB                           ; 9BEA AD EB 46                 ..F
 	adc     L9BDD                           ; 9BED 6D DD 9B                 m..
 	sta     $AE                             ; 9BF0 85 AE                    ..
-	lda     L46EC                           ; 9BF2 AD EC 46                 ..F
+	lda     L46EB+1                         ; 9BF2 AD EC 46                 ..F
 	adc     #$00                            ; 9BF5 69 00                    i.
 	sta     $AF                             ; 9BF7 85 AF                    ..
 	lda     L9BDE                           ; 9BF9 AD DE 9B                 ...
@@ -12163,7 +12162,7 @@ L9C23:  .byte   $9C                             ; 9C23 9C                       
 	.byte   $FF                             ; 9C2C FF                       .
 L9C2D:  .byte   $24                             ; 9C2D 24                       $
 L9C2E:  .byte   $9C                             ; 9C2E 9C                       .
-	dec     $1E,x                           ; 9C2F D6 1E                    ..
+L9C2F:	dec     $1E,x                           ; 9C2F D6 1E                    ..
 	ora     #$00                            ; 9C31 09 00                    ..
 	brk                                     ; 9C33 00                       .
 	brk                                     ; 9C34 00                       .
@@ -12185,10 +12184,8 @@ L9C41:  stack_prolog L9C16, $02
 	sta     L46E9                           ; 9C53 8D E9 46                 ..F
 	lda     L9C18                           ; 9C56 AD 18 9C                 ...
 	sta     L46EA                           ; 9C59 8D EA 46                 ..F
-	lda     #$9C                            ; 9C5C A9 9C                    ..
-	sta     L46EC                           ; 9C5E 8D EC 46                 ..F
-	lda     #$2F                            ; 9C61 A9 2F                    ./
-	sta     L46EB                           ; 9C63 8D EB 46                 ..F
+	ldi	L46EB+1, >L9C2F
+	ldi	L46EB, <L9C2F
 	lda     #$9C                            ; 9C66 A9 9C                    ..
 	sta     L46EE                           ; 9C68 8D EE 46                 ..F
 	lda     #$38                            ; 9C6B A9 38                    .8
@@ -12329,7 +12326,7 @@ L9D46:  lda     L9CC1                           ; 9D46 AD C1 9C                 
 	lda     L46EB                           ; 9D57 AD EB 46                 ..F
 	adc     L9CC1                           ; 9D5A 6D C1 9C                 m..
 	sta     $AC                             ; 9D5D 85 AC                    ..
-	lda     L46EC                           ; 9D5F AD EC 46                 ..F
+	lda     L46EB+1                         ; 9D5F AD EC 46                 ..F
 	adc     #$00                            ; 9D62 69 00                    i.
 	sta     $AD                             ; 9D64 85 AD                    ..
 	ldy     #$00                            ; 9D66 A0 00                    ..
