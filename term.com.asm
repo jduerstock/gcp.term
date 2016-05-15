@@ -6312,10 +6312,9 @@ L6F65:  rts                                     ; 6F65 60                       
 ; ----------------------------------------------------------------------------
 L6F66:  .byte   $FF                             ; 6F66 FF                       .
 L6F67:  brk                                     ; 6F67 00                       .
-        jmp     L6F6B                           ; 6F68 4C 6B 6F                 Lko
 
-; ----------------------------------------------------------------------------
-L6F6B:  stx     L6F67                           ; 6F6B 8E 67 6F                 .go
+L6F68:	prolog
+	stx     L6F67                           ; 6F6B 8E 67 6F                 .go
         sta     L6F66                           ; 6F6E 8D 66 6F                 .fo
         lda     L6F66                           ; 6F71 AD 66 6F                 .fo
         eor     #$01                            ; 6F74 49 01                    I.
@@ -8175,7 +8174,7 @@ L7CD6:  clc                                     ; 7CD6 18                       
         rts                                     ; 7D43 60                       `
 
 ; ----------------------------------------------------------------------------
-        brk                                     ; 7D44 00                       .
+L7D44:	brk                                     ; 7D44 00                       .
 L7D45:  brk                                     ; 7D45 00                       .
 L7D46:  brk                                     ; 7D46 00                       .
 L7D47:  brk                                     ; 7D47 00                       .
@@ -8184,17 +8183,15 @@ L7D49:  brk                                     ; 7D49 00                       
 L7D4A:  brk                                     ; 7D4A 00                       .
 L7D4B:  brk                                     ; 7D4B 00                       .
 L7D4C:  brk                                     ; 7D4C 00                       .
-        jmp     L7D50                           ; 7D4D 4C 50 7D                 LP}
 
-; ----------------------------------------------------------------------------
-L7D50:  jsr     sub_44D5                           ; 7D50 20 D5 44                  .D
-        .byte   $44                             ; 7D53 44                       D
-        adc     LAD03,x                         ; 7D54 7D 03 AD                 }..
-        .byte   $44                             ; 7D57 44                       D
-        adc     LB020,x                         ; 7D58 7D 20 B0                 } .
-        adc     $A5                             ; 7D5B 65 A5                    e.
-        lda     ($8D,x)                         ; 7D5D A1 8D                    ..
-        eor     #$7D                            ; 7D5F 49 7D                    I}
+L7D4D:	prolog
+	jsr     sub_44D5                        ; 7D50 20 D5 44                  .D
+	.addr	L7D44
+	.byte	$03
+	lda	L7D44
+	jsr	L65B0
+	lda	$A1
+	sta	L7D49
         lda     $A0                             ; 7D61 A5 A0                    ..
         sta     L7D48                           ; 7D63 8D 48 7D                 .H}
         lda     L7D45                           ; 7D66 AD 45 7D                 .E}
@@ -14272,17 +14269,15 @@ LAA55:  lda     #$00                            ; AA55 A9 00                    
 
 ; ----------------------------------------------------------------------------
         .byte   $4C                             ; AA83 4C                       L
-LAA84:  .addr   LAA86                           ; AA84 86                       .
+LAA84:  .addr   LAA86
 LAA86:	.addr	L6AD5
-        sta     L0069,x                         ; AA88 95 69                    .i
-        cld                                     ; AA8A D8                       .
-        .byte   $67                             ; AA8B 67                       g
-        stx     $66,y                           ; AA8C 96 66                    .f
-        .byte   $E2                             ; AA8E E2                       .
-        adc     $4D                             ; AA8F 65 4D                    eM
-        adc     L6E61,x                         ; AA91 7D 61 6E                 }an
-        pla                                     ; AA94 68                       h
-LAA95:  .byte   $6F                             ; AA95 6F                       o
+	.addr	L6995
+	.addr	L67D8
+	.addr	L6696
+	.addr	L65E2
+	.addr	L7D4D
+	.addr	L6E61
+	.addr	L6F68
         sta     ($6F),y                         ; AA96 91 6F                    .o
         .byte   $EB                             ; AA98 EB                       .
         .byte   $6F                             ; AA99 6F                       o
@@ -14301,7 +14296,8 @@ LAA95:  .byte   $6F                             ; AA95 6F                       
         sty     $0A75                           ; AAAA 8C 75 0A                 .u.
         ror     $5F,x                           ; AAAD 76 5F                    v_
         bvs     LAA47                           ; AAAF 70 96                    p.
-        bvs     LAA95                           ; AAB1 70 E2                    p.
+        ;bvs     LAA95                           ; AAB1 70 E2                    p.
+	.byte	$70,$E2
         bvs     LAAF6                           ; AAB3 70 41                    pA
         .byte   $9C                             ; AAB5 9C                       .
         cpx     #$9B                            ; AAB6 E0 9B                    ..
