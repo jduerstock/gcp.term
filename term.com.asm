@@ -2903,18 +2903,13 @@ L559B:  .byte   $12                             ; 559B 12                       
 L559C:  .byte   $20                             ; 559C 20                        
 L559D:  .byte   $20                             ; 559D 20                        
 L559E:  .byte   $20                             ; 559E 20                        
-L559F:  .byte   $20                             ; 559F 20                        
-L55A0:  jmp     $55A3                           ; 55A0 4C A3 55                 L.U
+L559F:  .byte   $20                             ; 559F 20                       
 
-; ----------------------------------------------------------------------------
-	jsr     sub_44D5                        ; 55A3 20 D5 44                  .D
-	ror     $0D55,x                         ; 55A6 7E 55 0D                 ~U.
+sub_55A0:
+	stack_prolog L557E, $0D
 	lda     #$00                            ; 55A9 A9 00                    ..
 	cmp     L4653                           ; 55AB CD 53 46                 .SF
-	bcc     L55B3                           ; 55AE 90 03                    ..
-	jmp     L55B4                           ; 55B0 4C B4 55                 L.U
-
-; ----------------------------------------------------------------------------
+	lbcs	L55B4
 L55B3:  rts                                     ; 55B3 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -3821,7 +3816,7 @@ L5D04:  lda     #$00                            ; 5D04 A9 00                    
 	ldy     #$13                            ; 5D08 A0 13                    ..
 	ldx     #$5D                            ; 5D0A A2 5D                    .]
 	lda     #$02                            ; 5D0C A9 02                    ..
-	jsr     L55A0                           ; 5D0E 20 A0 55                  .U
+	jsr     sub_55A0
 L5D11:  lda     L4650                           ; 5D11 AD 50 46                 .PF
 	bne     L5D19                           ; 5D14 D0 03                    ..
 	jmp     L5D1F                           ; 5D16 4C 1F 5D                 L.]
@@ -3954,7 +3949,7 @@ L5E10:  lda     #$00                            ; 5E10 A9 00                    
 	ldy     #$11                            ; 5E14 A0 11                    ..
 	ldx     #$5E                            ; 5E16 A2 5E                    .^
 	lda     #$0E                            ; 5E18 A9 0E                    ..
-	jsr     L55A0                           ; 5E1A 20 A0 55                  .U
+	jsr     sub_55A0
 	rts                                     ; 5E1D 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -4048,7 +4043,7 @@ L5E8F:  lda     #$00                            ; 5E8F A9 00                    
 	ldy     #$2A                            ; 5EA9 A0 2A                    .*
 	ldx     #$5E                            ; 5EAB A2 5E                    .^
 	lda     #$8B                            ; 5EAD A9 8B                    ..
-	jsr     L55A0                           ; 5EAF 20 A0 55                  .U
+	jsr     sub_55A0
 L5EB2:  lda     L4653                           ; 5EB2 AD 53 46                 .SF
 	cmp     L5E5D                           ; 5EB5 CD 5D 5E                 .]^
 	bcc     L5EBD                           ; 5EB8 90 03                    ..
@@ -4418,11 +4413,9 @@ L617C:  lda     #$00                            ; 617C A9 00                    
 	ldy     #$26                            ; 6180 A0 26                    .&
 	ldx     #$61                            ; 6182 A2 61                    .a
 	lda     #$7A                            ; 6184 A9 7A                    .z
-	jsr     L55A0                           ; 6186 20 A0 55                  .U
-	lda     #$00                            ; 6189 A9 00                    ..
-	sta     $A1                             ; 618B 85 A1                    ..
-	lda     #$00                            ; 618D A9 00                    ..
-	sta     $A0                             ; 618F 85 A0                    ..
+	jsr     sub_55A0
+	ldi	$A1, $00
+	ldi	$A0, $00
 	rts                                     ; 6191 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -6219,7 +6212,7 @@ L6F22:  lda     #$00                            ; 6F22 A9 00                    
 	ldy     #$55                            ; 6F42 A0 55                    .U
 	ldx     L6E4E                           ; 6F44 AE 4E 6E                 .Nn
 	lda     L6E4D                           ; 6F47 AD 4D 6E                 .Mn
-	jsr     L55A0                           ; 6F4A 20 A0 55                  .U
+	jsr     sub_55A0
 	clc                                     ; 6F4D 18                       .
 	lda     L6E4B                           ; 6F4E AD 4B 6E                 .Kn
 	adc     L6E5B                           ; 6F51 6D 5B 6E                 m[n
@@ -11205,7 +11198,7 @@ L9470:  lda     #$00                            ; 9470 A9 00                    
 	ldy     #$4C                            ; 9490 A0 4C                    .L
 	ldx     #$94                            ; 9492 A2 94                    ..
 	lda     #$6C                            ; 9494 A9 6C                    .l
-	jsr     L55A0                           ; 9496 20 A0 55                  .U
+	jsr     sub_55A0
 L9499:  lda     #$7F                            ; 9499 A9 7F                    ..
 	cmp     L9416                           ; 949B CD 16 94                 ...
 	bcc     L94A3                           ; 949E 90 03                    ..
@@ -11963,7 +11956,7 @@ L9A72:  lda     #$00                            ; 9A72 A9 00                    
 	ldy     #$44                            ; 9A7F A0 44                    .D
 	ldx     #$9A                            ; 9A81 A2 9A                    ..
 	lda     #$6F                            ; 9A83 A9 6F                    .o
-	jsr     L55A0                           ; 9A85 20 A0 55                  .U
+	jsr     sub_55A0
 	lda     L9051                           ; 9A88 AD 51 90                 .Q.
 	jsr     L9427                           ; 9A8B 20 27 94                  '.
 	lda     #$00                            ; 9A8E A9 00                    ..
@@ -12005,7 +11998,7 @@ L9AC4:  lda     #$00                            ; 9AC4 A9 00                    
 	ldy     #$49                            ; 9AD1 A0 49                    .I
 	ldx     #$9A                            ; 9AD3 A2 9A                    ..
 	lda     #$C1                            ; 9AD5 A9 C1                    ..
-	jsr     L55A0                           ; 9AD7 20 A0 55                  .U
+	jsr     sub_55A0
 	lda     L9051                           ; 9ADA AD 51 90                 .Q.
 	jsr     L9427                           ; 9ADD 20 27 94                  '.
 	lda     #$00                            ; 9AE0 A9 00                    ..
@@ -12015,11 +12008,8 @@ L9AE5:  jmp     L9BCE                           ; 9AE5 4C CE 9B                 
 ; ----------------------------------------------------------------------------
 L9AE8:  lda     L979C                           ; 9AE8 AD 9C 97                 ...
 	eor     #$76                            ; 9AEB 49 76                    Iv
-	beq     L9AF2                           ; 9AED F0 03                    ..
-	jmp     L9B05                           ; 9AEF 4C 05 9B                 L..
-
-; ----------------------------------------------------------------------------
-L9AF2:  ldy     #$00                            ; 9AF2 A0 00                    ..
+	lbne	L9B05
+	ldy     #$00                            ; 9AF2 A0 00                    ..
 	sty     L9050                           ; 9AF4 8C 50 90                 .P.
 	lda     L9051                           ; 9AF7 AD 51 90                 .Q.
 	jsr     L9427                           ; 9AFA 20 27 94                  '.
@@ -12035,10 +12025,7 @@ L9B05:  lda     L979D                           ; 9B05 AD 9D 97                 
 	sta     L979D                           ; 9B0F 8D 9D 97                 ...
 	lda     L905D                           ; 9B12 AD 5D 90                 .].
 	eor     L9060                           ; 9B15 4D 60 90                 M`.
-	beq     L9B1D                           ; 9B18 F0 03                    ..
-	jmp     L9B23                           ; 9B1A 4C 23 9B                 L#.
-
-; ----------------------------------------------------------------------------
+	lbne	L9B23
 L9B1D:  jsr     L4F5A                           ; 9B1D 20 5A 4F                  ZO
 	jmp     L9BCE                           ; 9B20 4C CE 9B                 L..
 
@@ -12049,11 +12036,8 @@ L9B23:  sec                                     ; 9B23 38                       
 	sta     $AE                             ; 9B29 85 AE                    ..
 	lda     L905E                           ; 9B2B AD 5E 90                 .^.
 	eor     $AE                             ; 9B2E 45 AE                    E.
-	beq     L9B35                           ; 9B30 F0 03                    ..
-	jmp     L9B57                           ; 9B32 4C 57 9B                 LW.
-
-; ----------------------------------------------------------------------------
-L9B35:  clc                                     ; 9B35 18                       .
+	lbne	L9B57
+	clc                                     ; 9B35 18                       .
 	lda     L9059                           ; 9B36 AD 59 90                 .Y.
 	adc     L905E                           ; 9B39 6D 5E 90                 m^.
 	sta     $AE                             ; 9B3C 85 AE                    ..
@@ -12135,9 +12119,7 @@ L9BDD:  brk                                     ; 9BDD 00                       
 L9BDE:  brk                                     ; 9BDE 00                       .
 L9BDF:  brk                                     ; 9BDF 00                       .
 
-L9BE0:	prolog
-	jsr     sub_44D5                           ; 9BE3 20 D5 44                  .D
-	cmp     $029B,x                         ; 9BE6 DD 9B 02                 ...
+L9BE0:	stack_prolog L9BDD, $02
 	clc                                     ; 9BE9 18                       .
 	lda     L46EB                           ; 9BEA AD EB 46                 ..F
 	adc     L9BDD                           ; 9BED 6D DD 9B                 m..
@@ -12195,12 +12177,8 @@ L9C2E:  .byte   $9C                             ; 9C2E 9C                       
 	brk                                     ; 9C3E 00                       .
 	brk                                     ; 9C3F 00                       .
 	brk                                     ; 9C40 00                       .
-L9C41:  jmp     L9C44                           ; 9C41 4C 44 9C                 LD.
 
-; ----------------------------------------------------------------------------
-L9C44:  jsr     sub_44D5                        ; 9C44 20 D5 44                  .D
-	asl     $9C,x                           ; 9C47 16 9C                    ..
-	.byte   $02                             ; 9C49 02                       .
+L9C41:  stack_prolog L9C16, $02
 	lda     L9C16                           ; 9C4A AD 16 9C                 ...
 	sta     L46E6                           ; 9C4D 8D E6 46                 ..F
 	lda     L9C17                           ; 9C50 AD 17 9C                 ...
@@ -12654,7 +12632,7 @@ L9F82:	ldi	$A3, $00
 	ldy     L9E0F                           ; 9FAA AC 0F 9E                 ...
 	ldx     #>L9F7C
 	lda     #<L9F7C
-	jsr     L55A0                           ; 9FB1 20 A0 55                  .U
+	jsr     sub_55A0
 	jmp     L9FDE                           ; 9FB4 4C DE 9F                 L..
 
 ; ----------------------------------------------------------------------------
@@ -12678,7 +12656,7 @@ L9FBE:  lda     #$00                            ; 9FBE A9 00                    
 	ldy     L9E0F                           ; 9FD4 AC 0F 9E                 ...
 	ldx     #$9F                            ; 9FD7 A2 9F                    ..
 	lda     #$BA                            ; 9FD9 A9 BA                    ..
-	jsr     L55A0                           ; 9FDB 20 A0 55                  .U
+	jsr     sub_55A0
 L9FDE:  lda     #$01                            ; 9FDE A9 01                    ..
 	sta     $A0                             ; 9FE0 85 A0                    ..
 	rts                                     ; 9FE2 60                       `
@@ -13610,7 +13588,7 @@ LA6AB:  lda     #$00                            ; A6AB A9 00                    
 	ldy     #$04                            ; A6C1 A0 04                    ..
 	ldx     #$A6                            ; A6C3 A2 A6                    ..
 	lda     #$A7                            ; A6C5 A9 A7                    ..
-	jsr     L55A0                           ; A6C7 20 A0 55                  .U
+	jsr     sub_55A0
 	rts                                     ; A6CA 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -13850,7 +13828,7 @@ LA855:  lda     #$00                            ; A855 A9 00                    
 	ldy     LA843                           ; A87C AC 43 A8                 .C.
 	ldx     #$A8                            ; A87F A2 A8                    ..
 	lda     #$52                            ; A881 A9 52                    .R
-	jsr     L55A0                           ; A883 20 A0 55                  .U
+	jsr     sub_55A0
 	rts                                     ; A886 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -14100,7 +14078,7 @@ LAA28:  lda     #$00                            ; AA28 A9 00                    
 	ldy     #$46                            ; AA36 A0 46                    .F
 	ldx     #$AA                            ; AA38 A2 AA                    ..
 	lda     #$25                            ; AA3A A9 25                    .%
-	jsr     L55A0                           ; AA3C 20 A0 55                  .U
+	jsr     sub_55A0                           ; AA3C 20 A0 55                  .U
 	jsr     L747D                           ; AA3F 20 7D 74                  }t
 	jsr     L696A                           ; AA42 20 6A 69                  ji
 	.byte   $20                             ; AA45 20                        
@@ -14329,9 +14307,8 @@ LABCD:  lda     #$00                            ; ABCD A9 00                    
 	ldy     #$3F                            ; ABDA A0 3F                    .?
 	ldx     #$AB                            ; ABDC A2 AB                    ..
 	lda     #$CA                            ; ABDE A9 CA                    ..
-	jsr     L55A0                           ; ABE0 20 A0 55                  .U
-	lda     #$00                            ; ABE3 A9 00                    ..
-	sta     $A0                             ; ABE5 85 A0                    ..
+	jsr     sub_55A0
+	ldi	$A0, $00
 	rts                                     ; ABE7 60                       `
 
 ; ----------------------------------------------------------------------------
