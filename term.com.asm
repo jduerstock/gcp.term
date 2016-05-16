@@ -103,6 +103,28 @@ LEF40           := $EF40
 	STA	dest
 .endmacro
 
+; a = b + i
+.macro add16i a1, a2, a3
+	clc
+        lda     a2
+        adc     #<a3
+        sta     a1
+        lda     a2+1
+        adc     #>a3
+        sta     a1+1
+.endmacro
+
+; a = b + c
+.macro add16m a1, a2, a3
+	clc
+        lda     a2
+        adc     a3
+        sta     a1
+        lda     a2+1
+        adc     a3+1
+        sta     a1+1
+.endmacro
+
 	.segment "HDR00"
 
 	.word	$FFFF
@@ -1879,8 +1901,7 @@ L4DCC:  lda     L4CF2                           ; 4DCC AD F2 4C                 
 	jmp     L4E02                           ; 4DFA 4C 02 4E                 L.N
 
 ; ----------------------------------------------------------------------------
-L4DFD:  lda     #$00                            ; 4DFD A9 00                    ..
-	sta     $A0                             ; 4DFF 85 A0                    ..
+L4DFD:  ldi	$A0, $00
 	rts                                     ; 4E01 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -6990,23 +7011,16 @@ L74BE:
 	lda     L74BC                           ; 751D AD BC 74                 ..t
 	jsr     L45F6                           ; 7520 20 F6 45                  .E
 	inc     L4673                           ; 7523 EE 73 46                 .sF
-	clc                                     ; 7526 18                       .
-	lda     L74BC                           ; 7527 AD BC 74                 ..t
-	adc     #$0C                            ; 752A 69 0C                    i.
-	sta     $AE                             ; 752C 85 AE                    ..
-	lda     L74BD                           ; 752E AD BD 74                 ..t
-	adc     #$00                            ; 7531 69 00                    i.
-	sta     $AF                             ; 7533 85 AF                    ..
+	add16i	off_AE, L74BC, $000C
 	lda     #$FF                            ; 7535 A9 FF                    ..
 	ldy     #$00                            ; 7537 A0 00                    ..
-	.byte   $91                             ; 7539 91                       .
-L753A:  .byte   $AE                             ; 753A AE                       .
+	sta	(off_AE),y
 L753B:  clc                                     ; 753B 18                       .
 	lda     L74BC                           ; 753C AD BC 74                 ..t
 	adc     #$0D                            ; 753F 69 0D                    i.
 	sta     $AE                             ; 7541 85 AE                    ..
 	lda     L74BD                           ; 7543 AD BD 74                 ..t
-L7546:  adc     #$00                            ; 7546 69 00                    i.
+	adc     #$00                            ; 7546 69 00                    i.
 	sta     $AF                             ; 7548 85 AF                    ..
 	lda     L74B9                           ; 754A AD B9 74                 ..t
 	ldy     #$00                            ; 754D A0 00                    ..
@@ -7117,13 +7131,7 @@ sub_760A:
 L763E:  lda     L7607                           ; 763E AD 07 76                 ..v
 	eor     #$80                            ; 7641 49 80                    I.
 	lbeq	L765E
-	clc                                     ; 7648 18                       .
-	lda     L7608                           ; 7649 AD 08 76                 ..v
-	adc     #$01                            ; 764C 69 01                    i.
-	sta     $AE                             ; 764E 85 AE                    ..
-	lda     L7609                           ; 7650 AD 09 76                 ..v
-	adc     #$00                            ; 7653 69 00                    i.
-	sta     $AF                             ; 7655 85 AF                    ..
+	add16i	off_AE, L7608, $0001
 	lda     L7607                           ; 7657 AD 07 76                 ..v
 	ldy     #$00                            ; 765A A0 00                    ..
 	sta     ($AE),y                         ; 765C 91 AE                    ..
@@ -14034,7 +14042,8 @@ LAB0B:  prolog
 	rol     a                               ; AB4A 2A                       *
 	and     $2524,x                         ; AB4B 3D 24 25                 =$%
 	rol     $40                             ; AB4E 26 40                    &@
-	rol     L753A                           ; AB50 2E 3A 75                 .:u
+	;rol     L753A                           ; AB50 2E 3A 75                 .:u
+	.byte	$2E,$3A,$75
 	ror     $77,x                           ; AB53 76 77                    vw
 	brk                                     ; AB55 00                       .
 LAB56:  .byte   $14                             ; AB56 14                       .
