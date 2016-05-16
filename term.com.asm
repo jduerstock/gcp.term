@@ -7507,10 +7507,8 @@ L7A54:  .byte   $03                             ; 7A54 03                       
 L7A55:  .byte   $4C                             ; 7A55 4C                       L
 L7A56:	.byte	$B6
 
-L7A57:	prolog
-	jsr     sub_44D5                        ; 7A5A 20 D5 44                  .D
-	.addr	L7A52
-	.byte   $02                             ; 7A5F 02                       .
+sub_7A57:	
+	stack_prolog L7A52, $02
 	ldx     L7A53                           ; 7A60 AE 53 7A                 .Sz
 	lda     L7A52                           ; 7A63 AD 52 7A                 .Rz
 	jsr     sub_799B
@@ -13818,7 +13816,7 @@ LAA86:	.addr	L6AD5
 	.addr	L6F68
 	.addr	L6F91
 	.addr	L6FEB
-	.addr	L7A57
+	.addr	sub_7A57
 	.addr	sub_7ADF
 	.addr	L7B68
 	.addr	sub_7A9A
