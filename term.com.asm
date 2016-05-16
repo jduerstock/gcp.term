@@ -7165,13 +7165,7 @@ L76CC:  clc                                     ; 76CC 18                       
 	lda     L766C                           ; 76D7 AD 6C 76                 .lv
 	adc     L7681                           ; 76DA 6D 81 76                 m.v
 	sta     L766C                           ; 76DD 8D 6C 76                 .lv
-	clc                                     ; 76E0 18                       .
-	lda     L766D                           ; 76E1 AD 6D 76                 .mv
-	adc     #$22                            ; 76E4 69 22                    i"
-	sta     L767B                           ; 76E6 8D 7B 76                 .{v
-	lda     L766E                           ; 76E9 AD 6E 76                 .nv
-	adc     #$00                            ; 76EC 69 00                    i.
-	sta     L767C                           ; 76EE 8D 7C 76                 .|v
+	add16i	L767B, L766D, $0022
 	lda     L767C                           ; 76F1 AD 7C 76                 .|v
 	sta     $A3                             ; 76F4 85 A3                    ..
 	sec                                     ; 76F6 38                       8
@@ -7186,13 +7180,7 @@ L76CC:  clc                                     ; 76CC 18                       
 	ldx     #$76                            ; 7709 A2 76                    .v
 	lda     #$77                            ; 770B A9 77                    .w
 	jsr     L4C1D                           ; 770D 20 1D 4C                  .L
-	clc                                     ; 7710 18                       .
-	lda     L766D                           ; 7711 AD 6D 76                 .mv
-	adc     #$1A                            ; 7714 69 1A                    i.
-	sta     $A2                             ; 7716 85 A2                    ..
-	lda     L766E                           ; 7718 AD 6E 76                 .nv
-	adc     #$00                            ; 771B 69 00                    i.
-	sta     $A3                             ; 771D 85 A3                    ..
+	add16i	$A2, L766D, $001A
 	lda     #$76                            ; 771F A9 76                    .v
 	sta     $A5                             ; 7721 85 A5                    ..
 	lda     #$73                            ; 7723 A9 73                    .s
@@ -7206,13 +7194,7 @@ L76CC:  clc                                     ; 76CC 18                       
 	lda     L767D                           ; 7735 AD 7D 76                 .}v
 	eor     #$01                            ; 7738 49 01                    I.
 	lbne	L7799
-	clc                                     ; 773F 18                       .
-	lda     L766D                           ; 7740 AD 6D 76                 .mv
-	adc     #$1A                            ; 7743 69 1A                    i.
-	sta     $A0                             ; 7745 85 A0                    ..
-	lda     L766E                           ; 7747 AD 6E 76                 .nv
-	adc     #$00                            ; 774A 69 00                    i.
-	sta     $A1                             ; 774C 85 A1                    ..
+	add16i	$A0, L766D, $001A
 	ldx     $A1                             ; 774E A6 A1                    ..
 	lda     $A0                             ; 7750 A5 A0                    ..
 	jsr     L4E4A                           ; 7752 20 4A 4E                  JN
@@ -7264,32 +7246,14 @@ sub_77A3:
 	sta     L77A2                           ; 77B4 8D A2 77                 ..w
 	lda     $A0                             ; 77B7 A5 A0                    ..
 	sta     L77A1                           ; 77B9 8D A1 77                 ..w
-	clc                                     ; 77BC 18                       .
-	lda     L77A1                           ; 77BD AD A1 77                 ..w
-	adc     #$05                            ; 77C0 69 05                    i.
-	sta     $AE                             ; 77C2 85 AE                    ..
-	lda     L77A2                           ; 77C4 AD A2 77                 ..w
-	adc     #$00                            ; 77C7 69 00                    i.
-	sta     $AF                             ; 77C9 85 AF                    ..
+	add16i	off_AE, L77A1, $0005
 	lda     L779F                           ; 77CB AD 9F 77                 ..w
 	ldy     #$00                            ; 77CE A0 00                    ..
 	sta     ($AE),y                         ; 77D0 91 AE                    ..
-	clc                                     ; 77D2 18                       .
-	lda     L77A1                           ; 77D3 AD A1 77                 ..w
-	adc     #$06                            ; 77D6 69 06                    i.
-	sta     $AE                             ; 77D8 85 AE                    ..
-	lda     L77A2                           ; 77DA AD A2 77                 ..w
-	adc     #$00                            ; 77DD 69 00                    i.
-	sta     $AF                             ; 77DF 85 AF                    ..
+	add16i	off_AE, L77A1, $0006
 	lda     L77A0                           ; 77E1 AD A0 77                 ..w
 	sta     ($AE),y                         ; 77E4 91 AE                    ..
-	clc                                     ; 77E6 18                       .
-	lda     L77A1                           ; 77E7 AD A1 77                 ..w
-	adc     #$07                            ; 77EA 69 07                    i.
-	sta     $AE                             ; 77EC 85 AE                    ..
-	lda     L77A2                           ; 77EE AD A2 77                 ..w
-	adc     #$00                            ; 77F1 69 00                    i.
-	sta     $AF                             ; 77F3 85 AF                    ..
+	add16i	off_AE, L77A1, $0007
 	lda     #$00                            ; 77F5 A9 00                    ..
 	sta     $85                             ; 77F7 85 85                    ..
 	lda     L77A0                           ; 77F9 AD A0 77                 ..w
