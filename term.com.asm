@@ -7015,30 +7015,12 @@ L74BE:
 	lda     #$FF                            ; 7535 A9 FF                    ..
 	ldy     #$00                            ; 7537 A0 00                    ..
 	sta	(off_AE),y
-L753B:  clc                                     ; 753B 18                       .
-	lda     L74BC                           ; 753C AD BC 74                 ..t
-	adc     #$0D                            ; 753F 69 0D                    i.
-	sta     $AE                             ; 7541 85 AE                    ..
-	lda     L74BD                           ; 7543 AD BD 74                 ..t
-	adc     #$00                            ; 7546 69 00                    i.
-	sta     $AF                             ; 7548 85 AF                    ..
+L753B:	add16i	off_AE, L74BC, $000D
 	lda     L74B9                           ; 754A AD B9 74                 ..t
 	ldy     #$00                            ; 754D A0 00                    ..
 	sta     ($AE),y                         ; 754F 91 AE                    ..
-	clc                                     ; 7551 18                       .
-	lda     L74BC                           ; 7552 AD BC 74                 ..t
-	adc     #$0E                            ; 7555 69 0E                    i.
-	sta     $A0                             ; 7557 85 A0                    ..
-	lda     L74BD                           ; 7559 AD BD 74                 ..t
-	adc     #$00                            ; 755C 69 00                    i.
-	sta     $A1                             ; 755E 85 A1                    ..
-	clc                                     ; 7560 18                       .
-	lda     L74BA                           ; 7561 AD BA 74                 ..t
-	adc     #$01                            ; 7564 69 01                    i.
-	sta     $A2                             ; 7566 85 A2                    ..
-	lda     L74BB                           ; 7568 AD BB 74                 ..t
-	adc     #$00                            ; 756B 69 00                    i.
-	sta     $A3                             ; 756D 85 A3                    ..
+	add16i	$A0, L74BC, $000E
+	add16i	$A2, L74BA, $0001
 	ldi	$A5, $00
 	ldi	$A4, $08
 	ldy     $A2                             ; 7577 A4 A2                    ..
@@ -7065,38 +7047,20 @@ sub_758C:
 	sta     L758B                           ; 759D 8D 8B 75                 ..u
 	lda     $A0                             ; 75A0 A5 A0                    ..
 	sta     L758A                           ; 75A2 8D 8A 75                 ..u
-	clc                                     ; 75A5 18                       .
-	lda     L758A                           ; 75A6 AD 8A 75                 ..u
-	adc     #$04                            ; 75A9 69 04                    i.
-	sta     $AE                             ; 75AB 85 AE                    ..
-	lda     L758B                           ; 75AD AD 8B 75                 ..u
-	adc     #$00                            ; 75B0 69 00                    i.
-	sta     $AF                             ; 75B2 85 AF                    ..
+	add16i	off_AE, L758A, $0004
 	lda     L7587                           ; 75B4 AD 87 75                 ..u
 	ldy     #$00                            ; 75B7 A0 00                    ..
 	sta     ($AE),y                         ; 75B9 91 AE                    ..
 	lda     L7589                           ; 75BB AD 89 75                 ..u
 	eor     #$80                            ; 75BE 49 80                    I.
 	lbeq	L75D9
-	clc                                     ; 75C5 18                       .
-	lda     L758A                           ; 75C6 AD 8A 75                 ..u
-	adc     #$03                            ; 75C9 69 03                    i.
-	sta     $AE                             ; 75CB 85 AE                    ..
-	lda     L758B                           ; 75CD AD 8B 75                 ..u
-	adc     #$00                            ; 75D0 69 00                    i.
-	sta     $AF                             ; 75D2 85 AF                    ..
+	add16i	off_AE, L758A, $0003
 	lda     L7589                           ; 75D4 AD 89 75                 ..u
 	sta     ($AE),y                         ; 75D7 91 AE                    ..
 L75D9:  lda     L7588                           ; 75D9 AD 88 75                 ..u
 	eor     #$80                            ; 75DC 49 80                    I.
 	lbeq	L75F9
-	clc                                     ; 75E3 18                       .
-	lda     L758A                           ; 75E4 AD 8A 75                 ..u
-	adc     #$02                            ; 75E7 69 02                    i.
-	sta     $AE                             ; 75E9 85 AE                    ..
-	lda     L758B                           ; 75EB AD 8B 75                 ..u
-	adc     #$00                            ; 75EE 69 00                    i.
-	sta     $AF                             ; 75F0 85 AF                    ..
+	add16i	off_AE, L758A, $0002
 	lda     L7588                           ; 75F2 AD 88 75                 ..u
 	ldy     #$00                            ; 75F5 A0 00                    ..
 	sta     ($AE),y                         ; 75F7 91 AE                    ..
