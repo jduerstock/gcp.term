@@ -7615,9 +7615,8 @@ L7B64:  sta     ($45),y                         ; 7B64 91 45                    
 	iny                                     ; 7B66 C8                       .
 L7B67:  .byte	$A9
 
-L7B68:	prolog
-	jsr     sub_44D5                        ; 7B6B 20 D5 44                  .D
-	eor     $027B                           ; 7B6E 4D 7B 02                 M{.
+sub_7B68:	
+	stack_prolog L7B4D, $02
 	sec                                     ; 7B71 38                       8
 	lda     L7B4F                           ; 7B72 AD 4F 7B                 .O{
 	sbc     #$01                            ; 7B75 E9 01                    ..
@@ -7628,13 +7627,7 @@ L7B68:	prolog
 	sta     L7B51                           ; 7B82 8D 51 7B                 .Q{
 	lda     $A0                             ; 7B85 A5 A0                    ..
 	sta     L7B50                           ; 7B87 8D 50 7B                 .P{
-	clc                                     ; 7B8A 18                       .
-	lda     L7B50                           ; 7B8B AD 50 7B                 .P{
-	adc     #$07                            ; 7B8E 69 07                    i.
-	sta     $AE                             ; 7B90 85 AE                    ..
-	lda     L7B51                           ; 7B92 AD 51 7B                 .Q{
-	adc     #$00                            ; 7B95 69 00                    i.
-	sta     $AF                             ; 7B97 85 AF                    ..
+	add16i	off_AE, L7B50, $0007
 	ldy     #$01                            ; 7B99 A0 01                    ..
 	lda     ($AE),y                         ; 7B9B B1 AE                    ..
 	sta     L7B53                           ; 7B9D 8D 53 7B                 .S{
@@ -7643,17 +7636,11 @@ L7B68:	prolog
 	sta     L7B52                           ; 7BA3 8D 52 7B                 .R{
 	lda     L7B52                           ; 7BA6 AD 52 7B                 .R{
 	ora     L7B53                           ; 7BA9 0D 53 7B                 .S{
-	beq     L7BB1                           ; 7BAC F0 03                    ..
-	jmp     L7BB2                           ; 7BAE 4C B2 7B                 L.{
+	lbne	L7BB2
+	rts                                     ; 7BB1 60                       `
 
 ; ----------------------------------------------------------------------------
-L7BB1:  rts                                     ; 7BB1 60                       `
-
-; ----------------------------------------------------------------------------
-L7BB2:  lda     L7B53                           ; 7BB2 AD 53 7B                 .S{
-	sta     L7B57                           ; 7BB5 8D 57 7B                 .W{
-	lda     L7B52                           ; 7BB8 AD 52 7B                 .R{
-	sta     L7B56                           ; 7BBB 8D 56 7B                 .V{
+L7BB2:	rdmv	L7B56, L7B52
 	ldy     #$00                            ; 7BBE A0 00                    ..
 	sty     L7B55                           ; 7BC0 8C 55 7B                 .U{
 	sty     L7B54                           ; 7BC3 8C 54 7B                 .T{
@@ -13791,7 +13778,7 @@ LAA86:	.addr	L6AD5
 	.addr	L6FEB
 	.addr	sub_7A57
 	.addr	sub_7ADF
-	.addr	L7B68
+	.addr	sub_7B68
 	.addr	sub_7A9A
 	.addr	L74BE
 	.addr	sub_7951
