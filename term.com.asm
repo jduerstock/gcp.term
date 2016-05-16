@@ -7645,15 +7645,9 @@ L7BB2:	rdmv	L7B56, L7B52
 	sty     L7B55                           ; 7BC0 8C 55 7B                 .U{
 	sty     L7B54                           ; 7BC3 8C 54 7B                 .T{
 	sty     L7B5C                           ; 7BC6 8C 5C 7B                 .\{
-	clc                                     ; 7BC9 18                       .
-	lda     L7B50                           ; 7BCA AD 50 7B                 .P{
-	adc     #$06                            ; 7BCD 69 06                    i.
-	sta     $AE                             ; 7BCF 85 AE                    ..
-	lda     L7B51                           ; 7BD1 AD 51 7B                 .Q{
-	adc     #$00                            ; 7BD4 69 00                    i.
-	sta     $AF                             ; 7BD6 85 AF                    ..
+	add16i	off_AE, L7B50, $0006
 	sec                                     ; 7BD8 38                       8
-	lda     ($AE),y                         ; 7BD9 B1 AE                    ..
+	lda     (off_AE),y
 	sbc     #$01                            ; 7BDB E9 01                    ..
 	sta     L7BEB                           ; 7BDD 8D EB 7B                 ..{
 L7BE0:  lda     L7BEB                           ; 7BE0 AD EB 7B                 ..{
@@ -7663,6 +7657,8 @@ L7BE0:  lda     L7BEB                           ; 7BE0 AD EB 7B                 
 
 ; ----------------------------------------------------------------------------
 L7BEB:  .byte   $F6                             ; 7BEB F6                       .
+
+; ----------------------------------------------------------------------------
 L7BEC:  lda     L7B53                           ; 7BEC AD 53 7B                 .S{
 	sta     $A3                             ; 7BEF 85 A3                    ..
 	lda     #$00                            ; 7BF1 A9 00                    ..
@@ -7675,30 +7671,15 @@ L7BEC:  lda     L7B53                           ; 7BEC AD 53 7B                 
 	jsr     L461F                           ; 7C00 20 1F 46                  .F
 	lda     L7B67                           ; 7C03 AD 67 7B                 .g{
 	cmp     L7B4F                           ; 7C06 CD 4F 7B                 .O{
-	bcc     L7C0E                           ; 7C09 90 03                    ..
-	jmp     L7C1F                           ; 7C0B 4C 1F 7C                 L.|
-
-; ----------------------------------------------------------------------------
-L7C0E:  clc                                     ; 7C0E 18                       .
-	lda     L7B52                           ; 7C0F AD 52 7B                 .R{
-	adc     #$06                            ; 7C12 69 06                    i.
-	sta     L7B56                           ; 7C14 8D 56 7B                 .V{
-	lda     L7B53                           ; 7C17 AD 53 7B                 .S{
-	adc     #$00                            ; 7C1A 69 00                    i.
-	sta     L7B57                           ; 7C1C 8D 57 7B                 .W{
+	lbcs	L7C1F
+	add16i	L7B56, L7B52, $0006
 L7C1F:  lda     L7B64                           ; 7C1F AD 64 7B                 .d{
 	eor     L7B4E                           ; 7C22 4D 4E 7B                 MN{
-	beq     L7C2A                           ; 7C25 F0 03                    ..
-	jmp     L7C42                           ; 7C27 4C 42 7C                 LB|
-
-; ----------------------------------------------------------------------------
+	lbne	L7C42
 L7C2A:  lda     L7B67                           ; 7C2A AD 67 7B                 .g{
 	eor     L7B4F                           ; 7C2D 4D 4F 7B                 MO{
-	beq     L7C35                           ; 7C30 F0 03                    ..
-	jmp     L7C36                           ; 7C32 4C 36 7C                 L6|
-
-; ----------------------------------------------------------------------------
-L7C35:  rts                                     ; 7C35 60                       `
+	lbne	L7C36
+	rts                                     ; 7C35 60                       `
 
 ; ----------------------------------------------------------------------------
 L7C36:  lda     L7B53                           ; 7C36 AD 53 7B                 .S{
