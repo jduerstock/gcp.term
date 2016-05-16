@@ -7571,42 +7571,24 @@ sub_7ADF:
 	sta     L7ADD                           ; 7AF8 8D DD 7A                 ..z
 	lda     L7ADD                           ; 7AFB AD DD 7A                 ..z
 	ora     L7ADE                           ; 7AFE 0D DE 7A                 ..z
-	beq     L7B06                           ; 7B01 F0 03                    ..
-	jmp     L7B07                           ; 7B03 4C 07 7B                 L.{
-
-; ----------------------------------------------------------------------------
-L7B06:  rts                                     ; 7B06 60                       `
+	lbne	L7B07
+	rts                                     ; 7B06 60                       `
 
 ; ----------------------------------------------------------------------------
 L7B07:  lda     L7ADB                           ; 7B07 AD DB 7A                 ..z
 	eor     #$80                            ; 7B0A 49 80                    I.
 	lbeq	L7B27
-	clc                                     ; 7B11 18                       .
-	lda     L7ADD                           ; 7B12 AD DD 7A                 ..z
-	adc     #$02                            ; 7B15 69 02                    i.
-	sta     $AE                             ; 7B17 85 AE                    ..
-	lda     L7ADE                           ; 7B19 AD DE 7A                 ..z
-	adc     #$00                            ; 7B1C 69 00                    i.
-	sta     $AF                             ; 7B1E 85 AF                    ..
+	add16i	off_AE, L7ADD, $02
 	lda     L7ADB                           ; 7B20 AD DB 7A                 ..z
 	ldy     #$00                            ; 7B23 A0 00                    ..
-	sta     ($AE),y                         ; 7B25 91 AE                    ..
+	sta     (off_AE),y
 L7B27:  lda     L7ADC                           ; 7B27 AD DC 7A                 ..z
 	eor     #$80                            ; 7B2A 49 80                    I.
-	bne     L7B31                           ; 7B2C D0 03                    ..
-	jmp     L7B47                           ; 7B2E 4C 47 7B                 LG{
-
-; ----------------------------------------------------------------------------
-L7B31:  clc                                     ; 7B31 18                       .
-	lda     L7ADD                           ; 7B32 AD DD 7A                 ..z
-	adc     #$03                            ; 7B35 69 03                    i.
-	sta     $AE                             ; 7B37 85 AE                    ..
-	lda     L7ADE                           ; 7B39 AD DE 7A                 ..z
-	adc     #$00                            ; 7B3C 69 00                    i.
-	sta     $AF                             ; 7B3E 85 AF                    ..
+	lbeq	L7B47
+	add16i	off_AE, L7ADD, $03
 	lda     L7ADC                           ; 7B40 AD DC 7A                 ..z
 	ldy     #$00                            ; 7B43 A0 00                    ..
-	sta     ($AE),y                         ; 7B45 91 AE                    ..
+	sta     (off_AE),y                      ; 7B45 91 AE                    ..
 L7B47:  ldy     #$01                            ; 7B47 A0 01                    ..
 L7B49:  sty     L4656                           ; 7B49 8C 56 46                 .VF
 	rts                                     ; 7B4C 60                       `
