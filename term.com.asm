@@ -7508,25 +7508,22 @@ L794E:  .byte   $0D                             ; 794E 0D                       
 L794F:  .byte   $F0                             ; 794F F0                       .
 L7950:  .byte	$05
 
-L7951:	prolog
+sub_7951:	
+	prolog
 	sta     L794E                           ; 7954 8D 4E 79                 .Ny
 	lda     L794E                           ; 7957 AD 4E 79                 .Ny
 	jsr     sub_7035
 	rdmv	L794F, $A0
 	lda     L794F                           ; 7967 AD 4F 79                 .Oy
 	ora     L7950                           ; 796A 0D 50 79                 .Py
-	beq     L7972                           ; 796D F0 03                    ..
-	jmp     L7973                           ; 796F 4C 73 79                 Lsy
-
-; ----------------------------------------------------------------------------
+	lbne	L7973
 L7972:  rts                                     ; 7972 60                       `
 
 ; ----------------------------------------------------------------------------
 L7973:  ldx     #$FF                            ; 7973 A2 FF                    ..
 	lda     L794E                           ; 7975 AD 4E 79                 .Ny
 	jsr     sub_782A
-	lda     #$00                            ; 797B A9 00                    ..
-	sta     $A3                             ; 797D 85 A3                    ..
+	ldi	$A3, $00
 	ldy     #$26                            ; 797F A0 26                    .&
 	ldx     L7950                           ; 7981 AE 50 79                 .Py
 	lda     L794F                           ; 7984 AD 4F 79                 .Oy
@@ -7538,17 +7535,16 @@ L7973:  ldx     #$FF                            ; 7973 A2 FF                    
 	rts                                     ; 7993 60                       `
 
 ; ----------------------------------------------------------------------------
-L7994:  php                                     ; 7994 08                       .
+L7994:  .byte	$08
 L7995:  .byte   $F0                             ; 7995 F0                       .
 L7996:  .byte   $1D                             ; 7996 1D                       .
 L7997:  .byte   $30                             ; 7997 30                       0
 L7998:  .byte   $1B                             ; 7998 1B                       .
 L7999:  .byte   $29                             ; 7999 29                       )
 L799A:  .byte   $01                             ; 799A 01                       .
-L799B:  jmp     L799E                           ; 799B 4C 9E 79                 L.y
 
-; ----------------------------------------------------------------------------
-L799E:  stx     L7995                           ; 799E 8E 95 79                 ..y
+sub_799B:  prolog
+	stx     L7995                           ; 799E 8E 95 79                 ..y
 	sta     L7994                           ; 79A1 8D 94 79                 ..y
 	lda     L7994                           ; 79A4 AD 94 79                 ..y
 	jsr     L65B0                           ; 79A7 20 B0 65                  .e
@@ -7653,7 +7649,7 @@ L7A57:	prolog
 	.byte   $02                             ; 7A5F 02                       .
 	ldx     L7A53                           ; 7A60 AE 53 7A                 .Sz
 	lda     L7A52                           ; 7A63 AD 52 7A                 .Rz
-	jsr     L799B                           ; 7A66 20 9B 79                  .y
+	jsr     sub_799B
 	lda     $A1                             ; 7A69 A5 A1                    ..
 	sta     L7A56                           ; 7A6B 8D 56 7A                 .Vz
 	lda     $A0                             ; 7A6E A5 A0                    ..
@@ -7691,7 +7687,7 @@ L7A9A:	prolog
 	.byte   $02                             ; 7AA2 02                       .
 	ldx     L7A96                           ; 7AA3 AE 96 7A                 ..z
 	lda     L7A95                           ; 7AA6 AD 95 7A                 ..z
-	jsr     L799B                           ; 7AA9 20 9B 79                  .y
+	jsr     sub_799B
 	lda     $A1                             ; 7AAC A5 A1                    ..
 	sta     L7A99                           ; 7AAE 8D 99 7A                 ..z
 	lda     $A0                             ; 7AB1 A5 A0                    ..
@@ -7731,7 +7727,7 @@ L7ADF:  jmp     $7AE2                           ; 7ADF 4C E2 7A                 
 	cmp     $037A,y                         ; 7AE5 D9 7A 03                 .z.
 	ldx     L7ADA                           ; 7AE8 AE DA 7A                 ..z
 	lda     L7AD9                           ; 7AEB AD D9 7A                 ..z
-	jsr     L799B                           ; 7AEE 20 9B 79                  .y
+	jsr     sub_799B
 	lda     $A1                             ; 7AF1 A5 A1                    ..
 	sta     L7ADE                           ; 7AF3 8D DE 7A                 ..z
 	lda     $A0                             ; 7AF6 A5 A0                    ..
@@ -8578,7 +8574,7 @@ L80DA:  lda     L4750                           ; 80DA AD 50 47                 
 ; ----------------------------------------------------------------------------
 L811F:  ldx     L46EA                           ; 811F AE EA 46                 ..F
 	lda     L80B6                           ; 8122 AD B6 80                 ...
-	jsr     L799B                           ; 8125 20 9B 79                  .y
+	jsr     sub_799B
 	lda     $A1                             ; 8128 A5 A1                    ..
 	sta     L80AF                           ; 812A 8D AF 80                 ...
 	lda     $A0                             ; 812D A5 A0                    ..
@@ -11444,7 +11440,7 @@ L968E:	prolog
 	sta     L9054                           ; 96ED 8D 54 90                 .T.
 	ldx     L9054                           ; 96F0 AE 54 90                 .T.
 	lda     L9053                           ; 96F3 AD 53 90                 .S.
-	jsr     L799B                           ; 96F6 20 9B 79                  .y
+	jsr     sub_799B
 	lda     $A1                             ; 96F9 A5 A1                    ..
 	sta     L968D                           ; 96FB 8D 8D 96                 ...
 	lda     $A0                             ; 96FE A5 A0                    ..
@@ -12433,7 +12429,7 @@ L9E94:  lda     L46E6                           ; 9E94 AD E6 46                 
 	lbne	L9ED7
 	ldx     L46EA                           ; 9E9E AE EA 46                 ..F
 	lda     L46E9                           ; 9EA1 AD E9 46                 ..F
-	jsr     L799B                           ; 9EA4 20 9B 79                  .y
+	jsr     sub_799B
 	lda     $A1                             ; 9EA7 A5 A1                    ..
 	sta     L9E15                           ; 9EA9 8D 15 9E                 ...
 	lda     $A0                             ; 9EAC A5 A0                    ..
@@ -12648,7 +12644,7 @@ LA02A:  jsr     sub_44D5                           ; A02A 20 D5 44              
 	.byte   $03                             ; A02F 03                       .
 	ldx     L9FE4                           ; A030 AE E4 9F                 ...
 	lda     L9FE3                           ; A033 AD E3 9F                 ...
-	jsr     L799B                           ; A036 20 9B 79                  .y
+	jsr     sub_799B
 	lda     $A1                             ; A039 A5 A1                    ..
 	sta     L9FE8                           ; A03B 8D E8 9F                 ...
 	lda     $A0                             ; A03E A5 A0                    ..
@@ -14038,7 +14034,7 @@ LAA86:	.addr	L6AD5
 	.addr	L7B68
 	.addr	L7A9A
 	.addr	L74BE
-	.addr	L7951
+	.addr	sub_7951
 	.addr	sub_77A3
 	.addr	sub_782A
 	.addr	sub_758C
