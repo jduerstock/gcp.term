@@ -11192,16 +11192,11 @@ L94E8:  lda     L9416                           ; 94E8 AD 16 94                 
 	ldx     L9416                           ; 9523 AE 16 94                 ...
 	lda     L9053                           ; 9526 AD 53 90                 .S.
 	jsr     L90CE                           ; 9529 20 CE 90                  ..
-	lda     $A0                             ; 952C A5 A0                    ..
-	sta     L905D                           ; 952E 8D 5D 90                 .].
-	lda     L9416                           ; 9531 AD 16 94                 ...
-	sta     L9051                           ; 9534 8D 51 90                 .Q.
-	lda     L9056                           ; 9537 AD 56 90                 .V.
-	sta     $A3                             ; 953A 85 A3                    ..
-	lda     #$00                            ; 953C A9 00                    ..
-	sta     $A5                             ; 953E 85 A5                    ..
-	lda     #$07                            ; 9540 A9 07                    ..
-	sta     $A4                             ; 9542 85 A4                    ..
+	mv	L905D, $A0
+	mv	L9051, L9416
+	mv	$A3, L9056
+	ldi	$A5, $00
+	ldi	$A4, $07
 	ldy     L9055                           ; 9544 AC 55 90                 .U.
 L9547:  ldx     #$94                            ; 9547 A2 94                    ..
 	lda     #$1C                            ; 9549 A9 1C                    ..
@@ -11424,25 +11419,16 @@ L968E:	prolog
 	ldx     L9054                           ; 970E AE 54 90                 .T.
 	lda     L9053                           ; 9711 AD 53 90                 .S.
 	jsr     sub_7ADF                        ; 9714 20 DF 7A                  .z
-	lda     L968C                           ; 9717 AD 8C 96                 ...
-	sta     $AE                             ; 971A 85 AE                    ..
-	lda     L968D                           ; 971C AD 8D 96                 ...
-	sta     $AF                             ; 971F 85 AF                    ..
+	dmv	off_AE, L968C
 	ldy     #$00                            ; 9721 A0 00                    ..
-	lda     ($AE),y                         ; 9723 B1 AE                    ..
+	lda     (off_AE),y                      ; 9723 B1 AE                    ..
 	sta     L968B                           ; 9725 8D 8B 96                 ...
 	lda     L968B                           ; 9728 AD 8B 96                 ...
 	jsr     L65B0                           ; 972B 20 B0 65                  .e
-	lda     $A1                             ; 972E A5 A1                    ..
-	sta     L9688                           ; 9730 8D 88 96                 ...
-	lda     $A0                             ; 9733 A5 A0                    ..
-	sta     L9687                           ; 9735 8D 87 96                 ...
-	lda     L9687                           ; 9738 AD 87 96                 ...
-	sta     $AE                             ; 973B 85 AE                    ..
-	lda     L9688                           ; 973D AD 88 96                 ...
-	sta     $AF                             ; 9740 85 AF                    ..
+	rdmv	L9687, $A0
+	dmv	off_AE, L9687
 	ldy     #$00                            ; 9742 A0 00                    ..
-	lda     ($AE),y                         ; 9744 B1 AE                    ..
+	lda     (off_AE),y
 	sta     $A1                             ; 9746 85 A1                    ..
 	ldx     $A1                             ; 9748 A6 A1                    ..
 	lda     L9060                           ; 974A AD 60 90                 .`.
