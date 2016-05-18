@@ -125,6 +125,16 @@ LEF40           := $EF40
         sta     a1+1
 .endmacro
 
+.macro add16m8 a1, a2, a3
+	clc
+        lda     a2
+        adc     a3
+        sta     a1
+        lda     a2+1
+        adc     #$00
+        sta     a1+1
+.endmacro
+
 .macro add8m a1, a2, a3
 	clc
         lda     a2
@@ -4520,8 +4530,7 @@ L6203:  prolog
 	lda     #$20                            ; 623C A9 20                    . 
 	sta     $A4                             ; 623E 85 A4                    ..
 	ldy     $A2                             ; 6240 A4 A2                    ..
-	ldx     $A1                             ; 6242 A6 A1                    ..
-	lda     $A0                             ; 6244 A5 A0                    ..
+	ldxa	$A0
 	jsr     sub_461F
 	lda     #$01                            ; 6249 A9 01                    ..
 	asl     a                               ; 624B 0A                       .
@@ -4889,23 +4898,11 @@ L64D5:  lda     L63DB                           ; 64D5 AD DB 63                 
 	lda     L63D5                           ; 6506 AD D5 63                 ..c
 	sbc     #$01                            ; 6509 E9 01                    ..
 	sta     $AE                             ; 650B 85 AE                    ..
-	clc                                     ; 650D 18                       .
-	lda     L63D7                           ; 650E AD D7 63                 ..c
-	adc     $AE                             ; 6511 65 AE                    e.
-	sta     $AC                             ; 6513 85 AC                    ..
-	lda     L63D8                           ; 6515 AD D8 63                 ..c
-	adc     #$00                            ; 6518 69 00                    i.
-	sta     $AD                             ; 651A 85 AD                    ..
+	add16m8	$AC, L63D7, $AE
 	lda     ($AC),y                         ; 651C B1 AC                    ..
 	ora     #$80                            ; 651E 09 80                    ..
 	sta     ($AC),y                         ; 6520 91 AC                    ..
-	clc                                     ; 6522 18                       .
-	lda     L63D7                           ; 6523 AD D7 63                 ..c
-	adc     L63D5                           ; 6526 6D D5 63                 m.c
-	sta     $A0                             ; 6529 85 A0                    ..
-	lda     L63D8                           ; 652B AD D8 63                 ..c
-	adc     #$00                            ; 652E 69 00                    i.
-	sta     $A1                             ; 6530 85 A1                    ..
+	add16m8	$A0, L63D7, L63D5
 	sec                                     ; 6532 38                       8
 	lda     #$18                            ; 6533 A9 18                    ..
 	sbc     L63D5                           ; 6535 ED D5 63                 ..c
