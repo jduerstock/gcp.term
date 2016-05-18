@@ -7699,18 +7699,15 @@ L7C65:  lda     L7B55                           ; 7C65 AD 55 7B                 
 	cmp     L7B56                           ; 7CB7 CD 56 7B                 .V{
 	lda     L7B55                           ; 7CBA AD 55 7B                 .U{
 	sbc     L7B57                           ; 7CBD ED 57 7B                 .W{
-	bcc     L7CC5                           ; 7CC0 90 03                    ..
-	jmp     L7CD6                           ; 7CC2 4C D6 7C                 L.|
-
-; ----------------------------------------------------------------------------
-L7CC5:  sec                                     ; 7CC5 38                       8
+	lbcs	L7CD6
+	sec                                     ; 7CC5 38                       8
 	lda     L7B56                           ; 7CC6 AD 56 7B                 .V{
 	sbc     #$06                            ; 7CC9 E9 06                    ..
 	sta     L7B56                           ; 7CCB 8D 56 7B                 .V{
 	lda     L7B57                           ; 7CCE AD 57 7B                 .W{
 	sbc     #$00                            ; 7CD1 E9 00                    ..
 	sta     L7B57                           ; 7CD3 8D 57 7B                 .W{
-L7CD6:  clc                                     ; 7CD6 18                       .
+L7CD6:	clc                                     ; 7CD6 18                       .
 	lda     L7B56                           ; 7CD7 AD 56 7B                 .V{
 	adc     #$06                            ; 7CDA 69 06                    i.
 	sta     $A0                             ; 7CDC 85 A0                    ..
@@ -7744,16 +7741,9 @@ L7CD6:  clc                                     ; 7CD6 18                       
 	lda     #$06                            ; 7D1A A9 06                    ..
 	sta     $A4                             ; 7D1C 85 A4                    ..
 	ldy     #$5D                            ; 7D1E A0 5D                    .]
-	ldx     L7B57                           ; 7D20 AE 57 7B                 .W{
-	lda     L7B56                           ; 7D23 AD 56 7B                 .V{
+	ldxa	L7B56
 	jsr     sub_461F
-	clc                                     ; 7D29 18                       .
-	lda     L7B56                           ; 7D2A AD 56 7B                 .V{
-	adc     #$04                            ; 7D2D 69 04                    i.
-	sta     $AE                             ; 7D2F 85 AE                    ..
-	lda     L7B57                           ; 7D31 AD 57 7B                 .W{
-	adc     #$00                            ; 7D34 69 00                    i.
-	sta     $AF                             ; 7D36 85 AF                    ..
+	add16i	off_AE, L7B56, $0004
 	lda     L7B4F                           ; 7D38 AD 4F 7B                 .O{
 	ldy     #$00                            ; 7D3B A0 00                    ..
 	sta     ($AE),y                         ; 7D3D 91 AE                    ..
@@ -7959,16 +7949,11 @@ L7E69:  lda     L7E1E                           ; 7E69 AD 1E 7E                 
 	lda     #$03                            ; 7EBC A9 03                    ..
 	sta     $A4                             ; 7EBE 85 A4                    ..
 	ldy     L7E1A                           ; 7EC0 AC 1A 7E                 ..~
-	ldx     #$7E                            ; 7EC3 A2 7E                    .~
-	lda     #$21                            ; 7EC5 A9 21                    .!
+	ldxai	L7E21
 	jsr     sub_461F
 	lda     L7E22                           ; 7ECA AD 22 7E                 ."~
-	beq     L7ED2                           ; 7ECD F0 03                    ..
-	jmp     L7ED7                           ; 7ECF 4C D7 7E                 L.~
-
-; ----------------------------------------------------------------------------
-L7ED2:  lda     #$00                            ; 7ED2 A9 00                    ..
-	sta     $A0                             ; 7ED4 85 A0                    ..
+	lbne	L7ED7
+	ldi	$A0, $00
 	rts                                     ; 7ED6 60                       `
 
 ; ----------------------------------------------------------------------------
