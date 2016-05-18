@@ -291,8 +291,7 @@ L440D:  sta     $82                             ; 440D 85 82                    
 	jsr     L43F3                           ; 441C 20 F3 43                  .C
 	sta     $84                             ; 441F 85 84                    ..
 	stx     $85                             ; 4421 86 85                    ..
-L4423:  lda     #$00                            ; 4423 A9 00                    ..
-	sta     $87                             ; 4425 85 87                    ..
+L4423:  ldi	$87, $00
 	rts                                     ; 4427 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -6989,11 +6988,9 @@ L74BE:
 	lda     L74BC                           ; 750E AD BC 74                 ..t
 	dey                                     ; 7511 88                       .
 	sta     ($AE),y                         ; 7512 91 AE                    ..
-	lda     #$00                            ; 7514 A9 00                    ..
-	sta     $A3                             ; 7516 85 A3                    ..
+	ldi	$A3, $00
 	ldy     #$26                            ; 7518 A0 26                    .&
-	ldx     L74BD                           ; 751A AE BD 74                 ..t
-	lda     L74BC                           ; 751D AD BC 74                 ..t
+	ldxa	L74BC
 	jsr     L45F6                           ; 7520 20 F6 45                  .E
 	inc     L4673                           ; 7523 EE 73 46                 .sF
 	add16i	off_AE, L74BC, $000C
@@ -7028,10 +7025,7 @@ sub_758C:
 	stack_prolog L7586, $03
 	lda     L7586                           ; 7595 AD 86 75                 ..u
 	jsr     sub_7035
-	lda     $A1                             ; 759B A5 A1                    ..
-	sta     L758B                           ; 759D 8D 8B 75                 ..u
-	lda     $A0                             ; 75A0 A5 A0                    ..
-	sta     L758A                           ; 75A2 8D 8A 75                 ..u
+	rdmv	L758A, $A0
 	add16i	off_AE, L758A, $0004
 	lda     L7587                           ; 75B4 AD 87 75                 ..u
 	ldy     #$00                            ; 75B7 A0 00                    ..
