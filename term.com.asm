@@ -7093,7 +7093,8 @@ L7671:  .byte   $11                             ; 7671 11                       
 L7672:  ;beq     $7694                           ; 7672 F0 20                    . 
 	.byte	$F0,$20
 	cpy     #$EB                            ; 7674 C0 EB                    ..
-	jsr     LEC43                           ; 7676 20 43 EC                  C.
+	.byte	$20
+L7677:	.byte	$43,$EC
 	bcs     L76BA                           ; 7679 B0 3F                    .?
 L767B:  .byte   $20                             ; 767B 20                        
 L767C:  .byte   $75                             ; 767C 75                       u
@@ -7131,10 +7132,7 @@ L76C7:  ldi	$A0, $00
 
 ; ----------------------------------------------------------------------------
 L76CC:	add8m	L766B, L766B, L7680
-	clc                                     ; 76D6 18                       .
-	lda     L766C                           ; 76D7 AD 6C 76                 .lv
-	adc     L7681                           ; 76DA 6D 81 76                 m.v
-	sta     L766C                           ; 76DD 8D 6C 76                 .lv
+	add8m	L766C, L766C, L7681
 	add16i	L767B, L766D, $0022
 	lda     L767C                           ; 76F1 AD 7C 76                 .|v
 	sta     $A3                             ; 76F4 85 A3                    ..
@@ -7147,8 +7145,7 @@ L76CC:	add8m	L766B, L766B, L7680
 	sbc     L766C                           ; 7701 ED 6C 76                 .lv
 	sta     $A5                             ; 7704 85 A5                    ..
 	ldy     L767B                           ; 7706 AC 7B 76                 .{v
-	ldx     #$76                            ; 7709 A2 76                    .v
-	lda     #$77                            ; 770B A9 77                    .w
+	ldxai	L7677
 	jsr     L4C1D                           ; 770D 20 1D 4C                  .L
 	add16i	$A2, L766D, $001A
 	lda     #$76                            ; 771F A9 76                    .v
