@@ -3064,10 +3064,7 @@ L5785:	dmv	off_AE, L558C
 	ldy     #$00                            ; 578F A0 00                    ..
 	lda     ($AE),y                         ; 5791 B1 AE                    ..
 	sta     L5592                           ; 5793 8D 92 55                 ..U
-	lda     L558C                           ; 5796 AD 8C 55                 ..U
-	sta     $AE                             ; 5799 85 AE                    ..
-	lda     L558D                           ; 579B AD 8D 55                 ..U
-	sta     $AF                             ; 579E 85 AF                    ..
+	dmv	off_AE, L558C
 	lda     ($AE),y                         ; 57A0 B1 AE                    ..
 	sta     $A0                             ; 57A2 85 A0                    ..
 	clc                                     ; 57A4 18                       .
@@ -3100,10 +3097,7 @@ L5785:	dmv	off_AE, L558C
 L57DF:  jmp     L587E                           ; 57DF 4C 7E 58                 L~X
 
 ; ----------------------------------------------------------------------------
-L57E2:  lda     L558C                           ; 57E2 AD 8C 55                 ..U
-	sta     $AE                             ; 57E5 85 AE                    ..
-	lda     L558D                           ; 57E7 AD 8D 55                 ..U
-	sta     $AF                             ; 57EA 85 AF                    ..
+L57E2:	dmv	off_AE, L558C
 	ldy     #$01                            ; 57EC A0 01                    ..
 	lda     ($AE),y                         ; 57EE B1 AE                    ..
 	sta     L5599                           ; 57F0 8D 99 55                 ..U
@@ -3112,11 +3106,8 @@ L57E2:  lda     L558C                           ; 57E2 AD 8C 55                 
 	sta     L5598                           ; 57F6 8D 98 55                 ..U
 	lda     #$00                            ; 57F9 A9 00                    ..
 	cmp     L5592                           ; 57FB CD 92 55                 ..U
-	bcc     L5803                           ; 57FE 90 03                    ..
-	jmp     L5867                           ; 5800 4C 67 58                 LgX
-
-; ----------------------------------------------------------------------------
-L5803:  sty     L5593                           ; 5803 8C 93 55                 ..U
+	lbcs	L5867
+	sty     L5593                           ; 5803 8C 93 55                 ..U
 	sec                                     ; 5806 38                       8
 	lda     L5592                           ; 5807 AD 92 55                 ..U
 	sbc     #$01                            ; 580A E9 01                    ..
