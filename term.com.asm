@@ -1630,7 +1630,8 @@ sub_4BA7:
 L4BB7:  rts                                     ; 4BB7 60                       `
 
 ; ----------------------------------------------------------------------------
-L4BB8:  lda     $13                             ; 4BB8 A5 13                    ..
+sub_4BB8:  
+	lda     $13                             ; 4BB8 A5 13                    ..
 	ldy     $14                             ; 4BBA A4 14                    ..
 	cmp     $13                             ; 4BBC C5 13                    ..
 	beq     L4BC4                           ; 4BBE F0 04                    ..
@@ -2093,7 +2094,7 @@ L4F6C:  .byte   $2E                             ; 4F6C 2E                       
 
 L4F6D:  prolog
 	sta     L4F6A                           ; 4F70 8D 6A 4F                 .jO
-	jsr     L4BB8                           ; 4F73 20 B8 4B                  .K
+	jsr     sub_4BB8
 	clc                                     ; 4F76 18                       .
 	lda     L4F6A                           ; 4F77 AD 6A 4F                 .jO
 	adc     $A0                             ; 4F7A 65 A0                    e.
@@ -2101,7 +2102,7 @@ L4F6D:  prolog
 	lda     #$00                            ; 4F7F A9 00                    ..
 	adc     $A1                             ; 4F81 65 A1                    e.
 	sta     L4F6C                           ; 4F83 8D 6C 4F                 .lO
-L4F86:  jsr     L4BB8                           ; 4F86 20 B8 4B                  .K
+L4F86:  jsr     sub_4BB8
 	lda     $A0                             ; 4F89 A5 A0                    ..
 	cmp     L4F6B                           ; 4F8B CD 6B 4F                 .kO
 	lda     $A1                             ; 4F8E A5 A1                    ..
@@ -2148,12 +2149,8 @@ L4FC5:  prolog
 	sta     L4FBC                           ; 4FD2 8D BC 4F                 ..O
 	lda     L4FBC                           ; 4FD5 AD BC 4F                 ..O
 	ora     L4FBD                           ; 4FD8 0D BD 4F                 ..O
-	beq     L4FE0                           ; 4FDB F0 03                    ..
-	jmp     L4FE5                           ; 4FDD 4C E5 4F                 L.O
-
-; ----------------------------------------------------------------------------
-L4FE0:  lda     #$00                            ; 4FE0 A9 00                    ..
-	sta     $A0                             ; 4FE2 85 A0                    ..
+	lbne	L4FE5
+	ldi	$A0, $00
 	rts                                     ; 4FE4 60                       `
 
 ; ----------------------------------------------------------------------------
