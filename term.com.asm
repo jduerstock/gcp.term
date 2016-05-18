@@ -4919,13 +4919,7 @@ L64D5:  lda     L63DB                           ; 64D5 AD DB 63                 
 	ldx     $A1                             ; 654C A6 A1                    ..
 	lda     $A0                             ; 654E A5 A0                    ..
 	jsr     L45FC                           ; 6550 20 FC 45                  .E
-L6553:  clc                                     ; 6553 18                       .
-	lda     L63D9                           ; 6554 AD D9 63                 ..c
-	adc     #$01                            ; 6557 69 01                    i.
-	sta     $AE                             ; 6559 85 AE                    ..
-	lda     L63DA                           ; 655B AD DA 63                 ..c
-	adc     #$00                            ; 655E 69 00                    i.
-	sta     $AF                             ; 6560 85 AF                    ..
+	add16i	off_AE, L63D9, $0001
 	clc                                     ; 6562 18                       .
 	lda     L63D5                           ; 6563 AD D5 63                 ..c
 	ldy     #$00                            ; 6566 A0 00                    ..
