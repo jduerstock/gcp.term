@@ -7957,23 +7957,13 @@ L7E69:  lda     L7E1E                           ; 7E69 AD 1E 7E                 
 	rts                                     ; 7ED6 60                       `
 
 ; ----------------------------------------------------------------------------
-L7ED7:  lda     L7E1C                           ; 7ED7 AD 1C 7E                 ..~
-	sta     $AE                             ; 7EDA 85 AE                    ..
-	lda     L7E1D                           ; 7EDC AD 1D 7E                 ..~
-	sta     $AF                             ; 7EDF 85 AF                    ..
-	clc                                     ; 7EE1 18                       .
-	lda     L7E23                           ; 7EE2 AD 23 7E                 .#~
-	adc     L7E22                           ; 7EE5 6D 22 7E                 m"~
-	sta     $AC                             ; 7EE8 85 AC                    ..
+L7ED7:	dmv	off_AE, L7E1C
+	add8m	$AC, L7E23, L7E22
 	ldy     #$00                            ; 7EEA A0 00                    ..
 	lda     ($AE),y                         ; 7EEC B1 AE                    ..
 	cmp     $AC                             ; 7EEE C5 AC                    ..
-	bcc     L7EF5                           ; 7EF0 90 03                    ..
-	jmp     L7EFA                           ; 7EF2 4C FA 7E                 L.~
-
-; ----------------------------------------------------------------------------
-L7EF5:  lda     #$00                            ; 7EF5 A9 00                    ..
-	sta     $A0                             ; 7EF7 85 A0                    ..
+	lbcs	L7EFA
+L7EF5:	ldi	$A0, $00
 	rts                                     ; 7EF9 60                       `
 
 ; ----------------------------------------------------------------------------
