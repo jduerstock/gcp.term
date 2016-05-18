@@ -8428,15 +8428,13 @@ sub_81F2:
 	lda     L4750                           ; 820F AD 50 47                 .PG
 	jsr     sub_7035
 	rdmv	L81DC, $A0
-	lda     L81DD                           ; 821F AD DD 81                 ...
-	sta     $A3                             ; 8222 85 A3                    ..
+	mv	$A3, L81DD
 	lda     #$00                            ; 8224 A9 00                    ..
 	sta     $A5                             ; 8226 85 A5                    ..
 	lda     #$0A                            ; 8228 A9 0A                    ..
 	sta     $A4                             ; 822A 85 A4                    ..
 	ldy     L81DC                           ; 822C AC DC 81                 ...
-	ldx     #$81                            ; 822F A2 81                    ..
-	lda     #$E8                            ; 8231 A9 E8                    ..
+	ldxai	L81E8
 	jsr     L461F                           ; 8233 20 1F 46                  .F
 	lda     #$00                            ; 8236 A9 00                    ..
 	sta     $A3                             ; 8238 85 A3                    ..
