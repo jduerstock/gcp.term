@@ -7113,10 +7113,7 @@ sub_768A:
 	stack_prolog L766A, $02
 	lda     L766A                           ; 7693 AD 6A 76                 .jv
 	jsr     sub_7035
-	lda     $A1                             ; 7699 A5 A1                    ..
-	sta     L766E                           ; 769B 8D 6E 76                 .nv
-	lda     $A0                             ; 769E A5 A0                    ..
-	sta     L766D                           ; 76A0 8D 6D 76                 .mv
+	rdmv	L766D, $A0
 	lda     L766E                           ; 76A3 AD 6E 76                 .nv
 	sta     $A3                             ; 76A6 85 A3                    ..
 	ldi	$A5, $00
@@ -7133,10 +7130,7 @@ L76C7:  ldi	$A0, $00
 	rts                                     ; 76CB 60                       `
 
 ; ----------------------------------------------------------------------------
-L76CC:  clc                                     ; 76CC 18                       .
-	lda     L766B                           ; 76CD AD 6B 76                 .kv
-	adc     L7680                           ; 76D0 6D 80 76                 m.v
-	sta     L766B                           ; 76D3 8D 6B 76                 .kv
+L76CC:	add8m	L766B, L766B, L7680
 	clc                                     ; 76D6 18                       .
 	lda     L766C                           ; 76D7 AD 6C 76                 .lv
 	adc     L7681                           ; 76DA 6D 81 76                 m.v
