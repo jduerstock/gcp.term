@@ -2733,8 +2733,7 @@ L5471:	add8i	$AE, L531D, $01
 	sbc     #$04                            ; 54A8 E9 04                    ..
 	sta     $A4                             ; 54AA 85 A4                    ..
 	ldy     #$C9                            ; 54AC A0 C9                    ..
-	ldx     #$B2                            ; 54AE A2 B2                    ..
-	lda     #$24                            ; 54B0 A9 24                    .$
+	ldxai	$B224
 	jsr     L5197                           ; 54B2 20 97 51                  .Q
 	jmp     L54D6                           ; 54B5 4C D6 54                 L.T
 
@@ -2999,7 +2998,7 @@ L567C:  clc                                     ; 567C 18                       
 	sta     $AE                             ; 5695 85 AE                    ..
 	lda     L558D                           ; 5697 AD 8D 55                 ..U
 	sta     $AF                             ; 569A 85 AF                    ..
-	lda     ($AE),y                         ; 569C B1 AE                    ..
+	lda     (off_AE),y
 	sta     $A0                             ; 569E 85 A0                    ..
 	lda     $A0                             ; 56A0 A5 A0                    ..
 	jsr     L4BC9                           ; 56A2 20 C9 4B                  .K
@@ -3016,11 +3015,8 @@ L567C:  clc                                     ; 567C 18                       
 ; ----------------------------------------------------------------------------
 L56B7:  lda     L5591                           ; 56B7 AD 91 55                 ..U
 	eor     #$42                            ; 56BA 49 42                    IB
-	beq     L56C1                           ; 56BC F0 03                    ..
-	jmp     L56F4                           ; 56BE 4C F4 56                 L.V
-
-; ----------------------------------------------------------------------------
-L56C1:  lda     L558C                           ; 56C1 AD 8C 55                 ..U
+	lbne	L56F4
+	lda     L558C                           ; 56C1 AD 8C 55                 ..U
 	sta     $AE                             ; 56C4 85 AE                    ..
 	lda     L558D                           ; 56C6 AD 8D 55                 ..U
 	sta     $AF                             ; 56C9 85 AF                    ..
