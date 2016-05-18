@@ -3039,28 +3039,15 @@ L56F4:  lda     L5591                           ; 56F4 AD 91 55                 
 	ldxa	$A0
 	jsr     tohex
 	add8i	L5594, L5594, $02
-	lda     L558C                           ; 573F AD 8C 55                 ..U
-	sta     $AE                             ; 5742 85 AE                    ..
-	lda     L558D                           ; 5744 AD 8D 55                 ..U
-	sta     $AF                             ; 5747 85 AF                    ..
+	dmv	off_AE, L558C
 	ldy     #$00                            ; 5749 A0 00                    ..
-	lda     ($AE),y                         ; 574B B1 AE                    ..
+	lda     (off_AE),y
 	sta     $A0                             ; 574D 85 A0                    ..
-	clc                                     ; 574F 18                       .
-	lda     L559E                           ; 5750 AD 9E 55                 ..U
-	adc     L5594                           ; 5753 6D 94 55                 m.U
-	sta     $A1                             ; 5756 85 A1                    ..
-	lda     L559F                           ; 5758 AD 9F 55                 ..U
-	adc     #$00                            ; 575B 69 00                    i.
-	sta     $A2                             ; 575D 85 A2                    ..
+	add16m8	$A1, L559E, L5594
 	ldy     $A2                             ; 575F A4 A2                    ..
-	ldx     $A1                             ; 5761 A6 A1                    ..
-	lda     $A0                             ; 5763 A5 A0                    ..
+	ldxa	$A0
 	jsr     tohex
-	clc                                     ; 5768 18                       .
-	lda     L5594                           ; 5769 AD 94 55                 ..U
-	adc     #$02                            ; 576C 69 02                    i.
-	sta     L5594                           ; 576E 8D 94 55                 ..U
+	add8i	L5594, L5594, $02
 	jmp     L5867                           ; 5771 4C 67 58                 LgX
 
 ; ----------------------------------------------------------------------------
@@ -3073,10 +3060,7 @@ L5774:  lda     L5591                           ; 5774 AD 91 55                 
 	jmp     L5867                           ; 5782 4C 67 58                 LgX
 
 ; ----------------------------------------------------------------------------
-L5785:  lda     L558C                           ; 5785 AD 8C 55                 ..U
-	sta     $AE                             ; 5788 85 AE                    ..
-	lda     L558D                           ; 578A AD 8D 55                 ..U
-	sta     $AF                             ; 578D 85 AF                    ..
+L5785:	dmv	off_AE, L558C
 	ldy     #$00                            ; 578F A0 00                    ..
 	lda     ($AE),y                         ; 5791 B1 AE                    ..
 	sta     L5592                           ; 5793 8D 92 55                 ..U
