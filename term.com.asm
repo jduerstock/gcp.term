@@ -125,6 +125,16 @@ LEF40           := $EF40
         sta     a1+1
 .endmacro
 
+.macro ldxa a1
+	ldx	a1+1
+	lda	a1
+.endmacro
+
+.macro ldxai a1
+	ldx	#>a1
+	lda	#<a1
+.endmacro
+
 	.segment "HDR00"
 
 	.word	$FFFF
@@ -1631,19 +1641,22 @@ L4BC9:  sta     $A0                             ; 4BC9 85 A0                    
 	rts                                     ; 4BEB 60                       `
 
 ; ----------------------------------------------------------------------------
-L4BEC:	jsr	L3272
-	jsr     L4253                           ; 4BEF 20 53 42                  SB
+L4BEC:	.word	$7220
+L4BEE:	.byte	$32
+	.byte	$20
+	.byte	$53
+	.byte	$42
 
-L4BF2:  stack_prolog L4BEC, $05
-	lda     #$4B                            ; 4BFB A9 4B                    .K
+sub_4BF2:  
+	stack_prolog L4BEC, $05
+	lda     #>L4BEE
 	sta     $A3                             ; 4BFD 85 A3                    ..
 	lda     #$00                            ; 4BFF A9 00                    ..
 	sta     $A5                             ; 4C01 85 A5                    ..
 	lda     #$04                            ; 4C03 A9 04                    ..
 	sta     $A4                             ; 4C05 85 A4                    ..
-	ldy     #$EE                            ; 4C07 A0 EE                    ..
-	ldx     L4BEC+1                         ; 4C09 AE ED 4B                 ..K
-	lda     L4BEC                           ; 4C0C AD EC 4B                 ..K
+	ldy     #<L4BEE                         ; 4C07 A0 EE                    ..
+	ldxa	L4BEC
 	jsr     L461F                           ; 4C0F 20 1F 46                  .F
 	rts                                     ; 4C12 60                       `
 
@@ -1667,14 +1680,13 @@ L4C1D:  stack_prolog L4C13, $05
 	lda     #$04                            ; 4C2F A9 04                    ..
 	sta     $A4                             ; 4C31 85 A4                    ..
 	ldy     L4C15                           ; 4C33 AC 15 4C                 ..L
-	ldx     #$4C                            ; 4C36 A2 4C                    .L
-	lda     #$19                            ; 4C38 A9 19                    ..
+	ldxai	L4C19
 	jsr     L461F                           ; 4C3A 20 1F 46                  .F
-	clc                                     ; 4C3D 18                       .
-	lda     L4C19                           ; 4C3E AD 19 4C                 ..L
-	adc     L4C17                           ; 4C41 6D 17 4C                 m.L
-	sta     $A2                             ; 4C44 85 A2                    ..
-	clc                                     ; 4C46 18                       .
+	clc
+	lda	L4C19
+	adc	L4C17
+	sta	$A2
+	clc
 	lda	L4C1A
 	adc	L4C18
 	sta	$A3
@@ -1689,7 +1701,7 @@ L4C1D:  stack_prolog L4C13, $05
 	ldy     $A2                             ; 4C61 A4 A2                    ..
 	ldx     L4C14                           ; 4C63 AE 14 4C                 ..L
 	lda     L4C13                           ; 4C66 AD 13 4C                 ..L
-	jsr     L4BF2                           ; 4C69 20 F2 4B                  .K
+	jsr     sub_4BF2
 	rts                                     ; 4C6C 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -6629,7 +6641,7 @@ L71B8:  sta     L71A1                           ; 71B8 8D A1 71                 
 	ldy     $A2                             ; 723B A4 A2                    ..
 	ldx     #$71                            ; 723D A2 71                    .q
 	lda     #$A4                            ; 723F A9 A4                    ..
-	jsr     L4BF2                           ; 7241 20 F2 4B                  .K
+	jsr     sub_4BF2
 	lda     #$00                            ; 7244 A9 00                    ..
 	sta     $A3                             ; 7246 85 A3                    ..
 	sec                                     ; 7248 38                       8
@@ -6643,7 +6655,7 @@ L71B8:  sta     L71A1                           ; 71B8 8D A1 71                 
 	ldy     #$00                            ; 7258 A0 00                    ..
 	ldx     #$71                            ; 725A A2 71                    .q
 	lda     #$A8                            ; 725C A9 A8                    ..
-	jsr     L4BF2                           ; 725E 20 F2 4B                  .K
+	jsr     sub_4BF2
 	clc                                     ; 7261 18                       .
 	lda     L71A2                           ; 7262 AD A2 71                 ..q
 	adc     #$0B                            ; 7265 69 0B                    i.
@@ -6732,7 +6744,7 @@ L72B1:  jmp     $72B4                           ; 72B1 4C B4 72                 
 	ldy     $A2                             ; 72FE A4 A2                    ..
 	ldx     #$72                            ; 7300 A2 72                    .r
 	lda     #$A2                            ; 7302 A9 A2                    ..
-	jsr     L4BF2                           ; 7304 20 F2 4B                  .K
+	jsr     sub_4BF2
 	lda     #$00                            ; 7307 A9 00                    ..
 	sta     $A3                             ; 7309 85 A3                    ..
 	sec                                     ; 730B 38                       8
@@ -6746,7 +6758,7 @@ L72B1:  jmp     $72B4                           ; 72B1 4C B4 72                 
 	ldy     #$00                            ; 731B A0 00                    ..
 	ldx     #$72                            ; 731D A2 72                    .r
 	lda     #$A6                            ; 731F A9 A6                    ..
-	jsr     L4BF2                           ; 7321 20 F2 4B                  .K
+	jsr     sub_4BF2
 	clc                                     ; 7324 18                       .
 	lda     L72A0                           ; 7325 AD A0 72                 ..r
 	adc     #$0A                            ; 7328 69 0A                    i.
@@ -8507,7 +8519,7 @@ L81F2:  jmp     $81F5                           ; 81F2 4C F5 81                 
 	ldy     #$00                            ; 8242 A0 00                    ..
 	ldx     #$81                            ; 8244 A2 81                    ..
 	lda     #$DE                            ; 8246 A9 DE                    ..
-	jsr     L4BF2                           ; 8248 20 F2 4B                  .K
+	jsr     sub_4BF2
 	lda     #$81                            ; 824B A9 81                    ..
 	sta     $A3                             ; 824D 85 A3                    ..
 	ldy     #$DE                            ; 824F A0 DE                    ..
@@ -9710,7 +9722,7 @@ L8B4E:  clc                                     ; 8B4E 18                       
 	ldy     #$00                            ; 8B7E A0 00                    ..
 	ldx     #$89                            ; 8B80 A2 89                    ..
 	lda     #$71                            ; 8B82 A9 71                    .q
-	jsr     L4BF2                           ; 8B84 20 F2 4B                  .K
+	jsr     sub_4BF2
 	ldy     #$01                            ; 8B87 A0 01                    ..
 	sty     L8992                           ; 8B89 8C 92 89                 ...
 	clc                                     ; 8B8C 18                       .
@@ -9780,7 +9792,7 @@ L8BD1:  lda     L89A9                           ; 8BD1 AD A9 89                 
 	ldy     #$00                            ; 8C0E A0 00                    ..
 	ldx     #$89                            ; 8C10 A2 89                    ..
 	lda     #$85                            ; 8C12 A9 85                    ..
-	jsr     L4BF2                           ; 8C14 20 F2 4B                  .K
+	jsr     sub_4BF2
 	lda     #$89                            ; 8C17 A9 89                    ..
 	sta     $A3                             ; 8C19 85 A3                    ..
 	sec                                     ; 8C1B 38                       8
@@ -12452,7 +12464,7 @@ LA0A5:  bcs     LA10C                           ; A0A5 B0 65                    
 	ldy     #$00                            ; A0E1 A0 00                    ..
 	ldx     #$9F                            ; A0E3 A2 9F                    ..
 	lda     #$F5                            ; A0E5 A9 F5                    ..
-	jsr     L4BF2                           ; A0E7 20 F2 4B                  .K
+	jsr     sub_4BF2
 	lda     #$00                            ; A0EA A9 00                    ..
 	sta     $A3                             ; A0EC 85 A3                    ..
 	sec                                     ; A0EE 38                       8
@@ -12466,7 +12478,7 @@ LA0A5:  bcs     LA10C                           ; A0A5 B0 65                    
 	ldy     #$00                            ; A0FE A0 00                    ..
 	ldx     #$9F                            ; A100 A2 9F                    ..
 	lda     #$F9                            ; A102 A9 F9                    ..
-	jsr     L4BF2                           ; A104 20 F2 4B                  .K
+	jsr     sub_4BF2
 	lda     #$9F                            ; A107 A9 9F                    ..
 	sta     $A3                             ; A109 85 A3                    ..
 	.byte   $AD                             ; A10B AD                       .
