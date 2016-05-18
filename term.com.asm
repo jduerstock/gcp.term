@@ -3016,27 +3016,14 @@ L567C:  clc                                     ; 567C 18                       
 L56B7:  lda     L5591                           ; 56B7 AD 91 55                 ..U
 	eor     #$42                            ; 56BA 49 42                    IB
 	lbne	L56F4
-	lda     L558C                           ; 56C1 AD 8C 55                 ..U
-	sta     $AE                             ; 56C4 85 AE                    ..
-	lda     L558D                           ; 56C6 AD 8D 55                 ..U
-	sta     $AF                             ; 56C9 85 AF                    ..
-	lda     ($AE),y                         ; 56CB B1 AE                    ..
+	dmv	off_AE, L558C
+	lda     (off_AE),y
 	sta     $A0                             ; 56CD 85 A0                    ..
-	clc                                     ; 56CF 18                       .
-	lda     L559E                           ; 56D0 AD 9E 55                 ..U
-	adc     L5594                           ; 56D3 6D 94 55                 m.U
-	sta     $A1                             ; 56D6 85 A1                    ..
-	lda     L559F                           ; 56D8 AD 9F 55                 ..U
-	adc     #$00                            ; 56DB 69 00                    i.
-	sta     $A2                             ; 56DD 85 A2                    ..
+	add16m8	$A1, L559E, L5594
 	ldy     $A2                             ; 56DF A4 A2                    ..
-	ldx     $A1                             ; 56E1 A6 A1                    ..
-	lda     $A0                             ; 56E3 A5 A0                    ..
+	ldxa	$A0
 	jsr     tohex
-	clc                                     ; 56E8 18                       .
-	lda     L5594                           ; 56E9 AD 94 55                 ..U
-	adc     #$02                            ; 56EC 69 02                    i.
-	sta     L5594                           ; 56EE 8D 94 55                 ..U
+	add8i	L5594, L5594, $02
 	jmp     L5867                           ; 56F1 4C 67 58                 LgX
 
 ; ----------------------------------------------------------------------------
