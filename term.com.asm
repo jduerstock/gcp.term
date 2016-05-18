@@ -318,7 +318,8 @@ L4445:  lda     $86                             ; 4445 A5 86                    
 	rts                                     ; 4449 60                       `
 
 ; ----------------------------------------------------------------------------
-L444A:  jsr     L4404                           ; 444A 20 04 44                  .D
+sub_444A:  
+	jsr     L4404                           ; 444A 20 04 44                  .D
 	ldx     $82                             ; 444D A6 82                    ..
 	beq     L446C                           ; 444F F0 1B                    ..
 	stx     $C6                             ; 4451 86 C6                    ..
@@ -1918,11 +1919,8 @@ L4E02:  clc                                     ; 4E02 18                       
 	lda     $A0                             ; 4E2C A5 A0                    ..
 	jsr     L496E                           ; 4E2E 20 6E 49                  nI
 	lda     $A0                             ; 4E31 A5 A0                    ..
-	bne     L4E38                           ; 4E33 D0 03                    ..
-	jmp     L4E3D                           ; 4E35 4C 3D 4E                 L=N
-
-; ----------------------------------------------------------------------------
-L4E38:  ldi	$A0, $00
+	lbeq	L4E3D
+	ldi	$A0, $00
 	rts                                     ; 4E3C 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -1975,7 +1973,7 @@ L4E4D:  stx     L4E43                           ; 4E4D 8E 43 4E                 
 	sta     $84                             ; 4E90 85 84                    ..
 	lda     $AC                             ; 4E92 A5 AC                    ..
 	ldx     #$00                            ; 4E94 A2 00                    ..
-	jsr     L444A                           ; 4E96 20 4A 44                  JD
+	jsr     sub_444A
 	sta     L4E44                           ; 4E99 8D 44 4E                 .DN
 	txa                                     ; 4E9C 8A                       .
 	sta     L4E45                           ; 4E9D 8D 45 4E                 .EN
@@ -2105,15 +2103,14 @@ L4F9B:  rts                                     ; 4F9B 60                       
 ; ----------------------------------------------------------------------------
 L4F9C:  .byte	$30
 
-L4F9D:	prolog
+sub_4F9D:	
+	prolog
 	sta     L4F9C                           ; 4FA0 8D 9C 4F                 ..O
-	lda     #$00                            ; 4FA3 A9 00                    ..
-	sta     $85                             ; 4FA5 85 85                    ..
-	lda     #$06                            ; 4FA7 A9 06                    ..
-	sta     $84                             ; 4FA9 85 84                    ..
+	ldi	$85, $00
+	ldi	$84, $06
 	lda     L4F9C                           ; 4FAB AD 9C 4F                 ..O
 	ldx     #$00                            ; 4FAE A2 00                    ..
-	jsr     L444A                           ; 4FB0 20 4A 44                  JD
+	jsr     sub_444A
 	sta     $A0                             ; 4FB3 85 A0                    ..
 	lda     $A0                             ; 4FB5 A5 A0                    ..
 	jsr     L4F6D                           ; 4FB7 20 6D 4F                  mO
@@ -5233,7 +5230,7 @@ L6742:  lda     L66FA                           ; 6742 AD FA 66                 
 	sta     $84                             ; 6785 85 84                    ..
 	lda     $AA                             ; 6787 A5 AA                    ..
 	ldx     #$00                            ; 6789 A2 00                    ..
-	jsr     L444A                           ; 678B 20 4A 44                  JD
+	jsr     sub_444A
 	sta     $A4                             ; 678E 85 A4                    ..
 	txa                                     ; 6790 8A                       .
 	sta     $A5                             ; 6791 85 A5                    ..
@@ -5599,7 +5596,7 @@ L6A44:  lda     #$00                            ; 6A44 A9 00                    
 	sta     $84                             ; 6A4A 85 84                    ..
 	lda     L6990                           ; 6A4C AD 90 69                 ..i
 	ldx     #$00                            ; 6A4F A2 00                    ..
-	jsr     L444A                           ; 6A51 20 4A 44                  JD
+	jsr     sub_444A
 	sta     L6987                           ; 6A54 8D 87 69                 ..i
 	lda     #$00                            ; 6A57 A9 00                    ..
 	sta     $A3                             ; 6A59 85 A3                    ..
@@ -5745,7 +5742,7 @@ L6B4C:  ror     a                               ; 6B4C 6A                       
 	sta     $84                             ; 6B6C 85 84                    ..
 	lda     L6ABF                           ; 6B6E AD BF 6A                 ..j
 	ldx     #$00                            ; 6B71 A2 00                    ..
-	jsr     L444A                           ; 6B73 20 4A 44                  JD
+	jsr     sub_444A
 	sta     L6ACE                           ; 6B76 8D CE 6A                 ..j
 	txa                                     ; 6B79 8A                       .
 	sta     L6ACF                           ; 6B7A 8D CF 6A                 ..j
@@ -5899,12 +5896,11 @@ L6CAA:  lda     #$00                            ; 6CAA A9 00                    
 	sta     $84                             ; 6CB0 85 84                    ..
 	lda     L6AC1                           ; 6CB2 AD C1 6A                 ..j
 	ldx     #$00                            ; 6CB5 A2 00                    ..
-	jsr     L444A                           ; 6CB7 20 4A 44                  JD
+	jsr     sub_444A
 	sta     L6ACC                           ; 6CBA 8D CC 6A                 ..j
 	txa                                     ; 6CBD 8A                       .
 	sta     L6ACD                           ; 6CBE 8D CD 6A                 ..j
-	ldx     L6ACD                           ; 6CC1 AE CD 6A                 ..j
-	lda     L6ACC                           ; 6CC4 AD CC 6A                 ..j
+	ldxa	L6ACC
 	jsr     sub_606E
 	rdmv	L6AD3, $A0
 	clc                                     ; 6CD4 18                       .
@@ -7248,7 +7244,7 @@ sub_77A3:
 	sta     $84                             ; 77FC 85 84                    ..
 	lda     L779F                           ; 77FE AD 9F 77                 ..w
 	ldx     #$00                            ; 7801 A2 00                    ..
-	jsr     L444A                           ; 7803 20 4A 44                  JD
+	jsr     sub_444A
 	sta     $AC                             ; 7806 85 AC                    ..
 	txa                                     ; 7808 8A                       .
 	ldy     #$01                            ; 7809 A0 01                    ..
@@ -7865,7 +7861,7 @@ L7DA5:  clc                                     ; 7DA5 18                       
 	sta     $84                             ; 7DBA 85 84                    ..
 	lda     L7D45                           ; 7DBC AD 45 7D                 .E}
 	ldx     #$00                            ; 7DBF A2 00                    ..
-	jsr     L444A                           ; 7DC1 20 4A 44                  JD
+	jsr     sub_444A
 	sta     $AC                             ; 7DC4 85 AC                    ..
 	txa                                     ; 7DC6 8A                       .
 	sta     $AD                             ; 7DC7 85 AD                    ..
@@ -7982,17 +7978,11 @@ L7E69:  lda     L7E1E                           ; 7E69 AD 1E 7E                 
 	sta     $84                             ; 7E95 85 84                    ..
 	lda     L7E12                           ; 7E97 AD 12 7E                 ..~
 	ldx     #$00                            ; 7E9A A2 00                    ..
-	jsr     L444A                           ; 7E9C 20 4A 44                  JD
+	jsr     sub_444A
 	sta     $AC                             ; 7E9F 85 AC                    ..
 	txa                                     ; 7EA1 8A                       .
 	sta     $AD                             ; 7EA2 85 AD                    ..
-	clc                                     ; 7EA4 18                       .
-	lda     $AE                             ; 7EA5 A5 AE                    ..
-	adc     $AC                             ; 7EA7 65 AC                    e.
-	sta     L7E1A                           ; 7EA9 8D 1A 7E                 ..~
-	lda     $AF                             ; 7EAC A5 AF                    ..
-	adc     $AD                             ; 7EAE 65 AD                    e.
-	sta     L7E1B                           ; 7EB0 8D 1B 7E                 ..~
+	add16m	L7E1A, $AE, $AC
 	lda     L7E1B                           ; 7EB3 AD 1B 7E                 ..~
 	sta     $A3                             ; 7EB6 85 A3                    ..
 	lda     #$00                            ; 7EB8 A9 00                    ..
@@ -9036,7 +9026,7 @@ L8648:  lda     #$00                            ; 8648 A9 00                    
 	sta     $84                             ; 864E 85 84                    ..
 	lda     L8561                           ; 8650 AD 61 85                 .a.
 	ldx     #$00                            ; 8653 A2 00                    ..
-	jsr     L444A                           ; 8655 20 4A 44                  JD
+	jsr     sub_444A
 	sta     $AE                             ; 8658 85 AE                    ..
 	txa                                     ; 865A 8A                       .
 	sta     $AF                             ; 865B 85 AF                    ..
@@ -9343,7 +9333,7 @@ L884F:  jsr     sub_44D5                           ; 884F 20 D5 44              
 	sta     $84                             ; 88C7 85 84                    ..
 	lda     L8843                           ; 88C9 AD 43 88                 .C.
 	ldx     #$00                            ; 88CC A2 00                    ..
-	jsr     L444A                           ; 88CE 20 4A 44                  JD
+	jsr     sub_444A
 	sta     $AE                             ; 88D1 85 AE                    ..
 	txa                                     ; 88D3 8A                       .
 	sta     $AF                             ; 88D4 85 AF                    ..
@@ -9565,7 +9555,7 @@ L89AE:  prolog
 	lda     L8996                           ; 8A5C AD 96 89                 ...
 	tax                                     ; 8A5F AA                       .
 	lda     L8995                           ; 8A60 AD 95 89                 ...
-	jsr     L444A                           ; 8A63 20 4A 44                  JD
+	jsr     sub_444A
 	sta     $AE                             ; 8A66 85 AE                    ..
 	txa                                     ; 8A68 8A                       .
 	sta     $AF                             ; 8A69 85 AF                    ..
@@ -10560,7 +10550,7 @@ L91A6:  adc     #$01                            ; 91A6 69 01                    
 	sta     $84                             ; 91E0 85 84                    ..
 	lda     $AC                             ; 91E2 A5 AC                    ..
 	ldx     #$00                            ; 91E4 A2 00                    ..
-	jsr     L444A                           ; 91E6 20 4A 44                  JD
+	jsr     sub_444A
 	sta     L913E                           ; 91E9 8D 3E 91                 .>.
 	txa                                     ; 91EC 8A                       .
 	sta     L913F                           ; 91ED 8D 3F 91                 .?.
@@ -10724,7 +10714,7 @@ L92B5:  clc                                     ; 92B5 18                       
 	sta     $84                             ; 9314 85 84                    ..
 	lda     $AC                             ; 9316 A5 AC                    ..
 	ldx     #$00                            ; 9318 A2 00                    ..
-	jsr     L444A                           ; 931A 20 4A 44                  JD
+	jsr     sub_444A
 	sta     L9255                           ; 931D 8D 55 92                 .U.
 	txa                                     ; 9320 8A                       .
 	sta     L9256                           ; 9321 8D 56 92                 .V.
@@ -13792,7 +13782,7 @@ LAA86:	.addr	L6AD5
 	.addr	L4BA7
 	.addr	LA837
 	.addr	LA846
-	.addr	L4F9D
+	.addr	sub_4F9D
 	.addr	L8D01
 	.addr	LA895
 	.addr	LA842
