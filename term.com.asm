@@ -125,6 +125,13 @@ LEF40           := $EF40
         sta     a1+1
 .endmacro
 
+.macro add8m a1, a2, a3
+	clc
+        lda     a2
+        adc     a3
+        sta     a1
+.endmacro
+
 .macro ldxa a1
 	ldx	a1+1
 	lda	a1
@@ -1682,22 +1689,10 @@ L4C1D:  stack_prolog L4C13, $05
 	ldy     L4C15                           ; 4C33 AC 15 4C                 ..L
 	ldxai	L4C19
 	jsr     L461F                           ; 4C3A 20 1F 46                  .F
-	clc
-	lda	L4C19
-	adc	L4C17
-	sta	$A2
-	clc
-	lda	L4C1A
-	adc	L4C18
-	sta	$A3
-	clc                                     ; 4C4F 18                       .
-	lda     L4C1B                           ; 4C50 AD 1B 4C                 ..L
-	adc     L4C17                           ; 4C53 6D 17 4C                 m.L
-	sta     $A4                             ; 4C56 85 A4                    ..
-	clc                                     ; 4C58 18                       .
-	lda     L4C1C                           ; 4C59 AD 1C 4C                 ..L
-	adc     L4C18                           ; 4C5C 6D 18 4C                 m.L
-	sta     $A5                             ; 4C5F 85 A5                    ..
+	add8m	$A2, L4C19, L4C17
+	add8m	$A3, L4C1A, L4C18
+	add8m	$A4, L4C1B, L4C17
+	add8m	$A5, L4C1C, L4C18
 	ldy     $A2                             ; 4C61 A4 A2                    ..
 	ldx     L4C14                           ; 4C63 AE 14 4C                 ..L
 	lda     L4C13                           ; 4C66 AD 13 4C                 ..L
@@ -1739,13 +1734,8 @@ L4CAA:  ldx     L4C73                           ; 4CAA AE 73 4C                 
 	lda     L4C6D                           ; 4CAD AD 6D 4C                 .mL
 	jsr     L496E                           ; 4CB0 20 6E 49                  nI
 	lda     $A0                             ; 4CB3 A5 A0                    ..
-	.byte   $D0                             ; 4CB5 D0                       .
-L4CB6:  .byte   $03                             ; 4CB6 03                       .
-	.byte   $4C                             ; 4CB7 4C                       L
-L4CB8:  .byte   $BF                             ; 4CB8 BF                       .
-	.byte   $4C                             ; 4CB9 4C                       L
-L4CBA:  lda     #$00                            ; 4CBA A9 00                    ..
-	sta     $A0                             ; 4CBC 85 A0                    ..
+	lbeq	L4CBF
+	ldi	$A0, $00
 	rts                                     ; 4CBE 60                       `
 
 ; ----------------------------------------------------------------------------
