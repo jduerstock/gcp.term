@@ -7060,10 +7060,7 @@ sub_760A:
 	stack_prolog L7605, $02
 	lda     L7605                           ; 7613 AD 05 76                 ..v
 	jsr     sub_7035
-	lda     $A1                             ; 7619 A5 A1                    ..
-	sta     L7609                           ; 761B 8D 09 76                 ..v
-	lda     $A0                             ; 761E A5 A0                    ..
-	sta     L7608                           ; 7620 8D 08 76                 ..v
+	rdmv	L7608, $A0
 	lda     L7606                           ; 7623 AD 06 76                 ..v
 	eor     #$80                            ; 7626 49 80                    I.
 	lbeq	L763E
