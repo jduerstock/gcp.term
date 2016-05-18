@@ -2229,18 +2229,11 @@ L5085:  lda     L4FBF                           ; 5085 AD BF 4F                 
 	lbeq	L50A4
 	ldy     #$01                            ; 509A A0 01                    ..
 	sty     L4FBE                           ; 509C 8C BE 4F                 ..O
-	lda     #$00                            ; 509F A9 00                    ..
-	sta     $A0                             ; 50A1 85 A0                    ..
+	ldi	$A0, $00
 	rts                                     ; 50A3 60                       `
 
 ; ----------------------------------------------------------------------------
-L50A4:  clc                                     ; 50A4 18                       .
-	lda     L4FC2                           ; 50A5 AD C2 4F                 ..O
-	adc     L4FBF                           ; 50A8 6D BF 4F                 m.O
-	sta     $AE                             ; 50AB 85 AE                    ..
-	lda     L4FC3                           ; 50AD AD C3 4F                 ..O
-	adc     #$00                            ; 50B0 69 00                    i.
-	sta     $AF                             ; 50B2 85 AF                    ..
+L50A4:	add16m8 off_AE, L4FC2, L4FBF
 	lda     L4FBB                           ; 50B4 AD BB 4F                 ..O
 	ldy     #$00                            ; 50B7 A0 00                    ..
 	sta     ($AE),y                         ; 50B9 91 AE                    ..
