@@ -7172,10 +7172,7 @@ L76CC:	add8m	L766B, L766B, L7680
 	ldx     #$76                            ; 775F A2 76                    .v
 	lda     #$73                            ; 7761 A9 73                    .s
 	jsr     L4E4A                           ; 7763 20 4A 4E                  JN
-	lda     $A1                             ; 7766 A5 A1                    ..
-	sta     L7672                           ; 7768 8D 72 76                 .rv
-	lda     $A0                             ; 776B A5 A0                    ..
-	sta     L7671                           ; 776D 8D 71 76                 .qv
+	rdmv	L7671, $A0
 	lda     L7671                           ; 7770 AD 71 76                 .qv
 	eor     L766F                           ; 7773 4D 6F 76                 Mov
 	bne     L777E                           ; 7776 D0 06                    ..
