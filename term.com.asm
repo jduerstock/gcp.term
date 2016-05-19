@@ -12,11 +12,13 @@ L0069           := $0069
 L0078           := $0078
 off_82		:= $0082
 off_84		:= $0084
+off_AC		:= $00AC
 off_AE		:= $00AE
 VDSLST		:= $0200
 CDTMF3		:= $022A
 L0248           := $0248
 DVSTAT		:= $02EA
+CRSINH		:= $02F0
 L0A94           := $0A94
 L0ABB           := $0ABB
 L0AC1           := $0AC1
@@ -2024,38 +2026,14 @@ L4EFA:  lda     #$00                            ; 4EFA A9 00                    
 	lda     #$00                            ; 4EFF A9 00                    ..
 	sbc     L4EB0                           ; 4F01 ED B0 4E                 ..N
 	lbcs	L4F59
-	sec                                     ; 4F09 38                       8
-	lda     L4EAF                           ; 4F0A AD AF 4E                 ..N
-	sbc     #$01                            ; 4F0D E9 01                    ..
-	sta     L4EAF                           ; 4F0F 8D AF 4E                 ..N
-	lda     L4EB0                           ; 4F12 AD B0 4E                 ..N
-	sbc     #$00                            ; 4F15 E9 00                    ..
-	sta     L4EB0                           ; 4F17 8D B0 4E                 ..N
-	lda     L4EAB                           ; 4F1A AD AB 4E                 ..N
-	sta     $AE                             ; 4F1D 85 AE                    ..
-	lda     L4EAC                           ; 4F1F AD AC 4E                 ..N
-	sta     $AF                             ; 4F22 85 AF                    ..
-	lda     L4EAD                           ; 4F24 AD AD 4E                 ..N
-	sta     $AC                             ; 4F27 85 AC                    ..
-	lda     L4EAE                           ; 4F29 AD AE 4E                 ..N
-	sta     $AD                             ; 4F2C 85 AD                    ..
+	sub16i	L4EAF, L4EAF, $0001
+	dmv	off_AE, L4EAB
+	dmv	off_AC, L4EAD
 	ldy     #$00                            ; 4F2E A0 00                    ..
-	lda     ($AC),y                         ; 4F30 B1 AC                    ..
-	sta     ($AE),y                         ; 4F32 91 AE                    ..
-	sec                                     ; 4F34 38                       8
-	lda     L4EAB                           ; 4F35 AD AB 4E                 ..N
-	sbc     #$01                            ; 4F38 E9 01                    ..
-	sta     L4EAB                           ; 4F3A 8D AB 4E                 ..N
-	lda     L4EAC                           ; 4F3D AD AC 4E                 ..N
-	sbc     #$00                            ; 4F40 E9 00                    ..
-	sta     L4EAC                           ; 4F42 8D AC 4E                 ..N
-	sec                                     ; 4F45 38                       8
-	lda     L4EAD                           ; 4F46 AD AD 4E                 ..N
-	sbc     #$01                            ; 4F49 E9 01                    ..
-	sta     L4EAD                           ; 4F4B 8D AD 4E                 ..N
-	lda     L4EAE                           ; 4F4E AD AE 4E                 ..N
-	sbc     #$00                            ; 4F51 E9 00                    ..
-	sta     L4EAE                           ; 4F53 8D AE 4E                 ..N
+	lda     (off_AC),y
+	sta     (off_AE),y
+	sub16i	L4EAB, L4EAB, $0001
+	sub16i	L4EAD, L4EAD, $0001
 	jmp     L4EFA                           ; 4F56 4C FA 4E                 L.N
 
 ; ----------------------------------------------------------------------------
@@ -2063,7 +2041,7 @@ L4F59:  rts                                     ; 4F59 60                       
 
 ; ----------------------------------------------------------------------------
 L4F5A:  ldy     #$01                            ; 4F5A A0 01                    ..
-	sty     $02F0                           ; 4F5C 8C F0 02                 ...
+	sty     CRSINH
 	lda     #$FD                            ; 4F5F A9 FD                    ..
 	jsr     L45C4                           ; 4F61 20 C4 45                  .E
 	ldy     #$01                            ; 4F64 A0 01                    ..
