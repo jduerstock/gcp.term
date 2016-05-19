@@ -13835,35 +13835,27 @@ LAE70:  lda     #$AE                            ; AE70 A9 AE                    
 LAE7E:  brk                                     ; AE7E 00                       .
 LAE7F:  brk                                     ; AE7F 00                       .
 LAE80:  brk                                     ; AE80 00                       .
-LAE81:  jmp     LAE84                           ; AE81 4C 84 AE                 L..
 
 ; ----------------------------------------------------------------------------
-LAE84:  ldy     #$00                            ; AE84 A0 00                    ..
+sub_AE81:
+	prolog
+	ldy     #$00                            ; AE84 A0 00                    ..
 	sty     L4764                           ; AE86 8C 64 47                 .dG
 	sty     LAE7E                           ; AE89 8C 7E AE                 .~.
 LAE8C:  lda     #$1F                            ; AE8C A9 1F                    ..
 	cmp     LAE7E                           ; AE8E CD 7E AE                 .~.
-	bcs     LAE96                           ; AE91 B0 03                    ..
-	jmp     LAED6                           ; AE93 4C D6 AE                 L..
-
-; ----------------------------------------------------------------------------
-LAE96:  ldx     LAE7E                           ; AE96 AE 7E AE                 .~.
+	lbcc	LAED6
+	ldx     LAE7E                           ; AE96 AE 7E AE                 .~.
 	lda     $B14A,x                         ; AE99 BD 4A B1                 .J.
 	sta     LAE7F                           ; AE9C 8D 7F AE                 ...
 	ldx     LAE7E                           ; AE9F AE 7E AE                 .~.
 	lda     $B800,x                         ; AEA2 BD 00 B8                 ...
 	eor     #$01                            ; AEA5 49 01                    I.
-	beq     LAEAC                           ; AEA7 F0 03                    ..
-	jmp     LAED0                           ; AEA9 4C D0 AE                 L..
-
-; ----------------------------------------------------------------------------
-LAEAC:  lda     LAE7F                           ; AEAC AD 7F AE                 ...
+	lbne	LAED0
+	lda     LAE7F                           ; AEAC AD 7F AE                 ...
 	cmp     #$80                            ; AEAF C9 80                    ..
-	bcc     LAEB6                           ; AEB1 90 03                    ..
-	jmp     LAED0                           ; AEB3 4C D0 AE                 L..
-
-; ----------------------------------------------------------------------------
-LAEB6:  ldx     LAE7E                           ; AEB6 AE 7E AE                 .~.
+	lbcs	LAED0
+	ldx     LAE7E                           ; AEB6 AE 7E AE                 .~.
 	lda     $BC00,x                         ; AEB9 BD 00 BC                 ...
 	sta     LAE80                           ; AEBC 8D 80 AE                 ...
 	ldx     LAE80                           ; AEBF AE 80 AE                 ...
@@ -13902,16 +13894,10 @@ LAEE7:  lda     $D01F                           ; AEE7 AD 1F D0                 
 	sta     LAEE2                           ; AEF2 8D E2 AE                 ...
 	lda     LAEE3                           ; AEF5 AD E3 AE                 ...
 	eor     #$01                            ; AEF8 49 01                    I.
-	beq     LAEFF                           ; AEFA F0 03                    ..
-	jmp     LAF08                           ; AEFC 4C 08 AF                 L..
-
-; ----------------------------------------------------------------------------
-LAEFF:  lda     LAEE2                           ; AEFF AD E2 AE                 ...
-	bne     LAF07                           ; AF02 D0 03                    ..
-	jmp     LAF08                           ; AF04 4C 08 AF                 L..
-
-; ----------------------------------------------------------------------------
-LAF07:  rts                                     ; AF07 60                       `
+	lbne	LAF08
+	lda     LAEE2                           ; AEFF AD E2 AE                 ...
+	lbeq	LAF08
+	rts                                     ; AF07 60                       `
 
 ; ----------------------------------------------------------------------------
 LAF08:  ldy     #$00                            ; AF08 A0 00                    ..
@@ -14113,7 +14099,7 @@ LB0A3:  jsr     LA9A3                           ; B0A3 20 A3 A9                 
 	lda     L4764                           ; B0A6 AD 64 47                 .dG
 	eor     #$01                            ; B0A9 49 01                    I.
 	lbne	LB0B3
-	jsr     LAE81                           ; B0B0 20 81 AE                  ..
+	jsr     sub_AE81
 LB0B3:  jsr     L8D01                           ; B0B3 20 01 8D                  ..
 	ldy     #$00                            ; B0B6 A0 00                    ..
 	sty     L464D                           ; B0B8 8C 4D 46                 .MF
