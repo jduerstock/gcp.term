@@ -138,6 +138,16 @@ LEF40           := $EF40
         sta     a1+1
 .endmacro
 
+.macro sub16m a1, a2, a3
+	sec
+        lda     a2
+        sbc     a3
+        sta     a1
+        lda     a2+1
+        sbc     a3+1
+        sta     a1+1
+.endmacro
+
 .macro add16m8 a1, a2, a3
 	clc
         lda     a2
@@ -7486,15 +7496,8 @@ L7C65:  lda     L7B55                           ; 7C65 AD 55 7B                 
 	sbc     #$00                            ; 7CD1 E9 00                    ..
 	sta     L7B57                           ; 7CD3 8D 57 7B                 .W{
 L7CD6:	add16i	$A0, L7B56, $0006
-	lda     L7B57                           ; 7CE5 AD 57 7B                 .W{
-	sta     $A3                             ; 7CE8 85 A3                    ..
-	sec                                     ; 7CEA 38                       8
-	lda     L7B52                           ; 7CEB AD 52 7B                 .R{
-	sbc     L7B56                           ; 7CEE ED 56 7B                 .V{
-	sta     $AC                             ; 7CF1 85 AC                    ..
-	lda     L7B53                           ; 7CF3 AD 53 7B                 .S{
-	sbc     L7B57                           ; 7CF6 ED 57 7B                 .W{
-	sta     $AD                             ; 7CF9 85 AD                    ..
+	mv	$A3, L7B57
+	sub16m	off_AC, L7B52, L7B56
 	sec                                     ; 7CFB 38                       8
 	lda     $AC                             ; 7CFC A5 AC                    ..
 	sbc     #$06                            ; 7CFE E9 06                    ..
