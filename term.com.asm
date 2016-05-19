@@ -16,7 +16,6 @@ off_AC		:= $00AC
 off_AE		:= $00AE
 VDSLST		:= $0200
 CDTMF3		:= $022A
-L0248           := $0248
 DVSTAT		:= $02EA
 CRSINH		:= $02F0
 L0A94           := $0A94
@@ -2703,8 +2702,7 @@ L54B8:  sec                                     ; 54B8 38                       
 	lda     #$5C                            ; 54C9 A9 5C                    .\
 	sta     $A4                             ; 54CB 85 A4                    ..
 	ldy     #$C9                            ; 54CD A0 C9                    ..
-	ldx     #$B2                            ; 54CF A2 B2                    ..
-	lda     #$24                            ; 54D1 A9 24                    .$
+	ldxai	$B224
 	jsr     sub_461F
 L54D6:  ldy     #$00                            ; 54D6 A0 00                    ..
 	sty     L4651                           ; 54D8 8C 51 46                 .QF
@@ -13769,10 +13767,8 @@ LAD88:  lda     #$AD                            ; AD88 A9 AD                    
 	rts                                     ; ADE9 60                       `
 
 ; ----------------------------------------------------------------------------
-LADEA:  jmp     LADED                           ; ADEA 4C ED AD                 L..
-
-; ----------------------------------------------------------------------------
-LADED:  lda     L466F                           ; ADED AD 6F 46                 .oF
+LADEA:  prolog
+	lda     L466F                           ; ADED AD 6F 46                 .oF
 	sta     $AE                             ; ADF0 85 AE                    ..
 	lda     L4670                           ; ADF2 AD 70 46                 .pF
 	sta     $AF                             ; ADF5 85 AF                    ..
