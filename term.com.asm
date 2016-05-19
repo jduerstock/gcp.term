@@ -3773,37 +3773,26 @@ L5E10:  lda     #$00                            ; 5E10 A9 00                    
 	rts                                     ; 5E1D 60                       `
 
 ; ----------------------------------------------------------------------------
-L5E1E:  jmp     L5E21                           ; 5E1E 4C 21 5E                 L!^
-
-; ----------------------------------------------------------------------------
-L5E21:  lda     L4653                           ; 5E21 AD 53 46                 .SF
-	beq     L5E29                           ; 5E24 F0 03                    ..
-	jmp     L5E2C                           ; 5E26 4C 2C 5E                 L,^
-
-; ----------------------------------------------------------------------------
-L5E29:  jsr     sub_5CFC
+sub_5E1E:
+	prolog 
+	lda     L4653                           ; 5E21 AD 53 46                 .SF
+	lbne	L5E2C
+	jsr     sub_5CFC
 L5E2C:  inc     L4653                           ; 5E2C EE 53 46                 .SF
 	rts                                     ; 5E2F 60                       `
 
 ; ----------------------------------------------------------------------------
-L5E30:  jmp     L5E33                           ; 5E30 4C 33 5E                 L3^
-
-; ----------------------------------------------------------------------------
-L5E33:  lda     L4653                           ; 5E33 AD 53 46                 .SF
-	beq     L5E3B                           ; 5E36 F0 03                    ..
-	jmp     L5E3C                           ; 5E38 4C 3C 5E                 L<^
-
-; ----------------------------------------------------------------------------
+L5E30:
+	prolog
+	lda     L4653                           ; 5E33 AD 53 46                 .SF
+	lbne	L5E3C
 L5E3B:  rts                                     ; 5E3B 60                       `
 
 ; ----------------------------------------------------------------------------
 L5E3C:  lda     L4653                           ; 5E3C AD 53 46                 .SF
 	eor     #$01                            ; 5E3F 49 01                    I.
-	beq     L5E46                           ; 5E41 F0 03                    ..
-	jmp     L5E51                           ; 5E43 4C 51 5E                 LQ^
-
-; ----------------------------------------------------------------------------
-L5E46:  jsr     L5D67                           ; 5E46 20 67 5D                  g]
+	lbne	L5E51
+	jsr     L5D67                           ; 5E46 20 67 5D                  g]
 	ldy     #$01                            ; 5E49 A0 01                    ..
 	sty     L4656                           ; 5E4B 8C 56 46                 .VF
 	jmp     L5E5A                           ; 5E4E 4C 5A 5E                 LZ^
@@ -3820,7 +3809,8 @@ L5E5B:  brk                                     ; 5E5B 00                       
 L5E5C:  brk                                     ; 5E5C 00                       .
 L5E5D:  brk                                     ; 5E5D 00                       .
 
-sub_5E5E:  prolog
+sub_5E5E:  
+	prolog
 	stx     L5E5C                           ; 5E61 8E 5C 5E                 .\^
 	sta     L5E5B                           ; 5E64 8D 5B 5E                 .[^
 	ldy     #$00                            ; 5E67 A0 00                    ..
@@ -3829,11 +3819,8 @@ sub_5E5E:  prolog
 	sta     L5E5D                           ; 5E6F 8D 5D 5E                 .]^
 L5E72:  lda     #$00                            ; 5E72 A9 00                    ..
 	cmp     L4653                           ; 5E74 CD 53 46                 .SF
-	bcc     L5E7C                           ; 5E77 90 03                    ..
-	jmp     L5E82                           ; 5E79 4C 82 5E                 L.^
-
-; ----------------------------------------------------------------------------
-L5E7C:  jsr     L5E30                           ; 5E7C 20 30 5E                  0^
+	lbcs	L5E82
+	jsr     L5E30                           ; 5E7C 20 30 5E                  0^
 	jmp     L5E72                           ; 5E7F 4C 72 5E                 Lr^
 
 ; ----------------------------------------------------------------------------
@@ -3842,10 +3829,9 @@ L5E82:  lda     L5E5B                           ; 5E82 AD 5B 5E                 
 	jmp     L5E8F                           ; 5E88 4C 8F 5E                 L.^
 
 ; ----------------------------------------------------------------------------
-	.byte   $03                             ; 5E8B 03                       .
-	.byte   $43                             ; 5E8C 43                       C
-	.byte   $42                             ; 5E8D 42                       B
-	.byte   $42                             ; 5E8E 42                       B
+L5E8B:	.byte	$03,"CBB"
+
+; ----------------------------------------------------------------------------
 L5E8F:  lda     #$00                            ; 5E8F A9 00                    ..
 	sta     $A3                             ; 5E91 85 A3                    ..
 	lda     #$00                            ; 5E93 A9 00                    ..
@@ -3870,7 +3856,7 @@ L5EB2:  lda     L4653                           ; 5EB2 AD 53 46                 
 	jmp     L5EC3                           ; 5EBA 4C C3 5E                 L.^
 
 ; ----------------------------------------------------------------------------
-L5EBD:  jsr     L5E1E                           ; 5EBD 20 1E 5E                  .^
+L5EBD:  jsr     sub_5E1E
 	jmp     L5EB2                           ; 5EC0 4C B2 5E                 L.^
 
 ; ----------------------------------------------------------------------------
@@ -3936,7 +3922,8 @@ L5F13:  brk                                     ; 5F13 00                       
 L5F14:  .byte   $80                             ; 5F14 80                       .
 L5F15:  .byte   $B2                             ; 5F15 B2                       .
 
-L5F16:  stack_prolog L5F07, $04
+L5F16:  
+	stack_prolog L5F07, $04
 	ldi	$84, $03
 	lda     L5F08                           ; 5F23 AD 08 5F                 .._
 	tax                                     ; 5F26 AA                       .
@@ -12228,7 +12215,7 @@ LA2A7:  brk                                     ; A2A7 00                       
 ; ----------------------------------------------------------------------------
 sub_A2A8:	
 	stack_prolog LA2A2, $03
-	jsr     L5E1E                           ; A2B1 20 1E 5E                  .^
+	jsr     sub_5E1E
 	lda     LA2A2                           ; A2B4 AD A2 A2                 ...
 	jsr     LA28D                           ; A2B7 20 8D A2                  ..
 	lda     #$04                            ; A2BA A9 04                    ..
@@ -12240,29 +12227,14 @@ sub_A2A8:
 LA2CE:  lda     #$00                            ; A2CE A9 00                    ..
 	ldx     LA2A2                           ; A2D0 AE A2 A2                 ...
 	sta     $05C0,x                         ; A2D3 9D C0 05                 ...
-	clc                                     ; A2D6 18                       .
-	lda     LA2A4                           ; A2D7 AD A4 A2                 ...
-	adc     #$02                            ; A2DA 69 02                    i.
-	sta     $AE                             ; A2DC 85 AE                    ..
-	lda     LA2A5                           ; A2DE AD A5 A2                 ...
-	adc     #$00                            ; A2E1 69 00                    i.
-	sta     $AF                             ; A2E3 85 AF                    ..
+	add16i	off_AE, LA2A4, $0002
 	ldy     #$00                            ; A2E5 A0 00                    ..
 	lda     ($AE),y                         ; A2E7 B1 AE                    ..
 	sta     LA2A7                           ; A2E9 8D A7 A2                 ...
 	lda     LA2A7                           ; A2EC AD A7 A2                 ...
 	eor     #$3F                            ; A2EF 49 3F                    I?
-	beq     LA2F6                           ; A2F1 F0 03                    ..
-	jmp     LA30A                           ; A2F3 4C 0A A3                 L..
-
-; ----------------------------------------------------------------------------
-LA2F6:  clc                                     ; A2F6 18                       .
-	lda     LA2A4                           ; A2F7 AD A4 A2                 ...
-	adc     #$02                            ; A2FA 69 02                    i.
-	sta     $AE                             ; A2FC 85 AE                    ..
-	lda     LA2A5                           ; A2FE AD A5 A2                 ...
-	adc     #$00                            ; A301 69 00                    i.
-	sta     $AF                             ; A303 85 AF                    ..
+	lbne	LA30A
+	add16i	off_AE, LA2A4, $0002
 	lda     L464A                           ; A305 AD 4A 46                 .JF
 	sta     ($AE),y                         ; A308 91 AE                    ..
 LA30A:  lda     LA2A6                           ; A30A AD A6 A2                 ...
@@ -12336,7 +12308,7 @@ LA381:  brk                                     ; A381 00                       
 
 LA382:	prolog
 LA385:	sta     LA381                           ; A385 8D 81 A3                 ...
-	jsr     L5E1E                           ; A388 20 1E 5E                  .^
+	jsr     sub_5E1E
 	lda     LA381                           ; A38B AD 81 A3                 ...
 	jsr     LA28D                           ; A38E 20 8D A2                  ..
 	lda     L4652                           ; A391 AD 52 46                 .RF
@@ -12373,10 +12345,8 @@ LA3B7:  brk                                     ; A3B7 00                       
 LA3BB:  brk                                     ; A3BB 00                       .
 LA3BC:  brk                                     ; A3BC 00                       .
 
-LA3BD:	prolog
-	jsr     sub_44D5                           ; A3C0 20 D5 44                  .D
-	lda     $A3                             ; A3C3 A5 A3                    ..
-	.byte   $04                             ; A3C5 04                       .
+LA3BD:	
+	stack_prolog LA3A5, $04
 	lda     LA3A5                           ; A3C6 AD A5 A3                 ...
 	jsr     L65B0                           ; A3C9 20 B0 65                  .e
 	lda     $A1                             ; A3CC A5 A1                    ..
@@ -12385,14 +12355,11 @@ LA3BD:	prolog
 	sta     LA3AC                           ; A3D3 8D AC A3                 ...
 	lda     LA3AC                           ; A3D6 AD AC A3                 ...
 	ora     LA3AD                           ; A3D9 0D AD A3                 ...
-	beq     LA3E1                           ; A3DC F0 03                    ..
-	jmp     LA3E2                           ; A3DE 4C E2 A3                 L..
+	lbne	LA3E2
+	rts                                     ; A3E1 60                       `
 
 ; ----------------------------------------------------------------------------
-LA3E1:  rts                                     ; A3E1 60                       `
-
-; ----------------------------------------------------------------------------
-LA3E2:  jsr     L5E1E                           ; A3E2 20 1E 5E                  .^
+LA3E2:  jsr     sub_5E1E
 	lda     LA3A9                           ; A3E5 AD A9 A3                 ...
 	sta     $A3                             ; A3E8 85 A3                    ..
 	lda     #$00                            ; A3EA A9 00                    ..
@@ -12581,9 +12548,8 @@ LA541:  brk                                     ; A541 00                       
 LA545:  brk                                     ; A545 00                       .
 LA546:  brk                                     ; A546 00                       .
 
-LA547:	prolog
-	jsr     sub_44D5                        ; A54A 20 D5 44                  .D
-	rol     $03A5                           ; A54D 2E A5 03                 ...
+LA547:	
+	stack_prolog LA52E, $03
 	lda     LA52E                           ; A550 AD 2E A5                 ...
 	jsr     L65B0                           ; A553 20 B0 65                  .e
 	lda     $A1                             ; A556 A5 A1                    ..
@@ -12651,7 +12617,7 @@ LA58C:  clc                                     ; A58C 18                       
 	lda     $AD                             ; A5D8 A5 AD                    ..
 	sbc     #$00                            ; A5DA E9 00                    ..
 	sta     LA533                           ; A5DC 8D 33 A5                 .3.
-	jsr     L5E1E                           ; A5DF 20 1E 5E                  .^
+	jsr     sub_5E1E
 	ldy     #$00                            ; A5E2 A0 00                    ..
 	sty     LA53B                           ; A5E4 8C 3B A5                 .;.
 	sty     LA53A                           ; A5E7 8C 3A A5                 .:.
@@ -12766,14 +12732,12 @@ LA6AB:  lda     #$00                            ; A6AB A9 00                    
 	rts                                     ; A6CA 60                       `
 
 ; ----------------------------------------------------------------------------
-	brk                                     ; A6CB 00                       .
+LA6CB:	brk                                     ; A6CB 00                       .
 	brk                                     ; A6CC 00                       .
 	brk                                     ; A6CD 00                       .
 
-LA6CE:	prolog
-	jsr     sub_44D5                           ; A6D1 20 D5 44                  .D
-	.byte   $CB                             ; A6D4 CB                       .
-	ldx     $02                             ; A6D5 A6 02                    ..
+LA6CE:	
+	stack_prolog LA6CB, $02
 	rts                                     ; A6D7 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -12816,9 +12780,9 @@ LA70D:  clc                                     ; A70D 18                       
 	adc     #$00                            ; A718 69 00                    i.
 	sta     $AF                             ; A71A 85 AF                    ..
 	ldy     #$00                            ; A71C A0 00                    ..
-	lda     ($AE),y                         ; A71E B1 AE                    ..
+	lda     (off_AE),y
 	sta     LA6DE                           ; A720 8D DE A6                 ...
-	jsr     L5E1E                           ; A723 20 1E 5E                  .^
+	jsr     sub_5E1E
 	lda     LA6D9                           ; A726 AD D9 A6                 ...
 	jsr     LA28D                           ; A729 20 8D A2                  ..
 	lda     #$06                            ; A72C A9 06                    ..
@@ -12891,11 +12855,9 @@ LA7C1:  brk                                     ; A7C1 00                       
 LA7C2:  brk                                     ; A7C2 00                       .
 LA7C3:  brk                                     ; A7C3 00                       .
 
-LA7C4:	prolog
-	jsr     sub_44D5                           ; A7C7 20 D5 44                  .D
-	.addr	LA7C1
-	.byte	$02
-	jsr     L5E1E                           ; A7CD 20 1E 5E                  .^
+LA7C4:
+	stack_prolog LA7C1, $02
+	jsr     sub_5E1E
 	lda     #$00                            ; A7D0 A9 00                    ..
 	sta     $A3                             ; A7D2 85 A3                    ..
 	lda     #$00                            ; A7D4 A9 00                    ..
@@ -12916,11 +12878,9 @@ LA7F0:  brk                                     ; A7F0 00                       
 LA7F1:  brk                                     ; A7F1 00                       .
 LA7F2:  brk                                     ; A7F2 00                       .
 
-LA7F3:	prolog
-	jsr     sub_44D5                        ; A7F6 20 D5 44                  .D
-	.addr	LA7F0
-	.byte	$02
-	jsr     L5E1E                           ; A7FC 20 1E 5E                  .^
+LA7F3:
+	stack_prolog LA7F0, $02
+	jsr     sub_5E1E
 	lda     #$00                            ; A7FF A9 00                    ..
 	sta     $A3                             ; A801 85 A3                    ..
 	lda     #$00                            ; A803 A9 00                    ..
@@ -13329,7 +13289,7 @@ LAA86:	.addr	L6AD5
 	.addr	LA9EC
 	.addr	L968E
 	.addr	L97A1
-	.addr	L5E1E
+	.addr	sub_5E1E
 	.addr	L5E30
 	.addr	sub_A2A8
 	.addr	LA382
