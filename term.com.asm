@@ -115,6 +115,16 @@ LEF40           := $EF40
         sta     a1+1
 .endmacro
 
+.macro sub16i a1, a2, a3
+	sec
+        lda     a2
+        sbc     #<a3
+        sta     a1
+        lda     a2+1
+        sbc     #>a3
+        sta     a1+1
+.endmacro
+
 ; a = b + c
 .macro add16m a1, a2, a3
 	clc
@@ -1091,13 +1101,10 @@ L485B:	.byte	$01,"D"
 L485D:	.addr	L485B
 L485F:	.byte	$04,"BDDR"
 L4864:	.addr	L485F
-	.byte   $03                             ; 4866 03                       .
-	.byte   $42                             ; 4867 42                       B
-	.byte   $44                             ; 4868 44                       D
-	.byte   $52                             ; 4869 52                       R
-	ror     $48                             ; 486A 66 48                    fH
+L4866:	.byte	$03,"BDR"
+L486A:	.addr	L4866
 L486C:	.byte	$03,"BDs"
-	.addr	L486C
+L4870:	.addr	L486C
 L4872:	.byte	$02,"Ds"
 	.addr	L4872
 	.byte   $02                             ; 4877 02                       .
@@ -2008,43 +2015,16 @@ L4EAF:  .byte   $74                             ; 4EAF 74                       
 L4EB0:  plp                                     ; 4EB0 28                       (
 
 L4EB1:  stack_prolog L4EAB, $05
-	clc
-	lda     L4EAB                           ; 4EBB AD AB 4E                 ..N
-	adc     L4EAF                           ; 4EBE 6D AF 4E                 m.N
-	sta     $AE                             ; 4EC1 85 AE                    ..
-	lda     L4EAC                           ; 4EC3 AD AC 4E                 ..N
-	adc     L4EB0                           ; 4EC6 6D B0 4E                 m.N
-	sta     $AF                             ; 4EC9 85 AF                    ..
-	sec                                     ; 4ECB 38                       8
-	lda     $AE                             ; 4ECC A5 AE                    ..
-	sbc     #$01                            ; 4ECE E9 01                    ..
-	sta     L4EAB                           ; 4ED0 8D AB 4E                 ..N
-	lda     $AF                             ; 4ED3 A5 AF                    ..
-	sbc     #$00                            ; 4ED5 E9 00                    ..
-	sta     L4EAC                           ; 4ED7 8D AC 4E                 ..N
-	clc                                     ; 4EDA 18                       .
-	lda     L4EAD                           ; 4EDB AD AD 4E                 ..N
-	adc     L4EAF                           ; 4EDE 6D AF 4E                 m.N
-	sta     $AE                             ; 4EE1 85 AE                    ..
-	lda     L4EAE                           ; 4EE3 AD AE 4E                 ..N
-	adc     L4EB0                           ; 4EE6 6D B0 4E                 m.N
-	sta     $AF                             ; 4EE9 85 AF                    ..
-	sec                                     ; 4EEB 38                       8
-	lda     $AE                             ; 4EEC A5 AE                    ..
-	sbc     #$01                            ; 4EEE E9 01                    ..
-	sta     L4EAD                           ; 4EF0 8D AD 4E                 ..N
-	lda     $AF                             ; 4EF3 A5 AF                    ..
-	sbc     #$00                            ; 4EF5 E9 00                    ..
-	sta     L4EAE                           ; 4EF7 8D AE 4E                 ..N
+	add16m	off_AE, L4EAB, L4EAF
+	sub16i	L4EAB, off_AE, $0001
+	add16m	off_AE, L4EAD, L4EAF
+	sub16i	L4EAD, off_AE, $0001
 L4EFA:  lda     #$00                            ; 4EFA A9 00                    ..
 	cmp     L4EAF                           ; 4EFC CD AF 4E                 ..N
 	lda     #$00                            ; 4EFF A9 00                    ..
 	sbc     L4EB0                           ; 4F01 ED B0 4E                 ..N
-	bcc     L4F09                           ; 4F04 90 03                    ..
-	jmp     L4F59                           ; 4F06 4C 59 4F                 LYO
-
-; ----------------------------------------------------------------------------
-L4F09:  sec                                     ; 4F09 38                       8
+	lbcs	L4F59
+	sec                                     ; 4F09 38                       8
 	lda     L4EAF                           ; 4F0A AD AF 4E                 ..N
 	sbc     #$01                            ; 4F0D E9 01                    ..
 	sta     L4EAF                           ; 4F0F 8D AF 4E                 ..N
