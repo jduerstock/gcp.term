@@ -12756,10 +12756,8 @@ LA6E0:  brk                                     ; A6E0 00                       
 	ror     $E165                           ; A6E4 6E 65 E1                 ne.
 	.byte	$A6
 
-LA6E8:	prolog
-	jsr	sub_44D5
-	cld                                     ; A6EE D8                       .
-	ldx     $03                             ; A6EF A6 03                    ..
+LA6E8:	
+	stack_prolog LA6D8, $03
 	lda     LA6D8                           ; A6F1 AD D8 A6                 ...
 	jsr     L65B0                           ; A6F4 20 B0 65                  .e
 	lda     $A1                             ; A6F7 A5 A1                    ..
@@ -12772,13 +12770,7 @@ LA6E8:	prolog
 	rts                                     ; A70C 60                       `
 
 ; ----------------------------------------------------------------------------
-LA70D:  clc                                     ; A70D 18                       .
-	lda     LA6DC                           ; A70E AD DC A6                 ...
-	adc     #$01                            ; A711 69 01                    i.
-	sta     $AE                             ; A713 85 AE                    ..
-	lda     LA6DD                           ; A715 AD DD A6                 ...
-	adc     #$00                            ; A718 69 00                    i.
-	sta     $AF                             ; A71A 85 AF                    ..
+LA70D:	add16i	off_AE, LA6DC, $0001
 	ldy     #$00                            ; A71C A0 00                    ..
 	lda     (off_AE),y
 	sta     LA6DE                           ; A720 8D DE A6                 ...
