@@ -13764,11 +13764,9 @@ LAD88:  lda     #$AD                            ; AD88 A9 AD                    
 	rts                                     ; ADE9 60                       `
 
 ; ----------------------------------------------------------------------------
-LADEA:  prolog
-	lda     L466F                           ; ADED AD 6F 46                 .oF
-	sta     $AE                             ; ADF0 85 AE                    ..
-	lda     L466F+1
-	sta     $AF                             ; ADF5 85 AF                    ..
+sub_ADEA:  
+	prolog
+	dmv	off_AE, L466F
 	lda     $0231                           ; ADF7 AD 31 02                 .1.
 	ldy     #$01                            ; ADFA A0 01                    ..
 	sta     ($AE),y                         ; ADFC 91 AE                    ..
@@ -13912,11 +13910,8 @@ LAF08:  ldy     #$00                            ; AF08 A0 00                    
 	lda     ($AE),y                         ; AF1D B1 AE                    ..
 	sta     LAEE1                           ; AF1F 8D E1 AE                 ...
 	lda     LAEE1                           ; AF22 AD E1 AE                 ...
-	bne     LAF2A                           ; AF25 D0 03                    ..
-	jmp     LAF35                           ; AF27 4C 35 AF                 L5.
-
-; ----------------------------------------------------------------------------
-LAF2A:  lda     LAEE1                           ; AF2A AD E1 AE                 ...
+	lbeq	LAF35
+	lda     LAEE1                           ; AF2A AD E1 AE                 ...
 	jsr     sub_4BA7
 	ldy     #$01                            ; AF30 A0 01                    ..
 	sty     LAEE3                           ; AF32 8C E3 AE                 ...
@@ -13930,11 +13925,8 @@ LAF39:  brk                                     ; AF39 00                       
 
 sub_AF3A:
 	prolog
-	lda     sub_5E5E+2                      ; AF3D AD 60 5E                 .`^
-	sta     L43BB+1                         ; AF40 8D BC 43                 ..C
-	lda     sub_5E5E+1                      ; AF43 AD 5F 5E                 ._^
-	sta     L43BB                           ; AF46 8D BB 43                 ..C
-	jsr     LADEA                           ; AF49 20 EA AD                  ..
+	rdmv	L43BB, sub_5E5E+1
+	jsr     sub_ADEA
 LAF4C:  lda     #$01                            ; AF4C A9 01                    ..
 	eor     #$01                            ; AF4E 49 01                    I.
 	lbne	LB0BE
