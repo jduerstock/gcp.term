@@ -7547,13 +7547,7 @@ L7D4D:	prolog
 	rts                                     ; 7D7C 60                       `
 
 ; ----------------------------------------------------------------------------
-L7D7D:  clc                                     ; 7D7D 18                       .
-	lda     L7D48                           ; 7D7E AD 48 7D                 .H}
-	adc     #$09                            ; 7D81 69 09                    i.
-	sta     $AE                             ; 7D83 85 AE                    ..
-	lda     L7D49                           ; 7D85 AD 49 7D                 .I}
-	adc     #$00                            ; 7D88 69 00                    i.
-	sta     $AF                             ; 7D8A 85 AF                    ..
+L7D7D:	add16i	off_AE, L7D48, $0009
 	ldy     #$01                            ; 7D8C A0 01                    ..
 L7D8E:  lda     ($AE),y                         ; 7D8E B1 AE                    ..
 	sta     L7D4C                           ; 7D90 8D 4C 7D                 .L}
@@ -7562,20 +7556,11 @@ L7D8E:  lda     ($AE),y                         ; 7D8E B1 AE                    
 	sta     L7D4B                           ; 7D96 8D 4B 7D                 .K}
 	lda     L7D4B                           ; 7D99 AD 4B 7D                 .K}
 	ora     L7D4C                           ; 7D9C 0D 4C 7D                 .L}
-	beq     L7DA4                           ; 7D9F F0 03                    ..
-	jmp     L7DA5                           ; 7DA1 4C A5 7D                 L.}
+	lbne	L7DA5
+	rts                                     ; 7DA4 60                       `
 
 ; ----------------------------------------------------------------------------
-L7DA4:  rts                                     ; 7DA4 60                       `
-
-; ----------------------------------------------------------------------------
-L7DA5:  clc                                     ; 7DA5 18                       .
-	lda     L7D4B                           ; 7DA6 AD 4B 7D                 .K}
-	adc     #$02                            ; 7DA9 69 02                    i.
-	sta     $AE                             ; 7DAB 85 AE                    ..
-	lda     L7D4C                           ; 7DAD AD 4C 7D                 .L}
-	adc     #$00                            ; 7DB0 69 00                    i.
-	sta     $AF                             ; 7DB2 85 AF                    ..
+L7DA5:	add16i	off_AE, L7D4B, $0002
 	lda     #$00                            ; 7DB4 A9 00                    ..
 	sta     $85                             ; 7DB6 85 85                    ..
 	lda     #$03                            ; 7DB8 A9 03                    ..
@@ -7586,17 +7571,8 @@ L7DA5:  clc                                     ; 7DA5 18                       
 	sta     $AC                             ; 7DC4 85 AC                    ..
 	txa                                     ; 7DC6 8A                       .
 	sta     $AD                             ; 7DC7 85 AD                    ..
-	clc                                     ; 7DC9 18                       .
-	lda     $AE                             ; 7DCA A5 AE                    ..
-	adc     $AC                             ; 7DCC 65 AC                    e.
-	sta     L7D4B                           ; 7DCE 8D 4B 7D                 .K}
-	lda     $AF                             ; 7DD1 A5 AF                    ..
-	adc     $AD                             ; 7DD3 65 AD                    e.
-	sta     L7D4C                           ; 7DD5 8D 4C 7D                 .L}
-	lda     L7D4B                           ; 7DD8 AD 4B 7D                 .K}
-	sta     $AE                             ; 7DDB 85 AE                    ..
-	lda     L7D4C                           ; 7DDD AD 4C 7D                 .L}
-	sta     $AF                             ; 7DE0 85 AF                    ..
+	add16m	L7D4B, off_AE, off_AC
+	dmv	off_AE, L7D4B
 	lda     L7D4A                           ; 7DE2 AD 4A 7D                 .J}
 	ldy     #$00                            ; 7DE5 A0 00                    ..
 	sta     ($AE),y                         ; 7DE7 91 AE                    ..
