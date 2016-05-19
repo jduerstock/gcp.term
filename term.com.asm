@@ -7579,13 +7579,7 @@ L7DA5:	add16i	off_AE, L7D4B, $0002
 	add16i	off_AE, L7D4B, $0001
 	lda     L7D46                           ; 7DF8 AD 46 7D                 .F}
 	sta     ($AE),y                         ; 7DFB 91 AE                    ..
-	clc                                     ; 7DFD 18                       .
-	lda     L7D4B                           ; 7DFE AD 4B 7D                 .K}
-	adc     #$02                            ; 7E01 69 02                    i.
-	sta     $AE                             ; 7E03 85 AE                    ..
-	lda     L7D4C                           ; 7E05 AD 4C 7D                 .L}
-	adc     #$00                            ; 7E08 69 00                    i.
-	sta     $AF                             ; 7E0A 85 AF                    ..
+	add16i	off_AE, L7D4B, $0002
 	lda     L7D47                           ; 7E0C AD 47 7D                 .G}
 	sta     ($AE),y                         ; 7E0F 91 AE                    ..
 	rts                                     ; 7E11 60                       `
@@ -7749,10 +7743,9 @@ L7F75:  brk                                     ; 7F75 00                       
 	brk                                     ; 7F7D 00                       .
 	brk                                     ; 7F7E 00                       .
 	brk                                     ; 7F7F 00                       .
-	jmp     L7F83                           ; 7F80 4C 83 7F                 L..
 
-; ----------------------------------------------------------------------------
-L7F83:  stx     L7F75                           ; 7F83 8E 75 7F                 .u.
+L7F80:	prolog
+	stx     L7F75                           ; 7F83 8E 75 7F                 .u.
 	sta     L7F74                           ; 7F86 8D 74 7F                 .t.
 	lda     #$00                            ; 7F89 A9 00                    ..
 	sta     $A0                             ; 7F8B 85 A0                    ..
@@ -7764,20 +7757,17 @@ L7F8F:  brk                                     ; 7F8F 00                       
 L7F90:  brk                                     ; 7F90 00                       .
 L7F91:  brk                                     ; 7F91 00                       .
 L7F92:  brk                                     ; 7F92 00                       .
-L7F93:  jmp     L7F96                           ; 7F93 4C 96 7F                 L..
 
-; ----------------------------------------------------------------------------
-L7F96:  stx     L7F8F                           ; 7F96 8E 8F 7F                 ...
+sub_7F93:
+	prolog
+	stx     L7F8F                           ; 7F96 8E 8F 7F                 ...
 	sta     L7F8E                           ; 7F99 8D 8E 7F                 ...
 	ldy     #$00                            ; 7F9C A0 00                    ..
 	sty     L7F90                           ; 7F9E 8C 90 7F                 ...
 L7FA1:  lda     #$07                            ; 7FA1 A9 07                    ..
 	cmp     L7F90                           ; 7FA3 CD 90 7F                 ...
-	bcs     L7FAB                           ; 7FA6 B0 03                    ..
-	jmp     L7FE2                           ; 7FA8 4C E2 7F                 L..
-
-; ----------------------------------------------------------------------------
-L7FAB:  sec                                     ; 7FAB 38                       8
+	lbcc	L7FE2
+	sec                                     ; 7FAB 38                       8
 	lda     #$07                            ; 7FAC A9 07                    ..
 	sbc     L7F90                           ; 7FAE ED 90 7F                 ...
 	sta     L7F91                           ; 7FB1 8D 91 7F                 ...
@@ -7789,11 +7779,8 @@ L7FAB:  sec                                     ; 7FAB 38                       
 	sta     L7F92                           ; 7FC2 8D 92 7F                 ...
 	lda     L7F92                           ; 7FC5 AD 92 7F                 ...
 	eor     #$01                            ; 7FC8 49 01                    I.
-	beq     L7FCF                           ; 7FCA F0 03                    ..
-	jmp     L7FDC                           ; 7FCC 4C DC 7F                 L..
-
-; ----------------------------------------------------------------------------
-L7FCF:  clc                                     ; 7FCF 18                       .
+	lbne	L7FDC
+	clc                                     ; 7FCF 18                       .
 	lda     #$05                            ; 7FD0 A9 05                    ..
 	adc     L7F91                           ; 7FD2 6D 91 7F                 m..
 	sta     $A0                             ; 7FD5 85 A0                    ..
@@ -7810,6 +7797,7 @@ L7FE2:  lda     L7F92                           ; 7FE2 AD 92 7F                 
 ; ----------------------------------------------------------------------------
 L7FE8:  brk                                     ; 7FE8 00                       .
 
+; ----------------------------------------------------------------------------
 L7FE9:	prolog
 	sta     L7FE8                           ; 7FEC 8D E8 7F                 ...
 	lda     L7FE8                           ; 7FEF AD E8 7F                 ...
@@ -7827,6 +7815,7 @@ L7FE9:	prolog
 L8001:  brk                                     ; 8001 00                       .
 L8002:  brk                                     ; 8002 00                       .
 
+; ----------------------------------------------------------------------------
 L8003:  prolog
 	stx     L8002                           ; 8006 8E 02 80                 ...
 	sta     L8001                           ; 8009 8D 01 80                 ...
@@ -8461,7 +8450,7 @@ L84CD:  lda     L83EE                           ; 84CD AD EE 83                 
 L8500:  sta     L83F6                           ; 8500 8D F6 83                 ...
 	ldx     L83F6                           ; 8503 AE F6 83                 ...
 	lda     L840B                           ; 8506 AD 0B 84                 ...
-	jsr     L7F93                           ; 8509 20 93 7F                  ..
+	jsr     sub_7F93
 	lda     $A0                             ; 850C A5 A0                    ..
 	lbne	L851C
 	ldxa	L83E3
@@ -12196,7 +12185,7 @@ LA20E:  clc                                     ; A20E 18                       
 	sta     LA00D                           ; A222 8D 0D A0                 ...
 	ldx     LA00D                           ; A225 AE 0D A0                 ...
 	lda     L9FE3                           ; A228 AD E3 9F                 ...
-	jsr     L7F93                           ; A22B 20 93 7F                  ..
+	jsr     sub_7F93
 	lda     $A0                             ; A22E A5 A0                    ..
 	eor     #$01                            ; A230 49 01                    I.
 	beq     LA237                           ; A232 F0 03                    ..
