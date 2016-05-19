@@ -7536,21 +7536,15 @@ L7D4D:	prolog
 	.byte	$03
 	lda	L7D44
 	jsr	L65B0
-	lda	$A1
-	sta	L7D49
-	lda     $A0                             ; 7D61 A5 A0                    ..
-	sta     L7D48                           ; 7D63 8D 48 7D                 .H}
+	rdmv	L7D48, $A0
 	lda     L7D45                           ; 7D66 AD 45 7D                 .E}
 	and     #$01                            ; 7D69 29 01                    ).
 	sta     L7D4A                           ; 7D6B 8D 4A 7D                 .J}
 	lsr     L7D45                           ; 7D6E 4E 45 7D                 NE}
 	lda     L7D48                           ; 7D71 AD 48 7D                 .H}
 	ora     L7D49                           ; 7D74 0D 49 7D                 .I}
-	beq     L7D7C                           ; 7D77 F0 03                    ..
-	jmp     L7D7D                           ; 7D79 4C 7D 7D                 L}}
-
-; ----------------------------------------------------------------------------
-L7D7C:  rts                                     ; 7D7C 60                       `
+	lbne	L7D7D
+	rts                                     ; 7D7C 60                       `
 
 ; ----------------------------------------------------------------------------
 L7D7D:  clc                                     ; 7D7D 18                       .
