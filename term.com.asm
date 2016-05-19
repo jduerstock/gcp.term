@@ -7498,16 +7498,9 @@ L7C65:  lda     L7B55                           ; 7C65 AD 55 7B                 
 L7CD6:	add16i	$A0, L7B56, $0006
 	mv	$A3, L7B57
 	sub16m	off_AC, L7B52, L7B56
-	sec                                     ; 7CFB 38                       8
-	lda     $AC                             ; 7CFC A5 AC                    ..
-	sbc     #$06                            ; 7CFE E9 06                    ..
-	sta     $A4                             ; 7D00 85 A4                    ..
-	lda     $AD                             ; 7D02 A5 AD                    ..
-	sbc     #$00                            ; 7D04 E9 00                    ..
-	sta     $A5                             ; 7D06 85 A5                    ..
+	sub16i	$A4, off_AC, $0006
 	ldy     L7B56                           ; 7D08 AC 56 7B                 .V{
-	ldx     $A1                             ; 7D0B A6 A1                    ..
-	lda     $A0                             ; 7D0D A5 A0                    ..
+	ldxa	$A0
 	jsr     L4EB1                           ; 7D0F 20 B1 4E                  .N
 	lda     #$7B                            ; 7D12 A9 7B                    .{
 	sta     $A3                             ; 7D14 85 A3                    ..
