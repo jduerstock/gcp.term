@@ -12224,12 +12224,10 @@ LA2A4:  brk                                     ; A2A4 00                       
 LA2A5:  brk                                     ; A2A5 00                       .
 LA2A6:  brk                                     ; A2A6 00                       .
 LA2A7:  brk                                     ; A2A7 00                       .
-LA2A8:  jmp     LA2AB                           ; A2A8 4C AB A2                 L..
 
 ; ----------------------------------------------------------------------------
-LA2AB:  jsr     sub_44D5                           ; A2AB 20 D5 44                  .D
-	ldx     #$A2                            ; A2AE A2 A2                    ..
-	.byte   $03                             ; A2B0 03                       .
+sub_A2A8:	
+	stack_prolog LA2A2, $03
 	jsr     L5E1E                           ; A2B1 20 1E 5E                  .^
 	lda     LA2A2                           ; A2B4 AD A2 A2                 ...
 	jsr     LA28D                           ; A2B7 20 8D A2                  ..
@@ -12237,12 +12235,8 @@ LA2AB:  jsr     sub_44D5                           ; A2AB 20 D5 44              
 	sta     LA2A6                           ; A2BC 8D A6 A2                 ...
 	lda     LA2A3                           ; A2BF AD A3 A2                 ...
 	eor     #$01                            ; A2C2 49 01                    I.
-	beq     LA2C9                           ; A2C4 F0 03                    ..
-	jmp     LA2CE                           ; A2C6 4C CE A2                 L..
-
-; ----------------------------------------------------------------------------
-LA2C9:  lda     #$08                            ; A2C9 A9 08                    ..
-	sta     LA2A6                           ; A2CB 8D A6 A2                 ...
+	lbne	LA2CE
+	ldi	LA2A6, $08
 LA2CE:  lda     #$00                            ; A2CE A9 00                    ..
 	ldx     LA2A2                           ; A2D0 AE A2 A2                 ...
 	sta     $05C0,x                         ; A2D3 9D C0 05                 ...
@@ -13337,7 +13331,7 @@ LAA86:	.addr	L6AD5
 	.addr	L97A1
 	.addr	L5E1E
 	.addr	L5E30
-	.addr	LA2A8
+	.addr	sub_A2A8
 	.addr	LA382
 	.addr	LA3BD
 	.addr	LA547
@@ -13572,6 +13566,8 @@ LAC70:  ldy     $A2                             ; AC70 A4 A2                    
 	rts                                     ; AC7D 60                       `
 
 ; ----------------------------------------------------------------------------
+
+sub_AC7E:
 	txa                                     ; AC7E 8A                       .
 	pha                                     ; AC7F 48                       H
 	lda     $D209                           ; AC80 AD 09 D2                 ...
@@ -13675,6 +13671,8 @@ LAD18:  sta     $D01A                           ; AD18 8D 1A D0                 
 	rti                                     ; AD2D 40                       @
 
 ; ----------------------------------------------------------------------------
+
+LAD2E:
 	ldy     #$00                            ; AD2E A0 00                    ..
 	sty     $021B                           ; AD30 8C 1B 02                 ...
 	lda     #$1E                            ; AD33 A9 1E                    ..
@@ -13718,12 +13716,12 @@ LAD81:  brk                                     ; AD81 00                       
 LAD82:  brk                                     ; AD82 00                       .
 LAD83:  .byte   $D5                             ; AD83 D5                       .
 LAD84:  brk                                     ; AD84 00                       .
-LAD85:  jmp     LAD88                           ; AD85 4C 88 AD                 L..
 
 ; ----------------------------------------------------------------------------
-LAD88:  lda     #$AD                            ; AD88 A9 AD                    ..
+LAD85:  prolog
+	lda     #>LAD2E
 	sta     $0229                           ; AD8A 8D 29 02                 .).
-	lda     #$2E                            ; AD8D A9 2E                    ..
+	lda     #<LAD2E
 	sta     $0228                           ; AD8F 8D 28 02                 .(.
 	ldy     #$00                            ; AD92 A0 00                    ..
 	sty     $021B                           ; AD94 8C 1B 02                 ...
@@ -13821,12 +13819,12 @@ sub_ADEA:
 ; ----------------------------------------------------------------------------
 LAE65:	.byte	10,"D:INIT.MAC"
 
-LAE70:  lda     #$AE                            ; AE70 A9 AE                    ..
+LAE70:  lda     #>LAE65
 	sta     $A3                             ; AE72 85 A3                    ..
-	ldy     #$65                            ; AE74 A0 65                    .e
+	ldy     #<LAE65
 	ldx     #$02                            ; AE76 A2 02                    ..
 	lda     #$03                            ; AE78 A9 03                    ..
-	jsr     LA2A8                           ; AE7A 20 A8 A2                  ..
+	jsr     sub_A2A8
 	rts                                     ; AE7D 60                       `
 
 ; ----------------------------------------------------------------------------
