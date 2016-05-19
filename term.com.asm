@@ -1089,13 +1089,8 @@ L4855:	.byte   $03                             ; 4855 03                       .
 L4859:	.addr	L4855
 L485B:	.byte	$01,"D"
 L485D:	.addr	L485B
-	.byte   $04                             ; 485F 04                       .
-	.byte   $42                             ; 4860 42                       B
-	.byte   $44                             ; 4861 44                       D
-	.byte   $44                             ; 4862 44                       D
-	.byte   $52                             ; 4863 52                       R
-	.byte   $5F                             ; 4864 5F                       _
-	pha                                     ; 4865 48                       H
+L485F:	.byte	$04,"BDDR"
+L4864:	.addr	L485F
 	.byte   $03                             ; 4866 03                       .
 	.byte   $42                             ; 4867 42                       B
 	.byte   $44                             ; 4868 44                       D
