@@ -12750,11 +12750,8 @@ LA6DD:  brk                                     ; A6DD 00                       
 LA6DE:  brk                                     ; A6DE 00                       .
 LA6DF:  brk                                     ; A6DF 00                       .
 LA6E0:  brk                                     ; A6E0 00                       .
-	.byte   $04                             ; A6E1 04                       .
-	.byte   $64                             ; A6E2 64                       d
-	.byte   $6F                             ; A6E3 6F                       o
-	ror     $E165                           ; A6E4 6E 65 E1                 ne.
-	.byte	$A6
+LA6E1:	.byte   $04,"done"
+LA6E6:	.addr	LA6E1
 
 LA6E8:	
 	stack_prolog LA6D8, $03
@@ -12781,10 +12778,7 @@ LA70D:	add16i	off_AE, LA6DC, $0001
 	sta     $A3                             ; A72E 85 A3                    ..
 	lda     #$00                            ; A730 A9 00                    ..
 	sta     $A4                             ; A732 85 A4                    ..
-	lda     LA6DB                           ; A734 AD DB A6                 ...
-	sta     $A6                             ; A737 85 A6                    ..
-	lda     LA6DA                           ; A739 AD DA A6                 ...
-	sta     $A5                             ; A73C 85 A5                    ..
+	rdmv	$A5, LA6DA
 	ldy     #$03                            ; A73E A0 03                    ..
 	ldx     #$00                            ; A740 A2 00                    ..
 	lda     LA6D9                           ; A742 AD D9 A6                 ...
@@ -12810,7 +12804,9 @@ LA772:  lda     LA77D                           ; A772 AD 7D A7                 
 	jmp     LA799                           ; A77A 4C 99 A7                 L..
 
 ; ----------------------------------------------------------------------------
-LA77D:  brk                                     ; A77D 00                       .
+LA77D:  .byte	$00
+
+; ----------------------------------------------------------------------------
 LA77E:  ldx     LA6DF                           ; A77E AE DF A6                 ...
 	lda     $B224,x                         ; A781 BD 24 B2                 .$.
 	sta     $A0                             ; A784 85 A0                    ..
@@ -12854,10 +12850,7 @@ LA7C4:
 	sta     $A3                             ; A7D2 85 A3                    ..
 	lda     #$00                            ; A7D4 A9 00                    ..
 	sta     $A4                             ; A7D6 85 A4                    ..
-	lda     LA7C3                           ; A7D8 AD C3 A7                 ...
-	sta     $A6                             ; A7DB 85 A6                    ..
-	lda     LA7C2                           ; A7DD AD C2 A7                 ...
-	sta     $A5                             ; A7E0 85 A5                    ..
+	rdmv	$A5, LA7C2
 	ldy     #$20                            ; A7E2 A0 20                    . 
 	ldx     #$00                            ; A7E4 A2 00                    ..
 	lda     LA7C1                           ; A7E6 AD C1 A7                 ...
@@ -12923,37 +12916,25 @@ LA843:  brk                                     ; A843 00                       
 LA844:  brk                                     ; A844 00                       .
 LA845:  brk                                     ; A845 00                       .
 
-LA846:	prolog
-	jsr     sub_44D5                        ; A849 20 D5 44                  .D
-	.addr	LA843
-	.byte	$02
+LA846:
+	stack_prolog LA843, $02
 	jmp     LA855                           ; A84F 4C 55 A8                 LU.
 
 ; ----------------------------------------------------------------------------
-	.byte   $02                             ; A852 02                       .
-	.byte   $63                             ; A853 63                       c
-	.byte   $53                             ; A854 53                       S
+LA852:	.byte   $02,"cS"
+
+; ----------------------------------------------------------------------------
 LA855:  lda     #$00                            ; A855 A9 00                    ..
 	sta     $A3                             ; A857 85 A3                    ..
-	lda     LA844                           ; A859 AD 44 A8                 .D.
-	sta     $AE                             ; A85C 85 AE                    ..
-	lda     LA845                           ; A85E AD 45 A8                 .E.
-	sta     $AF                             ; A861 85 AF                    ..
+	dmv	off_AE, LA844
 	lda     #$00                            ; A863 A9 00                    ..
 	sta     $A5                             ; A865 85 A5                    ..
 	ldy     #$00                            ; A867 A0 00                    ..
 	lda     ($AE),y                         ; A869 B1 AE                    ..
 	sta     $A4                             ; A86B 85 A4                    ..
-	clc                                     ; A86D 18                       .
-	lda     LA844                           ; A86E AD 44 A8                 .D.
-	adc     #$01                            ; A871 69 01                    i.
-	sta     $A6                             ; A873 85 A6                    ..
-	lda     LA845                           ; A875 AD 45 A8                 .E.
-	adc     #$00                            ; A878 69 00                    i.
-	sta     $A7                             ; A87A 85 A7                    ..
+	add16i	$A6, LA844, $0001
 	ldy     LA843                           ; A87C AC 43 A8                 .C.
-	ldx     #$A8                            ; A87F A2 A8                    ..
-	lda     #$52                            ; A881 A9 52                    .R
+	ldxai	$A852
 	jsr     sub_55A0
 	rts                                     ; A886 60                       `
 
