@@ -7576,13 +7576,7 @@ L7DA5:	add16i	off_AE, L7D4B, $0002
 	lda     L7D4A                           ; 7DE2 AD 4A 7D                 .J}
 	ldy     #$00                            ; 7DE5 A0 00                    ..
 	sta     ($AE),y                         ; 7DE7 91 AE                    ..
-	clc                                     ; 7DE9 18                       .
-	lda     L7D4B                           ; 7DEA AD 4B 7D                 .K}
-	adc     #$01                            ; 7DED 69 01                    i.
-	sta     $AE                             ; 7DEF 85 AE                    ..
-	lda     L7D4C                           ; 7DF1 AD 4C 7D                 .L}
-	adc     #$00                            ; 7DF4 69 00                    i.
-	sta     $AF                             ; 7DF6 85 AF                    ..
+	add16i	off_AE, L7D4B, $0001
 	lda     L7D46                           ; 7DF8 AD 46 7D                 .F}
 	sta     ($AE),y                         ; 7DFB 91 AE                    ..
 	clc                                     ; 7DFD 18                       .
