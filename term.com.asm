@@ -7485,13 +7485,7 @@ L7C65:  lda     L7B55                           ; 7C65 AD 55 7B                 
 	lda     L7B57                           ; 7CCE AD 57 7B                 .W{
 	sbc     #$00                            ; 7CD1 E9 00                    ..
 	sta     L7B57                           ; 7CD3 8D 57 7B                 .W{
-L7CD6:	clc                                     ; 7CD6 18                       .
-	lda     L7B56                           ; 7CD7 AD 56 7B                 .V{
-	adc     #$06                            ; 7CDA 69 06                    i.
-	sta     $A0                             ; 7CDC 85 A0                    ..
-	lda     L7B57                           ; 7CDE AD 57 7B                 .W{
-	adc     #$00                            ; 7CE1 69 00                    i.
-	sta     $A1                             ; 7CE3 85 A1                    ..
+L7CD6:	add16i	$A0, L7B56, $0006
 	lda     L7B57                           ; 7CE5 AD 57 7B                 .W{
 	sta     $A3                             ; 7CE8 85 A3                    ..
 	sec                                     ; 7CEA 38                       8
@@ -7638,7 +7632,7 @@ L7DA5:  clc                                     ; 7DA5 18                       
 
 ; ----------------------------------------------------------------------------
 L7E12:  brk                                     ; 7E12 00                       .
-	brk                                     ; 7E13 00                       .
+L7E13:	brk                                     ; 7E13 00                       .
 L7E14:  brk                                     ; 7E14 00                       .
 L7E15:  brk                                     ; 7E15 00                       .
 L7E16:  brk                                     ; 7E16 00                       .
@@ -7655,26 +7649,13 @@ L7E20:  brk                                     ; 7E20 00                       
 L7E21:  brk                                     ; 7E21 00                       .
 L7E22:  brk                                     ; 7E22 00                       .
 L7E23:  brk                                     ; 7E23 00                       .
-L7E24:  jmp     L7E27                           ; 7E24 4C 27 7E                 L'~
 
-; ----------------------------------------------------------------------------
-L7E27:  jsr     sub_44D5                           ; 7E27 20 D5 44                  .D
-	.byte   $12                             ; 7E2A 12                       .
-	ror     LAD02,x                         ; 7E2B 7E 02 AD                 ~..
-	.byte   $13                             ; 7E2E 13                       .
-	ror     LB020,x                         ; 7E2F 7E 20 B0                 ~ .
-	adc     $A5                             ; 7E32 65 A5                    e.
-	lda     ($8D,x)                         ; 7E34 A1 8D                    ..
-	asl     $7E,x                           ; 7E36 16 7E                    .~
-	lda     $A0                             ; 7E38 A5 A0                    ..
-	sta     L7E15                           ; 7E3A 8D 15 7E                 ..~
-	clc                                     ; 7E3D 18                       .
-	lda     L7E15                           ; 7E3E AD 15 7E                 ..~
-	adc     #$09                            ; 7E41 69 09                    i.
-	sta     $AE                             ; 7E43 85 AE                    ..
-	lda     L7E16                           ; 7E45 AD 16 7E                 ..~
-	adc     #$00                            ; 7E48 69 00                    i.
-	sta     $AF                             ; 7E4A 85 AF                    ..
+L7E24:
+	stack_prolog L7E12, $02
+	lda	L7E13
+	jsr	L65B0
+	rdmv	L7E15, $A0
+	add16i	off_AE, L7E15, $0009
 	ldy     #$01                            ; 7E4C A0 01                    ..
 	lda     ($AE),y                         ; 7E4E B1 AE                    ..
 	sta     L7E1F                           ; 7E50 8D 1F 7E                 ..~
@@ -7683,32 +7664,19 @@ L7E27:  jsr     sub_44D5                           ; 7E27 20 D5 44              
 	sta     L7E1E                           ; 7E56 8D 1E 7E                 ..~
 	lda     L7E1E                           ; 7E59 AD 1E 7E                 ..~
 	ora     L7E1F                           ; 7E5C 0D 1F 7E                 ..~
-	beq     L7E64                           ; 7E5F F0 03                    ..
-	jmp     L7E69                           ; 7E61 4C 69 7E                 Li~
-
-; ----------------------------------------------------------------------------
-L7E64:  lda     #$00                            ; 7E64 A9 00                    ..
-	sta     $A0                             ; 7E66 85 A0                    ..
+	lbne	L7E69
+L7E64:	ldi	$A0, $00
 	rts                                     ; 7E68 60                       `
 
 ; ----------------------------------------------------------------------------
-L7E69:  lda     L7E1E                           ; 7E69 AD 1E 7E                 ..~
-	sta     $AE                             ; 7E6C 85 AE                    ..
-	lda     L7E1F                           ; 7E6E AD 1F 7E                 ..~
-	sta     $AF                             ; 7E71 85 AF                    ..
+L7E69:	dmv	off_AE, L7E1E
 	ldy     #$01                            ; 7E73 A0 01                    ..
 	lda     ($AE),y                         ; 7E75 B1 AE                    ..
 	sta     L7E1D                           ; 7E77 8D 1D 7E                 ..~
 	dey                                     ; 7E7A 88                       .
 	lda     ($AE),y                         ; 7E7B B1 AE                    ..
 	sta     L7E1C                           ; 7E7D 8D 1C 7E                 ..~
-	clc                                     ; 7E80 18                       .
-	lda     L7E1E                           ; 7E81 AD 1E 7E                 ..~
-	adc     #$02                            ; 7E84 69 02                    i.
-	sta     $AE                             ; 7E86 85 AE                    ..
-	lda     L7E1F                           ; 7E88 AD 1F 7E                 ..~
-	adc     #$00                            ; 7E8B 69 00                    i.
-	sta     $AF                             ; 7E8D 85 AF                    ..
+	add16i	off_AE, L7E1E, $0002
 	lda     #$00                            ; 7E8F A9 00                    ..
 	sta     $85                             ; 7E91 85 85                    ..
 	lda     #$03                            ; 7E93 A9 03                    ..
