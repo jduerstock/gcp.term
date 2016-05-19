@@ -703,8 +703,8 @@ L4659:  brk                                     ; 4659 00                       
 	.byte	">>> UTIL.ACT  <<"
 L466D:  .byte   $3C                             ; 466D 3C                       <
 L466E:  .byte   $3C                             ; 466E 3C                       <
-L466F:  .byte   $D4                             ; 466F D4                       .
-L4670:  bcs     L4676                           ; 4670 B0 04                    ..
+L466F:	.addr	$B0D4
+	.byte	$04
 	brk                                     ; 4672 00                       .
 L4673:  brk                                     ; 4673 00                       .
 L4674:  brk                                     ; 4674 00                       .
@@ -2847,7 +2847,7 @@ L55B4:  lda     #$01                            ; 55B4 A9 01                    
 	lda     #$00                            ; 55BE A9 00                    ..
 	rol     a                               ; 55C0 2A                       *
 	plp                                     ; 55C1 28                       (
-	adc     L4670                           ; 55C2 6D 70 46                 mpF
+	adc     L466F+1
 	sta     $AF                             ; 55C5 85 AF                    ..
 	ldy     #$01                            ; 55C7 A0 01                    ..
 	lda     ($AE),y                         ; 55C9 B1 AE                    ..
@@ -4303,7 +4303,7 @@ L6203:  prolog
 	lda     #$00                            ; 6210 A9 00                    ..
 	rol     a                               ; 6212 2A                       *
 	plp                                     ; 6213 28                       (
-	adc     L4670                           ; 6214 6D 70 46                 mpF
+	adc     L466F+1
 	sta     $AF                             ; 6217 85 AF                    ..
 	ldy     #$01                            ; 6219 A0 01                    ..
 	lda     ($AE),y                         ; 621B B1 AE                    ..
@@ -4313,7 +4313,7 @@ L6203:  prolog
 	sta     $A0                             ; 6222 85 A0                    ..
 	lda     L466F                           ; 6224 AD 6F 46                 .oF
 	sta     $AC                             ; 6227 85 AC                    ..
-	lda     L4670                           ; 6229 AD 70 46                 .pF
+	lda     L466F+1
 	sta     $AD                             ; 622C 85 AD                    ..
 	iny                                     ; 622E C8                       .
 	lda     ($AC),y                         ; 622F B1 AC                    ..
@@ -4337,7 +4337,7 @@ L6203:  prolog
 	lda     #$00                            ; 6253 A9 00                    ..
 	rol     a                               ; 6255 2A                       *
 	plp                                     ; 6256 28                       (
-	adc     L4670                           ; 6257 6D 70 46                 mpF
+	adc     L466F+1
 	sta     $AF                             ; 625A 85 AF                    ..
 	ldy     #$01                            ; 625C A0 01                    ..
 	lda     ($AE),y                         ; 625E B1 AE                    ..
@@ -4413,7 +4413,7 @@ L62D4:  lda     $022F                           ; 62D4 AD 2F 02                 
 	lda     #$00                            ; 62E9 A9 00                    ..
 	rol     a                               ; 62EB 2A                       *
 	plp                                     ; 62EC 28                       (
-	adc     L4670                           ; 62ED 6D 70 46                 mpF
+	adc     L466F+1
 	sta     $AF                             ; 62F0 85 AF                    ..
 	iny                                     ; 62F2 C8                       .
 	lda     ($AE),y                         ; 62F3 B1 AE                    ..
@@ -4434,7 +4434,7 @@ L62D4:  lda     $022F                           ; 62D4 AD 2F 02                 
 	lda     #$00                            ; 6313 A9 00                    ..
 	rol     a                               ; 6315 2A                       *
 	plp                                     ; 6316 28                       (
-	adc     L4670                           ; 6317 6D 70 46                 mpF
+	adc     L466F+1
 	sta     $AF                             ; 631A 85 AF                    ..
 	iny                                     ; 631C C8                       .
 	lda     ($AE),y                         ; 631D B1 AE                    ..
@@ -4451,7 +4451,7 @@ L6328:  lda     #$01                            ; 6328 A9 01                    
 	lda     #$00                            ; 6332 A9 00                    ..
 	rol     a                               ; 6334 2A                       *
 	plp                                     ; 6335 28                       (
-	adc     L4670                           ; 6336 6D 70 46                 mpF
+	adc     L466F+1
 	sta     $AF                             ; 6339 85 AF                    ..
 	lda     L466F                           ; 633B AD 6F 46                 .oF
 	sta     $AC                             ; 633E 85 AC                    ..
@@ -4466,7 +4466,7 @@ L6341:  bvs     L6389                           ; 6341 70 46                    
 	sta     ($AE),y                         ; 634D 91 AE                    ..
 	lda     L466F                           ; 634F AD 6F 46                 .oF
 	sta     $AE                             ; 6352 85 AE                    ..
-	lda     L4670                           ; 6354 AD 70 46                 .pF
+	lda     L466F+1
 	sta     $AF                             ; 6357 85 AF                    ..
 	lda     L62CF                           ; 6359 AD CF 62                 ..b
 	iny                                     ; 635C C8                       .
@@ -4576,7 +4576,7 @@ L63E0:  lda     L46EF                           ; 63E0 AD EF 46                 
 	lda     #$00                            ; 6411 A9 00                    ..
 	rol     a                               ; 6413 2A                       *
 	plp                                     ; 6414 28                       (
-	adc     L4670                           ; 6415 6D 70 46                 mpF
+	adc     L466F+1
 	sta     $AF                             ; 6418 85 AF                    ..
 	iny                                     ; 641A C8                       .
 	lda     ($AE),y                         ; 641B B1 AE                    ..
@@ -9468,11 +9468,8 @@ L8D0C:  rts                                     ; 8D0C 60                       
 ; ----------------------------------------------------------------------------
 L8D0D:  lda     L4656                           ; 8D0D AD 56 46                 .VF
 	eor     #$01                            ; 8D10 49 01                    I.
-	beq     L8D17                           ; 8D12 F0 03                    ..
-	jmp     L8E06                           ; 8D14 4C 06 8E                 L..
-
-; ----------------------------------------------------------------------------
-L8D17:  lda     #$01                            ; 8D17 A9 01                    ..
+	lbne	L8E06
+	lda     #$01                            ; 8D17 A9 01                    ..
 	asl     a                               ; 8D19 0A                       .
 	php                                     ; 8D1A 08                       .
 	clc                                     ; 8D1B 18                       .
@@ -9481,7 +9478,7 @@ L8D17:  lda     #$01                            ; 8D17 A9 01                    
 	lda     #$00                            ; 8D21 A9 00                    ..
 	rol     a                               ; 8D23 2A                       *
 	plp                                     ; 8D24 28                       (
-	adc     L4670                           ; 8D25 6D 70 46                 mpF
+	adc     L466F+1
 	sta     $AF                             ; 8D28 85 AF                    ..
 	ldy     #$01                            ; 8D2A A0 01                    ..
 	lda     ($AE),y                         ; 8D2C B1 AE                    ..
@@ -13770,7 +13767,7 @@ LAD88:  lda     #$AD                            ; AD88 A9 AD                    
 LADEA:  prolog
 	lda     L466F                           ; ADED AD 6F 46                 .oF
 	sta     $AE                             ; ADF0 85 AE                    ..
-	lda     L4670                           ; ADF2 AD 70 46                 .pF
+	lda     L466F+1
 	sta     $AF                             ; ADF5 85 AF                    ..
 	lda     $0231                           ; ADF7 AD 31 02                 .1.
 	ldy     #$01                            ; ADFA A0 01                    ..
@@ -13787,7 +13784,7 @@ LADEA:  prolog
 	lda     #$00                            ; AE0E A9 00                    ..
 	rol     a                               ; AE10 2A                       *
 	plp                                     ; AE11 28                       (
-	adc     L4670                           ; AE12 6D 70 46                 mpF
+	adc     L466F+1
 	sta     $AF                             ; AE15 85 AF                    ..
 	sec                                     ; AE17 38                       8
 	lda     $0230                           ; AE18 AD 30 02                 .0.
