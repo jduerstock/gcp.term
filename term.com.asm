@@ -5629,13 +5629,7 @@ L6C5C:  lda     L6ACF                           ; 6C5C AD CF 6A                 
 	ldxa	L6ACC
 	jsr     sub_606E
 	rdmv	L6AD3, $A0
-	clc                                     ; 6CD4 18                       .
-	lda     L6AC4                           ; 6CD5 AD C4 6A                 ..j
-	adc     #$07                            ; 6CD8 69 07                    i.
-	sta     $AE                             ; 6CDA 85 AE                    ..
-	lda     L6AC5                           ; 6CDC AD C5 6A                 ..j
-	adc     #$00                            ; 6CDF 69 00                    i.
-	sta     $AF                             ; 6CE1 85 AF                    ..
+	add16i	off_AE, L6AC4, $0007
 	lda     L6AD4                           ; 6CE3 AD D4 6A                 ..j
 	ldy     #$01                            ; 6CE6 A0 01                    ..
 	sta     ($AE),y                         ; 6CE8 91 AE                    ..
@@ -5661,32 +5655,16 @@ L6D0F:  lda     L6D1A                           ; 6D0F AD 1A 6D                 
 
 ; ----------------------------------------------------------------------------
 L6D1A:  .byte   $4C                             ; 6D1A 4C                       L
-L6D1B:  clc                                     ; 6D1B 18                       .
-	lda     L6AD3                           ; 6D1C AD D3 6A                 ..j
-	adc     #$04                            ; 6D1F 69 04                    i.
-	sta     $AE                             ; 6D21 85 AE                    ..
-	lda     L6AD4                           ; 6D23 AD D4 6A                 ..j
-	adc     #$00                            ; 6D26 69 00                    i.
-	sta     $AF                             ; 6D28 85 AF                    ..
+
+; ----------------------------------------------------------------------------
+L6D1B:	add16i	off_AE, L6AD3, $0004
 	lda     #$FF                            ; 6D2A A9 FF                    ..
 	ldy     #$00                            ; 6D2C A0 00                    ..
 	sta     ($AE),y                         ; 6D2E 91 AE                    ..
-	clc                                     ; 6D30 18                       .
-	lda     L6AD3                           ; 6D31 AD D3 6A                 ..j
-	adc     #$01                            ; 6D34 69 01                    i.
-	sta     $AE                             ; 6D36 85 AE                    ..
-	lda     L6AD4                           ; 6D38 AD D4 6A                 ..j
-	adc     #$00                            ; 6D3B 69 00                    i.
-	sta     $AF                             ; 6D3D 85 AF                    ..
+	add16i	off_AE, L6AD3, $0001
 	lda     L6AD0                           ; 6D3F AD D0 6A                 ..j
 	sta     ($AE),y                         ; 6D42 91 AE                    ..
-	clc                                     ; 6D44 18                       .
-	lda     L6AD3                           ; 6D45 AD D3 6A                 ..j
-	adc     #$06                            ; 6D48 69 06                    i.
-	sta     L6AD3                           ; 6D4A 8D D3 6A                 ..j
-	lda     L6AD4                           ; 6D4D AD D4 6A                 ..j
-	adc     #$00                            ; 6D50 69 00                    i.
-	sta     L6AD4                           ; 6D52 8D D4 6A                 ..j
+	add16i	L6AD3, L6AD3, $0006
 	inc     L6AD0                           ; 6D55 EE D0 6A                 ..j
 	jmp     L6D0F                           ; 6D58 4C 0F 6D                 L.m
 
