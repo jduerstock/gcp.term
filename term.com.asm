@@ -4584,9 +4584,7 @@ sub_63DD:
 	clc                                     ; 645B 18                       .
 	lda     $AC                             ; 645C A5 AC                    ..
 	adc     L63DC                           ; 645E 6D DC 63                 m.c
-	.byte   $8D                             ; 6461 8D                       .
-	.byte   $D6                             ; 6462 D6                       .
-L6463:  .byte   $63                             ; 6463 63                       c
+	sta	L63D6
 	clc                                     ; 6464 18                       .
 	lda     L63D3                           ; 6465 AD D3 63                 ..c
 	adc     #$03                            ; 6468 69 03                    i.
@@ -13270,7 +13268,8 @@ LAB0B:  prolog
 	.byte	$59,$42,$78
 	adc     L557A,y                         ; AB1C 79 7A 55                 yzU
 	lsr     $58,x                           ; AB1F 56 58                    VX
-	lsr     L6463                           ; AB21 4E 63 64                 Ncd
+	;lsr     L6463                           ; AB21 4E 63 64                 Ncd
+	.byte	$4E,$63,$64
 	.byte   $73                             ; AB24 73                       s
 	bvs     LAB94                           ; AB25 70 6D                    pm
 	;jmp     (L6261)                         ; AB27 6C 61 62                 lab
