@@ -5769,8 +5769,7 @@ L6E4B:  rts                                     ; 6E4B 60                       
 L6E4C:  rts                                     ; 6E4C 60                       `
 
 ; ----------------------------------------------------------------------------
-L6E4D:  .byte   $7E                             ; 6E4D 7E                       ~
-L6E4E:  brk                                     ; 6E4E 00                       .
+L6E4D:  .addr	$7E
 	.byte   $03                             ; 6E4F 03                       .
 	.byte   $43                             ; 6E50 43                       C
 	.byte   $42                             ; 6E51 42                       B
@@ -5840,14 +5839,11 @@ L6E61:  prolog
 	lda     ($AE),y                         ; 6EC8 B1 AE                    ..
 	adc     #$00                            ; 6ECA 69 00                    i.
 	sta     L6E4C                           ; 6ECC 8D 4C 6E                 .Ln
-	lda     L6E54                           ; 6ECF AD 54 6E                 .Tn
-	sta     L6E4E                           ; 6ED2 8D 4E 6E                 .Nn
-	lda     L6E53                           ; 6ED5 AD 53 6E                 .Sn
-	sta     L6E4D                           ; 6ED8 8D 4D 6E                 .Mn
+	rdmv	L6E4D, L6E53
 	lda     L6E41                           ; 6EDB AD 41 6E                 .An
 	lbne	L6EEF
 	lda     L6E5A                           ; 6EE3 AD 5A 6E                 .Zn
-	sta     L6E4E                           ; 6EE6 8D 4E 6E                 .Nn
+	sta     L6E4D+1                         ; 6EE6 8D 4E 6E                 .Nn
 	lda     L6E59                           ; 6EE9 AD 59 6E                 .Yn
 	sta     L6E4D                           ; 6EEC 8D 4D 6E                 .Mn
 L6EEF:  lda     L6E43                           ; 6EEF AD 43 6E                 .Cn
@@ -5887,8 +5883,7 @@ L6F22:  lda     #$00                            ; 6F22 A9 00                    
 	lda     L6E4B                           ; 6F3D AD 4B 6E                 .Kn
 	sta     $A8                             ; 6F40 85 A8                    ..
 	ldy     #$55                            ; 6F42 A0 55                    .U
-	ldx     L6E4E                           ; 6F44 AE 4E 6E                 .Nn
-	lda     L6E4D                           ; 6F47 AD 4D 6E                 .Mn
+	ldxa	L6E4D
 	jsr     sub_55A0
 	clc                                     ; 6F4D 18                       .
 	lda     L6E4B                           ; 6F4E AD 4B 6E                 .Kn
