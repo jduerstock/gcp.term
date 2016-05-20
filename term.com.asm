@@ -5602,23 +5602,11 @@ L6C5C:  lda     L6ACF                           ; 6C5C AD CF 6A                 
 	ldx     L6AC7                           ; 6C68 AE C7 6A                 ..j
 	lda     L6AC6                           ; 6C6B AD C6 6A                 ..j
 	jsr     sub_45FC
-	clc                                     ; 6C71 18                       .
-	lda     L6AC4                           ; 6C72 AD C4 6A                 ..j
-	adc     #$06                            ; 6C75 69 06                    i.
-	sta     $AE                             ; 6C77 85 AE                    ..
-	lda     L6AC5                           ; 6C79 AD C5 6A                 ..j
-	adc     #$00                            ; 6C7C 69 00                    i.
-	sta     $AF                             ; 6C7E 85 AF                    ..
+	add16i	off_AE, L6AC4, $0006
 	lda     L6AC1                           ; 6C80 AD C1 6A                 ..j
 	ldy     #$00                            ; 6C83 A0 00                    ..
 	sta     ($AE),y                         ; 6C85 91 AE                    ..
-	clc                                     ; 6C87 18                       .
-	lda     L6AC4                           ; 6C88 AD C4 6A                 ..j
-	adc     #$07                            ; 6C8B 69 07                    i.
-	sta     $AE                             ; 6C8D 85 AE                    ..
-	lda     L6AC5                           ; 6C8F AD C5 6A                 ..j
-	adc     #$00                            ; 6C92 69 00                    i.
-	sta     $AF                             ; 6C94 85 AF                    ..
+	add16i	off_AE, L6AC4, $0007
 	lda     #$00                            ; 6C96 A9 00                    ..
 	iny                                     ; 6C98 C8                       .
 	sta     ($AE),y                         ; 6C99 91 AE                    ..
@@ -5627,11 +5615,8 @@ L6C5C:  lda     L6ACF                           ; 6C5C AD CF 6A                 
 	sta     ($AE),y                         ; 6C9E 91 AE                    ..
 	lda     #$00                            ; 6CA0 A9 00                    ..
 	cmp     L6AC1                           ; 6CA2 CD C1 6A                 ..j
-	bcc     L6CAA                           ; 6CA5 90 03                    ..
-	jmp     L6D5B                           ; 6CA7 4C 5B 6D                 L[m
-
-; ----------------------------------------------------------------------------
-L6CAA:  lda     #$00                            ; 6CAA A9 00                    ..
+	lbcs	L6D5B
+	lda     #$00                            ; 6CAA A9 00                    ..
 	sta     $85                             ; 6CAC 85 85                    ..
 	lda     #$06                            ; 6CAE A9 06                    ..
 	sta     $84                             ; 6CB0 85 84                    ..
