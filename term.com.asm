@@ -1144,10 +1144,9 @@ L4897:	.addr	L4893
 L4899:	.byte	$02,"CS"
 L489C:	.addr	L4899
 L489E:	.byte	$01,"B"
-	.byte   $9E                             ; 48A0 9E                       .
-	pha                                     ; 48A1 48                       H
-	brk                                     ; 48A2 00                       .
-	ldx     #$48                            ; 48A3 A2 48                    .H
+L48A0:	.addr	L489E
+L48A2:	.byte	$00
+L48A3:	.addr	L48A2
 	.byte   $02                             ; 48A5 02                       .
 	.byte   $42                             ; 48A6 42                       B
 	.byte   $42                             ; 48A7 42                       B
