@@ -4492,20 +4492,13 @@ L6389:  sta     $AF                             ; 6389 85 AF                    
 	dey                                     ; 6392 88                       .
 	lda     ($AE),y                         ; 6393 B1 AE                    ..
 	sta     L636C                           ; 6395 8D 6C 63                 .lc
-	clc                                     ; 6398 18                       .
-	lda     L636C                           ; 6399 AD 6C 63                 .lc
-	adc     #$03                            ; 639C 69 03                    i.
-	sta     $A2                             ; 639E 85 A2                    ..
-	lda     L636D                           ; 63A0 AD 6D 63                 .mc
-	adc     #$00                            ; 63A3 69 00                    i.
-	sta     $A3                             ; 63A5 85 A3                    ..
+	add16i	$A2, L636C, $0003
 	lda     #$00                            ; 63A7 A9 00                    ..
 	sta     $A5                             ; 63A9 85 A5                    ..
 	lda     #$05                            ; 63AB A9 05                    ..
 	sta     $A4                             ; 63AD 85 A4                    ..
 	ldy     $A2                             ; 63AF A4 A2                    ..
-	ldx     L636B                           ; 63B1 AE 6B 63                 .kc
-	lda     L636A                           ; 63B4 AD 6A 63                 .jc
+	ldxa	L636A
 	jsr     sub_461F
 	add16i	off_AE, L636C, $0002
 	ldy     #$00                            ; 63C9 A0 00                    ..
