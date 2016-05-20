@@ -1659,16 +1659,17 @@ L4BC4:  sta     $A1                             ; 4BC4 85 A1                    
 	rts                                     ; 4BC8 60                       `
 
 ; ----------------------------------------------------------------------------
-L4BC9:  sta     $A0                             ; 4BC9 85 A0                    ..
-	and     #$60                            ; 4BCB 29 60                    )`
-	sta     $A2                             ; 4BCD 85 A2                    ..
-	asl     a                               ; 4BCF 0A                       .
-	sta     $A3                             ; 4BD0 85 A3                    ..
-	eor     $A2                             ; 4BD2 45 A2                    E.
-	eor     #$FF                            ; 4BD4 49 FF                    I.
-	and     #$40                            ; 4BD6 29 40                    )@
-	lsr     a                               ; 4BD8 4A                       J
-	sta     $A1                             ; 4BD9 85 A1                    ..
+sub_4BC9:  
+	sta     $A0				; $A2 = $A0 & $60
+	and     #$60
+	sta     $A2
+	asl     a				; $A3 = $A2 << 1
+	sta     $A3                             
+	eor     $A2				; $A1 = ($A3 ^ $A2 ^ $FF & $40) >> 1
+	eor     #$FF
+	and     #$40
+	lsr     a
+	sta     $A1
 	lda     $A0                             ; 4BDB A5 A0                    ..
 	and     #$9F                            ; 4BDD 29 9F                    ).
 	sta     $A0                             ; 4BDF 85 A0                    ..
@@ -2951,7 +2952,7 @@ L567C:  clc                                     ; 567C 18                       
 	lda     (off_AE),y
 	sta     $A0                             ; 569E 85 A0                    ..
 	lda     $A0                             ; 56A0 A5 A0                    ..
-	jsr     L4BC9                           ; 56A2 20 C9 4B                  .K
+	jsr     sub_4BC9
 	pla                                     ; 56A5 68                       h
 	sta     $AE                             ; 56A6 85 AE                    ..
 	pla                                     ; 56A8 68                       h
@@ -3079,7 +3080,7 @@ L581B:	add16m8 off_AE, L5598, L5593
 	eor     #$53                            ; 5835 49 53                    IS
 	lbne	L5847
 	lda     L5595                           ; 583C AD 95 55                 ..U
-	jsr     L4BC9                           ; 583F 20 C9 4B                  .K
+	jsr     sub_4BC9
 	lda     $A0                             ; 5842 A5 A0                    ..
 	sta     L5595                           ; 5844 8D 95 55                 ..U
 L5847:  clc                                     ; 5847 18                       .
@@ -10590,10 +10591,7 @@ L95B8:  ldx     L941A                           ; 95B8 AE 1A 94                 
 	jsr     L496E                           ; 95BE 20 6E 49                  nI
 	lda     $A0                             ; 95C1 A5 A0                    ..
 	eor     #$01                            ; 95C3 49 01                    I.
-	beq     L95CA                           ; 95C5 F0 03                    ..
-	jmp     L95DC                           ; 95C7 4C DC 95                 L..
-
-; ----------------------------------------------------------------------------
+	lbne	L95DC
 L95CA:  clc                                     ; 95CA 18                       .
 	lda     L941F                           ; 95CB AD 1F 94                 ...
 	adc     L9051                           ; 95CE 6D 51 90                 mQ.
@@ -12462,7 +12460,7 @@ LA4B3:  clc                                     ; A4B3 18                       
 
 ; ----------------------------------------------------------------------------
 LA4D2:  lda     LA3B2                           ; A4D2 AD B2 A3                 ...
-	jsr     L4BC9                           ; A4D5 20 C9 4B                  .K
+	jsr     sub_4BC9
 	lda     $A0                             ; A4D8 A5 A0                    ..
 	sta     LA3B2                           ; A4DA 8D B2 A3                 ...
 LA4DD:  ldx     LA3B2                           ; A4DD AE B2 A3                 ...
@@ -13014,7 +13012,7 @@ LA90D:  clc                                     ; A90D 18                       
 	lda     ($AE),y                         ; A91F B1 AE                    ..
 	sta     $A0                             ; A921 85 A0                    ..
 	lda     $A0                             ; A923 A5 A0                    ..
-	jsr     L4BC9                           ; A925 20 C9 4B                  .K
+	jsr     sub_4BC9
 	lda     $A0                             ; A928 A5 A0                    ..
 	ldx     LA889                           ; A92A AE 89 A8                 ...
 	sta     $B224,x                         ; A92D 9D 24 B2                 .$.
@@ -13081,7 +13079,7 @@ LA990:  brk                                     ; A990 00                       
 LA991:	prolog
 	sta     LA990                           ; A994 8D 90 A9                 ...
 	lda     LA990                           ; A997 AD 90 A9                 ...
-	jsr     L4BC9                           ; A99A 20 C9 4B                  .K
+	jsr     sub_4BC9
 	lda     $A0                             ; A99D A5 A0                    ..
 	sta     L464A                           ; A99F 8D 4A 46                 .JF
 	rts                                     ; A9A2 60                       `
