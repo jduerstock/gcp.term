@@ -4581,17 +4581,8 @@ sub_63DD:
 	lda     ($AE),y                         ; 6455 B1 AE                    ..
 	and     #$F0                            ; 6457 29 F0                    ).
 	sta     $AC                             ; 6459 85 AC                    ..
-	clc                                     ; 645B 18                       .
-	lda     $AC                             ; 645C A5 AC                    ..
-	adc     L63DC                           ; 645E 6D DC 63                 m.c
-	sta	L63D6
-	clc                                     ; 6464 18                       .
-	lda     L63D3                           ; 6465 AD D3 63                 ..c
-	adc     #$03                            ; 6468 69 03                    i.
-	sta     $AE                             ; 646A 85 AE                    ..
-	lda     L63D4                           ; 646C AD D4 63                 ..c
-	adc     #$00                            ; 646F 69 00                    i.
-	sta     $AF                             ; 6471 85 AF                    ..
+	add8m	L63D6, $AC, L63DC
+	add16i	off_AE, L63D3, $0003
 	lda     L63D6                           ; 6473 AD D6 63                 ..c
 	sta     ($AE),y                         ; 6476 91 AE                    ..
 	lda     #$00                            ; 6478 A9 00                    ..
@@ -4599,8 +4590,7 @@ sub_63DD:
 	lda     L63DC                           ; 647C AD DC 63                 ..c
 	sta     $A4                             ; 647F 85 A4                    ..
 	ldy     #$17                            ; 6481 A0 17                    ..
-	ldx     L63D8                           ; 6483 AE D8 63                 ..c
-	lda     L63D7                           ; 6486 AD D7 63                 ..c
+	ldxa	L63D7
 	jsr     L45FC                           ; 6489 20 FC 45                  .E
 	clc                                     ; 648C 18                       .
 	lda     L63D9                           ; 648D AD D9 63                 ..c
