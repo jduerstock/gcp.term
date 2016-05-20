@@ -164,6 +164,13 @@ LEF40           := $EF40
         sta     a1
 .endmacro
 
+.macro sub8m a1, a2, a3
+	sec
+        lda     a2
+        sbc     a3
+        sta     a1
+.endmacro
+
 .macro add8i a1, a2, a3
 	clc
         lda     a2
@@ -10573,14 +10580,8 @@ L9547:  ldx     #$94                            ; 9547 A2 94                    
 	lda     $A0                             ; 959A A5 A0                    ..
 	eor     #$01                            ; 959C 49 01                    I.
 	lbne	L95B8
-	sec                                     ; 95A3 38                       8
-	lda     L9419                           ; 95A4 AD 19 94                 ...
-	sbc     L9051                           ; 95A7 ED 51 90                 .Q.
-	sta     $AE                             ; 95AA 85 AE                    ..
-	sec                                     ; 95AC 38                       8
-	lda     L941F                           ; 95AD AD 1F 94                 ...
-	sbc     $AE                             ; 95B0 E5 AE                    ..
-	sta     L941F                           ; 95B2 8D 1F 94                 ...
+	sub8m	off_AE, L9419, L9051
+	sub8m	L941F, L941F, off_AE
 	jmp     L95DC                           ; 95B5 4C DC 95                 L..
 
 ; ----------------------------------------------------------------------------
