@@ -5669,23 +5669,14 @@ L6D1B:	add16i	off_AE, L6AD3, $0004
 	jmp     L6D0F                           ; 6D58 4C 0F 6D                 L.m
 
 ; ----------------------------------------------------------------------------
-L6D5B:  clc                                     ; 6D5B 18                       .
-	lda     L6AC4                           ; 6D5C AD C4 6A                 ..j
-	adc     #$09                            ; 6D5F 69 09                    i.
-	sta     $AE                             ; 6D61 85 AE                    ..
-	lda     L6AC5                           ; 6D63 AD C5 6A                 ..j
-	adc     #$00                            ; 6D66 69 00                    i.
-	sta     $AF                             ; 6D68 85 AF                    ..
+L6D5B:	add16i	off_AE, L6AC4, $0009
 	lda     #$00                            ; 6D6A A9 00                    ..
 	ldy     #$01                            ; 6D6C A0 01                    ..
 	sta     ($AE),y                         ; 6D6E 91 AE                    ..
 	lda     #$00                            ; 6D70 A9 00                    ..
 	dey                                     ; 6D72 88                       .
 	sta     ($AE),y                         ; 6D73 91 AE                    ..
-	lda     L6AC2                           ; 6D75 AD C2 6A                 ..j
-	sta     $AE                             ; 6D78 85 AE                    ..
-	lda     L6AC3                           ; 6D7A AD C3 6A                 ..j
-	sta     $AF                             ; 6D7D 85 AF                    ..
+	dmv	off_AE, L6AC2
 	lda     #$00                            ; 6D7F A9 00                    ..
 	cmp     ($AE),y                         ; 6D81 D1 AE                    ..
 	lbcs	L6E3B
@@ -5693,13 +5684,7 @@ L6D88:  ldx     #$00                            ; 6D88 A2 00                    
 	lda     #$1A                            ; 6D8A A9 1A                    ..
 	jsr     sub_606E
 	rdmv	L6AC8, $A0
-	clc                                     ; 6D99 18                       .
-	lda     L6AC4                           ; 6D9A AD C4 6A                 ..j
-	adc     #$09                            ; 6D9D 69 09                    i.
-	sta     $AE                             ; 6D9F 85 AE                    ..
-	lda     L6AC5                           ; 6DA1 AD C5 6A                 ..j
-	adc     #$00                            ; 6DA4 69 00                    i.
-	sta     $AF                             ; 6DA6 85 AF                    ..
+	add16i	off_AE, L6AC4, $0009
 	lda     L6AC9                           ; 6DA8 AD C9 6A                 ..j
 	ldy     #$01                            ; 6DAB A0 01                    ..
 	sta     ($AE),y                         ; 6DAD 91 AE                    ..
@@ -5712,18 +5697,12 @@ L6D88:  ldx     #$00                            ; 6D88 A2 00                    
 	ldx     L6AC9                           ; 6DBB AE C9 6A                 ..j
 	lda     L6AC8                           ; 6DBE AD C8 6A                 ..j
 	jsr     L45F6                           ; 6DC1 20 F6 45                  .E
-	lda     L6AC8                           ; 6DC4 AD C8 6A                 ..j
-	sta     $AE                             ; 6DC7 85 AE                    ..
-	lda     L6AC9                           ; 6DC9 AD C9 6A                 ..j
-	sta     $AF                             ; 6DCC 85 AF                    ..
+	dmv	off_AE, L6AC8
 	lda     $AF                             ; 6DCE A5 AF                    ..
 	pha                                     ; 6DD0 48                       H
 	lda     $AE                             ; 6DD1 A5 AE                    ..
 	pha                                     ; 6DD3 48                       H
-	lda     L6AC2                           ; 6DD4 AD C2 6A                 ..j
-	sta     $AE                             ; 6DD7 85 AE                    ..
-	lda     L6AC3                           ; 6DD9 AD C3 6A                 ..j
-	sta     $AF                             ; 6DDC 85 AF                    ..
+	dmv	off_AE, L6AC2
 	clc                                     ; 6DDE 18                       .
 	ldy     #$00                            ; 6DDF A0 00                    ..
 	lda     ($AE),y                         ; 6DE1 B1 AE                    ..
@@ -5744,10 +5723,7 @@ L6D88:  ldx     #$00                            ; 6D88 A2 00                    
 	lda     $A0                             ; 6DFE A5 A0                    ..
 	dey                                     ; 6E00 88                       .
 	sta     ($AE),y                         ; 6E01 91 AE                    ..
-	lda     L6AC8                           ; 6E03 AD C8 6A                 ..j
-	sta     $AE                             ; 6E06 85 AE                    ..
-	lda     L6AC9                           ; 6E08 AD C9 6A                 ..j
-	sta     $AF                             ; 6E0B 85 AF                    ..
+	dmv	off_AE, L6AC8
 	iny                                     ; 6E0D C8                       .
 	lda     ($AE),y                         ; 6E0E B1 AE                    ..
 	sta     $A1                             ; 6E10 85 A1                    ..
