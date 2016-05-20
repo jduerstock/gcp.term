@@ -641,7 +641,9 @@ L45EF:  tax                                     ; 45EF AA                       
 L45F6:  pha                                     ; 45F6 48                       H
 	ldi	$A4, $00
 	pla                                     ; 45FB 68                       h
-L45FC:  sta     $A0                             ; 45FC 85 A0                    ..
+
+sub_45FC:  
+	sta     $A0                             ; 45FC 85 A0                    ..
 	stx     $A1                             ; 45FE 86 A1                    ..
 	sty     $A2                             ; 4600 84 A2                    ..
 	ldy     #$00                            ; 4602 A0 00                    ..
@@ -4591,14 +4593,8 @@ sub_63DD:
 	sta     $A4                             ; 647F 85 A4                    ..
 	ldy     #$17                            ; 6481 A0 17                    ..
 	ldxa	L63D7
-	jsr     L45FC                           ; 6489 20 FC 45                  .E
-	clc                                     ; 648C 18                       .
-	lda     L63D9                           ; 648D AD D9 63                 ..c
-	adc     #$01                            ; 6490 69 01                    i.
-	sta     $AE                             ; 6492 85 AE                    ..
-	lda     L63DA                           ; 6494 AD DA 63                 ..c
-	adc     #$00                            ; 6497 69 00                    i.
-	sta     $AF                             ; 6499 85 AF                    ..
+	jsr     sub_45FC
+	add16i	off_AE, L63D9, $0001
 	ldy     #$00                            ; 649B A0 00                    ..
 	lda     ($AE),y                         ; 649D B1 AE                    ..
 	sta     $A0                             ; 649F 85 A0                    ..
@@ -4676,7 +4672,7 @@ L64D5:  lda     L63DB                           ; 64D5 AD DB 63                 
 	ldy     $A2                             ; 654A A4 A2                    ..
 	ldx     $A1                             ; 654C A6 A1                    ..
 	lda     $A0                             ; 654E A5 A0                    ..
-	jsr     L45FC                           ; 6550 20 FC 45                  .E
+	jsr     sub_45FC
 	add16i	off_AE, L63D9, $0001
 	clc                                     ; 6562 18                       .
 	lda     L63D5                           ; 6563 AD D5 63                 ..c
@@ -4832,7 +4828,7 @@ L6666:  .byte   $D7                             ; 6666 D7                       
 	ldy     L65DC                           ; 667A AC DC 65                 ..e
 	ldx     $A1                             ; 667D A6 A1                    ..
 	lda     $A0                             ; 667F A5 A0                    ..
-	jsr     L45FC                           ; 6681 20 FC 45                  .E
+	jsr     sub_45FC
 	inc     L65DD                           ; 6684 EE DD 65                 ..e
 	jmp     L6640                           ; 6687 4C 40 66                 L@f
 
@@ -5605,7 +5601,7 @@ L6C5C:  lda     L6ACF                           ; 6C5C AD CF 6A                 
 	ldy     L6ACE                           ; 6C65 AC CE 6A                 ..j
 	ldx     L6AC7                           ; 6C68 AE C7 6A                 ..j
 	lda     L6AC6                           ; 6C6B AD C6 6A                 ..j
-	jsr     L45FC                           ; 6C6E 20 FC 45                  .E
+	jsr     sub_45FC
 	clc                                     ; 6C71 18                       .
 	lda     L6AC4                           ; 6C72 AD C4 6A                 ..j
 	adc     #$06                            ; 6C75 69 06                    i.
@@ -8620,9 +8616,8 @@ L869A:  clc                                     ; 869A 18                       
 	lda     L856C                           ; 86B8 AD 6C 85                 .l.
 	sta     $A4                             ; 86BB 85 A4                    ..
 	ldy     $A2                             ; 86BD A4 A2                    ..
-	ldx     L855B                           ; 86BF AE 5B 85                 .[.
-	lda     L855A                           ; 86C2 AD 5A 85                 .Z.
-	jsr     L45FC                           ; 86C5 20 FC 45                  .E
+	ldxa	L855A
+	jsr     sub_45FC
 L86C8:  clc                                     ; 86C8 18                       .
 	lda     L8558                           ; 86C9 AD 58 85                 .X.
 	adc     L8553                           ; 86CC 6D 53 85                 mS.
@@ -8746,9 +8741,8 @@ L87B4:  clc                                     ; 87B4 18                       
 	lda     L8570                           ; 87D2 AD 70 85                 .p.
 	sta     $A4                             ; 87D5 85 A4                    ..
 	ldy     $A2                             ; 87D7 A4 A2                    ..
-	ldx     L855B                           ; 87D9 AE 5B 85                 .[.
-	lda     L855A                           ; 87DC AD 5A 85                 .Z.
-	jsr     L45FC                           ; 87DF 20 FC 45                  .E
+	ldxa	L855A
+	jsr     sub_45FC
 L87E2:  clc                                     ; 87E2 18                       .
 	lda     L8558                           ; 87E3 AD 58 85                 .X.
 	adc     L8553                           ; 87E6 6D 53 85                 mS.
@@ -9141,27 +9135,17 @@ L8AAD:  lda     #$00                            ; 8AAD A9 00                    
 	lda     L89A4                           ; 8AB1 AD A4 89                 ...
 	sta     $A4                             ; 8AB4 85 A4                    ..
 	ldy     L8968                           ; 8AB6 AC 68 89                 .h.
-	ldx     L8965                           ; 8AB9 AE 65 89                 .e.
-	lda     L8964                           ; 8ABC AD 64 89                 .d.
-	jsr     L45FC                           ; 8ABF 20 FC 45                  .E
-	clc                                     ; 8AC2 18                       .
-	lda     L8964                           ; 8AC3 AD 64 89                 .d.
-	adc     #$28                            ; 8AC6 69 28                    i(
-	sta     L8964                           ; 8AC8 8D 64 89                 .d.
-	lda     L8965                           ; 8ACB AD 65 89                 .e.
-	adc     #$00                            ; 8ACE 69 00                    i.
-	sta     L8965                           ; 8AD0 8D 65 89                 .e.
+	ldxa	L8964
+	jsr     sub_45FC                           ; 8ABF 20 FC 45                  .E
+	add16i	L8964, L8964, $0028
 	inc     L8992                           ; 8AD3 EE 92 89                 ...
 	jmp     L8AA1                           ; 8AD6 4C A1 8A                 L..
 
 ; ----------------------------------------------------------------------------
 L8AD9:  lda     L89A2                           ; 8AD9 AD A2 89                 ...
 	eor     #$01                            ; 8ADC 49 01                    I.
-	beq     L8AE3                           ; 8ADE F0 03                    ..
-	jmp     L8B4E                           ; 8AE0 4C 4E 8B                 LN.
-
-; ----------------------------------------------------------------------------
-L8AE3:  clc                                     ; 8AE3 18                       .
+	lbne	L8B4E
+	clc                                     ; 8AE3 18                       .
 	lda     L8962                           ; 8AE4 AD 62 89                 .b.
 	adc     #$16                            ; 8AE7 69 16                    i.
 	sta     $A0                             ; 8AE9 85 A0                    ..
@@ -9479,9 +9463,8 @@ L8D4C:  sbc     LA58C,x                         ; 8D4C FD 8C A5                 
 	lda     #$00                            ; 8D6F A9 00                    ..
 	sta     $A4                             ; 8D71 85 A4                    ..
 	ldy     #$C0                            ; 8D73 A0 C0                    ..
-	ldx     L466E                           ; 8D75 AE 6E 46                 .nF
-	lda     L466D                           ; 8D78 AD 6D 46                 .mF
-	jsr     L45FC                           ; 8D7B 20 FC 45                  .E
+	ldxa	L466D
+	jsr     sub_45FC
 	ldy     #$01                            ; 8D7E A0 01                    ..
 	sty     L8CF9                           ; 8D80 8C F9 8C                 ...
 	lda     L4673                           ; 8D83 AD 73 46                 .sF
@@ -13156,9 +13139,8 @@ LAA55:  lda     #$00                            ; AA55 A9 00                    
 	lda     #$FF                            ; AA59 A9 FF                    ..
 	sta     $A4                             ; AA5B 85 A4                    ..
 	ldy     #$20                            ; AA5D A0 20                    . 
-	ldx     #$B1                            ; AA5F A2 B1                    ..
-	lda     #$4A                            ; AA61 A9 4A                    .J
-	jsr     L45FC                           ; AA63 20 FC 45                  .E
+	ldxai	$B14A
+	jsr     sub_45FC
 	lda     #$00                            ; AA66 A9 00                    ..
 	sta     $A3                             ; AA68 85 A3                    ..
 	ldy     #$10                            ; AA6A A0 10                    ..
