@@ -836,8 +836,9 @@ L46F6:  ;bcs     $470C                           ; 46F6 B0 14                   
 	.byte	$B0,$14
 	brk                                     ; 46F8 00                       .
 	dec     $1E,x                           ; 46F9 D6 1E                    ..
-	bvc     L46FD                           ; 46FB 50 00                    P.
-L46FD:  .byte   $52                             ; 46FD 52                       R
+	;bvc     L46FD                           ; 46FB 50 00                    P.
+	.byte	$50,$00
+	.byte   $52                             ; 46FD 52                       R
 	eor     #$50                            ; 46FE 49 50                    IP
 	.byte   $54                             ; 4700 54                       T
 	eor     #$4F                            ; 4701 49 4F                    IO
@@ -890,8 +891,10 @@ L46FD:  .byte   $52                             ; 46FD 52                       
 	.byte   $04                             ; 4746 04                       .
 	.byte   $0C                             ; 4747 0C                       .
 	.byte   $20                             ; 4748 20                        
-L4749:  .byte   $4C                             ; 4749 4C                       L
-L474A:  .addr   L474C
+
+sub_4749:  
+	jmp	L474C
+
 L474C:  brk                                     ; 474C 00                       .
 L474D:  brk                                     ; 474D 00                       .
 L474E:  brk                                     ; 474E 00                       .
@@ -2488,7 +2491,7 @@ sub_52E1:
 	sty     L464B                           ; 52F9 8C 4B 46                 .KF
 	lda     #$11                            ; 52FC A9 11                    ..
 	jsr     sub_4BA7
-	jsr     L4749                           ; 5301 20 49 47                  IG
+	jsr     sub_4749
 L5304:  ldx     L52E0                           ; 5304 AE E0 52                 ..R
 	lda     L52DF                           ; 5307 AD DF 52                 ..R
 	jsr     L5274                           ; 530A 20 74 52                  tR
@@ -4533,10 +4536,10 @@ L63D9:  brk                                     ; 63D9 00                       
 L63DA:  brk                                     ; 63DA 00                       .
 L63DB:  brk                                     ; 63DB 00                       .
 L63DC:  brk                                     ; 63DC 00                       .
-L63DD:  jmp     L63E0                           ; 63DD 4C E0 63                 L.c
 
-; ----------------------------------------------------------------------------
-L63E0:  lda     L46EF                           ; 63E0 AD EF 46                 ..F
+sub_63DD:  
+	prolog
+	lda     L46EF                           ; 63E0 AD EF 46                 ..F
 	sta     L63DB                           ; 63E3 8D DB 63                 ..c
 	lda     L63DB                           ; 63E6 AD DB 63                 ..c
 	asl     a                               ; 63E9 0A                       .
@@ -9573,7 +9576,7 @@ L8DF8:  inc     L8CF9                           ; 8DF8 EE F9 8C                 
 ; ----------------------------------------------------------------------------
 L8DFE:  ldy     #$00                            ; 8DFE A0 00                    ..
 	sty     L4656                           ; 8E00 8C 56 46                 .VF
-	jsr     L63DD                           ; 8E03 20 DD 63                  .c
+	jsr     sub_63DD
 L8E06:  lda     L4657                           ; 8E06 AD 57 46                 .WF
 	eor     #$01                            ; 8E09 49 01                    I.
 	beq     L8E10                           ; 8E0B F0 03                    ..
@@ -9678,7 +9681,7 @@ L8E80:  jsr     sub_44D5                           ; 8E80 20 D5 44              
 	sta     $AD                             ; 8EC4 85 AD                    ..
 	lda     ($AC),y                         ; 8EC6 B1 AC                    ..
 	sta     ($AE),y                         ; 8EC8 91 AE                    ..
-	jsr     L63DD                           ; 8ECA 20 DD 63                  .c
+	jsr     sub_63DD
 	jsr     L62D1                           ; 8ECD 20 D1 62                  .b
 	clc                                     ; 8ED0 18                       .
 	lda     L8E7B                           ; 8ED1 AD 7B 8E                 .{.
@@ -9771,7 +9774,7 @@ L8F58:  jsr     sub_44D5                           ; 8F58 20 D5 44              
 	ldx     #$46                            ; 8F6C A2 46                    .F
 	lda     #$EF                            ; 8F6E A9 EF                    ..
 	jsr     sub_461F
-	jsr     L63DD                           ; 8F73 20 DD 63                  .c
+	jsr     sub_63DD
 	jsr     L62D1                           ; 8F76 20 D1 62                  .b
 	rts                                     ; 8F79 60                       `
 
@@ -13034,7 +13037,7 @@ LA90D:  clc                                     ; A90D 18                       
 	jmp     LA903                           ; A933 4C 03 A9                 L..
 
 ; ----------------------------------------------------------------------------
-LA936:  jsr     L4749                           ; A936 20 49 47                  IG
+LA936:  jsr     sub_4749
 	lda     $A0                             ; A939 A5 A0                    ..
 	beq     LA940                           ; A93B F0 03                    ..
 	jmp     LA943                           ; A93D 4C 43 A9                 LC.
@@ -13361,15 +13364,10 @@ LAB60:  dec     $1E,x                           ; AB60 D6 1E                    
 LAB68:  brk                                     ; AB68 00                       .
 LAB69:  brk                                     ; AB69 00                       .
 
-LAB6A:  prolog
-	lda     LAA84+1                         ; AB6D AD 85 AA                 ...
-LAB70:  sta     LAB58+1                         ; AB70 8D 59 AB                 .Y.
-	lda     LAA84                           ; AB73 AD 84 AA                 ...
-	sta     LAB58                           ; AB76 8D 58 AB                 .X.
-	lda     L48C1+1                         ; AB79 AD C2 48                 ..H
-	sta     LAB5B                           ; AB7C 8D 5B AB                 .[.
-	lda     L48C1                           ; AB7F AD C1 48                 ..H
-	sta     LAB5A                           ; AB82 8D 5A AB                 .Z.
+sub_AB6A:  
+	prolog
+	rdmv	LAB58, LAA84
+	rdmv	LAB5A, L48C1
 	ldy     #$00                            ; AB85 A0 00                    ..
 	sty     LAB69                           ; AB87 8C 69 AB                 .i.
 	iny                                     ; AB8A C8                       .
@@ -13732,11 +13730,8 @@ sub_ADEA:
 	sta     $02E6                           ; AE2E 8D E6 02                 ...
 	lda     #<L4327
 	sta     $02E5                           ; AE33 8D E5 02                 ...
-	rdmv	L474A, LAB6A+1
-	lda     L8D03                           ; AE42 AD 03 8D                 ...
-	sta     L5D66                           ; AE45 8D 66 5D                 .f]
-	lda     L8D02                           ; AE48 AD 02 8D                 ...
-	sta     L5D65                           ; AE4B 8D 65 5D                 .e]
+	rdmv	sub_4749+1, sub_AB6A+1
+	rdmv	L5D65, L8D02
 	jsr     LAD85                           ; AE4E 20 85 AD                  ..
 	jsr     L6203                           ; AE51 20 03 62                  .b
 	jsr     L5D67                           ; AE54 20 67 5D                  g]
@@ -13885,7 +13880,7 @@ LAF63:	lda     L4652                           ; AF63 AD 52 46                 .
 LAF8B:  jmp     LAF94                           ; AF8B 4C 94 AF                 L..
 
 ; ----------------------------------------------------------------------------
-LAF8E:  jsr     LAB6A                           ; AF8E 20 6A AB                  j.
+LAF8E:  jsr     sub_AB6A
 	jmp     LAF63                           ; AF91 4C 63 AF                 Lc.
 
 ; ----------------------------------------------------------------------------
@@ -14010,7 +14005,7 @@ LB07D:  jsr     L54FF                           ; B07D 20 FF 54                 
 	lda     LAF36                           ; B085 AD 36 AF                 .6.
 	eor     #$01                            ; B088 49 01                    I.
 	lbne	LB092
-	jsr     LAB6A                           ; B08F 20 6A AB                  j.
+	jsr     sub_AB6A
 LB092:  jsr     L9DCB                           ; B092 20 CB 9D                  ..
 	lda     $A0                             ; B095 A5 A0                    ..
 	eor     #$01                            ; B097 49 01                    I.
