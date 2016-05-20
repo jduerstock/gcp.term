@@ -184,11 +184,12 @@ LEF40           := $EF40
 	.segment "HDR00"
 
 	.word	$FFFF
-	.addr	$4327
+	.addr	L4327
 	.addr	$B0BF
 
 	.segment "SEG00"
 
+L4327:
 	.byte	$60
 	.byte	" (c)1983 Action Computer Services"
 
@@ -12882,7 +12883,8 @@ LA7F3:
 	rts                                     ; A81E 60                       `
 
 ; ----------------------------------------------------------------------------
-LA81F:	sta     $B118,x                         ; A81F 9D 18 B1                 ...
+sub_A81F:	
+	sta     $B118,x                         ; A81F 9D 18 B1                 ...
 	rts                                     ; A822 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -13283,7 +13285,7 @@ LAA86:	.addr	L6AD5
 	.addr	LA895
 	.addr	LA842
 	.addr	LA96F
-	.addr	LA81F
+	.addr	sub_A81F
 	.addr	LA823
 	.addr	LA82B
 
@@ -13726,9 +13728,9 @@ sub_ADEA:
 	lda     $AC                             ; AE27 A5 AC                    ..
 	dey                                     ; AE29 88                       .
 	sta     ($AE),y                         ; AE2A 91 AE                    ..
-	lda     #$43                            ; AE2C A9 43                    .C
+	lda     #>L4327
 	sta     $02E6                           ; AE2E 8D E6 02                 ...
-	lda     #$27                            ; AE31 A9 27                    .'
+	lda     #<L4327
 	sta     $02E5                           ; AE33 8D E5 02                 ...
 	lda     LAB6A+2                         ; AE36 AD 6C AB                 .l.
 	sta     L474A+1                         ; AE39 8D 4B 47                 .KG
