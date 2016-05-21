@@ -6278,9 +6278,10 @@ L72B1:  prolog
 	ldy     #$A6                            ; 734C A0 A6                    ..
 	ldxai	$72A2
 	jsr	sub_4CF5
-	.byte	$68,$85
-	ldx     $8568                           ; 7357 AE 68 85                 .h.
-	.byte   $AF                             ; 735A AF                       .
+	pla	
+	sta	$AE
+	pla
+	sta	$AF
 	lda     $A0                             ; 735B A5 A0                    ..
 	ldy     #$00                            ; 735D A0 00                    ..
 	sta     ($AE),y                         ; 735F 91 AE                    ..
