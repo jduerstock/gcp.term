@@ -1531,7 +1531,7 @@ sub_4AE6:
 	rts                                     ; 4B06 60                       `
 
 ; ----------------------------------------------------------------------------
-sub_4B07:  
+modem_status:  
 	prolog
 	lda     #$02                            ; 4B0A A9 02                    ..
 	jsr     sub_4AE6
@@ -2076,7 +2076,7 @@ L4FC3:  .byte   $20                             ; 4FC3 20
 
 sub_4FC5:  
 	prolog
-	jsr     sub_4B07
+	jsr     modem_status
 	ldi	L4FBD, $00
 	lda     $A0                             ; 4FD0 A5 A0                    ..
 	sta     L4FBC                           ; 4FD2 8D BC 4F                 ..O
@@ -2136,9 +2136,8 @@ L504D:  sta     L4FC2                           ; 504D 8D C2 4F                 
 	ldy     #$01                            ; 5056 A0 01                    ..
 	sty     L464F                           ; 5058 8C 4F 46                 .OF
 	sty     L4FBF                           ; 505B 8C BF 4F                 ..O
-	jsr     sub_4B07
-	lda     #$00                            ; 5061 A9 00                    ..
-	sta     L4FBD                           ; 5063 8D BD 4F                 ..O
+	jsr     modem_status
+	ldi	L4FBD, $00
 	lda     $A0                             ; 5066 A5 A0                    ..
 	sta     L4FBC                           ; 5068 8D BC 4F                 ..O
 	lda     L4FBC                           ; 506B AD BC 4F                 ..O
@@ -2171,7 +2170,7 @@ L50A4:	add16m8 off_AE, L4FC2, L4FBF
 	sta     ($AE),y                         ; 50B9 91 AE                    ..
 	add8m	L4FC1, L4FC1, L4FBB
 	inc     L4FBF                           ; 50C5 EE BF 4F                 ..O
-	jsr     sub_4B07
+	jsr     modem_status
 	lda     #$00                            ; 50CB A9 00                    ..
 	sta     L4FBD                           ; 50CD 8D BD 4F                 ..O
 	lda     $A0                             ; 50D0 A5 A0                    ..
@@ -2241,7 +2240,7 @@ L514C:  lda     L4FC0                           ; 514C AD C0 4F                 
 	rts                                     ; 5160 60                       `
 
 ; ----------------------------------------------------------------------------
-L5161:  jsr     sub_4B07
+L5161:  jsr     modem_status
 	lda     #$00                            ; 5164 A9 00                    ..
 	sta     L4FBD                           ; 5166 8D BD 4F                 ..O
 	lda     $A0                             ; 5169 A5 A0                    ..
@@ -3618,7 +3617,7 @@ L5D1F:  ldy     #$00                            ; 5D1F A0 00                    
 	sty     $022F                           ; 5D21 8C 2F 02                 ./.
 	lda     #$03                            ; 5D24 A9 03                    ..
 	jsr     L4F6D                           ; 5D26 20 6D 4F                  mO
-L5D29:  jsr     sub_4B07
+L5D29:  jsr     modem_status
 	lda     $A0                             ; 5D2C A5 A0                    ..
 	lbeq	L5D40
 L5D33:  lda     #$02                            ; 5D33 A9 02                    ..
