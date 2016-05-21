@@ -5732,21 +5732,12 @@ L6E5B:  ror     $3E66                           ; 6E5B 6E 66 3E                 
 L6E5F:  brk                                     ; 6E5F 00                       .
 L6E60:  .byte   $66                             ; 6E60 66                       f
 
-L6E61:  prolog
-	jsr     sub_44D5
-	.addr	L6E40
-	.byte	$05
-	.byte	$AD
-	rti                                     ; 6E6B 40                       @
-
 ; ----------------------------------------------------------------------------
-	;ror     LB020                           ; 6E6C 6E 20 B0                 n .
-	.byte	$6E,$20,$B0
-	adc     $A5                             ; 6E6F 65 A5                    e.
-	lda     ($8D,x)                         ; 6E71 A1 8D                    ..
-	.byte   $47                             ; 6E73 47                       G
-	ror     LA0A5                           ; 6E74 6E A5 A0                 n..
-	sta     L6E46                           ; 6E77 8D 46 6E                 .Fn
+L6E61:  
+	stack_prolog L6E40, $05
+	lda	L6E40
+	jsr	L65B0
+	rdmv	L6E46, $A0
 	lda     L6E47                           ; 6E7A AD 47 6E                 .Gn
 	sta     $A3                             ; 6E7D 85 A3                    ..
 	lda     #$00                            ; 6E7F A9 00                    ..
