@@ -12967,10 +12967,8 @@ LAB08:	brk                                     ; AB08 00                       .
 	brk                                     ; AB09 00                       .
 	brk                                     ; AB0A 00                       .
 
-LAB0B:  prolog
-	jsr     sub_44D5                           ; AB0E 20 D5 44                  .D
-	.addr	LAB08
-	.byte	$02
+LAB0B:  
+	stack_prolog LAB08, $02
 	.byte   $43                             ; AB14 43                       C
 	.byte   $4B                             ; AB15 4B                       K
 	.byte   $44                             ; AB16 44                       D
@@ -13130,10 +13128,7 @@ LABEE:  lda     LAB69                           ; ABEE AD 69 AB                 
 	dey                                     ; AC29 88                       .
 	lda     ($AE),y                         ; AC2A B1 AE                    ..
 	sta     LAB0B+1                         ; AC2C 8D 0C AB                 ...
-	lda     LAB5C                           ; AC2F AD 5C AB                 .\.
-	sta     $AE                             ; AC32 85 AE                    ..
-	lda     LAB5D                           ; AC34 AD 5D AB                 .].
-	sta     $AF                             ; AC37 85 AF                    ..
+	dmv	off_AE, LAB5C
 	iny                                     ; AC39 C8                       .
 	lda     ($AE),y                         ; AC3A B1 AE                    ..
 	sta     $A1                             ; AC3C 85 A1                    ..
@@ -13150,11 +13145,8 @@ LABEE:  lda     LAB69                           ; ABEE AD 69 AB                 
 	sty     LAB69                           ; AC52 8C 69 AB                 .i.
 LAC55:  lda     #$07                            ; AC55 A9 07                    ..
 	cmp     LAB69                           ; AC57 CD 69 AB                 .i.
-	bcs     LAC5F                           ; AC5A B0 03                    ..
-	jmp     LAC70                           ; AC5C 4C 70 AC                 Lp.
-
-; ----------------------------------------------------------------------------
-LAC5F:  ldx     LAB69                           ; AC5F AE 69 AB                 .i.
+	lbcc	LAC70
+	ldx     LAB69                           ; AC5F AE 69 AB                 .i.
 	lda     LAB60,x                         ; AC62 BD 60 AB                 .`.
 	ldx     LAB69                           ; AC65 AE 69 AB                 .i.
 	sta     $A0,x                           ; AC68 95 A0                    ..
