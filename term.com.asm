@@ -4268,17 +4268,7 @@ L6201:  brk                                     ; 6201 00                       
 L6202:  brk                                     ; 6202 00                       .
 
 L6203:  prolog
-	lda     #$01                            ; 6206 A9 01                    ..
-	asl     a                               ; 6208 0A                       .
-	php                                     ; 6209 08                       .
-	clc                                     ; 620A 18                       .
-	adc     L466F                           ; 620B 6D 6F 46                 moF
-	sta     $AE                             ; 620E 85 AE                    ..
-	lda     #$00                            ; 6210 A9 00                    ..
-	rol     a                               ; 6212 2A                       *
-	plp                                     ; 6213 28                       (
-	adc     L466F+1
-	sta     $AF                             ; 6217 85 AF                    ..
+	shladdi	off_AE, L466F, $0001
 	ldy     #$01                            ; 6219 A0 01                    ..
 	lda     ($AE),y                         ; 621B B1 AE                    ..
 	sta     $A1                             ; 621D 85 A1                    ..
