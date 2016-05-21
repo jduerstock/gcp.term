@@ -1896,48 +1896,25 @@ L4DCC:  dmv	$AE, L4CF2
 	ldy     #$00                            ; 4DD6 A0 00                    ..
 	lda     ($AE),y                         ; 4DD8 B1 AE                    ..
 	sta     $A0                             ; 4DDA 85 A0                    ..
-	clc                                     ; 4DDC 18                       .
-	lda     L4CF2                           ; 4DDD AD F2 4C                 ..L
-	adc     #$02                            ; 4DE0 69 02                    i.
-	sta     $AE                             ; 4DE2 85 AE                    ..
-	lda     L4CF3                           ; 4DE4 AD F3 4C                 ..L
-	adc     #$00                            ; 4DE7 69 00                    i.
-	sta     $AF                             ; 4DE9 85 AF                    ..
+	add16i	off_AE, L4CF2, $0002
 	lda     ($AE),y                         ; 4DEB B1 AE                    ..
 	sta     $A1                             ; 4DED 85 A1                    ..
-	ldx     $A1                             ; 4DEF A6 A1                    ..
-	lda     $A0                             ; 4DF1 A5 A0                    ..
+	ldxa	$A0
 	jsr     L496E                           ; 4DF3 20 6E 49                  nI
 	lda     $A0                             ; 4DF6 A5 A0                    ..
-	bne     L4DFD                           ; 4DF8 D0 03                    ..
-	jmp     L4E02                           ; 4DFA 4C 02 4E                 L.N
-
-; ----------------------------------------------------------------------------
-L4DFD:  ldi	$A0, $00
+	lbeq	L4E02
+	ldi	$A0, $00
 	rts                                     ; 4E01 60                       `
 
 ; ----------------------------------------------------------------------------
-L4E02:  clc                                     ; 4E02 18                       .
-	lda     L4CF2                           ; 4E03 AD F2 4C                 ..L
-	adc     #$01                            ; 4E06 69 01                    i.
-	sta     $AE                             ; 4E08 85 AE                    ..
-	lda     L4CF3                           ; 4E0A AD F3 4C                 ..L
-	adc     #$00                            ; 4E0D 69 00                    i.
-	sta     $AF                             ; 4E0F 85 AF                    ..
+L4E02:	add16i	off_AE, L4CF2, $0001
 	ldy     #$00                            ; 4E11 A0 00                    ..
 	lda     ($AE),y                         ; 4E13 B1 AE                    ..
 	sta     $A0                             ; 4E15 85 A0                    ..
-	clc                                     ; 4E17 18                       .
-	lda     L4CF2                           ; 4E18 AD F2 4C                 ..L
-	adc     #$03                            ; 4E1B 69 03                    i.
-	sta     $AE                             ; 4E1D 85 AE                    ..
-	lda     L4CF3                           ; 4E1F AD F3 4C                 ..L
-	adc     #$00                            ; 4E22 69 00                    i.
-	sta     $AF                             ; 4E24 85 AF                    ..
+	add16i	off_AE, L4CF2, $0003
 	lda     ($AE),y                         ; 4E26 B1 AE                    ..
 	sta     $A1                             ; 4E28 85 A1                    ..
-	ldx     $A1                             ; 4E2A A6 A1                    ..
-	lda     $A0                             ; 4E2C A5 A0                    ..
+	ldxa	$A0
 	jsr     L496E                           ; 4E2E 20 6E 49                  nI
 	lda     $A0                             ; 4E31 A5 A0                    ..
 	lbeq	L4E3D
