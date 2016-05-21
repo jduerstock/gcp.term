@@ -4711,11 +4711,11 @@ L6580:  clc                                     ; 6580 18                       
 	rts                                     ; 65AE 60                       `
 
 ; ----------------------------------------------------------------------------
-L65AF:  brk                                     ; 65AF 00                       .
-L65B0:  jmp     L65B3                           ; 65B0 4C B3 65                 L.e
+L65AF:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-L65B3:  sta     L65AF                           ; 65B3 8D AF 65                 ..e
+L65B0:  prolog
+	sta     L65AF                           ; 65B3 8D AF 65                 ..e
 	lda     L65AF                           ; 65B6 AD AF 65                 ..e
 	asl     a                               ; 65B9 0A                       .
 	php                                     ; 65BA 08                       .
@@ -4736,7 +4736,7 @@ L65B3:  sta     L65AF                           ; 65B3 8D AF 65                 
 	rts                                     ; 65D5 60                       `
 
 ; ----------------------------------------------------------------------------
-	brk                                     ; 65D6 00                       .
+L65D6:	brk                                     ; 65D6 00                       .
 L65D7:  brk                                     ; 65D7 00                       .
 L65D8:  brk                                     ; 65D8 00                       .
 L65D9:  brk                                     ; 65D9 00                       .
@@ -4749,11 +4749,9 @@ L65DF:  brk                                     ; 65DF 00                       
 L65E0:  brk                                     ; 65E0 00                       .
 L65E1:  brk                                     ; 65E1 00                       .
 
-L65E2:  prolog
-	jsr     sub_44D5                        ; 65E5 20 D5 44                  .D
-	dec     $65,x                           ; 65E8 D6 65                    .e
-	ora     $AD                             ; 65EA 05 AD                    ..
-	dec     $65,x                           ; 65EC D6 65                    .e
+L65E2:  
+	stack_prolog L65D6, $05
+	lda	L65D6
 	jsr     L65B0                           ; 65EE 20 B0 65                  .e
 	lda     $A1                             ; 65F1 A5 A1                    ..
 	sta     L65E1                           ; 65F3 8D E1 65                 ..e
@@ -6088,22 +6086,13 @@ L70E2:
 	ldy     L70D7                           ; 7119 AC D7 70                 ..p
 	ldxa	L70DD
 	jsr     sub_461F
-	clc                                     ; 7125 18                       .
-	lda     L70D9                           ; 7126 AD D9 70                 ..p
-	adc     #$04                            ; 7129 69 04                    i.
-	sta     $AE                             ; 712B 85 AE                    ..
-	lda     L70DA                           ; 712D AD DA 70                 ..p
-	adc     #$00                            ; 7130 69 00                    i.
-	sta     $AF                             ; 7132 85 AF                    ..
+	add16i	off_AE, L70D9, $0004
 	ldy     #$00                            ; 7134 A0 00                    ..
 	lda     ($AE),y                         ; 7136 B1 AE                    ..
 	sta     L70DF                           ; 7138 8D DF 70                 ..p
 	lda     L70DF                           ; 713B AD DF 70                 ..p
 	jsr     L65B0                           ; 713E 20 B0 65                  .e
-	lda     $A1                             ; 7141 A5 A1                    ..
-	sta     L70DC                           ; 7143 8D DC 70                 ..p
-	lda     $A0                             ; 7146 A5 A0                    ..
-	sta     L70DB                           ; 7148 8D DB 70                 ..p
+	rdmv	L70DB, $A0
 	lda     L70DC                           ; 714B AD DC 70                 ..p
 	sta     $A3                             ; 714E 85 A3                    ..
 	lda     #$00                            ; 7150 A9 00                    ..
@@ -6111,8 +6100,7 @@ L70E2:
 	lda     #$02                            ; 7154 A9 02                    ..
 	sta     $A4                             ; 7156 85 A4                    ..
 	ldy     L70DB                           ; 7158 AC DB 70                 ..p
-	ldx     #$70                            ; 715B A2 70                    .p
-	lda     #$E0                            ; 715D A9 E0                    ..
+	ldxai	$70E0
 	jsr     sub_461F
 	clc                                     ; 7162 18                       .
 	lda     L70DD                           ; 7163 AD DD 70                 ..p
@@ -6161,23 +6149,20 @@ L71A3:  brk                                     ; 71A3 00                       
 	brk                                     ; 71AB 00                       .
 L71AC:  brk                                     ; 71AC 00                       .
 L71AD:  brk                                     ; 71AD 00                       .
-	brk                                     ; 71AE 00                       .
+L71AE:	brk                                     ; 71AE 00                       .
 	brk                                     ; 71AF 00                       .
 L71B0:  brk                                     ; 71B0 00                       .
 L71B1:  brk                                     ; 71B1 00                       .
 L71B2:  brk                                     ; 71B2 00                       .
 L71B3:  brk                                     ; 71B3 00                       .
 L71B4:  brk                                     ; 71B4 00                       .
-L71B5:  jmp     L71B8                           ; 71B5 4C B8 71                 L.q
 
 ; ----------------------------------------------------------------------------
-L71B8:  sta     L71A1                           ; 71B8 8D A1 71                 ..q
+L71B5:  prolog
+	sta     L71A1                           ; 71B8 8D A1 71                 ..q
 	lda     L71A1                           ; 71BB AD A1 71                 ..q
 	jsr     sub_7035
-	lda     $A1                             ; 71C1 A5 A1                    ..
-	sta     L71A3                           ; 71C3 8D A3 71                 ..q
-	lda     $A0                             ; 71C6 A5 A0                    ..
-	sta     L71A2                           ; 71C8 8D A2 71                 ..q
+	rdmv	L71A2, $A0
 	lda     L71A3                           ; 71CB AD A3 71                 ..q
 	sta     $A3                             ; 71CE 85 A3                    ..
 	lda     #$00                            ; 71D0 A9 00                    ..
@@ -6185,15 +6170,11 @@ L71B8:  sta     L71A1                           ; 71B8 8D A1 71                 
 	lda     #$07                            ; 71D4 A9 07                    ..
 	sta     $A4                             ; 71D6 85 A4                    ..
 	ldy     L71A2                           ; 71D8 AC A2 71                 ..q
-	ldx     #$71                            ; 71DB A2 71                    .q
-	lda     #$AE                            ; 71DD A9 AE                    ..
+	ldxai	L71AE
 	jsr     sub_461F
 	lda     L71B2                           ; 71E2 AD B2 71                 ..q
 	jsr     L65B0                           ; 71E5 20 B0 65                  .e
-	lda     $A1                             ; 71E8 A5 A1                    ..
-	sta     L71AD                           ; 71EA 8D AD 71                 ..q
-	lda     $A0                             ; 71ED A5 A0                    ..
-	sta     L71AC                           ; 71EF 8D AC 71                 ..q
+	rdmv	L71AC, $A0
 	sec                                     ; 71F2 38                       8
 	lda     #$00                            ; 71F3 A9 00                    ..
 	sbc     L71B0                           ; 71F5 ED B0 71                 ..q
