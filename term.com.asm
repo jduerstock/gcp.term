@@ -1934,10 +1934,10 @@ L4E46:  .byte   $20                             ; 4E46 20
 L4E47:  .byte   $52                             ; 4E47 52                       R
 L4E48:  .byte   $45                             ; 4E48 45                       E
 L4E49:  .byte   $54                             ; 4E49 54                       T
-L4E4A:  jmp     L4E4D                           ; 4E4A 4C 4D 4E                 LMN
 
 ; ----------------------------------------------------------------------------
-L4E4D:  stx     L4E43                           ; 4E4D 8E 43 4E                 .CN
+L4E4A:  prolog
+	stx     L4E43                           ; 4E4D 8E 43 4E                 .CN
 	sta     L4E42                           ; 4E50 8D 42 4E                 .BN
 	lda     L4E43                           ; 4E53 AD 43 4E                 .CN
 	sta     $A3                             ; 4E56 85 A3                    ..
