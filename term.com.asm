@@ -5201,7 +5201,8 @@ L6993:  brk                                     ; 6993 00                       
 L6994:  brk                                     ; 6994 00                       .
 
 ; ----------------------------------------------------------------------------
-L6995:  prolog
+sub_6995:  
+	prolog
 	sta     L6982                           ; 6998 8D 82 69                 ..i
 	lda     L6982                           ; 699B AD 82 69                 ..i
 	jsr     L65B0                           ; 699E 20 B0 65                  .e
@@ -5362,24 +5363,16 @@ L6AD2:  .byte   $44                             ; 6AD2 44                       
 L6AD3:  .byte   $31                             ; 6AD3 31                       1
 L6AD4:  .byte   $3A                             ; 6AD4 3A                       :
 
-L6AD5:	prolog
-	jsr     sub_44D5                        ; 6AD8 20 D5 44                  .D
-	.addr	L6ABE
-	.byte	$05
+L6AD5:	
+	stack_prolog L6ABE, $05
 	lda     L6ABE                           ; 6ADE AD BE 6A                 ..j
 	jsr     L65B0                           ; 6AE1 20 B0 65                  .e
-	lda     $A1                             ; 6AE4 A5 A1                    ..
-	sta     L6AC5                           ; 6AE6 8D C5 6A                 ..j
-	lda     $A0                             ; 6AE9 A5 A0                    ..
-	sta     L6AC4                           ; 6AEB 8D C4 6A                 ..j
+	rdmv	L6AC4, $A0
 	lda     L6AC4                           ; 6AEE AD C4 6A                 ..j
 	ora     L6AC5                           ; 6AF1 0D C5 6A                 ..j
-	bne     L6AF9                           ; 6AF4 D0 03                    ..
-	jmp     L6AFF                           ; 6AF6 4C FF 6A                 L.j
-
-; ----------------------------------------------------------------------------
-L6AF9:  lda     L6ABE                           ; 6AF9 AD BE 6A                 ..j
-	jsr     L6995                           ; 6AFC 20 95 69                  .i
+	lbeq	L6AFF
+	lda     L6ABE                           ; 6AF9 AD BE 6A                 ..j
+	jsr     sub_6995
 L6AFF:  ldx     #$00                            ; 6AFF A2 00                    ..
 	lda     #$0B                            ; 6B01 A9 0B                    ..
 	jsr     sub_606E
@@ -5739,8 +5732,7 @@ L6E61:
 	lda     #$06                            ; 6E83 A9 06                    ..
 	sta     $A4                             ; 6E85 85 A4                    ..
 	ldy     L6E46                           ; 6E87 AC 46 6E                 .Fn
-	ldx     #$6E                            ; 6E8A A2 6E                    .n
-	lda     #$5B                            ; 6E8C A9 5B                    .[
+	ldxai	$6E5B
 	jsr     sub_461F
 	sec                                     ; 6E91 38                       8
 	lda     L6E44                           ; 6E92 AD 44 6E                 .Dn
@@ -12906,7 +12898,7 @@ LAA55:  lda     #$00                            ; AA55 A9 00                    
 	.byte   $4C                             ; AA83 4C                       L
 LAA84:  .addr   LAA86
 LAA86:	.addr	L6AD5
-	.addr	L6995
+	.addr	sub_6995
 	.addr	sub_67D8
 	.addr	L6696
 	.addr	L65E2
