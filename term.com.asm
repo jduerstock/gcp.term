@@ -12751,13 +12751,7 @@ LA96E:  brk                                     ; A96E 00                       
 LA96F:	prolog
 	stx     LA96C                           ; A972 8E 6C A9                 .l.
 	sta     LA96B                           ; A975 8D 6B A9                 .k.
-	clc                                     ; A978 18                       .
-	lda     LA96D                           ; A979 AD 6D A9                 .m.
-	adc     LA96B                           ; A97C 6D 6B A9                 mk.
-	sta     $AE                             ; A97F 85 AE                    ..
-	lda     LA96E                           ; A981 AD 6E A9                 .n.
-	adc     #$00                            ; A984 69 00                    i.
-	sta     $AF                             ; A986 85 AF                    ..
+	add16m8	off_AE, LA96D, LA96B
 	lda     LA96C                           ; A988 AD 6C A9                 .l.
 	ldy     #$00                            ; A98B A0 00                    ..
 	sta     ($AE),y                         ; A98D 91 AE                    ..
