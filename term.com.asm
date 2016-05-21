@@ -6047,13 +6047,7 @@ L7096:
 	lda	L708F
 	jsr	sub_7035
 	rdmv	L7092, $A0
-	clc                                     ; 70AF 18                       .
-	lda     L7092                           ; 70B0 AD 92 70                 ..p
-	adc     #$1E                            ; 70B3 69 1E                    i.
-	sta     $A0                             ; 70B5 85 A0                    ..
-	lda     L7093                           ; 70B7 AD 93 70                 ..p
-	adc     #$00                            ; 70BA 69 00                    i.
-	sta     $A1                             ; 70BC 85 A1                    ..
+	add16i	$A0, L7092, $001E
 	lda     L7091                           ; 70BE AD 91 70                 ..p
 	sta     $A3                             ; 70C1 85 A3                    ..
 L70C3:  lda     #$00                            ; 70C3 A9 00                    ..
