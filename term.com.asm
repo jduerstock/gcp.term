@@ -5842,10 +5842,7 @@ L6E61:  prolog
 	rdmv	L6E4D, L6E53
 	lda     L6E41                           ; 6EDB AD 41 6E                 .An
 	lbne	L6EEF
-	lda     L6E5A                           ; 6EE3 AD 5A 6E                 .Zn
-	sta     L6E4D+1                         ; 6EE6 8D 4E 6E                 .Nn
-	lda     L6E59                           ; 6EE9 AD 59 6E                 .Yn
-	sta     L6E4D                           ; 6EEC 8D 4D 6E                 .Mn
+	rdmv	L6E4D, L6E59
 L6EEF:  lda     L6E43                           ; 6EEF AD 43 6E                 .Cn
 	sta     L6E48                           ; 6EF2 8D 48 6E                 .Hn
 	lda     L6E45                           ; 6EF5 AD 45 6E                 .En
@@ -5987,14 +5984,8 @@ L6FFE:  rts                                     ; 6FFE 60                       
 ; ----------------------------------------------------------------------------
 L6FFF:  lda     L4648                           ; 6FFF AD 48 46                 .HF
 	jsr     L65B0                           ; 7002 20 B0 65                  .e
-	lda     $A1                             ; 7005 A5 A1                    ..
-	sta     L6FEA                           ; 7007 8D EA 6F                 ..o
-	lda     $A0                             ; 700A A5 A0                    ..
-	sta     L6FE9                           ; 700C 8D E9 6F                 ..o
-	lda     L6FE9                           ; 700F AD E9 6F                 ..o
-	sta     $AE                             ; 7012 85 AE                    ..
-	lda     L6FEA                           ; 7014 AD EA 6F                 ..o
-	sta     $AF                             ; 7017 85 AF                    ..
+	rdmv	L6FE9, $A0
+	dmv	off_AE, L6FE9
 	ldy     #$00                            ; 7019 A0 00                    ..
 	lda     ($AE),y                         ; 701B B1 AE                    ..
 	sta     $A3                             ; 701D 85 A3                    ..
