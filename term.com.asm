@@ -16,6 +16,8 @@ off_AC		:= $00AC
 off_AE		:= $00AE
 VDSLST		:= $0200
 CDTMF3		:= $022A
+MEMTOP		:= $02E5
+MEMLO		:= $02E7
 DVSTAT		:= $02EA
 CRSINH		:= $02F0
 CHBAS		:= $02F4
@@ -4142,10 +4144,10 @@ L60ED:  lda     L6067                           ; 60ED AD 67 60                 
 	txa                                     ; 6142 8A                       .
 	sta     $AF                             ; 6143 85 AF                    ..
 	clc                                     ; 6145 18                       .
-	lda     $02E7                           ; 6146 AD E7 02                 ...
+	lda     MEMLO
 	adc     $AE                             ; 6149 65 AE                    e.
 	sta     L606C                           ; 614B 8D 6C 60                 .l`
-	lda     $02E8                           ; 614E AD E8 02                 ...
+	lda     MEMLO+1
 	adc     $AF                             ; 6151 65 AF                    e.
 	sta     L606D                           ; 6153 8D 6D 60                 .m`
 	lda     L606D                           ; 6156 AD 6D 60                 .m`
@@ -4213,10 +4215,10 @@ L619A:  prolog
 	sta     L6197                           ; 61C2 8D 97 61                 ..a
 	sec                                     ; 61C5 38                       8
 	lda     L6192                           ; 61C6 AD 92 61                 ..a
-	sbc     $02E7                           ; 61C9 ED E7 02                 ...
+	sbc     MEMLO
 	sta     $AE                             ; 61CC 85 AE                    ..
 	lda     L6193                           ; 61CE AD 93 61                 ..a
-	sbc     $02E8                           ; 61D1 ED E8 02                 ...
+	sbc     MEMLO+1
 	sta     $AF                             ; 61D4 85 AF                    ..
 	lda     #$02                            ; 61D6 A9 02                    ..
 	sta     $84                             ; 61D8 85 84                    ..
@@ -6198,7 +6200,7 @@ L729F:  .byte   $10                             ; 729F 10                       
 L72A0:  .byte   $D0                             ; 72A0 D0                       .
 L72A1:  .byte   $E2                             ; 72A1 E2                       .
 	lda     $43                             ; 72A2 A5 43                    .C
-	sta     $02E7                           ; 72A4 8D E7 02                 ...
+	.byte	$8D,$E7,$02
 	lda     $44                             ; 72A7 A5 44                    .D
 	.byte   $8D                             ; 72A9 8D                       .
 L72AA:  inx                                     ; 72AA E8                       .
@@ -12816,21 +12818,20 @@ LA9F3:  .byte   $EB                             ; A9F3 EB                       
 	lsr     L6046                           ; A9F6 4E 46 60                 NF`
 LA9F9:  brk                                     ; A9F9 00                       .
 LA9FA:  brk                                     ; A9FA 00                       .
-LA9FB:  jmp     LA9FE                           ; A9FB 4C FE A9                 L..
 
 ; ----------------------------------------------------------------------------
-LA9FE:  sec                                     ; A9FE 38                       8
-	lda     $02E5                           ; A9FF AD E5 02                 ...
-	sbc     $02E7                           ; AA02 ED E7 02                 ...
+LA9FB:  prolog
+	sec                                     ; A9FE 38                       8
+	lda     MEMTOP
+	sbc     MEMLO
 	sta     LA9F9                           ; AA05 8D F9 A9                 ...
-	lda     $02E6                           ; AA08 AD E6 02                 ...
-	sbc     $02E8                           ; AA0B ED E8 02                 ...
+	lda     MEMTOP+1
+	sbc     MEMLO+1
 	sta     LA9FA                           ; AA0E 8D FA A9                 ...
 	lda     LA9FA                           ; AA11 AD FA A9                 ...
 	sta     $A3                             ; AA14 85 A3                    ..
 	ldy     LA9F9                           ; AA16 AC F9 A9                 ...
-	ldx     $02E8                           ; AA19 AE E8 02                 ...
-	lda     $02E7                           ; AA1C AD E7 02                 ...
+	ldxa	MEMLO
 	jsr     L619A                           ; AA1F 20 9A 61                  .a
 	jmp     LAA28                           ; AA22 4C 28 AA                 L(.
 
@@ -13375,9 +13376,9 @@ sub_ADEA:
 	dey                                     ; AE29 88                       .
 	sta     ($AE),y                         ; AE2A 91 AE                    ..
 	lda     #>L4327
-	sta     $02E6                           ; AE2E 8D E6 02                 ...
+	sta     MEMTOP+1
 	lda     #<L4327
-	sta     $02E5                           ; AE33 8D E5 02                 ...
+	sta     MEMTOP
 	rdmv	sub_4749+1, sub_AB6A+1
 	rdmv	L5D65, L8D02
 	jsr     LAD85                           ; AE4E 20 85 AD                  ..
