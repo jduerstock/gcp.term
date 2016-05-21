@@ -4510,27 +4510,14 @@ L64BF:  ldx     L63D6                           ; 64BF AE D6 63                 
 	jmp     L6580                           ; 64D2 4C 80 65                 L.e
 
 ; ----------------------------------------------------------------------------
-L64D5:  lda     L63DB                           ; 64D5 AD DB 63                 ..c
-	asl     a                               ; 64D8 0A                       .
-	php                                     ; 64D9 08                       .
-	clc                                     ; 64DA 18                       .
-	adc     L46F5                           ; 64DB 6D F5 46                 m.F
-	sta     $AE                             ; 64DE 85 AE                    ..
-	lda     #$00                            ; 64E0 A9 00                    ..
-	rol     a                               ; 64E2 2A                       *
-	plp                                     ; 64E3 28                       (
-	adc     L46F6                           ; 64E4 6D F6 46                 m.F
-	sta     $AF                             ; 64E7 85 AF                    ..
+L64D5:	shladdm8 off_AE, L46F5, L63DB
 	ldy     #$01                            ; 64E9 A0 01                    ..
 	lda     ($AE),y                         ; 64EB B1 AE                    ..
 	sta     L63DA                           ; 64ED 8D DA 63                 ..c
 	dey                                     ; 64F0 88                       .
 	lda     ($AE),y                         ; 64F1 B1 AE                    ..
 	sta     L63D9                           ; 64F3 8D D9 63                 ..c
-	lda     L63D9                           ; 64F6 AD D9 63                 ..c
-	sta     $AE                             ; 64F9 85 AE                    ..
-	lda     L63DA                           ; 64FB AD DA 63                 ..c
-	sta     $AF                             ; 64FE 85 AF                    ..
+	dmv	off_AE, L63D9
 	lda     ($AE),y                         ; 6500 B1 AE                    ..
 	sta     L63DC                           ; 6502 8D DC 63                 ..c
 	sec                                     ; 6505 38                       8
@@ -4601,17 +4588,7 @@ L65AF:  .byte	$00
 ; ----------------------------------------------------------------------------
 L65B0:  prolog
 	sta     L65AF                           ; 65B3 8D AF 65                 ..e
-	lda     L65AF                           ; 65B6 AD AF 65                 ..e
-	asl     a                               ; 65B9 0A                       .
-	php                                     ; 65BA 08                       .
-	clc                                     ; 65BB 18                       .
-	adc     L46E2                           ; 65BC 6D E2 46                 m.F
-	sta     $AE                             ; 65BF 85 AE                    ..
-	lda     #$00                            ; 65C1 A9 00                    ..
-	rol     a                               ; 65C3 2A                       *
-	plp                                     ; 65C4 28                       (
-	adc     L46E3                           ; 65C5 6D E3 46                 m.F
-	sta     $AF                             ; 65C8 85 AF                    ..
+	shladdm8 off_AE, L46E2, L65AF
 	ldy     #$01                            ; 65CA A0 01                    ..
 	lda     ($AE),y                         ; 65CC B1 AE                    ..
 	sta     $A1                             ; 65CE 85 A1                    ..
@@ -4651,13 +4628,7 @@ L65E2:
 L6606:  rts                                     ; 6606 60                       `
 
 ; ----------------------------------------------------------------------------
-L6607:  clc                                     ; 6607 18                       .
-	lda     L65E0                           ; 6608 AD E0 65                 ..e
-	adc     #$04                            ; 660B 69 04                    i.
-	sta     $AE                             ; 660D 85 AE                    ..
-	lda     L65E1                           ; 660F AD E1 65                 ..e
-	adc     #$00                            ; 6612 69 00                    i.
-	sta     $AF                             ; 6614 85 AF                    ..
+L6607:	add16i	off_AE, L65E0, $0004
 	ldy     #$01                            ; 6616 A0 01                    ..
 	lda     ($AE),y                         ; 6618 B1 AE                    ..
 	sta     L65DF                           ; 661A 8D DF 65                 ..e
@@ -4682,18 +4653,10 @@ L6640:  lda     L664B                           ; 6640 AD 4B 66                 
 	jmp     L668A                           ; 6648 4C 8A 66                 L.f
 
 ; ----------------------------------------------------------------------------
-L664B:  brk                                     ; 664B 00                       .
-L664C:  lda     L65DD                           ; 664C AD DD 65                 ..e
-	asl     a                               ; 664F 0A                       .
-	php                                     ; 6650 08                       .
-	clc                                     ; 6651 18                       .
-	adc     L65DE                           ; 6652 6D DE 65                 m.e
-	sta     $AE                             ; 6655 85 AE                    ..
-	lda     #$00                            ; 6657 A9 00                    ..
-	rol     a                               ; 6659 2A                       *
-	plp                                     ; 665A 28                       (
-	adc     L65DF                           ; 665B 6D DF 65                 m.e
-	sta     $AF                             ; 665E 85 AF                    ..
+L664B:	.byte	$00
+
+; ----------------------------------------------------------------------------
+L664C:	shladdm8 off_AE, L65DE, L65DD
 	clc                                     ; 6660 18                       .
 	ldy     #$00                            ; 6661 A0 00                    ..
 	lda     ($AE),y                         ; 6663 B1 AE                    ..
