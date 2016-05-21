@@ -4275,10 +4275,7 @@ L6203:  prolog
 	dey                                     ; 621F 88                       .
 	lda     ($AE),y                         ; 6220 B1 AE                    ..
 	sta     $A0                             ; 6222 85 A0                    ..
-	lda     L466F                           ; 6224 AD 6F 46                 .oF
-	sta     $AC                             ; 6227 85 AC                    ..
-	lda     L466F+1
-	sta     $AD                             ; 622C 85 AD                    ..
+	dmv	off_AC, L466F
 	iny                                     ; 622E C8                       .
 	lda     ($AC),y                         ; 622F B1 AC                    ..
 	sta     $A3                             ; 6231 85 A3                    ..
