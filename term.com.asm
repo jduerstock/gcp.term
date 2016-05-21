@@ -9338,13 +9338,7 @@ sub_8E7D:
 	lda     ($AE),y                         ; 8EA2 B1 AE                    ..
 	sta     L8E7B                           ; 8EA4 8D 7B 8E                 .{.
 	add16i	off_AE, L8E7B, $0002
-	clc                                     ; 8EB6 18                       .
-	lda     L4678                           ; 8EB7 AD 78 46                 .xF
-	adc     L8E75                           ; 8EBA 6D 75 8E                 mu.
-	sta     $AC                             ; 8EBD 85 AC                    ..
-	lda     L4679                           ; 8EBF AD 79 46                 .yF
-	adc     #$00                            ; 8EC2 69 00                    i.
-	sta     $AD                             ; 8EC4 85 AD                    ..
+	add16m8	off_AC, L4678, L8E75
 	lda     ($AC),y                         ; 8EC6 B1 AC                    ..
 	sta     ($AE),y                         ; 8EC8 91 AE                    ..
 	jsr     sub_63DD
