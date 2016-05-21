@@ -200,6 +200,34 @@ LEF40           := $EF40
 	lda	#<a1
 .endmacro
 
+.macro shladdm8 a1, a2, a3
+	lda     a3
+	asl     a
+	php
+	clc
+	adc     a2
+	sta     a1
+	lda     #$00
+	rol     a
+	plp
+	adc     a2+1
+	sta     a1+1
+.endmacro
+
+.macro shladdi a1, a2, a3
+	lda     #<a3
+	asl     a
+	php
+	clc
+	adc     a2
+	sta     a1
+	lda     #>a3
+	rol     a
+	plp
+	adc     a2+1
+	sta     a1+1
+.endmacro
+
 	.segment "HDR00"
 
 	.word	$FFFF
@@ -1067,12 +1095,8 @@ L47DD:  cmp     $0247,y                         ; 47DD D9 47 02                 
 	pha                                     ; 4805 48                       H
 	ora     ($42,x)                         ; 4806 01 42                    .B
 	asl     $48                             ; 4808 06 48                    .H
-	.byte   $04                             ; 480A 04                       .
-	.byte   $42                             ; 480B 42                       B
-	.byte   $42                             ; 480C 42                       B
-	eor     ($30,x)                         ; 480D 41 30                    A0
-	asl     a                               ; 480F 0A                       .
-	pha                                     ; 4810 48                       H
+L480A:	.byte	$04,"BBA0"
+L480F:	.addr	L480A
 	.byte   $02                             ; 4811 02                       .
 	.byte   $44                             ; 4812 44                       D
 	.byte   $42                             ; 4813 42                       B
@@ -2812,17 +2836,7 @@ sub_55A0:
 L55B3:  rts                                     ; 55B3 60                       `
 
 ; ----------------------------------------------------------------------------
-L55B4:  lda     #$01                            ; 55B4 A9 01                    ..
-	asl     a                               ; 55B6 0A                       .
-	php                                     ; 55B7 08                       .
-	clc                                     ; 55B8 18                       .
-	adc     L466F                           ; 55B9 6D 6F 46                 moF
-	sta     $AE                             ; 55BC 85 AE                    ..
-	lda     #$00                            ; 55BE A9 00                    ..
-	rol     a                               ; 55C0 2A                       *
-	plp                                     ; 55C1 28                       (
-	adc     L466F+1
-	sta     $AF                             ; 55C5 85 AF                    ..
+L55B4:	shladdi	off_AE, L466F, $0001
 	ldy     #$01                            ; 55C7 A0 01                    ..
 	lda     ($AE),y                         ; 55C9 B1 AE                    ..
 	sta     L559B                           ; 55CB 8D 9B 55                 ..U
@@ -4591,11 +4605,8 @@ L64BF:  ldx     L63D6                           ; 64BF AE D6 63                 
 	sta     L63DB                           ; 64C5 8D DB 63                 ..c
 	lda     L63DB                           ; 64C8 AD DB 63                 ..c
 	cmp     #$0A                            ; 64CB C9 0A                    ..
-	bcs     L64D2                           ; 64CD B0 03                    ..
-	jmp     L64D5                           ; 64CF 4C D5 64                 L.d
-
-; ----------------------------------------------------------------------------
-L64D2:  jmp     L6580                           ; 64D2 4C 80 65                 L.e
+	lbcc	L64D5
+	jmp     L6580                           ; 64D2 4C 80 65                 L.e
 
 ; ----------------------------------------------------------------------------
 L64D5:  lda     L63DB                           ; 64D5 AD DB 63                 ..c
