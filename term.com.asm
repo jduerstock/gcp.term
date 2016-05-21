@@ -6336,9 +6336,10 @@ L73D6:  .byte   $9D                             ; 73D6 9D                       
 L73D7:  .byte   $9D                             ; 73D7 9D                       .
 L73D8:  .byte   $F0                             ; 73D8 F0                       .
 L73D9:  .byte   $AD                             ; 73D9 AD                       .
-L73DA:  jmp     $73DD                           ; 73DA 4C DD 73                 L.s
 
 ; ----------------------------------------------------------------------------
+sub_73DA:	
+	prolog
 	stx     L73D4                           ; 73DD 8E D4 73                 ..s
 	sta     L73D3                           ; 73E0 8D D3 73                 ..s
 	ldy     #$00                            ; 73E3 A0 00                    ..
@@ -7764,7 +7765,8 @@ L81D9:  .byte   $01                             ; 81D9 01                       
 L81DA:  tya                                     ; 81DA 98                       .
 L81DB:  .byte   $8D                             ; 81DB 8D                       .
 L81DC:  .byte   $B4                             ; 81DC B4                       .
-L81DD:  ora     #$4C                            ; 81DD 09 4C                    .L
+L81DD:	.byte	$09
+L81DE:	.byte	$4C
 	.byte   $DD                             ; 81DF DD                       .
 L81E0:  .byte   $F3                             ; 81E0 F3                       .
 L81E1:  .byte   $4D                             ; 81E1 4D                       M
@@ -7829,46 +7831,29 @@ L827A:  lda     L81DB                           ; 827A AD DB 81                 
 	eor     #$01                            ; 827D 49 01                    I.
 	lbne	L832F
 	ldxa	L81E4
-	jsr     L73DA                           ; 828A 20 DA 73                  .s
+	jsr     sub_73DA
 	lda     $A0                             ; 828D A5 A0                    ..
 	sta     L81E3                           ; 828F 8D E3 81                 ...
 	lda     L4750                           ; 8292 AD 50 47                 .PG
 	eor     L81E3                           ; 8295 4D E3 81                 M..
-	bne     L829D                           ; 8298 D0 03                    ..
-	jmp     L82A5                           ; 829A 4C A5 82                 L..
-
-; ----------------------------------------------------------------------------
-L829D:  lda     #$02                            ; 829D A9 02                    ..
-	sta     L81E2                           ; 829F 8D E2 81                 ...
+	lbeq	L82A5
+	ldi	L81E2, $02
 	jmp     L832C                           ; 82A2 4C 2C 83                 L,.
 
 ; ----------------------------------------------------------------------------
 L82A5:  lda     L81F1                           ; 82A5 AD F1 81                 ...
-	beq     L82AD                           ; 82A8 F0 03                    ..
-	jmp     L82B5                           ; 82AA 4C B5 82                 L..
-
-; ----------------------------------------------------------------------------
+	lbne	L82B5
 L82AD:  ldy     #$01                            ; 82AD A0 01                    ..
 	sty     L81E2                           ; 82AF 8C E2 81                 ...
 	jmp     L832C                           ; 82B2 4C 2C 83                 L,.
 
 ; ----------------------------------------------------------------------------
-L82B5:  clc                                     ; 82B5 18                       .
-	lda     L81DC                           ; 82B6 AD DC 81                 ...
-	adc     #$1E                            ; 82B9 69 1E                    i.
-	sta     L81E6                           ; 82BB 8D E6 81                 ...
-	lda     L81DD                           ; 82BE AD DD 81                 ...
-	adc     #$00                            ; 82C1 69 00                    i.
-	sta     L81E7                           ; 82C3 8D E7 81                 ...
-	lda     L81E7                           ; 82C6 AD E7 81                 ...
-	sta     $A3                             ; 82C9 85 A3                    ..
-	lda     L81E8                           ; 82CB AD E8 81                 ...
-	sta     $A4                             ; 82CE 85 A4                    ..
+L82B5:	add16i	L81E6, L81DC, $001E
+	dmv	$A3, L81E7
 	lda     L81E9                           ; 82D0 AD E9 81                 ...
 	sta     $A5                             ; 82D3 85 A5                    ..
 	ldy     L81E6                           ; 82D5 AC E6 81                 ...
-	ldx     #$81                            ; 82D8 A2 81                    ..
-	lda     #$DE                            ; 82DA A9 DE                    ..
+	ldxai	L81DE
 	jsr     L4C1D                           ; 82DC 20 1D 4C                  .L
 	clc                                     ; 82DF 18                       .
 	lda     L81E0                           ; 82E0 AD E0 81                 ...
