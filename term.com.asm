@@ -26,6 +26,7 @@ L0AC7           := $0AC7
 L3272           := $3272
 L3C20           := $3C20
 L4253           := $4253
+LB224		:= $B224
 HPOSP3		:= $D003
 CONSOL		:= $D01F
 CIOV            := $E456
@@ -2649,7 +2650,7 @@ L5471:	add8i	$AE, L531D, $01
 	sbc     #$04                            ; 54A8 E9 04                    ..
 	sta     $A4                             ; 54AA 85 A4                    ..
 	ldy     #$C9                            ; 54AC A0 C9                    ..
-	ldxai	$B224
+	ldxai	LB224
 	jsr     L5197                           ; 54B2 20 97 51                  .Q
 	jmp     L54D6                           ; 54B5 4C D6 54                 L.T
 
@@ -2665,7 +2666,7 @@ L54B8:  sec                                     ; 54B8 38                       
 	lda     #$5C                            ; 54C9 A9 5C                    .\
 	sta     $A4                             ; 54CB 85 A4                    ..
 	ldy     #$C9                            ; 54CD A0 C9                    ..
-	ldxai	$B224
+	ldxai	LB224
 	jsr     sub_461F
 L54D6:  ldy     #$00                            ; 54D6 A0 00                    ..
 	sty     L4651                           ; 54D8 8C 51 46                 .QF
@@ -3327,7 +3328,7 @@ L5AAE:	dmv	off_AE, L58EB
 	lda     $AE                             ; 5ABB A5 AE                    ..
 	pha                                     ; 5ABD 48                       H
 	ldx     L4654                           ; 5ABE AE 54 46                 .TF
-	lda     $B224,x                         ; 5AC1 BD 24 B2                 .$.
+	lda     LB224,x
 	sta     $A0                             ; 5AC4 85 A0                    ..
 	lda     $A0                             ; 5AC6 A5 A0                    ..
 	jsr     L4B7B                           ; 5AC8 20 7B 4B                  {K
@@ -3361,7 +3362,7 @@ L5AFB:  lda     L58EB                           ; 5AFB AD EB 58                 
 	lda     $AE                             ; 5B08 A5 AE                    ..
 	pha                                     ; 5B0A 48                       H
 	ldx     L4654                           ; 5B0B AE 54 46                 .TF
-	lda     $B224,x                         ; 5B0E BD 24 B2                 .$.
+	lda     LB224,x                         ; 5B0E BD 24 B2                 .$.
 	sta     $A0                             ; 5B11 85 A0                    ..
 	lda     $A0                             ; 5B13 A5 A0                    ..
 	jsr     L4B39                           ; 5B15 20 39 4B                  9K
@@ -3511,7 +3512,7 @@ L5C48:  lda     L5C53                           ; 5C48 AD 53 5C                 
 ; ----------------------------------------------------------------------------
 L5C53:  brk                                     ; 5C53 00                       .
 L5C54:  ldx     L4654                           ; 5C54 AE 54 46                 .TF
-	lda     $B224,x                         ; 5C57 BD 24 B2                 .$.
+	lda     LB224,x                         ; 5C57 BD 24 B2                 .$.
 	sta     L58F1                           ; 5C5A 8D F1 58                 ..X
 	lda     L58EE                           ; 5C5D AD EE 58                 ..X
 	eor     #$53                            ; 5C60 49 53                    IS
@@ -3543,16 +3544,13 @@ L5C92:  jmp     L5CF5                           ; 5C92 4C F5 5C                 
 ; ----------------------------------------------------------------------------
 L5C95:  lda     L58EE                           ; 5C95 AD EE 58                 ..X
 	eor     #$58                            ; 5C98 49 58                    IX
-	beq     L5C9F                           ; 5C9A F0 03                    ..
-	jmp     L5CF5                           ; 5C9C 4C F5 5C                 L.\
-
-; ----------------------------------------------------------------------------
-L5C9F:  sec                                     ; 5C9F 38                       8
+	lbne	L5CF5
+	sec                                     ; 5C9F 38                       8
 	lda     L4649                           ; 5CA0 AD 49 46                 .IF
 	sbc     #$01                            ; 5CA3 E9 01                    ..
 	sta     L58F0                           ; 5CA5 8D F0 58                 ..X
 	lda     L58F0                           ; 5CA8 AD F0 58                 ..X
-	sta     $B224                           ; 5CAB 8D 24 B2                 .$.
+	sta     LB224                           ; 5CAB 8D 24 B2                 .$.
 	ldy     #$01                            ; 5CAE A0 01                    ..
 	sty     L58EF                           ; 5CB0 8C EF 58                 ..X
 	lda     L58F0                           ; 5CB3 AD F0 58                 ..X
@@ -3563,15 +3561,17 @@ L5CB9:  lda     L5CC4                           ; 5CB9 AD C4 5C                 
 	jmp     L5CE0                           ; 5CC1 4C E0 5C                 L.\
 
 ; ----------------------------------------------------------------------------
-L5CC4:  brk                                     ; 5CC4 00                       .
+L5CC4:	.byte	$00
+
+; ----------------------------------------------------------------------------
 L5CC5:  ldx     L58EF                           ; 5CC5 AE EF 58                 ..X
-	lda     $B224,x                         ; 5CC8 BD 24 B2                 .$.
+	lda     LB224,x                         ; 5CC8 BD 24 B2                 .$.
 	sta     $A0                             ; 5CCB 85 A0                    ..
 	lda     $A0                             ; 5CCD A5 A0                    ..
 	jsr     L4B7B                           ; 5CCF 20 7B 4B                  {K
 	lda     $A0                             ; 5CD2 A5 A0                    ..
 	ldx     L58EF                           ; 5CD4 AE EF 58                 ..X
-	sta     $B224,x                         ; 5CD7 9D 24 B2                 .$.
+	sta     LB224,x                         ; 5CD7 9D 24 B2                 .$.
 	inc     L58EF                           ; 5CDA EE EF 58                 ..X
 	jmp     L5CB9                           ; 5CDD 4C B9 5C                 L.\
 
@@ -12478,7 +12478,7 @@ LA748:  ldx     LA6D9                           ; A748 AE D9 A6                 
 	ldx     #$24                            ; A759 A2 24                    .$
 	lda     LA6D9                           ; A75B AD D9 A6                 ...
 	jsr     L458F                           ; A75E 20 8F 45                  .E
-	lda     $B224                           ; A761 AD 24 B2                 .$.
+	lda     LB224                           ; A761 AD 24 B2                 .$.
 	sta     LA6E0                           ; A764 8D E0 A6                 ...
 	ldy     #$01                            ; A767 A0 01                    ..
 	sty     LA6DF                           ; A769 8C DF A6                 ...
@@ -12494,13 +12494,13 @@ LA77D:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 LA77E:  ldx     LA6DF                           ; A77E AE DF A6                 ...
-	lda     $B224,x                         ; A781 BD 24 B2                 .$.
+	lda     LB224,x                         ; A781 BD 24 B2                 .$.
 	sta     $A0                             ; A784 85 A0                    ..
 	lda     $A0                             ; A786 A5 A0                    ..
 	jsr     L4B7B                           ; A788 20 7B 4B                  {K
 	lda     $A0                             ; A78B A5 A0                    ..
 	ldx     LA6DF                           ; A78D AE DF A6                 ...
-	sta     $B224,x                         ; A790 9D 24 B2                 .$.
+	sta     LB224,x                         ; A790 9D 24 B2                 .$.
 	inc     LA6DF                           ; A793 EE DF A6                 ...
 	jmp     LA772                           ; A796 4C 72 A7                 Lr.
 
@@ -12714,7 +12714,7 @@ LA90D:  clc                                     ; A90D 18                       
 	jsr     sub_4BC9
 	lda     $A0                             ; A928 A5 A0                    ..
 	ldx     LA889                           ; A92A AE 89 A8                 ...
-	sta     $B224,x                         ; A92D 9D 24 B2                 .$.
+	sta     LB224,x                         ; A92D 9D 24 B2                 .$.
 	inc     LA889                           ; A930 EE 89 A8                 ...
 	jmp     LA903                           ; A933 4C 03 A9                 L..
 
@@ -13043,7 +13043,7 @@ sub_AB6A:
 	sty     LAB69                           ; AB87 8C 69 AB                 .i.
 	iny                                     ; AB8A C8                       .
 	sty     L4651                           ; AB8B 8C 51 46                 .QF
-	lda     $B224                           ; AB8E AD 24 B2                 .$.
+	lda     LB224                           ; AB8E AD 24 B2                 .$.
 	sta     LAB68                           ; AB91 8D 68 AB                 .h.
 LAB94:  clc                                     ; AB94 18                       .
 	lda     LAB56                           ; AB95 AD 56 AB                 .V.
