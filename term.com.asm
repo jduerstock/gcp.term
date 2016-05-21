@@ -5023,16 +5023,11 @@ L67D5:  .byte   $8D                             ; 67D5 8D                       
 L67D6:  .byte   $01                             ; 67D6 01                       .
 L67D7:  .byte   $D3                             ; 67D7 D3                       .
 
-L67D8:  prolog
-	jsr     sub_44D5                        ; 67DB 20 D5 44                  .D
-	.addr	L67C4
-	.byte	$05
+sub_67D8:
+	stack_prolog L67C4, $05 
 	lda	L67C4
 	jsr     L65B0                           ; 67E4 20 B0 65                  .e
-	lda     $A1                             ; 67E7 A5 A1                    ..
-	sta     L67D0                           ; 67E9 8D D0 67                 ..g
-	lda     $A0                             ; 67EC A5 A0                    ..
-	sta     L67CF                           ; 67EE 8D CF 67                 ..g
+	rdmv	L67CF, $A0
 	lda     L67CF                           ; 67F1 AD CF 67                 ..g
 	ora     L67D0                           ; 67F4 0D D0 67                 ..g
 	lbne	L67FD
@@ -5046,8 +5041,7 @@ L67FD:  lda     L67D0                           ; 67FD AD D0 67                 
 	lda     #$06                            ; 6806 A9 06                    ..
 	sta     $A4                             ; 6808 85 A4                    ..
 	ldy     L67CF                           ; 680A AC CF 67                 ..g
-	ldx     #$67                            ; 680D A2 67                    .g
-	lda     #$D2                            ; 680F A9 D2                    ..
+	ldxai	L67D2
 	jsr     sub_461F
 	lda     L67C8                           ; 6814 AD C8 67                 ..g
 	sta     $AE                             ; 6817 85 AE                    ..
@@ -5956,14 +5950,11 @@ L6FC6:  .byte   $6F                             ; 6FC6 6F                       
 	jsr     sub_461F
 	lda     L6F8F                           ; 6FCC AD 8F 6F                 ..o
 	sta     $A3                             ; 6FCF 85 A3                    ..
-	lda     L6F8C                           ; 6FD1 AD 8C 6F                 ..o
-	sta     $A5                             ; 6FD4 85 A5                    ..
-	lda     L6F8B                           ; 6FD6 AD 8B 6F                 ..o
-L6FD9:  sta     $A4                             ; 6FD9 85 A4                    ..
+	rdmv	$A4, L6F8B
 L6FDB:  ldy     L6F90                           ; 6FDB AC 90 6F                 ..o
 	ldx     #$00                            ; 6FDE A2 00                    ..
 	lda     L4647                           ; 6FE0 AD 47 46                 .GF
-	jsr     L67D8                           ; 6FE3 20 D8 67                  .g
+	jsr     sub_67D8
 	rts                                     ; 6FE6 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -5992,8 +5983,8 @@ L6FFF:  lda     L4648                           ; 6FFF AD 48 46                 
 	rdmv	$A4, L6FE7
 	ldy     #$00                            ; 7029 A0 00                    ..
 	ldx     #$00                            ; 702B A2 00                    ..
-	lda     L4648                           ; 702D AD 48 46                 .HF
-	jsr     L67D8                           ; 7030 20 D8 67                  .g
+	lda     L4648
+	jsr     sub_67D8
 	rts                                     ; 7033 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -12696,7 +12687,7 @@ LA7A2:  lda     #$24                            ; A7A2 A9 24                    
 	ldy     LA6DE                           ; A7A6 AC DE A6                 ...
 LA7A9:  ldx     #$00                            ; A7A9 A2 00                    ..
 	lda     LA6D8                           ; A7AB AD D8 A6                 ...
-	jsr     L67D8                           ; A7AE 20 D8 67                  .g
+	jsr     sub_67D8
 	jsr     L8D01                           ; A7B1 20 01 8D                  ..
 	jmp     LA748                           ; A7B4 4C 48 A7                 LH.
 
@@ -13082,7 +13073,7 @@ LAA55:  lda     #$00                            ; AA55 A9 00                    
 LAA84:  .addr   LAA86
 LAA86:	.addr	L6AD5
 	.addr	L6995
-	.addr	L67D8
+	.addr	sub_67D8
 	.addr	L6696
 	.addr	L65E2
 	.addr	L7D4D
