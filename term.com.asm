@@ -5989,10 +5989,7 @@ L6FFF:  lda     L4648                           ; 6FFF AD 48 46                 
 	ldy     #$00                            ; 7019 A0 00                    ..
 	lda     ($AE),y                         ; 701B B1 AE                    ..
 	sta     $A3                             ; 701D 85 A3                    ..
-	lda     L6FE8                           ; 701F AD E8 6F                 ..o
-	sta     $A5                             ; 7022 85 A5                    ..
-	lda     L6FE7                           ; 7024 AD E7 6F                 ..o
-	sta     $A4                             ; 7027 85 A4                    ..
+	rdmv	$A4, L6FE7
 	ldy     #$00                            ; 7029 A0 00                    ..
 	ldx     #$00                            ; 702B A2 00                    ..
 	lda     L4648                           ; 702D AD 48 46                 .HF
