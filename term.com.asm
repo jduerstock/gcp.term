@@ -5933,10 +5933,7 @@ L6FA4:  rts                                     ; 6FA4 60                       
 ; ----------------------------------------------------------------------------
 L6FA5:  lda     L4647                           ; 6FA5 AD 47 46                 .GF
 	jsr     L65B0                           ; 6FA8 20 B0 65                  .e
-	lda     $A1                             ; 6FAB A5 A1                    ..
-	sta     L6F8E                           ; 6FAD 8D 8E 6F                 ..o
-	lda     $A0                             ; 6FB0 A5 A0                    ..
-	sta     L6F8D                           ; 6FB2 8D 8D 6F                 ..o
+	rdmv	L6F8D, $A0
 	lda     L6F8E                           ; 6FB5 AD 8E 6F                 ..o
 	sta     $A3                             ; 6FB8 85 A3                    ..
 	lda     #$00                            ; 6FBA A9 00                    ..
@@ -5944,9 +5941,7 @@ L6FA5:  lda     L4647                           ; 6FA5 AD 47 46                 
 	lda     #$02                            ; 6FBE A9 02                    ..
 	sta     $A4                             ; 6FC0 85 A4                    ..
 	ldy     L6F8D                           ; 6FC2 AC 8D 6F                 ..o
-	.byte   $A2                             ; 6FC5 A2                       .
-L6FC6:  .byte   $6F                             ; 6FC6 6F                       o
-	lda     #$8F                            ; 6FC7 A9 8F                    ..
+	ldxai	L6F8F
 	jsr     sub_461F
 	lda     L6F8F                           ; 6FCC AD 8F 6F                 ..o
 	sta     $A3                             ; 6FCF 85 A3                    ..
@@ -6001,11 +5996,9 @@ sub_7035:
 	sta     $AE                             ; 7044 85 AE                    ..
 	lda     #$00                            ; 7046 A9 00                    ..
 	rol     a                               ; 7048 2A                       *
-L7049:  plp                                     ; 7049 28                       (
-	.byte   $6D                             ; 704A 6D                       m
-	.byte   $A3                             ; 704B A3                       .
-L704C:  lsr     $85                             ; 704C 46 85                    F.
-	.byte   $AF                             ; 704E AF                       .
+	plp                                     ; 7049 28                       (
+	adc	L46A3
+	sta	$AF
 	ldy     #$01                            ; 704F A0 01                    ..
 	lda     ($AE),y                         ; 7051 B1 AE                    ..
 	sta     $A1                             ; 7053 85 A1                    ..
@@ -6042,25 +6035,18 @@ L705F:	prolog
 	rts                                     ; 708E 60                       `
 
 ; ----------------------------------------------------------------------------
-	brk                                     ; 708F 00                       .
+L708F:	brk                                     ; 708F 00                       .
 L7090:  brk                                     ; 7090 00                       .
 L7091:  .byte   $7C                             ; 7091 7C                       |
 L7092:  .byte   $66                             ; 7092 66                       f
 L7093:  ror     $66                             ; 7093 66 66                    ff
 	.byte	$66
 
-L7096:	prolog
-	jsr     sub_44D5                           ; 7099 20 D5 44                  .D
-	.byte   $8F                             ; 709C 8F                       .
-	bvs     L70A1                           ; 709D 70 02                    p.
-	.byte   $AD                             ; 709F AD                       .
-	.byte   $8F                             ; 70A0 8F                       .
-L70A1:  bvs     L70C3                           ; 70A1 70 20                    p 
-	and     $70,x                           ; 70A3 35 70                    5p
-	lda     $A1                             ; 70A5 A5 A1                    ..
-	sta     L7093                           ; 70A7 8D 93 70                 ..p
-	lda     $A0                             ; 70AA A5 A0                    ..
-	sta     L7092                           ; 70AC 8D 92 70                 ..p
+L7096:	
+	stack_prolog L708F, $02
+	lda	L708F
+	jsr	sub_7035
+	rdmv	L7092, $A0
 	clc                                     ; 70AF 18                       .
 	lda     L7092                           ; 70B0 AD 92 70                 ..p
 	adc     #$1E                            ; 70B3 69 1E                    i.
