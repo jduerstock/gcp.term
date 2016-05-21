@@ -641,7 +641,8 @@ L45EF:  tax                                     ; 45EF AA                       
 	rts                                     ; 45F5 60                       `
 
 ; ----------------------------------------------------------------------------
-L45F6:  pha                                     ; 45F6 48                       H
+sub_45F6:  
+	pha                                     ; 45F6 48                       H
 	ldi	$A4, $00
 	pla                                     ; 45FB 68                       h
 
@@ -1409,9 +1410,8 @@ L49EE:  clc                                     ; 49EE 18                       
 	lda     #$00                            ; 4A15 A9 00                    ..
 	sta     $A3                             ; 4A17 85 A3                    ..
 	ldy     #$0C                            ; 4A19 A0 0C                    ..
-	ldx     L49D2                           ; 4A1B AE D2 49                 ..I
-	lda     L49D1                           ; 4A1E AD D1 49                 ..I
-	jsr     L45F6                           ; 4A21 20 F6 45                  .E
+	ldxa	L49D1
+	jsr     sub_45F6
 	lda     L49C4                           ; 4A24 AD C4 49                 ..I
 	sta     L499F                           ; 4A27 8D 9F 49                 ..I
 	clc                                     ; 4A2A 18                       .
@@ -1444,9 +1444,8 @@ L4A53:	stack_prolog L4A4E, $04
 	lda     #$00                            ; 4A5C A9 00                    ..
 	sta     $A3                             ; 4A5E 85 A3                    ..
 	ldy     #$80                            ; 4A60 A0 80                    ..
-	ldx     #$B3                            ; 4A62 A2 B3                    ..
-	lda     #$80                            ; 4A64 A9 80                    ..
-	jsr     L45F6                           ; 4A66 20 F6 45                  .E
+	ldxai	$B380
+	jsr     sub_45F6
 	clc                                     ; 4A69 18                       .
 	lda     #$80                            ; 4A6A A9 80                    ..
 	adc     L4A52                           ; 4A6C 6D 52 4A                 mRJ
@@ -5176,9 +5175,8 @@ L696D:  lda     #$1E                            ; 696D A9 1E                    
 	lda     #$00                            ; 6972 A9 00                    ..
 	sta     $A3                             ; 6974 85 A3                    ..
 	ldy     $A2                             ; 6976 A4 A2                    ..
-	ldx     L46E3                           ; 6978 AE E3 46                 ..F
-	lda     L46E2                           ; 697B AD E2 46                 ..F
-	jsr     L45F6                           ; 697E 20 F6 45                  .E
+	ldxa	L46E2
+	jsr     sub_45F6
 	rts                                     ; 6981 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -5201,10 +5199,10 @@ L6991:  brk                                     ; 6991 00                       
 L6992:  brk                                     ; 6992 00                       .
 L6993:  brk                                     ; 6993 00                       .
 L6994:  brk                                     ; 6994 00                       .
-L6995:  jmp     L6998                           ; 6995 4C 98 69                 L.i
 
 ; ----------------------------------------------------------------------------
-L6998:  sta     L6982                           ; 6998 8D 82 69                 ..i
+L6995:  prolog
+	sta     L6982                           ; 6998 8D 82 69                 ..i
 	lda     L6982                           ; 699B AD 82 69                 ..i
 	jsr     L65B0                           ; 699E 20 B0 65                  .e
 	lda     $A1                             ; 69A1 A5 A1                    ..
@@ -5409,16 +5407,13 @@ L6AFF:  ldx     #$00                            ; 6AFF A2 00                    
 	lda     #$00                            ; 6B31 A9 00                    ..
 	sta     $A3                             ; 6B33 85 A3                    ..
 	ldy     #$0B                            ; 6B35 A0 0B                    ..
-	ldx     L6AC5                           ; 6B37 AE C5 6A                 ..j
-	lda     L6AC4                           ; 6B3A AD C4 6A                 ..j
-	jsr     L45F6                           ; 6B3D 20 F6 45                  .E
+	ldxa	L6AC4
+	jsr     sub_45F6
 	lda     L6AC4                           ; 6B40 AD C4 6A                 ..j
 	sta     $AE                             ; 6B43 85 AE                    ..
 	lda     L6AC5                           ; 6B45 AD C5 6A                 ..j
 	sta     $AF                             ; 6B48 85 AF                    ..
-	.byte   $AD                             ; 6B4A AD                       .
-	.byte   $BF                             ; 6B4B BF                       .
-L6B4C:  ror     a                               ; 6B4C 6A                       j
+	lda	L6ABF
 	ldy     #$00                            ; 6B4D A0 00                    ..
 	sta     ($AE),y                         ; 6B4F 91 AE                    ..
 	clc                                     ; 6B51 18                       .
@@ -5594,7 +5589,7 @@ L6C5C:  lda     L6ACF                           ; 6C5C AD CF 6A                 
 	ldy     L6ACC                           ; 6CF5 AC CC 6A                 ..j
 	ldx     L6AD4                           ; 6CF8 AE D4 6A                 ..j
 	lda     L6AD3                           ; 6CFB AD D3 6A                 ..j
-	jsr     L45F6                           ; 6CFE 20 F6 45                  .E
+	jsr     sub_45F6
 	ldy     #$00                            ; 6D01 A0 00                    ..
 	sty     L6AD0                           ; 6D03 8C D0 6A                 ..j
 	sec                                     ; 6D06 38                       8
@@ -5647,9 +5642,8 @@ L6D88:  ldx     #$00                            ; 6D88 A2 00                    
 	lda     #$00                            ; 6DB5 A9 00                    ..
 	sta     $A3                             ; 6DB7 85 A3                    ..
 	ldy     #$1A                            ; 6DB9 A0 1A                    ..
-	ldx     L6AC9                           ; 6DBB AE C9 6A                 ..j
-	lda     L6AC8                           ; 6DBE AD C8 6A                 ..j
-	jsr     L45F6                           ; 6DC1 20 F6 45                  .E
+	ldxa	L6AC8
+	jsr     sub_45F6
 	dmv	off_AE, L6AC8
 	lda     $AF                             ; 6DCE A5 AF                    ..
 	pha                                     ; 6DD0 48                       H
@@ -6462,18 +6456,14 @@ L747D:  jmp     $7480                           ; 747D 4C 80 74                 
 	lda     #$00                            ; 7485 A9 00                    ..
 	sta     $A3                             ; 7487 85 A3                    ..
 	ldy     $A2                             ; 7489 A4 A2                    ..
-	ldx     L46A3                           ; 748B AE A3 46                 ..F
-	lda     L46A2                           ; 748E AD A2 46                 ..F
-	jsr     L45F6                           ; 7491 20 F6 45                  .E
+	ldxa	L46A2
+	jsr     sub_45F6
 	ldy     #$00                            ; 7494 A0 00                    ..
 	sty     L747C                           ; 7496 8C 7C 74                 .|t
 L7499:  lda     #$13                            ; 7499 A9 13                    ..
 	cmp     L747C                           ; 749B CD 7C 74                 .|t
-	bcs     L74A3                           ; 749E B0 03                    ..
-	jmp     L74B2                           ; 74A0 4C B2 74                 L.t
-
-; ----------------------------------------------------------------------------
-L74A3:  lda     L747C                           ; 74A3 AD 7C 74                 .|t
+	lbcc	L74B2
+	lda     L747C                           ; 74A3 AD 7C 74                 .|t
 	ldx     L747C                           ; 74A6 AE 7C 74                 .|t
 	sta     L4659,x                         ; 74A9 9D 59 46                 .YF
 	inc     L747C                           ; 74AC EE 7C 74                 .|t
@@ -6524,7 +6514,7 @@ L74BE:
 	ldi	$A3, $00
 	ldy     #$26                            ; 7518 A0 26                    .&
 	ldxa	L74BC
-	jsr     L45F6                           ; 7520 20 F6 45                  .E
+	jsr     sub_45F6
 	inc     L4673                           ; 7523 EE 73 46                 .sF
 	add16i	off_AE, L74BC, $000C
 	lda     #$FF                            ; 7535 A9 FF                    ..
@@ -7580,15 +7570,14 @@ L8020:  prolog
 	lda     #$00                            ; 8023 A9 00                    ..
 	sta     $A3                             ; 8025 85 A3                    ..
 	ldy     #$04                            ; 8027 A0 04                    ..
-	ldx     #$47                            ; 8029 A2 47                    .G
-	lda     #$4F                            ; 802B A9 4F                    .O
-	jsr     L45F6                           ; 802D 20 F6 45                  .E
+	ldxai	L474F
+	jsr     sub_45F6
 	lda     #$00                            ; 8030 A9 00                    ..
 	sta     $A3                             ; 8032 85 A3                    ..
 	ldy     #$0E                            ; 8034 A0 0E                    ..
 	ldx     #$47                            ; 8036 A2 47                    .G
 	lda     #$53                            ; 8038 A9 53                    .S
-	jsr     L45F6                           ; 803A 20 F6 45                  .E
+	jsr     sub_45F6
 	ldx     #$00                            ; 803D A2 00                    ..
 	lda     #$00                            ; 803F A9 00                    ..
 	jsr     L8003                           ; 8041 20 03 80                  ..
@@ -9530,9 +9519,8 @@ L8F7D:  jmp     L8F80                           ; 8F7D 4C 80 8F                 
 L8F80:  lda     #$00                            ; 8F80 A9 00                    ..
 	sta     $A3                             ; 8F82 85 A3                    ..
 	ldy     #$50                            ; 8F84 A0 50                    .P
-	ldx     #$46                            ; 8F86 A2 46                    .F
-	lda     #$F9                            ; 8F88 A9 F9                    ..
-	jsr     L45F6                           ; 8F8A 20 F6 45                  .E
+	ldxai	$46F9
+	jsr     sub_45F6
 	lda     #$46                            ; 8F8D A9 46                    .F
 	sta     L8F7C                           ; 8F8F 8D 7C 8F                 .|.
 	lda     #$F9                            ; 8F92 A9 F9                    ..
@@ -9902,17 +9890,15 @@ L91A6:  adc     #$01                            ; 91A6 69 01                    
 	ldy     L9140                           ; 9235 AC 40 91                 .@.
 	ldx     $A1                             ; 9238 A6 A1                    ..
 	lda     $A0                             ; 923A A5 A0                    ..
-	jsr     L45F6                           ; 923C 20 F6 45                  .E
+	jsr     sub_45F6
 	jmp     L9247                           ; 923F 4C 47 92                 LG.
 
 ; ----------------------------------------------------------------------------
-L9242:  lda     #$00                            ; 9242 A9 00                    ..
-	sta     $A0                             ; 9244 85 A0                    ..
+L9242:	ldi	$A0, $00
 	rts                                     ; 9246 60                       `
 
 ; ----------------------------------------------------------------------------
-L9247:  lda     #$01                            ; 9247 A9 01                    ..
-	sta     $A0                             ; 9249 85 A0                    ..
+L9247:	ldi	$A0, $01
 	rts                                     ; 924B 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -10032,20 +10018,15 @@ L92B5:  clc                                     ; 92B5 18                       
 	sta     L9256                           ; 9321 8D 56 92                 .V.
 	lda     L9252                           ; 9324 AD 52 92                 .R.
 	sta     $A3                             ; 9327 85 A3                    ..
-	lda     L9256                           ; 9329 AD 56 92                 .V.
-	sta     $A5                             ; 932C 85 A5                    ..
-	lda     L9255                           ; 932E AD 55 92                 .U.
-	sta     $A4                             ; 9331 85 A4                    ..
+	rdmv	$A4, L9255
 	ldy     L9251                           ; 9333 AC 51 92                 .Q.
-	ldx     L9254                           ; 9336 AE 54 92                 .T.
-	lda     L9253                           ; 9339 AD 53 92                 .S.
+	ldxa	L9253
 	jsr     L4EB1                           ; 933C 20 B1 4E                  .N
 	lda     #$00                            ; 933F A9 00                    ..
 	sta     $A3                             ; 9341 85 A3                    ..
 	ldy     L9257                           ; 9343 AC 57 92                 .W.
-	ldx     L9252                           ; 9346 AE 52 92                 .R.
-	lda     L9251                           ; 9349 AD 51 92                 .Q.
-	jsr     L45F6                           ; 934C 20 F6 45                  .E
+	ldxa	L9251
+	jsr     sub_45F6
 	jmp     L935C                           ; 934F 4C 5C 93                 L\.
 
 ; ----------------------------------------------------------------------------
@@ -12936,7 +12917,7 @@ LAA55:  lda     #$00                            ; AA55 A9 00                    
 	ldy     #$10                            ; AA6A A0 10                    ..
 	ldx     #$B1                            ; AA6C A2 B1                    ..
 	lda     #$18                            ; AA6E A9 18                    ..
-	jsr     L45F6                           ; AA70 20 F6 45                  .E
+	jsr     sub_45F6
 	lda     #$FF                            ; AA73 A9 FF                    ..
 	sta     L4647                           ; AA75 8D 47 46                 .GF
 	lda     #$FF                            ; AA78 A9 FF                    ..
@@ -13388,7 +13369,7 @@ LAD85:  prolog
 	ldy     #$06                            ; ADA0 A0 06                    ..
 	ldx     LAD84                           ; ADA2 AE 84 AD                 ...
 	lda     LAD83                           ; ADA5 AD 83 AD                 ...
-	jsr     L45F6                           ; ADA8 20 F6 45                  .E
+	jsr     sub_45F6
 	lda     #$AC                            ; ADAB A9 AC                    ..
 	sta     $0209                           ; ADAD 8D 09 02                 ...
 	lda     #$7E                            ; ADB0 A9 7E                    .~
