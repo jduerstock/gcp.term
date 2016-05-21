@@ -6183,10 +6183,7 @@ L71B5:  prolog
 	lda     #$00                            ; 71FB A9 00                    ..
 	sbc     L71B1                           ; 71FD ED B1 71                 ..q
 	sta     $A3                             ; 7200 85 A3                    ..
-	lda     L71AC                           ; 7202 AD AC 71                 ..q
-	sta     $AA                             ; 7205 85 AA                    ..
-	lda     L71AD                           ; 7207 AD AD 71                 ..q
-	sta     $AB                             ; 720A 85 AB                    ..
+	dmv	$AA, L71AC
 	sec                                     ; 720C 38                       8
 	ldy     #$00                            ; 720D A0 00                    ..
 	lda     ($AA),y                         ; 720F B1 AA                    ..
