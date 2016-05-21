@@ -6233,8 +6233,7 @@ L71B5:  prolog
 	lda     L71A3                           ; 7269 AD A3 71                 ..q
 	adc     #$00                            ; 726C 69 00                    i.
 	sta     $AF                             ; 726E 85 AF                    ..
-	.byte   $A5                             ; 7270 A5                       .
-L7271:  .byte   $AF                             ; 7271 AF                       .
+	lda	$AF
 	pha                                     ; 7272 48                       H
 	lda     $AE                             ; 7273 A5 AE                    ..
 	pha                                     ; 7275 48                       H
