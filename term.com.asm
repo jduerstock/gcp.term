@@ -1828,8 +1828,7 @@ L4D03:  lda     #$01                            ; 4D03 A9 01                    
 	sta     $AF                             ; 4D47 85 AF                    ..
 	lda     ($AE),y                         ; 4D49 B1 AE                    ..
 	sta     $A1                             ; 4D4B 85 A1                    ..
-	ldx     $A1                             ; 4D4D A6 A1                    ..
-	lda     $A0                             ; 4D4F A5 A0                    ..
+	ldxa	$A0
 	jsr     L4983                           ; 4D51 20 83 49                  .I
 	pla                                     ; 4D54 68                       h
 	sta     $AE                             ; 4D55 85 AE                    ..
