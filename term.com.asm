@@ -27,6 +27,7 @@ L3272           := $3272
 L3C20           := $3C20
 L4253           := $4253
 HPOSP3		:= $D003
+CONSOL		:= $D01F
 CIOV            := $E456
 SETVBV          := $E45C
 LE45F           := $E45F
@@ -13158,8 +13159,7 @@ LAC70:  ldy     $A2                             ; AC70 A4 A2                    
 	ldx     $A1                             ; AC72 A6 A1                    ..
 	lda     $A0                             ; AC74 A5 A0                    ..
 	jsr     LAB0B                           ; AC76 20 0B AB                  ..
-	lda     #$01                            ; AC79 A9 01                    ..
-	sta     $A0                             ; AC7B 85 A0                    ..
+	ldi	$A0, $01
 	rts                                     ; AC7D 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -13470,10 +13470,10 @@ LAEE0:  .byte   $AE                             ; AEE0 AE                       
 LAEE1:  brk                                     ; AEE1 00                       .
 LAEE2:  brk                                     ; AEE2 00                       .
 LAEE3:  brk                                     ; AEE3 00                       .
-LAEE4:  jmp     LAEE7                           ; AEE4 4C E7 AE                 L..
 
 ; ----------------------------------------------------------------------------
-LAEE7:  lda     $D01F                           ; AEE7 AD 1F D0                 ...
+LAEE4:  prolog
+	lda	CONSOL
 	eor     #$FF                            ; AEEA 49 FF                    I.
 	sta     $AE                             ; AEEC 85 AE                    ..
 	lda     $AE                             ; AEEE A5 AE                    ..
@@ -13489,13 +13489,7 @@ LAEE7:  lda     $D01F                           ; AEE7 AD 1F D0                 
 ; ----------------------------------------------------------------------------
 LAF08:  ldy     #$00                            ; AF08 A0 00                    ..
 	sty     LAEE3                           ; AF0A 8C E3 AE                 ...
-	clc                                     ; AF0D 18                       .
-	lda     LAEDF                           ; AF0E AD DF AE                 ...
-	adc     LAEE2                           ; AF11 6D E2 AE                 m..
-	sta     $AE                             ; AF14 85 AE                    ..
-	lda     LAEE0                           ; AF16 AD E0 AE                 ...
-	adc     #$00                            ; AF19 69 00                    i.
-	sta     $AF                             ; AF1B 85 AF                    ..
+	add16m8	off_AE, LAEDF, LAEE2
 	lda     ($AE),y                         ; AF1D B1 AE                    ..
 	sta     LAEE1                           ; AF1F 8D E1 AE                 ...
 	lda     LAEE1                           ; AF22 AD E1 AE                 ...
