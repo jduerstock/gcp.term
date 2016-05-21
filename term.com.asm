@@ -4443,51 +4443,22 @@ sub_63DD:
 	prolog
 	lda     L46EF                           ; 63E0 AD EF 46                 ..F
 	sta     L63DB                           ; 63E3 8D DB 63                 ..c
-	lda     L63DB                           ; 63E6 AD DB 63                 ..c
-	asl     a                               ; 63E9 0A                       .
-	php                                     ; 63EA 08                       .
-	clc                                     ; 63EB 18                       .
-	adc     L46F5                           ; 63EC 6D F5 46                 m.F
-	sta     $AE                             ; 63EF 85 AE                    ..
-	lda     #$00                            ; 63F1 A9 00                    ..
-	rol     a                               ; 63F3 2A                       *
-	plp                                     ; 63F4 28                       (
-	adc     L46F6                           ; 63F5 6D F6 46                 m.F
-	sta     $AF                             ; 63F8 85 AF                    ..
+	shladdm8 off_AE, L46F5, L63DB
 	ldy     #$01                            ; 63FA A0 01                    ..
 	lda     ($AE),y                         ; 63FC B1 AE                    ..
 	sta     L63DA                           ; 63FE 8D DA 63                 ..c
 	dey                                     ; 6401 88                       .
 	lda     ($AE),y                         ; 6402 B1 AE                    ..
 	sta     L63D9                           ; 6404 8D D9 63                 ..c
-	lda     #$01                            ; 6407 A9 01                    ..
-	asl     a                               ; 6409 0A                       .
-	php                                     ; 640A 08                       .
-	clc                                     ; 640B 18                       .
-	adc     L466F                           ; 640C 6D 6F 46                 moF
-	sta     $AE                             ; 640F 85 AE                    ..
-	lda     #$00                            ; 6411 A9 00                    ..
-	rol     a                               ; 6413 2A                       *
-	plp                                     ; 6414 28                       (
-	adc     L466F+1
-	sta     $AF                             ; 6418 85 AF                    ..
+	shladdi off_AE, L466F, $0001
 	iny                                     ; 641A C8                       .
 	lda     ($AE),y                         ; 641B B1 AE                    ..
 	sta     L63D4                           ; 641D 8D D4 63                 ..c
 	dey                                     ; 6420 88                       .
 	lda     ($AE),y                         ; 6421 B1 AE                    ..
 	sta     L63D3                           ; 6423 8D D3 63                 ..c
-	clc                                     ; 6426 18                       .
-	lda     L63D3                           ; 6427 AD D3 63                 ..c
-	adc     #$06                            ; 642A 69 06                    i.
-	sta     L63D7                           ; 642C 8D D7 63                 ..c
-	lda     L63D4                           ; 642F AD D4 63                 ..c
-	adc     #$00                            ; 6432 69 00                    i.
-	sta     L63D8                           ; 6434 8D D8 63                 ..c
-	lda     L63D9                           ; 6437 AD D9 63                 ..c
-	sta     $AE                             ; 643A 85 AE                    ..
-	lda     L63DA                           ; 643C AD DA 63                 ..c
-	sta     $AF                             ; 643F 85 AF                    ..
+	add16i	L63D7, L63D3, $0006
+	dmv	off_AE, L63D9
 	lda     ($AE),y                         ; 6441 B1 AE                    ..
 	sta     L63DC                           ; 6443 8D DC 63                 ..c
 	clc                                     ; 6446 18                       .
