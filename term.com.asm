@@ -5717,16 +5717,10 @@ L6E4C:  rts                                     ; 6E4C 60                       
 
 ; ----------------------------------------------------------------------------
 L6E4D:  .addr	$7E
-	.byte   $03                             ; 6E4F 03                       .
-	.byte   $43                             ; 6E50 43                       C
-	.byte   $42                             ; 6E51 42                       B
-	.byte   $53                             ; 6E52 53                       S
-L6E53:  .byte   $4F                             ; 6E53 4F                       O
-L6E54:  ror     $4303                           ; 6E54 6E 03 43                 n.C
-	.byte   $42                             ; 6E57 42                       B
-	.byte   $73                             ; 6E58 73                       s
-L6E59:  .byte   $55                             ; 6E59 55                       U
-L6E5A:  .byte   $6E                             ; 6E5A 6E                       n
+L6E4F:	.byte   $03,"CBS"
+L6E53:	.addr	L6E4F
+L6E55:	.byte	$03,"CBs"
+L6E59:	.addr	L6E55
 L6E5B:  ror     $3E66                           ; 6E5B 6E 66 3E                 nf>
 	brk                                     ; 6E5E 00                       .
 L6E5F:  brk                                     ; 6E5F 00                       .
