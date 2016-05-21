@@ -4611,21 +4611,15 @@ L65DF:  brk                                     ; 65DF 00                       
 L65E0:  brk                                     ; 65E0 00                       .
 L65E1:  brk                                     ; 65E1 00                       .
 
-L65E2:  
+sub_65E2:  
 	stack_prolog L65D6, $05
 	lda	L65D6
 	jsr     L65B0                           ; 65EE 20 B0 65                  .e
-	lda     $A1                             ; 65F1 A5 A1                    ..
-	sta     L65E1                           ; 65F3 8D E1 65                 ..e
-	lda     $A0                             ; 65F6 A5 A0                    ..
-	sta     L65E0                           ; 65F8 8D E0 65                 ..e
+	rdmv	L65E0, $A0
 	lda     L65E0                           ; 65FB AD E0 65                 ..e
 	ora     L65E1                           ; 65FE 0D E1 65                 ..e
-	beq     L6606                           ; 6601 F0 03                    ..
-	jmp     L6607                           ; 6603 4C 07 66                 L.f
-
-; ----------------------------------------------------------------------------
-L6606:  rts                                     ; 6606 60                       `
+	lbne	L6607
+	rts                                     ; 6606 60                       `
 
 ; ----------------------------------------------------------------------------
 L6607:	add16i	off_AE, L65E0, $0004
@@ -4660,10 +4654,9 @@ L664C:	shladdm8 off_AE, L65DE, L65DD
 	clc                                     ; 6660 18                       .
 	ldy     #$00                            ; 6661 A0 00                    ..
 	lda     ($AE),y                         ; 6663 B1 AE                    ..
-	.byte   $6D                             ; 6665 6D                       m
-L6666:  .byte   $D7                             ; 6666 D7                       .
-	adc     $85                             ; 6667 65 85                    e.
-	ldy     #$C8                            ; 6669 A0 C8                    ..
+	adc	L65D7
+	sta	$A0
+	iny
 	lda     ($AE),y                         ; 666B B1 AE                    ..
 	adc     #$00                            ; 666D 69 00                    i.
 	sta     $A1                             ; 666F 85 A1                    ..
@@ -4672,8 +4665,7 @@ L6666:  .byte   $D7                             ; 6666 D7                       
 	lda     L65DB                           ; 6675 AD DB 65                 ..e
 	sta     $A4                             ; 6678 85 A4                    ..
 	ldy     L65DC                           ; 667A AC DC 65                 ..e
-	ldx     $A1                             ; 667D A6 A1                    ..
-	lda     $A0                             ; 667F A5 A0                    ..
+	ldxa	$A0
 	jsr     sub_45FC
 	inc     L65DD                           ; 6684 EE DD 65                 ..e
 	jmp     L6640                           ; 6687 4C 40 66                 L@f
@@ -4733,7 +4725,7 @@ L66BB:  lda     L6693                           ; 66BB AD 93 66                 
 	ldy     #$00                            ; 66E7 A0 00                    ..
 	ldx     #$00                            ; 66E9 A2 00                    ..
 	lda     L6690                           ; 66EB AD 90 66                 ..f
-	jsr     L65E2                           ; 66EE 20 E2 65                  .e
+	jsr     sub_65E2
 	rts                                     ; 66F1 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -4747,10 +4739,10 @@ L66F7:  brk                                     ; 66F7 00                       
 	brk                                     ; 66F9 00                       .
 L66FA:  brk                                     ; 66FA 00                       .
 L66FB:  brk                                     ; 66FB 00                       .
-L66FC:  jmp     L66FF                           ; 66FC 4C FF 66                 L.f
 
 ; ----------------------------------------------------------------------------
-L66FF:  stx     L66F3                           ; 66FF 8E F3 66                 ..f
+L66FC:  prolog
+	stx     L66F3                           ; 66FF 8E F3 66                 ..f
 	sta     L66F2                           ; 6702 8D F2 66                 ..f
 	lda     L66F2                           ; 6705 AD F2 66                 ..f
 	jsr     L65B0                           ; 6708 20 B0 65                  .e
@@ -4765,17 +4757,13 @@ L66FF:  stx     L66F3                           ; 66FF 8E F3 66                 
 	lda     #$06                            ; 671E A9 06                    ..
 	sta     $A4                             ; 6720 85 A4                    ..
 	ldy     L66F4                           ; 6722 AC F4 66                 ..f
-	ldx     #$66                            ; 6725 A2 66                    .f
-	lda     #$F6                            ; 6727 A9 F6                    ..
+	ldxai	$66F6
 	jsr     sub_461F
 	lda     L66F3                           ; 672C AD F3 66                 ..f
 	cmp     L66F7                           ; 672F CD F7 66                 ..f
-	bcs     L6737                           ; 6732 B0 03                    ..
-	jmp     L6742                           ; 6734 4C 42 67                 LBg
-
-; ----------------------------------------------------------------------------
-L6737:  ldx     #$00                            ; 6737 A2 00                    ..
-	lda     L66F2                           ; 6739 AD F2 66                 ..f
+	lbcc	L6742
+	ldx     #$00                            ; 6737 A2 00                    ..
+	lda     L66F2
 	jsr     L6696                           ; 673C 20 96 66                  .f
 	jmp     L67C3                           ; 673F 4C C3 67                 L.g
 
@@ -4841,8 +4829,8 @@ L6742:  lda     L66FA                           ; 6742 AD FA 66                 
 	sta     $A5                             ; 67B7 85 A5                    ..
 	ldy     $A2                             ; 67B9 A4 A2                    ..
 	ldx     #$00                            ; 67BB A2 00                    ..
-	lda     L66F2                           ; 67BD AD F2 66                 ..f
-	jsr     L65E2                           ; 67C0 20 E2 65                  .e
+	lda     L66F2
+	jsr     sub_65E2
 L67C3:  rts                                     ; 67C3 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -12712,7 +12700,7 @@ LAA86:	.addr	L6AD5
 	.addr	sub_6995
 	.addr	sub_67D8
 	.addr	L6696
-	.addr	L65E2
+	.addr	sub_65E2
 	.addr	L7D4D
 	.addr	L6E61
 	.addr	L6F68
