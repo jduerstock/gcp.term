@@ -6050,13 +6050,12 @@ L7096:
 	add16i	$A0, L7092, $001E
 	lda     L7091                           ; 70BE AD 91 70                 ..p
 	sta     $A3                             ; 70C1 85 A3                    ..
-L70C3:  lda     #$00                            ; 70C3 A9 00                    ..
+	lda     #$00                            ; 70C3 A9 00                    ..
 	sta     $A5                             ; 70C5 85 A5                    ..
 	lda     #$04                            ; 70C7 A9 04                    ..
 	sta     $A4                             ; 70C9 85 A4                    ..
 	ldy     L7090                           ; 70CB AC 90 70                 ..p
-	ldx     $A1                             ; 70CE A6 A1                    ..
-	lda     $A0                             ; 70D0 A5 A0                    ..
+	ldxa	$A0
 	jsr     sub_461F
 	rts                                     ; 70D5 60                       `
 
@@ -6074,23 +6073,12 @@ L70DF:  brk                                     ; 70DF 00                       
 L70E0:  brk                                     ; 70E0 00                       .
 L70E1:	.byte	$66
 
-L70E2:	prolog
-	jsr     sub_44D5                           ; 70E5 20 D5 44                  .D
-	dec     $70,x                           ; 70E8 D6 70                    .p
-	.byte   $02                             ; 70EA 02                       .
+L70E2:
+	stack_prolog L70D6, $02
 	lda     L70D6                           ; 70EB AD D6 70                 ..p
 	jsr     sub_7035
-	lda     $A1                             ; 70F1 A5 A1                    ..
-	sta     L70DA                           ; 70F3 8D DA 70                 ..p
-	lda     $A0                             ; 70F6 A5 A0                    ..
-	sta     L70D9                           ; 70F8 8D D9 70                 ..p
-	clc                                     ; 70FB 18                       .
-	lda     L70D9                           ; 70FC AD D9 70                 ..p
-	adc     #$22                            ; 70FF 69 22                    i"
-	sta     L70DD                           ; 7101 8D DD 70                 ..p
-	lda     L70DA                           ; 7104 AD DA 70                 ..p
-	adc     #$00                            ; 7107 69 00                    i.
-	sta     L70DE                           ; 7109 8D DE 70                 ..p
+	rdmv	L70D9, $A0
+	add16i	L70DD, L70D9, $0022
 	lda     L70D8                           ; 710C AD D8 70                 ..p
 	sta     $A3                             ; 710F 85 A3                    ..
 	lda     #$00                            ; 7111 A9 00                    ..
@@ -6098,8 +6086,7 @@ L70E2:	prolog
 	lda     #$04                            ; 7115 A9 04                    ..
 	sta     $A4                             ; 7117 85 A4                    ..
 	ldy     L70D7                           ; 7119 AC D7 70                 ..p
-	ldx     L70DE                           ; 711C AE DE 70                 ..p
-	lda     L70DD                           ; 711F AD DD 70                 ..p
+	ldxa	L70DD
 	jsr     sub_461F
 	clc                                     ; 7125 18                       .
 	lda     L70D9                           ; 7126 AD D9 70                 ..p
