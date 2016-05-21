@@ -1745,7 +1745,8 @@ L4C72:  .byte   $2B                             ; 4C72 2B                       
 L4C73:  .byte   $79                             ; 4C73 79                       y
 L4C74:  .byte   $2C                             ; 4C74 2C                       ,
 
-L4C75:  stack_prolog L4C6D, $03
+sub_4C75:  
+	stack_prolog L4C6D, $03
 	lda     L4C70                           ; 4C7E AD 70 4C                 .pL
 	sta     $A3                             ; 4C81 85 A3                    ..
 	lda     #$00                            ; 4C83 A9 00                    ..
@@ -1753,16 +1754,14 @@ L4C75:  stack_prolog L4C6D, $03
 	lda     #$04                            ; 4C87 A9 04                    ..
 	sta     $A4                             ; 4C89 85 A4                    ..
 	ldy     L4C6F                           ; 4C8B AC 6F 4C                 .oL
-	ldx     #$4C                            ; 4C8E A2 4C                    .L
-	lda     #$71                            ; 4C90 A9 71                    .q
+	ldxai	$4C71
 	jsr     sub_461F
 	ldx     L4C71                           ; 4C95 AE 71 4C                 .qL
 	lda     L4C6D                           ; 4C98 AD 6D 4C                 .mL
 	jsr     sub_4955
 	lda     $A0                             ; 4C9E A5 A0                    ..
 	lbeq	L4CAA
-	lda     #$00                            ; 4CA5 A9 00                    ..
-	sta     $A0                             ; 4CA7 85 A0                    ..
+	ldi	$A0, $00
 	rts                                     ; 4CA9 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -1811,24 +1810,12 @@ L4CF5:  stack_prolog L4CEE, $05
 L4D03:  lda     #$01                            ; 4D03 A9 01                    ..
 	cmp     L4CF4                           ; 4D05 CD F4 4C                 ..L
 	lbcc	L4DCC
-	clc                                     ; 4D0D 18                       .
-	lda     L4CF2                           ; 4D0E AD F2 4C                 ..L
-	adc     L4CF4                           ; 4D11 6D F4 4C                 m.L
-	sta     $AE                             ; 4D14 85 AE                    ..
-	lda     L4CF3                           ; 4D16 AD F3 4C                 ..L
-	adc     #$00                            ; 4D19 69 00                    i.
-	sta     $AF                             ; 4D1B 85 AF                    ..
+	add16m8 off_AE, L4CF2, L4CF4
 	lda     $AF                             ; 4D1D A5 AF                    ..
 	pha                                     ; 4D1F 48                       H
 	lda     $AE                             ; 4D20 A5 AE                    ..
 	pha                                     ; 4D22 48                       H
-	clc                                     ; 4D23 18                       .
-	lda     L4CEE                           ; 4D24 AD EE 4C                 ..L
-	adc     L4CF4                           ; 4D27 6D F4 4C                 m.L
-	sta     $AE                             ; 4D2A 85 AE                    ..
-	lda     L4CEF                           ; 4D2C AD EF 4C                 ..L
-	adc     #$00                            ; 4D2F 69 00                    i.
-	sta     $AF                             ; 4D31 85 AF                    ..
+	add16m8	off_AE, L4CEE, L4CF4
 	ldy     #$00                            ; 4D33 A0 00                    ..
 	lda     ($AE),y                         ; 4D35 B1 AE                    ..
 	sta     $A0                             ; 4D37 85 A0                    ..
@@ -6280,10 +6267,7 @@ L72B1:  prolog
 	sta     L729F                           ; 72B4 8D 9F 72                 ..r
 	lda     L729F                           ; 72B7 AD 9F 72                 ..r
 	jsr     sub_7035
-	lda     $A1                             ; 72BD A5 A1                    ..
-	sta     L72A1                           ; 72BF 8D A1 72                 ..r
-	lda     $A0                             ; 72C2 A5 A0                    ..
-	sta     L72A0                           ; 72C4 8D A0 72                 ..r
+	rdmv	L72A0, $A0
 	lda     L72A1                           ; 72C7 AD A1 72                 ..r
 	sta     $A3                             ; 72CA 85 A3                    ..
 	lda     #$00                            ; 72CC A9 00                    ..
@@ -6328,13 +6312,7 @@ L72B1:  prolog
 	ldx     #$72                            ; 731D A2 72                    .r
 	lda     #$A6                            ; 731F A9 A6                    ..
 	jsr     sub_4BF2
-	clc                                     ; 7324 18                       .
-	lda     L72A0                           ; 7325 AD A0 72                 ..r
-	adc     #$0A                            ; 7328 69 0A                    i.
-	sta     $AE                             ; 732A 85 AE                    ..
-	lda     L72A1                           ; 732C AD A1 72                 ..r
-	adc     #$00                            ; 732F 69 00                    i.
-	sta     $AF                             ; 7331 85 AF                    ..
+	add16i	off_AE, L72A0, $000A
 	lda     $AF                             ; 7333 A5 AF                    ..
 	pha                                     ; 7335 48                       H
 	lda     $AE                             ; 7336 A5 AE                    ..
@@ -6370,35 +6348,20 @@ L7364:  .byte   $20                             ; 7364 20
 L7365:  .byte   $90                             ; 7365 90                       .
 L7366:  .byte   $ED                             ; 7366 ED                       .
 L7367:  .byte   $AD                             ; 7367 AD                       .
-L7368:  jmp     $736B                           ; 7368 4C 6B 73                 Lks
 
 ; ----------------------------------------------------------------------------
-	jsr     sub_44D5                        ; 736B 20 D5 44                  .D
-	.byte   $62                             ; 736E 62                       b
-	.byte   $73                             ; 736F 73                       s
-	.byte   $02                             ; 7370 02                       .
+L7368:
+	stack_prolog L7362, $02
 	lda     L7364                           ; 7371 AD 64 73                 .ds
 	jsr     sub_7035
-	lda     $A1                             ; 7377 A5 A1                    ..
-	sta     L7366                           ; 7379 8D 66 73                 .fs
-	lda     $A0                             ; 737C A5 A0                    ..
-	sta     L7365                           ; 737E 8D 65 73                 .es
-	lda     L7365                           ; 7381 AD 65 73                 .es
-	sta     $AE                             ; 7384 85 AE                    ..
-	lda     L7366                           ; 7386 AD 66 73                 .fs
-	sta     $AF                             ; 7389 85 AF                    ..
+	rdmv	L7365, $A0
+	dmv	off_AE, L7365
 	sec                                     ; 738B 38                       8
 	lda     L7362                           ; 738C AD 62 73                 .bs
 	ldy     #$00                            ; 738F A0 00                    ..
 	sbc     ($AE),y                         ; 7391 F1 AE                    ..
 	sta     L7362                           ; 7393 8D 62 73                 .bs
-	clc                                     ; 7396 18                       .
-	lda     L7365                           ; 7397 AD 65 73                 .es
-	adc     #$01                            ; 739A 69 01                    i.
-	sta     $AE                             ; 739C 85 AE                    ..
-	lda     L7366                           ; 739E AD 66 73                 .fs
-	adc     #$00                            ; 73A1 69 00                    i.
-	sta     $AF                             ; 73A3 85 AF                    ..
+	add16i	off_AE, L7365, $0001
 	sec                                     ; 73A5 38                       8
 	lda     L7363                           ; 73A6 AD 63 73                 .cs
 	sbc     ($AE),y                         ; 73A9 F1 AE                    ..
@@ -6411,9 +6374,8 @@ L7368:  jmp     $736B                           ; 7368 4C 6B 73                 
 	adc     #$00                            ; 73B9 69 00                    i.
 	sta     $A3                             ; 73BB 85 A3                    ..
 	ldy     $A2                             ; 73BD A4 A2                    ..
-	ldx     L7363                           ; 73BF AE 63 73                 .cs
-	lda     L7362                           ; 73C2 AD 62 73                 .bs
-	jsr     L4C75                           ; 73C5 20 75 4C                  uL
+	ldxa	L7362
+	jsr     sub_4C75
 	lda     $A0                             ; 73C8 A5 A0                    ..
 	sta     L7367                           ; 73CA 8D 67 73                 .gs
 	lda     L7367                           ; 73CD AD 67 73                 .gs
@@ -7910,9 +7872,8 @@ sub_81F2:
 	lda     #$81                            ; 824B A9 81                    ..
 	sta     $A3                             ; 824D 85 A3                    ..
 	ldy     #$DE                            ; 824F A0 DE                    ..
-	ldx     L81E5                           ; 8251 AE E5 81                 ...
-	lda     L81E4                           ; 8254 AD E4 81                 ...
-	jsr     L4C75                           ; 8257 20 75 4C                  uL
+	ldxa	L81E4
+	jsr     sub_4C75
 	lda     $A0                             ; 825A A5 A0                    ..
 	sta     L81DB                           ; 825C 8D DB 81                 ...
 	lda     L81DB                           ; 825F AD DB 81                 ...
@@ -7987,18 +7948,14 @@ L82B5:  clc                                     ; 82B5 18                       
 	lda     #$81                            ; 8301 A9 81                    ..
 	sta     $A3                             ; 8303 85 A3                    ..
 	ldy     #$DE                            ; 8305 A0 DE                    ..
-	ldx     L81E5                           ; 8307 AE E5 81                 ...
-	lda     L81E4                           ; 830A AD E4 81                 ...
-	jsr     L4C75                           ; 830D 20 75 4C                  uL
+	ldxa	L81E4
+	jsr     sub_4C75
 	lda     $A0                             ; 8310 A5 A0                    ..
 	sta     L81DB                           ; 8312 8D DB 81                 ...
 	lda     L81DB                           ; 8315 AD DB 81                 ...
 	eor     #$01                            ; 8318 49 01                    I.
-	beq     L831F                           ; 831A F0 03                    ..
-	jmp     L8327                           ; 831C 4C 27 83                 L'.
-
-; ----------------------------------------------------------------------------
-L831F:  ldy     #$01                            ; 831F A0 01                    ..
+	lbne	L8327
+	ldy     #$01                            ; 831F A0 01                    ..
 	sty     L81E2                           ; 8321 8C E2 81                 ...
 	jmp     L832C                           ; 8324 4C 2C 83                 L,.
 
