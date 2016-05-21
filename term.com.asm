@@ -13458,15 +13458,8 @@ LAED0:  inc     LAE7E                           ; AED0 EE 7E AE                 
 LAED6:  rts                                     ; AED6 60                       `
 
 ; ----------------------------------------------------------------------------
-	brk                                     ; AED7 00                       .
-	ora     ($02,x)                         ; AED8 01 02                    ..
-	brk                                     ; AEDA 00                       .
-	.byte   $03                             ; AEDB 03                       .
-	brk                                     ; AEDC 00                       .
-	brk                                     ; AEDD 00                       .
-	brk                                     ; AEDE 00                       .
-LAEDF:  .byte   $D7                             ; AEDF D7                       .
-LAEE0:  .byte   $AE                             ; AEE0 AE                       .
+LAED7:	.byte	$00,$01,$02,$00,$03,$00,$00,$00
+LAEDF:	.addr	LAED7
 LAEE1:  brk                                     ; AEE1 00                       .
 LAEE2:  brk                                     ; AEE2 00                       .
 LAEE3:  brk                                     ; AEE3 00                       .
@@ -13490,7 +13483,7 @@ LAEE4:  prolog
 LAF08:  ldy     #$00                            ; AF08 A0 00                    ..
 	sty     LAEE3                           ; AF0A 8C E3 AE                 ...
 	add16m8	off_AE, LAEDF, LAEE2
-	lda     ($AE),y                         ; AF1D B1 AE                    ..
+	lda     (off_AE),y
 	sta     LAEE1                           ; AF1F 8D E1 AE                 ...
 	lda     LAEE1                           ; AF22 AD E1 AE                 ...
 	lbeq	LAF35
