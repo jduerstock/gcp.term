@@ -8717,7 +8717,7 @@ L897D:	.byte	$00
 	brk                                     ; 8982 00                       .
 	brk                                     ; 8983 00                       .
 	brk                                     ; 8984 00                       .
-	brk                                     ; 8985 00                       .
+L8985:	.byte	$00
 	brk                                     ; 8986 00                       .
 	brk                                     ; 8987 00                       .
 	brk                                     ; 8988 00                       .
@@ -8938,27 +8938,14 @@ L8B4E:	add16i	off_AE, L898D, $0007
 	sta     L8969                           ; 8B67 8D 69 89                 .i.
 	lda     #$00                            ; 8B6A A9 00                    ..
 	sta     $A3                             ; 8B6C 85 A3                    ..
-	sec                                     ; 8B6E 38                       8
-	lda     L899C                           ; 8B6F AD 9C 89                 ...
-	sbc     #$01                            ; 8B72 E9 01                    ..
-	sta     $A4                             ; 8B74 85 A4                    ..
-	sec                                     ; 8B76 38                       8
-	lda     L899D                           ; 8B77 AD 9D 89                 ...
-	sbc     #$01                            ; 8B7A E9 01                    ..
-	sta     $A5                             ; 8B7C 85 A5                    ..
+	sub8i	$A4, L899C, $01
+	sub8i	$A5, L899D, $01
 	ldy     #$00                            ; 8B7E A0 00                    ..
-	ldx     #$89                            ; 8B80 A2 89                    ..
-	lda     #$71                            ; 8B82 A9 71                    .q
+	ldxai	$8971
 	jsr     sub_4BF2
 	ldy     #$01                            ; 8B87 A0 01                    ..
 	sty     L8992                           ; 8B89 8C 92 89                 ...
-	clc                                     ; 8B8C 18                       .
-	lda     L898D                           ; 8B8D AD 8D 89                 ...
-	adc     #$06                            ; 8B90 69 06                    i.
-	sta     $AE                             ; 8B92 85 AE                    ..
-	lda     L898E                           ; 8B94 AD 8E 89                 ...
-	adc     #$00                            ; 8B97 69 00                    i.
-	sta     $AF                             ; 8B99 85 AF                    ..
+	add16i	off_AE, L898D, $0006
 	dey                                     ; 8B9B 88                       .
 	lda     ($AE),y                         ; 8B9C B1 AE                    ..
 	sta     L8BAC                           ; 8B9E 8D AC 8B                 ...
@@ -8968,7 +8955,9 @@ L8BA1:  lda     L8BAC                           ; 8BA1 AD AC 8B                 
 	jmp     L8CD5                           ; 8BA9 4C D5 8C                 L..
 
 ; ----------------------------------------------------------------------------
-L8BAC:  brk                                     ; 8BAC 00                       .
+L8BAC:  .byte	$00
+
+; ----------------------------------------------------------------------------
 L8BAD:  lda     L896A                           ; 8BAD AD 6A 89                 .j.
 	sta     $A3                             ; 8BB0 85 A3                    ..
 	lda     #$00                            ; 8BB2 A9 00                    ..
@@ -9041,8 +9030,7 @@ L8BD1:  lda     L89A9                           ; 8BD1 AD A9 89                 
 	lda     #$89                            ; 8C3E A9 89                    ..
 	sta     $A4                             ; 8C40 85 A4                    ..
 	ldy     #$71                            ; 8C42 A0 71                    .q
-	ldx     #$89                            ; 8C44 A2 89                    ..
-	lda     #$85                            ; 8C46 A9 85                    ..
+	ldxai	L8985
 	jsr     sub_4CF5
 	lda     $A0                             ; 8C4B A5 A0                    ..
 	sta     L8991                           ; 8C4D 8D 91 89                 ...
