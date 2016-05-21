@@ -9307,7 +9307,7 @@ L8E24:	prolog
 	rts                                     ; 8E73 60                       `
 
 ; ----------------------------------------------------------------------------
-	brk                                     ; 8E74 00                       .
+L8E74:	brk                                     ; 8E74 00                       .
 L8E75:  brk                                     ; 8E75 00                       .
 	brk                                     ; 8E76 00                       .
 	brk                                     ; 8E77 00                       .
@@ -9316,14 +9316,13 @@ L8E75:  brk                                     ; 8E75 00                       
 	brk                                     ; 8E7A 00                       .
 L8E7B:  brk                                     ; 8E7B 00                       .
 L8E7C:  brk                                     ; 8E7C 00                       .
-L8E7D:  jmp     L8E80                           ; 8E7D 4C 80 8E                 L..
 
 ; ----------------------------------------------------------------------------
-L8E80:  jsr     sub_44D5                           ; 8E80 20 D5 44                  .D
-	.byte   $74                             ; 8E83 74                       t
-	stx     LAD06                           ; 8E84 8E 06 AD                 ...
-	.byte   $74                             ; 8E87 74                       t
-	stx     $080A                           ; 8E88 8E 0A 08                 ...
+sub_8E7D:  
+	stack_prolog L8E74, $06
+	lda	L8E74
+	asl	a
+	php 
 	clc                                     ; 8E8B 18                       .
 	adc     L46F5                           ; 8E8C 6D F5 46                 m.F
 	sta     $AE                             ; 8E8F 85 AE                    ..
@@ -9550,7 +9549,7 @@ L8FDE:  lda     L4678                           ; 8FDE AD 78 46                 
 	ldy     #$28                            ; 903F A0 28                    .(
 	ldx     #$00                            ; 9041 A2 00                    ..
 	lda     #$00                            ; 9043 A9 00                    ..
-	jsr     L8E7D                           ; 9045 20 7D 8E                  }.
+	jsr     sub_8E7D
 	ldx     #$0F                            ; 9048 A2 0F                    ..
 	lda     #$00                            ; 904A A9 00                    ..
 	jsr     L8F55                           ; 904C 20 55 8F                  U.
@@ -12877,7 +12876,7 @@ LAA86:	.addr	L6AD5
 	.addr	L8003
 	.addr	L80BB
 	.addr	L8EFD
-	.addr	L8E7D
+	.addr	sub_8E7D
 	.addr	L8F55
 	.addr	L8E24
 	.addr	LA9DE
