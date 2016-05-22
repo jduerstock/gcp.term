@@ -9294,29 +9294,17 @@ sub_90CE:
 	lda     #$06                            ; 90F0 A9 06                    ..
 	sta     $A4                             ; 90F2 85 A4                    ..
 	ldy     L90C3                           ; 90F4 AC C3 90                 ...
-	ldx     #$90                            ; 90F7 A2 90                    ..
-	lda     #$C8                            ; 90F9 A9 C8                    ..
+	ldxai	L90C8
 	jsr     sub_461F
-	lda     L90C2                           ; 90FE AD C2 90                 ...
-	asl     a                               ; 9101 0A                       .
-	php                                     ; 9102 08                       .
-	clc                                     ; 9103 18                       .
-	adc     L90CC                           ; 9104 6D CC 90                 m..
-	sta     $AE                             ; 9107 85 AE                    ..
-	lda     #$00                            ; 9109 A9 00                    ..
-	rol     a                               ; 910B 2A                       *
-	plp                                     ; 910C 28                       (
-	adc     L90CD                           ; 910D 6D CD 90                 m..
-	sta     $AF                             ; 9110 85 AF                    ..
-	ldy     #$01                            ; 9112 A0 01                    ..
+	shladdm8 off_AE, L90CC, L90C2
+	ldy     #$01
 	lda     ($AE),y                         ; 9114 B1 AE                    ..
 	sta     L90C6                           ; 9116 8D C6 90                 ...
 	dey                                     ; 9119 88                       .
 	lda     ($AE),y                         ; 911A B1 AE                    ..
 	sta     L90C5                           ; 911C 8D C5 90                 ...
 	ldy     L90C8                           ; 911F AC C8 90                 ...
-	ldx     L90C6                           ; 9122 AE C6 90                 ...
-	lda     L90C5                           ; 9125 AD C5 90                 ...
+	ldxa	L90C5
 	jsr     sub_4B97
 	lda     $A0                             ; 912B A5 A0                    ..
 	sta     L90C7                           ; 912D 8D C7 90                 ...
