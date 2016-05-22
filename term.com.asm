@@ -12743,7 +12743,8 @@ LAD83:  .byte   $D5                             ; AD83 D5                       
 LAD84:  brk                                     ; AD84 00                       .
 
 ; ----------------------------------------------------------------------------
-LAD85:  prolog
+sub_AD85:  
+	prolog
 	lda     #>LAD2E
 	sta     $0229                           ; AD8A 8D 29 02                 .).
 	lda     #<LAD2E
@@ -12755,8 +12756,7 @@ LAD85:  prolog
 	lda     #$00                            ; AD9C A9 00                    ..
 	sta     $A3                             ; AD9E 85 A3                    ..
 	ldy     #$06                            ; ADA0 A0 06                    ..
-	ldx     LAD84                           ; ADA2 AE 84 AD                 ...
-	lda     LAD83                           ; ADA5 AD 83 AD                 ...
+	ldxa	LAD83
 	jsr     sub_45F6
 	lda     #$AC                            ; ADAB A9 AC                    ..
 	sta     $0209                           ; ADAD 8D 09 02                 ...
@@ -12824,7 +12824,7 @@ sub_ADEA:
 	sta     MEMTOP
 	rdmv	sub_4749+1, sub_AB6A+1
 	rdmv	L5D65, sub_8D01+1
-	jsr     LAD85                           ; AE4E 20 85 AD                  ..
+	jsr     sub_AD85
 	jsr     L6203                           ; AE51 20 03 62                  .b
 	jsr     L5D67                           ; AE54 20 67 5D                  g]
 	jsr     LA9FB                           ; AE57 20 FB A9                  ..
