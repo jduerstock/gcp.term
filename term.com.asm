@@ -9629,8 +9629,7 @@ sub_9427:
 	lda     L9060                           ; 9458 AD 60 90                 .`.
 	sta     $A4                             ; 945B 85 A4                    ..
 	ldy     L9059                           ; 945D AC 59 90                 .Y.
-	ldx     L905C                           ; 9460 AE 5C 90                 .\.
-	lda     L905B                           ; 9463 AD 5B 90                 .[.
+	ldxa	L905B
 	jsr     sub_461F
 	jmp     L9470                           ; 9469 4C 70 94                 Lp.
 
@@ -9653,16 +9652,12 @@ L9470:  lda     #$00                            ; 9470 A9 00                    
 	lda     L9059                           ; 948B AD 59 90                 .Y.
 	sta     $A8                             ; 948E 85 A8                    ..
 	ldy     #$4C                            ; 9490 A0 4C                    .L
-	ldx     #>L946C                         ; 9492 A2 94                    ..
-	lda     #<L946C                         ; 9494 A9 6C                    .l
+	ldxai	L946C
 	jsr     sub_55A0
 L9499:  lda     #$7F                            ; 9499 A9 7F                    ..
 	cmp     L9416                           ; 949B CD 16 94                 ...
-	bcc     L94A3                           ; 949E 90 03                    ..
-	jmp     L94AB                           ; 94A0 4C AB 94                 L..
-
-; ----------------------------------------------------------------------------
-L94A3:  ldy     #$00                            ; 94A3 A0 00                    ..
+	lbcs	L94AB
+	ldy     #$00                            ; 94A3 A0 00                    ..
 	sty     L9416                           ; 94A5 8C 16 94                 ...
 	jmp     L94E8                           ; 94A8 4C E8 94                 L..
 
@@ -9681,10 +9676,7 @@ L94AB:  sec                                     ; 94AB 38                       
 	lda     L9416                           ; 94C8 AD 16 94                 ...
 	sbc     L9061                           ; 94CB ED 61 90                 .a.
 	sta     $AE                             ; 94CE 85 AE                    ..
-	clc                                     ; 94D0 18                       .
-	lda     $AE                             ; 94D1 A5 AE                    ..
-	adc     #$01                            ; 94D3 69 01                    i.
-	sta     $A1                             ; 94D5 85 A1                    ..
+	add8i	$A1, off_AE, $01
 	ldx     $A1                             ; 94D7 A6 A1                    ..
 	lda     L9053                           ; 94D9 AD 53 90                 .S.
 	jsr     sub_66FC
@@ -9692,17 +9684,7 @@ L94DF:  sec                                     ; 94DF 38                       
 	lda     L9061                           ; 94E0 AD 61 90                 .a.
 	sbc     #$01                            ; 94E3 E9 01                    ..
 	sta     L9416                           ; 94E5 8D 16 94                 ...
-L94E8:  lda     L9416                           ; 94E8 AD 16 94                 ...
-	asl     a                               ; 94EB 0A                       .
-	php                                     ; 94EC 08                       .
-	clc                                     ; 94ED 18                       .
-	adc     L9064                           ; 94EE 6D 64 90                 md.
-	sta     $AE                             ; 94F1 85 AE                    ..
-	lda     #$00                            ; 94F3 A9 00                    ..
-	rol     a                               ; 94F5 2A                       *
-	plp                                     ; 94F6 28                       (
-	adc     L9065                           ; 94F7 6D 65 90                 me.
-	sta     $AF                             ; 94FA 85 AF                    ..
+L94E8:	shladdm8 off_AE, L9064, L9416
 	ldy     #$01                            ; 94FC A0 01                    ..
 	lda     ($AE),y                         ; 94FE B1 AE                    ..
 	sta     L905C                           ; 9500 8D 5C 90                 .\.
