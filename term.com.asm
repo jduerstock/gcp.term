@@ -4586,7 +4586,8 @@ L6580:  clc                                     ; 6580 18                       
 L65AF:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-L65B0:  prolog
+sub_65B0:  
+	prolog
 	sta     L65AF                           ; 65B3 8D AF 65                 ..e
 	shladdm8 off_AE, L46E2, L65AF
 	ldy     #$01                            ; 65CA A0 01                    ..
@@ -4614,7 +4615,7 @@ L65E1:  brk                                     ; 65E1 00                       
 sub_65E2:  
 	stack_prolog L65D6, $05
 	lda	L65D6
-	jsr     L65B0                           ; 65EE 20 B0 65                  .e
+	jsr     sub_65B0
 	rdmv	L65E0, $A0
 	lda     L65E0                           ; 65FB AD E0 65                 ..e
 	ora     L65E1                           ; 65FE 0D E1 65                 ..e
@@ -4676,8 +4677,7 @@ L668A:  ldy     #$01                            ; 668A A0 01                    
 	rts                                     ; 668F 60                       `
 
 ; ----------------------------------------------------------------------------
-L6690:  brk                                     ; 6690 00                       .
-L6691:  brk                                     ; 6691 00                       .
+L6690:  .word	$0000
 L6692:  brk                                     ; 6692 00                       .
 L6693:  brk                                     ; 6693 00                       .
 L6694:  brk                                     ; 6694 00                       .
@@ -4685,21 +4685,15 @@ L6695:  brk                                     ; 6695 00                       
 
 ; ----------------------------------------------------------------------------
 L6696:  prolog
-	stx     L6691                           ; 6699 8E 91 66                 ..f
+	stx     L6690+1                         ; 6699 8E 91 66                 ..f
 	sta     L6690                           ; 669C 8D 90 66                 ..f
 	lda     L6690                           ; 669F AD 90 66                 ..f
-	jsr     L65B0                           ; 66A2 20 B0 65                  .e
-	lda     $A1                             ; 66A5 A5 A1                    ..
-	sta     L6693                           ; 66A7 8D 93 66                 ..f
-	lda     $A0                             ; 66AA A5 A0                    ..
-	sta     L6692                           ; 66AC 8D 92 66                 ..f
+	jsr     sub_65B0
+	rdmv	L6692, $A0
 	lda     L6692                           ; 66AF AD 92 66                 ..f
 	ora     L6693                           ; 66B2 0D 93 66                 ..f
-	beq     L66BA                           ; 66B5 F0 03                    ..
-	jmp     L66BB                           ; 66B7 4C BB 66                 L.f
-
-; ----------------------------------------------------------------------------
-L66BA:  rts                                     ; 66BA 60                       `
+	lbne	L66BB
+	rts                                     ; 66BA 60                       `
 
 ; ----------------------------------------------------------------------------
 L66BB:  lda     L6693                           ; 66BB AD 93 66                 ..f
@@ -4709,8 +4703,7 @@ L66BB:  lda     L6693                           ; 66BB AD 93 66                 
 	lda     #$02                            ; 66C4 A9 02                    ..
 	sta     $A4                             ; 66C6 85 A4                    ..
 	ldy     L6692                           ; 66C8 AC 92 66                 ..f
-	ldx     #$66                            ; 66CB A2 66                    .f
-	lda     #$94                            ; 66CD A9 94                    ..
+	ldxai	L6694
 	jsr     sub_461F
 	sec                                     ; 66D2 38                       8
 	lda     L6694                           ; 66D3 AD 94 66                 ..f
@@ -4720,7 +4713,7 @@ L66BB:  lda     L6693                           ; 66BB AD 93 66                 
 	lda     L6695                           ; 66DB AD 95 66                 ..f
 	sbc     #$01                            ; 66DE E9 01                    ..
 	sta     $A4                             ; 66E0 85 A4                    ..
-	lda     L6691                           ; 66E2 AD 91 66                 ..f
+	lda     L6690+1
 	sta     $A5                             ; 66E5 85 A5                    ..
 	ldy     #$00                            ; 66E7 A0 00                    ..
 	ldx     #$00                            ; 66E9 A2 00                    ..
@@ -4741,11 +4734,12 @@ L66FA:  brk                                     ; 66FA 00                       
 L66FB:  brk                                     ; 66FB 00                       .
 
 ; ----------------------------------------------------------------------------
-L66FC:  prolog
+L66FC:  
+	prolog
 	stx     L66F3                           ; 66FF 8E F3 66                 ..f
 	sta     L66F2                           ; 6702 8D F2 66                 ..f
 	lda     L66F2                           ; 6705 AD F2 66                 ..f
-	jsr     L65B0                           ; 6708 20 B0 65                  .e
+	jsr     sub_65B0
 	lda     $A1                             ; 670B A5 A1                    ..
 	sta     L66F5                           ; 670D 8D F5 66                 ..f
 	lda     $A0                             ; 6710 A5 A0                    ..
@@ -4860,7 +4854,7 @@ L67D7:  .byte   $D3                             ; 67D7 D3                       
 sub_67D8:
 	stack_prolog L67C4, $05 
 	lda	L67C4
-	jsr     L65B0                           ; 67E4 20 B0 65                  .e
+	jsr     sub_65B0
 	rdmv	L67CF, $A0
 	lda     L67CF                           ; 67F1 AD CF 67                 ..g
 	ora     L67D0                           ; 67F4 0D D0 67                 ..g
@@ -5081,7 +5075,7 @@ sub_6995:
 	prolog
 	sta     L6982                           ; 6998 8D 82 69                 ..i
 	lda     L6982                           ; 699B AD 82 69                 ..i
-	jsr     L65B0                           ; 699E 20 B0 65                  .e
+	jsr     sub_65B0
 	lda     $A1                             ; 69A1 A5 A1                    ..
 	sta     L6984                           ; 69A3 8D 84 69                 ..i
 	lda     $A0                             ; 69A6 A5 A0                    ..
@@ -5242,7 +5236,7 @@ L6AD4:  .byte   $3A                             ; 6AD4 3A                       
 L6AD5:	
 	stack_prolog L6ABE, $05
 	lda     L6ABE                           ; 6ADE AD BE 6A                 ..j
-	jsr     L65B0                           ; 6AE1 20 B0 65                  .e
+	jsr     sub_65B0
 	rdmv	L6AC4, $A0
 	lda     L6AC4                           ; 6AEE AD C4 6A                 ..j
 	ora     L6AC5                           ; 6AF1 0D C5 6A                 ..j
@@ -5599,7 +5593,7 @@ L6E60:  .byte   $66                             ; 6E60 66                       
 L6E61:  
 	stack_prolog L6E40, $05
 	lda	L6E40
-	jsr	L65B0
+	jsr	sub_65B0
 	rdmv	L6E46, $A0
 	lda     L6E47                           ; 6E7A AD 47 6E                 .Gn
 	sta     $A3                             ; 6E7D 85 A3                    ..
@@ -5739,7 +5733,7 @@ L6FA4:  rts                                     ; 6FA4 60                       
 
 ; ----------------------------------------------------------------------------
 L6FA5:  lda     L4647                           ; 6FA5 AD 47 46                 .GF
-	jsr     L65B0                           ; 6FA8 20 B0 65                  .e
+	jsr     sub_65B0
 	rdmv	L6F8D, $A0
 	lda     L6F8E                           ; 6FB5 AD 8E 6F                 ..o
 	sta     $A3                             ; 6FB8 85 A3                    ..
@@ -5776,7 +5770,7 @@ L6FFE:  rts                                     ; 6FFE 60                       
 
 ; ----------------------------------------------------------------------------
 L6FFF:  lda     L4648                           ; 6FFF AD 48 46                 .HF
-	jsr     L65B0                           ; 7002 20 B0 65                  .e
+	jsr     sub_65B0
 	rdmv	L6FE9, $A0
 	dmv	off_AE, L6FE9
 	ldy     #$00                            ; 7019 A0 00                    ..
@@ -5900,7 +5894,7 @@ L70E2:
 	lda     ($AE),y                         ; 7136 B1 AE                    ..
 	sta     L70DF                           ; 7138 8D DF 70                 ..p
 	lda     L70DF                           ; 713B AD DF 70                 ..p
-	jsr     L65B0                           ; 713E 20 B0 65                  .e
+	jsr     sub_65B0
 	rdmv	L70DB, $A0
 	lda     L70DC                           ; 714B AD DC 70                 ..p
 	sta     $A3                             ; 714E 85 A3                    ..
@@ -5982,7 +5976,7 @@ L71B5:  prolog
 	ldxai	L71AE
 	jsr     sub_461F
 	lda     L71B2                           ; 71E2 AD B2 71                 ..q
-	jsr     L65B0                           ; 71E5 20 B0 65                  .e
+	jsr     sub_65B0
 	rdmv	L71AC, $A0
 	sec                                     ; 71F2 38                       8
 	lda     #$00                            ; 71F3 A9 00                    ..
@@ -6771,7 +6765,7 @@ sub_799B:
 	stx     L7995                           ; 799E 8E 95 79                 ..y
 	sta     L7994                           ; 79A1 8D 94 79                 ..y
 	lda     L7994                           ; 79A4 AD 94 79                 ..y
-	jsr     L65B0                           ; 79A7 20 B0 65                  .e
+	jsr     sub_65B0
 	rdmv	L7996, $A0
 L79B4:  add16i	off_AE, L7996, $0007
 	ldy     #$01                            ; 79C3 A0 01                    ..
@@ -6944,7 +6938,7 @@ sub_7B68:
 	sbc     #$01                            ; 7B75 E9 01                    ..
 	sta     L7B4F                           ; 7B77 8D 4F 7B                 .O{
 	lda     L7B4D                           ; 7B7A AD 4D 7B                 .M{
-	jsr     L65B0                           ; 7B7D 20 B0 65                  .e
+	jsr     sub_65B0
 	lda     $A1                             ; 7B80 A5 A1                    ..
 	sta     L7B51                           ; 7B82 8D 51 7B                 .Q{
 	lda     $A0                             ; 7B85 A5 A0                    ..
@@ -7111,12 +7105,10 @@ L7D4A:  brk                                     ; 7D4A 00                       
 L7D4B:  brk                                     ; 7D4B 00                       .
 L7D4C:  brk                                     ; 7D4C 00                       .
 
-L7D4D:	prolog
-	jsr     sub_44D5                        ; 7D50 20 D5 44                  .D
-	.addr	L7D44
-	.byte	$03
+L7D4D:	
+	stack_prolog L7D44, $03
 	lda	L7D44
-	jsr	L65B0
+	jsr	sub_65B0
 	rdmv	L7D48, $A0
 	lda     L7D45                           ; 7D66 AD 45 7D                 .E}
 	and     #$01                            ; 7D69 29 01                    ).
@@ -7188,7 +7180,7 @@ L7E23:  brk                                     ; 7E23 00                       
 L7E24:
 	stack_prolog L7E12, $02
 	lda	L7E13
-	jsr	L65B0
+	jsr	sub_65B0
 	rdmv	L7E15, $A0
 	add16i	off_AE, L7E15, $0009
 	ldy     #$01                            ; 7E4C A0 01                    ..
@@ -7920,7 +7912,7 @@ L8447:  lda     L4750                           ; 8447 AD 50 47                 
 	lda     #$07                            ; 8469 A9 07                    ..
 	jsr     sub_461F
 	lda     L840B                           ; 846E AD 0B 84                 ...
-	jsr     L65B0                           ; 8471 20 B0 65                  .e
+	jsr     sub_65B0
 	lda     $A1                             ; 8474 A5 A1                    ..
 	sta     L83EA                           ; 8476 8D EA 83                 ...
 	lda     $A0                             ; 8479 A5 A0                    ..
@@ -8643,7 +8635,7 @@ L89AE:  prolog
 	lda     #$97                            ; 89D6 A9 97                    ..
 	jsr     sub_461F
 	lda     L899B                           ; 89DB AD 9B 89                 ...
-	jsr     L65B0                           ; 89DE 20 B0 65                  .e
+	jsr     sub_65B0
 	lda     $A1                             ; 89E1 A5 A1                    ..
 	sta     L898E                           ; 89E3 8D 8E 89                 ...
 	lda     $A0                             ; 89E6 A5 A0                    ..
@@ -8843,7 +8835,7 @@ L8BCE:  jmp     L8CD5                           ; 8BCE 4C D5 8C                 
 
 ; ----------------------------------------------------------------------------
 L8BD1:  lda     L89A9                           ; 8BD1 AD A9 89                 ...
-	jsr     L65B0                           ; 8BD4 20 B0 65                  .e
+	jsr     sub_65B0
 	lda     $A1                             ; 8BD7 A5 A1                    ..
 	sta     L8990                           ; 8BD9 8D 90 89                 ...
 	lda     $A0                             ; 8BDC A5 A0                    ..
@@ -9506,7 +9498,7 @@ sub_90CE:
 	stx     L90C2                           ; 90D1 8E C2 90                 ...
 	sta     L90C1                           ; 90D4 8D C1 90                 ...
 	lda     L90C1                           ; 90D7 AD C1 90                 ...
-	jsr     L65B0                           ; 90DA 20 B0 65                  .e
+	jsr     sub_65B0
 	rdmv	L90C3, $A0
 	lda     L90C4                           ; 90E7 AD C4 90                 ...
 	sta     $A3                             ; 90EA 85 A3                    ..
@@ -9568,7 +9560,7 @@ L9146:  jmp     L9149                           ; 9146 4C 49 91                 
 L9149:  stx     L9137                           ; 9149 8E 37 91                 .7.
 	sta     L9136                           ; 914C 8D 36 91                 .6.
 	lda     L9136                           ; 914F AD 36 91                 .6.
-	jsr     L65B0                           ; 9152 20 B0 65                  .e
+	jsr     sub_65B0
 	lda     $A1                             ; 9155 A5 A1                    ..
 	sta     L9139                           ; 9157 8D 39 91                 .9.
 	lda     $A0                             ; 915A A5 A0                    ..
@@ -9716,7 +9708,7 @@ L925D:  prolog
 	stx     L924D                           ; 9260 8E 4D 92                 .M.
 	sta     L924C                           ; 9263 8D 4C 92                 .L.
 	lda     L924C                           ; 9266 AD 4C 92                 .L.
-	jsr     L65B0                           ; 9269 20 B0 65                  .e
+	jsr     sub_65B0
 	lda     $A1                             ; 926C A5 A1                    ..
 	sta     L924F                           ; 926E 8D 4F 92                 .O.
 	lda     $A0                             ; 9271 A5 A0                    ..
@@ -10230,7 +10222,7 @@ L968E:	prolog
 	lda     ($AE),y                         ; 96BE B1 AE                    ..
 	sta     L9053                           ; 96C0 8D 53 90                 .S.
 	lda     L9053                           ; 96C3 AD 53 90                 .S.
-	jsr     L65B0                           ; 96C6 20 B0 65                  .e
+	jsr     sub_65B0
 	lda     $A1                             ; 96C9 A5 A1                    ..
 	sta     L9058                           ; 96CB 8D 58 90                 .X.
 	lda     $A0                             ; 96CE A5 A0                    ..
@@ -10267,7 +10259,7 @@ L968E:	prolog
 	lda     (off_AE),y                      ; 9723 B1 AE                    ..
 	sta     L968B                           ; 9725 8D 8B 96                 ...
 	lda     L968B                           ; 9728 AD 8B 96                 ...
-	jsr     L65B0                           ; 972B 20 B0 65                  .e
+	jsr     sub_65B0
 	rdmv	L9687, $A0
 	dmv	off_AE, L9687
 	ldy     #$00                            ; 9742 A0 00                    ..
@@ -11241,7 +11233,7 @@ L9ED7:  lda     L46E6                           ; 9ED7 AD E6 46                 
 	lda     #$1D                            ; 9F19 A9 1D                    ..
 	jsr     sub_461F
 	lda     L9E21                           ; 9F1E AD 21 9E                 .!.
-	jsr     L65B0                           ; 9F21 20 B0 65                  .e
+	jsr     sub_65B0
 	lda     $A1                             ; 9F24 A5 A1                    ..
 	sta     L9E13                           ; 9F26 8D 13 9E                 ...
 	lda     $A0                             ; 9F29 A5 A0                    ..
@@ -11442,7 +11434,7 @@ LA04F:  lda     L9FE8                           ; A04F AD E8 9F                 
 	adc     L9FE6                           ; A074 6D E6 9F                 m..
 	sta     L9FF4                           ; A077 8D F4 9F                 ...
 	lda     LA00E                           ; A07A AD 0E A0                 ...
-	jsr     L65B0                           ; A07D 20 B0 65                  .e
+	jsr     sub_65B0
 	lda     $A1                             ; A080 A5 A1                    ..
 	sta     L9FEE                           ; A082 8D EE 9F                 ...
 	lda     $A0                             ; A085 A5 A0                    ..
@@ -11847,7 +11839,7 @@ LA3BC:  brk                                     ; A3BC 00                       
 LA3BD:	
 	stack_prolog LA3A5, $04
 	lda     LA3A5                           ; A3C6 AD A5 A3                 ...
-	jsr     L65B0                           ; A3C9 20 B0 65                  .e
+	jsr     sub_65B0
 	lda     $A1                             ; A3CC A5 A1                    ..
 	sta     LA3AD                           ; A3CE 8D AD A3                 ...
 	lda     $A0                             ; A3D1 A5 A0                    ..
@@ -12050,7 +12042,7 @@ LA546:  brk                                     ; A546 00                       
 LA547:	
 	stack_prolog LA52E, $03
 	lda     LA52E                           ; A550 AD 2E A5                 ...
-	jsr     L65B0                           ; A553 20 B0 65                  .e
+	jsr     sub_65B0
 	lda     $A1                             ; A556 A5 A1                    ..
 	sta     LA535                           ; A558 8D 35 A5                 .5.
 	lda     $A0                             ; A55B A5 A0                    ..
@@ -12257,7 +12249,7 @@ LA6E6:	.addr	LA6E1
 LA6E8:	
 	stack_prolog LA6D8, $03
 	lda     LA6D8                           ; A6F1 AD D8 A6                 ...
-	jsr     L65B0                           ; A6F4 20 B0 65                  .e
+	jsr     sub_65B0
 	lda     $A1                             ; A6F7 A5 A1                    ..
 	sta     LA6DD                           ; A6F9 8D DD A6                 ...
 	lda     $A0                             ; A6FC A5 A0                    ..
@@ -12461,7 +12453,7 @@ LA895:  jmp     LA898                           ; A895 4C 98 A8                 
 LA898:  stx     LA888                           ; A898 8E 88 A8                 ...
 	sta     LA887                           ; A89B 8D 87 A8                 ...
 	lda     LA887                           ; A89E AD 87 A8                 ...
-	jsr     L65B0                           ; A8A1 20 B0 65                  .e
+	jsr     sub_65B0
 	lda     $A1                             ; A8A4 A5 A1                    ..
 	sta     LA88E                           ; A8A6 8D 8E A8                 ...
 	lda     $A0                             ; A8A9 A5 A0                    ..
