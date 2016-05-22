@@ -4264,7 +4264,8 @@ L6200:  brk                                     ; 6200 00                       
 L6201:  brk                                     ; 6201 00                       .
 L6202:  brk                                     ; 6202 00                       .
 
-L6203:  prolog
+sub_6203:  
+	prolog
 	shladdi	off_AE, L466F, $0001
 	ldy     #$01                            ; 6219 A0 01                    ..
 	lda     ($AE),y                         ; 621B B1 AE                    ..
@@ -4386,7 +4387,7 @@ L6328:	shladdi	off_AE, L466F, $0001
 	lda     L62CE                           ; 635F AD CE 62                 ..b
 	dey                                     ; 6362 88                       .
 	sta     ($AE),y                         ; 6363 91 AE                    ..
-	jsr     L6203                           ; 6365 20 03 62                  .b
+	jsr     sub_6203
 	rts                                     ; 6368 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -12814,14 +12815,11 @@ sub_ADEA:
 	lda     $AC                             ; AE27 A5 AC                    ..
 	dey                                     ; AE29 88                       .
 	sta     ($AE),y                         ; AE2A 91 AE                    ..
-	lda     #>L4327
-	sta     MEMTOP+1
-	lda     #<L4327
-	sta     MEMTOP
+	rdldi	MEMTOP, L4327
 	rdmv	sub_4749+1, sub_AB6A+1
 	rdmv	L5D65, sub_8D01+1
 	jsr     sub_AD85
-	jsr     L6203                           ; AE51 20 03 62                  .b
+	jsr     sub_6203
 	jsr     L5D67                           ; AE54 20 67 5D                  g]
 	jsr     LA9FB                           ; AE57 20 FB A9                  ..
 	sei                                     ; AE5A 78                       x
