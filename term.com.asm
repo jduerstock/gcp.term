@@ -234,6 +234,13 @@ LEF40           := $EF40
 	sta     a1+1
 .endmacro
 
+.macro push16 arg1
+	lda arg1
+	pha
+	lda arg1+1
+	pha
+.endmacro
+
 	.segment "HDR00"
 
 	.word	$FFFF
@@ -649,11 +656,15 @@ L45A5:  stx     $A4                             ; 45A5 86 A4                    
 
 ; ----------------------------------------------------------------------------
 	lda     #$9B                            ; 45C2 A9 9B                    ..
-L45C4:  tax                                     ; 45C4 AA                       .
+
+sub_45C4:  
+	tax                                     ; 45C4 AA                       .
 	lda     $B7                             ; 45C5 A5 B7                    ..
-L45C7:  stx     $A1                             ; 45C7 86 A1                    ..
+
+sub_45C7:  
+	stx     $A1                             ; 45C7 86 A1                    ..
 	ldy     $A1                             ; 45C9 A4 A1                    ..
-	ldx     #$0B                            ; 45CB A2 0B                    ..
+	ldx     #$0B				; put buffer
 	jmp     L45A5                           ; 45CD 4C A5 45                 L.E
 
 ; ----------------------------------------------------------------------------
@@ -1092,14 +1103,12 @@ L47DD:  cmp     $0247,y                         ; 47DD D9 47 02                 
 	.byte   $42                             ; 47F7 42                       B
 	.byte   $F4                             ; 47F8 F4                       .
 	.byte   $47                             ; 47F9 47                       G
-	ora     ($44,x)                         ; 47FA 01 44                    .D
-	.byte   $FA                             ; 47FC FA                       .
-	.byte   $47                             ; 47FD 47                       G
-	ora     ($44,x)                         ; 47FE 01 44                    .D
-	inc     $0147,x                         ; 4800 FE 47 01                 .G.
-	.byte   $43                             ; 4803 43                       C
-	.byte   $02                             ; 4804 02                       .
-	pha                                     ; 4805 48                       H
+L47FA:	.byte	$01,"D"
+L47FC:	.addr	L47FA
+L47FE:	.byte	$01,"D"
+L4800:	.addr	L47FE
+L4802:	.byte	$01,"C"
+L4804:	.addr	L4802
 	ora     ($42,x)                         ; 4806 01 42                    .B
 	asl     $48                             ; 4808 06 48                    .H
 L480A:	.byte	$04,"BBA0"
@@ -2058,7 +2067,7 @@ L4F59:  rts                                     ; 4F59 60                       
 L4F5A:  ldy     #$01                            ; 4F5A A0 01                    ..
 	sty     CRSINH
 	lda     #$FD                            ; 4F5F A9 FD                    ..
-	jsr     L45C4                           ; 4F61 20 C4 45                  .E
+	jsr     sub_45C4
 	ldy     #$01                            ; 4F64 A0 01                    ..
 	sty     L4656                           ; 4F66 8C 56 46                 .VF
 	rts                                     ; 4F69 60                       `
@@ -2469,14 +2478,14 @@ L52B2:  clc                                     ; 52B2 18                       
 	sta     L5271                           ; 52C6 8D 71 52                 .qR
 	ldx     L5271                           ; 52C9 AE 71 52                 .qR
 	lda     #$02                            ; 52CC A9 02                    ..
-	jsr     L45C7                           ; 52CE 20 C7 45                  .E
+	jsr     sub_45C7
 	inc     L526E                           ; 52D1 EE 6E 52                 .nR
 	jmp     L52A6                           ; 52D4 4C A6 52                 L.R
 
 ; ----------------------------------------------------------------------------
 L52D7:  ldx     #$0A                            ; 52D7 A2 0A                    ..
 	lda     #$02                            ; 52D9 A9 02                    ..
-	jsr	L45C7				; 52DB 20 C7 45
+	jsr	sub_45C7
 	rts					; 52DE 60
 
 L52DF:  .byte   $32                             ; 52DF 32                       2
@@ -11595,7 +11604,7 @@ LA4D2:  lda     LA3B2                           ; A4D2 AD B2 A3                 
 	sta     LA3B2                           ; A4DA 8D B2 A3                 ...
 LA4DD:  ldx     LA3B2                           ; A4DD AE B2 A3                 ...
 	lda     LA3A6                           ; A4E0 AD A6 A3                 ...
-	jsr     L45C7                           ; A4E3 20 C7 45                  .E
+	jsr     sub_45C7
 	lda     L464D                           ; A4E6 AD 4D 46                 .MF
 	bne     LA4EE                           ; A4E9 D0 03                    ..
 	jmp     LA4F1                           ; A4EB 4C F1 A4                 L..
@@ -11615,7 +11624,7 @@ LA4F7:  lda     LA3A7                           ; A4F7 AD A7 A3                 
 ; ----------------------------------------------------------------------------
 LA4FF:  ldx     #$9B                            ; A4FF A2 9B                    ..
 	lda     LA3A6                           ; A501 AD A6 A3                 ...
-	jsr     L45C7                           ; A504 20 C7 45                  .E
+	jsr     sub_45C7
 LA507:  lda     L464D                           ; A507 AD 4D 46                 .MF
 	bne     LA50F                           ; A50A D0 03                    ..
 	jmp     LA512                           ; A50C 4C 12 A5                 L..
