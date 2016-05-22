@@ -2530,10 +2530,8 @@ sub_5394:
 	ldy     #$00                            ; 5397 A0 00                    ..
 	sty     L5392                           ; 5399 8C 92 53                 ..S
 	jsr     sub_4FC5
-	lda     $A0                             ; 539F A5 A0                    ..
-	sta     L5391                           ; 53A1 8D 91 53                 ..S
-	lda     $B1C9                           ; 53A4 AD C9 B1                 ...
-	sta     L5393                           ; 53A7 8D 93 53                 ..S
+	mv	L5391, $A0
+	mv	L5393, $B1C9
 	lda     L5391                           ; 53AA AD 91 53                 ..S
 	eor     #$04                            ; 53AD 49 04                    I.
 	lbne	L53BE
@@ -2550,14 +2548,8 @@ L53BE:  lda     L5391                           ; 53BE AD 91 53                 
 	lbne	L5421
 	lda     $B1C8                           ; 53D2 AD C8 B1                 ...
 	eor     $B16C                           ; 53D5 4D 6C B1                 Ml.
-	beq     L53DD                           ; 53D8 F0 03                    ..
-	jmp     L541E                           ; 53DA 4C 1E 54                 L.T
-
-; ----------------------------------------------------------------------------
-L53DD:  sec                                     ; 53DD 38                       8
-	lda     L4650                           ; 53DE AD 50 46                 .PF
-	sbc     $B16A                           ; 53E1 ED 6A B1                 .j.
-	sta     L4650                           ; 53E4 8D 50 46                 .PF
+	lbne	L541E
+	sub8m	L4650, L4650, $B16A
 	clc                                     ; 53E7 18                       .
 	lda     #$6A                            ; 53E8 A9 6A                    .j
 	adc     $B16A                           ; 53EA 6D 6A B1                 mj.
