@@ -6335,8 +6335,7 @@ sub_768A:
 	ldi	$A5, $00
 	ldi	$A4, $0C
 	ldy     L766D                           ; 76B0 AC 6D 76                 .mv
-	ldx     #>L767E                         ; 76B3 A2 76                    .v
-	lda     #<L767E                         ; 76B5 A9 7E                    .~
+	ldxai	L767E
 	jsr     sub_461F
 L76BA:  lda     L7688                           ; 76BA AD 88 76                 ..v
 	beq     L76C7                           ; 76BD F0 08                    ..
@@ -6368,8 +6367,7 @@ L76CC:	add8m	L766B, L766B, L7680
 	lda     #$73                            ; 7723 A9 73                    .s
 	sta     $A4                             ; 7725 85 A4                    ..
 	ldy     $A2                             ; 7727 A4 A2                    ..
-	ldx     #$76                            ; 7729 A2 76                    .v
-	lda     #$77                            ; 772B A9 77                    .w
+	ldxai	L7677
 	jsr     sub_4CF5
 	lda     $A0                             ; 7730 A5 A0                    ..
 	sta     L767D                           ; 7732 8D 7D 76                 .}v
