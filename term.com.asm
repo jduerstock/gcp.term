@@ -1024,11 +1024,9 @@ L47D0:	.addr	L47CD
 L47D2:	.byte	$04,"BBBB"
 L47D7:	.addr	L47D2
 L47D9:	.byte	$03,"BBB"
-L47DD:  cmp     $0247,y                         ; 47DD D9 47 02                 .G.
-	.byte   $42                             ; 47E0 42                       B
-	.byte   $44                             ; 47E1 44                       D
-	.byte   $DF                             ; 47E2 DF                       .
-	.byte   $47                             ; 47E3 47                       G
+L47DD:	.addr	L47D9
+L47DF:	.byte	$02,"BD"
+L47E2:	.addr	L47DF
 	.byte   $02                             ; 47E4 02                       .
 	.byte   $42                             ; 47E5 42                       B
 	.byte   $52                             ; 47E6 52                       R
