@@ -997,23 +997,14 @@ L477E:	.byte	$06,"BBBBBC"
 L4785:	.addr	L477E
 L4787:	.byte	$04,"BDBB"
 L478C:	.addr	L4787
-	asl     $42                             ; 478E 06 42                    .B
-	.byte   $44                             ; 4790 44                       D
-	.byte   $42                             ; 4791 42                       B
-	.byte   $42                             ; 4792 42                       B
-	.byte   $42                             ; 4793 42                       B
-	.byte   $42                             ; 4794 42                       B
-	stx     $0247                           ; 4795 8E 47 02                 .G.
-	.byte   $44                             ; 4798 44                       D
-	.byte   $42                             ; 4799 42                       B
-	.byte   $97                             ; 479A 97                       .
-	.byte   $47                             ; 479B 47                       G
-	ora     ($58,x)                         ; 479C 01 58                    .X
-	.byte   $9C                             ; 479E 9C                       .
-	.byte   $47                             ; 479F 47                       G
-	ora     ($58,x)                         ; 47A0 01 58                    .X
-	.byte   $A0                             ; 47A2 A0                       .
-L47A3:  .byte   $47                             ; 47A3 47                       G
+L478E:	.byte	$06,"BDBBBB"
+L9795:	.addr	L478E
+L4797:	.byte	$02,"DB"
+L479A:	.addr	L4797
+L479C:	.byte	$01,"X"
+L479E:	.addr	L479C
+L47A0:	.byte	$01,"X"
+L47A2:	.addr	L47A0
 	.byte   $03                             ; 47A4 03                       .
 	.byte   $42                             ; 47A5 42                       B
 	.byte   $42                             ; 47A6 42                       B
