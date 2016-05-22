@@ -4004,8 +4004,7 @@ L6026:
 	rdldi	L5EFE+1, sub_5EDF
 	dmv	$A3, L6022
 	ldy     L6021                           ; 6043 AC 21 60                 .!`
-L6046:  ldx     L6020                           ; 6046 AE 20 60                 . `
-	lda     L601F                           ; 6049 AD 1F 60                 ..`
+	ldxa	L601F
 	jsr     L5F16                           ; 604C 20 16 5F                  ._
 	rdmv	L6024, $A0
 	rdmv	$A0, L6024
@@ -12125,7 +12124,8 @@ LA9EF:  sta     LA9EB                           ; A9EF 8D EB A9                 
 	.byte   $AD                             ; A9F2 AD                       .
 LA9F3:  .byte   $EB                             ; A9F3 EB                       .
 	lda     #$8D                            ; A9F4 A9 8D                    ..
-	lsr     L6046                           ; A9F6 4E 46 60                 NF`
+	;lsr     L6046                           ; A9F6 4E 46 60                 NF`
+	.byte	$4E,$46,$60
 LA9F9:  brk                                     ; A9F9 00                       .
 LA9FA:  brk                                     ; A9FA 00                       .
 
