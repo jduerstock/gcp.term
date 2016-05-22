@@ -4096,13 +4096,7 @@ L60ED:  lda     L6067                           ; 60ED AD 67 60                 
 	sta     $AE                             ; 6140 85 AE                    ..
 	txa                                     ; 6142 8A                       .
 	sta     $AF                             ; 6143 85 AF                    ..
-	clc                                     ; 6145 18                       .
-	lda     MEMLO
-	adc     $AE                             ; 6149 65 AE                    e.
-	sta     L606C                           ; 614B 8D 6C 60                 .l`
-	lda     MEMLO+1
-	adc     $AF                             ; 6151 65 AF                    e.
-	sta     L606D                           ; 6153 8D 6D 60                 .m`
+	add16m	L606C, MEMLO, off_AE
 	rdmv	$A0, L606C
 	rts                                     ; 6160 60                       `
 
