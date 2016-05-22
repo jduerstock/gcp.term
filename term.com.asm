@@ -1809,10 +1809,7 @@ L4D03:  lda     #$01                            ; 4D03 A9 01                    
 	cmp     L4CF4                           ; 4D05 CD F4 4C                 ..L
 	lbcc	L4DCC
 	add16m8 off_AE, L4CF2, L4CF4
-	lda     $AF                             ; 4D1D A5 AF                    ..
-	pha                                     ; 4D1F 48                       H
-	lda     $AE                             ; 4D20 A5 AE                    ..
-	pha                                     ; 4D22 48                       H
+	push16	off_AE
 	add16m8	off_AE, L4CEE, L4CF4
 	ldy     #$00                            ; 4D33 A0 00                    ..
 	lda     ($AE),y                         ; 4D35 B1 AE                    ..
