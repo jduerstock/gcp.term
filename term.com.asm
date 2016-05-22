@@ -8824,15 +8824,11 @@ L8CFD:  brk                                     ; 8CFD 00                       
 L8CFE:  brk                                     ; 8CFE 00                       .
 L8CFF:  brk                                     ; 8CFF 00                       .
 L8D00:  brk                                     ; 8D00 00                       .
-L8D01:  .byte   $4C                             ; 8D01 4C                       L
-L8D02:  .byte   $04                             ; 8D02 04                       .
-L8D03:  .byte   $8D                             ; 8D03 8D                       .
-L8D04:  lda     L4658                           ; 8D04 AD 58 46                 .XF
-	beq     L8D0C                           ; 8D07 F0 03                    ..
-	jmp     L8D0D                           ; 8D09 4C 0D 8D                 L..
-
-; ----------------------------------------------------------------------------
-L8D0C:  rts                                     ; 8D0C 60                       `
+sub_8D01:
+	prolog
+	lda     L4658                           ; 8D04 AD 58 46                 .XF
+	lbne	L8D0D
+	rts                                     ; 8D0C 60                       `
 
 ; ----------------------------------------------------------------------------
 L8D0D:  lda     L4656                           ; 8D0D AD 56 46                 .VF
@@ -11966,7 +11962,7 @@ LA7A2:  lda     #$24                            ; A7A2 A9 24                    
 LA7A9:  ldx     #$00                            ; A7A9 A2 00                    ..
 	lda     LA6D8                           ; A7AB AD D8 A6                 ...
 	jsr     sub_67D8
-	jsr     L8D01                           ; A7B1 20 01 8D                  ..
+	jsr     sub_8D01
 	jmp     LA748                           ; A7B4 4C 48 A7                 LH.
 
 ; ----------------------------------------------------------------------------
@@ -12388,7 +12384,7 @@ LAA86:	.addr	L6AD5
 	.addr	LA837
 	.addr	LA846
 	.addr	sub_4F9D
-	.addr	L8D01
+	.addr	sub_8D01
 	.addr	LA895
 	.addr	LA842
 	.addr	LA96F
@@ -12827,7 +12823,7 @@ sub_ADEA:
 	lda     #<L4327
 	sta     MEMTOP
 	rdmv	sub_4749+1, sub_AB6A+1
-	rdmv	L5D65, L8D02
+	rdmv	L5D65, sub_8D01+1
 	jsr     LAD85                           ; AE4E 20 85 AD                  ..
 	jsr     L6203                           ; AE51 20 03 62                  .b
 	jsr     L5D67                           ; AE54 20 67 5D                  g]
@@ -13093,7 +13089,7 @@ LB0A3:  jsr     LA9A3                           ; B0A3 20 A3 A9                 
 	eor     #$01                            ; B0A9 49 01                    I.
 	lbne	LB0B3
 	jsr     sub_AE81
-LB0B3:  jsr     L8D01                           ; B0B3 20 01 8D                  ..
+LB0B3:  jsr     sub_8D01
 	ldy     #$00                            ; B0B6 A0 00                    ..
 	sty     L464D                           ; B0B8 8C 4D 46                 .MF
 	jmp     LAF4C                           ; B0BB 4C 4C AF                 LL.
