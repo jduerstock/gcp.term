@@ -988,13 +988,9 @@ L4764:  brk                                     ; 4764 00                       
 L4765:	.byte	$05,"BBBBS"
 L476B:	.addr	L4765
 L476D:	.byte	$01,"B"
-	adc     $0547                           ; 476F 6D 47 05                 mG.
-	.byte   $42                             ; 4772 42                       B
-	.byte   $42                             ; 4773 42                       B
-	.byte   $42                             ; 4774 42                       B
-	.byte   $42                             ; 4775 42                       B
-	.byte   $53                             ; 4776 53                       S
-	adc     ($47),y                         ; 4777 71 47                    qG
+L476F:	.addr	L476D
+L4771:	.byte	$05,"BBBBS"
+L4777:	.addr	L4771
 	.byte   $02                             ; 4779 02                       .
 	.byte   $42                             ; 477A 42                       B
 	.byte   $43                             ; 477B 43                       C
@@ -11785,10 +11781,9 @@ LA68A:  jsr     sub_5E30
 	jmp     LA6AB                           ; A6A4 4C AB A6                 L..
 
 ; ----------------------------------------------------------------------------
-	.byte   $03                             ; A6A7 03                       .
-	.byte   $43                             ; A6A8 43                       C
-	.byte   $42                             ; A6A9 42                       B
-	.byte   $42                             ; A6AA 42                       B
+LA6A7:	.byte	$03,"CBB"
+
+; ----------------------------------------------------------------------------
 LA6AB:  lda     #$00                            ; A6AB A9 00                    ..
 	sta     $A3                             ; A6AD 85 A3                    ..
 	lda     #$00                            ; A6AF A9 00                    ..
@@ -11800,8 +11795,7 @@ LA6AB:  lda     #$00                            ; A6AB A9 00                    
 	lda     LA537                           ; A6BC AD 37 A5                 .7.
 	sta     $A6                             ; A6BF 85 A6                    ..
 	ldy     #$04                            ; A6C1 A0 04                    ..
-	ldx     #$A6                            ; A6C3 A2 A6                    ..
-	lda     #$A7                            ; A6C5 A9 A7                    ..
+	ldxai	LA6A7
 	jsr     sub_55A0
 	rts                                     ; A6CA 60                       `
 
@@ -11810,7 +11804,7 @@ LA6CB:	brk                                     ; A6CB 00                       .
 	brk                                     ; A6CC 00                       .
 	brk                                     ; A6CD 00                       .
 
-LA6CE:	
+sub_A6CE:	
 	stack_prolog LA6CB, $02
 	rts                                     ; A6D7 60                       `
 
@@ -11831,10 +11825,7 @@ LA6E8:
 	stack_prolog LA6D8, $03
 	lda     LA6D8                           ; A6F1 AD D8 A6                 ...
 	jsr     sub_65B0
-	lda     $A1                             ; A6F7 A5 A1                    ..
-	sta     LA6DD                           ; A6F9 8D DD A6                 ...
-	lda     $A0                             ; A6FC A5 A0                    ..
-	sta     LA6DC                           ; A6FE 8D DC A6                 ...
+	rdmv	LA6DC, $A0
 	lda     LA6DC                           ; A701 AD DC A6                 ...
 	ora     LA6DD                           ; A704 0D DD A6                 ...
 	lbne	LA70D
@@ -12316,7 +12307,7 @@ LAA86:	.addr	L6AD5
 	.addr	LA6E8
 	.addr	LA7C4
 	.addr	LA7F3
-	.addr	LA6CE
+	.addr	sub_A6CE
 	.addr	LA991
 	.addr	L4F5A
 	.addr	LA959
