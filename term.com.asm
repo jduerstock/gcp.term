@@ -6482,10 +6482,7 @@ L7883:  inc     L7826                           ; 7883 EE 26 78                 
 L7889:  lda     L7826                           ; 7889 AD 26 78                 .&x
 	cmp     #$14                            ; 788C C9 14                    ..
 	lbcs	L78AC
-	clc                                     ; 7893 18                       .
-	lda     L7826                           ; 7894 AD 26 78                 .&x
-	adc     #$01                            ; 7897 69 01                    i.
-	sta     $AE                             ; 7899 85 AE                    ..
+	add8i	off_AE, L7826, $01
 	ldx     $AE                             ; 789B A6 AE                    ..
 	lda     L4659,x                         ; 789D BD 59 46                 .YF
 	ldx     L7826                           ; 78A0 AE 26 78                 .&x
@@ -6504,10 +6501,7 @@ L78B1:  lda     #$12                            ; 78B1 A9 12                    
 	sta     $A0                             ; 78C1 85 A0                    ..
 	lda     $A0                             ; 78C3 A5 A0                    ..
 	jsr     sub_7035
-	lda     $A1                             ; 78C8 A5 A1                    ..
-	sta     L7829                           ; 78CA 8D 29 78                 .)x
-	lda     $A0                             ; 78CD A5 A0                    ..
-	sta     L7828                           ; 78CF 8D 28 78                 .(x
+	rdmv	L7828, $A0
 	lda     L7828                           ; 78D2 AD 28 78                 .(x
 	ora     L7829                           ; 78D5 0D 29 78                 .)x
 	beq     L78F5                           ; 78D8 F0 1B                    ..
