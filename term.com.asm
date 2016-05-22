@@ -5243,23 +5243,14 @@ L6AFF:  ldx     #$00                            ; 6AFF A2 00                    
 	sta     L6AC7                           ; 6BDB 8D C7 6A                 ..j
 	lda     $A0                             ; 6BDE A5 A0                    ..
 	sta     L6AC6                           ; 6BE0 8D C6 6A                 ..j
-	clc                                     ; 6BE3 18                       .
-	lda     L6AC4                           ; 6BE4 AD C4 6A                 ..j
-	adc     #$04                            ; 6BE7 69 04                    i.
-	sta     $AE                             ; 6BE9 85 AE                    ..
-	lda     L6AC5                           ; 6BEB AD C5 6A                 ..j
-	adc     #$00                            ; 6BEE 69 00                    i.
-	sta     $AF                             ; 6BF0 85 AF                    ..
+	add16i	off_AE, L6AC4, $0004
 	ldy     #$01                            ; 6BF2 A0 01                    ..
 	lda     ($AE),y                         ; 6BF4 B1 AE                    ..
 	sta     L6AD2                           ; 6BF6 8D D2 6A                 ..j
 	dey                                     ; 6BF9 88                       .
 	lda     ($AE),y                         ; 6BFA B1 AE                    ..
 	sta     L6AD1                           ; 6BFC 8D D1 6A                 ..j
-	lda     L6AC7                           ; 6BFF AD C7 6A                 ..j
-	sta     L6ACB                           ; 6C02 8D CB 6A                 ..j
-	lda     L6AC6                           ; 6C05 AD C6 6A                 ..j
-	sta     L6ACA                           ; 6C08 8D CA 6A                 ..j
+	rdmv	L6ACA, L6AC6
 	sty     L6AD0                           ; 6C0B 8C D0 6A                 ..j
 	sec                                     ; 6C0E 38                       8
 	lda     L6AC0                           ; 6C0F AD C0 6A                 ..j
@@ -5271,27 +5262,18 @@ L6C17:  lda     L6C22                           ; 6C17 AD 22 6C                 
 	jmp     L6C5C                           ; 6C1F 4C 5C 6C                 L\l
 
 ; ----------------------------------------------------------------------------
-L6C22:  txa                                     ; 6C22 8A                       .
-L6C23:  lda     L6AD0                           ; 6C23 AD D0 6A                 ..j
-	asl     a                               ; 6C26 0A                       .
-	php                                     ; 6C27 08                       .
-	clc                                     ; 6C28 18                       .
-	adc     L6AD1                           ; 6C29 6D D1 6A                 m.j
-	sta     $AE                             ; 6C2C 85 AE                    ..
-	lda     #$00                            ; 6C2E A9 00                    ..
-	rol     a                               ; 6C30 2A                       *
-	plp                                     ; 6C31 28                       (
-	adc     L6AD2                           ; 6C32 6D D2 6A                 m.j
-	sta     $AF                             ; 6C35 85 AF                    ..
+L6C22:  .byte	$8A
+
+; ----------------------------------------------------------------------------
+L6C23:	shladdm8 off_AE, L6AD1, L6AD0
 	lda     L6ACB                           ; 6C37 AD CB 6A                 ..j
 	ldy     #$01                            ; 6C3A A0 01                    ..
 	sta     ($AE),y                         ; 6C3C 91 AE                    ..
 	lda     L6ACA                           ; 6C3E AD CA 6A                 ..j
 	dey                                     ; 6C41 88                       .
-	.byte   $91                             ; 6C42 91                       .
-L6C43:  ldx     LAD18                           ; 6C43 AE 18 AD                 ...
-	dex                                     ; 6C46 CA                       .
-	ror     a                               ; 6C47 6A                       j
+	sta     ($AE),y                         ; 6C85 91 AE                    ..
+	clc
+	lda	L6ACA
 	adc     L6ABF                           ; 6C48 6D BF 6A                 m.j
 	sta     L6ACA                           ; 6C4B 8D CA 6A                 ..j
 	lda     L6ACB                           ; 6C4E AD CB 6A                 ..j
