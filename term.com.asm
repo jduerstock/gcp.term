@@ -1010,17 +1010,10 @@ L47A8:	.addr	L47A4
 L47AA:	.byte	$04,"BBBB"
 L47AF:	.addr	L47AA
 L47B1:	.byte	$03,"BBB"
-	lda     ($47),y                         ; 47B5 B1 47                    .G
-	.byte   $03                             ; 47B7 03                       .
-	.byte   $42                             ; 47B8 42                       B
-	.byte   $42                             ; 47B9 42                       B
-	.byte   $42                             ; 47BA 42                       B
-	.byte   $B7                             ; 47BB B7                       .
-	.byte   $47                             ; 47BC 47                       G
-	.byte   $03                             ; 47BD 03                       .
-	.byte   $42                             ; 47BE 42                       B
-	.byte   $43                             ; 47BF 43                       C
-	.byte   $53                             ; 47C0 53                       S
+L47B5:	.addr	L47B1
+L47B7:	.byte	$03,"BBB"
+L47BB:	.addr	L47B7
+L47BD:	.byte	$03,"BCS"
 	lda     $0147,x                         ; 47C1 BD 47 01                 .G.
 	.byte   $42                             ; 47C4 42                       B
 	.byte   $C3                             ; 47C5 C3                       .
