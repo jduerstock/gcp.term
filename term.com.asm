@@ -5189,20 +5189,11 @@ L6AFF:  ldx     #$00                            ; 6AFF A2 00                    
 	ldy     #$0B                            ; 6B35 A0 0B                    ..
 	ldxa	L6AC4
 	jsr     sub_45F6
-	lda     L6AC4                           ; 6B40 AD C4 6A                 ..j
-	sta     $AE                             ; 6B43 85 AE                    ..
-	lda     L6AC5                           ; 6B45 AD C5 6A                 ..j
-	sta     $AF                             ; 6B48 85 AF                    ..
+	dmv	off_AE, L6AC4
 	lda	L6ABF
 	ldy     #$00                            ; 6B4D A0 00                    ..
 	sta     ($AE),y                         ; 6B4F 91 AE                    ..
-	clc                                     ; 6B51 18                       .
-	lda     L6AC4                           ; 6B52 AD C4 6A                 ..j
-	adc     #$01                            ; 6B55 69 01                    i.
-	sta     $AE                             ; 6B57 85 AE                    ..
-	lda     L6AC5                           ; 6B59 AD C5 6A                 ..j
-	adc     #$00                            ; 6B5C 69 00                    i.
-	sta     $AF                             ; 6B5E 85 AF                    ..
+	add16i	off_AE, L6AC4, $0001
 	lda     L6AC0                           ; 6B60 AD C0 6A                 ..j
 	sta     ($AE),y                         ; 6B63 91 AE                    ..
 	lda     #$00                            ; 6B65 A9 00                    ..
