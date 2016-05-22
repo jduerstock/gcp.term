@@ -2759,17 +2759,8 @@ L55B4:	shladdi	off_AE, L466F, $0001
 	dey                                     ; 55CE 88                       .
 	lda     ($AE),y                         ; 55CF B1 AE                    ..
 	sta     L559A                           ; 55D1 8D 9A 55                 ..U
-	clc                                     ; 55D4 18                       .
-	lda     L559A                           ; 55D5 AD 9A 55                 ..U
-	adc     #$04                            ; 55D8 69 04                    i.
-	sta     L559C                           ; 55DA 8D 9C 55                 ..U
-L55DD:  lda     L559B                           ; 55DD AD 9B 55                 ..U
-	adc     #$00                            ; 55E0 69 00                    i.
-	sta     L559D                           ; 55E2 8D 9D 55                 ..U
-	lda     L559C                           ; 55E5 AD 9C 55                 ..U
-	sta     $AE                             ; 55E8 85 AE                    ..
-	lda     L559D                           ; 55EA AD 9D 55                 ..U
-	sta     $AF                             ; 55ED 85 AF                    ..
+	add16i	L559C, L559A, $0004
+	dmv	off_AE, L559C
 	clc                                     ; 55EF 18                       .
 	lda     ($AE),y                         ; 55F0 B1 AE                    ..
 	adc     #$02                            ; 55F2 69 02                    i.
@@ -2800,6 +2791,8 @@ L5621:  lda     L562C                           ; 5621 AD 2C 56                 
 
 ; ----------------------------------------------------------------------------
 L562C:  .byte   $30                             ; 562C 30                       0
+
+; ----------------------------------------------------------------------------
 L562D:  clc                                     ; 562D 18                       .
 	lda     L557E                           ; 562E AD 7E 55                 .~U
 	adc     L5590                           ; 5631 6D 90 55                 m.U
