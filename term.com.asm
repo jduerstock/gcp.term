@@ -9350,38 +9350,15 @@ sub_9146:
 	lda     L9137                           ; 9176 AD 37 91                 .7.
 	cmp     L9141                           ; 9179 CD 41 91                 .A.
 	lbcs	L9242
-	lda     L9137                           ; 9181 AD 37 91                 .7.
-	asl     a                               ; 9184 0A                       .
-	php                                     ; 9185 08                       .
-	clc                                     ; 9186 18                       .
-	adc     L9144                           ; 9187 6D 44 91                 mD.
-	sta     $AE                             ; 918A 85 AE                    ..
-	lda     #$00                            ; 918C A9 00                    ..
-	rol     a                               ; 918E 2A                       *
-	plp                                     ; 918F 28                       (
-	adc     L9145                           ; 9190 6D 45 91                 mE.
-	sta     $AF                             ; 9193 85 AF                    ..
+	shladdm8 off_AE, L9144, L9137
 	ldy     #$01                            ; 9195 A0 01                    ..
 	lda     ($AE),y                         ; 9197 B1 AE                    ..
 	sta     L913D                           ; 9199 8D 3D 91                 .=.
 	dey                                     ; 919C 88                       .
 	lda     ($AE),y                         ; 919D B1 AE                    ..
 	sta     L913C                           ; 919F 8D 3C 91                 .<.
-	clc                                     ; 91A2 18                       .
-	lda     L9137                           ; 91A3 AD 37 91                 .7.
-L91A6:  adc     #$01                            ; 91A6 69 01                    i.
-	sta     $AE                             ; 91A8 85 AE                    ..
-	lda     $AE                             ; 91AA A5 AE                    ..
-	asl     a                               ; 91AC 0A                       .
-	php                                     ; 91AD 08                       .
-	clc                                     ; 91AE 18                       .
-	adc     L9144                           ; 91AF 6D 44 91                 mD.
-	sta     $AC                             ; 91B2 85 AC                    ..
-	lda     #$00                            ; 91B4 A9 00                    ..
-	rol     a                               ; 91B6 2A                       *
-	plp                                     ; 91B7 28                       (
-	adc     L9145                           ; 91B8 6D 45 91                 mE.
-	sta     $AD                             ; 91BB 85 AD                    ..
+	add8i	off_AE, L9137, $01
+	shladdm8 off_AC, L9144, off_AE
 	iny                                     ; 91BD C8                       .
 	lda     ($AC),y                         ; 91BE B1 AC                    ..
 	sta     L913B                           ; 91C0 8D 3B 91                 .;.
