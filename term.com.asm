@@ -9487,17 +9487,7 @@ L925D:  prolog
 	dey                                     ; 92D7 88                       .
 	lda     ($AC),y                         ; 92D8 B1 AC                    ..
 	sta     L9253                           ; 92DA 8D 53 92                 .S.
-	lda     L924D                           ; 92DD AD 4D 92                 .M.
-	asl     a                               ; 92E0 0A                       .
-	php                                     ; 92E1 08                       .
-	clc                                     ; 92E2 18                       .
-	adc     L925B                           ; 92E3 6D 5B 92                 m[.
-	sta     $AE                             ; 92E6 85 AE                    ..
-	lda     #$00                            ; 92E8 A9 00                    ..
-	rol     a                               ; 92EA 2A                       *
-	plp                                     ; 92EB 28                       (
-	adc     L925C                           ; 92EC 6D 5C 92                 m\.
-	sta     $AF                             ; 92EF 85 AF                    ..
+	shladdm8 off_AE, L925B, L924D
 	iny                                     ; 92F1 C8                       .
 	lda     ($AE),y                         ; 92F2 B1 AE                    ..
 	sta     L9252                           ; 92F4 8D 52 92                 .R.
