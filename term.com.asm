@@ -91,6 +91,11 @@ LEF40           := $EF40
 	STA	arg1
 .endmacro
 
+.macro	rdldi	arg1, arg2
+	ldi	arg1+1, >arg2
+	ldi	arg1, <arg2
+.endmacro
+
 .macro   mv	dest,source
 	LDA	source
 	STA	dest
@@ -12758,10 +12763,7 @@ sub_AD85:
 	ldy     #$06                            ; ADA0 A0 06                    ..
 	ldxa	LAD83
 	jsr     sub_45F6
-	lda     #$AC                            ; ADAB A9 AC                    ..
-	sta     $0209                           ; ADAD 8D 09 02                 ...
-	lda     #$7E                            ; ADB0 A9 7E                    .~
-	sta     $0208                           ; ADB2 8D 08 02                 ...
+	rdldi	$0208, $AC7E
 	lda     #$AD                            ; ADB5 A9 AD                    ..
 	sta     LAD82                           ; ADB7 8D 82 AD                 ...
 	lda     #$59                            ; ADBA A9 59                    .Y
