@@ -2613,8 +2613,7 @@ L5471:	add8i	$AE, L531D, $01
 	eor     $AE                             ; 547C 45 AE                    E.
 	lbne	L54E3
 	jsr     sub_537F
-	lda     $B1C8                           ; 5486 AD C8 B1                 ...
-	sta     L531D                           ; 5489 8D 1D 53                 ..S
+	mv	L531D, $B1C8
 	lda     $B1C6                           ; 548C AD C6 B1                 ...
 	and     #$80                            ; 548F 29 80                    ).
 	sta     $AE                             ; 5491 85 AE                    ..
