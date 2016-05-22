@@ -2314,7 +2314,8 @@ L51F1:  lda     $A6                             ; 51F1 A5 A6                    
 	rts                                     ; 51F6 60                       `
 
 ; ----------------------------------------------------------------------------
-L51F7:  sta     $A9                             ; 51F7 85 A9                    ..
+sub_51F7:  
+	sta     $A9                             ; 51F7 85 A9                    ..
 	stx     $A1                             ; 51F9 86 A1                    ..
 	sty     $A2                             ; 51FB 84 A2                    ..
 	clc                                     ; 51FD 18                       .
@@ -2495,9 +2496,8 @@ sub_532A:
 	ldy     L5322                           ; 535A AC 22 53                 ."S
 	ldx     L531E                           ; 535D AE 1E 53                 ..S
 	lda     #$01                            ; 5360 A9 01                    ..
-	jsr     L51F7                           ; 5362 20 F7 51                  .Q
-	lda     L5329                           ; 5365 AD 29 53                 .)S
-	sta     L474C                           ; 5368 8D 4C 47                 .LG
+	jsr     sub_51F7
+	mv	L474C, L5329
 	ldxai	L5324
 	jsr     L5274                           ; 536F 20 74 52                  tR
 	rts                                     ; 5372 60                       `
@@ -3083,7 +3083,7 @@ L589F:  clc                                     ; 589F 18                       
 	ldy     L559E                           ; 58BA AC 9E 55                 ..U
 	ldx     $A1                             ; 58BD A6 A1                    ..
 	lda     L5594                           ; 58BF AD 94 55                 ..U
-	jsr     L51F7                           ; 58C2 20 F7 51                  .Q
+	jsr     sub_51F7
 	clc                                     ; 58C5 18                       .
 	lda     L4650                           ; 58C6 AD 50 46                 .PF
 	adc     L5592                           ; 58C9 6D 92 55                 m.U
