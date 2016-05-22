@@ -235,10 +235,17 @@ LEF40           := $EF40
 .endmacro
 
 .macro push16 arg1
-	lda arg1
-	pha
 	lda arg1+1
 	pha
+	lda arg1
+	pha
+.endmacro
+
+.macro pull16 arg1
+	pla
+	sta arg1
+	pla
+	sta arg1+1
 .endmacro
 
 	.segment "HDR00"
@@ -1824,10 +1831,7 @@ L4D03:  lda     #$01                            ; 4D03 A9 01                    
 	sta     $A1                             ; 4D4B 85 A1                    ..
 	ldxa	$A0
 	jsr     sub_4983
-	pla                                     ; 4D54 68                       h
-	sta     $AE                             ; 4D55 85 AE                    ..
-	pla                                     ; 4D57 68                       h
-	sta     $AF                             ; 4D58 85 AF                    ..
+	pull16	off_AE
 	lda     $A0                             ; 4D5A A5 A0                    ..
 	ldy     #$00                            ; 4D5C A0 00                    ..
 	sta     ($AE),y                         ; 4D5E 91 AE                    ..
