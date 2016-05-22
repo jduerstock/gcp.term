@@ -11700,13 +11700,7 @@ LA58C:	add8i	LA536, off_AE, $01
 	lda     ($AE),y                         ; A5CA B1 AE                    ..
 	adc     #$00                            ; A5CC 69 00                    i.
 	sta     $AD                             ; A5CE 85 AD                    ..
-	sec                                     ; A5D0 38                       8
-	lda     $AC                             ; A5D1 A5 AC                    ..
-	sbc     #$01                            ; A5D3 E9 01                    ..
-	sta     LA532                           ; A5D5 8D 32 A5                 .2.
-	lda     $AD                             ; A5D8 A5 AD                    ..
-	sbc     #$00                            ; A5DA E9 00                    ..
-	sta     LA533                           ; A5DC 8D 33 A5                 .3.
+	sub16i	LA532, off_AC, $0001
 	jsr     sub_5E1E
 	ldy     #$00                            ; A5E2 A0 00                    ..
 	sty     LA53B                           ; A5E4 8C 3B A5                 .;.
