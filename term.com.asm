@@ -3787,7 +3787,7 @@ L5E2C:  inc     L4653                           ; 5E2C EE 53 46                 
 	rts                                     ; 5E2F 60                       `
 
 ; ----------------------------------------------------------------------------
-L5E30:
+sub_5E30:
 	prolog
 	lda     L4653                           ; 5E33 AD 53 46                 .SF
 	lbne	L5E3C
@@ -3825,7 +3825,7 @@ sub_5E5E:
 L5E72:  lda     #$00                            ; 5E72 A9 00                    ..
 	cmp     L4653                           ; 5E74 CD 53 46                 .SF
 	lbcs	L5E82
-	jsr     L5E30                           ; 5E7C 20 30 5E                  0^
+	jsr     sub_5E30
 	jmp     L5E72                           ; 5E7F 4C 72 5E                 Lr^
 
 ; ----------------------------------------------------------------------------
@@ -11426,7 +11426,7 @@ LA376:  lda     LA2A2                           ; A376 AD A2 A2                 
 	rts                                     ; A37C 60                       `
 
 ; ----------------------------------------------------------------------------
-LA37D:  jsr     L5E30                           ; A37D 20 30 5E                  0^
+LA37D:  jsr     sub_5E30
 	rts                                     ; A380 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -11442,7 +11442,7 @@ LA385:	sta     LA381                           ; A385 8D 81 A3                 .
 	lbne	LA3A1
 	lda     #$02                            ; A39C A9 02                    ..
 	sta     L4652                           ; A39E 8D 52 46                 .RF
-LA3A1:  jsr     L5E30                           ; A3A1 20 30 5E                  0^
+LA3A1:  jsr     sub_5E30
 	rts                                     ; A3A4 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -11606,10 +11606,7 @@ LA4DD:  ldx     LA3B2                           ; A4DD AE B2 A3                 
 	lda     LA3A6                           ; A4E0 AD A6 A3                 ...
 	jsr     sub_45C7
 	lda     L464D                           ; A4E6 AD 4D 46                 .MF
-	bne     LA4EE                           ; A4E9 D0 03                    ..
-	jmp     LA4F1                           ; A4EB 4C F1 A4                 L..
-
-; ----------------------------------------------------------------------------
+	lbeq	LA4F1
 LA4EE:  jmp     LA4F7                           ; A4EE 4C F7 A4                 L..
 
 ; ----------------------------------------------------------------------------
@@ -11618,33 +11615,21 @@ LA4F1:  inc     LA3B0                           ; A4F1 EE B0 A3                 
 
 ; ----------------------------------------------------------------------------
 LA4F7:  lda     LA3A7                           ; A4F7 AD A7 A3                 ...
-	bne     LA4FF                           ; A4FA D0 03                    ..
-	jmp     LA507                           ; A4FC 4C 07 A5                 L..
-
-; ----------------------------------------------------------------------------
+	lbeq	LA507
 LA4FF:  ldx     #$9B                            ; A4FF A2 9B                    ..
 	lda     LA3A6                           ; A501 AD A6 A3                 ...
 	jsr     sub_45C7
 LA507:  lda     L464D                           ; A507 AD 4D 46                 .MF
-	bne     LA50F                           ; A50A D0 03                    ..
-	jmp     LA512                           ; A50C 4C 12 A5                 L..
+	lbeq	LA512
+	jmp     LA52A                           ; A50F 4C 2A A5                 L*.
 
 ; ----------------------------------------------------------------------------
-LA50F:  jmp     LA52A                           ; A50F 4C 2A A5                 L*.
-
-; ----------------------------------------------------------------------------
-LA512:  clc                                     ; A512 18                       .
-	lda     LA3AA                           ; A513 AD AA A3                 ...
-	adc     LA3B7                           ; A516 6D B7 A3                 m..
-	sta     LA3AA                           ; A519 8D AA A3                 ...
-	lda     LA3AB                           ; A51C AD AB A3                 ...
-	adc     #$00                            ; A51F 69 00                    i.
-	sta     LA3AB                           ; A521 8D AB A3                 ...
+LA512:	add16m8 LA3AA, LA3AA, LA3B7
 	inc     LA3AF                           ; A524 EE AF A3                 ...
 	jmp     LA46A                           ; A527 4C 6A A4                 Lj.
 
 ; ----------------------------------------------------------------------------
-LA52A:  jsr     L5E30                           ; A52A 20 30 5E                  0^
+LA52A:  jsr     sub_5E30
 	rts                                     ; A52D 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -11678,10 +11663,7 @@ LA547:
 	stack_prolog LA52E, $03
 	lda     LA52E                           ; A550 AD 2E A5                 ...
 	jsr     sub_65B0
-	lda     $A1                             ; A556 A5 A1                    ..
-	sta     LA535                           ; A558 8D 35 A5                 .5.
-	lda     $A0                             ; A55B A5 A0                    ..
-	sta     LA534                           ; A55D 8D 34 A5                 .4.
+	rdmv	LA534, $A0
 	lda     LA534                           ; A560 AD 34 A5                 .4.
 	ora     LA535                           ; A563 0D 35 A5                 .5.
 	lbne	LA56C
@@ -11695,17 +11677,10 @@ LA56C:  lda     LA531                           ; A56C AD 31 A5                 
 	lda     #$04                            ; A575 A9 04                    ..
 	sta     $A4                             ; A577 85 A4                    ..
 	ldy     LA530                           ; A579 AC 30 A5                 .0.
-	ldx     #$A5                            ; A57C A2 A5                    ..
-	lda     #$3D                            ; A57E A9 3D                    .=
+	ldxai	LA53D
 	jsr     sub_461F
-	sec                                     ; A583 38                       8
-	lda     LA53F                           ; A584 AD 3F A5                 .?.
-	sbc     LA53D                           ; A587 ED 3D A5                 .=.
-	sta     $AE                             ; A58A 85 AE                    ..
-LA58C:  clc                                     ; A58C 18                       .
-	lda     $AE                             ; A58D A5 AE                    ..
-	adc     #$01                            ; A58F 69 01                    i.
-	sta     LA536                           ; A591 8D 36 A5                 .6.
+	sub8m	off_AE, LA53F, LA53D
+LA58C:	add8i	LA536, off_AE, $01
 	lda     LA535                           ; A594 AD 35 A5                 .5.
 	sta     $A3                             ; A597 85 A3                    ..
 	lda     #$00                            ; A599 A9 00                    ..
@@ -11713,20 +11688,9 @@ LA58C:  clc                                     ; A58C 18                       
 	lda     #$06                            ; A59D A9 06                    ..
 	sta     $A4                             ; A59F 85 A4                    ..
 	ldy     LA534                           ; A5A1 AC 34 A5                 .4.
-	ldx     #$A5                            ; A5A4 A2 A5                    ..
-	lda     #$41                            ; A5A6 A9 41                    .A
+	ldxai	LA541
 	jsr     sub_461F
-	lda     LA53E                           ; A5AB AD 3E A5                 .>.
-	asl     a                               ; A5AE 0A                       .
-	php                                     ; A5AF 08                       .
-	clc                                     ; A5B0 18                       .
-	adc     LA545                           ; A5B1 6D 45 A5                 mE.
-	sta     $AE                             ; A5B4 85 AE                    ..
-	lda     #$00                            ; A5B6 A9 00                    ..
-	rol     a                               ; A5B8 2A                       *
-	plp                                     ; A5B9 28                       (
-	adc     LA546                           ; A5BA 6D 46 A5                 mF.
-	sta     $AF                             ; A5BD 85 AF                    ..
+	shladdm8 off_AE, LA545, LA53E
 	clc                                     ; A5BF 18                       .
 	ldy     #$00                            ; A5C0 A0 00                    ..
 	lda     ($AE),y                         ; A5C2 B1 AE                    ..
@@ -11826,7 +11790,7 @@ LA672:  clc                                     ; A672 18                       
 	jmp     LA5F6                           ; A687 4C F6 A5                 L..
 
 ; ----------------------------------------------------------------------------
-LA68A:  jsr     L5E30                           ; A68A 20 30 5E                  0^
+LA68A:  jsr     sub_5E30
 	lda     LA53A                           ; A68D AD 3A A5                 .:.
 	sta     LA537                           ; A690 8D 37 A5                 .7.
 	lda     #$08                            ; A693 A9 08                    ..
@@ -11963,7 +11927,7 @@ LA7A9:  ldx     #$00                            ; A7A9 A2 00                    
 ; ----------------------------------------------------------------------------
 LA7B7:  lda     LA6D9                           ; A7B7 AD D9 A6                 ...
 	jsr     LA28D                           ; A7BA 20 8D A2                  ..
-	jsr     L5E30                           ; A7BD 20 30 5E                  0^
+	jsr     sub_5E30
 	rts                                     ; A7C0 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -11983,7 +11947,7 @@ LA7C4:
 	ldx     #$00                            ; A7E4 A2 00                    ..
 	lda     LA7C1                           ; A7E6 AD C1 A7                 ...
 	jsr     sub_45D0
-	jsr     L5E30                           ; A7EC 20 30 5E                  0^
+	jsr     sub_5E30
 	rts                                     ; A7EF 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -12006,7 +11970,7 @@ LA7F3:
 	ldx     #$00                            ; A813 A2 00                    ..
 	lda     LA7F0                           ; A815 AD F0 A7                 ...
 	jsr     sub_45D0
-	jsr     L5E30                           ; A81B 20 30 5E                  0^
+	jsr     sub_5E30
 	rts                                     ; A81E 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -12362,7 +12326,7 @@ LAA86:	.addr	L6AD5
 	.addr	L968E
 	.addr	L97A1
 	.addr	sub_5E1E
-	.addr	L5E30
+	.addr	sub_5E30
 	.addr	sub_A2A8
 	.addr	LA382
 	.addr	LA3BD
@@ -12949,7 +12913,7 @@ LAF94:  lda     L4652                           ; AF94 AD 52 46                 
 	jsr     LA28D                           ; AF97 20 8D A2                  ..
 	lda     #$02                            ; AF9A A9 02                    ..
 	sta     L4652                           ; AF9C 8D 52 46                 .RF
-	jsr     L5E30                           ; AF9F 20 30 5E                  0^
+	jsr     sub_5E30
 LAFA2:  lda     $02FC                           ; AFA2 AD FC 02                 ...
 	eor     #$FF                            ; AFA5 49 FF                    I.
 	beq     LAFAC                           ; AFA7 F0 03                    ..
