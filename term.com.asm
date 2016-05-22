@@ -1014,8 +1014,8 @@ L47B5:	.addr	L47B1
 L47B7:	.byte	$03,"BBB"
 L47BB:	.addr	L47B7
 L47BD:	.byte	$03,"BCS"
-	lda     $0147,x                         ; 47C1 BD 47 01                 .G.
-	.byte   $42                             ; 47C4 42                       B
+L47C1:	.addr	L47BD
+L47C3:	.byte	$01,"B"
 	.byte   $C3                             ; 47C5 C3                       .
 	.byte   $47                             ; 47C6 47                       G
 	.byte   $03                             ; 47C7 03                       .
