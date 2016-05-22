@@ -5047,10 +5047,7 @@ L69B7:  lda     L6984                           ; 69B7 AD 84 69                 
 	ldy     L6983                           ; 69C4 AC 83 69                 ..i
 	ldxai	L698A
 	jsr     sub_461F
-	lda     L698E                           ; 69CE AD 8E 69                 ..i
-	sta     $AE                             ; 69D1 85 AE                    ..
-	lda     L698F                           ; 69D3 AD 8F 69                 ..i
-	sta     $AF                             ; 69D6 85 AF                    ..
+	dmv	off_AE, L698E
 	ldy     #$01                            ; 69D8 A0 01                    ..
 	lda     ($AE),y                         ; 69DA B1 AE                    ..
 	sta     L6986                           ; 69DC 8D 86 69                 ..i
@@ -5179,21 +5176,8 @@ L6AD5:
 L6AFF:  ldx     #$00                            ; 6AFF A2 00                    ..
 	lda     #$0B                            ; 6B01 A9 0B                    ..
 	jsr     sub_606E
-	lda     $A1                             ; 6B06 A5 A1                    ..
-	sta     L6AC5                           ; 6B08 8D C5 6A                 ..j
-	lda     $A0                             ; 6B0B A5 A0                    ..
-	sta     L6AC4                           ; 6B0D 8D C4 6A                 ..j
-	lda     L6ABE                           ; 6B10 AD BE 6A                 ..j
-	asl     a                               ; 6B13 0A                       .
-	php                                     ; 6B14 08                       .
-	clc                                     ; 6B15 18                       .
-	adc     L46E2                           ; 6B16 6D E2 46                 m.F
-	sta     $AE                             ; 6B19 85 AE                    ..
-	lda     #$00                            ; 6B1B A9 00                    ..
-	rol     a                               ; 6B1D 2A                       *
-	plp                                     ; 6B1E 28                       (
-	adc     L46E3                           ; 6B1F 6D E3 46                 m.F
-	sta     $AF                             ; 6B22 85 AF                    ..
+	rdmv	L6AC4, $A0
+	shladdm8 off_AE, L46E2, L6ABE
 	lda     L6AC5                           ; 6B24 AD C5 6A                 ..j
 	ldy     #$01                            ; 6B27 A0 01                    ..
 	sta     ($AE),y                         ; 6B29 91 AE                    ..
