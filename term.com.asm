@@ -6305,8 +6305,8 @@ L766E:  .byte   $90                             ; 766E 90                       
 L766F:  clv                                     ; 766F B8                       .
 L7670:  .byte   $4C                             ; 7670 4C                       L
 L7671:  .byte   $11                             ; 7671 11                       .
-L7672:  ;beq     $7694                           ; 7672 F0 20                    . 
-	.byte	$F0,$20
+L7672:  .byte	$F0
+L7673:	.byte	$20
 	cpy     #$EB                            ; 7674 C0 EB                    ..
 	.byte	$20
 L7677:	.byte	$43,$EC
@@ -6362,10 +6362,7 @@ L76CC:	add8m	L766B, L766B, L7680
 	ldxai	L7677
 	jsr     L4C1D                           ; 770D 20 1D 4C                  .L
 	add16i	$A2, L766D, $001A
-	lda     #$76                            ; 771F A9 76                    .v
-	sta     $A5                             ; 7721 85 A5                    ..
-	lda     #$73                            ; 7723 A9 73                    .s
-	sta     $A4                             ; 7725 85 A4                    ..
+	rdldi	$A4, L7673
 	ldy     $A2                             ; 7727 A4 A2                    ..
 	ldxai	L7677
 	jsr     sub_4CF5
@@ -6378,12 +6375,8 @@ L76CC:	add8m	L766B, L766B, L7680
 	ldx     $A1                             ; 774E A6 A1                    ..
 	lda     $A0                             ; 7750 A5 A0                    ..
 	jsr     L4E4A                           ; 7752 20 4A 4E                  JN
-	lda     $A1                             ; 7755 A5 A1                    ..
-	sta     L7670                           ; 7757 8D 70 76                 .pv
-	lda     $A0                             ; 775A A5 A0                    ..
-	sta     L766F                           ; 775C 8D 6F 76                 .ov
-	ldx     #$76                            ; 775F A2 76                    .v
-	lda     #$73                            ; 7761 A9 73                    .s
+	rdmv	L766F, $A0
+	ldxai	L7673
 	jsr     L4E4A                           ; 7763 20 4A 4E                  JN
 	rdmv	L7671, $A0
 	lda     L7671                           ; 7770 AD 71 76                 .qv
