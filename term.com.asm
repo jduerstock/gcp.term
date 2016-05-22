@@ -12779,10 +12779,7 @@ sub_AD85:
 	ldx     $A1                             ; ADD8 A6 A1                    ..
 	lda     #$06                            ; ADDA A9 06                    ..
 	jsr     SETVBV
-	lda     #>LAD07                         ; ADDF A9 AD                    ..
-	sta     VDSLST+1
-	lda     #<LAD07
-	sta     VDSLST
+	rdldi	VDSLST, LAD07
 	rts                                     ; ADE9 60                       `
 
 ; ----------------------------------------------------------------------------
