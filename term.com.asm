@@ -9164,34 +9164,15 @@ sub_8F7D:
 	sty     L8F7A                           ; 8F99 8C 7A 8F                 .z.
 L8F9C:  lda     #$09                            ; 8F9C A9 09                    ..
 	cmp     L8F7A                           ; 8F9E CD 7A 8F                 .z.
-	bcs     L8FA6                           ; 8FA1 B0 03                    ..
-	jmp     L8FDE                           ; 8FA3 4C DE 8F                 L..
-
-; ----------------------------------------------------------------------------
-L8FA6:  lda     L8F7A                           ; 8FA6 AD 7A 8F                 .z.
-	asl     a                               ; 8FA9 0A                       .
-	php                                     ; 8FAA 08                       .
-	clc                                     ; 8FAB 18                       .
-	adc     L46F5                           ; 8FAC 6D F5 46                 m.F
-	sta     $AE                             ; 8FAF 85 AE                    ..
-	lda     #$00                            ; 8FB1 A9 00                    ..
-	rol     a                               ; 8FB3 2A                       *
-	plp                                     ; 8FB4 28                       (
-	adc     L46F6                           ; 8FB5 6D F6 46                 m.F
-	sta     $AF                             ; 8FB8 85 AF                    ..
+	lbcc	L8FDE
+	shladdm8 off_AE, L46F5, L8F7A
 	lda     L8F7C                           ; 8FBA AD 7C 8F                 .|.
 	ldy     #$01                            ; 8FBD A0 01                    ..
 	sta     ($AE),y                         ; 8FBF 91 AE                    ..
 	lda     L8F7B                           ; 8FC1 AD 7B 8F                 .{.
 	dey                                     ; 8FC4 88                       .
 	sta     ($AE),y                         ; 8FC5 91 AE                    ..
-	clc                                     ; 8FC7 18                       .
-	lda     L8F7B                           ; 8FC8 AD 7B 8F                 .{.
-	adc     #$08                            ; 8FCB 69 08                    i.
-	sta     L8F7B                           ; 8FCD 8D 7B 8F                 .{.
-	lda     L8F7C                           ; 8FD0 AD 7C 8F                 .|.
-	adc     #$00                            ; 8FD3 69 00                    i.
-	sta     L8F7C                           ; 8FD5 8D 7C 8F                 .|.
+	add16i	L8F7B, L8F7B, $0008
 	inc     L8F7A                           ; 8FD8 EE 7A 8F                 .z.
 	jmp     L8F9C                           ; 8FDB 4C 9C 8F                 L..
 
