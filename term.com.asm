@@ -5206,26 +5206,14 @@ L6AFF:  ldx     #$00                            ; 6AFF A2 00                    
 	sta     L6ACE                           ; 6B76 8D CE 6A                 ..j
 	txa                                     ; 6B79 8A                       .
 	sta     L6ACF                           ; 6B7A 8D CF 6A                 ..j
-	clc                                     ; 6B7D 18                       .
-	lda     L6AC4                           ; 6B7E AD C4 6A                 ..j
-	adc     #$02                            ; 6B81 69 02                    i.
-	sta     $AE                             ; 6B83 85 AE                    ..
-	lda     L6AC5                           ; 6B85 AD C5 6A                 ..j
-	adc     #$00                            ; 6B88 69 00                    i.
-	sta     $AF                             ; 6B8A 85 AF                    ..
+	add16i	off_AE, L6AC4, $0002
 	lda     L6ACF                           ; 6B8C AD CF 6A                 ..j
 	ldy     #$01                            ; 6B8F A0 01                    ..
 	sta     ($AE),y                         ; 6B91 91 AE                    ..
 	lda     L6ACE                           ; 6B93 AD CE 6A                 ..j
 	dey                                     ; 6B96 88                       .
 	sta     ($AE),y                         ; 6B97 91 AE                    ..
-	clc                                     ; 6B99 18                       .
-	lda     L6AC4                           ; 6B9A AD C4 6A                 ..j
-	adc     #$04                            ; 6B9D 69 04                    i.
-	sta     $AE                             ; 6B9F 85 AE                    ..
-	lda     L6AC5                           ; 6BA1 AD C5 6A                 ..j
-	adc     #$00                            ; 6BA4 69 00                    i.
-	sta     $AF                             ; 6BA6 85 AF                    ..
+	add16i	off_AE, L6AC4, $0004
 	lda     $AF                             ; 6BA8 A5 AF                    ..
 	pha                                     ; 6BAA 48                       H
 	lda     $AE                             ; 6BAB A5 AE                    ..
