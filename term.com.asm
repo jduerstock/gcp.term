@@ -4954,17 +4954,7 @@ L68F4:  clc                                     ; 68F4 18                       
 	lda     L67D1                           ; 68F5 AD D1 67                 ..g
 	adc     L67C6                           ; 68F8 6D C6 67                 m.g
 	sta     $AE                             ; 68FB 85 AE                    ..
-	lda     $AE                             ; 68FD A5 AE                    ..
-	asl     a                               ; 68FF 0A                       .
-	php                                     ; 6900 08                       .
-	clc                                     ; 6901 18                       .
-	adc     L67D6                           ; 6902 6D D6 67                 m.g
-	sta     $AC                             ; 6905 85 AC                    ..
-	lda     #$00                            ; 6907 A9 00                    ..
-	rol     a                               ; 6909 2A                       *
-	plp                                     ; 690A 28                       (
-	adc     L67D7                           ; 690B 6D D7 67                 m.g
-	sta     $AD                             ; 690E 85 AD                    ..
+	shladdm8 off_AC, L67D6, off_AE
 	clc                                     ; 6910 18                       .
 	ldy     #$00                            ; 6911 A0 00                    ..
 	lda     ($AC),y                         ; 6913 B1 AC                    ..
@@ -5049,17 +5039,11 @@ sub_6995:
 	sta     L6982                           ; 6998 8D 82 69                 ..i
 	lda     L6982                           ; 699B AD 82 69                 ..i
 	jsr     sub_65B0
-	lda     $A1                             ; 69A1 A5 A1                    ..
-	sta     L6984                           ; 69A3 8D 84 69                 ..i
-	lda     $A0                             ; 69A6 A5 A0                    ..
-	sta     L6983                           ; 69A8 8D 83 69                 ..i
+	rdmv	L6983, $A0
 	lda     L6983                           ; 69AB AD 83 69                 ..i
 	ora     L6984                           ; 69AE 0D 84 69                 ..i
-	beq     L69B6                           ; 69B1 F0 03                    ..
-	jmp     L69B7                           ; 69B3 4C B7 69                 L.i
-
-; ----------------------------------------------------------------------------
-L69B6:  rts                                     ; 69B6 60                       `
+	lbne	L69B7
+	rts                                     ; 69B6 60                       `
 
 ; ----------------------------------------------------------------------------
 L69B7:  lda     L6984                           ; 69B7 AD 84 69                 ..i
