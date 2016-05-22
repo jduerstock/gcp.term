@@ -1520,10 +1520,7 @@ sub_4AE6:
 	sta     $A3                             ; 4AEE 85 A3                    ..
 	lda     #$00                            ; 4AF0 A9 00                    ..
 	sta     $A4                             ; 4AF2 85 A4                    ..
-	lda     #>L4AA1                         ; 4AF4 A9 4A                    .J
-	sta     $A6                             ; 4AF6 85 A6                    ..
-	lda     #<L4AA1                         ; 4AF8 A9 A1                    ..
-	sta     $A5                             ; 4AFA 85 A5                    ..
+	rdldi	$A5, L4AA1
 	ldy     #$0D                            ; 4AFC A0 0D                    ..
 	ldx     #$00                            ; 4AFE A2 00                    ..
 	lda     L4AE5                           ; 4B00 AD E5 4A                 ..J
