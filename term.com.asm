@@ -2800,17 +2800,8 @@ L562D:	add16m8	off_AE, L557E, L5590
 	lda     L5591                           ; 5644 AD 91 55                 ..U
 	eor     #'C'
 	lbne	L5672
-	clc                                     ; 564E 18                       .
-	lda     L559E                           ; 564F AD 9E 55                 ..U
-	adc     L5594                           ; 5652 6D 94 55                 m.U
-	sta     $AE                             ; 5655 85 AE                    ..
-	lda     L559F                           ; 5657 AD 9F 55                 ..U
-	adc     #$00                            ; 565A 69 00                    i.
-	sta     $AF                             ; 565C 85 AF                    ..
-	lda     L558C                           ; 565E AD 8C 55                 ..U
-	sta     $AC                             ; 5661 85 AC                    ..
-	lda     L558D                           ; 5663 AD 8D 55                 ..U
-	sta     $AD                             ; 5666 85 AD                    ..
+	add16m8	off_AE, L559E, L5594
+	dmv	off_AC, L558C
 	lda     ($AC),y                         ; 5668 B1 AC                    ..
 	sta     ($AE),y                         ; 566A 91 AE                    ..
 	inc     L5594                           ; 566C EE 94 55                 ..U
@@ -2818,23 +2809,11 @@ L562D:	add16m8	off_AE, L557E, L5590
 
 ; ----------------------------------------------------------------------------
 L5672:  lda     L5591                           ; 5672 AD 91 55                 ..U
-	eor     #$63                            ; 5675 49 63                    Ic
-	beq     L567C                           ; 5677 F0 03                    ..
-	jmp     L56B7                           ; 5679 4C B7 56                 L.V
-
-; ----------------------------------------------------------------------------
-L567C:  clc                                     ; 567C 18                       .
-	lda     L559E                           ; 567D AD 9E 55                 ..U
-	adc     L5594                           ; 5680 6D 94 55                 m.U
-	sta     $AE                             ; 5683 85 AE                    ..
-	lda     L559F                           ; 5685 AD 9F 55                 ..U
-	adc     #$00                            ; 5688 69 00                    i.
-	sta     $AF                             ; 568A 85 AF                    ..
+	eor     #'c'
+	lbne	L56B7
+	add16m8	off_AE, L559E, L5594
 	push16	off_AE
-	lda     L558C                           ; 5692 AD 8C 55                 ..U
-	sta     $AE                             ; 5695 85 AE                    ..
-	lda     L558D                           ; 5697 AD 8D 55                 ..U
-	sta     $AF                             ; 569A 85 AF                    ..
+	dmv	off_AE, L558C
 	lda     (off_AE),y
 	sta     $A0                             ; 569E 85 A0                    ..
 	lda     $A0                             ; 56A0 A5 A0                    ..
