@@ -3117,10 +3117,7 @@ L58F0:  .byte   $20                             ; 58F0 20
 L58F1:  .byte   $20                             ; 58F1 20                        
 
 sub_58F2:
-	prolog
-	jsr     sub_44D5                           ; 58F5 20 D5 44                  .D
-	.addr	L58E7
-	.byte	$03
+	stack_prolog L58E7, $03
 	ldy     #$01                            ; 58FB A0 01                    ..
 	sty     L4654                           ; 58FD 8C 54 46                 .TF
 	sty     L58ED                           ; 5900 8C ED 58                 ..X
@@ -3142,7 +3139,7 @@ L591F:	add16m8	off_AE, L58E7, L58ED
 	lda     ($AE),y                         ; 5931 B1 AE                    ..
 	sta     L58EE                           ; 5933 8D EE 58                 ..X
 	lda     L58EE                           ; 5936 AD EE 58                 ..X
-	eor     #$41                            ; 5939 49 41                    IA
+	eor     #'A'
 	lbne	L5A35
 	clc                                     ; 5940 18                       .
 	lda     #$24                            ; 5941 A9 24                    .$
@@ -3182,11 +3179,8 @@ L591F:	add16m8	off_AE, L58E7, L58ED
 	ldy     #$00                            ; 5998 A0 00                    ..
 	sty     L58EF                           ; 599A 8C EF 58                 ..X
 	lda     L58EE                           ; 599D AD EE 58                 ..X
-	beq     L59A5                           ; 59A0 F0 03                    ..
-	jmp     L59E1                           ; 59A2 4C E1 59                 L.Y
-
-; ----------------------------------------------------------------------------
-L59A5:  clc                                     ; 59A5 18                       .
+	lbne	L59E1
+	clc                                     ; 59A5 18                       .
 	lda     #$24                            ; 59A6 A9 24                    .$
 	adc     L4654                           ; 59A8 6D 54 46                 mTF
 	sta     $A0                             ; 59AB 85 A0                    ..
@@ -3202,10 +3196,7 @@ L59A5:  clc                                     ; 59A5 18                       
 	lda     L4654                           ; 59C0 AD 54 46                 .TF
 	adc     #$02                            ; 59C3 69 02                    i.
 	sta     L4654                           ; 59C5 8D 54 46                 .TF
-	lda     L58EB                           ; 59C8 AD EB 58                 ..X
-	sta     $AE                             ; 59CB 85 AE                    ..
-	lda     L58EC                           ; 59CD AD EC 58                 ..X
-	sta     $AF                             ; 59D0 85 AF                    ..
+	dmv	off_AE, L58EB
 	lda     L58EE                           ; 59D2 AD EE 58                 ..X
 	ldy     #$00                            ; 59D5 A0 00                    ..
 	sta     ($AE),y                         ; 59D7 91 AE                    ..
@@ -3289,28 +3280,22 @@ L5A90:  lda     L58EE                           ; 5A90 AD EE 58                 
 	bne     L5AAE                           ; 5AA9 D0 03                    ..
 	inc     L58EA                           ; 5AAB EE EA 58                 ..X
 L5AAE:	dmv	off_AE, L58EB
-	lda     $AF                             ; 5AB8 A5 AF                    ..
-	pha                                     ; 5ABA 48                       H
-	lda     $AE                             ; 5ABB A5 AE                    ..
-	pha                                     ; 5ABD 48                       H
+	push16	off_AE
 	ldx     L4654                           ; 5ABE AE 54 46                 .TF
 	lda     LB224,x
 	sta     $A0                             ; 5AC4 85 A0                    ..
 	lda     $A0                             ; 5AC6 A5 A0                    ..
 	jsr     L4B7B                           ; 5AC8 20 7B 4B                  {K
-	pla                                     ; 5ACB 68                       h
-	sta     $AE                             ; 5ACC 85 AE                    ..
-	pla                                     ; 5ACE 68                       h
-	sta     $AF                             ; 5ACF 85 AF                    ..
+	pull16	off_AE
 	lda     $A0                             ; 5AD1 A5 A0                    ..
 	ldy     #$00                            ; 5AD3 A0 00                    ..
-	sta     ($AE),y                         ; 5AD5 91 AE                    ..
+	sta     (off_AE),y
 	inc     L4654                           ; 5AD7 EE 54 46                 .TF
 	jmp     L5CF5                           ; 5ADA 4C F5 5C                 L.\
 
 ; ----------------------------------------------------------------------------
 L5ADD:  lda     L58EE                           ; 5ADD AD EE 58                 ..X
-	eor     #$44                            ; 5AE0 49 44                    ID
+	eor     #'D'
 	lbne	L5B2A
 	lda     L58EA                           ; 5AE7 AD EA 58                 ..X
 	sta     L58EC                           ; 5AEA 8D EC 58                 ..X
