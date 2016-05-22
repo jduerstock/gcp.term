@@ -991,16 +991,9 @@ L476D:	.byte	$01,"B"
 L476F:	.addr	L476D
 L4771:	.byte	$05,"BBBBS"
 L4777:	.addr	L4771
-	.byte   $02                             ; 4779 02                       .
-	.byte   $42                             ; 477A 42                       B
-	.byte   $43                             ; 477B 43                       C
-	adc     $0647,y                         ; 477C 79 47 06                 yG.
-	.byte   $42                             ; 477F 42                       B
-	.byte   $42                             ; 4780 42                       B
-	.byte   $42                             ; 4781 42                       B
-	.byte   $42                             ; 4782 42                       B
-	.byte   $42                             ; 4783 42                       B
-	.byte   $43                             ; 4784 43                       C
+L4779:	.byte	$02,"BC"
+L477C:	.addr	L4779
+L477E:	.byte	$06,"BBBBBC"
 	ror     $0447,x                         ; 4785 7E 47 04                 ~G.
 	.byte   $42                             ; 4788 42                       B
 	.byte   $44                             ; 4789 44                       D
