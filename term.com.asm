@@ -679,7 +679,8 @@ L45EA:  and     #$0F                            ; 45EA 29 0F                    
 	rts                                     ; 45EE 60                       `
 
 ; ----------------------------------------------------------------------------
-L45EF:  tax                                     ; 45EF AA                       .
+read_trig:  
+	tax                                     ; 45EF AA                       .
 	lda     $D010,x                         ; 45F0 BD 10 D0                 ...
 	sta     $A0                             ; 45F3 85 A0                    ..
 	rts                                     ; 45F5 60                       `
@@ -10729,7 +10730,8 @@ L9DB4:  ldy     #$01                            ; 9DB4 A0 01                    
 L9DC9:  brk                                     ; 9DC9 00                       .
 L9DCA:  brk                                     ; 9DCA 00                       .
 
-L9DCB:  prolog
+sub_9DCB:  
+	prolog
 	lda     L46E8                           ; 9DCE AD E8 46                 ..F
 	eor     #$01                            ; 9DD1 49 01                    I.
 	lbeq	L9DDD
@@ -10738,7 +10740,7 @@ L9DCB:  prolog
 
 ; ----------------------------------------------------------------------------
 L9DDD:  lda     #$00                            ; 9DDD A9 00                    ..
-	jsr     L45EF                           ; 9DDF 20 EF 45                  .E
+	jsr     read_trig
 	lda     $A0                             ; 9DE2 A5 A0                    ..
 	sta     L9DCA                           ; 9DE4 8D CA 9D                 ...
 	lda     L9DCA                           ; 9DE7 AD CA 9D                 ...
@@ -12221,10 +12223,9 @@ LA991:	prolog
 	rts                                     ; A9A2 60                       `
 
 ; ----------------------------------------------------------------------------
-LA9A3:  jmp     LA9A6                           ; A9A3 4C A6 A9                 L..
-
-; ----------------------------------------------------------------------------
-LA9A6:  lda     $D8                             ; A9A6 A5 D8                    ..
+sub_A9A3:  
+	prolog
+	lda     $D8                             ; A9A6 A5 D8                    ..
 	eor     #$01                            ; A9A8 49 01                    I.
 	lbne	LA9B8
 LA9AF:  lda     #$12                            ; A9AF A9 12                    ..
@@ -13072,13 +13073,13 @@ LB07D:  jsr     L54FF                           ; B07D 20 FF 54                 
 	eor     #$01                            ; B088 49 01                    I.
 	lbne	LB092
 	jsr     sub_AB6A
-LB092:  jsr     L9DCB                           ; B092 20 CB 9D                  ..
+LB092:  jsr     sub_9DCB
 	lda     $A0                             ; B095 A5 A0                    ..
 	eor     #$01                            ; B097 49 01                    I.
 	lbne	LB0A3
 	lda     #$00                            ; B09E A9 00                    ..
 	jsr     sub_4BA7
-LB0A3:  jsr     LA9A3                           ; B0A3 20 A3 A9                  ..
+LB0A3:  jsr     sub_A9A3
 	lda     L4764                           ; B0A6 AD 64 47                 .dG
 	eor     #$01                            ; B0A9 49 01                    I.
 	lbne	LB0B3
