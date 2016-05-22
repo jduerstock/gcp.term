@@ -2480,10 +2480,7 @@ sub_532A:
 	prolog
 	stx     L531F                           ; 532D 8E 1F 53                 ..S
 	sta     L531E                           ; 5330 8D 1E 53                 ..S
-	lda     L5322                           ; 5333 AD 22 53                 ."S
-	sta     $AE                             ; 5336 85 AE                    ..
-	lda     L5323                           ; 5338 AD 23 53                 .#S
-	sta     $AF                             ; 533B 85 AF                    ..
+	dmv	off_AE, L5322
 	lda     L531F                           ; 533D AD 1F 53                 ..S
 	ldy	#$00
 	sta     ($AE),y                         ; 5342 91 AE                    ..
