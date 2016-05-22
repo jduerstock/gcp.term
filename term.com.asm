@@ -3222,10 +3222,7 @@ L59E1:  lda     L58EF                           ; 59E1 AD EF 58                 
 	lda     $A0                             ; 5A1D A5 A0                    ..
 	ldy     #$00                            ; 5A1F A0 00                    ..
 	sta     ($AE),y                         ; 5A21 91 AE                    ..
-	clc                                     ; 5A23 18                       .
-	lda     L4654                           ; 5A24 AD 54 46                 .TF
-	adc     #$02                            ; 5A27 69 02                    i.
-	sta     L4654                           ; 5A29 8D 54 46                 .TF
+	add8i	L4654,L4654, $02
 	inc     L58EF                           ; 5A2C EE EF 58                 ..X
 	jmp     L59E1                           ; 5A2F 4C E1 59                 L.Y
 
@@ -3234,19 +3231,13 @@ L5A32:  jmp     L5CF5                           ; 5A32 4C F5 5C                 
 
 ; ----------------------------------------------------------------------------
 L5A35:  lda     L58EE                           ; 5A35 AD EE 58                 ..X
-	eor     #$42                            ; 5A38 49 42                    IB
+	eor     #'B'
 	lbne	L5A90
-	lda     L58EA                           ; 5A3F AD EA 58                 ..X
-	sta     L58EC                           ; 5A42 8D EC 58                 ..X
-	lda     L58E9                           ; 5A45 AD E9 58                 ..X
-	sta     L58EB                           ; 5A48 8D EB 58                 ..X
+	rdmv	L58EB, L58E9
 	inc     L58E9                           ; 5A4B EE E9 58                 ..X
 	bne     L5A53                           ; 5A4E D0 03                    ..
 	inc     L58EA                           ; 5A50 EE EA 58                 ..X
-L5A53:  lda     L58EB                           ; 5A53 AD EB 58                 ..X
-	sta     $AE                             ; 5A56 85 AE                    ..
-	lda     L58EC                           ; 5A58 AD EC 58                 ..X
-	sta     $AF                             ; 5A5B 85 AF                    ..
+L5A53:	dmv	off_AE, L58EB
 	push16	off_AE
 	clc                                     ; 5A63 18                       .
 	lda     #$24                            ; 5A64 A9 24                    .$
