@@ -9455,10 +9455,7 @@ L925D:  prolog
 	sta     L924C                           ; 9263 8D 4C 92                 .L.
 	lda     L924C                           ; 9266 AD 4C 92                 .L.
 	jsr     sub_65B0
-	lda     $A1                             ; 926C A5 A1                    ..
-	sta     L924F                           ; 926E 8D 4F 92                 .O.
-	lda     $A0                             ; 9271 A5 A0                    ..
-	sta     L924E                           ; 9273 8D 4E 92                 .N.
+	rdmv	L924E, $A0
 	lda     L924F                           ; 9276 AD 4F 92                 .O.
 	sta     $A3                             ; 9279 85 A3                    ..
 	lda     #$00                            ; 927B A9 00                    ..
@@ -9482,21 +9479,8 @@ L925D:  prolog
 	lbcs	L9352
 	lda     L9250                           ; 92AD AD 50 92                 .P.
 	lbne	L9352
-	clc                                     ; 92B5 18                       .
-	lda     L924D                           ; 92B6 AD 4D 92                 .M.
-	adc     #$01                            ; 92B9 69 01                    i.
-	sta     $AE                             ; 92BB 85 AE                    ..
-	lda     $AE                             ; 92BD A5 AE                    ..
-	asl     a                               ; 92BF 0A                       .
-	php                                     ; 92C0 08                       .
-	clc                                     ; 92C1 18                       .
-	adc     L925B                           ; 92C2 6D 5B 92                 m[.
-	sta     $AC                             ; 92C5 85 AC                    ..
-	lda     #$00                            ; 92C7 A9 00                    ..
-	rol     a                               ; 92C9 2A                       *
-	plp                                     ; 92CA 28                       (
-	adc     L925C                           ; 92CB 6D 5C 92                 m\.
-	sta     $AD                             ; 92CE 85 AD                    ..
+	add8i	off_AE, L924D, $01
+	shladdm8 off_AC, L925B, off_AE
 	ldy     #$01                            ; 92D0 A0 01                    ..
 	lda     ($AC),y                         ; 92D2 B1 AC                    ..
 	sta     L9254                           ; 92D4 8D 54 92                 .T.
