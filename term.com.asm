@@ -9599,7 +9599,7 @@ L9416:  brk                                     ; 9416 00                       
 L9419:  brk                                     ; 9419 00                       .
 L941A:  brk                                     ; 941A 00                       .
 	brk                                     ; 941B 00                       .
-	brk                                     ; 941C 00                       .
+L941C:	brk                                     ; 941C 00                       .
 	brk                                     ; 941D 00                       .
 L941E:  brk                                     ; 941E 00                       .
 L941F:  brk                                     ; 941F 00                       .
@@ -9709,8 +9709,7 @@ L94E8:	shladdm8 off_AE, L9064, L9416
 	ldi	$A5, $00
 	ldi	$A4, $07
 	ldy     L9055                           ; 9544 AC 55 90                 .U.
-L9547:  ldx     #$94                            ; 9547 A2 94                    ..
-	lda     #$1C                            ; 9549 A9 1C                    ..
+L9547:  ldxai	L941C
 	jsr     sub_461F
 	clc                                     ; 954E 18                       .
 	lda     L9055                           ; 954F AD 55 90                 .U.
