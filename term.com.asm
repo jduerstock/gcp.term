@@ -6092,35 +6092,18 @@ L73FE:  sec                                     ; 73FE 38                       
 	sta     L73D5                           ; 740C 8D D5 73                 ..s
 	lda     L73D5                           ; 740F AD D5 73                 ..s
 	jsr     sub_7035
-	lda     $A1                             ; 7415 A5 A1                    ..
-	sta     L73D9                           ; 7417 8D D9 73                 ..s
-	lda     $A0                             ; 741A A5 A0                    ..
-	sta     L73D8                           ; 741C 8D D8 73                 ..s
-	clc                                     ; 741F 18                       .
-	lda     L73D8                           ; 7420 AD D8 73                 ..s
-	adc     #$0C                            ; 7423 69 0C                    i.
-	sta     $AE                             ; 7425 85 AE                    ..
-	lda     L73D9                           ; 7427 AD D9 73                 ..s
-	adc     #$00                            ; 742A 69 00                    i.
-	sta     $AF                             ; 742C 85 AF                    ..
+	rdmv	L73D8, $A0
+	add16i	off_AE, L73D8, $000C
 	ldy     #$00                            ; 742E A0 00                    ..
 	lda     ($AE),y                         ; 7430 B1 AE                    ..
 	cmp     #$FF                            ; 7432 C9 FF                    ..
-	bcc     L7439                           ; 7434 90 03                    ..
-	jmp     L7461                           ; 7436 4C 61 74                 Lat
-
-; ----------------------------------------------------------------------------
-L7439:  lda     L73D8                           ; 7439 AD D8 73                 ..s
+	lbcs	L7461
+	lda     L73D8                           ; 7439 AD D8 73                 ..s
 	ora     L73D9                           ; 743C 0D D9 73                 ..s
-	bne     L7444                           ; 743F D0 03                    ..
-	jmp     L7461                           ; 7441 4C 61 74                 Lat
-
-; ----------------------------------------------------------------------------
+	lbeq	L7461
 L7444:  ldy     L73D5                           ; 7444 AC D5 73                 ..s
 	ldx     L73D4                           ; 7447 AE D4 73                 ..s
-	.byte   $AD                             ; 744A AD                       .
-	.byte   $D3                             ; 744B D3                       .
-L744C:  .byte   $73                             ; 744C 73                       s
+	lda	L73D3
 	jsr     L7368                           ; 744D 20 68 73                  hs
 	lda     $A0                             ; 7450 A5 A0                    ..
 	eor     #$01                            ; 7452 49 01                    I.
