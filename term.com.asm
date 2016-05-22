@@ -4759,27 +4759,14 @@ sub_66FC:
 	jmp     L67C3                           ; 673F 4C C3 67                 L.g
 
 ; ----------------------------------------------------------------------------
-L6742:  lda     L66FA                           ; 6742 AD FA 66                 ..f
-	sta     $AE                             ; 6745 85 AE                    ..
-	lda     L66FB                           ; 6747 AD FB 66                 ..f
-	sta     $AF                             ; 674A 85 AF                    ..
+L6742:	dmv	off_AE, L66FA
 	ldy     #$01                            ; 674C A0 01                    ..
 	lda     ($AE),y                         ; 674E B1 AE                    ..
 	sta     $A1                             ; 6750 85 A1                    ..
 	dey                                     ; 6752 88                       .
 	lda     ($AE),y                         ; 6753 B1 AE                    ..
 	sta     $A0                             ; 6755 85 A0                    ..
-	lda     L66F3                           ; 6757 AD F3 66                 ..f
-	asl     a                               ; 675A 0A                       .
-	php                                     ; 675B 08                       .
-	clc                                     ; 675C 18                       .
-	adc     L66FA                           ; 675D 6D FA 66                 m.f
-	sta     $AC                             ; 6760 85 AC                    ..
-	lda     #$00                            ; 6762 A9 00                    ..
-	rol     a                               ; 6764 2A                       *
-	plp                                     ; 6765 28                       (
-	adc     L66FB                           ; 6766 6D FB 66                 m.f
-	sta     $AD                             ; 6769 85 AD                    ..
+	shladdm8 off_AC, L66FA, L66F3
 	iny                                     ; 676B C8                       .
 	lda     ($AC),y                         ; 676C B1 AC                    ..
 	sta     $A3                             ; 676E 85 A3                    ..
