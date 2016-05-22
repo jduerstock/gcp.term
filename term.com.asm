@@ -4734,16 +4734,13 @@ L66FA:  brk                                     ; 66FA 00                       
 L66FB:  brk                                     ; 66FB 00                       .
 
 ; ----------------------------------------------------------------------------
-L66FC:  
+sub_66FC:  
 	prolog
 	stx     L66F3                           ; 66FF 8E F3 66                 ..f
 	sta     L66F2                           ; 6702 8D F2 66                 ..f
 	lda     L66F2                           ; 6705 AD F2 66                 ..f
 	jsr     sub_65B0
-	lda     $A1                             ; 670B A5 A1                    ..
-	sta     L66F5                           ; 670D 8D F5 66                 ..f
-	lda     $A0                             ; 6710 A5 A0                    ..
-	sta     L66F4                           ; 6712 8D F4 66                 ..f
+	rdmv	L66F4, $A0
 	lda     L66F5                           ; 6715 AD F5 66                 ..f
 	sta     $A3                             ; 6718 85 A3                    ..
 	lda     #$00                            ; 671A A9 00                    ..
@@ -4947,7 +4944,7 @@ L6861:  sec                                     ; 6861 38                       
 ; ----------------------------------------------------------------------------
 L68AC:  ldx     L67CD                           ; 68AC AE CD 67                 ..g
 	lda     L67C4                           ; 68AF AD C4 67                 ..g
-	jsr     L66FC                           ; 68B2 20 FC 66                  .f
+	jsr     sub_66FC
 	sec                                     ; 68B5 38                       8
 	lda     L67D3                           ; 68B6 AD D3 67                 ..g
 	sbc     #$01                            ; 68B9 E9 01                    ..
@@ -10004,7 +10001,7 @@ L94AB:  sec                                     ; 94AB 38                       
 	sta     $A1                             ; 94D5 85 A1                    ..
 	ldx     $A1                             ; 94D7 A6 A1                    ..
 	lda     L9053                           ; 94D9 AD 53 90                 .S.
-	jsr     L66FC                           ; 94DC 20 FC 66                  .f
+	jsr     sub_66FC
 L94DF:  sec                                     ; 94DF 38                       8
 	lda     L9061                           ; 94E0 AD 61 90                 .a.
 	sbc     #$01                            ; 94E3 E9 01                    ..
