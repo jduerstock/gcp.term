@@ -9614,13 +9614,7 @@ L9426:  brk                                     ; 9426 00                       
 sub_9427:  
 	prolog
 	sta     L9416                           ; 942A 8D 16 94                 ...
-	clc                                     ; 942D 18                       .
-	lda     L9059                           ; 942E AD 59 90                 .Y.
-	adc     L905E                           ; 9431 6D 5E 90                 m^.
-	sta     $AE                             ; 9434 85 AE                    ..
-	lda     L905A                           ; 9436 AD 5A 90                 .Z.
-	adc     #$00                            ; 9439 69 00                    i.
-	sta     $AF                             ; 943B 85 AF                    ..
+	add16m8	off_AE, L9059, L905E
 	ldy     #$00                            ; 943D A0 00                    ..
 	lda     (off_AE),y                      ; 943F B1 AE                    ..
 	eor     #$80                            ; 9441 49 80                    I.
