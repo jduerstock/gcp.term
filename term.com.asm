@@ -3384,10 +3384,7 @@ L5BD2:	clc                                     ; 5BD2 18                       .
 	lda     #$B2                            ; 5BDB A9 B2                    ..
 	adc     #$00                            ; 5BDD 69 00                    i.
 	sta     L58EC                           ; 5BDF 8D EC 58                 ..X
-	lda     L58E9                           ; 5BE2 AD E9 58                 ..X
-	sta     $AE                             ; 5BE5 85 AE                    ..
-	lda     L58EA                           ; 5BE7 AD EA 58                 ..X
-	sta     $AF                             ; 5BEA 85 AF                    ..
+	dmv	off_AE, L58E9
 	lda     L58EC                           ; 5BEC AD EC 58                 ..X
 	ldy     #$01                            ; 5BEF A0 01                    ..
 	sta     ($AE),y                         ; 5BF1 91 AE                    ..
