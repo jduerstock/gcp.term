@@ -3246,8 +3246,7 @@ L5A53:	dmv	off_AE, L58EB
 	lda     #$B2                            ; 5A6B A9 B2                    ..
 	adc     #$00                            ; 5A6D 69 00                    i.
 	sta     $A1                             ; 5A6F 85 A1                    ..
-	ldx     $A1                             ; 5A71 A6 A1                    ..
-	lda     $A0                             ; 5A73 A5 A0                    ..
+	ldxa	$A0
 	jsr     L4B47                           ; 5A75 20 47 4B                  GK
 	pull16	off_AE
 	lda     $A0                             ; 5A7E A5 A0                    ..
@@ -3282,10 +3281,7 @@ L5AAE:	dmv	off_AE, L58EB
 L5ADD:  lda     L58EE                           ; 5ADD AD EE 58                 ..X
 	eor     #'D'
 	lbne	L5B2A
-	lda     L58EA                           ; 5AE7 AD EA 58                 ..X
-	sta     L58EC                           ; 5AEA 8D EC 58                 ..X
-	lda     L58E9                           ; 5AED AD E9 58                 ..X
-	sta     L58EB                           ; 5AF0 8D EB 58                 ..X
+	rdmv	L58EB, L58E9
 	inc     L58E9                           ; 5AF3 EE E9 58                 ..X
 	bne     L5AFB                           ; 5AF6 D0 03                    ..
 	inc     L58EA                           ; 5AF8 EE EA 58                 ..X
