@@ -12764,10 +12764,7 @@ sub_AD85:
 	ldxa	LAD83
 	jsr     sub_45F6
 	rdldi	$0208, $AC7E
-	lda     #$AD                            ; ADB5 A9 AD                    ..
-	sta     LAD82                           ; ADB7 8D 82 AD                 ...
-	lda     #$59                            ; ADBA A9 59                    .Y
-	sta     LAD81                           ; ADBC 8D 81 AD                 ...
+	rdldi	LAD81, $AD59
 	lda     #$08                            ; ADBF A9 08                    ..
 	sta     $84                             ; ADC1 85 84                    ..
 	lda     LAD82                           ; ADC3 AD 82 AD                 ...
