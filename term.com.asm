@@ -4215,17 +4215,9 @@ L6197:  brk                                     ; 6197 00                       
 L6198:  brk                                     ; 6198 00                       .
 L6199:  brk                                     ; 6199 00                       .
 
-L619A:  prolog
-	jsr     sub_44D5                        ; 619D 20 D5 44                  .D
-	.addr	L6192
-	.byte	$03
-	clc                                     ; 61A3 18                       .
-	lda     L6194                           ; 61A4 AD 94 61                 ..a
-	adc     #$03                            ; 61A7 69 03                    i.
-	sta     $AE                             ; 61A9 85 AE                    ..
-	lda     L6195                           ; 61AB AD 95 61                 ..a
-	adc     #$00                            ; 61AE 69 00                    i.
-	sta     $AF                             ; 61B0 85 AF                    ..
+sub_619A:  
+	stack_prolog L6192, $03
+	add16i off_AE, L6194, $0003
 	lda     #$02                            ; 61B2 A9 02                    ..
 	sta     $84                             ; 61B4 85 84                    ..
 	lda     $AF                             ; 61B6 A5 AF                    ..
@@ -5021,7 +5013,7 @@ L6986:  brk                                     ; 6986 00                       
 L6987:  brk                                     ; 6987 00                       .
 L6988:  brk                                     ; 6988 00                       .
 L6989:  brk                                     ; 6989 00                       .
-	brk                                     ; 698A 00                       .
+L698A:	brk                                     ; 698A 00                       .
 L698B:  brk                                     ; 698B 00                       .
 L698C:  brk                                     ; 698C 00                       .
 L698D:  brk                                     ; 698D 00                       .
@@ -5053,8 +5045,7 @@ L69B7:  lda     L6984                           ; 69B7 AD 84 69                 
 	lda     #$0B                            ; 69C0 A9 0B                    ..
 	sta     $A4                             ; 69C2 85 A4                    ..
 	ldy     L6983                           ; 69C4 AC 83 69                 ..i
-	ldx     #$69                            ; 69C7 A2 69                    .i
-	lda     #$8A                            ; 69C9 A9 8A                    ..
+	ldxai	L698A
 	jsr     sub_461F
 	lda     L698E                           ; 69CE AD 8E 69                 ..i
 	sta     $AE                             ; 69D1 85 AE                    ..
@@ -5072,21 +5063,18 @@ L69B7:  lda     L6984                           ; 69B7 AD 84 69                 
 	lda     #$00                            ; 69EB A9 00                    ..
 	sta     $A3                             ; 69ED 85 A3                    ..
 	ldy     $A2                             ; 69EF A4 A2                    ..
-	ldx     L698F                           ; 69F1 AE 8F 69                 ..i
-	lda     L698E                           ; 69F4 AD 8E 69                 ..i
-	jsr     L619A                           ; 69F7 20 9A 61                  .a
+	ldxa	L698E
+	jsr     sub_619A
 	lda     L698D                           ; 69FA AD 8D 69                 ..i
 	sta     $A3                             ; 69FD 85 A3                    ..
 	ldy     L698C                           ; 69FF AC 8C 69                 ..i
-	ldx     L6986                           ; 6A02 AE 86 69                 ..i
-	lda     L6985                           ; 6A05 AD 85 69                 ..i
-	jsr     L619A                           ; 6A08 20 9A 61                  .a
+	ldxa	L6985
+	jsr     sub_619A
 	lda     #$00                            ; 6A0B A9 00                    ..
 	sta     $A3                             ; 6A0D 85 A3                    ..
 	ldy     #$0B                            ; 6A0F A0 0B                    ..
-	ldx     L6984                           ; 6A11 AE 84 69                 ..i
-	lda     L6983                           ; 6A14 AD 83 69                 ..i
-	jsr     L619A                           ; 6A17 20 9A 61                  .a
+	ldxa	L6983
+	jsr     sub_619A
 	lda     L6982                           ; 6A1A AD 82 69                 ..i
 	asl     a                               ; 6A1D 0A                       .
 	php                                     ; 6A1E 08                       .
@@ -5121,29 +5109,19 @@ L6A44:  lda     #$00                            ; 6A44 A9 00                    
 	lda     #$00                            ; 6A57 A9 00                    ..
 	sta     $A3                             ; 6A59 85 A3                    ..
 	ldy     L6987                           ; 6A5B AC 87 69                 ..i
-	ldx     L6992                           ; 6A5E AE 92 69                 ..i
-	lda     L6991                           ; 6A61 AD 91 69                 ..i
-	jsr     L619A                           ; 6A64 20 9A 61                  .a
+	ldxa	L6991
+	jsr     sub_619A
 L6A67:  lda     L6993                           ; 6A67 AD 93 69                 ..i
 	ora     L6994                           ; 6A6A 0D 94 69                 ..i
-	bne     L6A72                           ; 6A6D D0 03                    ..
-	jmp     L6AB8                           ; 6A6F 4C B8 6A                 L.j
-
-; ----------------------------------------------------------------------------
-L6A72:  lda     L6993                           ; 6A72 AD 93 69                 ..i
-	sta     $AE                             ; 6A75 85 AE                    ..
-	lda     L6994                           ; 6A77 AD 94 69                 ..i
-	sta     $AF                             ; 6A7A 85 AF                    ..
+	lbeq	L6AB8
+	dmv	off_AE, L6993
 	ldy     #$01                            ; 6A7C A0 01                    ..
 	lda     ($AE),y                         ; 6A7E B1 AE                    ..
 	sta     L6989                           ; 6A80 8D 89 69                 ..i
 	dey                                     ; 6A83 88                       .
 	lda     ($AE),y                         ; 6A84 B1 AE                    ..
 	sta     L6988                           ; 6A86 8D 88 69                 ..i
-	lda     L6988                           ; 6A89 AD 88 69                 ..i
-	sta     $AE                             ; 6A8C 85 AE                    ..
-	lda     L6989                           ; 6A8E AD 89 69                 ..i
-	sta     $AF                             ; 6A91 85 AF                    ..
+	dmv	off_AE, L6988
 	clc                                     ; 6A93 18                       .
 	lda     ($AE),y                         ; 6A94 B1 AE                    ..
 	adc     #$01                            ; 6A96 69 01                    i.
@@ -5151,16 +5129,14 @@ L6A72:  lda     L6993                           ; 6A72 AD 93 69                 
 	lda     #$00                            ; 6A9A A9 00                    ..
 	sta     $A3                             ; 6A9C 85 A3                    ..
 	ldy     $A2                             ; 6A9E A4 A2                    ..
-	ldx     L6989                           ; 6AA0 AE 89 69                 ..i
-	lda     L6988                           ; 6AA3 AD 88 69                 ..i
-	jsr     L619A                           ; 6AA6 20 9A 61                  .a
-	.byte   $A9                             ; 6AA9 A9                       .
-L6AAA:  brk                                     ; 6AAA 00                       .
+	ldxa	L6988
+	jsr     sub_619A
+	lda	#$00
 	sta     $A3                             ; 6AAB 85 A3                    ..
 	ldy     #$1A                            ; 6AAD A0 1A                    ..
 	ldx     L6994                           ; 6AAF AE 94 69                 ..i
 	lda     L6993                           ; 6AB2 AD 93 69                 ..i
-	jsr     L619A                           ; 6AB5 20 9A 61                  .a
+	jsr     sub_619A
 L6AB8:  ldy     #$01                            ; 6AB8 A0 01                    ..
 	sty     L4656                           ; 6ABA 8C 56 46                 .VF
 	rts                                     ; 6ABD 60                       `
@@ -6701,7 +6677,7 @@ L7973:  ldx     #$FF                            ; 7973 A2 FF                    
 	ldy     #$26                            ; 797F A0 26                    .&
 	ldx     L7950                           ; 7981 AE 50 79                 .Py
 	lda     L794F                           ; 7984 AD 4F 79                 .Oy
-	jsr     L619A                           ; 7987 20 9A 61                  .a
+	jsr     sub_619A
 	sec                                     ; 798A 38                       8
 	lda     L4673                           ; 798B AD 73 46                 .sF
 	sbc     #$01                            ; 798E E9 01                    ..
@@ -12594,13 +12570,13 @@ LA9FB:  prolog
 	sta     $A3                             ; AA14 85 A3                    ..
 	ldy     LA9F9                           ; AA16 AC F9 A9                 ...
 	ldxa	MEMLO
-	jsr     L619A                           ; AA1F 20 9A 61                  .a
+	jsr     sub_619A
 	jmp     LAA28                           ; AA22 4C 28 AA                 L(.
 
 ; ----------------------------------------------------------------------------
-	.byte   $02                             ; AA25 02                       .
-	.byte   $43                             ; AA26 43                       C
-	pha                                     ; AA27 48                       H
+LAA25:	.byte	$02,"CH"
+
+; ----------------------------------------------------------------------------
 LAA28:  lda     #$00                            ; AA28 A9 00                    ..
 	sta     $A3                             ; AA2A 85 A3                    ..
 	lda     LA9FA                           ; AA2C AD FA A9                 ...
@@ -12610,7 +12586,7 @@ LAA28:  lda     #$00                            ; AA28 A9 00                    
 	ldy     #$46                            ; AA36 A0 46                    .F
 	ldx     #$AA                            ; AA38 A2 AA                    ..
 	lda     #$25                            ; AA3A A9 25                    .%
-	jsr     sub_55A0                           ; AA3C 20 A0 55                  .U
+	jsr     sub_55A0
 	jsr     L747D                           ; AA3F 20 7D 74                  }t
 	jsr     L696A                           ; AA42 20 6A 69                  ji
 	.byte   $20                             ; AA45 20                        
