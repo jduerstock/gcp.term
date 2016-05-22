@@ -9024,17 +9024,7 @@ L8E7C:  brk                                     ; 8E7C 00                       
 ; ----------------------------------------------------------------------------
 sub_8E7D:  
 	stack_prolog L8E74, $06
-	lda	L8E74
-	asl	a
-	php 
-	clc                                     ; 8E8B 18                       .
-	adc     L46F5                           ; 8E8C 6D F5 46                 m.F
-	sta     $AE                             ; 8E8F 85 AE                    ..
-	lda     #$00                            ; 8E91 A9 00                    ..
-	rol     a                               ; 8E93 2A                       *
-	plp                                     ; 8E94 28                       (
-	adc     L46F6                           ; 8E95 6D F6 46                 m.F
-	sta     $AF                             ; 8E98 85 AF                    ..
+	shladdm8 off_AE, L46F5, L8E74
 	ldy     #$01                            ; 8E9A A0 01                    ..
 	lda     ($AE),y                         ; 8E9C B1 AE                    ..
 	sta     L8E7C                           ; 8E9E 8D 7C 8E                 .|.
@@ -9075,17 +9065,7 @@ L8EFC:  brk                                     ; 8EFC 00                       
 
 sub_8EFD:
 	stack_prolog L8EF8, $02
-	lda	L8EF8
-	asl	a
-	php
-	clc                                     ; 8F0B 18                       .
-	adc     L46F5                           ; 8F0C 6D F5 46                 m.F
-	sta     $AE                             ; 8F0F 85 AE                    ..
-	lda     #$00                            ; 8F11 A9 00                    ..
-	rol     a                               ; 8F13 2A                       *
-	plp                                     ; 8F14 28                       (
-	adc     L46F6                           ; 8F15 6D F6 46                 m.F
-	sta     $AF                             ; 8F18 85 AF                    ..
+	shladdm8 off_AE, L46F5, L8EF8
 	ldy     #$01                            ; 8F1A A0 01                    ..
 	lda     ($AE),y                         ; 8F1C B1 AE                    ..
 	sta     L8EFC                           ; 8F1E 8D FC 8E                 ...
