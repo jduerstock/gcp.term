@@ -3871,7 +3871,7 @@ L5F13:  brk                                     ; 5F13 00                       
 L5F14:  .byte   $80                             ; 5F14 80                       .
 L5F15:  .byte   $B2                             ; 5F15 B2                       .
 
-L5F16:  
+sub_5F16:  
 	stack_prolog L5F07, $04
 	ldi	$84, $03
 	lda     L5F08                           ; 5F23 AD 08 5F                 .._
@@ -3985,9 +3985,8 @@ L5FF5:  stack_prolog L5FF0, $04
 	lda     L5FF4                           ; 600D AD F4 5F                 .._
 	sta     $A4                             ; 6010 85 A4                    ..
 	ldy     L5FF2                           ; 6012 AC F2 5F                 .._
-	ldx     L5FF1                           ; 6015 AE F1 5F                 .._
-	lda     L5FF0                           ; 6018 AD F0 5F                 .._
-	jsr     L5F16                           ; 601B 20 16 5F                  ._
+	ldxa	L5FF0
+	jsr     sub_5F16
 	rts                                     ; 601E 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -4005,7 +4004,7 @@ L6026:
 	dmv	$A3, L6022
 	ldy     L6021                           ; 6043 AC 21 60                 .!`
 	ldxa	L601F
-	jsr     L5F16                           ; 604C 20 16 5F                  ._
+	jsr     sub_5F16
 	rdmv	L6024, $A0
 	rdmv	$A0, L6024
 	rts                                     ; 6063 60                       `
@@ -4025,13 +4024,7 @@ sub_606E:
 	prolog
 	stx     L6064+1                         ; 6071 8E 65 60                 .e`
 	sta     L6064                           ; 6074 8D 64 60                 .d`
-	clc                                     ; 6077 18                       .
-	lda     L6064                           ; 6078 AD 64 60                 .d`
-	adc     #$03                            ; 607B 69 03                    i.
-	sta     off_AE
-	lda     L6064+1                         ; 607F AD 65 60                 .e`
-	adc     #$00                            ; 6082 69 00                    i.
-	sta     off_AE+1
+	add16i	off_AE, L6064, $0003
 	lda     #$02                            ; 6086 A9 02                    ..
 	sta     $84                             ; 6088 85 84                    ..
 	lda     off_AE+1
@@ -4057,8 +4050,7 @@ sub_606E:
 	sbc     L6069                           ; 60BA ED 69 60                 .i`
 	sta     $AF                             ; 60BD 85 AF                    ..
 	ldy     $A2                             ; 60BF A4 A2                    ..
-	ldx     L6069                           ; 60C1 AE 69 60                 .i`
-	lda     L6068                           ; 60C4 AD 68 60                 .h`
+	ldxa	L6068
 	jsr     L6026                           ; 60C7 20 26 60                  &`
 	clc                                     ; 60CA 18                       .
 	lda     L6068                           ; 60CB AD 68 60                 .h`
