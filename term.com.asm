@@ -9698,8 +9698,7 @@ L94E8:	shladdm8 off_AE, L9064, L9416
 	lda     L9060                           ; 9512 AD 60 90                 .`.
 	sta     $A4                             ; 9515 85 A4                    ..
 	ldy     L905B                           ; 9517 AC 5B 90                 .[.
-	ldx     L905A                           ; 951A AE 5A 90                 .Z.
-	lda     L9059                           ; 951D AD 59 90                 .Y.
+	ldxa	L9059
 	jsr     sub_461F
 	ldx     L9416                           ; 9523 AE 16 94                 ...
 	lda     L9053                           ; 9526 AD 53 90                 .S.
