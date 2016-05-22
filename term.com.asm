@@ -2890,10 +2890,7 @@ L567C:  clc                                     ; 567C 18                       
 	lda     L559F                           ; 5685 AD 9F 55                 ..U
 	adc     #$00                            ; 5688 69 00                    i.
 	sta     $AF                             ; 568A 85 AF                    ..
-	lda     $AF                             ; 568C A5 AF                    ..
-	pha                                     ; 568E 48                       H
-	lda     $AE                             ; 568F A5 AE                    ..
-	pha                                     ; 5691 48                       H
+	push16	off_AE
 	lda     L558C                           ; 5692 AD 8C 55                 ..U
 	sta     $AE                             ; 5695 85 AE                    ..
 	lda     L558D                           ; 5697 AD 8D 55                 ..U
@@ -2902,10 +2899,7 @@ L567C:  clc                                     ; 567C 18                       
 	sta     $A0                             ; 569E 85 A0                    ..
 	lda     $A0                             ; 56A0 A5 A0                    ..
 	jsr     sub_4BC9
-	pla                                     ; 56A5 68                       h
-	sta     $AE                             ; 56A6 85 AE                    ..
-	pla                                     ; 56A8 68                       h
-	sta     $AF                             ; 56A9 85 AF                    ..
+	pull16	off_AE
 	lda     $A0                             ; 56AB A5 A0                    ..
 	ldy     #$00                            ; 56AD A0 00                    ..
 	sta     ($AE),y                         ; 56AF 91 AE                    ..
@@ -3228,10 +3222,7 @@ L59E1:  lda     L58EF                           ; 59E1 AD EF 58                 
 	lda     L58EC                           ; 59F5 AD EC 58                 ..X
 	adc     #$00                            ; 59F8 69 00                    i.
 	sta     $AF                             ; 59FA 85 AF                    ..
-	lda     $AF                             ; 59FC A5 AF                    ..
-	pha                                     ; 59FE 48                       H
-	lda     $AE                             ; 59FF A5 AE                    ..
-	pha                                     ; 5A01 48                       H
+	push16	off_AE
 	clc                                     ; 5A02 18                       .
 	lda     #$24                            ; 5A03 A9 24                    .$
 	adc     L4654                           ; 5A05 6D 54 46                 mTF
@@ -3242,10 +3233,7 @@ L59E1:  lda     L58EF                           ; 59E1 AD EF 58                 
 	ldx     $A1                             ; 5A10 A6 A1                    ..
 	lda     $A0                             ; 5A12 A5 A0                    ..
 	jsr     L4B47                           ; 5A14 20 47 4B                  GK
-	pla                                     ; 5A17 68                       h
-	sta     $AE                             ; 5A18 85 AE                    ..
-	pla                                     ; 5A1A 68                       h
-	sta     $AF                             ; 5A1B 85 AF                    ..
+	pull16	off_AE
 	lda     $A0                             ; 5A1D A5 A0                    ..
 	ldy     #$00                            ; 5A1F A0 00                    ..
 	sta     ($AE),y                         ; 5A21 91 AE                    ..
@@ -3274,10 +3262,7 @@ L5A53:  lda     L58EB                           ; 5A53 AD EB 58                 
 	sta     $AE                             ; 5A56 85 AE                    ..
 	lda     L58EC                           ; 5A58 AD EC 58                 ..X
 	sta     $AF                             ; 5A5B 85 AF                    ..
-	lda     $AF                             ; 5A5D A5 AF                    ..
-	pha                                     ; 5A5F 48                       H
-	lda     $AE                             ; 5A60 A5 AE                    ..
-	pha                                     ; 5A62 48                       H
+	push16	off_AE
 	clc                                     ; 5A63 18                       .
 	lda     #$24                            ; 5A64 A9 24                    .$
 	adc     L4654                           ; 5A66 6D 54 46                 mTF
@@ -3288,10 +3273,7 @@ L5A53:  lda     L58EB                           ; 5A53 AD EB 58                 
 	ldx     $A1                             ; 5A71 A6 A1                    ..
 	lda     $A0                             ; 5A73 A5 A0                    ..
 	jsr     L4B47                           ; 5A75 20 47 4B                  GK
-	pla                                     ; 5A78 68                       h
-	sta     $AE                             ; 5A79 85 AE                    ..
-	pla                                     ; 5A7B 68                       h
-	sta     $AF                             ; 5A7C 85 AF                    ..
+	pull16	off_AE
 	lda     $A0                             ; 5A7E A5 A0                    ..
 	ldy     #$00                            ; 5A80 A0 00                    ..
 	sta     ($AE),y                         ; 5A82 91 AE                    ..
@@ -3300,7 +3282,7 @@ L5A53:  lda     L58EB                           ; 5A53 AD EB 58                 
 
 ; ----------------------------------------------------------------------------
 L5A90:  lda     L58EE                           ; 5A90 AD EE 58                 ..X
-	eor     #$43                            ; 5A93 49 43                    IC
+	eor     #'C'
 	lbne	L5ADD
 	rdmv	L58EB, L58E9
 	inc     L58E9                           ; 5AA6 EE E9 58                 ..X
