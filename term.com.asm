@@ -9559,8 +9559,7 @@ L936A:  prolog
 	lda     #$04                            ; 9399 A9 04                    ..
 	sta     $A4                             ; 939B 85 A4                    ..
 	ldy     $A2                             ; 939D A4 A2                    ..
-	ldx     #$93                            ; 939F A2 93                    ..
-	lda     #$66                            ; 93A1 A9 66                    .f
+	ldxai	$9366
 	jsr     sub_461F
 	lda     L905E                           ; 93A6 AD 5E 90                 .^.
 	sta     L9362                           ; 93A9 8D 62 93                 .b.
