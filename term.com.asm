@@ -5697,17 +5697,8 @@ L705F:	prolog
 	sta     L705B                           ; 7065 8D 5B 70                 .[p
 	lda     L705B                           ; 7068 AD 5B 70                 .[p
 	jsr     sub_7035
-	lda     $A1                             ; 706E A5 A1                    ..
-	sta     L705E                           ; 7070 8D 5E 70                 .^p
-	lda     $A0                             ; 7073 A5 A0                    ..
-	sta     L705D                           ; 7075 8D 5D 70                 .]p
-	clc                                     ; 7078 18                       .
-	lda     L705D                           ; 7079 AD 5D 70                 .]p
-	adc     #$09                            ; 707C 69 09                    i.
-	sta     $AE                             ; 707E 85 AE                    ..
-	lda     L705E                           ; 7080 AD 5E 70                 .^p
-	adc     #$00                            ; 7083 69 00                    i.
-	sta     $AF                             ; 7085 85 AF                    ..
+	rdmv	L705D, $A0
+	add16i	off_AE, L705D, $0009
 	lda     L705C                           ; 7087 AD 5C 70                 .\p
 	ldy     #$00                            ; 708A A0 00                    ..
 	sta     ($AE),y                         ; 708C 91 AE                    ..
