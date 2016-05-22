@@ -9067,19 +9067,17 @@ sub_8E7D:
 	rts                                     ; 8EF7 60                       `
 
 ; ----------------------------------------------------------------------------
-	brk                                     ; 8EF8 00                       .
+L8EF8:	brk                                     ; 8EF8 00                       .
 L8EF9:  brk                                     ; 8EF9 00                       .
 L8EFA:  brk                                     ; 8EFA 00                       .
 L8EFB:  brk                                     ; 8EFB 00                       .
 L8EFC:  brk                                     ; 8EFC 00                       .
-L8EFD:  jmp     L8F00                           ; 8EFD 4C 00 8F                 L..
 
-; ----------------------------------------------------------------------------
-L8F00:  jsr     sub_44D5                           ; 8F00 20 D5 44                  .D
-	sed                                     ; 8F03 F8                       .
-	stx     LAD02                           ; 8F04 8E 02 AD                 ...
-	sed                                     ; 8F07 F8                       .
-	stx     $080A                           ; 8F08 8E 0A 08                 ...
+sub_8EFD:
+	stack_prolog L8EF8, $02
+	lda	L8EF8
+	asl	a
+	php
 	clc                                     ; 8F0B 18                       .
 	adc     L46F5                           ; 8F0C 6D F5 46                 m.F
 	sta     $AE                             ; 8F0F 85 AE                    ..
@@ -9177,20 +9175,11 @@ L8F9C:  lda     #$09                            ; 8F9C A9 09                    
 	jmp     L8F9C                           ; 8FDB 4C 9C 8F                 L..
 
 ; ----------------------------------------------------------------------------
-L8FDE:  lda     L4678                           ; 8FDE AD 78 46                 .xF
-	sta     $AE                             ; 8FE1 85 AE                    ..
-	lda     L4679                           ; 8FE3 AD 79 46                 .yF
-	sta     $AF                             ; 8FE6 85 AF                    ..
+L8FDE:	dmv	off_AE, L4678
 	lda     #$E0                            ; 8FE8 A9 E0                    ..
 	ldy     #$00                            ; 8FEA A0 00                    ..
 	sta     ($AE),y                         ; 8FEC 91 AE                    ..
-	clc                                     ; 8FEE 18                       .
-	lda     L4678                           ; 8FEF AD 78 46                 .xF
-	adc     #$01                            ; 8FF2 69 01                    i.
-	sta     $AE                             ; 8FF4 85 AE                    ..
-	lda     L4679                           ; 8FF6 AD 79 46                 .yF
-	adc     #$00                            ; 8FF9 69 00                    i.
-	sta     $AF                             ; 8FFB 85 AF                    ..
+	add16i	off_AE, L4678, $0001
 	lda     #$08                            ; 8FFD A9 08                    ..
 	sta     $84                             ; 8FFF 85 84                    ..
 	lda     L4675                           ; 9001 AD 75 46                 .uF
@@ -9212,7 +9201,7 @@ L8FDE:  lda     L4678                           ; 8FDE AD 78 46                 
 	ldy     #$18                            ; 9026 A0 18                    ..
 	ldx     #$02                            ; 9028 A2 02                    ..
 	lda     #$00                            ; 902A A9 00                    ..
-	jsr     L8EFD                           ; 902C 20 FD 8E                  ..
+	jsr     sub_8EFD
 	lda     #$CA                            ; 902F A9 CA                    ..
 	sta     $A3                             ; 9031 85 A3                    ..
 	lda     #$94                            ; 9033 A9 94                    ..
@@ -12548,7 +12537,7 @@ LAA86:	.addr	L6AD5
 	.addr	L817C
 	.addr	L8003
 	.addr	L80BB
-	.addr	L8EFD
+	.addr	sub_8EFD
 	.addr	sub_8E7D
 	.addr	L8F55
 	.addr	L8E24
