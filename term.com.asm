@@ -1977,7 +1977,8 @@ L4E48:  .byte   $45                             ; 4E48 45                       
 L4E49:  .byte   $54                             ; 4E49 54                       T
 
 ; ----------------------------------------------------------------------------
-L4E4A:  prolog
+sub_4E4A:  
+	prolog
 	stx     L4E43                           ; 4E4D 8E 43 4E                 .CN
 	sta     L4E42                           ; 4E50 8D 42 4E                 .BN
 	lda     L4E43                           ; 4E53 AD 43 4E                 .CN
@@ -6372,12 +6373,11 @@ L76CC:	add8m	L766B, L766B, L7680
 	eor     #$01                            ; 7738 49 01                    I.
 	lbne	L7799
 	add16i	$A0, L766D, $001A
-	ldx     $A1                             ; 774E A6 A1                    ..
-	lda     $A0                             ; 7750 A5 A0                    ..
-	jsr     L4E4A                           ; 7752 20 4A 4E                  JN
+	ldxa	$A0
+	jsr     sub_4E4A
 	rdmv	L766F, $A0
 	ldxai	L7673
-	jsr     L4E4A                           ; 7763 20 4A 4E                  JN
+	jsr     sub_4E4A
 	rdmv	L7671, $A0
 	lda     L7671                           ; 7770 AD 71 76                 .qv
 	eor     L766F                           ; 7773 4D 6F 76                 Mov
@@ -11180,11 +11180,8 @@ LA155:  rts                                     ; A155 60                       
 ; ----------------------------------------------------------------------------
 LA156:  ldx     #$A0                            ; A156 A2 A0                    ..
 	lda     #$01                            ; A158 A9 01                    ..
-	jsr     L4E4A                           ; A15A 20 4A 4E                  JN
-	lda     $A1                             ; A15D A5 A1                    ..
-	sta     LA008                           ; A15F 8D 08 A0                 ...
-	lda     $A0                             ; A162 A5 A0                    ..
-	sta     LA007                           ; A164 8D 07 A0                 ...
+	jsr     sub_4E4A
+	rdmv	LA007, $A0
 	lda     LA007                           ; A167 AD 07 A0                 ...
 	eor     LA016                           ; A16A 4D 16 A0                 M..
 	bne     LA175                           ; A16D D0 06                    ..
