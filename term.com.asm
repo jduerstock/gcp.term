@@ -11746,13 +11746,7 @@ LA619:  lda     LA52F                           ; A619 AD 2F A5                 
 LA63A:  jmp     LA662                           ; A63A 4C 62 A6                 Lb.
 
 ; ----------------------------------------------------------------------------
-LA63D:  clc                                     ; A63D 18                       .
-	lda     LA532                           ; A63E AD 32 A5                 .2.
-	adc     LA538                           ; A641 6D 38 A5                 m8.
-	sta     $AE                             ; A644 85 AE                    ..
-	lda     LA533                           ; A646 AD 33 A5                 .3.
-	adc     #$00                            ; A649 69 00                    i.
-	sta     $AF                             ; A64B 85 AF                    ..
+LA63D:	add16m8 off_AE, LA532, LA538
 	lda     LA539                           ; A64D AD 39 A5                 .9.
 	ldy     #$00                            ; A650 A0 00                    ..
 	sta     ($AE),y                         ; A652 91 AE                    ..
@@ -11773,13 +11767,7 @@ LA662:  lda     LA53C                           ; A662 AD 3C A5                 
 LA66F:  jmp     LA68A                           ; A66F 4C 8A A6                 L..
 
 ; ----------------------------------------------------------------------------
-LA672:  clc                                     ; A672 18                       .
-	lda     LA532                           ; A673 AD 32 A5                 .2.
-	adc     LA541                           ; A676 6D 41 A5                 mA.
-	sta     LA532                           ; A679 8D 32 A5                 .2.
-	lda     LA533                           ; A67C AD 33 A5                 .3.
-	adc     #$00                            ; A67F 69 00                    i.
-	sta     LA533                           ; A681 8D 33 A5                 .3.
+LA672:	add16m8 LA532, LA532, LA541
 	inc     LA537                           ; A684 EE 37 A5                 .7.
 	jmp     LA5F6                           ; A687 4C F6 A5                 L..
 
