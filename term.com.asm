@@ -248,6 +248,14 @@ LEF40           := $EF40
 	sta arg1+1
 .endmacro
 
+.macro	inc16	addr
+	inc	addr
+	.local	nocarry
+	bne	nocarry
+	inc	addr+1
+	nocarry:
+.endmacro
+
 	.segment "HDR00"
 
 	.word	$FFFF
@@ -3200,9 +3208,7 @@ L591F:	add16m8	off_AE, L58E7, L58ED
 	lda     L58EE                           ; 59D2 AD EE 58                 ..X
 	ldy     #$00                            ; 59D5 A0 00                    ..
 	sta     ($AE),y                         ; 59D7 91 AE                    ..
-	inc     L58EB                           ; 59D9 EE EB 58                 ..X
-	bne     L59E1                           ; 59DC D0 03                    ..
-	inc     L58EC                           ; 59DE EE EC 58                 ..X
+	inc16	L58EB
 L59E1:  lda     L58EF                           ; 59E1 AD EF 58                 ..X
 	cmp     L58EE                           ; 59E4 CD EE 58                 ..X
 	lbcs	L5A32
