@@ -2030,7 +2030,8 @@ L4EAE:  .byte   $67                             ; 4EAE 67                       
 L4EAF:  .byte   $74                             ; 4EAF 74                       t
 L4EB0:  plp                                     ; 4EB0 28                       (
 
-L4EB1:  stack_prolog L4EAB, $05
+sub_4EB1:  
+	stack_prolog L4EAB, $05
 	add16m	off_AE, L4EAB, L4EAF
 	sub16i	L4EAB, off_AE, $0001
 	add16m	off_AE, L4EAD, L4EAF
@@ -6915,7 +6916,7 @@ L7CD6:	add16i	$A0, L7B56, $0006
 	sub16i	$A4, off_AC, $0006
 	ldy     L7B56                           ; 7D08 AC 56 7B                 .V{
 	ldxa	$A0
-	jsr     L4EB1                           ; 7D0F 20 B1 4E                  .N
+	jsr     sub_4EB1
 	lda     #$7B                            ; 7D12 A9 7B                    .{
 	sta     $A3                             ; 7D14 85 A3                    ..
 	lda     #$00                            ; 7D16 A9 00                    ..
@@ -9505,7 +9506,7 @@ L925D:  prolog
 	rdmv	$A4, L9255
 	ldy     L9251                           ; 9333 AC 51 92                 .Q.
 	ldxa	L9253
-	jsr     L4EB1                           ; 933C 20 B1 4E                  .N
+	jsr     sub_4EB1
 	lda     #$00                            ; 933F A9 00                    ..
 	sta     $A3                             ; 9341 85 A3                    ..
 	ldy     L9257                           ; 9343 AC 57 92                 .W.
@@ -10424,14 +10425,8 @@ L9B57:  clc                                     ; 9B57 18                       
 	ldy     L979F                           ; 9B91 AC 9F 97                 ...
 	ldx     $A1                             ; 9B94 A6 A1                    ..
 	lda     $A0                             ; 9B96 A5 A0                    ..
-	jsr     L4EB1                           ; 9B98 20 B1 4E                  .N
-	clc                                     ; 9B9B 18                       .
-	lda     L9059                           ; 9B9C AD 59 90                 .Y.
-	adc     L905E                           ; 9B9F 6D 5E 90                 m^.
-	sta     $AE                             ; 9BA2 85 AE                    ..
-	lda     L905A                           ; 9BA4 AD 5A 90                 .Z.
-	adc     #$00                            ; 9BA7 69 00                    i.
-	sta     $AF                             ; 9BA9 85 AF                    ..
+	jsr     sub_4EB1
+	add16m8	off_AE, L9059, L905E
 	lda     L979D                           ; 9BAB AD 9D 97                 ...
 	ldy     #$00                            ; 9BAE A0 00                    ..
 	sta     ($AE),y                         ; 9BB0 91 AE                    ..
