@@ -1016,28 +1016,14 @@ L47BB:	.addr	L47B7
 L47BD:	.byte	$03,"BCS"
 L47C1:	.addr	L47BD
 L47C3:	.byte	$01,"B"
-	.byte   $C3                             ; 47C5 C3                       .
-	.byte   $47                             ; 47C6 47                       G
-	.byte   $03                             ; 47C7 03                       .
-	.byte   $42                             ; 47C8 42                       B
-	.byte   $42                             ; 47C9 42                       B
-	.byte   $42                             ; 47CA 42                       B
-	.byte   $C7                             ; 47CB C7                       .
-	.byte   $47                             ; 47CC 47                       G
-	.byte   $02                             ; 47CD 02                       .
-	.byte   $42                             ; 47CE 42                       B
-	.byte   $42                             ; 47CF 42                       B
-	cmp     $0447                           ; 47D0 CD 47 04                 .G.
-	.byte   $42                             ; 47D3 42                       B
-	.byte   $42                             ; 47D4 42                       B
-	.byte   $42                             ; 47D5 42                       B
-	.byte   $42                             ; 47D6 42                       B
-	.byte   $D2                             ; 47D7 D2                       .
-	.byte   $47                             ; 47D8 47                       G
-	.byte   $03                             ; 47D9 03                       .
-	.byte   $42                             ; 47DA 42                       B
-	.byte   $42                             ; 47DB 42                       B
-	.byte   $42                             ; 47DC 42                       B
+L47C5:	.addr	L47C3
+L47C7:	.byte	$03,"BBB"
+L47CB:	.addr	L47C7
+L47CD:	.byte	$02,"BB"
+L47D0:	.addr	L47CD
+L47D2:	.byte	$04,"BBBB"
+L47D7:	.addr	L47D2
+L47D9:	.byte	$03,"BBB"
 L47DD:  cmp     $0247,y                         ; 47DD D9 47 02                 .G.
 	.byte   $42                             ; 47E0 42                       B
 	.byte   $44                             ; 47E1 44                       D
