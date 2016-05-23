@@ -11086,13 +11086,7 @@ LA3E2:  jsr     sub_5E1E
 	lda     ($AE),y                         ; A443 B1 AE                    ..
 	adc     #$00                            ; A445 69 00                    i.
 	sta     $AD                             ; A447 85 AD                    ..
-	sec                                     ; A449 38                       8
-	lda     $AC                             ; A44A A5 AC                    ..
-	sbc     #$01                            ; A44C E9 01                    ..
-	sta     LA3AA                           ; A44E 8D AA A3                 ...
-	lda     $AD                             ; A451 A5 AD                    ..
-	sbc     #$00                            ; A453 E9 00                    ..
-	sta     LA3AB                           ; A455 8D AB A3                 ...
+	sub16i	LA3AA, off_AC, $0001
 	lda     LA3AE                           ; A458 AD AE A3                 ...
 	sta     LA3B1                           ; A45B 8D B1 A3                 ...
 	lda     LA3B4                           ; A45E AD B4 A3                 ...
@@ -11105,7 +11099,9 @@ LA46A:  lda     LA475                           ; A46A AD 75 A4                 
 	jmp     LA52A                           ; A472 4C 2A A5                 L*.
 
 ; ----------------------------------------------------------------------------
-LA475:  brk                                     ; A475 00                       .
+LA475:  .byte	$00
+
+; ----------------------------------------------------------------------------
 LA476:  lda     LA3A7                           ; A476 AD A7 A3                 ...
 	bne     LA47E                           ; A479 D0 03                    ..
 	jmp     LA49C                           ; A47B 4C 9C A4                 L..
