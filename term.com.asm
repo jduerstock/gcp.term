@@ -11717,8 +11717,7 @@ LAA28:  lda     #$00                            ; AA28 A9 00                    
 	lda     LA9F9                           ; AA31 AD F9 A9                 ...
 	sta     $A4                             ; AA34 85 A4                    ..
 	ldy     #$46                            ; AA36 A0 46                    .F
-	ldx     #$AA                            ; AA38 A2 AA                    ..
-	lda     #$25                            ; AA3A A9 25                    .%
+	ldxai	LAA25
 	jsr     sub_55A0
 	jsr     sub_747D
 	jsr     L696A                           ; AA42 20 6A 69                  ji
