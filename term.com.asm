@@ -1050,8 +1050,8 @@ L47FE:	.byte	$01,"D"
 L4800:	.addr	L47FE
 L4802:	.byte	$01,"C"
 L4804:	.addr	L4802
-	ora     ($42,x)                         ; 4806 01 42                    .B
-	asl     $48                             ; 4808 06 48                    .H
+L4806:	.byte	$01,"B"
+L4808:	.addr	L4806
 L480A:	.byte	$04,"BBA0"
 L480F:	.addr	L480A
 	.byte   $02                             ; 4811 02                       .
