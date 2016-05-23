@@ -12382,11 +12382,8 @@ LAFE2:  lda     SHFLOK
 	sta     LAF39                           ; AFF4 8D 39 AF                 .9.
 	lda     LAF39                           ; AFF7 AD 39 AF                 .9.
 	eor     #$3C                            ; AFFA 49 3C                    I<
-	beq     LB001                           ; AFFC F0 03                    ..
-	jmp     LB00C                           ; AFFE 4C 0C B0                 L..
-
-; ----------------------------------------------------------------------------
-LB001:  lda     $02FC                           ; B001 AD FC 02                 ...
+	lbne	LB00C
+	lda     $02FC                           ; B001 AD FC 02                 ...
 	and     #$40                            ; B004 29 40                    )@
 	sta     SHFLOK
 	jmp     LB012                           ; B009 4C 12 B0                 L..
