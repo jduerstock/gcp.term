@@ -12324,11 +12324,8 @@ LAF63:	lda     L4652                           ; AF63 AD 52 46                 .
 	lda     $05C0,x                         ; AF7E BD C0 05                 ...
 	bne     LAF8B                           ; AF81 D0 08                    ..
 	lda     L464D                           ; AF83 AD 4D 46                 .MF
-	bne     LAF8B                           ; AF86 D0 03                    ..
-	jmp     LAF8E                           ; AF88 4C 8E AF                 L..
-
-; ----------------------------------------------------------------------------
-LAF8B:  jmp     LAF94                           ; AF8B 4C 94 AF                 L..
+	lbeq	LAF8E
+LAF8B:	jmp     LAF94                           ; AF8B 4C 94 AF                 L..
 
 ; ----------------------------------------------------------------------------
 LAF8E:  jsr     sub_AB6A
