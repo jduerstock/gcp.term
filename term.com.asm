@@ -6681,7 +6681,7 @@ L7E21:  brk                                     ; 7E21 00                       
 L7E22:  brk                                     ; 7E22 00                       .
 L7E23:  brk                                     ; 7E23 00                       .
 
-L7E24:
+sub_7E24:
 	stack_prolog L7E12, $02
 	lda	L7E13
 	jsr	sub_65B0
@@ -6851,7 +6851,7 @@ L7FA1:  lda     #$07                            ; 7FA1 A9 07                    
 	ldy     L7F8F                           ; 7FB4 AC 8F 7F                 ...
 	ldx     L7F8E                           ; 7FB7 AE 8E 7F                 ...
 	lda     L7F91                           ; 7FBA AD 91 7F                 ...
-	jsr     L7E24                           ; 7FBD 20 24 7E                  $~
+	jsr     sub_7E24
 	lda     $A0                             ; 7FC0 A5 A0                    ..
 	sta     L7F92                           ; 7FC2 8D 92 7F                 ...
 	lda     L7F92                           ; 7FC5 AD 92 7F                 ...
@@ -10834,7 +10834,9 @@ LA1C1:  lda     LA1CC                           ; A1C1 AD CC A1                 
 	jmp     LA25D                           ; A1C9 4C 5D A2                 L].
 
 ; ----------------------------------------------------------------------------
-LA1CC:  brk                                     ; A1CC 00                       .
+LA1CC:  .byte	$00
+
+; ----------------------------------------------------------------------------
 LA1CD:  lda     LA023                           ; A1CD AD 23 A0                 .#.
 	sta     LA00A                           ; A1D0 8D 0A A0                 ...
 	lda     LA025                           ; A1D3 AD 25 A0                 .%.
@@ -10845,33 +10847,20 @@ LA1D9:  lda     LA1E4                           ; A1D9 AD E4 A1                 
 	jmp     LA245                           ; A1E1 4C 45 A2                 LE.
 
 ; ----------------------------------------------------------------------------
-LA1E4:  brk                                     ; A1E4 00                       .
-LA1E5:  clc                                     ; A1E5 18                       .
-	lda     L9FEF                           ; A1E6 AD EF 9F                 ...
-	adc     LA009                           ; A1E9 6D 09 A0                 m..
-	sta     $AE                             ; A1EC 85 AE                    ..
-	lda     L9FF0                           ; A1EE AD F0 9F                 ...
-	adc     #$00                            ; A1F1 69 00                    i.
-	sta     $AF                             ; A1F3 85 AF                    ..
+LA1E4:  .byte	$00
+
+; ----------------------------------------------------------------------------
+LA1E5:	add16m8	off_AE, L9FEF, LA009
 	ldy     #$00                            ; A1F5 A0 00                    ..
 	lda     ($AE),y                         ; A1F7 B1 AE                    ..
 	sta     LA00C                           ; A1F9 8D 0C A0                 ...
 	ldy     LA00C                           ; A1FC AC 0C A0                 ...
 	ldx     L9FE3                           ; A1FF AE E3 9F                 ...
 	lda     #$04                            ; A202 A9 04                    ..
-	jsr     L7E24                           ; A204 20 24 7E                  $~
+	jsr     sub_7E24
 	lda     $A0                             ; A207 A5 A0                    ..
-	beq     LA20E                           ; A209 F0 03                    ..
-	jmp     LA23C                           ; A20B 4C 3C A2                 L<.
-
-; ----------------------------------------------------------------------------
-LA20E:  clc                                     ; A20E 18                       .
-	lda     L9FF1                           ; A20F AD F1 9F                 ...
-	adc     LA00A                           ; A212 6D 0A A0                 m..
-	sta     $AE                             ; A215 85 AE                    ..
-	lda     L9FF2                           ; A217 AD F2 9F                 ...
-	adc     #$00                            ; A21A 69 00                    i.
-	sta     $AF                             ; A21C 85 AF                    ..
+	lbne	LA23C
+	add16m8 off_AE, L9FF1, LA00A
 	ldy     #$00                            ; A21E A0 00                    ..
 	lda     ($AE),y                         ; A220 B1 AE                    ..
 	sta     LA00D                           ; A222 8D 0D A0                 ...
@@ -10880,11 +10869,8 @@ LA20E:  clc                                     ; A20E 18                       
 	jsr     sub_7F93
 	lda     $A0                             ; A22E A5 A0                    ..
 	eor     #$01                            ; A230 49 01                    I.
-	beq     LA237                           ; A232 F0 03                    ..
-	jmp     LA23C                           ; A234 4C 3C A2                 L<.
-
-; ----------------------------------------------------------------------------
-LA237:  ldy     #$00                            ; A237 A0 00                    ..
+	lbne	LA23C
+	ldy     #$00                            ; A237 A0 00                    ..
 	sty     LA006                           ; A239 8C 06 A0                 ...
 LA23C:  inc     LA009                           ; A23C EE 09 A0                 ...
 	inc     LA00A                           ; A23F EE 0A A0                 ...
