@@ -12428,14 +12428,12 @@ LB049:  lda     L46E6                           ; B049 AD E6 46                 
 LB062:  lda     L46E6                           ; B062 AD E6 46                 ..F
 	eor     #$04                            ; B065 49 04                    I.
 	lbne	LB07D
-	lda     LAF38                           ; B06C AD 38 AF                 .8.
-	sta     $A3                             ; B06F 85 A3                    ..
+	mv	$A3, LAF38
 	ldy     LAF37                           ; B071 AC 37 AF                 .7.
 	ldxa	L46E9
 	jsr     sub_A027
 LB07D:  jsr     sub_54FF
-	lda     $A0                             ; B080 A5 A0                    ..
-	sta     LAF36                           ; B082 8D 36 AF                 .6.
+	mv	LAF36, $A0
 	lda     LAF36                           ; B085 AD 36 AF                 .6.
 	eor     #$01                            ; B088 49 01                    I.
 	lbne	LB092
