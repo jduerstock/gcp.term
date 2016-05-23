@@ -6928,7 +6928,8 @@ sub_8020:
 L8045:  .byte   $A9                             ; 8045 A9                       .
 L8046:  pha                                     ; 8046 48                       H
 
-L8047:  prolog
+sub_8047:  
+	prolog
 	stx     L8046                           ; 804A 8E 46 80                 .F.
 	sta     L8045                           ; 804D 8D 45 80                 .E.
 	lda     #$27                            ; 8050 A9 27                    .'
@@ -6954,16 +6955,9 @@ L8066:	dmv	L4751, L8045
 	asl     a                               ; 808C 0A                       .
 	asl     a                               ; 808D 0A                       .
 	sta     $AE                             ; 808E 85 AE                    ..
-	clc                                     ; 8090 18                       .
-	lda     $AE                             ; 8091 A5 AE                    ..
-	adc     L4754                           ; 8093 6D 54 47                 mTG
-	sta     $AC                             ; 8096 85 AC                    ..
-	clc                                     ; 8098 18                       .
-	lda     $AC                             ; 8099 A5 AC                    ..
-	adc     #$10                            ; 809B 69 10                    i.
-	sta     L8046                           ; 809D 8D 46 80                 .F.
-	ldx     L8046                           ; 80A0 AE 46 80                 .F.
-	lda     L8045                           ; 80A3 AD 45 80                 .E.
+	add8m	off_AC, off_AE, L4754
+	add8i	L8046, off_AC, $10
+	ldxa	L8045
 	jsr     L49D3                           ; 80A6 20 D3 49                  .I
 	rts                                     ; 80A9 60                       `
 
@@ -6996,9 +6990,8 @@ L80BB:	prolog
 	jmp     L80DA                           ; 80CB 4C DA 80                 L..
 
 ; ----------------------------------------------------------------------------
-L80CE:  ldx     L80AB                           ; 80CE AE AB 80                 ...
-	lda     L80AA                           ; 80D1 AD AA 80                 ...
-	jsr     L8047                           ; 80D4 20 47 80                  G.
+L80CE:	ldxa	L80AA
+	jsr     sub_8047
 	jmp     L8176                           ; 80D7 4C 76 81                 Lv.
 
 ; ----------------------------------------------------------------------------
@@ -7065,9 +7058,8 @@ L811F:  ldx     L46EA                           ; 811F AE EA 46                 
 	lda     $AE                             ; 8165 A5 AE                    ..
 	sbc     L80B5                           ; 8167 ED B5 80                 ...
 	sta     L80B1                           ; 816A 8D B1 80                 ...
-L816D:  ldx     L80B1                           ; 816D AE B1 80                 ...
-	lda     L80B0                           ; 8170 AD B0 80                 ...
-	jsr     L8047                           ; 8173 20 47 80                  G.
+L816D:	ldxa	L80B0
+	jsr     sub_8047
 L8176:  rts                                     ; 8176 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -7377,24 +7369,18 @@ L8408:  .byte   $A9                             ; 8408 A9                       
 L8409:  .byte   $03                             ; 8409 03                       .
 L840A:  .byte   $20                             ; 840A 20                        
 L840B:  clv                                     ; 840B B8                       .
+
 sub_840C:  
 	prolog
 	stx     L83E4                           ; 840F 8E E4 83                 ...
 	sta     L83E3                           ; 8412 8D E3 83                 ...
-	clc                                     ; 8415 18                       .
-	lda     L4751                           ; 8416 AD 51 47                 .QG
-	adc     L83E3                           ; 8419 6D E3 83                 m..
-	sta     L83E5                           ; 841C 8D E5 83                 ...
-	clc                                     ; 841F 18                       .
-	lda     L4752                           ; 8420 AD 52 47                 .RG
-	adc     L83E4                           ; 8423 6D E4 83                 m..
-	sta     L83E6                           ; 8426 8D E6 83                 ...
+	add8m	L83E5, L4751, L83E3
+	add8m	L83E6, L4752, L83E4
 	lda     L474F                           ; 8429 AD 4F 47                 .OG
 	eor     #$01                            ; 842C 49 01                    I.
 	lbne	L843C
-	ldx     L83E6                           ; 8433 AE E6 83                 ...
-	lda     L83E5                           ; 8436 AD E5 83                 ...
-	jsr     L8047                           ; 8439 20 47 80                  G.
+	ldxa	L83E5
+	jsr     sub_8047
 L843C:  lda     L474F                           ; 843C AD 4F 47                 .OG
 	eor     #$02                            ; 843F 49 02                    I.
 	lbeq	L8447
@@ -8615,9 +8601,8 @@ L8E06:  lda     L4657                           ; 8E06 AD 57 46                 
 	jmp     L8E1E                           ; 8E0D 4C 1E 8E                 L..
 
 ; ----------------------------------------------------------------------------
-L8E10:  ldx     L4763                           ; 8E10 AE 63 47                 .cG
-	lda     L4762                           ; 8E13 AD 62 47                 .bG
-	jsr     L8047                           ; 8E16 20 47 80                  G.
+L8E10:	ldxa	L4762
+	jsr     sub_8047
 	ldy     #$00                            ; 8E19 A0 00                    ..
 	sty     L4657                           ; 8E1B 8C 57 46                 .WF
 L8E1E:  rts                                     ; 8E1E 60                       `
