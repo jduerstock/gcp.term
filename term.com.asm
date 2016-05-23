@@ -10890,11 +10890,8 @@ LA245:  clc                                     ; A245 18                       
 ; ----------------------------------------------------------------------------
 LA25D:  lda     LA006                           ; A25D AD 06 A0                 ...
 	eor     #$01                            ; A260 49 01                    I.
-	beq     LA267                           ; A262 F0 03                    ..
-	jmp     LA28B                           ; A264 4C 8B A2                 L..
-
-; ----------------------------------------------------------------------------
-LA267:  lda     L9FF4                           ; A267 AD F4 9F                 ...
+	lbne	LA28B
+	lda     L9FF4                           ; A267 AD F4 9F                 ...
 	sta     $A3                             ; A26A 85 A3                    ..
 	ldy     L9FF3                           ; A26C AC F3 9F                 ...
 	ldx     L9FE4                           ; A26F AE E4 9F                 ...
@@ -10963,36 +10960,19 @@ LA30A:  lda     LA2A6                           ; A30A AD A6 A2                 
 	lda     LA2A2                           ; A319 AD A2 A2                 ...
 	jsr     L4539                           ; A31C 20 39 45                  9E
 	lda     LA2A7                           ; A31F AD A7 A2                 ...
-	eor     #$3F                            ; A322 49 3F                    I?
-	beq     LA329                           ; A324 F0 03                    ..
-	jmp     LA33E                           ; A326 4C 3E A3                 L>.
-
-; ----------------------------------------------------------------------------
-LA329:  clc                                     ; A329 18                       .
-	lda     LA2A4                           ; A32A AD A4 A2                 ...
-	adc     #$02                            ; A32D 69 02                    i.
-	sta     $AE                             ; A32F 85 AE                    ..
-	lda     LA2A5                           ; A331 AD A5 A2                 ...
-	adc     #$00                            ; A334 69 00                    i.
-	sta     $AF                             ; A336 85 AF                    ..
+	eor     #'?'
+	lbne	LA33E
+	add16i	off_AE, LA2A4, $0002
 	lda     #$3F                            ; A338 A9 3F                    .?
 	ldy     #$00                            ; A33A A0 00                    ..
 	sta     ($AE),y                         ; A33C 91 AE                    ..
 LA33E:  lda     LA2A3                           ; A33E AD A3 A2                 ...
 	eor     #$01                            ; A341 49 01                    I.
-	bne     LA348                           ; A343 D0 03                    ..
-	jmp     LA36C                           ; A345 4C 6C A3                 Ll.
-
-; ----------------------------------------------------------------------------
-LA348:  lda     #$7F                            ; A348 A9 7F                    ..
-	.byte   $CD                             ; A34A CD                       .
-	.byte   $A4                             ; A34B A4                       .
-LA34C:  lsr     a                               ; A34C 4A                       J
-	bcc     LA352                           ; A34D 90 03                    ..
-	jmp     LA36C                           ; A34F 4C 6C A3                 Ll.
-
-; ----------------------------------------------------------------------------
-LA352:  lda     LA2A2                           ; A352 AD A2 A2                 ...
+	lbeq	LA36C
+	lda     #$7F                            ; A348 A9 7F                    ..
+	cmp	L4AA4
+	lbcs	LA36C
+	lda     LA2A2                           ; A352 AD A2 A2                 ...
 	asl     a                               ; A355 0A                       .
 	asl     a                               ; A356 0A                       .
 	asl     a                               ; A357 0A                       .
