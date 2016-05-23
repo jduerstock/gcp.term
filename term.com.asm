@@ -10678,27 +10678,16 @@ LA023:  brk                                     ; A023 00                       
 LA024:  brk                                     ; A024 00                       .
 LA025:  brk                                     ; A025 00                       .
 LA026:  brk                                     ; A026 00                       .
-LA027:  jmp     LA02A                           ; A027 4C 2A A0                 L*.
 
-; ----------------------------------------------------------------------------
-LA02A:  jsr     sub_44D5                           ; A02A 20 D5 44                  .D
-	.byte   $E3                             ; A02D E3                       .
-	.byte   $9F                             ; A02E 9F                       .
-	.byte   $03                             ; A02F 03                       .
-	ldx     L9FE4                           ; A030 AE E4 9F                 ...
-	lda     L9FE3                           ; A033 AD E3 9F                 ...
+sub_A027:
+	stack_prolog L9FE3, $03
+	ldxa	L9FE3
 	jsr     sub_799B
-	lda     $A1                             ; A039 A5 A1                    ..
-	sta     L9FE8                           ; A03B 8D E8 9F                 ...
-	lda     $A0                             ; A03E A5 A0                    ..
-	sta     L9FE7                           ; A040 8D E7 9F                 ...
+	rdmv	L9FE7, $A0
 	lda     L9FE7                           ; A043 AD E7 9F                 ...
 	ora     L9FE8                           ; A046 0D E8 9F                 ...
-	beq     LA04E                           ; A049 F0 03                    ..
-	jmp     LA04F                           ; A04B 4C 4F A0                 LO.
-
-; ----------------------------------------------------------------------------
-LA04E:  rts                                     ; A04E 60                       `
+	lbne	LA04F
+	rts                                     ; A04E 60                       `
 
 ; ----------------------------------------------------------------------------
 LA04F:  lda     L9FE8                           ; A04F AD E8 9F                 ...
@@ -12639,9 +12628,8 @@ LB062:  lda     L46E6                           ; B062 AD E6 46                 
 	lda     LAF38                           ; B06C AD 38 AF                 .8.
 	sta     $A3                             ; B06F 85 A3                    ..
 	ldy     LAF37                           ; B071 AC 37 AF                 .7.
-	ldx     L46EA                           ; B074 AE EA 46                 ..F
-	lda     L46E9                           ; B077 AD E9 46                 ..F
-	jsr     LA027                           ; B07A 20 27 A0                  '.
+	ldxa	L46E9
+	jsr     sub_A027
 LB07D:  jsr     sub_54FF
 	lda     $A0                             ; B080 A5 A0                    ..
 	sta     LAF36                           ; B082 8D 36 AF                 .6.
