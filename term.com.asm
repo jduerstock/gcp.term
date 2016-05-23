@@ -16,6 +16,7 @@ off_AC		:= $00AC
 off_AE		:= $00AE
 VDSLST		:= $0200
 CDTMF3		:= $022A
+SHFLOK		:= $02BE
 MEMTOP		:= $02E5
 MEMLO		:= $02E7
 DVSTAT		:= $02EA
@@ -9583,7 +9584,8 @@ L979E:  brk                                     ; 979E 00                       
 L979F:  brk                                     ; 979F 00                       .
 L97A0:  brk                                     ; 97A0 00                       .
 
-L97A1:  prolog
+sub_97A1:  
+	prolog
 	sta     L979C                           ; 97A4 8D 9C 97                 ...
 	lda     L464E                           ; 97A7 AD 4E 46                 .NF
 	eor     #$02                            ; 97AA 49 02                    I.
@@ -11798,7 +11800,7 @@ LAA86:	.addr	L6AD5
 	.addr	LA9FB
 	.addr	LA9EC
 	.addr	L968E
-	.addr	L97A1
+	.addr	sub_97A1
 	.addr	sub_5E1E
 	.addr	sub_5E30
 	.addr	sub_A2A8
@@ -12422,9 +12424,9 @@ LAFDA:  lda     #$FF                            ; AFDA A9 FF                    
 	jmp     LB01A                           ; AFDF 4C 1A B0                 L..
 
 ; ----------------------------------------------------------------------------
-LAFE2:  lda     $02BE                           ; AFE2 AD BE 02                 ...
+LAFE2:  lda     SHFLOK
 	and     #$40                            ; AFE5 29 40                    )@
-	sta     $02BE                           ; AFE7 8D BE 02                 ...
+	sta     SHFLOK
 	ldy     #$00                            ; AFEA A0 00                    ..
 	sty     $02B6                           ; AFEC 8C B6 02                 ...
 	lda     $02FC                           ; AFEF AD FC 02                 ...
@@ -12438,12 +12440,12 @@ LAFE2:  lda     $02BE                           ; AFE2 AD BE 02                 
 ; ----------------------------------------------------------------------------
 LB001:  lda     $02FC                           ; B001 AD FC 02                 ...
 	and     #$40                            ; B004 29 40                    )@
-	sta     $02BE                           ; B006 8D BE 02                 ...
+	sta     SHFLOK
 	jmp     LB012                           ; B009 4C 12 B0                 L..
 
 ; ----------------------------------------------------------------------------
 LB00C:  lda     $02FC                           ; B00C AD FC 02                 ...
-	jsr     L97A1                           ; B00F 20 A1 97                  ..
+	jsr     sub_97A1
 LB012:  lda     #$FF                            ; B012 A9 FF                    ..
 	sta     $02FC                           ; B014 8D FC 02                 ...
 	jmp     LAFA2                           ; B017 4C A2 AF                 L..
