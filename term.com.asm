@@ -10632,7 +10632,7 @@ L9FF4:  brk                                     ; 9FF4 00                       
 	brk                                     ; 9FF6 00                       .
 	brk                                     ; 9FF7 00                       .
 	brk                                     ; 9FF8 00                       .
-	brk                                     ; 9FF9 00                       .
+L9FF9:	brk                                     ; 9FF9 00                       .
 	brk                                     ; 9FFA 00                       .
 	brk                                     ; 9FFB 00                       .
 	brk                                     ; 9FFC 00                       .
@@ -10754,8 +10754,7 @@ LA04F:  lda     L9FE8                           ; A04F AD E8 9F                 
 	sbc     #$01                            ; A0FA E9 01                    ..
 	sta     $A5                             ; A0FC 85 A5                    ..
 	ldy     #$00                            ; A0FE A0 00                    ..
-	ldx     #$9F                            ; A100 A2 9F                    ..
-	lda     #$F9                            ; A102 A9 F9                    ..
+	ldxai	L9FF9
 	jsr     sub_4BF2
 	lda     #$9F                            ; A107 A9 9F                    ..
 	sta     $A3                             ; A109 85 A3                    ..
