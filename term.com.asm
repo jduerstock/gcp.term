@@ -3394,10 +3394,11 @@ L5D5E:	lda     #$02                            ; 5D5E A9 02                    .
 L5D63:  rts                                     ; 5D63 60                       `
 
 ; ----------------------------------------------------------------------------
-L5D64:  .byte   $4C                             ; 5D64 4C                       L
-L5D65:  .byte   $67                             ; 5D65 67                       g
-L5D66:  .byte   $5D                             ; 5D66 5D                       ]
-L5D67:  prolog
+sub_5D64:  
+	prolog
+
+sub_5D67:  
+	prolog
 	lda     $B148                           ; 5D6A AD 48 B1                 .H.
 	eor     #$01                            ; 5D6D 49 01                    I.
 	lbeq	L5DB9
@@ -3465,7 +3466,7 @@ L5DE0:  lda     #$00                            ; 5DE0 A9 00                    
 	ldx     #$00                            ; 5DF2 A2 00                    ..
 	lda     #$02                            ; 5DF4 A9 02                    ..
 	jsr     sub_45D0
-L5DF9:  jsr     L5D64                           ; 5DF9 20 64 5D                  d]
+L5DF9:  jsr     sub_5D64
 	lda     #$2A                            ; 5DFC A9 2A                    .*
 	sta     $022F                           ; 5DFE 8D 2F 02                 ./.
 	lda     #$02                            ; 5E01 A9 02                    ..
@@ -3504,7 +3505,7 @@ L5E3B:  rts                                     ; 5E3B 60                       
 L5E3C:  lda     L4653                           ; 5E3C AD 53 46                 .SF
 	eor     #$01                            ; 5E3F 49 01                    I.
 	lbne	L5E51
-	jsr     L5D67                           ; 5E46 20 67 5D                  g]
+	jsr     sub_5D67
 	ldy     #$01                            ; 5E49 A0 01                    ..
 	sty     L4656                           ; 5E4B 8C 56 46                 .VF
 	jmp     L5E5A                           ; 5E4E 4C 5A 5E                 LZ^
@@ -12182,10 +12183,10 @@ sub_ADEA:
 	sta     ($AE),y                         ; AE2A 91 AE                    ..
 	rdldi	MEMTOP, L4327
 	rdmv	sub_4749+1, sub_AB6A+1
-	rdmv	L5D65, sub_8D01+1
+	rdmv	sub_5D64+1, sub_8D01+1
 	jsr     sub_AD85
 	jsr     sub_6203
-	jsr     L5D67                           ; AE54 20 67 5D                  g]
+	jsr     sub_5D67
 	jsr     LA9FB                           ; AE57 20 FB A9                  ..
 	sei                                     ; AE5A 78                       x
 	lda     $10                             ; AE5B A5 10                    ..
