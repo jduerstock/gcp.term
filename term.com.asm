@@ -12314,7 +12314,8 @@ LAEE2:  brk                                     ; AEE2 00                       
 LAEE3:  brk                                     ; AEE3 00                       .
 
 ; ----------------------------------------------------------------------------
-LAEE4:  prolog
+sub_AEE4:  
+	prolog
 	lda	CONSOL
 	eor     #$FF                            ; AEEA 49 FF                    I.
 	sta     $AE                             ; AEEC 85 AE                    ..
@@ -12448,10 +12449,9 @@ LB012:  lda     #$FF                            ; B012 A9 FF                    
 	jmp     LAFA2                           ; B017 4C A2 AF                 L..
 
 ; ----------------------------------------------------------------------------
-LB01A:  jsr     LAEE4                           ; B01A 20 E4 AE                  ..
-	lda     #$AF                            ; B01D A9 AF                    ..
-	sta	$A3
-	ldy     #$38                            ; B021 A0 38                    .8
+LB01A:  jsr     sub_AEE4
+	ldi	$A3, >LAF38
+	ldy     #<LAF38
 	ldxai	$AF37
 	jsr     sub_9CD0
 	lda     $A0                             ; B02A A5 A0                    ..
