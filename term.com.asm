@@ -18,6 +18,7 @@ MEMTOP		:= $02E5
 MEMLO		:= $02E7
 DVSTAT		:= $02EA
 CRSINH		:= $02F0
+CH		:= $02FC
 CHBAS		:= $02F4
 L3272           := $3272
 L3C20           := $3C20
@@ -9575,7 +9576,7 @@ L97B2:  ldy     #$00                            ; 97B2 A0 00                    
 	lda     $AE                             ; 97BE A5 AE                    ..
 	eor     #$C0                            ; 97C0 49 C0                    I.
 	lbeq	L97E7
-	lda     $02FC                           ; 97C7 AD FC 02                 ...
+	lda	CH
 	eor     #$FF                            ; 97CA 49 FF                    I.
 	lbeq	L97DE
 	lda     #$07                            ; 97D1 A9 07                    ..
@@ -9590,7 +9591,7 @@ L97E4:  jmp     L97EC                           ; 97E4 4C EC 97                 
 
 ; ----------------------------------------------------------------------------
 L97E7:  lda     #$FF                            ; 97E7 A9 FF                    ..
-	sta     $02FC                           ; 97E9 8D FC 02                 ...
+	sta	CH
 L97EC:  lda     L979D                           ; 97EC AD 9D 97                 ...
 	eor     #$9B                            ; 97EF 49 9B                    I.
 	lbne	L9810
@@ -12334,10 +12335,9 @@ LAF8E:  jsr     sub_AB6A
 ; ----------------------------------------------------------------------------
 LAF94:  lda     L4652                           ; AF94 AD 52 46                 .RF
 	jsr     sub_A28D
-	lda     #$02                            ; AF9A A9 02                    ..
-	sta     L4652                           ; AF9C 8D 52 46                 .RF
+	ldi	L4652, $02
 	jsr     sub_5E30
-LAFA2:  lda     $02FC                           ; AFA2 AD FC 02                 ...
+LAFA2:  lda	CH
 	eor     #$FF                            ; AFA5 49 FF                    I.
 	beq     LAFAC                           ; AFA7 F0 03                    ..
 	jmp     LAFCB                           ; AFA9 4C CB AF                 L..
@@ -12348,17 +12348,17 @@ LAFAC:  lda     L474D                           ; AFAC AD 4D 47                 
 	lbeq	LAFCB
 	ldx     L474E                           ; AFB7 AE 4E 47                 .NG
 	lda     $B138,x                         ; AFBA BD 38 B1                 .8.
-	sta     $02FC                           ; AFBD 8D FC 02                 ...
+	sta	CH
 	inc     L474E                           ; AFC0 EE 4E 47                 .NG
 	lda     L474E                           ; AFC3 AD 4E 47                 .NG
 	and     #$0F                            ; AFC6 29 0F                    ).
 	sta     L474E                           ; AFC8 8D 4E 47                 .NG
-LAFCB:  lda     $02FC                           ; AFCB AD FC 02                 ...
+LAFCB:  lda	CH
 	jsr     sub_907D
 	lda     $A0                             ; AFD1 A5 A0                    ..
 	eor     #$01                            ; AFD3 49 01                    I.
 	lbne	LAFE2
-	ldi	$02FC, $FF
+	ldi	CH, $FF
 	jmp     LB01A                           ; AFDF 4C 1A B0                 L..
 
 ; ----------------------------------------------------------------------------
@@ -12367,22 +12367,21 @@ LAFE2:  lda     SHFLOK
 	sta     SHFLOK
 	ldy     #$00                            ; AFEA A0 00                    ..
 	sty     $02B6                           ; AFEC 8C B6 02                 ...
-	lda     $02FC                           ; AFEF AD FC 02                 ...
+	lda	CH
 	and     #$3F                            ; AFF2 29 3F                    )?
 	sta     LAF39                           ; AFF4 8D 39 AF                 .9.
 	lda     LAF39                           ; AFF7 AD 39 AF                 .9.
 	eor     #$3C                            ; AFFA 49 3C                    I<
 	lbne	LB00C
-	lda     $02FC                           ; B001 AD FC 02                 ...
+	lda	CH
 	and     #$40                            ; B004 29 40                    )@
 	sta     SHFLOK
 	jmp     LB012                           ; B009 4C 12 B0                 L..
 
 ; ----------------------------------------------------------------------------
-LB00C:  lda     $02FC                           ; B00C AD FC 02                 ...
+LB00C:  lda	CH
 	jsr     sub_97A1
-LB012:  lda     #$FF                            ; B012 A9 FF                    ..
-	sta     $02FC                           ; B014 8D FC 02                 ...
+LB012:  ldi	CH, $FF
 	jmp     LAFA2                           ; B017 4C A2 AF                 L..
 
 ; ----------------------------------------------------------------------------
