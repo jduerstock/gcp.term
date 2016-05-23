@@ -2602,7 +2602,8 @@ L545B:  lda     L5392                           ; 545B AD 92 53                 
 	rts                                     ; 5460 60                       `
 
 ; ----------------------------------------------------------------------------
-L5461:  prolog
+sub_5461:  
+	prolog
 	lda     L4651                           ; 5464 AD 51 46                 .QF
 	lbne	L5471
 	ldi	$A0, $00
@@ -2670,7 +2671,8 @@ L54FC:  .byte   $44                             ; 54FC 44                       
 L54FD:  .byte   $6F                             ; 54FD 6F                       o
 	.byte   $77                             ; 54FE 77                       w
 
-L54FF:  prolog
+sub_54FF:  
+	prolog
 	lda     L4650                           ; 5502 AD 50 46                 .PF
 	lbeq	L552F
 	jsr     sub_5394
@@ -2679,7 +2681,7 @@ L54FF:  prolog
 	lda     L54FC                           ; 5512 AD FC 54                 ..T
 	eor     #$01                            ; 5515 49 01                    I.
 	lbne	L552A
-	jsr     L5461                           ; 551C 20 61 54                  aT
+	jsr     sub_5461
 	mv	L54FC, $A0
 	mv	$A0, L54FC
 	rts                                     ; 5529 60                       `
@@ -2708,7 +2710,7 @@ L5547:  lda     L54FC                           ; 5547 AD FC 54                 
 	lda     L54FD                           ; 5561 AD FD 54                 ..T
 	eor     #$15                            ; 5564 49 15                    I.
 	lbeq	L5579
-	jsr     L5461                           ; 556B 20 61 54                  aT
+	jsr     sub_5461
 	mv	L54FC, $A0
 	mv	$A0, L54FC
 	rts                                     ; 5578 60                       `
@@ -12640,7 +12642,7 @@ LB062:  lda     L46E6                           ; B062 AD E6 46                 
 	ldx     L46EA                           ; B074 AE EA 46                 ..F
 	lda     L46E9                           ; B077 AD E9 46                 ..F
 	jsr     LA027                           ; B07A 20 27 A0                  '.
-LB07D:  jsr     L54FF                           ; B07D 20 FF 54                  .T
+LB07D:  jsr     sub_54FF
 	lda     $A0                             ; B080 A5 A0                    ..
 	sta     LAF36                           ; B082 8D 36 AF                 .6.
 	lda     LAF36                           ; B085 AD 36 AF                 .6.
