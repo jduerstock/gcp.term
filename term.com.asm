@@ -12456,17 +12456,11 @@ LB01A:  jsr     sub_AEE4
 	jsr     sub_9CD0
 	lda     $A0                             ; B02A A5 A0                    ..
 	eor     #$01                            ; B02C 49 01                    I.
-	beq     LB033                           ; B02E F0 03                    ..
-	jmp     LB07D                           ; B030 4C 7D B0                 L}.
-
-; ----------------------------------------------------------------------------
-LB033:  lda     L46E6                           ; B033 AD E6 46                 ..F
+	lbne	LB07D
+	lda     L46E6                           ; B033 AD E6 46                 ..F
 	eor     #$03                            ; B036 49 03                    I.
-	beq     LB03D                           ; B038 F0 03                    ..
-	jmp     LB049                           ; B03A 4C 49 B0                 LI.
-
-; ----------------------------------------------------------------------------
-LB03D:	ldxa	LAF37
+	lbne	LB049
+	ldxa	LAF37
 	jsr     sub_840C
 	jmp     LB07D                           ; B046 4C 7D B0                 L}.
 
