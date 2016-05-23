@@ -1054,10 +1054,8 @@ L4806:	.byte	$01,"B"
 L4808:	.addr	L4806
 L480A:	.byte	$04,"BBA0"
 L480F:	.addr	L480A
-	.byte   $02                             ; 4811 02                       .
-	.byte   $44                             ; 4812 44                       D
-	.byte   $42                             ; 4813 42                       B
-	ora     ($48),y                         ; 4814 11 48                    .H
+L4811:	.byte	$02,"DB"
+L4814:	.addr	L4811
 	.byte   $02                             ; 4816 02                       .
 	.byte   $42                             ; 4817 42                       B
 	.byte   $42                             ; 4818 42                       B
