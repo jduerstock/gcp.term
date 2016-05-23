@@ -2877,13 +2877,7 @@ L5785:	dmv	off_AE, L558C
 	dmv	off_AE, L558C
 	lda     ($AE),y                         ; 57A0 B1 AE                    ..
 	sta     $A0                             ; 57A2 85 A0                    ..
-	clc                                     ; 57A4 18                       .
-	lda     L559E                           ; 57A5 AD 9E 55                 ..U
-	adc     L5594                           ; 57A8 6D 94 55                 m.U
-	sta     $A1                             ; 57AB 85 A1                    ..
-	lda     L559F                           ; 57AD AD 9F 55                 ..U
-	adc     #$00                            ; 57B0 69 00                    i.
-	sta     $A2                             ; 57B2 85 A2                    ..
+	add16m8	$A1, L559E, L5594
 	ldy     $A2                             ; 57B4 A4 A2                    ..
 	ldx     $A1                             ; 57B6 A6 A1                    ..
 	lda     $A0                             ; 57B8 A5 A0                    ..
