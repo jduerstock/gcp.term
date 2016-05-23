@@ -11057,8 +11057,7 @@ LA3E2:  jsr     sub_5E1E
 	lda     #$04                            ; A3EE A9 04                    ..
 	sta     $A4                             ; A3F0 85 A4                    ..
 	ldy     LA3A8                           ; A3F2 AC A8 A3                 ...
-	ldx     #$A3                            ; A3F5 A2 A3                    ..
-	lda     #$B3                            ; A3F7 A9 B3                    ..
+	ldxai	$A3B3
 	jsr     sub_461F
 	sec                                     ; A3FC 38                       8
 	lda     LA3B5                           ; A3FD AD B5 A3                 ...
@@ -11075,20 +11074,9 @@ LA3E2:  jsr     sub_5E1E
 	lda     #$06                            ; A416 A9 06                    ..
 	sta     $A4                             ; A418 85 A4                    ..
 	ldy     LA3AC                           ; A41A AC AC A3                 ...
-	ldx     #$A3                            ; A41D A2 A3                    ..
-	lda     #$B7                            ; A41F A9 B7                    ..
+	ldxai	$A3B7
 	jsr     sub_461F
-	lda     LA3B4                           ; A424 AD B4 A3                 ...
-	asl     a                               ; A427 0A                       .
-	php                                     ; A428 08                       .
-	clc                                     ; A429 18                       .
-	adc     LA3BB                           ; A42A 6D BB A3                 m..
-	sta     $AE                             ; A42D 85 AE                    ..
-	lda     #$00                            ; A42F A9 00                    ..
-	rol     a                               ; A431 2A                       *
-	plp                                     ; A432 28                       (
-	adc     LA3BC                           ; A433 6D BC A3                 m..
-	sta     $AF                             ; A436 85 AF                    ..
+	shladdm8 off_AE, LA3BB, LA3B4
 	clc                                     ; A438 18                       .
 	ldy     #$00                            ; A439 A0 00                    ..
 	lda     ($AE),y                         ; A43B B1 AE                    ..
