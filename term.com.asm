@@ -30,7 +30,7 @@ CONSOL		:= $D01F
 KBCODE		:= $D209
 CIOV            := $E456
 SETVBV          := $E45C
-LE45F           := $E45F
+SYSVBV		:= $E45F
 ; ----------------------------------------------------------------------------
 
 .macro	prolog
@@ -12106,6 +12106,8 @@ LAD4E:  lda     $D7                             ; AD4E A5 D7                    
 LAD58:  rts                                     ; AD58 60                       `
 
 ; ----------------------------------------------------------------------------
+
+sub_AD59:
 	lda     $02C4                           ; AD59 AD C4 02                 ...
 	sta     $D016                           ; AD5C 8D 16 D0                 ...
 	lda	CHBAS
@@ -12119,21 +12121,18 @@ LAD58:  rts                                     ; AD58 60                       
 	ldy     #$01                            ; AD77 A0 01                    ..
 	sty     $E8                             ; AD79 84 E8                    ..
 	jsr     LACB2                           ; AD7B 20 B2 AC                  ..
-	jmp     LE45F                           ; AD7E 4C 5F E4                 L_.
+	jmp     SYSVBV
 
 ; ----------------------------------------------------------------------------
-LAD81:  brk                                     ; AD81 00                       .
-LAD82:  brk                                     ; AD82 00                       .
-LAD83:  .byte   $D5                             ; AD83 D5                       .
-LAD84:  brk                                     ; AD84 00                       .
+LAD81:  .byte	$00
+LAD82:  .byte	$00
+LAD83:  .byte   $D5
+LAD84:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 sub_AD85:  
 	prolog
-	lda     #>LAD2E
-	sta     $0229                           ; AD8A 8D 29 02                 .).
-	lda     #<LAD2E
-	sta     $0228                           ; AD8F 8D 28 02                 .(.
+	rdldi	$0228, LAD2E
 	ldy     #$00                            ; AD92 A0 00                    ..
 	sty     $021B                           ; AD94 8C 1B 02                 ...
 	lda     #$06                            ; AD97 A9 06                    ..
@@ -12144,7 +12143,7 @@ sub_AD85:
 	ldxa	LAD83
 	jsr     sub_45F6
 	rdldi	$0208, $AC7E
-	rdldi	LAD81, $AD59
+	rdldi	LAD81, sub_AD59
 	lda     #$08                            ; ADBF A9 08                    ..
 	sta     $84                             ; ADC1 85 84                    ..
 	lda     LAD82                           ; ADC3 AD 82 AD                 ...
