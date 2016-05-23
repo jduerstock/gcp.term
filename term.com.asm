@@ -12348,11 +12348,8 @@ LAFA2:  lda     $02FC                           ; AFA2 AD FC 02                 
 ; ----------------------------------------------------------------------------
 LAFAC:  lda     L474D                           ; AFAC AD 4D 47                 .MG
 	eor     L474E                           ; AFAF 4D 4E 47                 MNG
-	bne     LAFB7                           ; AFB2 D0 03                    ..
-	jmp     LAFCB                           ; AFB4 4C CB AF                 L..
-
-; ----------------------------------------------------------------------------
-LAFB7:  ldx     L474E                           ; AFB7 AE 4E 47                 .NG
+	lbeq	LAFCB
+	ldx     L474E                           ; AFB7 AE 4E 47                 .NG
 	lda     $B138,x                         ; AFBA BD 38 B1                 .8.
 	sta     $02FC                           ; AFBD 8D FC 02                 ...
 	inc     L474E                           ; AFC0 EE 4E 47                 .NG
@@ -12363,11 +12360,8 @@ LAFCB:  lda     $02FC                           ; AFCB AD FC 02                 
 	jsr     sub_907D
 	lda     $A0                             ; AFD1 A5 A0                    ..
 	eor     #$01                            ; AFD3 49 01                    I.
-	beq     LAFDA                           ; AFD5 F0 03                    ..
-	jmp     LAFE2                           ; AFD7 4C E2 AF                 L..
-
-; ----------------------------------------------------------------------------
-LAFDA:	ldi	$02FC, $FF
+	lbne	LAFE2
+	ldi	$02FC, $FF
 	jmp     LB01A                           ; AFDF 4C 1A B0                 L..
 
 ; ----------------------------------------------------------------------------
