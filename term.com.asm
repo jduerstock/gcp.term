@@ -3082,7 +3082,7 @@ L59E1:  lda     L58EF                           ; 59E1 AD EF 58                 
 	lda     $A0                             ; 5A1D A5 A0                    ..
 	ldy     #$00                            ; 5A1F A0 00                    ..
 	sta     ($AE),y                         ; 5A21 91 AE                    ..
-	add8i	L4654,L4654, $02
+	add8i	L4654, L4654, $02
 	inc     L58EF                           ; 5A2C EE EF 58                 ..X
 	jmp     L59E1                           ; 5A2F 4C E1 59                 L.Y
 
@@ -3246,13 +3246,7 @@ L5BD2:	clc                                     ; 5BD2 18                       .
 	lda     L58EB                           ; 5BF3 AD EB 58                 ..X
 	dey                                     ; 5BF6 88                       .
 	sta     ($AE),y                         ; 5BF7 91 AE                    ..
-	clc                                     ; 5BF9 18                       .
-	lda     L58E9                           ; 5BFA AD E9 58                 ..X
-	adc     #$02                            ; 5BFD 69 02                    i.
-	sta     L58E9                           ; 5BFF 8D E9 58                 ..X
-	lda     L58EA                           ; 5C02 AD EA 58                 ..X
-	adc     #$00                            ; 5C05 69 00                    i.
-	sta     L58EA                           ; 5C07 8D EA 58                 ..X
+	add16i	L58E9, L58E9, $0002
 	clc                                     ; 5C0A 18                       .
 	lda     #$24                            ; 5C0B A9 24                    .$
 	adc     L4654                           ; 5C0D 6D 54 46                 mTF
@@ -3269,10 +3263,7 @@ L5BD2:	clc                                     ; 5BD2 18                       .
 	lda     L58F0                           ; 5C2E AD F0 58                 ..X
 	ldy     #$00                            ; 5C31 A0 00                    ..
 	sta     ($AE),y                         ; 5C33 91 AE                    ..
-	clc                                     ; 5C35 18                       .
-	lda     L4654                           ; 5C36 AD 54 46                 .TF
-	adc     #$02                            ; 5C39 69 02                    i.
-	sta     L4654                           ; 5C3B 8D 54 46                 .TF
+	add8i	L4654, L4654, $02
 	iny                                     ; 5C3E C8                       .
 	sty     L58EF                           ; 5C3F 8C EF 58                 ..X
 	lda     L58F0                           ; 5C42 AD F0 58                 ..X
@@ -3283,27 +3274,19 @@ L5C48:  lda     L5C53                           ; 5C48 AD 53 5C                 
 	jmp     L5C92                           ; 5C50 4C 92 5C                 L.\
 
 ; ----------------------------------------------------------------------------
-L5C53:  brk                                     ; 5C53 00                       .
+L5C53:  .byte	$00
+
+; ----------------------------------------------------------------------------
 L5C54:  ldx     L4654                           ; 5C54 AE 54 46                 .TF
 	lda     LB224,x                         ; 5C57 BD 24 B2                 .$.
 	sta     L58F1                           ; 5C5A 8D F1 58                 ..X
 	lda     L58EE                           ; 5C5D AD EE 58                 ..X
-	eor     #$53                            ; 5C60 49 53                    IS
-	beq     L5C67                           ; 5C62 F0 03                    ..
-	jmp     L5C72                           ; 5C64 4C 72 5C                 Lr\
-
-; ----------------------------------------------------------------------------
-L5C67:  lda     L58F1                           ; 5C67 AD F1 58                 ..X
+	eor     #'S'
+	lbne	L5C72
+	lda     L58F1                           ; 5C67 AD F1 58                 ..X
 	jsr     L4B7B                           ; 5C6A 20 7B 4B                  {K
-	lda     $A0                             ; 5C6D A5 A0                    ..
-	sta     L58F1                           ; 5C6F 8D F1 58                 ..X
-L5C72:  clc                                     ; 5C72 18                       .
-	lda     L58EB                           ; 5C73 AD EB 58                 ..X
-	adc     L58EF                           ; 5C76 6D EF 58                 m.X
-	sta     $AE                             ; 5C79 85 AE                    ..
-	lda     L58EC                           ; 5C7B AD EC 58                 ..X
-	adc     #$00                            ; 5C7E 69 00                    i.
-	sta     $AF                             ; 5C80 85 AF                    ..
+	mv	L58F1, $A0
+L5C72:	add16m8 off_AE, L58EB, L58EF
 	lda     L58F1                           ; 5C82 AD F1 58                 ..X
 	ldy     #$00                            ; 5C85 A0 00                    ..
 	sta     ($AE),y                         ; 5C87 91 AE                    ..
