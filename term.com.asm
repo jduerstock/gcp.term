@@ -11103,50 +11103,31 @@ LA475:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 LA476:  lda     LA3A7                           ; A476 AD A7 A3                 ...
-	bne     LA47E                           ; A479 D0 03                    ..
-	jmp     LA49C                           ; A47B 4C 9C A4                 L..
-
-; ----------------------------------------------------------------------------
-LA47E:  clc                                     ; A47E 18                       .
-	lda     LA3AA                           ; A47F AD AA A3                 ...
-	adc     #$01                            ; A482 69 01                    i.
-	sta     $A0                             ; A484 85 A0                    ..
-	lda     LA3AB                           ; A486 AD AB A3                 ...
-	adc     #$00                            ; A489 69 00                    i.
-	sta     $A1                             ; A48B 85 A1                    ..
+	lbeq	LA49C
+	add16i	$A0, LA3AA, $0001
 	ldy     LA3AE                           ; A48D AC AE A3                 ...
-	ldx     $A1                             ; A490 A6 A1                    ..
-	lda     $A0                             ; A492 A5 A0                    ..
+	ldxa	$A0
 	jsr     sub_4B97
-	lda     $A0                             ; A497 A5 A0                    ..
-	sta     LA3B1                           ; A499 8D B1 A3                 ...
+	mv	LA3B1, $A0
 LA49C:  ldy     #$01                            ; A49C A0 01                    ..
 	sty     LA3B0                           ; A49E 8C B0 A3                 ...
-	lda     LA3B1                           ; A4A1 AD B1 A3                 ...
-	sta     LA4B2                           ; A4A4 8D B2 A4                 ...
+	mv	LA4B2, LA3B1
 LA4A7:  lda     LA4B2                           ; A4A7 AD B2 A4                 ...
 	cmp     LA3B0                           ; A4AA CD B0 A3                 ...
 	bcs     LA4B3                           ; A4AD B0 04                    ..
 	jmp     LA4F7                           ; A4AF 4C F7 A4                 L..
 
 ; ----------------------------------------------------------------------------
-LA4B2:  brk                                     ; A4B2 00                       .
-LA4B3:  clc                                     ; A4B3 18                       .
-	lda     LA3AA                           ; A4B4 AD AA A3                 ...
-	adc     LA3B0                           ; A4B7 6D B0 A3                 m..
-	sta     $AE                             ; A4BA 85 AE                    ..
-	lda     LA3AB                           ; A4BC AD AB A3                 ...
-	adc     #$00                            ; A4BF 69 00                    i.
-	sta     $AF                             ; A4C1 85 AF                    ..
+LA4B2:  .byte	$00
+
+; ----------------------------------------------------------------------------
+LA4B3:	add16m8	off_AE, LA3AA, LA3B0
 	ldy     #$00                            ; A4C3 A0 00                    ..
 	lda     ($AE),y                         ; A4C5 B1 AE                    ..
 	sta     LA3B2                           ; A4C7 8D B2 A3                 ...
 	lda     LA3A7                           ; A4CA AD A7 A3                 ...
-	bne     LA4D2                           ; A4CD D0 03                    ..
-	jmp     LA4DD                           ; A4CF 4C DD A4                 L..
-
-; ----------------------------------------------------------------------------
-LA4D2:  lda     LA3B2                           ; A4D2 AD B2 A3                 ...
+	lbeq	LA4DD
+	lda     LA3B2                           ; A4D2 AD B2 A3                 ...
 	jsr     sub_4BC9
 	lda     $A0                             ; A4D8 A5 A0                    ..
 	sta     LA3B2                           ; A4DA 8D B2 A3                 ...
