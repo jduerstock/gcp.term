@@ -12171,17 +12171,7 @@ sub_ADEA:
 	lda     $0230                           ; ADFE AD 30 02                 .0.
 	dey                                     ; AE01 88                       .
 	sta     ($AE),y                         ; AE02 91 AE                    ..
-	lda     #$01                            ; AE04 A9 01                    ..
-	asl     a                               ; AE06 0A                       .
-	php                                     ; AE07 08                       .
-	clc                                     ; AE08 18                       .
-	adc     L466F                           ; AE09 6D 6F 46                 moF
-	sta     $AE                             ; AE0C 85 AE                    ..
-	lda     #$00                            ; AE0E A9 00                    ..
-	rol     a                               ; AE10 2A                       *
-	plp                                     ; AE11 28                       (
-	adc     L466F+1
-	sta     $AF                             ; AE15 85 AF                    ..
+	shladdi off_AE, L466F, $01
 	sec                                     ; AE17 38                       8
 	lda     $0230                           ; AE18 AD 30 02                 .0.
 	sbc     #$00                            ; AE1B E9 00                    ..
