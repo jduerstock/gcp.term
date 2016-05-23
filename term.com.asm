@@ -633,7 +633,9 @@ L4582:  ldy     #$00                            ; 4582 A0 00                    
 	lda     #$FF                            ; 458A A9 FF                    ..
 	sta     $A3                             ; 458C 85 A3                    ..
 	pla                                     ; 458E 68                       h
-L458F:  pha                                     ; 458F 48                       H
+
+sub_458F:  
+	pha                                     ; 458F 48                       H
 	stx     $A1                             ; 4590 86 A1                    ..
 	sty     $A2                             ; 4592 84 A2                    ..
 	ldy     #$00                            ; 4594 A0 00                    ..
@@ -11354,7 +11356,7 @@ LA748:  ldx     LA6D9                           ; A748 AE D9 A6                 
 	ldy     #$B2                            ; A757 A0 B2                    ..
 	ldx     #$24                            ; A759 A2 24                    .$
 	lda     LA6D9                           ; A75B AD D9 A6                 ...
-	jsr     L458F                           ; A75E 20 8F 45                  .E
+	jsr     sub_458F
 	lda     LB224                           ; A761 AD 24 B2                 .$.
 	sta     LA6E0                           ; A764 8D E0 A6                 ...
 	ldy     #$01                            ; A767 A0 01                    ..
@@ -11514,10 +11516,12 @@ LA88E:  brk                                     ; A88E 00                       
 	brk                                     ; A892 00                       .
 LA893:  brk                                     ; A893 00                       .
 LA894:  brk                                     ; A894 00                       .
-LA895:  jmp     LA898                           ; A895 4C 98 A8                 L..
+
 
 ; ----------------------------------------------------------------------------
-LA898:  stx     LA888                           ; A898 8E 88 A8                 ...
+sub_A895:  
+	prolog
+	stx     LA888                           ; A898 8E 88 A8                 ...
 	sta     LA887                           ; A89B 8D 87 A8                 ...
 	lda     LA887                           ; A89E AD 87 A8                 ...
 	jsr     sub_65B0
@@ -11692,14 +11696,9 @@ LA9F9:  brk                                     ; A9F9 00                       
 LA9FA:  brk                                     ; A9FA 00                       .
 
 ; ----------------------------------------------------------------------------
-LA9FB:  prolog
-	sec                                     ; A9FE 38                       8
-	lda     MEMTOP
-	sbc     MEMLO
-	sta     LA9F9                           ; AA05 8D F9 A9                 ...
-	lda     MEMTOP+1
-	sbc     MEMLO+1
-	sta     LA9FA                           ; AA0E 8D FA A9                 ...
+LA9FB:  
+	prolog
+	sub16m	LA9F9, MEMTOP, MEMLO
 	lda     LA9FA                           ; AA11 AD FA A9                 ...
 	sta     $A3                             ; AA14 85 A3                    ..
 	ldy     LA9F9                           ; AA16 AC F9 A9                 ...
@@ -11812,7 +11811,7 @@ LAA86:	.addr	L6AD5
 	.addr	LA846
 	.addr	sub_4F9D
 	.addr	sub_8D01
-	.addr	LA895
+	.addr	sub_A895
 	.addr	LA842
 	.addr	LA96F
 	.addr	sub_A81F
@@ -12289,9 +12288,8 @@ LAE8C:  lda     #$1F                            ; AE8C A9 1F                    
 	ldx     LAE7E                           ; AEB6 AE 7E AE                 .~.
 	lda     $BC00,x                         ; AEB9 BD 00 BC                 ...
 	sta     LAE80                           ; AEBC 8D 80 AE                 ...
-	ldx     LAE80                           ; AEBF AE 80 AE                 ...
-	lda     LAE7F                           ; AEC2 AD 7F AE                 ...
-	jsr     LA895                           ; AEC5 20 95 A8                  ..
+	ldxa	LAE7F
+	jsr     sub_A895
 	lda     #$00                            ; AEC8 A9 00                    ..
 	ldx     LAE7E                           ; AECA AE 7E AE                 .~.
 	sta     $B800,x                         ; AECD 9D 00 B8                 ...
@@ -12364,7 +12362,7 @@ LAF63:	lda     L4652                           ; AF63 AD 52 46                 .
 	ldy     #$B2                            ; AF71 A0 B2                    ..
 	ldx     #$23                            ; AF73 A2 23                    .#
 	lda     L4652                           ; AF75 AD 52 46                 .RF
-	jsr     L458F                           ; AF78 20 8F 45                  .E
+	jsr     sub_458F
 	ldx     L4652                           ; AF7B AE 52 46                 .RF
 	lda     $05C0,x                         ; AF7E BD C0 05                 ...
 	bne     LAF8B                           ; AF81 D0 08                    ..
