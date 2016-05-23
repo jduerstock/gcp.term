@@ -12172,10 +12172,7 @@ sub_ADEA:
 	dey                                     ; AE01 88                       .
 	sta     ($AE),y                         ; AE02 91 AE                    ..
 	shladdi off_AE, L466F, $01
-	sec                                     ; AE17 38                       8
-	lda     $0230                           ; AE18 AD 30 02                 .0.
-	sbc     #$00                            ; AE1B E9 00                    ..
-	sta     $AC                             ; AE1D 85 AC                    ..
+	sub8i off_AC, $0230, $00
 	lda     $0231                           ; AE1F AD 31 02                 .1.
 	sbc     #$04                            ; AE22 E9 04                    ..
 	iny                                     ; AE24 C8                       .
