@@ -11456,7 +11456,8 @@ LA82B:	lda     $B118,x                         ; A82B BD 18 B1                 .
 	rts                                     ; A836 60                       `
 
 ; ----------------------------------------------------------------------------
-LA837:	stx     $A0                             ; A837 86 A0                    ..
+sub_A837:
+	stx     $A0                             ; A837 86 A0                    ..
 	cmp     $A0                             ; A839 C5 A0                    ..
 	bne     LA841                           ; A83B D0 04                    ..
 	tya                                     ; A83D 98                       .
@@ -11602,7 +11603,8 @@ LA943:	add16m8	LA88B, LA88B, L4654
 LA958:  rts                                     ; A958 60                       `
 
 ; ----------------------------------------------------------------------------
-LA959:	stx     $A0                             ; A959 86 A0                    ..
+sub_A959:
+	stx     $A0                             ; A959 86 A0                    ..
 	tax                                     ; A95B AA                       .
 	lda     #$00                            ; A95C A9 00                    ..
 	sta     $B800,x                         ; A95E 9D 00 B8                 ...
@@ -11613,12 +11615,14 @@ LA959:	stx     $A0                             ; A959 86 A0                    .
 	rts                                     ; A96A 60                       `
 
 ; ----------------------------------------------------------------------------
-LA96B:  brk                                     ; A96B 00                       .
-LA96C:  brk                                     ; A96C 00                       .
-LA96D:  .byte   $D5                             ; A96D D5                       .
-LA96E:  brk                                     ; A96E 00                       .
+LA96B:	.byte	$00
+LA96C:	.byte	$00
+LA96D:	.byte	$D5
+LA96E:	.byte	$00
 
-LA96F:	prolog
+; ----------------------------------------------------------------------------
+LA96F:	
+	prolog
 	stx     LA96C                           ; A972 8E 6C A9                 .l.
 	sta     LA96B                           ; A975 8D 6B A9                 .k.
 	add16m8	off_AE, LA96D, LA96B
@@ -11630,7 +11634,9 @@ LA96F:	prolog
 ; ----------------------------------------------------------------------------
 LA990:  brk                                     ; A990 00                       .
 
-LA991:	prolog
+; ----------------------------------------------------------------------------
+sub_A991:	
+	prolog
 	sta     LA990                           ; A994 8D 90 A9                 ...
 	lda     LA990                           ; A997 AD 90 A9                 ...
 	jsr     sub_4BC9
@@ -11794,11 +11800,11 @@ LAA86:	.addr	L6AD5
 	.addr	LA7C4
 	.addr	LA7F3
 	.addr	sub_A6CE
-	.addr	LA991
+	.addr	sub_A991
 	.addr	sub_4F5A
-	.addr	LA959
+	.addr	sub_A959
 	.addr	sub_4BA7
-	.addr	LA837
+	.addr	sub_A837
 	.addr	LA846
 	.addr	sub_4F9D
 	.addr	sub_8D01
@@ -11958,17 +11964,7 @@ LABEE:  lda     LAB69                           ; ABEE AD 69 AB                 
 	dey                                     ; AC09 88                       .
 	lda     ($AE),y                         ; AC0A B1 AE                    ..
 	sta     LAB5C                           ; AC0C 8D 5C AB                 .\.
-	lda     LAB69                           ; AC0F AD 69 AB                 .i.
-	asl     a                               ; AC12 0A                       .
-	php                                     ; AC13 08                       .
-	clc                                     ; AC14 18                       .
-	adc     LAB58                           ; AC15 6D 58 AB                 mX.
-	sta     $AE                             ; AC18 85 AE                    ..
-	lda     #$00                            ; AC1A A9 00                    ..
-	rol     a                               ; AC1C 2A                       *
-	plp                                     ; AC1D 28                       (
-	adc     LAB58+1                         ; AC1E 6D 59 AB                 mY.
-	sta     $AF                             ; AC21 85 AF                    ..
+	shladdm8 off_AE, LAB58, LAB69
 	iny                                     ; AC23 C8                       .
 	lda     ($AE),y                         ; AC24 B1 AE                    ..
 	sta     LAB0B+2                         ; AC26 8D 0D AB                 ...
