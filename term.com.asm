@@ -10816,17 +10816,7 @@ LA17B:	dmv	off_AE, LA018
 	dey                                     ; A18C 88                       .
 	lda     ($AE),y                         ; A18D B1 AE                    ..
 	sta     L9FEF                           ; A18F 8D EF 9F                 ...
-	lda     LA024                           ; A192 AD 24 A0                 .$.
-	asl     a                               ; A195 0A                       .
-	php                                     ; A196 08                       .
-	clc                                     ; A197 18                       .
-	adc     LA01E                           ; A198 6D 1E A0                 m..
-	sta     $AE                             ; A19B 85 AE                    ..
-	lda     #$00                            ; A19D A9 00                    ..
-	rol     a                               ; A19F 2A                       *
-	plp                                     ; A1A0 28                       (
-	adc     LA01F                           ; A1A1 6D 1F A0                 m..
-	sta     $AF                             ; A1A4 85 AF                    ..
+	shladdm8 off_AE, LA01E, LA024
 	iny                                     ; A1A6 C8                       .
 	lda     ($AE),y                         ; A1A7 B1 AE                    ..
 	sta     L9FF2                           ; A1A9 8D F2 9F                 ...
