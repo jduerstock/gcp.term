@@ -1613,7 +1613,8 @@ L4B62:  jsr     L4B39                           ; 4B62 20 39 4B                 
 	rts                                     ; 4B7A 60                       `
 
 ; ----------------------------------------------------------------------------
-L4B7B:  tay                                     ; 4B7B A8                       .
+sub_4B7B:  
+	tay                                     ; 4B7B A8                       .
 	and     #$80                            ; 4B7C 29 80                    ).
 	sta     $A0                             ; 4B7E 85 A0                    ..
 	tya                                     ; 4B80 98                       .
@@ -3125,7 +3126,7 @@ L5AAE:	dmv	off_AE, L58EB
 	lda     LB224,x
 	sta     $A0                             ; 5AC4 85 A0                    ..
 	lda     $A0                             ; 5AC6 A5 A0                    ..
-	jsr     L4B7B                           ; 5AC8 20 7B 4B                  {K
+	jsr     sub_4B7B
 	pull16	off_AE
 	lda     $A0                             ; 5AD1 A5 A0                    ..
 	ldy     #$00                            ; 5AD3 A0 00                    ..
@@ -3284,7 +3285,7 @@ L5C54:  ldx     L4654                           ; 5C54 AE 54 46                 
 	eor     #'S'
 	lbne	L5C72
 	lda     L58F1                           ; 5C67 AD F1 58                 ..X
-	jsr     L4B7B                           ; 5C6A 20 7B 4B                  {K
+	jsr     sub_4B7B
 	mv	L58F1, $A0
 L5C72:	add16m8 off_AE, L58EB, L58EF
 	lda     L58F1                           ; 5C82 AD F1 58                 ..X
@@ -3301,16 +3302,11 @@ L5C92:  jmp     L5CF5                           ; 5C92 4C F5 5C                 
 L5C95:  lda     L58EE                           ; 5C95 AD EE 58                 ..X
 	eor     #'X'
 	lbne	L5CF5
-	sec                                     ; 5C9F 38                       8
-	lda     L4649                           ; 5CA0 AD 49 46                 .IF
-	sbc     #$01                            ; 5CA3 E9 01                    ..
-	sta     L58F0                           ; 5CA5 8D F0 58                 ..X
-	lda     L58F0                           ; 5CA8 AD F0 58                 ..X
-	sta     LB224                           ; 5CAB 8D 24 B2                 .$.
+	sub8i	L58F0, L4649, $01
+	mv	LB224, L58F0
 	ldy     #$01                            ; 5CAE A0 01                    ..
 	sty     L58EF                           ; 5CB0 8C EF 58                 ..X
-	lda     L58F0                           ; 5CB3 AD F0 58                 ..X
-	sta     L5CC4                           ; 5CB6 8D C4 5C                 ..\
+	mv	L5CC4, L58F0
 L5CB9:  lda     L5CC4                           ; 5CB9 AD C4 5C                 ..\
 	cmp     L58EF                           ; 5CBC CD EF 58                 ..X
 	bcs     L5CC5                           ; 5CBF B0 04                    ..
@@ -3324,7 +3320,7 @@ L5CC5:  ldx     L58EF                           ; 5CC5 AE EF 58                 
 	lda     LB224,x                         ; 5CC8 BD 24 B2                 .$.
 	sta     $A0                             ; 5CCB 85 A0                    ..
 	lda     $A0                             ; 5CCD A5 A0                    ..
-	jsr     L4B7B                           ; 5CCF 20 7B 4B                  {K
+	jsr     sub_4B7B
 	lda     $A0                             ; 5CD2 A5 A0                    ..
 	ldx     L58EF                           ; 5CD4 AE EF 58                 ..X
 	sta     LB224,x                         ; 5CD7 9D 24 B2                 .$.
@@ -10028,7 +10024,7 @@ L9AE8:  lda     L979C                           ; 9AE8 AD 9C 97                 
 
 ; ----------------------------------------------------------------------------
 L9B05:  lda     L979D                           ; 9B05 AD 9D 97                 ...
-	jsr     L4B7B                           ; 9B08 20 7B 4B                  {K
+	jsr     sub_4B7B
 	lda     $A0                             ; 9B0B A5 A0                    ..
 	and     #$7F                            ; 9B0D 29 7F                    ).
 	sta     L979D                           ; 9B0F 8D 9D 97                 ...
@@ -11535,7 +11531,7 @@ LA77E:  ldx     LA6DF                           ; A77E AE DF A6                 
 	lda     LB224,x                         ; A781 BD 24 B2                 .$.
 	sta     $A0                             ; A784 85 A0                    ..
 	lda     $A0                             ; A786 A5 A0                    ..
-	jsr     L4B7B                           ; A788 20 7B 4B                  {K
+	jsr     sub_4B7B
 	lda     $A0                             ; A78B A5 A0                    ..
 	ldx     LA6DF                           ; A78D AE DF A6                 ...
 	sta     LB224,x                         ; A790 9D 24 B2                 .$.
@@ -11545,10 +11541,7 @@ LA77E:  ldx     LA6DF                           ; A77E AE DF A6                 
 ; ----------------------------------------------------------------------------
 LA799:  lda     LA6E0                           ; A799 AD E0 A6                 ...
 	sta     $A3                             ; A79C 85 A3                    ..
-	lda     #$B2                            ; A79E A9 B2                    ..
-	sta     $A5                             ; A7A0 85 A5                    ..
-LA7A2:  lda     #$24                            ; A7A2 A9 24                    .$
-	sta     $A4                             ; A7A4 85 A4                    ..
+	rdldi	$A4, $B224
 	ldy     LA6DE                           ; A7A6 AC DE A6                 ...
 LA7A9:  ldx     #$00                            ; A7A9 A2 00                    ..
 	lda     LA6D8                           ; A7AB AD D8 A6                 ...
