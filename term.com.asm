@@ -10759,9 +10759,7 @@ LA04F:  lda     L9FE8                           ; A04F AD E8 9F                 
 	jsr     sub_4BF2
 	lda     #$9F                            ; A107 A9 9F                    ..
 	sta     $A3                             ; A109 85 A3                    ..
-	.byte   $AD                             ; A10B AD                       .
-LA10C:  .byte   $F3                             ; A10C F3                       .
-	.byte   $9F                             ; A10D 9F                       .
+	lda	L9FF3
 	sta     $A4                             ; A10E 85 A4                    ..
 	lda     L9FF4                           ; A110 AD F4 9F                 ...
 	sta     $A5                             ; A113 85 A5                    ..
