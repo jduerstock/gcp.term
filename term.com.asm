@@ -3030,21 +3030,9 @@ L591F:	add16m8	off_AE, L58E7, L58ED
 	lda     L58EB                           ; 5960 AD EB 58                 ..X
 	dey                                     ; 5963 88                       .
 	sta     ($AE),y                         ; 5964 91 AE                    ..
-	clc                                     ; 5966 18                       .
-	lda     L58E9                           ; 5967 AD E9 58                 ..X
-	adc     #$02                            ; 596A 69 02                    i.
-	sta     L58E9                           ; 596C 8D E9 58                 ..X
-	lda     L58EA                           ; 596F AD EA 58                 ..X
-	adc     #$00                            ; 5972 69 00                    i.
-	sta     L58EA                           ; 5974 8D EA 58                 ..X
+	add16i	L58E9, L58E9, $0002
 	inc     L58ED                           ; 5977 EE ED 58                 ..X
-	clc                                     ; 597A 18                       .
-	lda     L58E7                           ; 597B AD E7 58                 ..X
-	adc     L58ED                           ; 597E 6D ED 58                 m.X
-	sta     $AE                             ; 5981 85 AE                    ..
-	lda     L58E8                           ; 5983 AD E8 58                 ..X
-	adc     #$00                            ; 5986 69 00                    i.
-	sta     $AF                             ; 5988 85 AF                    ..
+	add16m8	off_AE, L58E7, L58ED
 	lda     ($AE),y                         ; 598A B1 AE                    ..
 	sta     $A0                             ; 598C 85 A0                    ..
 	lda     $A0                             ; 598E A5 A0                    ..
