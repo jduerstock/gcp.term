@@ -7957,10 +7957,7 @@ L89AE:  prolog
 	sta     L8961                           ; 89B1 8D 61 89                 .a.
 	lda     L8961                           ; 89B4 AD 61 89                 .a.
 	jsr     sub_7035
-	lda     $A1                             ; 89BA A5 A1                    ..
-	sta     L8963                           ; 89BC 8D 63 89                 .c.
-	lda     $A0                             ; 89BF A5 A0                    ..
-	sta     L8962                           ; 89C1 8D 62 89                 .b.
+	rdmv	L8962, $A0
 	lda     L8963                           ; 89C4 AD 63 89                 .c.
 	sta     $A3                             ; 89C7 85 A3                    ..
 	lda     #$00                            ; 89C9 A9 00                    ..
