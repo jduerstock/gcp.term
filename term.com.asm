@@ -198,6 +198,11 @@ SYSVBV		:= $E45F
 	lda	#<a1
 .endmacro
 
+.macro ldyxi a1
+	ldy	#>a1
+	ldx	#<a1
+.endmacro
+
 .macro shladdm8 a1, a2, a3
 	lda     a3
 	asl     a
@@ -7904,7 +7909,7 @@ L8985:	.byte	$00
 	brk                                     ; 8986 00                       .
 	brk                                     ; 8987 00                       .
 	brk                                     ; 8988 00                       .
-	brk                                     ; 8989 00                       .
+L8989:	.byte	$00
 	brk                                     ; 898A 00                       .
 	brk                                     ; 898B 00                       .
 	brk                                     ; 898C 00                       .
@@ -8011,15 +8016,8 @@ L8AAD:  lda     #$00                            ; 8AAD A9 00                    
 L8AD9:  lda     L89A2                           ; 8AD9 AD A2 89                 ...
 	eor     #$01                            ; 8ADC 49 01                    I.
 	lbne	L8B4E
-	clc                                     ; 8AE3 18                       .
-	lda     L8962                           ; 8AE4 AD 62 89                 .b.
-	adc     #$16                            ; 8AE7 69 16                    i.
-	sta     $A0                             ; 8AE9 85 A0                    ..
-	lda     L8963                           ; 8AEB AD 63 89                 .c.
-	adc     #$00                            ; 8AEE 69 00                    i.
-	sta     $A1                             ; 8AF0 85 A1                    ..
-	lda     L896C                           ; 8AF2 AD 6C 89                 .l.
-	sta     $A3                             ; 8AF5 85 A3                    ..
+	add16i	$A0, L8962, $0016
+	mv	$A3, L896C
 	rdldi	$A4, L896D
 	ldy     L896B                           ; 8AFF AC 6B 89                 .k.
 	ldxa	$A0
@@ -8078,16 +8076,12 @@ L8BAD:  lda     L896A                           ; 8BAD AD 6A 89                 
 	lda     #$05                            ; 8BB6 A9 05                    ..
 	sta     $A4                             ; 8BB8 85 A4                    ..
 	ldy     L8969                           ; 8BBA AC 69 89                 .i.
-	ldx     #$89                            ; 8BBD A2 89                    ..
-	lda     #$A9                            ; 8BBF A9 A9                    ..
+	ldxai	L89A9
 	jsr     sub_461F
 	lda     L89AD                           ; 8BC4 AD AD 89                 ...
 	eor     #$FF                            ; 8BC7 49 FF                    I.
-	beq     L8BCE                           ; 8BC9 F0 03                    ..
-	jmp     L8BD1                           ; 8BCB 4C D1 8B                 L..
-
-; ----------------------------------------------------------------------------
-L8BCE:  jmp     L8CD5                           ; 8BCE 4C D5 8C                 L..
+	lbne	L8BD1
+	jmp     L8CD5                           ; 8BCE 4C D5 8C                 L..
 
 ; ----------------------------------------------------------------------------
 L8BD1:  lda     L89A9                           ; 8BD1 AD A9 89                 ...
@@ -8148,19 +8142,15 @@ L8BD1:  lda     L89A9                           ; 8BD1 AD A9 89                 
 	sta     L8991                           ; 8C4D 8D 91 89                 ...
 	lda     L8991                           ; 8C50 AD 91 89                 ...
 	eor     #$01                            ; 8C53 49 01                    I.
-	beq     L8C5A                           ; 8C55 F0 03                    ..
-	jmp     L8CBE                           ; 8C57 4C BE 8C                 L..
-
-; ----------------------------------------------------------------------------
-L8C5A:  lda     L896C                           ; 8C5A AD 6C 89                 .l.
+	lbne	L8CBE
+	lda     L896C                           ; 8C5A AD 6C 89                 .l.
 	sta     $A3                             ; 8C5D 85 A3                    ..
 	lda     #$89                            ; 8C5F A9 89                    ..
 	sta     $A5                             ; 8C61 85 A5                    ..
 	lda     #$79                            ; 8C63 A9 79                    .y
 	sta     $A4                             ; 8C65 85 A4                    ..
 	ldy     L896B                           ; 8C67 AC 6B 89                 .k.
-	ldx     #$89                            ; 8C6A A2 89                    ..
-	lda     #$89                            ; 8C6C A9 89                    ..
+	ldxai	L8989
 	jsr     sub_4CF5
 	lda     #$89                            ; 8C71 A9 89                    ..
 	sta     $A3                             ; 8C73 85 A3                    ..
@@ -8194,13 +8184,7 @@ L8C5A:  lda     L896C                           ; 8C5A AD 6C 89                 
 	ldx     L8990                           ; 8CB5 AE 90 89                 ...
 	lda     L898F                           ; 8CB8 AD 8F 89                 ...
 	jsr     L884C                           ; 8CBB 20 4C 88                  L.
-L8CBE:  clc                                     ; 8CBE 18                       .
-	lda     L8969                           ; 8CBF AD 69 89                 .i.
-	adc     #$06                            ; 8CC2 69 06                    i.
-	sta     L8969                           ; 8CC4 8D 69 89                 .i.
-	lda     L896A                           ; 8CC7 AD 6A 89                 .j.
-	adc     #$00                            ; 8CCA 69 00                    i.
-	sta     L896A                           ; 8CCC 8D 6A 89                 .j.
+L8CBE:	add16i	L8969, L8969, $0006
 	inc     L8992                           ; 8CCF EE 92 89                 ...
 	jmp     L8BA1                           ; 8CD2 4C A1 8B                 L..
 
@@ -8214,8 +8198,7 @@ L8CD5:  lda     L896C                           ; 8CD5 AD 6C 89                 
 	ldy     L896B                           ; 8CE4 AC 6B 89                 .k.
 	ldxai	L897D
 	jsr     sub_4C1D
-	ldy     #$89                            ; 8CEE A0 89                    ..
-	ldx     #$7D                            ; 8CF0 A2 7D                    .}
+	ldyxi	L897D
 	lda     L8961                           ; 8CF2 AD 61 89                 .a.
 	jsr     L8573                           ; 8CF5 20 73 85                  s.
 	rts                                     ; 8CF8 60                       `
