@@ -7984,13 +7984,7 @@ L89AE:  prolog
 	sta     $AE                             ; 8A66 85 AE                    ..
 	txa                                     ; 8A68 8A                       .
 	sta     $AF                             ; 8A69 85 AF                    ..
-	clc                                     ; 8A6B 18                       .
-	lda     L466D                           ; 8A6C AD 6D 46                 .mF
-	adc     $AE                             ; 8A6F 65 AE                    e.
-	sta     $AC                             ; 8A71 85 AC                    ..
-	lda     L466E                           ; 8A73 AD 6E 46                 .nF
-	adc     $AF                             ; 8A76 65 AF                    e.
-	sta     $AD                             ; 8A78 85 AD                    ..
+	add16m	off_AC, L466D, off_AE
 	clc                                     ; 8A7A 18                       .
 	lda     $AC                             ; 8A7B A5 AC                    ..
 	adc     L8993                           ; 8A7D 6D 93 89                 m..
