@@ -3523,8 +3523,7 @@ L5E8F:  lda     #$00                            ; 5E8F A9 00                    
 	lda     #$00                            ; 5EA5 A9 00                    ..
 	sta     $A7                             ; 5EA7 85 A7                    ..
 	ldy     #$2A                            ; 5EA9 A0 2A                    .*
-	ldx     #$5E                            ; 5EAB A2 5E                    .^
-	lda     #$8B                            ; 5EAD A9 8B                    ..
+	ldxai	L5E8B
 	jsr     sub_55A0
 L5EB2:  lda     L4653                           ; 5EB2 AD 53 46                 .SF
 	cmp     L5E5D                           ; 5EB5 CD 5D 5E                 .]^
