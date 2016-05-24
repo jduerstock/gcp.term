@@ -7431,13 +7431,11 @@ L8570:  .byte   $CE                             ; 8570 CE                       
 L8571:  .byte   $6C                             ; 8571 6C                       l
 L8572:  asl     a                               ; 8572 0A                       .
 
-L8573:  stack_prolog L8550, $02
+sub_8573:  
+	stack_prolog L8550, $02
 	lda     L8550                           ; 857C AD 50 85                 .P.
 	jsr     sub_7035
-	lda     $A1                             ; 8582 A5 A1                    ..
-	sta     L8557                           ; 8584 8D 57 85                 .W.
-	lda     $A0                             ; 8587 A5 A0                    ..
-	sta     L8556                           ; 8589 8D 56 85                 .V.
+	rdmv	L8556, $A0
 	lda     L8557                           ; 858C AD 57 85                 .W.
 	sta     $A3                             ; 858F 85 A3                    ..
 	lda     #$00                            ; 8591 A9 00                    ..
@@ -7445,8 +7443,7 @@ L8573:  stack_prolog L8550, $02
 	lda     #$07                            ; 8595 A9 07                    ..
 	sta     $A4                             ; 8597 85 A4                    ..
 	ldy     L8556                           ; 8599 AC 56 85                 .V.
-	ldx     #$85                            ; 859C A2 85                    ..
-	lda     #$64                            ; 859E A9 64                    .d
+	ldxai	L8564
 	jsr     sub_461F
 	lda     L8552                           ; 85A3 AD 52 85                 .R.
 	sta     $A3                             ; 85A6 85 A3                    ..
@@ -8200,7 +8197,7 @@ L8CD5:  lda     L896C                           ; 8CD5 AD 6C 89                 
 	jsr     sub_4C1D
 	ldyxi	L897D
 	lda     L8961                           ; 8CF2 AD 61 89                 .a.
-	jsr     L8573                           ; 8CF5 20 73 85                  s.
+	jsr     sub_8573
 	rts                                     ; 8CF8 60                       `
 
 ; ----------------------------------------------------------------------------
