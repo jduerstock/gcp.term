@@ -8479,18 +8479,16 @@ L8E10:	ldxa	L4762
 L8E1E:  rts                                     ; 8E1E 60                       `
 
 ; ----------------------------------------------------------------------------
-	brk                                     ; 8E1F 00                       .
+L8E1F:	brk                                     ; 8E1F 00                       .
 L8E20:  brk                                     ; 8E20 00                       .
 L8E21:  brk                                     ; 8E21 00                       .
 L8E22:  brk                                     ; 8E22 00                       .
 L8E23:  brk                                     ; 8E23 00                       .
 
-L8E24:	prolog
-	jsr     sub_44D5                        ; 8E27 20 D5 44                  .D
-	.byte   $1F                             ; 8E2A 1F                       .
-	stx     LAD02                           ; 8E2B 8E 02 AD                 ...
-	.byte   $1F                             ; 8E2E 1F                       .
-	stx     L7F29                           ; 8E2F 8E 29 7F                 .).
+L8E24:	
+	stack_prolog L8E1F, $02
+	lda	L8E1F
+	and	#$7F
 	sta     L8E22                           ; 8E32 8D 22 8E                 .".
 	lda     #$00                            ; 8E35 A9 00                    ..
 	sta     L8E23                           ; 8E37 8D 23 8E                 .#.
