@@ -7530,13 +7530,7 @@ L86C8:	add16m8	$A2, L8558, L8553
 	ldx     L856B                           ; 86DA AE 6B 85                 .k.
 	lda     L855D                           ; 86DD AD 5D 85                 .].
 	jsr     sub_8521
-	clc                                     ; 86E3 18                       .
-	lda     L8558                           ; 86E4 AD 58 85                 .X.
-	adc     L8554                           ; 86E7 6D 54 85                 mT.
-	sta     $A2                             ; 86EA 85 A2                    ..
-	lda     L8559                           ; 86EC AD 59 85                 .Y.
-	adc     #$00                            ; 86EF 69 00                    i.
-	sta     $A3                             ; 86F1 85 A3                    ..
+	add16m8	$A2, L8558, L8554
 	ldy     $A2                             ; 86F3 A4 A2                    ..
 	ldx     L856D                           ; 86F5 AE 6D 85                 .m.
 	lda     L855E                           ; 86F8 AD 5E 85                 .^.
