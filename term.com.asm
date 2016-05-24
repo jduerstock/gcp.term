@@ -7982,16 +7982,10 @@ L89AE:  prolog
 	jsr     sub_461F
 	sub8m	off_AE, L89A7, L89A5
 	add8i	L8968, off_AE, $01
-	clc                                     ; 8A24 18                       .
-	lda     L89A6                           ; 8A25 AD A6 89                 ...
-	adc     L8998                           ; 8A28 6D 98 89                 m..
-	sta     $A0                             ; 8A2B 85 A0                    ..
+	add8m	$A0, L89A6, L8998
 	lda     $A0                             ; 8A2D A5 A0                    ..
 	jsr     sub_4945
-	lda     $A1                             ; 8A32 A5 A1                    ..
-	sta     L8996                           ; 8A34 8D 96 89                 ...
-	lda     $A0                             ; 8A37 A5 A0                    ..
-	sta     L8995                           ; 8A39 8D 95 89                 ...
+	rdmv	L8995, $A0
 	clc                                     ; 8A3C 18                       .
 	lda     L89A5                           ; 8A3D AD A5 89                 ...
 	adc     L8997                           ; 8A40 6D 97 89                 m..
