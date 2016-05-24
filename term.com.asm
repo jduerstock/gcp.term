@@ -7985,23 +7985,11 @@ L89AE:  prolog
 	txa                                     ; 8A68 8A                       .
 	sta     $AF                             ; 8A69 85 AF                    ..
 	add16m	off_AC, L466D, off_AE
-	clc                                     ; 8A7A 18                       .
-	lda     $AC                             ; 8A7B A5 AC                    ..
-	adc     L8993                           ; 8A7D 6D 93 89                 m..
-	sta     L8964                           ; 8A80 8D 64 89                 .d.
-	lda     $AD                             ; 8A83 A5 AD                    ..
-	adc     L8994                           ; 8A85 6D 94 89                 m..
-	sta     L8965                           ; 8A88 8D 65 89                 .e.
+	add16m	L8964, off_AC, L8993
 	ldy     #$01                            ; 8A8B A0 01                    ..
 	sty     L8992                           ; 8A8D 8C 92 89                 ...
-	sec                                     ; 8A90 38                       8
-	lda     L89A8                           ; 8A91 AD A8 89                 ...
-	sbc     L89A6                           ; 8A94 ED A6 89                 ...
-	sta     $AE                             ; 8A97 85 AE                    ..
-	clc                                     ; 8A99 18                       .
-	lda     $AE                             ; 8A9A A5 AE                    ..
-	adc     #$01                            ; 8A9C 69 01                    i.
-	sta     L8AAC                           ; 8A9E 8D AC 8A                 ...
+	sub8m	off_AE, L89A8, L89A6
+	add8i	L8AAC, off_AE, $01
 L8AA1:  lda     L8AAC                           ; 8AA1 AD AC 8A                 ...
 	cmp     L8992                           ; 8AA4 CD 92 89                 ...
 	bcs     L8AAD                           ; 8AA7 B0 04                    ..
