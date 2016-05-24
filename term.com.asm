@@ -1078,8 +1078,7 @@ L4832:	.addr	L482B
 L4834:	.byte	$03,"CA8"
 L4838:	.addr	L4834
 L483A:	.byte	$01,"D"
-	.byte   $3A                             ; 483C 3A                       :
-	pha                                     ; 483D 48                       H
+L483D:	.addr	L483A
 	brk                                     ; 483E 00                       .
 	rol     $0148,x                         ; 483F 3E 48 01                 >H.
 	.byte   $44                             ; 4842 44                       D
