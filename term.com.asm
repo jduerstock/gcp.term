@@ -5107,17 +5107,7 @@ L6E61:
 	sta     L6E49                           ; 6E9F 8D 49 6E                 .In
 	lda     L6E49                           ; 6EA2 AD 49 6E                 .In
 	sta     L6E4A                           ; 6EA5 8D 4A 6E                 .Jn
-	lda     L6E43                           ; 6EA8 AD 43 6E                 .Cn
-	asl     a                               ; 6EAB 0A                       .
-	php                                     ; 6EAC 08                       .
-	clc                                     ; 6EAD 18                       .
-	adc     L6E5F                           ; 6EAE 6D 5F 6E                 m_n
-	sta     $AE                             ; 6EB1 85 AE                    ..
-	lda     #$00                            ; 6EB3 A9 00                    ..
-	rol     a                               ; 6EB5 2A                       *
-	plp                                     ; 6EB6 28                       (
-	adc     L6E60                           ; 6EB7 6D 60 6E                 m`n
-	sta     $AF                             ; 6EBA 85 AF                    ..
+	shladdm8 off_AE, L6E5F, L6E43
 	clc                                     ; 6EBC 18                       .
 	ldy     #$00                            ; 6EBD A0 00                    ..
 	lda     ($AE),y                         ; 6EBF B1 AE                    ..
