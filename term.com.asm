@@ -11576,7 +11576,7 @@ LA9F9:  brk                                     ; A9F9 00                       
 LA9FA:  brk                                     ; A9FA 00                       .
 
 ; ----------------------------------------------------------------------------
-LA9FB:
+sub_A9FB:
 	prolog
 	sub16m	LA9F9, MEMTOP, MEMLO
 	lda     LA9FA                           ; AA11 AD FA A9                 ...
@@ -11668,7 +11668,7 @@ LAA86:	.addr	L6AD5
 	.addr	sub_8F55
 	.addr	L8E24
 	.addr	LA9DE
-	.addr	LA9FB
+	.addr	sub_A9FB
 	.addr	LA9EC
 	.addr	L968E
 	.addr	sub_97A1
@@ -11877,26 +11877,17 @@ LACA9:  lda     #$11                            ; ACA9 A9 11                    
 	rti                                     ; ACB1 40                       @
 
 ; ----------------------------------------------------------------------------
-LACB2:  lda     $A0                             ; ACB2 A5 A0                    ..
+sub_ACB2:  
+	lda     $A0                             ; ACB2 A5 A0                    ..
 	pha                                     ; ACB4 48                       H
-	lda     $AE                             ; ACB5 A5 AE                    ..
-	pha                                     ; ACB7 48                       H
-	lda     $AF                             ; ACB8 A5 AF                    ..
-	pha                                     ; ACBA 48                       H
+	lda	$AE
+	pha
+	lda	$AF
+	pha
 	ldx     $E8                             ; ACBB A6 E8                    ..
 	lda     L46EF,x                         ; ACBD BD EF 46                 ..F
 	sta     $A0                             ; ACC0 85 A0                    ..
-	lda     $A0                             ; ACC2 A5 A0                    ..
-	asl     a                               ; ACC4 0A                       .
-	php                                     ; ACC5 08                       .
-	clc                                     ; ACC6 18                       .
-	adc     L46F5                           ; ACC7 6D F5 46                 m.F
-	sta     $AE                             ; ACCA 85 AE                    ..
-	lda     #$00                            ; ACCC A9 00                    ..
-	rol     a                               ; ACCE 2A                       *
-	plp                                     ; ACCF 28                       (
-	adc     L46F6                           ; ACD0 6D F6 46                 m.F
-	sta     $AF                             ; ACD3 85 AF                    ..
+	shladdm8 off_AE, L46F5, $A0
 	ldy     #$01                            ; ACD5 A0 01                    ..
 	lda     ($AE),y                         ; ACD7 B1 AE                    ..
 	sta     $E1                             ; ACD9 85 E1                    ..
@@ -11946,7 +11937,7 @@ LAD18:  sta     $D01A                           ; AD18 8D 1A D0                 
 	sta     $D018                           ; AD1D 8D 18 D0                 ...
 	lda     $E4                             ; AD20 A5 E4                    ..
 	sta     $D017                           ; AD22 8D 17 D0                 ...
-	jsr     LACB2                           ; AD25 20 B2 AC                  ..
+	jsr     sub_ACB2
 	pla                                     ; AD28 68                       h
 	tay                                     ; AD29 A8                       .
 	pla                                     ; AD2A 68                       h
@@ -11994,7 +11985,7 @@ sub_AD59:
 	sta     $D017                           ; AD74 8D 17 D0                 ...
 	ldy     #$01                            ; AD77 A0 01                    ..
 	sty     $E8                             ; AD79 84 E8                    ..
-	jsr     LACB2                           ; AD7B 20 B2 AC                  ..
+	jsr     sub_ACB2
 	jmp     SYSVBV
 
 ; ----------------------------------------------------------------------------
@@ -12060,7 +12051,7 @@ sub_ADEA:
 	jsr     sub_AD85
 	jsr     sub_6203
 	jsr     sub_5D67
-	jsr     LA9FB                           ; AE57 20 FB A9                  ..
+	jsr     sub_A9FB
 	sei                                     ; AE5A 78                       x
 	lda     $10                             ; AE5B A5 10                    ..
 	and     #$7F                            ; AE5D 29 7F                    ).
