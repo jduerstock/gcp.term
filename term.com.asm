@@ -7949,10 +7949,7 @@ L89AE:  prolog
 	rdmv	L8962, $A0
 	lda     L8963                           ; 89C4 AD 63 89                 .c.
 	sta     $A3                             ; 89C7 85 A3                    ..
-	lda     #$00                            ; 89C9 A9 00                    ..
-	sta     $A5                             ; 89CB 85 A5                    ..
-	lda     #$0E                            ; 89CD A9 0E                    ..
-	sta     $A4                             ; 89CF 85 A4                    ..
+	rdldi	$A4, $000E
 	ldy     L8962                           ; 89D1 AC 62 89                 .b.
 	ldxai	L8997
 	jsr     sub_461F
