@@ -7500,23 +7500,14 @@ L8634:  ldy     #$00                            ; 8634 A0 00                    
 	lbne	L8648
 	iny                                     ; 8644 C8                       .
 	sty     L855F                           ; 8645 8C 5F 85                 ._.
-L8648:  lda     #$00                            ; 8648 A9 00                    ..
-	sta     $85                             ; 864A 85 85                    ..
-	lda     #$28                            ; 864C A9 28                    .(
-	sta     $84                             ; 864E 85 84                    ..
+L8648:	rdldi	$84, $0028
 	lda     L8561                           ; 8650 AD 61 85                 .a.
 	ldx     #$00                            ; 8653 A2 00                    ..
 	jsr     sub_444A
 	sta     $AE                             ; 8658 85 AE                    ..
 	txa                                     ; 865A 8A                       .
 	sta     $AF                             ; 865B 85 AF                    ..
-	clc                                     ; 865D 18                       .
-	lda     L466D                           ; 865E AD 6D 46                 .mF
-	adc     $AE                             ; 8661 65 AE                    e.
-	sta     L8558                           ; 8663 8D 58 85                 .X.
-	lda     L466E                           ; 8666 AD 6E 46                 .nF
-	adc     $AF                             ; 8669 65 AF                    e.
-	sta     L8559                           ; 866B 8D 59 85                 .Y.
+	add16m	L8558, L466D, $AE
 	sec                                     ; 866E 38                       8
 	lda     L8562                           ; 866F AD 62 85                 .b.
 	sbc     L8560                           ; 8672 ED 60 85                 .`.
