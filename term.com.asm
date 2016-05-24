@@ -7474,14 +7474,8 @@ L860D:  iny                                     ; 860D C8                       
 	sty     L855D                           ; 860E 8C 5D 85                 .].
 L8611:  ldy     #$00                            ; 8611 A0 00                    ..
 	sty     L855E                           ; 8613 8C 5E 85                 .^.
-	clc                                     ; 8616 18                       .
-	lda     L8564                           ; 8617 AD 64 85                 .d.
-	adc     L8569                           ; 861A 6D 69 85                 mi.
-	sta     $AE                             ; 861D 85 AE                    ..
-	sec                                     ; 861F 38                       8
-	lda     $AE                             ; 8620 A5 AE                    ..
-	sbc     #$01                            ; 8622 E9 01                    ..
-	sta     $AC                             ; 8624 85 AC                    ..
+	add8m	off_AE, L8564, L8569
+	sub8i	off_AC, off_AE, $01
 	lda     $AC                             ; 8626 A5 AC                    ..
 	eor     L8562                           ; 8628 4D 62 85                 Mb.
 	lbne	L8634
