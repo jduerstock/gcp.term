@@ -1269,7 +1269,8 @@ L496B:  sta     $A0                             ; 496B 85 A0                    
 	rts                                     ; 496D 60                       `
 
 ; ----------------------------------------------------------------------------
-L496E:  stx     $A0                             ; 496E 86 A0                    ..
+sub_496E:  
+	stx     $A0                             ; 496E 86 A0                    ..
 	cmp     $A0                             ; 4970 C5 A0                    ..
 	bne     L4979                           ; 4972 D0 05                    ..
 	lda     #$00                            ; 4974 A9 00                    ..
@@ -1287,7 +1288,7 @@ L4979:
 ; ----------------------------------------------------------------------------
 sub_4983:  
 	tay                                     ; 4983 A8                       .
-	jsr     L496E                           ; 4984 20 6E 49                  nI
+	jsr     sub_496E
 L4987:  lda     $A0                             ; 4987 A5 A0                    ..
 	beq     L498D                           ; 4989 F0 02                    ..
 	tya                                     ; 498B 98                       .
@@ -1298,7 +1299,7 @@ L498D:  stx     $A0                             ; 498D 86 A0                    
 ; ----------------------------------------------------------------------------
 L4990:  stx     $A3                             ; 4990 86 A3                    ..
 	tay                                     ; 4992 A8                       .
-	jsr     L496E                           ; 4993 20 6E 49                  nI
+	jsr     sub_496E
 	lda     $A0                             ; 4996 A5 A0                    ..
 	beq     L499C                           ; 4998 F0 02                    ..
 	ldy     $A3                             ; 499A A4 A3                    ..
@@ -1726,7 +1727,7 @@ sub_4C75:
 ; ----------------------------------------------------------------------------
 L4CAA:  ldx     L4C73                           ; 4CAA AE 73 4C                 .sL
 	lda     L4C6D                           ; 4CAD AD 6D 4C                 .mL
-	jsr     L496E                           ; 4CB0 20 6E 49                  nI
+	jsr     sub_496E
 	lda     $A0                             ; 4CB3 A5 A0                    ..
 	lbeq	L4CBF
 	ldi	$A0, $00
@@ -1744,7 +1745,7 @@ L4CBF:  ldx     L4C72                           ; 4CBF AE 72 4C                 
 ; ----------------------------------------------------------------------------
 L4CD4:  ldx     L4C74                           ; 4CD4 AE 74 4C                 .tL
 	lda     L4C6E                           ; 4CD7 AD 6E 4C                 .nL
-	jsr     L496E                           ; 4CDA 20 6E 49                  nI
+	jsr     sub_496E
 	lda     $A0                             ; 4CDD A5 A0                    ..
 	lbeq	L4CE9
 	ldi	$A0, $00
@@ -1854,7 +1855,7 @@ L4DCC:  dmv	$AE, L4CF2
 	lda     ($AE),y                         ; 4DEB B1 AE                    ..
 	sta     $A1                             ; 4DED 85 A1                    ..
 	ldxa	$A0
-	jsr     L496E                           ; 4DF3 20 6E 49                  nI
+	jsr     sub_496E
 	lda     $A0                             ; 4DF6 A5 A0                    ..
 	lbeq	L4E02
 	ldi	$A0, $00
@@ -1869,7 +1870,7 @@ L4E02:	add16i	off_AE, L4CF2, $0001
 	lda     ($AE),y                         ; 4E26 B1 AE                    ..
 	sta     $A1                             ; 4E28 85 A1                    ..
 	ldxa	$A0
-	jsr     L496E                           ; 4E2E 20 6E 49                  nI
+	jsr     sub_496E
 	lda     $A0                             ; 4E31 A5 A0                    ..
 	lbeq	L4E3D
 	ldi	$A0, $00
@@ -4534,7 +4535,7 @@ L6861:  sec                                     ; 6861 38                       
 	sta     L67CD                           ; 6892 8D CD 67                 ..g
 	ldx     #$00                            ; 6895 A2 00                    ..
 	lda     L67CD                           ; 6897 AD CD 67                 ..g
-	jsr     L496E                           ; 689A 20 6E 49                  nI
+	jsr     sub_496E
 	lda     $A0                             ; 689D A5 A0                    ..
 	sta     L67CE                           ; 689F 8D CE 67                 ..g
 	lda     L67CE                           ; 68A2 AD CE 67                 ..g
@@ -9317,7 +9318,7 @@ L9547:  ldxai	L941C
 ; ----------------------------------------------------------------------------
 L95B8:  ldx     L941A                           ; 95B8 AE 1A 94                 ...
 	lda     L9051                           ; 95BB AD 51 90                 .Q.
-	jsr     L496E                           ; 95BE 20 6E 49                  nI
+	jsr     sub_496E
 	lda     $A0                             ; 95C1 A5 A0                    ..
 	eor     #$01                            ; 95C3 49 01                    I.
 	lbne	L95DC
