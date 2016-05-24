@@ -4700,17 +4700,7 @@ L69B7:  lda     L6984                           ; 69B7 AD 84 69                 
 	ldy     #$0B                            ; 6A0F A0 0B                    ..
 	ldxa	L6983
 	jsr     sub_619A
-	lda     L6982                           ; 6A1A AD 82 69                 ..i
-	asl     a                               ; 6A1D 0A                       .
-	php                                     ; 6A1E 08                       .
-	clc                                     ; 6A1F 18                       .
-	adc     L46E2                           ; 6A20 6D E2 46                 m.F
-	sta     $AE                             ; 6A23 85 AE                    ..
-	lda     #$00                            ; 6A25 A9 00                    ..
-	rol     a                               ; 6A27 2A                       *
-	plp                                     ; 6A28 28                       (
-	adc     L46E3                           ; 6A29 6D E3 46                 m.F
-	sta     $AF                             ; 6A2C 85 AF                    ..
+	shladdm8 off_AE, L46E2, L6982
 	lda     #$00                            ; 6A2E A9 00                    ..
 	ldy     #$01                            ; 6A30 A0 01                    ..
 	sta     ($AE),y                         ; 6A32 91 AE                    ..
@@ -4719,11 +4709,8 @@ L69B7:  lda     L6984                           ; 69B7 AD 84 69                 
 	sta     ($AE),y                         ; 6A37 91 AE                    ..
 	lda     L6991                           ; 6A39 AD 91 69                 ..i
 	ora     L6992                           ; 6A3C 0D 92 69                 ..i
-	bne     L6A44                           ; 6A3F D0 03                    ..
-	jmp     L6A67                           ; 6A41 4C 67 6A                 Lgj
-
-; ----------------------------------------------------------------------------
-L6A44:  lda     #$00                            ; 6A44 A9 00                    ..
+	lbeq	L6A67
+	lda     #$00                            ; 6A44 A9 00                    ..
 	sta     $85                             ; 6A46 85 85                    ..
 	lda     #$06                            ; 6A48 A9 06                    ..
 	sta     $84                             ; 6A4A 85 84                    ..
