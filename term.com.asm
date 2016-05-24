@@ -5287,8 +5287,7 @@ L705C:  .byte   $3E                             ; 705C 3E                       
 L705D:  .word   $7C06
 
 L705F:	prolog
-	stx     L705C                           ; 7062 8E 5C 70                 .\p
-	sta     L705B                           ; 7065 8D 5B 70                 .[p
+	stxa	L705B
 	lda     L705B                           ; 7068 AD 5B 70                 .[p
 	jsr     sub_7035
 	rdmv	L705D, $A0
