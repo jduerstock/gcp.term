@@ -8041,10 +8041,7 @@ L8AD9:  lda     L89A2                           ; 8AD9 AD A2 89                 
 	jsr     sub_4C1D
 	lda     #$89                            ; 8B37 A9 89                    ..
 	sta     $A3                             ; 8B39 85 A3                    ..
-	lda     #$89                            ; 8B3B A9 89                    ..
-	sta     $A5                             ; 8B3D 85 A5                    ..
-	lda     #$7D                            ; 8B3F A9 7D                    .}
-	sta     $A4                             ; 8B41 85 A4                    ..
+	rdldi	$A4, L897D
 	ldy     #$79                            ; 8B43 A0 79                    .y
 	ldxa	L898D
 	jsr     L884C                           ; 8B4B 20 4C 88                  L.
