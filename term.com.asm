@@ -7845,14 +7845,8 @@ L884F:  jsr     sub_44D5                           ; 884F 20 D5 44              
 	sta     $AF                             ; 88D4 85 AF                    ..
 	add16m	off_AC, L466D, off_AE
 	add16m8	L8837, off_AC, L8842
-	sec                                     ; 88F5 38                       8
-	lda     L8840                           ; 88F6 AD 40 88                 .@.
-	sbc     L883E                           ; 88F9 ED 3E 88                 .>.
-	sta     $AE                             ; 88FC 85 AE                    ..
-	clc                                     ; 88FE 18                       .
-	lda     $AE                             ; 88FF A5 AE                    ..
-	adc     #$01                            ; 8901 69 01                    i.
-	sta     L883C                           ; 8903 8D 3C 88                 .<.
+	sub8m	off_AE, L8840, L883E
+	add8i	L883C, off_AE, $01
 	ldy     #$00                            ; 8906 A0 00                    ..
 	sty     L883B                           ; 8908 8C 3B 88                 .;.
 	sec                                     ; 890B 38                       8
