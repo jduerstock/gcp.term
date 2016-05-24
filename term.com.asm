@@ -1058,12 +1058,8 @@ L4811:	.byte	$02,"DB"
 L4814:	.addr	L4811
 L4816:	.byte	$02,"BB"
 L4819:	.addr	L4816
-	.byte   $03                             ; 481B 03                       .
-	.byte   $44                             ; 481C 44                       D
-	.byte   $44                             ; 481D 44                       D
-	.byte   $42                             ; 481E 42                       B
-	.byte   $1B                             ; 481F 1B                       .
-	pha                                     ; 4820 48                       H
+L481B:	.byte	$03,"DDB"
+L481F:	.addr	L481B
 	.byte   $07                             ; 4821 07                       .
 	.byte   $44                             ; 4822 44                       D
 	.byte   $44                             ; 4823 44                       D
