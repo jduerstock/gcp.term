@@ -7525,13 +7525,7 @@ L8648:	rdldi	$84, $0028
 	ldy     $A2                             ; 86BD A4 A2                    ..
 	ldxa	L855A
 	jsr     sub_45FC
-L86C8:  clc                                     ; 86C8 18                       .
-	lda     L8558                           ; 86C9 AD 58 85                 .X.
-	adc     L8553                           ; 86CC 6D 53 85                 mS.
-	sta     $A2                             ; 86CF 85 A2                    ..
-	lda     L8559                           ; 86D1 AD 59 85                 .Y.
-	adc     #$00                            ; 86D4 69 00                    i.
-	sta     $A3                             ; 86D6 85 A3                    ..
+L86C8:	add16m8	$A2, L8558, L8553
 	ldy     $A2                             ; 86D8 A4 A2                    ..
 	ldx     L856B                           ; 86DA AE 6B 85                 .k.
 	lda     L855D                           ; 86DD AD 5D 85                 .].
