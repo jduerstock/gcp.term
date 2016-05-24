@@ -347,7 +347,8 @@ L43C7:  tsx                                     ; 43C7 BA                       
 	jmp     L43BA                           ; 43CE 4C BA 43                 L.C
 
 ; ----------------------------------------------------------------------------
-L43D1:  ldy     $84                             ; 43D1 A4 84                    ..
+sub_43D1:
+	ldy     $84                             ; 43D1 A4 84                    ..
 	beq     L43DF                           ; 43D3 F0 0A                    ..
 	stx     $85                             ; 43D5 86 85                    ..
 L43D7:  asl     a                               ; 43D7 0A                       .
@@ -3791,7 +3792,7 @@ L60ED:  lda     L6067                           ; 60ED AD 67 60                 
 	lda     L6069                           ; 6136 AD 69 60                 .i`
 	tax                                     ; 6139 AA                       .
 	lda     L6068                           ; 613A AD 68 60                 .h`
-	jsr     L43D1                           ; 613D 20 D1 43                  .C
+	jsr     sub_43D1
 	sta     $AE                             ; 6140 85 AE                    ..
 	txa                                     ; 6142 8A                       .
 	sta     $AF                             ; 6143 85 AF                    ..
@@ -8485,7 +8486,7 @@ L8E21:  brk                                     ; 8E21 00                       
 L8E22:  brk                                     ; 8E22 00                       .
 L8E23:  brk                                     ; 8E23 00                       .
 
-L8E24:	
+sub_8E24:	
 	stack_prolog L8E1F, $02
 	lda	L8E1F
 	and	#$7F
@@ -8497,7 +8498,7 @@ L8E24:
 	lda     L8E23                           ; 8E3E AD 23 8E                 .#.
 	tax                                     ; 8E41 AA                       .
 	lda     L8E22                           ; 8E42 AD 22 8E                 .".
-	jsr     L43D1                           ; 8E45 20 D1 43                  .C
+	jsr     sub_43D1
 	sta     $AE                             ; 8E48 85 AE                    ..
 	txa                                     ; 8E4A 8A                       .
 	sta     $AF                             ; 8E4B 85 AF                    ..
@@ -11664,7 +11665,7 @@ LAA86:	.addr	L6AD5
 	.addr	sub_8EFD
 	.addr	sub_8E7D
 	.addr	sub_8F55
-	.addr	L8E24
+	.addr	sub_8E24
 	.addr	LA9DE
 	.addr	sub_A9FB
 	.addr	LA9EC
