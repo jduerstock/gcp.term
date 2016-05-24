@@ -11806,10 +11806,7 @@ LAB94:	add16m8 off_AE, LAB56, LAB69
 	lbeq	LABEE
 	add16m8 off_AE, LAB56, LAB69
 	lda     ($AE),y                         ; ABC0 B1 AE                    ..
-	beq     LABC7                           ; ABC2 F0 03                    ..
-	jmp     LABE8                           ; ABC4 4C E8 AB                 L..
-
-; ----------------------------------------------------------------------------
+	lbne	LABE8
 LABC7:  jmp     LABCD                           ; ABC7 4C CD AB                 L..
 
 ; ----------------------------------------------------------------------------
