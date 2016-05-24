@@ -1237,9 +1237,10 @@ L48C5:	.addr	L476F
 	bcs     L4987                           ; 493D B0 48                    .H
 	lda     $48,x                           ; 493F B5 48                    .H
 	.addr	L48BA
-	.byte   $BE                             ; 4943 BE                       .
-	pha                                     ; 4944 48                       H
-L4945:  sta     $A0                             ; 4945 85 A0                    ..
+	.addr	L48BE
+
+sub_4945:  
+	sta     $A0                             ; 4945 85 A0                    ..
 	tax                                     ; 4947 AA                       .
 	lda     #$00                            ; 4948 A9 00                    ..
 	sta     $A1                             ; 494A 85 A1                    ..
@@ -8093,7 +8094,7 @@ L89AE:  prolog
 	adc     L8998                           ; 8A28 6D 98 89                 m..
 	sta     $A0                             ; 8A2B 85 A0                    ..
 	lda     $A0                             ; 8A2D A5 A0                    ..
-	jsr     L4945                           ; 8A2F 20 45 49                  EI
+	jsr     sub_4945
 	lda     $A1                             ; 8A32 A5 A1                    ..
 	sta     L8996                           ; 8A34 8D 96 89                 ...
 	lda     $A0                             ; 8A37 A5 A0                    ..
@@ -8103,7 +8104,7 @@ L89AE:  prolog
 	adc     L8997                           ; 8A40 6D 97 89                 m..
 	sta     $A0                             ; 8A43 85 A0                    ..
 	lda     $A0                             ; 8A45 A5 A0                    ..
-	jsr     L4945                           ; 8A47 20 45 49                  EI
+	jsr     sub_4945
 	lda     $A1                             ; 8A4A A5 A1                    ..
 	sta     L8994                           ; 8A4C 8D 94 89                 ...
 	lda     $A0                             ; 8A4F A5 A0                    ..
