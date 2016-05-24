@@ -7438,10 +7438,7 @@ sub_8573:
 	rdmv	L8556, $A0
 	lda     L8557                           ; 858C AD 57 85                 .W.
 	sta     $A3                             ; 858F 85 A3                    ..
-	lda     #$00                            ; 8591 A9 00                    ..
-	sta     $A5                             ; 8593 85 A5                    ..
-	lda     #$07                            ; 8595 A9 07                    ..
-	sta     $A4                             ; 8597 85 A4                    ..
+	rdldi	$A4, $0007
 	ldy     L8556                           ; 8599 AC 56 85                 .V.
 	ldxai	L8564
 	jsr     sub_461F
