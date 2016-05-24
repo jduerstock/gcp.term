@@ -7864,8 +7864,7 @@ L8921:  lda     L883A                           ; 8921 AD 3A 88                 
 	lda     L883C                           ; 8926 AD 3C 88                 .<.
 	sta     $A4                             ; 8929 85 A4                    ..
 	ldy     L8839                           ; 892B AC 39 88                 .9.
-	ldx     L8838                           ; 892E AE 38 88                 .8.
-	lda     L8837                           ; 8931 AD 37 88                 .7.
+	ldxa	L8837
 	jsr     sub_8819
 	add16i	L8837, L8837, $0028
 	add16m8 L8839, L8839, L8846
