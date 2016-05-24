@@ -7876,7 +7876,7 @@ L8969:  brk                                     ; 8969 00                       
 L896A:  brk                                     ; 896A 00                       .
 L896B:  brk                                     ; 896B 00                       .
 L896C:  brk                                     ; 896C 00                       .
-	brk                                     ; 896D 00                       .
+L896D:	brk                                     ; 896D 00                       .
 	brk                                     ; 896E 00                       .
 	brk                                     ; 896F 00                       .
 	brk                                     ; 8970 00                       .
@@ -8023,29 +8023,19 @@ L8AD9:  lda     L89A2                           ; 8AD9 AD A2 89                 
 	sta     $A1                             ; 8AF0 85 A1                    ..
 	lda     L896C                           ; 8AF2 AD 6C 89                 .l.
 	sta     $A3                             ; 8AF5 85 A3                    ..
-	lda     #$89                            ; 8AF7 A9 89                    ..
-	sta     $A5                             ; 8AF9 85 A5                    ..
-	lda     #$6D                            ; 8AFB A9 6D                    .m
-	sta     $A4                             ; 8AFD 85 A4                    ..
+	rdldi	$A4, L896D
 	ldy     L896B                           ; 8AFF AC 6B 89                 .k.
-	ldx     $A1                             ; 8B02 A6 A1                    ..
-	lda     $A0                             ; 8B04 A5 A0                    ..
+	ldxa	$A0
 	jsr     sub_4CF5
 	lda     #$89                            ; 8B09 A9 89                    ..
 	sta     $A3                             ; 8B0B 85 A3                    ..
-	lda     L8997                           ; 8B0D AD 97 89                 ...
-	sta     $A4                             ; 8B10 85 A4                    ..
-	lda     L8998                           ; 8B12 AD 98 89                 ...
-	sta     $A5                             ; 8B15 85 A5                    ..
+	dmv	$A4, L8997
 	ldy     #$6D                            ; 8B17 A0 6D                    .m
 	ldxai	L897D
 	jsr     sub_4C1D
 	lda     #$89                            ; 8B20 A9 89                    ..
 	sta     $A3                             ; 8B22 85 A3                    ..
-	lda     L8999                           ; 8B24 AD 99 89                 ...
-	sta     $A4                             ; 8B27 85 A4                    ..
-	lda     L899A                           ; 8B29 AD 9A 89                 ...
-	sta     $A5                             ; 8B2C 85 A5                    ..
+	dmv	$A4, L8999
 	ldy     #$6D                            ; 8B2E A0 6D                    .m
 	ldxai	$8979
 	jsr     sub_4C1D
