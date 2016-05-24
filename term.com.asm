@@ -1165,12 +1165,9 @@ L48C3:	.addr	L476B
 	.addr	L47E7
 	.addr	L47EC
 	.addr	L47F2
-	sed                                     ; 48F3 F8                       .
-	.byte   $47                             ; 48F4 47                       G
-	.byte   $FC                             ; 48F5 FC                       .
-	.byte   $47                             ; 48F6 47                       G
-	brk                                     ; 48F7 00                       .
-	pha                                     ; 48F8 48                       H
+	.addr	L47F8
+	.addr	L47FC
+	.addr	L4800
 	.byte   $04                             ; 48F9 04                       .
 	pha                                     ; 48FA 48                       H
 	php                                     ; 48FB 08                       .
