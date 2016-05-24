@@ -7965,22 +7965,12 @@ L89AE:  prolog
 	lda     #$0E                            ; 89CD A9 0E                    ..
 	sta     $A4                             ; 89CF 85 A4                    ..
 	ldy     L8962                           ; 89D1 AC 62 89                 .b.
-	ldx     #$89                            ; 89D4 A2 89                    ..
-	lda     #$97                            ; 89D6 A9 97                    ..
+	ldxai	L8997
 	jsr     sub_461F
 	lda     L899B                           ; 89DB AD 9B 89                 ...
 	jsr     sub_65B0
-	lda     $A1                             ; 89E1 A5 A1                    ..
-	sta     L898E                           ; 89E3 8D 8E 89                 ...
-	lda     $A0                             ; 89E6 A5 A0                    ..
-	sta     L898D                           ; 89E8 8D 8D 89                 ...
-	clc                                     ; 89EB 18                       .
-	lda     L8962                           ; 89EC AD 62 89                 .b.
-	adc     #$1A                            ; 89EF 69 1A                    i.
-	sta     L896B                           ; 89F1 8D 6B 89                 .k.
-	lda     L8963                           ; 89F4 AD 63 89                 .c.
-	adc     #$00                            ; 89F7 69 00                    i.
-	sta     L896C                           ; 89F9 8D 6C 89                 .l.
+	rdmv	L898D, $A0
+	add16i	L896B, L8962, $001A
 	lda     L896C                           ; 89FC AD 6C 89                 .l.
 	sta     $A3                             ; 89FF 85 A3                    ..
 	lda     #$00                            ; 8A01 A9 00                    ..
@@ -7988,8 +7978,7 @@ L89AE:  prolog
 	lda     #$04                            ; 8A05 A9 04                    ..
 	sta     $A4                             ; 8A07 85 A4                    ..
 	ldy     L896B                           ; 8A09 AC 6B 89                 .k.
-	ldx     #$89                            ; 8A0C A2 89                    ..
-	lda     #$A5                            ; 8A0E A9 A5                    ..
+	ldxai	$89A5
 	jsr     sub_461F
 	sec                                     ; 8A13 38                       8
 	lda     L89A7                           ; 8A14 AD A7 89                 ...
