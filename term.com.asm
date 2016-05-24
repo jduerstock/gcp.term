@@ -7812,17 +7812,7 @@ L884F:  jsr     sub_44D5                           ; 884F 20 D5 44              
 	ldy     L8831                           ; 8890 AC 31 88                 .1.
 	ldxai	L8846
 	jsr     sub_461F
-	lda     L883F                           ; 889A AD 3F 88                 .?.
-	asl     a                               ; 889D 0A                       .
-	php                                     ; 889E 08                       .
-	clc                                     ; 889F 18                       .
-	adc     L884A                           ; 88A0 6D 4A 88                 mJ.
-	sta     $AE                             ; 88A3 85 AE                    ..
-	lda     #$00                            ; 88A5 A9 00                    ..
-	rol     a                               ; 88A7 2A                       *
-	plp                                     ; 88A8 28                       (
-	adc     L884B                           ; 88A9 6D 4B 88                 mK.
-	sta     $AF                             ; 88AC 85 AF                    ..
+	shladdm8 off_AE, L884A, L883F
 	clc                                     ; 88AE 18                       .
 	ldy     #$00                            ; 88AF A0 00                    ..
 	lda     ($AE),y                         ; 88B1 B1 AE                    ..
