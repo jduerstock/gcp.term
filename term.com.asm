@@ -1106,23 +1106,15 @@ L486A:	.addr	L4866
 L486C:	.byte	$03,"BDs"
 L4870:	.addr	L486C
 L4872:	.byte	$02,"Ds"
-	.addr	L4872
-	.byte   $02                             ; 4877 02                       .
-	.byte   $44                             ; 4878 44                       D
-	.byte   $73                             ; 4879 73                       s
-	.byte   $77                             ; 487A 77                       w
-	pha                                     ; 487B 48                       H
-	.byte   $03                             ; 487C 03                       .
-	.byte   $42                             ; 487D 42                       B
-	.byte   $44                             ; 487E 44                       D
-	.byte   $42                             ; 487F 42                       B
-	.byte   $7C                             ; 4880 7C                       |
-	pha                                     ; 4881 48                       H
-	ora     ($43,x)                         ; 4882 01 43                    .C
-	.byte   $82                             ; 4884 82                       .
-	pha                                     ; 4885 48                       H
-	brk                                     ; 4886 00                       .
-	stx     $48                             ; 4887 86 48                    .H
+L4875:	.addr	L4872
+L4877:	.byte	$02,"Ds"
+L487A:	.addr	L4877
+L487C:	.byte	$03,"BDB"
+L4880:	.addr	L487C
+L4882:	.byte	$01,"C"
+L4884:	.addr	L4882
+L4886:	.byte	$00
+L4887:	.addr	L4886
 L4889:	.byte	$03,"BBB"
 L488D:	.addr	L4889
 L488F:	.byte	$01,"B"
@@ -1215,14 +1207,11 @@ L48C3:	.addr	L476B
 	pha                                     ; 4918 48                       H
 	.addr	L4859
 	.addr	L485D
-	.byte   $64                             ; 491D 64                       d
-	pha                                     ; 491E 48                       H
-	ror     a                               ; 491F 6A                       j
-	pha                                     ; 4920 48                       H
-	bvs     L496B                           ; 4921 70 48                    pH
-	adc     $48,x                           ; 4923 75 48                    uH
-	.byte   $7A                             ; 4925 7A                       z
-	pha                                     ; 4926 48                       H
+	.addr	L4864
+	.addr	L486A
+	.addr	L4870
+	.addr	L4875
+	.addr	L487A
 	.byte   $80                             ; 4927 80                       .
 	pha                                     ; 4928 48                       H
 	sty     $48                             ; 4929 84 48                    .H
