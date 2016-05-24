@@ -7810,8 +7810,7 @@ L884F:  jsr     sub_44D5                           ; 884F 20 D5 44              
 	lda     #$06                            ; 888C A9 06                    ..
 	sta     $A4                             ; 888E 85 A4                    ..
 	ldy     L8831                           ; 8890 AC 31 88                 .1.
-	ldx     #$88                            ; 8893 A2 88                    ..
-	lda     #$46                            ; 8895 A9 46                    .F
+	ldxai	L8846
 	jsr     sub_461F
 	lda     L883F                           ; 889A AD 3F 88                 .?.
 	asl     a                               ; 889D 0A                       .
