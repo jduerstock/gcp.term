@@ -1065,9 +1065,8 @@ L4829:	.addr	L4821
 L482B:	.byte	$06,"DDDDDD"
 L4832:	.addr	L482B
 L4834:	.byte	$03,"CA8"
-	.byte   $34                             ; 4838 34                       4
-	pha                                     ; 4839 48                       H
-	ora     ($44,x)                         ; 483A 01 44                    .D
+L4838:	.addr	L4834
+L483A:	.byte	$01,"D"
 	.byte   $3A                             ; 483C 3A                       :
 	pha                                     ; 483D 48                       H
 	brk                                     ; 483E 00                       .
@@ -1126,29 +1125,22 @@ L489E:	.byte	$01,"B"
 L48A0:	.addr	L489E
 L48A2:	.byte	$00
 L48A3:	.addr	L48A2
-	.byte   $02                             ; 48A5 02                       .
-	.byte   $42                             ; 48A6 42                       B
-	.byte   $42                             ; 48A7 42                       B
-	lda     $48                             ; 48A8 A5 48                    .H
-	brk                                     ; 48AA 00                       .
-	tax                                     ; 48AB AA                       .
-	pha                                     ; 48AC 48                       H
-L48AD:	.byte   $02                             ; 48AD 02                       .
-	.byte   $44                             ; 48AE 44                       D
-	.byte   $42                             ; 48AF 42                       B
-	.addr	L48AD
+L48A5:	.byte	$02,"BB"
+L48A8:	.addr	L48A5
+L48AA:	.byte	$00
+L48AB:	.addr	L48AA
+L48AD:	.byte   $02,"DB"
+L48B0:	.addr	L48AD
 L48B2:	.byte	$02,"BB"
-	.addr	L48B2
+L48B5:	.addr	L48B2
 L48B7:	.byte   $02,"BB"
 L48BA:	.addr	L48B7
 L48BC:	.byte	$01,"B"
 L48BE:	.addr	L48BC
 	.byte	$4C
 L48C1:  .addr	L48C3
-L48C3:	.byte	$6B                             ; 48C3 6B                       k
-	.byte   $47                             ; 48C4 47                       G
-	.byte   $6F                             ; 48C5 6F                       o
-	.byte   $47                             ; 48C6 47                       G
+L48C3:	.addr	L476B
+L48C5:	.addr	L476F
 	.byte   $77                             ; 48C7 77                       w
 	.byte   $47                             ; 48C8 47                       G
 	.byte   $7C                             ; 48C9 7C                       |
@@ -1172,7 +1164,8 @@ L48C3:	.byte	$6B                             ; 48C3 6B                       k
 	cmp     $47                             ; 48E1 C5 47                    .G
 	.byte   $CB                             ; 48E3 CB                       .
 	.byte   $47                             ; 48E4 47                       G
-	bne     L492E                           ; 48E5 D0 47                    .G
+	;bne     L492E                           ; 48E5 D0 47                    .G
+	.addr	L47D0
 	.byte   $D7                             ; 48E7 D7                       .
 	.byte   $47                             ; 48E8 47                       G
 	cmp     $E247,x                         ; 48E9 DD 47 E2                 .G.
@@ -1228,8 +1221,7 @@ L48C3:	.byte	$6B                             ; 48C3 6B                       k
 	sty     $48                             ; 4929 84 48                    .H
 	.byte   $87                             ; 492B 87                       .
 	pha                                     ; 492C 48                       H
-	.byte   $8D                             ; 492D 8D                       .
-L492E:  pha                                     ; 492E 48                       H
+	.addr	L488D
 	sta     ($48),y                         ; 492F 91 48                    .H
 	.byte   $97                             ; 4931 97                       .
 	pha                                     ; 4932 48                       H
