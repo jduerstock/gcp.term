@@ -7555,13 +7555,7 @@ L872A:	add16m8 $A2, L8558, L8553
 	ldx     L856E                           ; 8757 AE 6E 85                 .n.
 	lda     L855E                           ; 875A AD 5E 85                 .^.
 	jsr     sub_8521
-	clc                                     ; 8760 18                       .
-	lda     L8558                           ; 8761 AD 58 85                 .X.
-	adc     #$28                            ; 8764 69 28                    i(
-	sta     L8558                           ; 8766 8D 58 85                 .X.
-	lda     L8559                           ; 8769 AD 59 85                 .Y.
-	adc     #$00                            ; 876C 69 00                    i.
-	sta     L8559                           ; 876E 8D 59 85                 .Y.
+	add16i	L8558, L8558, $0028
 	inc     L855C                           ; 8771 EE 5C 85                 .\.
 	jmp     L871E                           ; 8774 4C 1E 87                 L..
 
