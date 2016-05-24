@@ -1060,26 +1060,11 @@ L4816:	.byte	$02,"BB"
 L4819:	.addr	L4816
 L481B:	.byte	$03,"DDB"
 L481F:	.addr	L481B
-	.byte   $07                             ; 4821 07                       .
-	.byte   $44                             ; 4822 44                       D
-	.byte   $44                             ; 4823 44                       D
-	.byte   $42                             ; 4824 42                       B
-	.byte   $42                             ; 4825 42                       B
-	.byte   $42                             ; 4826 42                       B
-	.byte   $42                             ; 4827 42                       B
-	.byte   $42                             ; 4828 42                       B
-	and     ($48,x)                         ; 4829 21 48                    !H
-	asl     $44                             ; 482B 06 44                    .D
-	.byte   $44                             ; 482D 44                       D
-	.byte   $44                             ; 482E 44                       D
-	.byte   $44                             ; 482F 44                       D
-	.byte   $44                             ; 4830 44                       D
-	.byte   $44                             ; 4831 44                       D
-	.byte   $2B                             ; 4832 2B                       +
-	pha                                     ; 4833 48                       H
-	.byte   $03                             ; 4834 03                       .
-	.byte   $43                             ; 4835 43                       C
-	eor     ($38,x)                         ; 4836 41 38                    A8
+L4821:	.byte	$07,"DDBBBBB"
+L4829:	.addr	L4821
+L482B:	.byte	$06,"DDDDDD"
+L4832:	.addr	L482B
+L4834:	.byte	$03,"CA8"
 	.byte   $34                             ; 4838 34                       4
 	pha                                     ; 4839 48                       H
 	ora     ($44,x)                         ; 483A 01 44                    .D
