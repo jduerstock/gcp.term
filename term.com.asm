@@ -1018,7 +1018,7 @@ L4785:	.addr	L477E
 L4787:	.byte	$04,"BDBB"
 L478C:	.addr	L4787
 L478E:	.byte	$06,"BDBBBB"
-L9795:	.addr	L478E
+L4795:	.addr	L478E
 L4797:	.byte	$02,"DB"
 L479A:	.addr	L4797
 L479C:	.byte	$01,"X"
@@ -1151,16 +1151,13 @@ L48BE:	.addr	L48BC
 	.byte	$4C
 L48C1:  .addr	L48C3
 L48C3:	.addr	L476B
-L48C5:	.addr	L476F
-	.byte   $77                             ; 48C7 77                       w
-	.byte   $47                             ; 48C8 47                       G
-	.byte   $7C                             ; 48C9 7C                       |
-	.byte   $47                             ; 48CA 47                       G
-	sta     $47                             ; 48CB 85 47                    .G
-	sty     L9547                           ; 48CD 8C 47 95                 .G.
-	.byte   $47                             ; 48D0 47                       G
-	txs                                     ; 48D1 9A                       .
-	.byte   $47                             ; 48D2 47                       G
+	.addr	L476F
+	.addr	L4777
+	.addr	L477C
+	.addr	L4785
+	.addr	L478C
+	.addr	L4795
+	.addr	L479A
 	.byte   $9E                             ; 48D3 9E                       .
 	.byte   $47                             ; 48D4 47                       G
 	ldx     #$47                            ; 48D5 A2 47                    .G
