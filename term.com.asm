@@ -7973,10 +7973,7 @@ L89AE:  prolog
 	add16i	L896B, L8962, $001A
 	lda     L896C                           ; 89FC AD 6C 89                 .l.
 	sta     $A3                             ; 89FF 85 A3                    ..
-	lda     #$00                            ; 8A01 A9 00                    ..
-	sta     $A5                             ; 8A03 85 A5                    ..
-	lda     #$04                            ; 8A05 A9 04                    ..
-	sta     $A4                             ; 8A07 85 A4                    ..
+	rdldi	$A4,$0004
 	ldy     L896B                           ; 8A09 AC 6B 89                 .k.
 	ldxai	$89A5
 	jsr     sub_461F
