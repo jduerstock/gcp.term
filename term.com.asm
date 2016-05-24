@@ -7517,10 +7517,7 @@ L8648:	rdldi	$84, $0028
 	eor     #$41                            ; 8693 49 41                    IA
 	lbeq	L86C8
 	add16m8	L855A, L8558, L8553
-	clc                                     ; 86AC 18                       .
-	lda     L8555                           ; 86AD AD 55 85                 .U.
-	adc     #$01                            ; 86B0 69 01                    i.
-	sta     $A2                             ; 86B2 85 A2                    ..
+	add8i	$A2, L8555, $01
 	lda     #$00                            ; 86B4 A9 00                    ..
 	sta     $A3                             ; 86B6 85 A3                    ..
 	lda     L856C                           ; 86B8 AD 6C 85                 .l.
