@@ -1149,30 +1149,22 @@ L48C3:	.addr	L476B
 	.addr	L478C
 	.addr	L4795
 	.addr	L479A
-	.byte   $9E                             ; 48D3 9E                       .
-	.byte   $47                             ; 48D4 47                       G
-	ldx     #$47                            ; 48D5 A2 47                    .G
-	tay                                     ; 48D7 A8                       .
-	.byte   $47                             ; 48D8 47                       G
-	.byte   $AF                             ; 48D9 AF                       .
-	.byte   $47                             ; 48DA 47                       G
-	lda     $47,x                           ; 48DB B5 47                    .G
-	.byte   $BB                             ; 48DD BB                       .
-	.byte   $47                             ; 48DE 47                       G
-	cmp     ($47,x)                         ; 48DF C1 47                    .G
-	cmp     $47                             ; 48E1 C5 47                    .G
-	.byte   $CB                             ; 48E3 CB                       .
-	.byte   $47                             ; 48E4 47                       G
-	;bne     L492E                           ; 48E5 D0 47                    .G
+	.addr	L479E
+	.addr	L47A2
+	.addr	L47A8
+	.addr	L47AF
+	.addr	L47B5
+	.addr	L47BB
+	.addr	L47C1
+	.addr	L47C5
+	.addr	L47CB
 	.addr	L47D0
-	.byte   $D7                             ; 48E7 D7                       .
-	.byte   $47                             ; 48E8 47                       G
-	cmp     $E247,x                         ; 48E9 DD 47 E2                 .G.
-	.byte   $47                             ; 48EC 47                       G
-	.byte   $E7                             ; 48ED E7                       .
-	.byte   $47                             ; 48EE 47                       G
-	cpx     $F247                           ; 48EF EC 47 F2                 .G.
-	.byte   $47                             ; 48F2 47                       G
+	.addr	L47D7
+	.addr	L47DD
+	.addr	L47E2
+	.addr	L47E7
+	.addr	L47EC
+	.addr	L47F2
 	sed                                     ; 48F3 F8                       .
 	.byte   $47                             ; 48F4 47                       G
 	.byte   $FC                             ; 48F5 FC                       .
