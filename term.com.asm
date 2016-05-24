@@ -188,6 +188,11 @@ SYSVBV		:= $E45F
 	lda	a1
 .endmacro
 
+.macro stxa a1
+	stx	a1+1
+	sta	a1
+.endmacro
+
 .macro ldxai a1
 	ldx	#>a1
 	lda	#<a1
@@ -1310,11 +1315,10 @@ L499C:  sty     $A0                             ; 499C 84 A0                    
 L499F:  brk                                     ; 499F 00                       .
 L49A0:  brk                                     ; 49A0 00                       .
 L49A1:  brk                                     ; 49A1 00                       .
-L49A2:  jmp     L49A5                           ; 49A2 4C A5 49                 L.I
 
 ; ----------------------------------------------------------------------------
-L49A5:  stx     L49A1                           ; 49A5 8E A1 49                 ..I
-	sta     L49A0                           ; 49A8 8D A0 49                 ..I
+L49A2:  prolog
+	stxa	L49A0
 	lda     L49A0                           ; 49AB AD A0 49                 ..I
 	asl     a                               ; 49AE 0A                       .
 	asl     a                               ; 49AF 0A                       .
