@@ -7444,28 +7444,14 @@ sub_8573:
 	jsr     sub_461F
 	lda     L8552                           ; 85A3 AD 52 85                 .R.
 	sta     $A3                             ; 85A6 85 A3                    ..
-	lda     #$00                            ; 85A8 A9 00                    ..
-	sta     $A5                             ; 85AA 85 A5                    ..
-	lda     #$04                            ; 85AC A9 04                    ..
-	sta     $A4                             ; 85AE 85 A4                    ..
+	rdldi	$A4, $0004
 	ldy     L8551                           ; 85B0 AC 51 85                 .Q.
-	ldx     #$85                            ; 85B3 A2 85                    ..
-	lda     #$60                            ; 85B5 A9 60                    .`
+	ldxai	L8560
 	jsr     sub_461F
-	clc                                     ; 85BA 18                       .
-	lda     L8556                           ; 85BB AD 56 85                 .V.
-	adc     #$0E                            ; 85BE 69 0E                    i.
-	sta     $A2                             ; 85C0 85 A2                    ..
-	lda     L8557                           ; 85C2 AD 57 85                 .W.
-	adc     #$00                            ; 85C5 69 00                    i.
-	sta     $A3                             ; 85C7 85 A3                    ..
-	lda     #$00                            ; 85C9 A9 00                    ..
-	sta     $A5                             ; 85CB 85 A5                    ..
-	lda     #$08                            ; 85CD A9 08                    ..
-	sta     $A4                             ; 85CF 85 A4                    ..
+	add16i	$A2, L8556, $000E
+	rdldi	$A4, $0008
 	ldy     $A2                             ; 85D1 A4 A2                    ..
-	ldx     #$85                            ; 85D3 A2 85                    ..
-	lda     #$6B                            ; 85D5 A9 6B                    .k
+	ldxai	L856B
 	jsr     sub_461F
 	ldy     #$01                            ; 85DA A0 01                    ..
 	sty     $A0                             ; 85DC 84 A0                    ..
