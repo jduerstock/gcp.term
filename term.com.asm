@@ -7986,20 +7986,11 @@ L89AE:  prolog
 	lda     $A0                             ; 8A2D A5 A0                    ..
 	jsr     sub_4945
 	rdmv	L8995, $A0
-	clc                                     ; 8A3C 18                       .
-	lda     L89A5                           ; 8A3D AD A5 89                 ...
-	adc     L8997                           ; 8A40 6D 97 89                 m..
-	sta     $A0                             ; 8A43 85 A0                    ..
+	add8m	$A0, L89A5, L8997
 	lda     $A0                             ; 8A45 A5 A0                    ..
 	jsr     sub_4945
-	lda     $A1                             ; 8A4A A5 A1                    ..
-	sta     L8994                           ; 8A4C 8D 94 89                 ...
-	lda     $A0                             ; 8A4F A5 A0                    ..
-	sta     L8993                           ; 8A51 8D 93 89                 ...
-	lda     #$00                            ; 8A54 A9 00                    ..
-	sta     $85                             ; 8A56 85 85                    ..
-	lda     #$28                            ; 8A58 A9 28                    .(
-	sta     $84                             ; 8A5A 85 84                    ..
+	rdmv	L8993, $A0
+	rdldi	$84, $0028
 	lda     L8996                           ; 8A5C AD 96 89                 ...
 	tax                                     ; 8A5F AA                       .
 	lda     L8995                           ; 8A60 AD 95 89                 ...
