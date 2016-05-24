@@ -7509,20 +7509,14 @@ L8648:	rdldi	$84, $0028
 	sta     $AF                             ; 865B 85 AF                    ..
 	add16m	L8558, L466D, $AE
 	sub8m	L8555, L8562, L8560
-	mv	L8553, L8560	
+	mv	L8553, L8560
 	add8m	L8554, L8553, L8555
 	lda     L855F                           ; 8688 AD 5F 85                 ._.
 	lbeq	L870F
 	lda     L856C                           ; 8690 AD 6C 85                 .l.
 	eor     #$41                            ; 8693 49 41                    IA
 	lbeq	L86C8
-	clc                                     ; 869A 18                       .
-	lda     L8558                           ; 869B AD 58 85                 .X.
-	adc     L8553                           ; 869E 6D 53 85                 mS.
-	sta     L855A                           ; 86A1 8D 5A 85                 .Z.
-	lda     L8559                           ; 86A4 AD 59 85                 .Y.
-	adc     #$00                            ; 86A7 69 00                    i.
-	sta     L855B                           ; 86A9 8D 5B 85                 .[.
+	add16m8	L855A, L8558, L8553
 	clc                                     ; 86AC 18                       .
 	lda     L8555                           ; 86AD AD 55 85                 .U.
 	adc     #$01                            ; 86B0 69 01                    i.
