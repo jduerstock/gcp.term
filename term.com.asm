@@ -7981,10 +7981,7 @@ L89AE:  prolog
 	ldxai	$89A5
 	jsr     sub_461F
 	sub8m	off_AE, L89A7, L89A5
-	clc                                     ; 8A1C 18                       .
-	lda     $AE                             ; 8A1D A5 AE                    ..
-	adc     #$01                            ; 8A1F 69 01                    i.
-	sta     L8968                           ; 8A21 8D 68 89                 .h.
+	add8i	L8968, off_AE, $01
 	clc                                     ; 8A24 18                       .
 	lda     L89A6                           ; 8A25 AD A6 89                 ...
 	adc     L8998                           ; 8A28 6D 98 89                 m..
