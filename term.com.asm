@@ -11798,29 +11798,13 @@ sub_AB6A:
 	sty     LAB69                           ; AB87 8C 69 AB                 .i.
 	iny                                     ; AB8A C8                       .
 	sty     L4651                           ; AB8B 8C 51 46                 .QF
-	lda     LB224                           ; AB8E AD 24 B2                 .$.
-	sta     LAB68                           ; AB91 8D 68 AB                 .h.
-LAB94:  clc                                     ; AB94 18                       .
-	lda     LAB56                           ; AB95 AD 56 AB                 .V.
-	adc     LAB69                           ; AB98 6D 69 AB                 mi.
-	sta     $AE                             ; AB9B 85 AE                    ..
-	lda     LAB57                           ; AB9D AD 57 AB                 .W.
-	adc     #$00                            ; ABA0 69 00                    i.
-	sta     $AF                             ; ABA2 85 AF                    ..
+	mv	LAB68, LB224
+LAB94:	add16m8 off_AE, LAB56, LAB69
 	ldy     #$00                            ; ABA4 A0 00                    ..
 	lda     ($AE),y                         ; ABA6 B1 AE                    ..
 	eor     LAB68                           ; ABA8 4D 68 AB                 Mh.
-	bne     LABB0                           ; ABAB D0 03                    ..
-	jmp     LABEE                           ; ABAD 4C EE AB                 L..
-
-; ----------------------------------------------------------------------------
-LABB0:  clc                                     ; ABB0 18                       .
-	lda     LAB56                           ; ABB1 AD 56 AB                 .V.
-	adc     LAB69                           ; ABB4 6D 69 AB                 mi.
-	sta     $AE                             ; ABB7 85 AE                    ..
-	lda     LAB57                           ; ABB9 AD 57 AB                 .W.
-	adc     #$00                            ; ABBC 69 00                    i.
-	sta     $AF                             ; ABBE 85 AF                    ..
+	lbeq	LABEE
+	add16m8 off_AE, LAB56, LAB69
 	lda     ($AE),y                         ; ABC0 B1 AE                    ..
 	beq     LABC7                           ; ABC2 F0 03                    ..
 	jmp     LABE8                           ; ABC4 4C E8 AB                 L..
@@ -11829,9 +11813,9 @@ LABB0:  clc                                     ; ABB0 18                       
 LABC7:  jmp     LABCD                           ; ABC7 4C CD AB                 L..
 
 ; ----------------------------------------------------------------------------
-	.byte   $02                             ; ABCA 02                       .
-	.byte   $43                             ; ABCB 43                       C
-	.byte   $43                             ; ABCC 43                       C
+LABCA:	.byte	$02,"CC"
+
+; ----------------------------------------------------------------------------
 LABCD:  lda     #$00                            ; ABCD A9 00                    ..
 	sta     $A3                             ; ABCF 85 A3                    ..
 	lda     #$00                            ; ABD1 A9 00                    ..
@@ -11839,8 +11823,7 @@ LABCD:  lda     #$00                            ; ABCD A9 00                    
 	lda     LAB68                           ; ABD5 AD 68 AB                 .h.
 	sta     $A4                             ; ABD8 85 A4                    ..
 	ldy     #$3F                            ; ABDA A0 3F                    .?
-	ldx     #$AB                            ; ABDC A2 AB                    ..
-	lda     #$CA                            ; ABDE A9 CA                    ..
+	ldxai	LABCA
 	jsr     sub_55A0
 	ldi	$A0, $00
 	rts                                     ; ABE7 60                       `
@@ -11850,17 +11833,7 @@ LABE8:  inc     LAB69                           ; ABE8 EE 69 AB                 
 	jmp     LAB94                           ; ABEB 4C 94 AB                 L..
 
 ; ----------------------------------------------------------------------------
-LABEE:  lda     LAB69                           ; ABEE AD 69 AB                 .i.
-	asl     a                               ; ABF1 0A                       .
-	php                                     ; ABF2 08                       .
-	clc                                     ; ABF3 18                       .
-	adc     LAB5A                           ; ABF4 6D 5A AB                 mZ.
-	sta     $AE                             ; ABF7 85 AE                    ..
-	lda     #$00                            ; ABF9 A9 00                    ..
-	rol     a                               ; ABFB 2A                       *
-	plp                                     ; ABFC 28                       (
-	adc     LAB5B                           ; ABFD 6D 5B AB                 m[.
-	sta     $AF                             ; AC00 85 AF                    ..
+LABEE:	shladdm8 off_AE, LAB5A, LAB69
 	ldy     #$01                            ; AC02 A0 01                    ..
 	lda     ($AE),y                         ; AC04 B1 AE                    ..
 	sta     LAB5D                           ; AC06 8D 5D AB                 .].
