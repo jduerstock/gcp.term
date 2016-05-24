@@ -8025,14 +8025,16 @@ L8AA1:  lda     L8AAC                           ; 8AA1 AD AC 8A                 
 	jmp     L8AD9                           ; 8AA9 4C D9 8A                 L..
 
 ; ----------------------------------------------------------------------------
-L8AAC:  brk                                     ; 8AAC 00                       .
+L8AAC:	.byte	$00
+
+; ----------------------------------------------------------------------------
 L8AAD:  lda     #$00                            ; 8AAD A9 00                    ..
 	sta     $A3                             ; 8AAF 85 A3                    ..
 	lda     L89A4                           ; 8AB1 AD A4 89                 ...
 	sta     $A4                             ; 8AB4 85 A4                    ..
 	ldy     L8968                           ; 8AB6 AC 68 89                 .h.
 	ldxa	L8964
-	jsr     sub_45FC                           ; 8ABF 20 FC 45                  .E
+	jsr     sub_45FC
 	add16i	L8964, L8964, $0028
 	inc     L8992                           ; 8AD3 EE 92 89                 ...
 	jmp     L8AA1                           ; 8AD6 4C A1 8A                 L..
