@@ -10012,10 +10012,7 @@ L9E94:  lda     L46E6                           ; 9E94 AD E6 46                 
 	ldy     L9E14                           ; 9EBE AC 14 9E                 ...
 	ldxai	L9E28
 	jsr     sub_461F
-	lda     L9E2A                           ; 9EC8 AD 2A 9E                 .*.
-	sta     L9E1B                           ; 9ECB 8D 1B 9E                 ...
-	lda     L9E2B                           ; 9ECE AD 2B 9E                 .+.
-	sta     L9E1C                           ; 9ED1 8D 1C 9E                 ...
+	dmv	L9E1B, L9E2A
 	jmp     L9F69                           ; 9ED4 4C 69 9F                 Li.
 
 ; ----------------------------------------------------------------------------
