@@ -10019,19 +10019,13 @@ L9E94:  lda     L46E6                           ; 9E94 AD E6 46                 
 L9ED7:  lda     L46E6                           ; 9ED7 AD E6 46                 ..F
 	eor     #$03                            ; 9EDA 49 03                    I.
 	lbne	L9F69
-	lda     L4751                           ; 9EE1 AD 51 47                 .QG
-	sta     L9E19                           ; 9EE4 8D 19 9E                 ...
-	lda     L4752                           ; 9EE7 AD 52 47                 .RG
-	sta     L9E1A                           ; 9EEA 8D 1A 9E                 ...
+	dmv	L9E19, L4751
 	lda     L474F                           ; 9EED AD 4F 47                 .OG
 	eor     #$02                            ; 9EF0 49 02                    I.
 	lbne	L9F69
 	lda     L4750                           ; 9EF7 AD 50 47                 .PG
 	jsr     sub_7035
-	lda     $A1                             ; 9EFD A5 A1                    ..
-	sta     L9E11                           ; 9EFF 8D 11 9E                 ...
-	lda     $A0                             ; 9F02 A5 A0                    ..
-	sta     L9E10                           ; 9F04 8D 10 9E                 ...
+	rdmv	L9E10, $A0
 	lda     L9E11                           ; 9F07 AD 11 9E                 ...
 	sta     $A3                             ; 9F0A 85 A3                    ..
 	lda     #$00                            ; 9F0C A9 00                    ..
