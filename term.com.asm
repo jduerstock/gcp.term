@@ -8092,26 +8092,9 @@ L8D0D:  lda     L4656                           ; 8D0D AD 56 46                 
 	dey                                     ; 8D31 88                       .
 	lda     ($AE),y                         ; 8D32 B1 AE                    ..
 	sta     L8CFF                           ; 8D34 8D FF 8C                 ...
-	clc                                     ; 8D37 18                       .
-	lda     L8CFF                           ; 8D38 AD FF 8C                 ...
-	adc     #$03                            ; 8D3B 69 03                    i.
-	sta     $AE                             ; 8D3D 85 AE                    ..
-	lda     L8D00                           ; 8D3F AD 00 8D                 ...
-	.byte   $69                             ; 8D42 69                       i
-L8D43:  brk                                     ; 8D43 00                       .
-	sta     $AF                             ; 8D44 85 AF                    ..
-	clc                                     ; 8D46 18                       .
-	lda     $AE                             ; 8D47 A5 AE                    ..
-	adc     #$01                            ; 8D49 69 01                    i.
-	.byte   $8D                             ; 8D4B 8D                       .
-L8D4C:  sbc     LA58C,x                         ; 8D4C FD 8C A5                 ...
-	.byte   $AF                             ; 8D4F AF                       .
-	adc     #$00                            ; 8D50 69 00                    i.
-	sta     L8CFE                           ; 8D52 8D FE 8C                 ...
-	lda     L8CFD                           ; 8D55 AD FD 8C                 ...
-	sta     $AE                             ; 8D58 85 AE                    ..
-	lda     L8CFE                           ; 8D5A AD FE 8C                 ...
-	sta     $AF                             ; 8D5D 85 AF                    ..
+	add16i	off_AE, L8CFF, $03
+	add16i	L8CFD, off_AE, $01
+	dmv	off_AE, L8CFD
 	iny                                     ; 8D5F C8                       .
 	lda     ($AE),y                         ; 8D60 B1 AE                    ..
 	sta     L466E                           ; 8D62 8D 6E 46                 .nF
