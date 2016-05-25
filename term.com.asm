@@ -1106,9 +1106,9 @@ L4849:	.addr	L4845
 L484B:	.byte	$01,"B"
 L484D:	.addr	L484B
 L484F:	.byte	$00
-	.addr	L484F
+L4850:	.addr	L484F
 L4852:	.byte	$00
-	.addr	L4852
+L4853:	.addr	L4852
 L4855:	.byte   $03,"DDs"
 L4859:	.addr	L4855
 L485B:	.byte	$01,"D"
@@ -1195,10 +1195,9 @@ L48C3:	.addr	L476B
 	.addr	L483F
 	.addr	L4843
 	.addr	L4849
-	.byte	$4D,$48,$50
-	pha                                     ; 4916 48                       H
-	.byte   $53                             ; 4917 53                       S
-	pha                                     ; 4918 48                       H
+	.addr	L484D
+	.addr	L4850
+	.addr	L4853
 	.addr	L4859
 	.addr	L485D
 	.addr	L4864
