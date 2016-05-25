@@ -4295,9 +4295,9 @@ L6694:  brk                                     ; 6694 00                       
 L6695:  brk                                     ; 6695 00                       .
 
 ; ----------------------------------------------------------------------------
-L6696:  prolog
-	stx     L6690+1                         ; 6699 8E 91 66                 ..f
-	sta     L6690                           ; 669C 8D 90 66                 ..f
+sub_6696:  
+	prolog
+	stxa	L6690
 	lda     L6690                           ; 669F AD 90 66                 ..f
 	jsr     sub_65B0
 	rdmv	L6692, $A0
@@ -4366,7 +4366,7 @@ sub_66FC:
 	lbcc	L6742
 	ldx     #$00                            ; 6737 A2 00                    ..
 	lda     L66F2
-	jsr     L6696                           ; 673C 20 96 66                  .f
+	jsr     sub_6696
 	jmp     L67C3                           ; 673F 4C C3 67                 L.g
 
 ; ----------------------------------------------------------------------------
@@ -4768,7 +4768,7 @@ L6AD2:  .byte   $44                             ; 6AD2 44                       
 L6AD3:  .byte   $31                             ; 6AD3 31                       1
 L6AD4:  .byte   $3A                             ; 6AD4 3A                       :
 
-L6AD5:
+sub_6AD5:
 	stack_prolog L6ABE, $05
 	lda     L6ABE                           ; 6ADE AD BE 6A                 ..j
 	jsr     sub_65B0
@@ -10044,14 +10044,8 @@ L9ED7:  lda     L46E6                           ; 9ED7 AD E6 46                 
 	jsr     sub_461F
 	sub8m	off_AE, L9E1D, L9E1F
 	sub8m	L9E1B, L4751, off_AE
-	sec                                     ; 9F57 38                       8
-	lda     L9E1E                           ; 9F58 AD 1E 9E                 ...
-	sbc     L9E20                           ; 9F5B ED 20 9E                 . .
-	sta     $AE                             ; 9F5E 85 AE                    ..
-	sec                                     ; 9F60 38                       8
-	lda     L4752                           ; 9F61 AD 52 47                 .RG
-	sbc     $AE                             ; 9F64 E5 AE                    ..
-	sta     L9E1C                           ; 9F66 8D 1C 9E                 ...
+	sub8m	off_AE, L9E1E, L9E20
+	sub8m	L9E1C, L4752, off_AE
 L9F69:  lda     L9E19                           ; 9F69 AD 19 9E                 ...
 	eor     #$80                            ; 9F6C 49 80                    I.
 	bne     L9F74                           ; 9F6E D0 04                    ..
@@ -10066,13 +10060,12 @@ L9F79:  jmp     L9F82                           ; 9F79 4C 82 9F                 
 ; ----------------------------------------------------------------------------
 L9F7C:	.byte	$05,"cBBBB"
 
+; ----------------------------------------------------------------------------
 L9F82:	ldi	$A3, $00
 	ldi	$A5, $00
-	lda     L9E1B                           ; 9F8A AD 1B 9E                 ...
-	sta     $A4                             ; 9F8D 85 A4                    ..
+	mv	$A4, L9E1B
 	ldi	$A7, $00
-	lda     L9E1C                           ; 9F93 AD 1C 9E                 ...
-	sta     $A6                             ; 9F96 85 A6                    ..
+	mv	$A6, L9E1C
 	ldi	$A9, $00
 	lda     L9E19                           ; 9F9C AD 19 9E                 ...
 	sta     $A8                             ; 9F9F 85 A8                    ..
@@ -10080,8 +10073,7 @@ L9F82:	ldi	$A3, $00
 	lda     L9E1A                           ; 9FA5 AD 1A 9E                 ...
 	sta     $AA                             ; 9FA8 85 AA                    ..
 	ldy     L9E0F                           ; 9FAA AC 0F 9E                 ...
-	ldx     #>L9F7C
-	lda     #<L9F7C
+	ldxai	L9F7C
 	jsr     sub_55A0
 	jmp     L9FDE                           ; 9FB4 4C DE 9F                 L..
 
@@ -10089,10 +10081,9 @@ L9F82:	ldi	$A3, $00
 L9FB7:  jmp     L9FBE                           ; 9FB7 4C BE 9F                 L..
 
 ; ----------------------------------------------------------------------------
-	.byte   $03                             ; 9FBA 03                       .
-	.byte   $63                             ; 9FBB 63                       c
-	.byte   $42                             ; 9FBC 42                       B
-	.byte   $42                             ; 9FBD 42                       B
+	.byte	$03,"cBB"
+
+; ----------------------------------------------------------------------------
 L9FBE:  lda     #$00                            ; 9FBE A9 00                    ..
 	sta     $A3                             ; 9FC0 85 A3                    ..
 	lda     #$00                            ; 9FC2 A9 00                    ..
@@ -10290,10 +10281,7 @@ LA04F:  lda     L9FE8                           ; A04F AD E8 9F                 
 	lda     $A0                             ; A148 A5 A0                    ..
 	sta     LA005                           ; A14A 8D 05 A0                 ...
 	lda     LA005                           ; A14D AD 05 A0                 ...
-	beq     LA155                           ; A150 F0 03                    ..
-	jmp     LA156                           ; A152 4C 56 A1                 LV.
-
-; ----------------------------------------------------------------------------
+	lbne	LA156
 LA155:  rts                                     ; A155 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -11285,10 +11273,10 @@ LAA55:  lda     #$00                            ; AA55 A9 00                    
 ; ----------------------------------------------------------------------------
 	.byte   $4C                             ; AA83 4C                       L
 LAA84:  .addr   LAA86
-LAA86:	.addr	L6AD5
+LAA86:	.addr	sub_6AD5
 	.addr	sub_6995
 	.addr	sub_67D8
-	.addr	L6696
+	.addr	sub_6696
 	.addr	sub_65E2
 	.addr	L7D4D
 	.addr	L6E61
