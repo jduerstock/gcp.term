@@ -9741,40 +9741,29 @@ sub_9C41:
 	rdldi	L46ED, L9C38
 	lda     L9C23                           ; 9C70 AD 23 9C                 .#.
 	sta     $A3                             ; 9C73 85 A3                    ..
-	lda     #$00                            ; 9C75 A9 00                    ..
-	sta     $A5                             ; 9C77 85 A5                    ..
-	lda     #$09                            ; 9C79 A9 09                    ..
-	sta     $A4                             ; 9C7B 85 A4                    ..
+	rdldi	$A4, $0009
 	ldy     L9C22                           ; 9C7D AC 22 9C                 .".
-	ldx     #$9C                            ; 9C80 A2 9C                    ..
-	lda     #$2F                            ; 9C82 A9 2F                    ./
+	ldxai	L9C2F
 	jsr     sub_461F
 	lda     L9C2E                           ; 9C87 AD 2E 9C                 ...
 	sta     $A3                             ; 9C8A 85 A3                    ..
-	lda     #$00                            ; 9C8C A9 00                    ..
-	sta     $A5                             ; 9C8E 85 A5                    ..
-	lda     #$09                            ; 9C90 A9 09                    ..
-	sta     $A4                             ; 9C92 85 A4                    ..
+	rdldi	$A4, $0009
 	ldy     L9C2D                           ; 9C94 AC 2D 9C                 .-.
-	ldx     #$9C                            ; 9C97 A2 9C                    ..
-	lda     #$38                            ; 9C99 A9 38                    .8
+	ldxai	L9C38
 	jsr     sub_461F
 	lda     L46E6                           ; 9C9E AD E6 46                 ..F
-	beq     L9CA6                           ; 9CA1 F0 03                    ..
-	jmp     L9CAB                           ; 9CA3 4C AB 9C                 L..
-
-; ----------------------------------------------------------------------------
-L9CA6:  lda     #$00                            ; 9CA6 A9 00                    ..
+	lbne	L9CAB
+	lda     #$00                            ; 9CA6 A9 00                    ..
 	jsr     L9BD0                           ; 9CA8 20 D0 9B                  ..
 L9CAB:  rts                                     ; 9CAB 60                       `
 
 ; ----------------------------------------------------------------------------
-L9CAC:  brk                                     ; 9CAC 00                       .
+L9CAC:  .byte	$00
 
+; ----------------------------------------------------------------------------
 L9CAD:	prolog
 	sta     L9CAC                           ; 9CB0 8D AC 9C                 ...
-	lda     L9CAC                           ; 9CB3 AD AC 9C                 ...
-	sta     L46E8                           ; 9CB6 8D E8 46                 ..F
+	mv	L46E8, L9CAC
 	rts                                     ; 9CB9 60                       `
 
 ; ----------------------------------------------------------------------------
