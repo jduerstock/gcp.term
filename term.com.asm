@@ -7627,7 +7627,7 @@ L882C:  cpy     $A4                             ; 882C C4 A4                    
 L8831:  brk                                     ; 8831 00                       .
 L8832:  brk                                     ; 8832 00                       .
 L8833:  brk                                     ; 8833 00                       .
-	brk                                     ; 8834 00                       .
+L8834:	brk                                     ; 8834 00                       .
 L8835:  brk                                     ; 8835 00                       .
 L8836:  brk                                     ; 8836 00                       .
 L8837:  brk                                     ; 8837 00                       .
@@ -7651,14 +7651,11 @@ L8846:  brk                                     ; 8846 00                       
 	brk                                     ; 8849 00                       .
 L884A:  brk                                     ; 884A 00                       .
 L884B:  brk                                     ; 884B 00                       .
-L884C:  jmp     L884F                           ; 884C 4C 4F 88                 LO.
 
 ; ----------------------------------------------------------------------------
-L884F:  jsr     sub_44D5                           ; 884F 20 D5 44                  .D
-	and     ($88),y                         ; 8852 31 88                    1.
-	ora     $AD                             ; 8854 05 AD                    ..
-	.byte   $34                             ; 8856 34                       4
-	dey                                     ; 8857 88                       .
+sub_884C:
+	stack_prolog L8831, $05
+	lda	L8834
 	sta     $A3                             ; 8858 85 A3                    ..
 	lda     #$00                            ; 885A A9 00                    ..
 	sta     $A5                             ; 885C 85 A5                    ..
@@ -7909,7 +7906,7 @@ L8AD9:  lda     L89A2                           ; 8AD9 AD A2 89                 
 	rdldi	$A4, L897D
 	ldy     #$79                            ; 8B43 A0 79                    .y
 	ldxa	L898D
-	jsr     L884C                           ; 8B4B 20 4C 88                  L.
+	jsr     sub_884C
 L8B4E:	add16i	off_AE, L898D, $0007
 	ldy     #$01                            ; 8B5D A0 01                    ..
 	lda     ($AE),y                         ; 8B5F B1 AE                    ..
@@ -8051,9 +8048,8 @@ L8BD1:  lda     L89A9                           ; 8BD1 AD A9 89                 
 	lda     #$75                            ; 8CAF A9 75                    .u
 	sta     $A4                             ; 8CB1 85 A4                    ..
 	ldy     #$81                            ; 8CB3 A0 81                    ..
-	ldx     L8990                           ; 8CB5 AE 90 89                 ...
-	lda     L898F                           ; 8CB8 AD 8F 89                 ...
-	jsr     L884C                           ; 8CBB 20 4C 88                  L.
+	ldxa	L898F
+	jsr     sub_884C
 L8CBE:	add16i	L8969, L8969, $0006
 	inc     L8992                           ; 8CCF EE 92 89                 ...
 	jmp     L8BA1                           ; 8CD2 4C A1 8B                 L..
