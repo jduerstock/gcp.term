@@ -10043,10 +10043,7 @@ L9ED7:  lda     L46E6                           ; 9ED7 AD E6 46                 
 	lda     #$22                            ; 9F40 A9 22                    ."
 	jsr     sub_461F
 	sub8m	off_AE, L9E1D, L9E1F
-	sec                                     ; 9F4E 38                       8
-	lda     L4751                           ; 9F4F AD 51 47                 .QG
-	sbc     $AE                             ; 9F52 E5 AE                    ..
-	sta     L9E1B                           ; 9F54 8D 1B 9E                 ...
+	sub8m	L9E1B, L4751, off_AE
 	sec                                     ; 9F57 38                       8
 	lda     L9E1E                           ; 9F58 AD 1E 9E                 ...
 	sbc     L9E20                           ; 9F5B ED 20 9E                 . .
