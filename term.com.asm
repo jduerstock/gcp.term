@@ -3095,26 +3095,15 @@ L5ADD:  lda     L58EE                           ; 5ADD AD EE 58                 
 	eor     #'D'
 	lbne	L5B2A
 	rdmv	L58EB, L58E9
-	inc     L58E9                           ; 5AF3 EE E9 58                 ..X
-	bne     L5AFB                           ; 5AF6 D0 03                    ..
-	inc     L58EA                           ; 5AF8 EE EA 58                 ..X
-L5AFB:  lda     L58EB                           ; 5AFB AD EB 58                 ..X
-	sta     $AE                             ; 5AFE 85 AE                    ..
-	lda     L58EC                           ; 5B00 AD EC 58                 ..X
-	sta     $AF                             ; 5B03 85 AF                    ..
-	lda     $AF                             ; 5B05 A5 AF                    ..
-	pha                                     ; 5B07 48                       H
-	lda     $AE                             ; 5B08 A5 AE                    ..
-	pha                                     ; 5B0A 48                       H
+	inc16	L58E9
+	dmv	off_AE, L58EB
+	push16	off_AE
 	ldx     L4654                           ; 5B0B AE 54 46                 .TF
 	lda     LB224,x                         ; 5B0E BD 24 B2                 .$.
 	sta     $A0                             ; 5B11 85 A0                    ..
 	lda     $A0                             ; 5B13 A5 A0                    ..
 	jsr     L4B39                           ; 5B15 20 39 4B                  9K
-	pla                                     ; 5B18 68                       h
-	sta     $AE                             ; 5B19 85 AE                    ..
-	pla                                     ; 5B1B 68                       h
-	sta     $AF                             ; 5B1C 85 AF                    ..
+	pull16	off_AE
 	lda     $A0                             ; 5B1E A5 A0                    ..
 	ldy     #$00                            ; 5B20 A0 00                    ..
 	sta     ($AE),y                         ; 5B22 91 AE                    ..
