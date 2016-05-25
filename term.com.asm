@@ -8057,10 +8057,7 @@ L8CBE:	add16i	L8969, L8969, $0006
 ; ----------------------------------------------------------------------------
 L8CD5:  lda     L896C                           ; 8CD5 AD 6C 89                 .l.
 	sta     $A3                             ; 8CD8 85 A3                    ..
-	lda     L8997                           ; 8CDA AD 97 89                 ...
-	sta     $A4                             ; 8CDD 85 A4                    ..
-	lda     L8998                           ; 8CDF AD 98 89                 ...
-	sta     $A5                             ; 8CE2 85 A5                    ..
+	dmv	$A4, L8997
 	ldy     L896B                           ; 8CE4 AC 6B 89                 .k.
 	ldxai	L897D
 	jsr     sub_4C1D
