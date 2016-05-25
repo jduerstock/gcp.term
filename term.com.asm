@@ -1530,7 +1530,8 @@ L4B44:  sta     $A0                             ; 4B44 85 A0                    
 	rts                                     ; 4B46 60                       `
 
 ; ----------------------------------------------------------------------------
-L4B47:  stx     $AF                             ; 4B47 86 AF                    ..
+sub_4B47:  
+	stx     $AF                             ; 4B47 86 AF                    ..
 	sta     $AE                             ; 4B49 85 AE                    ..
 	ldy     #$00                            ; 4B4B A0 00                    ..
 	lda     ($AE),y                         ; 4B4D B1 AE                    ..
@@ -3007,7 +3008,7 @@ L591F:	add16m8	off_AE, L58E7, L58ED
 	adc     #$00                            ; 59AF 69 00                    i.
 	sta     $A1                             ; 59B1 85 A1                    ..
 	ldxa	$A0
-	jsr     L4B47                           ; 59B7 20 47 4B                  GK
+	jsr     sub_4B47
 	lda     $A0                             ; 59BA A5 A0                    ..
 	sta     L58EE                           ; 59BC 8D EE 58                 ..X
 	clc                                     ; 59BF 18                       .
@@ -3033,7 +3034,7 @@ L59E1:  lda     L58EF                           ; 59E1 AD EF 58                 
 	sta     $A1                             ; 5A0E 85 A1                    ..
 	ldx     $A1                             ; 5A10 A6 A1                    ..
 	lda     $A0                             ; 5A12 A5 A0                    ..
-	jsr     L4B47                           ; 5A14 20 47 4B                  GK
+	jsr     sub_4B47
 	pull16	off_AE
 	lda     $A0                             ; 5A1D A5 A0                    ..
 	ldy     #$00                            ; 5A1F A0 00                    ..
@@ -3061,7 +3062,7 @@ L5A53:	dmv	off_AE, L58EB
 	adc     #$00                            ; 5A6D 69 00                    i.
 	sta     $A1                             ; 5A6F 85 A1                    ..
 	ldxa	$A0
-	jsr     L4B47                           ; 5A75 20 47 4B                  GK
+	jsr     sub_4B47
 	pull16	off_AE
 	lda     $A0                             ; 5A7E A5 A0                    ..
 	ldy     #$00                            ; 5A80 A0 00                    ..
@@ -3164,9 +3165,8 @@ L5B6E:  lda     #$03                            ; 5B6E A9 03                    
 	lda     #$B2                            ; 5B96 A9 B2                    ..
 	adc     #$00                            ; 5B98 69 00                    i.
 	sta     $A1                             ; 5B9A 85 A1                    ..
-	ldx     $A1                             ; 5B9C A6 A1                    ..
-	lda     $A0                             ; 5B9E A5 A0                    ..
-	jsr     L4B47                           ; 5BA0 20 47 4B                  GK
+	ldxa	$A0
+	jsr     sub_4B47
 	pull16	off_AE
 	lda     $A0                             ; 5BA9 A5 A0                    ..
 	ldy     #$00                            ; 5BAB A0 00                    ..
@@ -3212,7 +3212,7 @@ L5BD2:	clc                                     ; 5BD2 18                       .
 	sta     $A1                             ; 5C16 85 A1                    ..
 	ldx     $A1                             ; 5C18 A6 A1                    ..
 	lda     $A0                             ; 5C1A A5 A0                    ..
-	jsr     L4B47                           ; 5C1C 20 47 4B                  GK
+	jsr     sub_4B47
 	lda     $A0                             ; 5C1F A5 A0                    ..
 	sta     L58F0                           ; 5C21 8D F0 58                 ..X
 	dmv	off_AE, L58EB
