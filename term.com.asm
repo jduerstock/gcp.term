@@ -3263,10 +3263,7 @@ L5CC5:  ldx     L58EF                           ; 5CC5 AE EF 58                 
 	jmp     L5CB9                           ; 5CDD 4C B9 5C                 L.\
 
 ; ----------------------------------------------------------------------------
-L5CE0:  lda     L58E9                           ; 5CE0 AD E9 58                 ..X
-	sta     $AE                             ; 5CE3 85 AE                    ..
-	lda     L58EA                           ; 5CE5 AD EA 58                 ..X
-	sta     $AF                             ; 5CE8 85 AF                    ..
+L5CE0:	dmv	off_AE, L58E9
 	lda     #$B2                            ; 5CEA A9 B2                    ..
 	ldy     #$01                            ; 5CEC A0 01                    ..
 	sta     ($AE),y                         ; 5CEE 91 AE                    ..
