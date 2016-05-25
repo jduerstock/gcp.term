@@ -8085,17 +8085,7 @@ sub_8D01:
 L8D0D:  lda     L4656                           ; 8D0D AD 56 46                 .VF
 	eor     #$01                            ; 8D10 49 01                    I.
 	lbne	L8E06
-	lda     #$01                            ; 8D17 A9 01                    ..
-	asl     a                               ; 8D19 0A                       .
-	php                                     ; 8D1A 08                       .
-	clc                                     ; 8D1B 18                       .
-	adc     L466F                           ; 8D1C 6D 6F 46                 moF
-	sta     $AE                             ; 8D1F 85 AE                    ..
-	lda     #$00                            ; 8D21 A9 00                    ..
-	rol     a                               ; 8D23 2A                       *
-	plp                                     ; 8D24 28                       (
-	adc     L466F+1
-	sta     $AF                             ; 8D28 85 AF                    ..
+	shladdi off_AE, L466F, $01
 	ldy     #$01                            ; 8D2A A0 01                    ..
 	lda     ($AE),y                         ; 8D2C B1 AE                    ..
 	sta     L8D00                           ; 8D2E 8D 00 8D                 ...
