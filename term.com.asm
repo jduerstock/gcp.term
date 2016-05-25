@@ -10004,10 +10004,7 @@ L9E94:  lda     L46E6                           ; 9E94 AD E6 46                 
 	ldx     L46EA                           ; 9E9E AE EA 46                 ..F
 	lda     L46E9                           ; 9EA1 AD E9 46                 ..F
 	jsr     sub_799B
-	lda     $A1                             ; 9EA7 A5 A1                    ..
-	sta     L9E15                           ; 9EA9 8D 15 9E                 ...
-	lda     $A0                             ; 9EAC A5 A0                    ..
-	sta     L9E14                           ; 9EAE 8D 14 9E                 ...
+	rdmv	L9E14, $A0
 	lda     L9E15                           ; 9EB1 AD 15 9E                 ...
 	sta     $A3                             ; 9EB4 85 A3                    ..
 	ldi	$A5, $00
