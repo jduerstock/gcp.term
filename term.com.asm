@@ -259,6 +259,11 @@ SYSVBV		:= $E45F
 	nocarry:
 .endmacro
 
+.macro	proc8	p1, a1
+	lda	a1
+	jsr	p1
+.endmacro
+
 	.segment "HDR00"
 
 	.word	$FFFF
@@ -1092,18 +1097,14 @@ L4834:	.byte	$03,"CA8"
 L4838:	.addr	L4834
 L483A:	.byte	$01,"D"
 L483D:	.addr	L483A
-	brk                                     ; 483E 00                       .
-	rol     $0148,x                         ; 483F 3E 48 01                 >H.
-	.byte   $44                             ; 4842 44                       D
-	eor     ($48,x)                         ; 4843 41 48                    AH
-	.byte   $03                             ; 4845 03                       .
-	.byte   $42                             ; 4846 42                       B
-	.byte   $42                             ; 4847 42                       B
-	.byte   $44                             ; 4848 44                       D
-	eor     $48                             ; 4849 45 48                    EH
-	ora     ($42,x)                         ; 484B 01 42                    .B
-	.byte   $4B                             ; 484D 4B                       K
-	pha                                     ; 484E 48                       H
+L483E:	.byte	$00
+L483F:	.addr	L483E
+L4841:	.byte	$01,"D"
+L4843:	.addr	L4841
+L4845:	.byte	$03,"BBD"
+L4849:	.addr	L4845
+L484B:	.byte	$01,"B"
+L484D:	.addr	L484B
 L484F:	.byte	$00
 	.addr	L484F
 L4852:	.byte	$00
@@ -1181,28 +1182,19 @@ L48C3:	.addr	L476B
 	.addr	L47F8
 	.addr	L47FC
 	.addr	L4800
-	.byte   $04                             ; 48F9 04                       .
-	pha                                     ; 48FA 48                       H
-	php                                     ; 48FB 08                       .
-	pha                                     ; 48FC 48                       H
-	.byte   $0F                             ; 48FD 0F                       .
-	pha                                     ; 48FE 48                       H
-	.byte   $14                             ; 48FF 14                       .
-	pha                                     ; 4900 48                       H
-	ora     $1F48,y                         ; 4901 19 48 1F                 .H.
-	pha                                     ; 4904 48                       H
-	and     #$48                            ; 4905 29 48                    )H
-	.byte   $32                             ; 4907 32                       2
-	pha                                     ; 4908 48                       H
-	sec                                     ; 4909 38                       8
-	pha                                     ; 490A 48                       H
-	.byte   $3C                             ; 490B 3C                       <
-	pha                                     ; 490C 48                       H
-	.byte   $3F                             ; 490D 3F                       ?
-	pha                                     ; 490E 48                       H
-	.byte   $43                             ; 490F 43                       C
-	pha                                     ; 4910 48                       H
-	eor     #$48                            ; 4911 49 48                    IH
+	.addr	L4804
+	.addr	L4808
+	.addr	L480F
+	.addr	L4814
+	.addr	L4819
+	.addr	L481F
+	.addr	L4829
+	.addr	L4832
+	.addr	L4838
+	.addr	L483D
+	.addr	L483F
+	.addr	L4843
+	.addr	L4849
 	.byte	$4D,$48,$50
 	pha                                     ; 4916 48                       H
 	.byte   $53                             ; 4917 53                       S
@@ -1981,7 +1973,7 @@ L4F6A:	.byte	$00
 L4F6B:	.byte	$00
 L4F6C:	.byte	$2E
 
-L4F6D:  
+sub_4F6D:  
 	prolog
 	sta     L4F6A                           ; 4F70 8D 6A 4F                 .jO
 	jsr     sub_4BB8
@@ -2006,17 +1998,17 @@ L4F9B:  rts                                     ; 4F9B 60                       
 ; ----------------------------------------------------------------------------
 L4F9C:  .byte	$30
 
+; ----------------------------------------------------------------------------
 sub_4F9D:
 	prolog
 	sta     L4F9C                           ; 4FA0 8D 9C 4F                 ..O
-	ldi	$85, $00
-	ldi	$84, $06
+	rdldi	$84, $0006
 	lda     L4F9C                           ; 4FAB AD 9C 4F                 ..O
 	ldx     #$00                            ; 4FAE A2 00                    ..
 	jsr     sub_444A
 	sta     $A0                             ; 4FB3 85 A0                    ..
 	lda     $A0                             ; 4FB5 A5 A0                    ..
-	jsr     L4F6D                           ; 4FB7 20 6D 4F                  mO
+	jsr     sub_4F6D
 	rts                                     ; 4FBA 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -3285,8 +3277,7 @@ sub_5CFC:
 L5D02:	.byte	$01,"C"
 
 ; ----------------------------------------------------------------------------
-L5D04:  lda     #$00                            ; 5D04 A9 00                    ..
-	sta     $A3                             ; 5D06 85 A3                    ..
+L5D04:	ldi	$A3, $00
 	ldy     #$13                            ; 5D08 A0 13                    ..
 	ldxai	L5D02
 	jsr     sub_55A0
@@ -3299,14 +3290,14 @@ L5D11:  lda     L4650                           ; 5D11 AD 50 46                 
 L5D1F:  ldy     #$00                            ; 5D1F A0 00                    ..
 	sty     $022F                           ; 5D21 8C 2F 02                 ./.
 	lda     #$03                            ; 5D24 A9 03                    ..
-	jsr     L4F6D                           ; 5D26 20 6D 4F                  mO
+	jsr     sub_4F6D
 L5D29:  jsr     modem_status
 	lda     $A0                             ; 5D2C A5 A0                    ..
 	lbeq	L5D40
 L5D33:  lda     #$02                            ; 5D33 A9 02                    ..
 	jsr     sub_45A3
 	lda     #$02                            ; 5D38 A9 02                    ..
-	jsr     L4F6D                           ; 5D3A 20 6D 4F                  mO
+	jsr     sub_4F6D
 	jmp     L5D29                           ; 5D3D 4C 29 5D                 L)]
 
 ; ----------------------------------------------------------------------------
@@ -3405,7 +3396,7 @@ L5DF9:  jsr     sub_5D64
 	lda     #$2A                            ; 5DFC A9 2A                    .*
 	sta     $022F                           ; 5DFE 8D 2F 02                 ./.
 	lda     #$02                            ; 5E01 A9 02                    ..
-	jsr     L4F6D                           ; 5E03 20 6D 4F                  mO
+	jsr     sub_4F6D
 	ldy     #$00                            ; 5E06 A0 00                    ..
 	sty     L4653                           ; 5E08 8C 53 46                 .SF
 	jmp     L5E10                           ; 5E0B 4C 10 5E                 L.^
