@@ -4282,14 +4282,8 @@ L66BB:  lda     L6692+1                         ; 66BB AD 93 66                 
 	ldy     L6692                           ; 66C8 AC 92 66                 ..f
 	ldxai	L6694
 	jsr     sub_461F
-	sec                                     ; 66D2 38                       8
-	lda     L6694                           ; 66D3 AD 94 66                 ..f
-	sbc     #$01                            ; 66D6 E9 01                    ..
-	sta     $A3                             ; 66D8 85 A3                    ..
-	sec                                     ; 66DA 38                       8
-	lda     L6695                           ; 66DB AD 95 66                 ..f
-	sbc     #$01                            ; 66DE E9 01                    ..
-	sta     $A4                             ; 66E0 85 A4                    ..
+	sub8i	$A3, L6694, $01
+	sub8i	$A4, L6695, $01
 	lda     L6690+1
 	sta     $A5                             ; 66E5 85 A5                    ..
 	ldy     #$00                            ; 66E7 A0 00                    ..
