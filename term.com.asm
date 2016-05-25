@@ -79,6 +79,11 @@ SYSVBV		:= $E45F
 	STA	arg1
 .endmacro
 
+.macro	dldi	arg1, arg2
+	ldi	arg1, <arg2
+	ldi	arg1+1, >arg2
+.endmacro
+
 .macro	rdldi	arg1, arg2
 	ldi	arg1+1, >arg2
 	ldi	arg1, <arg2
@@ -8101,10 +8106,7 @@ L8D0D:  lda     L4656                           ; 8D0D AD 56 46                 
 	dey                                     ; 8D65 88                       .
 	lda     ($AE),y                         ; 8D66 B1 AE                    ..
 	sta     L466D                           ; 8D68 8D 6D 46                 .mF
-	lda     #$03                            ; 8D6B A9 03                    ..
-	sta     $A3                             ; 8D6D 85 A3                    ..
-	lda     #$00                            ; 8D6F A9 00                    ..
-	sta     $A4                             ; 8D71 85 A4                    ..
+	dldi	$A3, $0003
 	ldy     #$C0                            ; 8D73 A0 C0                    ..
 	ldxa	L466D
 	jsr     sub_45FC
