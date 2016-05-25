@@ -5532,17 +5532,15 @@ L72AF:  clc                                     ; 72AF 18                       
 L72B0:  .byte   $A5                             ; 72B0 A5                       .
 
 ; ----------------------------------------------------------------------------
-L72B1:  prolog
+sub_72B1:  
+	prolog
 	sta     L729F                           ; 72B4 8D 9F 72                 ..r
 	lda     L729F                           ; 72B7 AD 9F 72                 ..r
 	jsr     sub_7035
 	rdmv	L72A0, $A0
 	lda     L72A1                           ; 72C7 AD A1 72                 ..r
 	sta     $A3                             ; 72CA 85 A3                    ..
-	lda     #$00                            ; 72CC A9 00                    ..
-	sta     $A5                             ; 72CE 85 A5                    ..
-	lda     #$07                            ; 72D0 A9 07                    ..
-	sta     $A4                             ; 72D2 85 A4                    ..
+	rdldi	$A4, $0007
 	ldy     L72A0                           ; 72D4 AC A0 72                 ..r
 	ldxai	$72AA
 	jsr     sub_461F
@@ -5608,7 +5606,7 @@ L7366:  .byte   $ED                             ; 7366 ED                       
 L7367:  .byte   $AD                             ; 7367 AD                       .
 
 ; ----------------------------------------------------------------------------
-L7368:
+sub_7368:
 	stack_prolog L7362, $02
 	lda     L7364                           ; 7371 AD 64 73                 .ds
 	jsr     sub_7035
@@ -5686,9 +5684,8 @@ L73FE:  sec                                     ; 73FE 38                       
 	ora     L73D9                           ; 743C 0D D9 73                 ..s
 	lbeq	L7461
 L7444:  ldy     L73D5                           ; 7444 AC D5 73                 ..s
-	ldx     L73D4                           ; 7447 AE D4 73                 ..s
-	lda	L73D3
-	jsr     L7368                           ; 744D 20 68 73                  hs
+	ldxa	L73D3
+	jsr     sub_7368
 	lda     $A0                             ; 7450 A5 A0                    ..
 	eor     #$01                            ; 7452 49 01                    I.
 	lbne	L7461
@@ -5867,7 +5864,7 @@ L763E:  lda     L7607                           ; 763E AD 07 76                 
 	ldy     #$00                            ; 765A A0 00                    ..
 	sta     ($AE),y                         ; 765C 91 AE                    ..
 L765E:  lda     L7605                           ; 765E AD 05 76                 ..v
-	jsr     L72B1                           ; 7661 20 B1 72                  .r
+	jsr     sub_72B1
 	ldy     #$01                            ; 7664 A0 01                    ..
 	sty     L4656                           ; 7666 8C 56 46                 .VF
 	rts                                     ; 7669 60                       `
@@ -6010,7 +6007,7 @@ sub_77A3:
 	lda     L779E                           ; 7812 AD 9E 77                 ..w
 	jsr     L71B5                           ; 7815 20 B5 71                  .q
 	lda     L779E                           ; 7818 AD 9E 77                 ..w
-	jsr     L72B1                           ; 781B 20 B1 72                  .r
+	jsr     sub_72B1
 	ldy     #$01                            ; 781E A0 01                    ..
 	sty     L4656                           ; 7820 8C 56 46                 .VF
 	rts                                     ; 7823 60                       `
@@ -7083,7 +7080,7 @@ sub_81F2:
 	lbne	L827A
 	ldy     L4750                           ; 8269 AC 50 47                 .PG
 	ldxa	L81E4
-	jsr     L7368                           ; 8272 20 68 73                  hs
+	jsr     sub_7368
 	lda     $A0                             ; 8275 A5 A0                    ..
 	sta     L81DB                           ; 8277 8D DB 81                 ...
 L827A:  lda     L81DB                           ; 827A AD DB 81                 ...
@@ -10119,7 +10116,7 @@ L9FF1:  brk                                     ; 9FF1 00                       
 L9FF2:  brk                                     ; 9FF2 00                       .
 L9FF3:  brk                                     ; 9FF3 00                       .
 L9FF4:  brk                                     ; 9FF4 00                       .
-	brk                                     ; 9FF5 00                       .
+L9FF5:	brk                                     ; 9FF5 00                       .
 	brk                                     ; 9FF6 00                       .
 	brk                                     ; 9FF7 00                       .
 	brk                                     ; 9FF8 00                       .
@@ -10273,8 +10270,7 @@ LA04F:  lda     L9FE8                           ; A04F AD E8 9F                 
 	lda     #$01                            ; A13B A9 01                    ..
 	sta     $A4                             ; A13D 85 A4                    ..
 	ldy     #$F9                            ; A13F A0 F9                    ..
-	ldx     #$9F                            ; A141 A2 9F                    ..
-	lda     #$F5                            ; A143 A9 F5                    ..
+	ldxai	L9FF5
 	jsr     sub_4CF5
 	lda     $A0                             ; A148 A5 A0                    ..
 	sta     LA005                           ; A14A 8D 05 A0                 ...
