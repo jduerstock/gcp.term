@@ -10034,24 +10034,15 @@ L9ED7:  lda     L46E6                           ; 9ED7 AD E6 46                 
 	jsr     sub_461F
 	lda     L9E21                           ; 9F1E AD 21 9E                 .!.
 	jsr     sub_65B0
-	lda     $A1                             ; 9F24 A5 A1                    ..
-	sta     L9E13                           ; 9F26 8D 13 9E                 ...
-	lda     $A0                             ; 9F29 A5 A0                    ..
-	sta     L9E12                           ; 9F2B 8D 12 9E                 ...
+	rdmv	L9E12, $A0
 	lda     L9E13                           ; 9F2E AD 13 9E                 ...
 	sta     $A3                             ; 9F31 85 A3                    ..
-	lda     #$00                            ; 9F33 A9 00                    ..
-	sta     $A5                             ; 9F35 85 A5                    ..
-	lda     #$06                            ; 9F37 A9 06                    ..
-	sta     $A4                             ; 9F39 85 A4                    ..
+	rdldi	$A4, $0006
 	ldy     L9E12                           ; 9F3B AC 12 9E                 ...
 	ldx     #$9E                            ; 9F3E A2 9E                    ..
 	lda     #$22                            ; 9F40 A9 22                    ."
 	jsr     sub_461F
-	sec                                     ; 9F45 38                       8
-	lda     L9E1D                           ; 9F46 AD 1D 9E                 ...
-	sbc     L9E1F                           ; 9F49 ED 1F 9E                 ...
-	sta     $AE                             ; 9F4C 85 AE                    ..
+	sub8m	off_AE, L9E1D, L9E1F
 	sec                                     ; 9F4E 38                       8
 	lda     L4751                           ; 9F4F AD 51 47                 .QG
 	sbc     $AE                             ; 9F52 E5 AE                    ..
