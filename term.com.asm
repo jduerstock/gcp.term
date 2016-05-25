@@ -7567,20 +7567,11 @@ L8777:	add8m	off_AE, L8565, L856A
 	lbne	L8818
 	lda     L855F                           ; 8791 AD 5F 85                 ._.
 	lbeq	L87AA
-	sec                                     ; 8799 38                       8
-	lda     L8558                           ; 879A AD 58 85                 .X.
-	sbc     #$28                            ; 879D E9 28                    .(
-	sta     L8558                           ; 879F 8D 58 85                 .X.
-	lda     L8559                           ; 87A2 AD 59 85                 .Y.
-	sbc     #$00                            ; 87A5 E9 00                    ..
-	sta     L8559                           ; 87A7 8D 59 85                 .Y.
+	sub16i	L8558, L8558, $0028
 L87AA:  lda     L8570                           ; 87AA AD 70 85                 .p.
 	eor     #$41                            ; 87AD 49 41                    IA
-	bne     L87B4                           ; 87AF D0 03                    ..
-	jmp     L87E2                           ; 87B1 4C E2 87                 L..
-
-; ----------------------------------------------------------------------------
-L87B4:  clc                                     ; 87B4 18                       .
+	lbeq	L87E2
+	clc                                     ; 87B4 18                       .
 	lda     L8558                           ; 87B5 AD 58 85                 .X.
 	adc     L8553                           ; 87B8 6D 53 85                 mS.
 	sta     L855A                           ; 87BB 8D 5A 85                 .Z.
