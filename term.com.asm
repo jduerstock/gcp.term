@@ -7571,13 +7571,7 @@ L8777:	add8m	off_AE, L8565, L856A
 L87AA:  lda     L8570                           ; 87AA AD 70 85                 .p.
 	eor     #$41                            ; 87AD 49 41                    IA
 	lbeq	L87E2
-	clc                                     ; 87B4 18                       .
-	lda     L8558                           ; 87B5 AD 58 85                 .X.
-	adc     L8553                           ; 87B8 6D 53 85                 mS.
-	sta     L855A                           ; 87BB 8D 5A 85                 .Z.
-	lda     L8559                           ; 87BE AD 59 85                 .Y.
-	adc     #$00                            ; 87C1 69 00                    i.
-	sta     L855B                           ; 87C3 8D 5B 85                 .[.
+	add16m8	L855A, L8558, L8553
 	clc                                     ; 87C6 18                       .
 	lda     L8555                           ; 87C7 AD 55 85                 .U.
 	adc     #$01                            ; 87CA 69 01                    i.
