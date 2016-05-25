@@ -11260,34 +11260,31 @@ LA9CA:  lda     $DA                             ; A9CA A5 DA                    
 LA9DC:  rts                                     ; A9DC 60                       `
 
 ; ----------------------------------------------------------------------------
-LA9DD:  brk                                     ; A9DD 00                       .
+LA9DD:	.byte	$00
 
 ; ----------------------------------------------------------------------------
 LA9DE:  prolog
 	sta     LA9DD                           ; A9E1 8D DD A9                 ...
-	lda     LA9DD                           ; A9E4 AD DD A9                 ...
-	sta     L4658                           ; A9E7 8D 58 46                 .XF
+	mv	L4658, LA9DD
 	rts                                     ; A9EA 60                       `
 
 ; ----------------------------------------------------------------------------
-LA9EB:  brk                                     ; A9EB 00                       .
-LA9EC:  jmp     LA9EF                           ; A9EC 4C EF A9                 L..
+LA9EB:  .byte	$00
 
 ; ----------------------------------------------------------------------------
+LA9EC:  prolog
 LA9EF:  sta     LA9EB                           ; A9EF 8D EB A9                 ...
-	.byte   $AD                             ; A9F2 AD                       .
-LA9F3:  .byte   $EB                             ; A9F3 EB                       .
-	lda     #$8D                            ; A9F4 A9 8D                    ..
-	;lsr     L6046                           ; A9F6 4E 46 60                 NF`
-	.byte	$4E,$46,$60
-LA9F9:  brk                                     ; A9F9 00                       .
-LA9FA:  brk                                     ; A9FA 00                       .
+	mv	L464E, LA9EB
+	rts
+
+; ----------------------------------------------------------------------------
+LA9F9:	.word	$0000
 
 ; ----------------------------------------------------------------------------
 sub_A9FB:
 	prolog
 	sub16m	LA9F9, MEMTOP, MEMLO
-	lda     LA9FA                           ; AA11 AD FA A9                 ...
+	lda     LA9F9+1
 	sta     $A3                             ; AA14 85 A3                    ..
 	ldy     LA9F9                           ; AA16 AC F9 A9                 ...
 	ldxa	MEMLO
@@ -11300,10 +11297,7 @@ LAA25:	.byte	$02,"CH"
 ; ----------------------------------------------------------------------------
 LAA28:  lda     #$00                            ; AA28 A9 00                    ..
 	sta     $A3                             ; AA2A 85 A3                    ..
-	lda     LA9FA                           ; AA2C AD FA A9                 ...
-	sta     $A5                             ; AA2F 85 A5                    ..
-	lda     LA9F9                           ; AA31 AD F9 A9                 ...
-	sta     $A4                             ; AA34 85 A4                    ..
+	rdmv	$A4, LA9F9
 	ldy     #$46                            ; AA36 A0 46                    .F
 	ldxai	LAA25
 	jsr     sub_55A0
