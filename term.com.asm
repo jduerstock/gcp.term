@@ -9721,7 +9721,7 @@ L9C2F:	dec     $1E,x                           ; 9C2F D6 1E                    .
 	brk                                     ; 9C35 00                       .
 	brk                                     ; 9C36 00                       .
 	brk                                     ; 9C37 00                       .
-	dec     $1E,x                           ; 9C38 D6 1E                    ..
+L9C38:	dec     $1E,x                           ; 9C38 D6 1E                    ..
 	ora     #$00                            ; 9C3A 09 00                    ..
 	brk                                     ; 9C3C 00                       .
 	brk                                     ; 9C3D 00                       .
@@ -9729,19 +9729,16 @@ L9C2F:	dec     $1E,x                           ; 9C2F D6 1E                    .
 	brk                                     ; 9C3F 00                       .
 	brk                                     ; 9C40 00                       .
 
-L9C41:  stack_prolog L9C16, $02
+sub_9C41:  
+	stack_prolog L9C16, $02
 	lda     L9C16                           ; 9C4A AD 16 9C                 ...
 	sta     L46E6                           ; 9C4D 8D E6 46                 ..F
 	lda     L9C17                           ; 9C50 AD 17 9C                 ...
 	sta     L46E9                           ; 9C53 8D E9 46                 ..F
 	lda     L9C18                           ; 9C56 AD 18 9C                 ...
 	sta     L46EA                           ; 9C59 8D EA 46                 ..F
-	ldi	L46EB+1, >L9C2F
-	ldi	L46EB, <L9C2F
-	lda     #$9C                            ; 9C66 A9 9C                    ..
-	sta     L46EE                           ; 9C68 8D EE 46                 ..F
-	lda     #$38                            ; 9C6B A9 38                    .8
-	sta     L46ED                           ; 9C6D 8D ED 46                 ..F
+	rdldi	L46EB, L9C2F
+	rdldi	L46ED, L9C38
 	lda     L9C23                           ; 9C70 AD 23 9C                 .#.
 	sta     $A3                             ; 9C73 85 A3                    ..
 	lda     #$00                            ; 9C75 A9 00                    ..
@@ -11306,7 +11303,7 @@ LAA28:  lda     #$00                            ; AA28 A9 00                    
 	jsr	sub_8020
 	jsr     sub_8F7D
 	lda     #$00                            ; AA4B A9 00                    ..
-	jsr     L9C41                           ; AA4D 20 41 9C                  A.
+	jsr     sub_9C41
 	lda     #$00                            ; AA50 A9 00                    ..
 	jsr     LA9EC                           ; AA52 20 EC A9                  ..
 LAA55:  lda     #$00                            ; AA55 A9 00                    ..
@@ -11356,7 +11353,7 @@ LAA86:	.addr	L6AD5
 	.addr	L705F
 	.addr	L7096
 	.addr	L70E2
-	.addr	L9C41
+	.addr	sub_9C41
 	.addr	L9BE0
 	.addr	L9BD0
 	.addr	L9CAD
