@@ -10028,13 +10028,9 @@ L9ED7:  lda     L46E6                           ; 9ED7 AD E6 46                 
 	rdmv	L9E10, $A0
 	lda     L9E11                           ; 9F07 AD 11 9E                 ...
 	sta     $A3                             ; 9F0A 85 A3                    ..
-	lda     #$00                            ; 9F0C A9 00                    ..
-	sta     $A5                             ; 9F0E 85 A5                    ..
-	lda     #$05                            ; 9F10 A9 05                    ..
-	sta     $A4                             ; 9F12 85 A4                    ..
+	rdldi	$A4, $0005
 	ldy     L9E10                           ; 9F14 AC 10 9E                 ...
-	ldx     #$9E                            ; 9F17 A2 9E                    ..
-	lda     #$1D                            ; 9F19 A9 1D                    ..
+	ldxai	L9E1D
 	jsr     sub_461F
 	lda     L9E21                           ; 9F1E AD 21 9E                 .!.
 	jsr     sub_65B0
