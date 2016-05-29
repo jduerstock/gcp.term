@@ -3352,10 +3352,7 @@ L5DE0:  lda     #$00                            ; 5DE0 A9 00                    
 	sta     $A3                             ; 5DE2 85 A3                    ..
 	lda     #$00                            ; 5DE4 A9 00                    ..
 	sta     $A4                             ; 5DE6 85 A4                    ..
-	lda     #$4A                            ; 5DE8 A9 4A                    .J
-	sta     $A6                             ; 5DEA 85 A6                    ..
-	lda     #$A1                            ; 5DEC A9 A1                    ..
-	sta     $A5                             ; 5DEE 85 A5                    ..
+	rdldi	$A5, L4AA1
 	ldy     #$59                            ; 5DF0 A0 59                    .Y
 	ldx     #$00                            ; 5DF2 A2 00                    ..
 	lda     #$02                            ; 5DF4 A9 02                    ..
@@ -3370,12 +3367,11 @@ L5DF9:  jsr     sub_5D64
 	jmp     L5E10                           ; 5E0B 4C 10 5E                 L.^
 
 ; ----------------------------------------------------------------------------
-	ora     ($43,x)                         ; 5E0E 01 43                    .C
+L5E0E:	.byte	$01,"C"
 L5E10:  lda     #$00                            ; 5E10 A9 00                    ..
 	sta     $A3                             ; 5E12 85 A3                    ..
 	ldy     #$11                            ; 5E14 A0 11                    ..
-	ldx     #$5E                            ; 5E16 A2 5E                    .^
-	lda     #$0E                            ; 5E18 A9 0E                    ..
+	ldxai	L5E0E
 	jsr     sub_55A0
 	rts                                     ; 5E1D 60                       `
 
