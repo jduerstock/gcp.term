@@ -281,7 +281,9 @@ sub_4349:
 	stx     $A6                             ; 434B 86 A6                    ..
 	ldy     #$0C                            ; 434D A0 0C                    ..
 L434F:  bne     L435B                           ; 434F D0 0A                    ..
-L4351:  sty     $A6                             ; 4351 84 A6                    ..
+
+sub_4351:  
+	sty     $A6                             ; 4351 84 A6                    ..
 	ldy     #$0B                            ; 4353 A0 0B                    ..
 	bne     L435B                           ; 4355 D0 04                    ..
 L4357:  sty     $A6                             ; 4357 84 A6                    ..
@@ -634,7 +636,7 @@ sub_4569:
 	jmp     L4515                           ; 456C 4C 15 45                 L.E
 
 ; ----------------------------------------------------------------------------
-	jsr     L4351                           ; 456F 20 51 43                  QC
+	jsr     sub_4351
 	jmp     L4515                           ; 4572 4C 15 45                 L.E
 
 ; ----------------------------------------------------------------------------
@@ -1885,35 +1887,18 @@ L4E49:  .byte   $54                             ; 4E49 54                       
 ; ----------------------------------------------------------------------------
 sub_4E4A:  
 	prolog
-	stx     L4E43                           ; 4E4D 8E 43 4E                 .CN
-	sta     L4E42                           ; 4E50 8D 42 4E                 .BN
+	stxa	L4E42
 	lda     L4E43                           ; 4E53 AD 43 4E                 .CN
 	sta     $A3                             ; 4E56 85 A3                    ..
-	lda     #$00                            ; 4E58 A9 00                    ..
-	sta     $A5                             ; 4E5A 85 A5                    ..
-	lda     #$04                            ; 4E5C A9 04                    ..
-	sta     $A4                             ; 4E5E 85 A4                    ..
+	rdldi	$A4, $0004
 	ldy     L4E42                           ; 4E60 AC 42 4E                 .BN
 	ldxai	L4E46
 	jsr     sub_461F
-	sec                                     ; 4E6A 38                       8
-	lda     L4E48                           ; 4E6B AD 48 4E                 .HN
-	sbc     L4E46                           ; 4E6E ED 46 4E                 .FN
-	sta     $AE                             ; 4E71 85 AE                    ..
-	clc                                     ; 4E73 18                       .
-	lda     $AE                             ; 4E74 A5 AE                    ..
-	adc     #$01                            ; 4E76 69 01                    i.
-	sta     $AC                             ; 4E78 85 AC                    ..
-	sec                                     ; 4E7A 38                       8
-	lda     L4E49                           ; 4E7B AD 49 4E                 .IN
-	sbc     L4E47                           ; 4E7E ED 47 4E                 .GN
-	sta     $AE                             ; 4E81 85 AE                    ..
-	clc                                     ; 4E83 18                       .
-	lda     $AE                             ; 4E84 A5 AE                    ..
-	adc     #$01                            ; 4E86 69 01                    i.
-	sta     $AA                             ; 4E88 85 AA                    ..
-	lda     #$00                            ; 4E8A A9 00                    ..
-	sta     $85                             ; 4E8C 85 85                    ..
+	sub8m	off_AE, L4E48, L4E46
+	add8i	off_AC, off_AE, $01
+	sub8m	off_AE, L4E49, L4E47
+	add8i	$AA, off_AE, $01
+	ldi	$85, $00
 	lda     $AA                             ; 4E8E A5 AA                    ..
 	sta     $84                             ; 4E90 85 84                    ..
 	lda     $AC                             ; 4E92 A5 AC                    ..
@@ -1922,10 +1907,7 @@ sub_4E4A:
 	sta     L4E44                           ; 4E99 8D 44 4E                 .DN
 	txa                                     ; 4E9C 8A                       .
 	sta     L4E45                           ; 4E9D 8D 45 4E                 .EN
-	lda     L4E45                           ; 4EA0 AD 45 4E                 .EN
-	sta     $A1                             ; 4EA3 85 A1                    ..
-	lda     L4E44                           ; 4EA5 AD 44 4E                 .DN
-	sta     $A0                             ; 4EA8 85 A0                    ..
+	rdmv	$A0, L4E44
 	rts                                     ; 4EAA 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -2077,10 +2059,7 @@ L5036:	ldy     #$01                            ; 5036 A0 01                    .
 
 ; ----------------------------------------------------------------------------
 L5040:	mv	$B1C6, L4FBB
-	lda     #$B1                            ; 5046 A9 B1                    ..
-	sta     L4FC3                           ; 5048 8D C3 4F                 ..O
-	lda     #$C6                            ; 504B A9 C6                    ..
-L504D:  sta     L4FC2                           ; 504D 8D C2 4F                 ..O
+	rdldi	L4FC2, $B1C6
 	lda     L4FBB                           ; 5050 AD BB 4F                 ..O
 	sta     L4FC1                           ; 5053 8D C1 4F                 ..O
 	ldy     #$01                            ; 5056 A0 01                    ..
@@ -2093,15 +2072,13 @@ L504D:  sta     L4FC2                           ; 504D 8D C2 4F                 
 	lda     L4FBC                           ; 506B AD BC 4F                 ..O
 	ora     L4FBD                           ; 506E 0D BD 4F                 ..O
 	lbne	L507B
-	lda     #$00                            ; 5076 A9 00                    ..
-	sta     $A0                             ; 5078 85 A0                    ..
+	ldi	$A0, $00
 	rts                                     ; 507A 60                       `
 
 ; ----------------------------------------------------------------------------
 L507B:  lda     #$02                            ; 507B A9 02                    ..
 	jsr     sub_45A3
-	lda     $A0                             ; 5080 A5 A0                    ..
-	sta     L4FBB                           ; 5082 8D BB 4F                 ..O
+	mv	L4FBB, $A0
 L5085:  lda     L4FBF                           ; 5085 AD BF 4F                 ..O
 	eor     #$01                            ; 5088 49 01                    I.
 	lbne	L50EF
@@ -2153,11 +2130,8 @@ L50EF:  clc                                     ; 50EF 18                       
 	inc     L4FBF                           ; 5110 EE BF 4F                 ..O
 	lda     L4FBB                           ; 5113 AD BB 4F                 ..O
 	eor     #$0A                            ; 5116 49 0A                    I.
-	beq     L511D                           ; 5118 F0 03                    ..
-	jmp     L514C                           ; 511A 4C 4C 51                 LLQ
-
-; ----------------------------------------------------------------------------
-L511D:  clc                                     ; 511D 18                       .
+	lbne	L514C
+	clc                                     ; 511D 18                       .
 	lda     L4FC0                           ; 511E AD C0 4F                 ..O
 	adc     #$01                            ; 5121 69 01                    i.
 	sta     $AE                             ; 5123 85 AE                    ..
@@ -11309,9 +11283,7 @@ LAB0B:
 	.byte   $53                             ; AB2D 53                       S
 	.byte   $54                             ; AB2E 54                       T
 	.byte   $2B                             ; AB2F 2B                       +
-	jmp     L504D                           ; AB30 4C 4D 50                 LMP
-
-; ----------------------------------------------------------------------------
+	.byte	$4C,$4D,$50
 	.byte   $52                             ; AB33 52                       R
 	.byte   $47                             ; AB34 47                       G
 	eor     ($4F,x)                         ; AB35 41 4F                    AO
