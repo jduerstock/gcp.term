@@ -2143,8 +2143,7 @@ L50EF:  clc                                     ; 50EF 18                       
 	lda     L4FC1                           ; 5135 AD C1 4F                 ..O
 	eor     #$0A                            ; 5138 49 0A                    I.
 	lbne	L5147
-	lda     #$01                            ; 513F A9 01                    ..
-	sta     $A0                             ; 5141 85 A0                    ..
+	ldi	$A0, $01
 	rts                                     ; 5143 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -3315,10 +3314,7 @@ sub_5D67:
 	sta     $A3                             ; 5D89 85 A3                    ..
 	lda     #$00                            ; 5D8B A9 00                    ..
 	sta     $A4                             ; 5D8D 85 A4                    ..
-	lda     #$4A                            ; 5D8F A9 4A                    .J
-	sta     $A6                             ; 5D91 85 A6                    ..
-	lda     #$A1                            ; 5D93 A9 A1                    ..
-	sta     $A5                             ; 5D95 85 A5                    ..
+	rdldi	$A5, L4AA1
 	ldy     #$24                            ; 5D97 A0 24                    .$
 	ldx     #$00                            ; 5D99 A2 00                    ..
 	lda     #$02                            ; 5D9B A9 02                    ..
@@ -3327,10 +3323,7 @@ sub_5D67:
 	sta     $A3                             ; 5DA2 85 A3                    ..
 	lda     #$00                            ; 5DA4 A9 00                    ..
 	sta     $A4                             ; 5DA6 85 A4                    ..
-	lda     #$4A                            ; 5DA8 A9 4A                    .J
-	sta     $A6                             ; 5DAA 85 A6                    ..
-	lda     #$A1                            ; 5DAC A9 A1                    ..
-	sta     $A5                             ; 5DAE 85 A5                    ..
+	rdldi	$A5, L4AA1
 	ldy     #$26                            ; 5DB0 A0 26                    .&
 	ldx     #$00                            ; 5DB2 A2 00                    ..
 	lda     #$02                            ; 5DB4 A9 02                    ..
