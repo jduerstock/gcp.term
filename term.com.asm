@@ -825,22 +825,22 @@ L4649:  .byte	$00
 L464A:  .byte   $31                             ; 464A 31                       1
 L464B:  .byte	$00
 	.byte	$00
-L464D:  brk                                     ; 464D 00                       .
-L464E:  brk                                     ; 464E 00                       .
-L464F:  brk                                     ; 464F 00                       .
-L4650:  brk                                     ; 4650 00                       .
+L464D:  .byte	$00
+L464E:  .byte	$00
+L464F:  .byte	$00
+L4650:  .byte	$00
 L4651:  .byte   $01                             ; 4651 01                       .
 L4652:  .byte   $02                             ; 4652 02                       .
-L4653:  brk                                     ; 4653 00                       .
-L4654:  brk                                     ; 4654 00                       .
-	brk                                     ; 4655 00                       .
-L4656:  brk                                     ; 4656 00                       .
-L4657:  brk                                     ; 4657 00                       .
-L4658:  brk                                     ; 4658 00                       .
-L4659:  brk                                     ; 4659 00                       .
-	brk                                     ; 465A 00                       .
+L4653:  .byte	$00
+L4654:  .byte	$00
+	.byte	$00
+L4656:  .byte	$00
+L4657:  .byte	$00
+L4658:  .byte	$00
+L4659:  .byte	$00
+	.byte	$00
 	.byte   $14                             ; 465B 14                       .
-	brk                                     ; 465C 00                       .
+	.byte	$00
 	.byte	">>> UTIL.ACT  <<"
 L466D:  .byte   $3C                             ; 466D 3C                       <
 L466E:  .byte   $3C                             ; 466E 3C                       <
