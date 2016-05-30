@@ -5229,9 +5229,9 @@ L70E2:
 
 ; ----------------------------------------------------------------------------
 L71A1:	.byte	$00
-L71A2:  brk                                     ; 71A2 00                       .
-L71A3:  brk                                     ; 71A3 00                       .
-	brk                                     ; 71A4 00                       .
+L71A2:  .byte	$00
+L71A3:  .byte	$00
+L71A4:	.byte	$00
 	brk                                     ; 71A5 00                       .
 	brk                                     ; 71A6 00                       .
 	brk                                     ; 71A7 00                       .
@@ -5319,13 +5319,7 @@ sub_71B5:
 	ldx     #$71                            ; 725A A2 71                    .q
 	lda     #$A8                            ; 725C A9 A8                    ..
 	jsr     sub_4BF2
-	clc                                     ; 7261 18                       .
-	lda     L71A2                           ; 7262 AD A2 71                 ..q
-	adc     #$0B                            ; 7265 69 0B                    i.
-	sta     $AE                             ; 7267 85 AE                    ..
-	lda     L71A3                           ; 7269 AD A3 71                 ..q
-	adc     #$00                            ; 726C 69 00                    i.
-	sta     $AF                             ; 726E 85 AF                    ..
+	add16i	off_AE, L71A2, $000B
 	push16	off_AE
 	lda     #$71                            ; 7276 A9 71                    .q
 	sta     $A3                             ; 7278 85 A3                    ..
@@ -5337,8 +5331,7 @@ sub_71B5:
 	adc     #$00                            ; 7285 69 00                    i.
 	sta     $A5                             ; 7287 85 A5                    ..
 	ldy     #$A8                            ; 7289 A0 A8                    ..
-	ldx     #$71                            ; 728B A2 71                    .q
-	lda     #$A4                            ; 728D A9 A4                    ..
+	ldxai	L71A4
 	jsr     sub_4CF5
 	pull16	off_AE
 	lda     $A0                             ; 7298 A5 A0                    ..
@@ -6154,8 +6147,8 @@ L7B52:  .byte   $8C                             ; 7B52 8C                       
 L7B53:  .byte   $33                             ; 7B53 33                       3
 L7B54:  .byte   $F0                             ; 7B54 F0                       .
 L7B55:  pha                                     ; 7B55 48                       H
-L7B56:  sec                                     ; 7B56 38                       8
-L7B57:  ldy     #$03                            ; 7B57 A0 03                    ..
+L7B56:	.byte	$38,$A0
+	.byte	$03
 	lda     ($45),y                         ; 7B59 B1 45                    .E
 	.byte   $E9                             ; 7B5B E9                       .
 L7B5C:  ora     ($91,x)                         ; 7B5C 01 91                    ..
@@ -6296,17 +6289,11 @@ L7C65:  lda     L7B55                           ; 7C65 AD 55 7B                 
 	lda     L7B54                           ; 7CB4 AD 54 7B                 .T{
 	cmp     L7B56                           ; 7CB7 CD 56 7B                 .V{
 	lda     L7B55                           ; 7CBA AD 55 7B                 .U{
-	sbc     L7B57                           ; 7CBD ED 57 7B                 .W{
+	sbc     L7B56+1
 	lbcs	L7CD6
-	sec                                     ; 7CC5 38                       8
-	lda     L7B56                           ; 7CC6 AD 56 7B                 .V{
-	sbc     #$06                            ; 7CC9 E9 06                    ..
-	sta     L7B56                           ; 7CCB 8D 56 7B                 .V{
-	lda     L7B57                           ; 7CCE AD 57 7B                 .W{
-	sbc     #$00                            ; 7CD1 E9 00                    ..
-	sta     L7B57                           ; 7CD3 8D 57 7B                 .W{
+	sub16i	L7B56, L7B56, $0006
 L7CD6:	add16i	$A0, L7B56, $0006
-	mv	$A3, L7B57
+	mv	$A3, L7B56+1
 	sub16m	off_AC, L7B52, L7B56
 	sub16i	$A4, off_AC, $0006
 	ldy     L7B56                           ; 7D08 AC 56 7B                 .V{
