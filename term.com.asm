@@ -5280,24 +5280,14 @@ sub_71B5:
 	lda     $A8                             ; 7216 A5 A8                    ..
 	sbc     L71B0                           ; 7218 ED B0 71                 ..q
 	sta     $A4                             ; 721B 85 A4                    ..
-	clc                                     ; 721D 18                       .
-	lda     L71AC                           ; 721E AD AC 71                 ..q
-	adc     #$01                            ; 7221 69 01                    i.
-	sta     $A8                             ; 7223 85 A8                    ..
-	lda     L71AD                           ; 7225 AD AD 71                 ..q
-	adc     #$00                            ; 7228 69 00                    i.
-	sta     $A9                             ; 722A 85 A9                    ..
+	add16i	$A8, L71AC, $0001
 	sec                                     ; 722C 38                       8
 	lda     ($A8),y                         ; 722D B1 A8                    ..
 	sbc     #$01                            ; 722F E9 01                    ..
 	sta     $A6                             ; 7231 85 A6                    ..
-	sec                                     ; 7233 38                       8
-	lda     $A6                             ; 7234 A5 A6                    ..
-	sbc     L71B1                           ; 7236 ED B1 71                 ..q
-	sta     $A5                             ; 7239 85 A5                    ..
+	sub8m	$A5, $A6, L71B1
 	ldy     $A2                             ; 723B A4 A2                    ..
-	ldx     #$71                            ; 723D A2 71                    .q
-	lda     #$A4                            ; 723F A9 A4                    ..
+	ldxai	L71A4
 	jsr     sub_4BF2
 	lda     #$00                            ; 7244 A9 00                    ..
 	sta     $A3                             ; 7246 85 A3                    ..
