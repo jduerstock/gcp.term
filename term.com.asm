@@ -274,8 +274,17 @@ SYSVBV		:= $E45F
 	rdmv	a1, $A0
 .endmacro
 
-.macro	ldp16 a1
+.macro	ldp16	a1
 	ldy	#$01
+	lda	(off_AE),y
+	sta	a1+1
+	dey
+	lda	(off_AE),y
+	sta	a1
+.endmacro
+
+.macro	ld2p16	a1
+	iny
 	lda	(off_AE),y
 	sta	a1+1
 	dey
@@ -3836,10 +3845,7 @@ sub_6203:
 	dey                                     ; 62A3 88                       .
 	sta     ($AE),y                         ; 62A4 91 AE                    ..
 	add16i	L6201, L61FF, $001E
-	lda     L6201                           ; 62B7 AD 01 62                 ..b
-	sta     $AE                             ; 62BA 85 AE                    ..
-	lda     L6202                           ; 62BC AD 02 62                 ..b
-	sta     $AF                             ; 62BF 85 AF                    ..
+	dmv	off_AE, L6201
 	lda     L6200                           ; 62C1 AD 00 62                 ..b
 	iny                                     ; 62C4 C8                       .
 	sta     ($AE),y                         ; 62C5 91 AE                    ..
@@ -3856,10 +3862,8 @@ L62D0:  brk                                     ; 62D0 00                       
 ; ----------------------------------------------------------------------------
 sub_62D1:
 	prolog
-	lda     $022F                           ; 62D4 AD 2F 02                 ./.
-	sta     L62D0                           ; 62D7 8D D0 62                 ..b
-	ldy     #$00                            ; 62DA A0 00                    ..
-	sty     $022F                           ; 62DC 8C 2F 02                 ./.
+	mv	L62D0, $022F
+	yldi	$022F, $00
 	shladdi	off_AE, L466F, $0001
 	iny                                     ; 62F2 C8                       .
 	lda     ($AE),y                         ; 62F3 B1 AE                    ..
@@ -5078,12 +5082,7 @@ sub_7035:
 	prolog
 	sta     L7034                           ; 7038 8D 34 70                 .4p
 	shladdm8 off_AE, L46A2, L7034
-	ldy     #$01                            ; 704F A0 01                    ..
-	lda     ($AE),y                         ; 7051 B1 AE                    ..
-	sta     $A1                             ; 7053 85 A1                    ..
-	dey                                     ; 7055 88                       .
-	lda     ($AE),y                         ; 7056 B1 AE                    ..
-	sta     $A0                             ; 7058 85 A0                    ..
+	ldp16	$A0
 	rts                                     ; 705A 60                       `
 
 ; ----------------------------------------------------------------------------
