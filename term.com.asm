@@ -5321,15 +5321,8 @@ sub_71B5:
 	jsr     sub_4BF2
 	add16i	off_AE, L71A2, $000B
 	push16	off_AE
-	lda     #$71                            ; 7276 A9 71                    .q
-	sta     $A3                             ; 7278 85 A3                    ..
-	clc                                     ; 727A 18                       .
-	lda     L71A2                           ; 727B AD A2 71                 ..q
-	adc     #$16                            ; 727E 69 16                    i.
-	sta     $A4                             ; 7280 85 A4                    ..
-	lda     L71A3                           ; 7282 AD A3 71                 ..q
-	adc     #$00                            ; 7285 69 00                    i.
-	sta     $A5                             ; 7287 85 A5                    ..
+	ldi	$A3, $71
+	add16i	$A4, L71A2, $0016
 	ldy     #$A8                            ; 7289 A0 A8                    ..
 	ldxai	L71A4
 	jsr     sub_4CF5
