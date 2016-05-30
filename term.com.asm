@@ -5325,9 +5325,7 @@ L72B0:  .byte   $A5                             ; 72B0 A5                       
 sub_72B1:  
 	prolog
 	sta     L729F                           ; 72B4 8D 9F 72                 ..r
-	lda     L729F                           ; 72B7 AD 9F 72                 ..r
-	jsr     sub_7035
-	rdmv	L72A0, $A0
+	func16_8 sub_7035, L72A0, L729F
 	mv	$A3, L72A1
 	rdldi	$A4, $0007
 	ldy     L72A0                           ; 72D4 AC A0 72                 ..r
