@@ -4605,10 +4605,7 @@ L69B7:  lda     L6983+1
 	lda     L6991                           ; 6A39 AD 91 69                 ..i
 	ora     L6991+1
 	lbeq	L6A67
-	lda     #$00                            ; 6A44 A9 00                    ..
-	sta     $85                             ; 6A46 85 85                    ..
-	lda     #$06                            ; 6A48 A9 06                    ..
-	sta     $84                             ; 6A4A 85 84                    ..
+	rdldi	$84, $0006
 	lda     L6990                           ; 6A4C AD 90 69                 ..i
 	ldx     #$00                            ; 6A4F A2 00                    ..
 	jsr     sub_444A
