@@ -5531,8 +5531,7 @@ L74BE:
 	lda     L74BC                           ; 74D7 AD BC 74                 ..t
 	ora     L74BD                           ; 74DA 0D BD 74                 ..t
 	lbne	L753B
-	ldx     #$00                            ; 74E2 A2 00                    ..
-	lda     #$26                            ; 74E4 A9 26                    .&
+	ldxai	$0026
 	jsr     sub_606E
 	rdmv	L74BC, $A0
 	shladdm8 off_AE, L46A2, L74B8
