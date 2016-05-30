@@ -2811,12 +2811,7 @@ L5785:	dmv	off_AE, L558C
 
 ; ----------------------------------------------------------------------------
 L57E2:	dmv	off_AE, L558C
-	ldy     #$01                            ; 57EC A0 01                    ..
-	lda     (off_AE),y
-	sta     L5599                           ; 57F0 8D 99 55                 ..U
-	dey                                     ; 57F3 88                       .
-	lda     (off_AE),y
-	sta     L5598                           ; 57F6 8D 98 55                 ..U
+	ldp16	L5598
 	lda     #$00                            ; 57F9 A9 00                    ..
 	cmp     L5592                           ; 57FB CD 92 55                 ..U
 	lbcs	L5867
@@ -2831,7 +2826,7 @@ L580F:  lda     L581A                           ; 580F AD 1A 58                 
 	jmp     L5867                           ; 5817 4C 67 58                 LgX
 
 ; ----------------------------------------------------------------------------
-L581A:  .byte   $73                             ; 581A 73                       s
+L581A:  .byte   $73
 
 ; ----------------------------------------------------------------------------
 L581B:	add16m8 off_AE, L5598, L5593
@@ -3203,8 +3198,7 @@ L5C95:  lda     L58EE                           ; 5C95 AD EE 58                 
 	lbne	L5CF5
 	sub8i	L58F0, L4649, $01
 	mv	LB224, L58F0
-	ldy     #$01                            ; 5CAE A0 01                    ..
-	sty     L58EF                           ; 5CB0 8C EF 58                 ..X
+	yldi	L58EF, $01
 	mv	L5CC4, L58F0
 L5CB9:  lda     L5CC4                           ; 5CB9 AD C4 5C                 ..\
 	cmp     L58EF                           ; 5CBC CD EF 58                 ..X
@@ -3396,8 +3390,7 @@ L5E3C:  lda     L4653                           ; 5E3C AD 53 46                 
 	eor     #$01                            ; 5E3F 49 01                    I.
 	lbne	L5E51
 	jsr     sub_5D67
-	ldy     #$01                            ; 5E49 A0 01                    ..
-	sty     L4656                           ; 5E4B 8C 56 46                 .VF
+	yldi	L4656, $01
 	jmp     L5E5A                           ; 5E4E 4C 5A 5E                 LZ^
 
 ; ----------------------------------------------------------------------------
@@ -3811,12 +3804,7 @@ L6202:  brk                                     ; 6202 00                       
 sub_6203:  
 	prolog
 	shladdi	off_AE, L466F, $0001
-	ldy     #$01                            ; 6219 A0 01                    ..
-	lda     ($AE),y                         ; 621B B1 AE                    ..
-	sta     $A1                             ; 621D 85 A1                    ..
-	dey                                     ; 621F 88                       .
-	lda     ($AE),y                         ; 6220 B1 AE                    ..
-	sta     $A0                             ; 6222 85 A0                    ..
+	ldp16	$A0
 	dmv	off_AC, L466F
 	iny                                     ; 622E C8                       .
 	lda     ($AC),y                         ; 622F B1 AC                    ..
@@ -3832,30 +3820,10 @@ sub_6203:
 	ldxa	$A0
 	jsr     sub_461F
 	shladdi	off_AE, L466F, $0001
-	ldy     #$01                            ; 625C A0 01                    ..
-	lda     ($AE),y                         ; 625E B1 AE                    ..
-	sta	L6200
-	dey                                     ; 6263 88                       .
-	lda     ($AE),y                         ; 6264 B1 AE                    ..
-	sta     L61FF                           ; 6266 8D FF 61                 ..a
-	clc                                     ; 6269 18                       .
-	lda     L61FF                           ; 626A AD FF 61                 ..a
-	adc     #$03                            ; 626D 69 03                    i.
-	sta     $AE                             ; 626F 85 AE                    ..
-	lda     L6200                           ; 6271 AD 00 62                 ..b
-	adc     #$00                            ; 6274 69 00                    i.
-	sta     $AF                             ; 6276 85 AF                    ..
-	clc                                     ; 6278 18                       .
-	lda     $AE                             ; 6279 A5 AE                    ..
-	adc     #$01                            ; 627B 69 01                    i.
-	sta     L6201                           ; 627D 8D 01 62                 ..b
-	lda     $AF                             ; 6280 A5 AF                    ..
-	adc     #$00                            ; 6282 69 00                    i.
-	sta     L6202                           ; 6284 8D 02 62                 ..b
-	lda     L6201                           ; 6287 AD 01 62                 ..b
-	sta     $AE                             ; 628A 85 AE                    ..
-	lda     L6202                           ; 628C AD 02 62                 ..b
-	sta     $AF                             ; 628F 85 AF                    ..
+	ldp16	L61FF
+	add16i	off_AE, L61FF, $0003
+	add16i	L6201, off_AE, $0001
+	dmv	off_AE, L6201
 	clc                                     ; 6291 18                       .
 	lda     L61FF                           ; 6292 AD FF 61                 ..a
 	adc     #$20                            ; 6295 69 20                    i 
