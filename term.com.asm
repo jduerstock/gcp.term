@@ -2645,8 +2645,7 @@ L5580:	.byte	$03,$00,$00,$11,$20
 	.byte	"   " 
 	.byte	"   " 
 	.byte   $73                             ; 558B 73                       s
-L558C:  .byte   $69                             ; 558C 69                       i
-L558D:  .byte   $7A                             ; 558D 7A                       z
+L558C:  .byte   $69,$7A
 L558E:  .byte   $65                             ; 558E 65                       e
 L558F:  .byte   $20                             ; 558F 20                        
 L5590:  .byte   $3D                             ; 5590 3D                       =
