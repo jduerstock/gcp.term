@@ -4652,8 +4652,7 @@ L6AC1:  pha                                     ; 6AC1 48                       
 L6AC2:  .byte   $4C                             ; 6AC2 4C                       L
 L6AC3:  .byte   $B3                             ; 6AC3 B3                       .
 L6AC4:  .byte	$EA,$4C
-L6AC6:  .byte   $94                             ; 6AC6 94                       .
-L6AC7:  asl     a                               ; 6AC7 0A                       .
+L6AC6:  .byte   $94,$0A
 L6AC8:  .byte   $4C                             ; 6AC8 4C                       L
 L6AC9:  .byte   $BB                             ; 6AC9 BB                       .
 L6ACA:  asl     a                               ; 6ACA 0A                       .
@@ -4735,10 +4734,7 @@ L6AFF:  ldx     #$00                            ; 6AFF A2 00                    
 	sta     ($AE),y                         ; 6BCE 91 AE                    ..
 	ldxa	L6ACE
 	jsr     sub_606E
-	lda     $A1                             ; 6BD9 A5 A1                    ..
-	sta     L6AC7                           ; 6BDB 8D C7 6A                 ..j
-	lda     $A0                             ; 6BDE A5 A0                    ..
-	sta     L6AC6                           ; 6BE0 8D C6 6A                 ..j
+	rdmv	L6AC6, $A0
 	add16i	off_AE, L6AC4, $0004
 	ldy     #$01                            ; 6BF2 A0 01                    ..
 	lda     ($AE),y                         ; 6BF4 B1 AE                    ..
@@ -4781,8 +4777,7 @@ L6C5C:  lda     L6ACE+1
 	lda     #$00                            ; 6C61 A9 00                    ..
 	sta     $A4                             ; 6C63 85 A4                    ..
 	ldy     L6ACE                           ; 6C65 AC CE 6A                 ..j
-	ldx     L6AC7                           ; 6C68 AE C7 6A                 ..j
-	lda     L6AC6                           ; 6C6B AD C6 6A                 ..j
+	ldxa	L6AC6
 	jsr     sub_45FC
 	add16i	off_AE, L6AC4, $0006
 	lda     L6AC1                           ; 6C80 AD C1 6A                 ..j
