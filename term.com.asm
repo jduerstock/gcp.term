@@ -4793,10 +4793,7 @@ L6C5C:  lda     L6ACE+1
 	lda     #$00                            ; 6CA0 A9 00                    ..
 	cmp     L6AC1                           ; 6CA2 CD C1 6A                 ..j
 	lbcs	L6D5B
-	lda     #$00                            ; 6CAA A9 00                    ..
-	sta     $85                             ; 6CAC 85 85                    ..
-	lda     #$06                            ; 6CAE A9 06                    ..
-	sta     $84                             ; 6CB0 85 84                    ..
+	rdldi	$84, $0006
 	lda     L6AC1                           ; 6CB2 AD C1 6A                 ..j
 	ldx     #$00                            ; 6CB5 A2 00                    ..
 	jsr     sub_444A
