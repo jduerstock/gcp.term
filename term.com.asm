@@ -6074,7 +6074,8 @@ L7B56:	.byte	$38,$A0
 	.byte	$03
 	lda     ($45),y                         ; 7B59 B1 45                    .E
 	.byte   $E9                             ; 7B5B E9                       .
-L7B5C:  ora     ($91,x)                         ; 7B5C 01 91                    ..
+L7B5C:  .byte	$01
+L7B5D:	.byte	$91
 	eor     $C8                             ; 7B5E 45 C8                    E.
 	lda     ($45),y                         ; 7B60 B1 45                    .E
 	sbc     #$00                            ; 7B62 E9 00                    ..
@@ -6163,27 +6164,13 @@ L7C65:  lda     L7B55                           ; 7C65 AD 55 7B                 
 	lda     #$06                            ; 7C6E A9 06                    ..
 	sta     $A4                             ; 7C70 85 A4                    ..
 	ldy     L7B54                           ; 7C72 AC 54 7B                 .T{
-	ldx     #$7B                            ; 7C75 A2 7B                    .{
-	lda     #$5D                            ; 7C77 A9 5D                    .]
+	ldxai	L7B5D
 	jsr     sub_461F
-	clc                                     ; 7C7C 18                       .
-	lda     L7B54                           ; 7C7D AD 54 7B                 .T{
-	adc     #$06                            ; 7C80 69 06                    i.
-	sta     $A2                             ; 7C82 85 A2                    ..
-	lda     L7B55                           ; 7C84 AD 55 7B                 .U{
-	adc     #$00                            ; 7C87 69 00                    i.
-	sta     $A3                             ; 7C89 85 A3                    ..
+	add16i	$A2, L7B54, $0006
 	sub16m	off_AC, L7B52, L7B54
-	sec                                     ; 7C9C 38                       8
-	lda     $AC                             ; 7C9D A5 AC                    ..
-	sbc     #$06                            ; 7C9F E9 06                    ..
-	sta     $A4                             ; 7CA1 85 A4                    ..
-	lda     $AD                             ; 7CA3 A5 AD                    ..
-	sbc     #$00                            ; 7CA5 E9 00                    ..
-	sta     $A5                             ; 7CA7 85 A5                    ..
+	sub16i	$A4, off_AC, $0006
 	ldy     $A2                             ; 7CA9 A4 A2                    ..
-	ldx     L7B55                           ; 7CAB AE 55 7B                 .U{
-	lda     L7B54                           ; 7CAE AD 54 7B                 .T{
+	ldxa	L7B54
 	jsr     sub_461F
 	lda     L7B54                           ; 7CB4 AD 54 7B                 .T{
 	cmp     L7B56                           ; 7CB7 CD 56 7B                 .V{
