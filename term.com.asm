@@ -9353,12 +9353,8 @@ L9C38:	dec     $1E,x                           ; 9C38 D6 1E                    .
 
 sub_9C41:  
 	stack_prolog L9C16, $02
-	lda     L9C16                           ; 9C4A AD 16 9C                 ...
-	sta     L46E6                           ; 9C4D 8D E6 46                 ..F
-	lda     L9C17                           ; 9C50 AD 17 9C                 ...
-	sta     L46E9                           ; 9C53 8D E9 46                 ..F
-	lda     L9C18                           ; 9C56 AD 18 9C                 ...
-	sta     L46EA                           ; 9C59 8D EA 46                 ..F
+	mv	L46E6, L9C16
+	dmv	L46E9, L9C17
 	rdldi	L46EB, L9C2F
 	rdldi	L46ED, L9C38
 	lda     L9C23                           ; 9C70 AD 23 9C                 .#.
