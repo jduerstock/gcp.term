@@ -5350,8 +5350,7 @@ sub_72B1:
 	ldy     $A2                             ; 72FE A4 A2                    ..
 	ldxai	L72A2
 	jsr     sub_4BF2
-	lda     #$00                            ; 7307 A9 00                    ..
-	sta     $A3                             ; 7309 85 A3                    ..
+	ldi	$A3, $00
 	sub8i	$A4, L72AF, $01
 	sub8i	$A5, L72B0, $01
 	ldy     #$00                            ; 731B A0 00                    ..
@@ -5365,10 +5364,7 @@ sub_72B1:
 	ldy     #$A6                            ; 734C A0 A6                    ..
 	ldxai	$72A2
 	jsr	sub_4CF5
-	pla
-	sta	$AE
-	pla
-	sta	$AF
+	pull16	off_AE
 	lda     $A0                             ; 735B A5 A0                    ..
 	ldy     #$00                            ; 735D A0 00                    ..
 	sta     ($AE),y                         ; 735F 91 AE                    ..
@@ -5385,9 +5381,7 @@ L7367:  .byte   $AD                             ; 7367 AD                       
 ; ----------------------------------------------------------------------------
 sub_7368:
 	stack_prolog L7362, $02
-	lda     L7364                           ; 7371 AD 64 73                 .ds
-	jsr     sub_7035
-	rdmv	L7365, $A0
+	func16_8 sub_7035, L7365, L7364
 	dmv	off_AE, L7365
 	sec                                     ; 738B 38                       8
 	lda     L7362                           ; 738C AD 62 73                 .bs
