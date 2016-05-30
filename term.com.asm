@@ -4818,10 +4818,7 @@ L6C5C:  lda     L6ACE+1
 	jsr     sub_45F6
 	ldy     #$00                            ; 6D01 A0 00                    ..
 	sty     L6AD0                           ; 6D03 8C D0 6A                 ..j
-	sec                                     ; 6D06 38                       8
-	lda     L6AC1                           ; 6D07 AD C1 6A                 ..j
-	sbc     #$01                            ; 6D0A E9 01                    ..
-	sta     L6D1A                           ; 6D0C 8D 1A 6D                 ..m
+	sub8i	L6D1A, L6AC1, $01
 L6D0F:  lda     L6D1A                           ; 6D0F AD 1A 6D                 ..m
 	cmp     L6AD0                           ; 6D12 CD D0 6A                 ..j
 	bcs     L6D1B                           ; 6D15 B0 04                    ..
