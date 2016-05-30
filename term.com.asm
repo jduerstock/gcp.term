@@ -3835,13 +3835,7 @@ sub_6203:
 	lda     $AC                             ; 62A1 A5 AC                    ..
 	dey                                     ; 62A3 88                       .
 	sta     ($AE),y                         ; 62A4 91 AE                    ..
-	clc                                     ; 62A6 18                       .
-	lda     L61FF                           ; 62A7 AD FF 61                 ..a
-	adc     #$1E                            ; 62AA 69 1E                    i.
-	sta     L6201                           ; 62AC 8D 01 62                 ..b
-	lda     L6200                           ; 62AF AD 00 62                 ..b
-	adc     #$00                            ; 62B2 69 00                    i.
-	sta     L6202                           ; 62B4 8D 02 62                 ..b
+	add16i	L6201, L61FF, $001E
 	lda     L6201                           ; 62B7 AD 01 62                 ..b
 	sta     $AE                             ; 62BA 85 AE                    ..
 	lda     L6202                           ; 62BC AD 02 62                 ..b
