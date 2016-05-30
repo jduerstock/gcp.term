@@ -9299,28 +9299,17 @@ L9BD0:  prolog
 	rts                                     ; 9BDC 60                       `
 
 ; ----------------------------------------------------------------------------
-L9BDD:  brk                                     ; 9BDD 00                       .
-L9BDE:  brk                                     ; 9BDE 00                       .
-L9BDF:  brk                                     ; 9BDF 00                       .
+L9BDD:	.byte	$00
+L9BDE:	.byte	$00
+L9BDF:	.byte	$00
 
-L9BE0:	stack_prolog L9BDD, $02
-	clc                                     ; 9BE9 18                       .
-	lda     L46EB                           ; 9BEA AD EB 46                 ..F
-	adc     L9BDD                           ; 9BED 6D DD 9B                 m..
-	sta     $AE                             ; 9BF0 85 AE                    ..
-	lda     L46EB+1                         ; 9BF2 AD EC 46                 ..F
-	adc     #$00                            ; 9BF5 69 00                    i.
-	sta     $AF                             ; 9BF7 85 AF                    ..
+sub_9BE0:	
+	stack_prolog L9BDD, $02
+	add16m8 off_AE, L46EB, L9BDD
 	lda     L9BDE                           ; 9BF9 AD DE 9B                 ...
 	ldy     #$00                            ; 9BFC A0 00                    ..
 	sta     ($AE),y                         ; 9BFE 91 AE                    ..
-	clc                                     ; 9C00 18                       .
-	lda     L46ED                           ; 9C01 AD ED 46                 ..F
-	adc     L9BDD                           ; 9C04 6D DD 9B                 m..
-	sta     $AE                             ; 9C07 85 AE                    ..
-	lda     L46EE                           ; 9C09 AD EE 46                 ..F
-	adc     #$00                            ; 9C0C 69 00                    i.
-	sta     $AF                             ; 9C0E 85 AF                    ..
+	add16m8 off_AE, L46ED, L9BDD
 	lda     L9BDF                           ; 9C10 AD DF 9B                 ...
 	sta     ($AE),y                         ; 9C13 91 AE                    ..
 	rts                                     ; 9C15 60                       `
@@ -10927,7 +10916,7 @@ LAA86:	.addr	sub_6AD5
 	.addr	sub_7096
 	.addr	sub_70E2
 	.addr	sub_9C41
-	.addr	L9BE0
+	.addr	sub_9BE0
 	.addr	L9BD0
 	.addr	L9CAD
 	.addr	L9E2C
