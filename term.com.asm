@@ -5160,8 +5160,7 @@ L7096:
 L70D6:	.byte	$00
 L70D7:	.byte	$00
 L70D8:	.byte	$00
-L70D9:  .byte   $63
-L70DA:  .byte   $6B                             ; 70DA 6B                       k
+L70D9:  .byte   $63,$6B
 L70DB:  .byte   $7F                             ; 70DB 7F                       .
 L70DC:  .byte   $3E                             ; 70DC 3E                       >
 L70DD:  .byte   $36                             ; 70DD 36                       6
@@ -5199,15 +5198,9 @@ L70E2:
 	lda     #$02                            ; 7154 A9 02                    ..
 	sta     $A4                             ; 7156 85 A4                    ..
 	ldy     L70DB                           ; 7158 AC DB 70                 ..p
-	ldxai	$70E0
+	ldxai	L70E0
 	jsr     sub_461F
-	clc                                     ; 7162 18                       .
-	lda     L70DD                           ; 7163 AD DD 70                 ..p
-	adc     #$02                            ; 7166 69 02                    i.
-	sta     $AE                             ; 7168 85 AE                    ..
-	lda     L70DE                           ; 716A AD DE 70                 ..p
-	adc     #$00                            ; 716D 69 00                    i.
-	sta     $AF                             ; 716F 85 AF                    ..
+	add16i	off_AE, L70DD, $0002
 	clc                                     ; 7171 18                       .
 	ldy     #$00                            ; 7172 A0 00                    ..
 	lda     ($AE),y                         ; 7174 B1 AE                    ..
@@ -5235,7 +5228,7 @@ L70E2:
 	rts                                     ; 71A0 60                       `
 
 ; ----------------------------------------------------------------------------
-L71A1:  brk                                     ; 71A1 00                       .
+L71A1:	.byte	$00
 L71A2:  brk                                     ; 71A2 00                       .
 L71A3:  brk                                     ; 71A3 00                       .
 	brk                                     ; 71A4 00                       .
@@ -5333,10 +5326,7 @@ sub_71B5:
 	lda     L71A3                           ; 7269 AD A3 71                 ..q
 	adc     #$00                            ; 726C 69 00                    i.
 	sta     $AF                             ; 726E 85 AF                    ..
-	lda	$AF
-	pha                                     ; 7272 48                       H
-	lda     $AE                             ; 7273 A5 AE                    ..
-	pha                                     ; 7275 48                       H
+	push16	off_AE
 	lda     #$71                            ; 7276 A9 71                    .q
 	sta     $A3                             ; 7278 85 A3                    ..
 	clc                                     ; 727A 18                       .
@@ -5350,10 +5340,7 @@ sub_71B5:
 	ldx     #$71                            ; 728B A2 71                    .q
 	lda     #$A4                            ; 728D A9 A4                    ..
 	jsr     sub_4CF5
-	pla                                     ; 7292 68                       h
-	sta     $AE                             ; 7293 85 AE                    ..
-	pla                                     ; 7295 68                       h
-	sta     $AF                             ; 7296 85 AF                    ..
+	pull16	off_AE
 	lda     $A0                             ; 7298 A5 A0                    ..
 	ldy     #$00                            ; 729A A0 00                    ..
 	sta     ($AE),y                         ; 729C 91 AE                    ..
