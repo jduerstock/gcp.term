@@ -5433,9 +5433,7 @@ L73FE:	sub8m	off_AE, L4673, L73D6
 	ldx     $AE                             ; 7407 A6 AE                    ..
 	lda     L4659,x                         ; 7409 BD 59 46                 .YF
 	sta     L73D5                           ; 740C 8D D5 73                 ..s
-	lda     L73D5                           ; 740F AD D5 73                 ..s
-	jsr     sub_7035
-	rdmv	L73D8, $A0
+	func16_8 sub_7035, L73D8, L73D5
 	add16i	off_AE, L73D8, $000C
 	ldy     #$00                            ; 742E A0 00                    ..
 	lda     ($AE),y                         ; 7430 B1 AE                    ..
