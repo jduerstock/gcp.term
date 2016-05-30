@@ -269,6 +269,15 @@ SYSVBV		:= $E45F
 	rdmv	a1, $A0
 .endmacro
 
+.macro	ldp16 a1
+	ldy	#$01
+	lda	(off_AE),y
+	sta	a1+1
+	dey
+	lda	(off_AE),y
+	sta	a1
+.endmacro
+
 	.segment "HDR00"
 
 	.word	$FFFF
@@ -5762,15 +5771,14 @@ L7824:  .byte   $20                             ; 7824 20
 L7825:  .byte   $43                             ; 7825 43                       C
 L7826:  .byte   $EB                             ; 7826 EB                       .
 L7827:  .byte   $4C                             ; 7827 4C                       L
-L7828:  .byte   $17                             ; 7828 17                       .
-L7829:  .byte   $F0                             ; 7829 F0                       .
+L7828:  .byte   $17,$F0
 
 sub_782A:  
 	prolog
 	stxa	L7824
 	func16_8 sub_7035, L7828, L7824
 	lda     L7828                           ; 7843 AD 28 78                 .(x
-	ora     L7829                           ; 7846 0D 29 78                 .)x
+	ora     L7828+1
 	lbne	L784F
 	rts                                     ; 784E 60                       `
 
@@ -5818,7 +5826,7 @@ L78B1:  lda     #$12                            ; 78B1 A9 12                    
 	jsr     sub_7035
 	rdmv	L7828, $A0
 	lda     L7828                           ; 78D2 AD 28 78                 .(x
-	ora     L7829                           ; 78D5 0D 29 78                 .)x
+	ora     L7828+1
 	beq     L78F5                           ; 78D8 F0 1B                    ..
 	add16i	off_AE, L7828, $000C
 	ldy     #$00                            ; 78E9 A0 00                    ..
@@ -5876,17 +5884,14 @@ L793F:  lda     L7824                           ; 793F AD 24 78                 
 
 ; ----------------------------------------------------------------------------
 L794E:  .byte   $0D                             ; 794E 0D                       .
-L794F:  .byte   $F0                             ; 794F F0                       .
-L7950:  .byte	$05
+L794F:  .byte   $F0,$05
 
 sub_7951:
 	prolog
 	sta     L794E                           ; 7954 8D 4E 79                 .Ny
-	lda     L794E                           ; 7957 AD 4E 79                 .Ny
-	jsr     sub_7035
-	rdmv	L794F, $A0
+	func16_8 sub_7035, L794F, L794E
 	lda     L794F                           ; 7967 AD 4F 79                 .Oy
-	ora     L7950                           ; 796A 0D 50 79                 .Py
+	ora     L794F+1
 	lbne	L7973
 L7972:  rts                                     ; 7972 60                       `
 
@@ -5896,8 +5901,7 @@ L7973:  ldx     #$FF                            ; 7973 A2 FF                    
 	jsr     sub_782A
 	ldi	$A3, $00
 	ldy     #$26                            ; 797F A0 26                    .&
-	ldx     L7950                           ; 7981 AE 50 79                 .Py
-	lda     L794F                           ; 7984 AD 4F 79                 .Oy
+	ldxa	L794F
 	jsr     sub_619A
 	sec                                     ; 798A 38                       8
 	lda     L4673                           ; 798B AD 73 46                 .sF
@@ -5910,8 +5914,7 @@ L7994:  .byte	$08
 L7995:  .byte   $F0                             ; 7995 F0                       .
 L7996:  .byte   $1D                             ; 7996 1D                       .
 L7997:  .byte   $30                             ; 7997 30                       0
-L7998:  .byte   $1B                             ; 7998 1B                       .
-L7999:  .byte   $29                             ; 7999 29                       )
+L7998:  .byte   $1B,$29
 L799A:  .byte   $01                             ; 799A 01                       .
 
 sub_799B:  
@@ -5922,14 +5925,9 @@ sub_799B:
 	jsr     sub_65B0
 	rdmv	L7996, $A0
 L79B4:  add16i	off_AE, L7996, $0007
-	ldy     #$01                            ; 79C3 A0 01                    ..
-	lda     (off_AE),y
-	sta     L7999                           ; 79C7 8D 99 79                 ..y
-	dey                                     ; 79CA 88                       .
-	lda     (off_AE),y
-	sta     L7998                           ; 79CD 8D 98 79                 ..y
+	ldp16	L7998
 	lda     L7998                           ; 79D0 AD 98 79                 ..y
-	ora     L7999                           ; 79D3 0D 99 79                 ..y
+	ora     L7998+1
 	lbne	L79E4
 	ldi	$A1, $00
 	ldi	$A0, $00
