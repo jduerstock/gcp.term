@@ -5157,17 +5157,17 @@ L7096:
 	rts                                     ; 70D5 60                       `
 
 ; ----------------------------------------------------------------------------
-L70D6:  brk                                     ; 70D6 00                       .
-L70D7:  brk                                     ; 70D7 00                       .
-L70D8:  brk                                     ; 70D8 00                       .
-L70D9:  .byte   $63                             ; 70D9 63                       c
+L70D6:	.byte	$00
+L70D7:	.byte	$00
+L70D8:	.byte	$00
+L70D9:  .byte   $63
 L70DA:  .byte   $6B                             ; 70DA 6B                       k
 L70DB:  .byte   $7F                             ; 70DB 7F                       .
 L70DC:  .byte   $3E                             ; 70DC 3E                       >
 L70DD:  .byte   $36                             ; 70DD 36                       6
-L70DE:  brk                                     ; 70DE 00                       .
-L70DF:  brk                                     ; 70DF 00                       .
-L70E0:  brk                                     ; 70E0 00                       .
+L70DE:  .byte	$00
+L70DF:  .byte	$00
+L70E0:  .byte	$00
 L70E1:	.byte	$66
 
 L70E2:
