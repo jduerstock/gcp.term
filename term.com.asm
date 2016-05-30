@@ -9357,14 +9357,12 @@ sub_9C41:
 	dmv	L46E9, L9C17
 	rdldi	L46EB, L9C2F
 	rdldi	L46ED, L9C38
-	lda     L9C23                           ; 9C70 AD 23 9C                 .#.
-	sta     $A3                             ; 9C73 85 A3                    ..
+	mv	$A3, L9C23
 	rdldi	$A4, $0009
 	ldy     L9C22                           ; 9C7D AC 22 9C                 .".
 	ldxai	L9C2F
 	jsr     sub_461F
-	lda     L9C2E                           ; 9C87 AD 2E 9C                 ...
-	sta     $A3                             ; 9C8A 85 A3                    ..
+	mv	$A3, L9C2E
 	rdldi	$A4, $0009
 	ldy     L9C2D                           ; 9C94 AC 2D 9C                 .-.
 	ldxai	L9C38
