@@ -5767,11 +5767,8 @@ L7829:  .byte   $F0                             ; 7829 F0                       
 
 sub_782A:  
 	prolog
-	stx     L7825                           ; 782D 8E 25 78                 .%x
-	sta     L7824                           ; 7830 8D 24 78                 .$x
-	lda     L7824                           ; 7833 AD 24 78                 .$x
-	jsr     sub_7035
-	rdmv	L7828, $A0
+	stxa	L7824
+	func16_8 sub_7035, L7828, L7824
 	lda     L7828                           ; 7843 AD 28 78                 .(x
 	ora     L7829                           ; 7846 0D 29 78                 .)x
 	lbne	L784F
