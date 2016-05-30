@@ -6067,8 +6067,7 @@ L7B4E:  .byte   $B1                             ; 7B4E B1                       
 L7B4F:  .byte   $45                             ; 7B4F 45                       E
 L7B50:  .byte   $F0                             ; 7B50 F0                       .
 L7B51:  .byte   $F7                             ; 7B51 F7                       .
-L7B52:  .byte   $8C                             ; 7B52 8C                       .
-L7B53:  .byte   $33                             ; 7B53 33                       3
+L7B52:  .byte   $8C,$33
 L7B54:  .byte   $F0                             ; 7B54 F0                       .
 L7B55:  pha                                     ; 7B55 48                       H
 L7B56:	.byte	$38,$A0
@@ -6096,14 +6095,9 @@ sub_7B68:
 	lda     $A0                             ; 7B85 A5 A0                    ..
 	sta     L7B50                           ; 7B87 8D 50 7B                 .P{
 	add16i	off_AE, L7B50, $0007
-	ldy     #$01                            ; 7B99 A0 01                    ..
-	lda     ($AE),y                         ; 7B9B B1 AE                    ..
-	sta     L7B53                           ; 7B9D 8D 53 7B                 .S{
-	dey                                     ; 7BA0 88                       .
-	lda     ($AE),y                         ; 7BA1 B1 AE                    ..
-	sta     L7B52                           ; 7BA3 8D 52 7B                 .R{
+	ldp16	L7B52
 	lda     L7B52                           ; 7BA6 AD 52 7B                 .R{
-	ora     L7B53                           ; 7BA9 0D 53 7B                 .S{
+	ora     L7B52+1
 	lbne	L7BB2
 	rts                                     ; 7BB1 60                       `
 
@@ -6127,7 +6121,7 @@ L7BE0:  lda     L7BEB                           ; 7BE0 AD EB 7B                 
 L7BEB:  .byte   $F6                             ; 7BEB F6                       .
 
 ; ----------------------------------------------------------------------------
-L7BEC:  lda     L7B53                           ; 7BEC AD 53 7B                 .S{
+L7BEC:  lda     L7B52+1
 	sta     $A3                             ; 7BEF 85 A3                    ..
 	lda     #$00                            ; 7BF1 A9 00                    ..
 	sta     $A5                             ; 7BF3 85 A5                    ..
@@ -6150,28 +6144,15 @@ L7C2A:  lda     L7B67                           ; 7C2A AD 67 7B                 
 	rts                                     ; 7C35 60                       `
 
 ; ----------------------------------------------------------------------------
-L7C36:  lda     L7B53                           ; 7C36 AD 53 7B                 .S{
-	sta     L7B55                           ; 7C39 8D 55 7B                 .U{
-	lda     L7B52                           ; 7C3C AD 52 7B                 .R{
-	sta     L7B54                           ; 7C3F 8D 54 7B                 .T{
-L7C42:  clc                                     ; 7C42 18                       .
-	lda     L7B52                           ; 7C43 AD 52 7B                 .R{
-	adc     #$06                            ; 7C46 69 06                    i.
-	sta     L7B52                           ; 7C48 8D 52 7B                 .R{
-	lda     L7B53                           ; 7C4B AD 53 7B                 .S{
-	adc     #$00                            ; 7C4E 69 00                    i.
-	sta     L7B53                           ; 7C50 8D 53 7B                 .S{
+L7C36:	rdmv	L7B54, L7B52
+L7C42:	add16i	L7B52, L7B52, $0006
 	inc     L7B5C                           ; 7C53 EE 5C 7B                 .\{
 	jmp     L7BE0                           ; 7C56 4C E0 7B                 L.{
 
 ; ----------------------------------------------------------------------------
 L7C59:  lda     L7B54                           ; 7C59 AD 54 7B                 .T{
 	ora     L7B55                           ; 7C5C 0D 55 7B                 .U{
-	.byte   $F0                             ; 7C5F F0                       .
-L7C60:  .byte   $03                             ; 7C60 03                       .
-	jmp     L7C65                           ; 7C61 4C 65 7C                 Le|
-
-; ----------------------------------------------------------------------------
+	lbne	L7C65
 	rts                                     ; 7C64 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -6192,13 +6173,7 @@ L7C65:  lda     L7B55                           ; 7C65 AD 55 7B                 
 	lda     L7B55                           ; 7C84 AD 55 7B                 .U{
 	adc     #$00                            ; 7C87 69 00                    i.
 	sta     $A3                             ; 7C89 85 A3                    ..
-	sec                                     ; 7C8B 38                       8
-	lda     L7B52                           ; 7C8C AD 52 7B                 .R{
-	sbc     L7B54                           ; 7C8F ED 54 7B                 .T{
-	sta     $AC                             ; 7C92 85 AC                    ..
-	lda     L7B53                           ; 7C94 AD 53 7B                 .S{
-	sbc     L7B55                           ; 7C97 ED 55 7B                 .U{
-	sta     $AD                             ; 7C9A 85 AD                    ..
+	sub16m	off_AC, L7B52, L7B54
 	sec                                     ; 7C9C 38                       8
 	lda     $AC                             ; 7C9D A5 AC                    ..
 	sbc     #$06                            ; 7C9F E9 06                    ..
