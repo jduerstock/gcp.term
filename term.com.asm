@@ -5210,13 +5210,7 @@ L70E2:
 	lda     $AC                             ; 717C A5 AC                    ..
 	sbc     #$01                            ; 717E E9 01                    ..
 	sta     ($AE),y                         ; 7180 91 AE                    ..
-	clc                                     ; 7182 18                       .
-	lda     L70DD                           ; 7183 AD DD 70                 ..p
-	adc     #$03                            ; 7186 69 03                    i.
-	sta     $AE                             ; 7188 85 AE                    ..
-	lda     L70DE                           ; 718A AD DE 70                 ..p
-	adc     #$00                            ; 718D 69 00                    i.
-	sta     $AF                             ; 718F 85 AF                    ..
+	add16i	off_AE, L70DD, $0003
 	clc                                     ; 7191 18                       .
 	lda     ($AE),y                         ; 7192 B1 AE                    ..
 	adc     L70E1                           ; 7194 6D E1 70                 m.p
@@ -5235,7 +5229,7 @@ L71A4:	.byte	$00
 	brk                                     ; 71A5 00                       .
 	brk                                     ; 71A6 00                       .
 	brk                                     ; 71A7 00                       .
-	brk                                     ; 71A8 00                       .
+L71A8:	brk                                     ; 71A8 00                       .
 	brk                                     ; 71A9 00                       .
 	brk                                     ; 71AA 00                       .
 	brk                                     ; 71AB 00                       .
@@ -5316,8 +5310,7 @@ sub_71B5:
 	sbc     #$01                            ; 7254 E9 01                    ..
 	sta     $A5                             ; 7256 85 A5                    ..
 	ldy     #$00                            ; 7258 A0 00                    ..
-	ldx     #$71                            ; 725A A2 71                    .q
-	lda     #$A8                            ; 725C A9 A8                    ..
+	ldxai	L71A8
 	jsr     sub_4BF2
 	add16i	off_AE, L71A2, $000B
 	push16	off_AE
