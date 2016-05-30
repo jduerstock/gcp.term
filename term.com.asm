@@ -6210,10 +6210,9 @@ L7D47:  brk                                     ; 7D47 00                       
 L7D48:  brk                                     ; 7D48 00                       .
 L7D49:  brk                                     ; 7D49 00                       .
 L7D4A:  brk                                     ; 7D4A 00                       .
-L7D4B:  brk                                     ; 7D4B 00                       .
-L7D4C:  brk                                     ; 7D4C 00                       .
+L7D4B:  .word	$0000
 
-L7D4D:
+sub_7D4D:
 	stack_prolog L7D44, $03
 	lda	L7D44
 	jsr	sub_65B0
@@ -6229,14 +6228,9 @@ L7D4D:
 
 ; ----------------------------------------------------------------------------
 L7D7D:	add16i	off_AE, L7D48, $0009
-	ldy     #$01                            ; 7D8C A0 01                    ..
-L7D8E:  lda     ($AE),y                         ; 7D8E B1 AE                    ..
-	sta     L7D4C                           ; 7D90 8D 4C 7D                 .L}
-	dey                                     ; 7D93 88                       .
-	lda     ($AE),y                         ; 7D94 B1 AE                    ..
-	sta     L7D4B                           ; 7D96 8D 4B 7D                 .K}
+	ldp16	L7D4B
 	lda     L7D4B                           ; 7D99 AD 4B 7D                 .K}
-	ora     L7D4C                           ; 7D9C 0D 4C 7D                 .L}
+	ora     L7D4B+1
 	lbne	L7DA5
 	rts                                     ; 7DA4 60                       `
 
@@ -6291,12 +6285,7 @@ sub_7E24:
 	jsr	sub_65B0
 	rdmv	L7E15, $A0
 	add16i	off_AE, L7E15, $0009
-	ldy     #$01                            ; 7E4C A0 01                    ..
-	lda     ($AE),y                         ; 7E4E B1 AE                    ..
-	sta     L7E1F                           ; 7E50 8D 1F 7E                 ..~
-	dey                                     ; 7E53 88                       .
-	lda     ($AE),y                         ; 7E54 B1 AE                    ..
-	sta     L7E1E                           ; 7E56 8D 1E 7E                 ..~
+	ldp16	L7E1E
 	lda     L7E1E                           ; 7E59 AD 1E 7E                 ..~
 	ora     L7E1F                           ; 7E5C 0D 1F 7E                 ..~
 	lbne	L7E69
@@ -6305,12 +6294,7 @@ L7E64:	ldi	$A0, $00
 
 ; ----------------------------------------------------------------------------
 L7E69:	dmv	off_AE, L7E1E
-	ldy     #$01                            ; 7E73 A0 01                    ..
-	lda     ($AE),y                         ; 7E75 B1 AE                    ..
-	sta     L7E1D                           ; 7E77 8D 1D 7E                 ..~
-	dey                                     ; 7E7A 88                       .
-	lda     ($AE),y                         ; 7E7B B1 AE                    ..
-	sta     L7E1C                           ; 7E7D 8D 1C 7E                 ..~
+	ldp16	L7E1C
 	add16i	off_AE, L7E1E, $0002
 	lda     #$00                            ; 7E8F A9 00                    ..
 	sta     $85                             ; 7E91 85 85                    ..
@@ -10968,7 +10952,7 @@ LAA86:	.addr	sub_6AD5
 	.addr	sub_67D8
 	.addr	sub_6696
 	.addr	sub_65E2
-	.addr	L7D4D
+	.addr	sub_7D4D
 	.addr	L6E61
 	.addr	L6F68
 	.addr	L6F91
