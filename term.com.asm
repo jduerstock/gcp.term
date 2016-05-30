@@ -5128,9 +5128,6 @@ L705D:  .word   $7C06
 L705F:	prolog
 	stxa	L705B
 	func16_8 sub_7035, L705D, L705B
-;	lda     L705B                           ; 7068 AD 5B 70                 .[p
-;	jsr     sub_7035
-;	rdmv	L705D, $A0
 	add16i	off_AE, L705D, $0009
 	lda     L705B+1
 	ldy     #$00                            ; 708A A0 00                    ..
@@ -5147,9 +5144,7 @@ L7093:  .byte	$66,$66
 
 L7096:
 	stack_prolog L708F, $02
-	lda	L708F
-	jsr	sub_7035
-	rdmv	L7092, $A0
+	func16_8 sub_7035, L7092, L708F
 	add16i	$A0, L7092, $001E
 	lda     L7091                           ; 70BE AD 91 70                 ..p
 	sta     $A3                             ; 70C1 85 A3                    ..
