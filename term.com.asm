@@ -5172,9 +5172,7 @@ L70E1:	.byte	$66
 
 L70E2:
 	stack_prolog L70D6, $02
-	lda     L70D6                           ; 70EB AD D6 70                 ..p
-	jsr     sub_7035
-	rdmv	L70D9, $A0
+	func16_8 sub_7035, L70D9, L70D6
 	add16i	L70DD, L70D9, $0022
 	lda     L70D8                           ; 710C AD D8 70                 ..p
 	sta     $A3                             ; 710F 85 A3                    ..
@@ -5248,9 +5246,7 @@ L71B4:  brk                                     ; 71B4 00                       
 sub_71B5:  
 	prolog
 	sta     L71A1                           ; 71B8 8D A1 71                 ..q
-	lda     L71A1                           ; 71BB AD A1 71                 ..q
-	jsr     sub_7035
-	rdmv	L71A2, $A0
+	func16_8 sub_7035, L71A2, L71A1
 	lda     L71A3                           ; 71CB AD A3 71                 ..q
 	sta     $A3                             ; 71CE 85 A3                    ..
 	lda     #$00                            ; 71D0 A9 00                    ..
