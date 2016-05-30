@@ -5535,17 +5535,7 @@ L74BE:
 	lda     #$26                            ; 74E4 A9 26                    .&
 	jsr     sub_606E
 	rdmv	L74BC, $A0
-	lda     L74B8                           ; 74F3 AD B8 74                 ..t
-	asl     a                               ; 74F6 0A                       .
-	php                                     ; 74F7 08                       .
-	clc                                     ; 74F8 18                       .
-	adc     L46A2                           ; 74F9 6D A2 46                 m.F
-	sta     $AE                             ; 74FC 85 AE                    ..
-	lda     #$00                            ; 74FE A9 00                    ..
-	rol     a                               ; 7500 2A                       *
-	plp                                     ; 7501 28                       (
-	adc     L46A3                           ; 7502 6D A3 46                 m.F
-	sta     $AF                             ; 7505 85 AF                    ..
+	shladdm8 off_AE, L46A2, L74B8
 	lda     L74BD                           ; 7507 AD BD 74                 ..t
 	ldy     #$01                            ; 750A A0 01                    ..
 	sta     ($AE),y                         ; 750C 91 AE                    ..
