@@ -4651,8 +4651,7 @@ L6AC0:  tya                                     ; 6AC0 98                       
 L6AC1:  pha                                     ; 6AC1 48                       H
 L6AC2:  .byte   $4C                             ; 6AC2 4C                       L
 L6AC3:  .byte   $B3                             ; 6AC3 B3                       .
-L6AC4:  nop                                     ; 6AC4 EA                       .
-L6AC5:  .byte   $4C                             ; 6AC5 4C                       L
+L6AC4:  .byte	$EA,$4C
 L6AC6:  .byte   $94                             ; 6AC6 94                       .
 L6AC7:  asl     a                               ; 6AC7 0A                       .
 L6AC8:  .byte   $4C                             ; 6AC8 4C                       L
@@ -4661,8 +4660,7 @@ L6ACA:  asl     a                               ; 6ACA 0A                       
 L6ACB:  .byte   $4C                             ; 6ACB 4C                       L
 L6ACC:  .byte   $C1                             ; 6ACC C1                       .
 L6ACD:  asl     a                               ; 6ACD 0A                       .
-L6ACE:  .byte   $4C                             ; 6ACE 4C                       L
-L6ACF:  .byte   $C7                             ; 6ACF C7                       .
+L6ACE:  .byte   $4C,$C7
 L6AD0:  asl     a                               ; 6AD0 0A                       .
 L6AD1:  .byte   $9B                             ; 6AD1 9B                       .
 L6AD2:  .byte   $44                             ; 6AD2 44                       D
@@ -4675,7 +4673,7 @@ sub_6AD5:
 	jsr     sub_65B0
 	rdmv	L6AC4, $A0
 	lda     L6AC4                           ; 6AEE AD C4 6A                 ..j
-	ora     L6AC5                           ; 6AF1 0D C5 6A                 ..j
+	ora     L6AC4+1
 	lbeq	L6AFF
 	lda     L6ABE                           ; 6AF9 AD BE 6A                 ..j
 	jsr     sub_6995
@@ -4684,7 +4682,7 @@ L6AFF:  ldx     #$00                            ; 6AFF A2 00                    
 	jsr     sub_606E
 	rdmv	L6AC4, $A0
 	shladdm8 off_AE, L46E2, L6ABE
-	lda     L6AC5                           ; 6B24 AD C5 6A                 ..j
+	lda     L6AC4+1
 	ldy     #$01                            ; 6B27 A0 01                    ..
 	sta     ($AE),y                         ; 6B29 91 AE                    ..
 	lda     L6AC4                           ; 6B2B AD C4 6A                 ..j
@@ -4704,26 +4702,22 @@ L6AFF:  ldx     #$00                            ; 6AFF A2 00                    
 	sta     ($AE),y                         ; 6B63 91 AE                    ..
 	lda     #$00                            ; 6B65 A9 00                    ..
 	sta     $85                             ; 6B67 85 85                    ..
-	lda     L6AC0                           ; 6B69 AD C0 6A                 ..j
-	sta     $84                             ; 6B6C 85 84                    ..
+	mv	$84, L6AC0
 	lda     L6ABF                           ; 6B6E AD BF 6A                 ..j
 	ldx     #$00                            ; 6B71 A2 00                    ..
 	jsr     sub_444A
 	sta     L6ACE                           ; 6B76 8D CE 6A                 ..j
 	txa                                     ; 6B79 8A                       .
-	sta     L6ACF                           ; 6B7A 8D CF 6A                 ..j
+	sta     L6ACE+1
 	add16i	off_AE, L6AC4, $0002
-	lda     L6ACF                           ; 6B8C AD CF 6A                 ..j
+	lda     L6ACE+1
 	ldy     #$01                            ; 6B8F A0 01                    ..
 	sta     ($AE),y                         ; 6B91 91 AE                    ..
 	lda     L6ACE                           ; 6B93 AD CE 6A                 ..j
 	dey                                     ; 6B96 88                       .
 	sta     ($AE),y                         ; 6B97 91 AE                    ..
 	add16i	off_AE, L6AC4, $0004
-	lda     $AF                             ; 6BA8 A5 AF                    ..
-	pha                                     ; 6BAA 48                       H
-	lda     $AE                             ; 6BAB A5 AE                    ..
-	pha                                     ; 6BAD 48                       H
+	push16	off_AE
 	lda     L6AC0                           ; 6BAE AD C0 6A                 ..j
 	asl     a                               ; 6BB1 0A                       .
 	sta     $A0                             ; 6BB2 85 A0                    ..
@@ -4732,18 +4726,14 @@ L6AFF:  ldx     #$00                            ; 6AFF A2 00                    
 	ldx     $A1                             ; 6BB8 A6 A1                    ..
 	lda     $A0                             ; 6BBA A5 A0                    ..
 	jsr     sub_606E
-	pla                                     ; 6BBF 68                       h
-	sta     $AE                             ; 6BC0 85 AE                    ..
-	pla                                     ; 6BC2 68                       h
-	sta     $AF                             ; 6BC3 85 AF                    ..
+	pull16	off_AE
 	lda     $A1                             ; 6BC5 A5 A1                    ..
 	ldy     #$01                            ; 6BC7 A0 01                    ..
 	sta     ($AE),y                         ; 6BC9 91 AE                    ..
 	lda     $A0                             ; 6BCB A5 A0                    ..
 	dey                                     ; 6BCD 88                       .
 	sta     ($AE),y                         ; 6BCE 91 AE                    ..
-	ldx     L6ACF                           ; 6BD0 AE CF 6A                 ..j
-	lda     L6ACE                           ; 6BD3 AD CE 6A                 ..j
+	ldxa	L6ACE
 	jsr     sub_606E
 	lda     $A1                             ; 6BD9 A5 A1                    ..
 	sta     L6AC7                           ; 6BDB 8D C7 6A                 ..j
@@ -4758,10 +4748,7 @@ L6AFF:  ldx     #$00                            ; 6AFF A2 00                    
 	sta     L6AD1                           ; 6BFC 8D D1 6A                 ..j
 	rdmv	L6ACA, L6AC6
 	sty     L6AD0                           ; 6C0B 8C D0 6A                 ..j
-	sec                                     ; 6C0E 38                       8
-	lda     L6AC0                           ; 6C0F AD C0 6A                 ..j
-	sbc     #$01                            ; 6C12 E9 01                    ..
-	sta     L6C22                           ; 6C14 8D 22 6C                 ."l
+	sub8i	L6C22, L6AC0, $01
 L6C17:  lda     L6C22                           ; 6C17 AD 22 6C                 ."l
 	cmp     L6AD0                           ; 6C1A CD D0 6A                 ..j
 	bcs     L6C23                           ; 6C1D B0 04                    ..
@@ -4789,7 +4776,7 @@ L6C23:	shladdm8 off_AE, L6AD1, L6AD0
 	jmp     L6C17                           ; 6C59 4C 17 6C                 L.l
 
 ; ----------------------------------------------------------------------------
-L6C5C:  lda     L6ACF                           ; 6C5C AD CF 6A                 ..j
+L6C5C:  lda     L6ACE+1
 	sta     $A3                             ; 6C5F 85 A3                    ..
 	lda     #$00                            ; 6C61 A9 00                    ..
 	sta     $A4                             ; 6C63 85 A4                    ..
