@@ -2715,8 +2715,8 @@ L562D:	add16m8	off_AE, L557E, L5590
 	lbne	L5672
 	add16m8	off_AE, L559E, L5594
 	dmv	off_AC, L558C
-	lda     ($AC),y                         ; 5668 B1 AC                    ..
-	sta     ($AE),y                         ; 566A 91 AE                    ..
+	lda     (off_AC),y
+	sta     (off_AE),y
 	inc     L5594                           ; 566C EE 94 55                 ..U
 	jmp     L5867                           ; 566F 4C 67 58                 LgX
 
@@ -2740,7 +2740,7 @@ L5672:  lda     L5591                           ; 5672 AD 91 55                 
 
 ; ----------------------------------------------------------------------------
 L56B7:  lda     L5591                           ; 56B7 AD 91 55                 ..U
-	eor     #$42                            ; 56BA 49 42                    IB
+	eor     #'B'
 	lbne	L56F4
 	dmv	off_AE, L558C
 	lda     (off_AE),y
