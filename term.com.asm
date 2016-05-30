@@ -5313,7 +5313,8 @@ L729F:  .byte   $10                             ; 729F 10                       
 L72A0:  .byte   $D0                             ; 72A0 D0                       .
 L72A1:  .byte   $E2                             ; 72A1 E2                       .
 L72A2:	lda     $43                             ; 72A2 A5 43                    .C
-	.byte	$8D,$E7,$02
+	.byte	$8D,$E7
+L72A6:	.byte	$02
 	lda     $44                             ; 72A7 A5 44                    .D
 	.byte   $8D                             ; 72A9 8D                       .
 L72AA:  inx                                     ; 72AA E8                       .
@@ -5332,8 +5333,7 @@ sub_72B1:
 	lda     L729F                           ; 72B7 AD 9F 72                 ..r
 	jsr     sub_7035
 	rdmv	L72A0, $A0
-	lda     L72A1                           ; 72C7 AD A1 72                 ..r
-	sta     $A3                             ; 72CA 85 A3                    ..
+	mv	$A3, L72A1
 	rdldi	$A4, $0007
 	ldy     L72A0                           ; 72D4 AC A0 72                 ..r
 	ldxai	$72AA
@@ -5359,23 +5359,13 @@ sub_72B1:
 	jsr     sub_4BF2
 	lda     #$00                            ; 7307 A9 00                    ..
 	sta     $A3                             ; 7309 85 A3                    ..
-	sec                                     ; 730B 38                       8
-	lda     L72AF                           ; 730C AD AF 72                 ..r
-	sbc     #$01                            ; 730F E9 01                    ..
-	sta     $A4                             ; 7311 85 A4                    ..
-	sec                                     ; 7313 38                       8
-	lda     L72B0                           ; 7314 AD B0 72                 ..r
-	sbc     #$01                            ; 7317 E9 01                    ..
-	sta     $A5                             ; 7319 85 A5                    ..
+	sub8i	$A4, L72AF, $01
+	sub8i	$A5, L72B0, $01
 	ldy     #$00                            ; 731B A0 00                    ..
-	ldx     #$72                            ; 731D A2 72                    .r
-	lda     #$A6                            ; 731F A9 A6                    ..
+	ldxai	L72A6
 	jsr     sub_4BF2
 	add16i	off_AE, L72A0, $000A
-	lda     $AF                             ; 7333 A5 AF                    ..
-	pha                                     ; 7335 48                       H
-	lda     $AE                             ; 7336 A5 AE                    ..
-	pha                                     ; 7338 48                       H
+	push16	off_AE
 	lda     #$72                            ; 7339 A9 72                    .r
 	sta     $A3                             ; 733B 85 A3                    ..
 	add16i	$A4, L72A0, $001A
