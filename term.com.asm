@@ -821,10 +821,10 @@ L4641:  cpy     $A4                             ; 4641 C4 A4                    
 	.byte   $2D                             ; 4646 2D                       -
 L4647:  .byte   $FF                             ; 4647 FF                       .
 L4648:  .byte   $FF                             ; 4648 FF                       .
-L4649:  brk                                     ; 4649 00                       .
+L4649:  .byte	$00
 L464A:  .byte   $31                             ; 464A 31                       1
-L464B:  brk                                     ; 464B 00                       .
-	brk                                     ; 464C 00                       .
+L464B:  .byte	$00
+	.byte	$00
 L464D:  brk                                     ; 464D 00                       .
 L464E:  brk                                     ; 464E 00                       .
 L464F:  brk                                     ; 464F 00                       .
