@@ -80,6 +80,11 @@ SYSVBV		:= $E45F
 	STA	arg1
 .endmacro
 
+.macro	yldi	arg1, arg2
+	ldy	#arg2
+	sty	arg1
+.endmacro
+
 .macro	dldi	arg1, arg2
 	ldi	arg1, <arg2
 	ldi	arg1+1, >arg2
@@ -2066,8 +2071,7 @@ L5015:  lda     L464F                           ; 5015 AD 4F 46                 
 	lda     #$5F                            ; 502C A9 5F                    ._
 	cmp     L4FC0                           ; 502E CD C0 4F                 ..O
 	lbcs	L5040
-L5036:	ldy     #$01                            ; 5036 A0 01                    ..
-	sty     L4FBE                           ; 5038 8C BE 4F                 ..O
+L5036:	yldi	L4FBE, $01
 	ldi	$A0, $00
 	rts                                     ; 503F 60                       `
 
@@ -2099,8 +2103,7 @@ L5085:  lda     L4FBF                           ; 5085 AD BF 4F                 
 	lda     L4FBB                           ; 508F AD BB 4F                 ..O
 	eor     $B1C6                           ; 5092 4D C6 B1                 M..
 	lbeq	L50A4
-	ldy     #$01                            ; 509A A0 01                    ..
-	sty     L4FBE                           ; 509C 8C BE 4F                 ..O
+	yldi	L4FBE, $01
 	ldi	$A0, $00
 	rts                                     ; 50A3 60                       `
 
@@ -2171,8 +2174,7 @@ L5147:	ldi	$A0, $04
 L514C:  lda     L4FC0                           ; 514C AD C0 4F                 ..O
 	cmp     L4FBF                           ; 514F CD BF 4F                 ..O
 	lbcs	L5161
-	ldy     #$01                            ; 5157 A0 01                    ..
-	sty     L4FBE                           ; 5159 8C BE 4F                 ..O
+	yldi	L4FBE, $01
 	ldi	$A0, $00
 	rts                                     ; 5160 60                       `
 
@@ -2393,8 +2395,7 @@ sub_52E1:
 L5304:  ldx     L52E0                           ; 5304 AE E0 52                 ..R
 	lda     L52DF                           ; 5307 AD DF 52                 ..R
 	jsr     L5274                           ; 530A 20 74 52                  tR
-	ldy     #$01                            ; 530D A0 01                    ..
-	sty     CDTMF3
+	yldi	CDTMF3, $01
 	ldi	$021D, $02
 	ldi	$021C, $58
 	rts                                     ; 531C 60                       `
@@ -2518,8 +2519,7 @@ L5421:  lda     L5393                           ; 5421 AD 93 53                 
 	jmp     L5449                           ; 5432 4C 49 54                 LIT
 
 ; ----------------------------------------------------------------------------
-L5435:  ldy     #$01                            ; 5435 A0 01                    ..
-	sty     L5392                           ; 5437 8C 92 53                 ..S
+L5435:	yldi	L5392, $01
 	lda     CDTMF3
 	lbne	L5449
 	ldxai	$B16A
@@ -2670,8 +2670,7 @@ L5595:  cld                                     ; 5595 D8                       
 	dec     $1E,x                           ; 5596 D6 1E                    ..
 L5598:  .byte   $02                             ; 5598 02                       .
 L5599:  .byte	$00
-L559A:  .byte	$00
-L559B:  .byte   $12
+L559A:  .byte	$00,$12
 L559C:  .byte   $20
 L559D:  .byte   $20
 L559E:  .byte   $20
@@ -2686,12 +2685,7 @@ L55B3:  rts                                     ; 55B3 60                       
 
 ; ----------------------------------------------------------------------------
 L55B4:	shladdi	off_AE, L466F, $0001
-	ldy     #$01                            ; 55C7 A0 01                    ..
-	lda     ($AE),y                         ; 55C9 B1 AE                    ..
-	sta     L559B                           ; 55CB 8D 9B 55                 ..U
-	dey                                     ; 55CE 88                       .
-	lda     ($AE),y                         ; 55CF B1 AE                    ..
-	sta     L559A                           ; 55D1 8D 9A 55                 ..U
+	ldp16	L559A
 	add16i	L559C, L559A, $0004
 	dmv	off_AE, L559C
 	clc                                     ; 55EF 18                       .
