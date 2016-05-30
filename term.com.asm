@@ -5089,7 +5089,8 @@ sub_7035:
 L705B:  .byte   $66,$3E
 L705D:  .word   $7C06
 
-L705F:	prolog
+sub_705F:	
+	prolog
 	stxa	L705B
 	func16_8 sub_7035, L705D, L705B
 	add16i	off_AE, L705D, $0009
@@ -5106,7 +5107,7 @@ L7092:  .byte   $66
 L7093:  .byte	$66,$66
 	.byte	$66
 
-L7096:
+sub_7096:
 	stack_prolog L708F, $02
 	func16_8 sub_7035, L7092, L708F
 	add16i	$A0, L7092, $001E
@@ -5134,7 +5135,7 @@ L70DF:  .byte	$00
 L70E0:  .byte	$00
 L70E1:	.byte	$66
 
-L70E2:
+sub_70E2:
 	stack_prolog L70D6, $02
 	func16_8 sub_7035, L70D9, L70D6
 	add16i	L70DD, L70D9, $0022
@@ -10922,9 +10923,9 @@ LAA86:	.addr	sub_6AD5
 	.addr	sub_782A
 	.addr	sub_758C
 	.addr	sub_760A
-	.addr	L705F
-	.addr	L7096
-	.addr	L70E2
+	.addr	sub_705F
+	.addr	sub_7096
+	.addr	sub_70E2
 	.addr	sub_9C41
 	.addr	L9BE0
 	.addr	L9BD0
