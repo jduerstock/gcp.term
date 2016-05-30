@@ -5289,16 +5289,9 @@ sub_71B5:
 	ldy     $A2                             ; 723B A4 A2                    ..
 	ldxai	L71A4
 	jsr     sub_4BF2
-	lda     #$00                            ; 7244 A9 00                    ..
-	sta     $A3                             ; 7246 85 A3                    ..
-	sec                                     ; 7248 38                       8
-	lda     L71B3                           ; 7249 AD B3 71                 ..q
-	sbc     #$01                            ; 724C E9 01                    ..
-	sta     $A4                             ; 724E 85 A4                    ..
-	sec                                     ; 7250 38                       8
-	lda     L71B4                           ; 7251 AD B4 71                 ..q
-	sbc     #$01                            ; 7254 E9 01                    ..
-	sta     $A5                             ; 7256 85 A5                    ..
+	ldi	$A3, $00
+	sub8i	$A4, L71B3, $01
+	sub8i	$A5, L71B4, $01
 	ldy     #$00                            ; 7258 A0 00                    ..
 	ldxai	L71A8
 	jsr     sub_4BF2
