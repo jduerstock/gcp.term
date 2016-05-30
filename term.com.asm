@@ -264,6 +264,11 @@ SYSVBV		:= $E45F
 	jsr	p1
 .endmacro
 
+.macro	func16_8 f1, a1, a2
+	proc8	f1, a2
+	rdmv	a1, $A0
+.endmacro
+
 	.segment "HDR00"
 
 	.word	$FFFF
@@ -5122,9 +5127,10 @@ L705D:  .word   $7C06
 
 L705F:	prolog
 	stxa	L705B
-	lda     L705B                           ; 7068 AD 5B 70                 .[p
-	jsr     sub_7035
-	rdmv	L705D, $A0
+	func16_8 sub_7035, L705D, L705B
+;	lda     L705B                           ; 7068 AD 5B 70                 .[p
+;	jsr     sub_7035
+;	rdmv	L705D, $A0
 	add16i	off_AE, L705D, $0009
 	lda     L705B+1
 	ldy     #$00                            ; 708A A0 00                    ..
@@ -5559,8 +5565,7 @@ L753B:	add16i	off_AE, L74BC, $000D
 	ldi	$A5, $00
 	ldi	$A4, $08
 	ldy     $A2                             ; 7577 A4 A2                    ..
-	ldx     $A1                             ; 7579 A6 A1                    ..
-	lda     $A0                             ; 757B A5 A0                    ..
+	ldxa	$A0
 	jsr     sub_461F
 	ldy     #$01                            ; 7580 A0 01                    ..
 	sty     L4656                           ; 7582 8C 56 46                 .VF
