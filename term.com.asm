@@ -5256,9 +5256,7 @@ sub_71B5:
 	ldy     L71A2                           ; 71D8 AC A2 71                 ..q
 	ldxai	L71AE
 	jsr     sub_461F
-	lda     L71B2                           ; 71E2 AD B2 71                 ..q
-	jsr     sub_65B0
-	rdmv	L71AC, $A0
+	func16_8 sub_65B0, L71AC, L71B2
 	sec                                     ; 71F2 38                       8
 	lda     #$00                            ; 71F3 A9 00                    ..
 	sbc     L71B0                           ; 71F5 ED B0 71                 ..q
