@@ -972,7 +972,7 @@ L46F9:	dec     $1E,x                           ; 46F9 D6 1E                    .
 	eor     ($53,x)                         ; 471D 41 53                    AS
 	.byte   $43                             ; 471F 43                       C
 	eor     #$49                            ; 4720 49 49                    II
-	jsr     L6F63                           ; 4722 20 63 6F                  co
+	.byte	$20,$63,$6F
 	.byte   $64                             ; 4725 64                       d
 	adc     $20                             ; 4726 65 20                    e 
 	.byte   $74                             ; 4728 74                       t
@@ -4978,7 +4978,7 @@ L6EEF:  lda     L6E43                           ; 6EEF AD 43 6E                 
 	sta     L6E48                           ; 6EF2 8D 48 6E                 .Hn
 	lda     L6E45                           ; 6EF5 AD 45 6E                 .En
 	sta     L6F06                           ; 6EF8 8D 06 6F                 ..o
-	lda     L6F06                           ; 6EFB AD 06 6F                 ..o
+L6EFB:	lda     L6F06                           ; 6EFB AD 06 6F                 ..o
 	cmp     L6E48                           ; 6EFE CD 48 6E                 .Hn
 	bcs     L6F07                           ; 6F01 B0 04                    ..
 	jmp     L6F65                           ; 6F03 4C 65 6F                 Leo
@@ -4991,8 +4991,7 @@ L6F07:  lda     L6E41                           ; 6F07 AD 41 6E                 
 	eor     #$01                            ; 6F0A 49 01                    I.
 	lbne	L6F22
 	ldy     L6E49                           ; 6F11 AC 49 6E                 .In
-	ldx     L6E4C                           ; 6F14 AE 4C 6E                 .Ln
-	lda     L6E4B                           ; 6F17 AD 4B 6E                 .Kn
+	ldxa	L6E4B
 	jsr     sub_4B97
 	lda     $A0                             ; 6F1D A5 A0                    ..
 	sta     L6E4A                           ; 6F1F 8D 4A 6E                 .Jn
@@ -5013,26 +5012,18 @@ L6F22:  lda     #$00                            ; 6F22 A9 00                    
 	ldy     #$55                            ; 6F42 A0 55                    .U
 	ldxa	L6E4D
 	jsr     sub_55A0
-	clc                                     ; 6F4D 18                       .
-	lda     L6E4B                           ; 6F4E AD 4B 6E                 .Kn
-	adc     L6E5B                           ; 6F51 6D 5B 6E                 m[n
-	sta     L6E4B                           ; 6F54 8D 4B 6E                 .Kn
-	lda     L6E4C                           ; 6F57 AD 4C 6E                 .Ln
-	adc     #$00                            ; 6F5A 69 00                    i.
-	sta     L6E4C                           ; 6F5C 8D 4C 6E                 .Ln
+	add16m8	L6E4B, L6E4B, L6E5B
 	inc     L6E48                           ; 6F5F EE 48 6E                 .Hn
-	.byte   $4C                             ; 6F62 4C                       L
-L6F63:  .byte   $FB                             ; 6F63 FB                       .
-	.byte   $6E                             ; 6F64 6E                       n
+	jmp	L6EFB
 L6F65:  rts                                     ; 6F65 60                       `
 
 ; ----------------------------------------------------------------------------
-L6F66:  .byte   $FF                             ; 6F66 FF                       .
-L6F67:  brk                                     ; 6F67 00                       .
+L6F66:  .byte   $FF
+L6F67:  .byte	$00
 
+; ----------------------------------------------------------------------------
 L6F68:	prolog
-	stx     L6F67                           ; 6F6B 8E 67 6F                 .go
-	sta     L6F66                           ; 6F6E 8D 66 6F                 .fo
+	stxa	L6F66
 	lda     L6F66                           ; 6F71 AD 66 6F                 .fo
 	eor     #$01                            ; 6F74 49 01                    I.
 	beq     L6F7B                           ; 6F76 F0 03                    ..
