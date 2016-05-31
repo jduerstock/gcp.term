@@ -9439,20 +9439,11 @@ L9D3D:  jmp     L9D46                           ; 9D3D 4C 46 9D                 
 L9D40:	mv	L9CBE, L9CBF
 L9D46:	mv	L9CC2, L9CC1
 	dmv	off_AE, L9CBA
-	clc                                     ; 9D56 18                       .
-	lda     L46EB                           ; 9D57 AD EB 46                 ..F
-	adc     L9CC1                           ; 9D5A 6D C1 9C                 m..
-	sta     $AC                             ; 9D5D 85 AC                    ..
-	lda     L46EB+1                         ; 9D5F AD EC 46                 ..F
-	adc     #$00                            ; 9D62 69 00                    i.
-	sta     $AD                             ; 9D64 85 AD                    ..
+	add16m8	off_AC, L46EB, L9CC1
 	ldy     #$00                            ; 9D66 A0 00                    ..
 	lda     ($AC),y                         ; 9D68 B1 AC                    ..
 	sta     ($AE),y                         ; 9D6A 91 AE                    ..
-	lda     L9CBC                           ; 9D6C AD BC 9C                 ...
-	sta     $AE                             ; 9D6F 85 AE                    ..
-	lda     L9CBD                           ; 9D71 AD BD 9C                 ...
-	sta     $AF                             ; 9D74 85 AF                    ..
+	dmv	off_AE, L9CBC
 	clc                                     ; 9D76 18                       .
 	lda     L46ED                           ; 9D77 AD ED 46                 ..F
 	adc     L9CC1                           ; 9D7A 6D C1 9C                 m..
