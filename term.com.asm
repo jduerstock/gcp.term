@@ -9444,25 +9444,13 @@ L9D46:	mv	L9CC2, L9CC1
 	lda     ($AC),y                         ; 9D68 B1 AC                    ..
 	sta     ($AE),y                         ; 9D6A 91 AE                    ..
 	dmv	off_AE, L9CBC
-	clc                                     ; 9D76 18                       .
-	lda     L46ED                           ; 9D77 AD ED 46                 ..F
-	adc     L9CC1                           ; 9D7A 6D C1 9C                 m..
-	sta     $AC                             ; 9D7D 85 AC                    ..
-	lda     L46EE                           ; 9D7F AD EE 46                 ..F
-	adc     #$00                            ; 9D82 69 00                    i.
-	sta     $AD                             ; 9D84 85 AD                    ..
+	add16m8	off_AC, L46ED, L9CC1
 	lda     ($AC),y                         ; 9D86 B1 AC                    ..
 	sta     ($AE),y                         ; 9D88 91 AE                    ..
-	lda     L9CBA                           ; 9D8A AD BA 9C                 ...
-	sta     $AE                             ; 9D8D 85 AE                    ..
-	lda     L9CBB                           ; 9D8F AD BB 9C                 ...
-	sta     $AF                             ; 9D92 85 AF                    ..
+	dmv	off_AE, L9CBA
 	lda     ($AE),y                         ; 9D94 B1 AE                    ..
 	lbne	L9DB4
-	lda     L9CBC                           ; 9D9B AD BC 9C                 ...
-	sta     $AE                             ; 9D9E 85 AE                    ..
-	lda     L9CBD                           ; 9DA0 AD BD 9C                 ...
-	sta     $AF                             ; 9DA3 85 AF                    ..
+	dmv	off_AE, L9CBC
 	lda     ($AE),y                         ; 9DA5 B1 AE                    ..
 	lbne	L9DB4
 	ldi	$A0, $00
@@ -9472,11 +9460,9 @@ L9D46:	mv	L9CC2, L9CC1
 	jmp     L9DC9                           ; 9DB1 4C C9 9D                 L..
 
 ; ----------------------------------------------------------------------------
-L9DB4:  ldy     #$01                            ; 9DB4 A0 01                    ..
-	sty     CDTMF5
+L9DB4:	yldi	CDTMF5, $01
 	ldi	$0221, $00
-	lda     L9CBE                           ; 9DBE AD BE 9C                 ...
-	sta     $0220                           ; 9DC1 8D 20 02                 . .
+	mv	$0220, L9CBE
 	ldi	$A0, $01
 	rts                                     ; 9DC8 60                       `
 
