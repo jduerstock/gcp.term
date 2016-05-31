@@ -2513,8 +2513,7 @@ L53BE:  lda     L5391                           ; 53BE AD 91 53                 
 	jsr     sub_461F
 	lda     L4650                           ; 540A AD 50 46                 .PF
 	lbeq	L541E
-	ldy     #$00                            ; 5412 A0 00                    ..
-	sty     L464B                           ; 5414 8C 4B 46                 .KF
+	yldi	L464B, $00
 	ldxai	$B16A
 	jsr     sub_52E1
 L541E:  jmp     L5449                           ; 541E 4C 49 54                 LIT
@@ -2569,10 +2568,7 @@ L5471:	add8i	$AE, L531D, $01
 	lda     $B1C6                           ; 549E AD C6 B1                 ...
 	and     #$7F                            ; 54A1 29 7F                    ).
 	sta     $AE                             ; 54A3 85 AE                    ..
-	sec                                     ; 54A5 38                       8
-	lda     $AE                             ; 54A6 A5 AE                    ..
-	sbc     #$04                            ; 54A8 E9 04                    ..
-	sta     $A4                             ; 54AA 85 A4                    ..
+	sub8i	$A4, off_AE, $04
 	ldy     #$C9                            ; 54AC A0 C9                    ..
 	ldxai	LB224
 	jsr     L5197                           ; 54B2 20 97 51                  .Q
@@ -2589,8 +2585,7 @@ L54B8:	sub8i	L4649, $B1C6, $04
 	ldy     #$C9                            ; 54CD A0 C9                    ..
 	ldxai	LB224
 	jsr     sub_461F
-L54D6:  ldy     #$00                            ; 54D6 A0 00                    ..
-	sty     L4651                           ; 54D8 8C 51 46                 .QF
+L54D6:	yldi	L4651, $00
 	ldi	$A0, $01
 	rts                                     ; 54DF 60                       `
 
@@ -2614,6 +2609,7 @@ L54FC:  .byte   $44                             ; 54FC 44                       
 L54FD:  .byte   $6F                             ; 54FD 6F                       o
 	.byte   $77                             ; 54FE 77                       w
 
+; ----------------------------------------------------------------------------
 sub_54FF:  
 	prolog
 	lda     L4650                           ; 5502 AD 50 46                 .PF
@@ -2685,6 +2681,7 @@ L559D:  .byte   $20
 L559E:  .byte   $20
 L559F:  .byte   $20
 
+; ----------------------------------------------------------------------------
 sub_55A0:
 	stack_prolog L557E, $0D
 	lda     #$00                            ; 55A9 A9 00                    ..
@@ -5111,12 +5108,8 @@ sub_7096:
 	stack_prolog L708F, $02
 	func16_8 sub_7035, L7092, L708F
 	add16i	$A0, L7092, $001E
-	lda     L7091                           ; 70BE AD 91 70                 ..p
-	sta     $A3                             ; 70C1 85 A3                    ..
-	lda     #$00                            ; 70C3 A9 00                    ..
-	sta     $A5                             ; 70C5 85 A5                    ..
-	lda     #$04                            ; 70C7 A9 04                    ..
-	sta     $A4                             ; 70C9 85 A4                    ..
+	mv	$A3, L7091
+	rdldi	$A4, $0004
 	ldy     L7090                           ; 70CB AC 90 70                 ..p
 	ldxa	$A0
 	jsr     sub_461F
