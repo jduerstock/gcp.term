@@ -5128,6 +5128,7 @@ L70DF:  .byte	$00
 L70E0:  .byte	$00
 L70E1:	.byte	$66
 
+; ----------------------------------------------------------------------------
 sub_70E2:
 	stack_prolog L70D6, $02
 	func16_8 sub_7035, L70D9, L70D6
@@ -5183,7 +5184,7 @@ L71A1:	.byte	$00
 L71A2:  .byte	$00
 L71A3:  .byte	$00
 L71A4:	.byte	$00
-	brk                                     ; 71A5 00                       .
+	.byte	$00
 	brk                                     ; 71A6 00                       .
 	brk                                     ; 71A7 00                       .
 L71A8:	brk                                     ; 71A8 00                       .
@@ -5287,7 +5288,7 @@ sub_72B1:
 	mv	$A3, L72A1
 	rdldi	$A4, $0007
 	ldy     L72A0                           ; 72D4 AC A0 72                 ..r
-	ldxai	$72AA
+	ldxai	L72AA
 	jsr     sub_461F
 	sec                                     ; 72DE 38                       8
 	lda     #$00                            ; 72DF A9 00                    ..
@@ -5376,8 +5377,7 @@ sub_73DA:
 	sty     L73D7                           ; 73E5 8C D7 73                 ..s
 	iny                                     ; 73E8 C8                       .
 	sty     L73D6                           ; 73E9 8C D6 73                 ..s
-	lda     L4673                           ; 73EC AD 73 46                 .sF
-	sta     L73FD                           ; 73EF 8D FD 73                 ..s
+	mv	L73FD, L4673
 L73F2:  lda     L73FD                           ; 73F2 AD FD 73                 ..s
 	cmp     L73D6                           ; 73F5 CD D6 73                 ..s
 	bcs     L73FE                           ; 73F8 B0 04                    ..
@@ -5406,8 +5406,7 @@ L7444:  ldy     L73D5                           ; 7444 AC D5 73                 
 	lda     $A0                             ; 7450 A5 A0                    ..
 	eor     #$01                            ; 7452 49 01                    I.
 	lbne	L7461
-	ldy     #$01                            ; 7459 A0 01                    ..
-	sty     L73D7                           ; 745B 8C D7 73                 ..s
+	yldi	L73D7, $01
 	jmp     L7467                           ; 745E 4C 67 74                 Lgt
 
 ; ----------------------------------------------------------------------------
@@ -5463,7 +5462,7 @@ L74BB:  .byte   $47                             ; 74BB 47                       
 L74BC:  clc                                     ; 74BC 18                       .
 L74BD:  .byte	$A5
 
-L74BE:
+sub_74BE:
 	stack_prolog L74B8, $03
 	lda     L74B8                           ; 74C7 AD B8 74                 ..t
 	jsr     sub_7035
@@ -5501,8 +5500,7 @@ L753B:	add16i	off_AE, L74BC, $000D
 	ldy     $A2                             ; 7577 A4 A2                    ..
 	ldxa	$A0
 	jsr     sub_461F
-	ldy     #$01                            ; 7580 A0 01                    ..
-	sty     L4656                           ; 7582 8C 56 46                 .VF
+	yldi	L4656, $01
 	rts                                     ; 7585 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -9283,12 +9281,13 @@ L9BC6:  jsr     sub_936A
 L9BCE:  rts                                     ; 9BCE 60                       `
 
 ; ----------------------------------------------------------------------------
-L9BCF:  brk                                     ; 9BCF 00                       .
+L9BCF:	.byte	$00
 
-L9BD0:  prolog
+; ----------------------------------------------------------------------------
+sub_9BD0:  
+	prolog
 	sta     L9BCF                           ; 9BD3 8D CF 9B                 ...
-	lda     L9BCF                           ; 9BD6 AD CF 9B                 ...
-	sta     L46E7                           ; 9BD9 8D E7 46                 ..F
+	mv	L46E7, L9BCF
 	rts                                     ; 9BDC 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -9296,6 +9295,7 @@ L9BDD:	.byte	$00
 L9BDE:	.byte	$00
 L9BDF:	.byte	$00
 
+; ----------------------------------------------------------------------------
 sub_9BE0:	
 	stack_prolog L9BDD, $02
 	add16m8 off_AE, L46EB, L9BDD
@@ -9363,28 +9363,29 @@ sub_9C41:
 	lda     L46E6                           ; 9C9E AD E6 46                 ..F
 	lbne	L9CAB
 	lda     #$00                            ; 9CA6 A9 00                    ..
-	jsr     L9BD0                           ; 9CA8 20 D0 9B                  ..
+	jsr     sub_9BD0
 L9CAB:  rts                                     ; 9CAB 60                       `
 
 ; ----------------------------------------------------------------------------
 L9CAC:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-L9CAD:	prolog
+sub_9CAD:	
+	prolog
 	sta     L9CAC                           ; 9CB0 8D AC 9C                 ...
 	mv	L46E8, L9CAC
 	rts                                     ; 9CB9 60                       `
 
 ; ----------------------------------------------------------------------------
-L9CBA:  brk                                     ; 9CBA 00                       .
-L9CBB:  brk                                     ; 9CBB 00                       .
-L9CBC:  brk                                     ; 9CBC 00                       .
-L9CBD:  brk                                     ; 9CBD 00                       .
+L9CBA:	.byte	$00
+L9CBB:	.byte	$00
+L9CBC:	.byte	$00
+L9CBD:	.byte	$00
 L9CBE:  .byte   $0C                             ; 9CBE 0C                       .
 L9CBF:  .byte   $0C                             ; 9CBF 0C                       .
 L9CC0:  .byte   $02                             ; 9CC0 02                       .
-L9CC1:  brk                                     ; 9CC1 00                       .
-L9CC2:  brk                                     ; 9CC2 00                       .
+L9CC1:	.byte	$00
+L9CC2:	.byte	$00
 	.byte   $04                             ; 9CC3 04                       .
 	.byte   $02                             ; 9CC4 02                       .
 	.byte   $03                             ; 9CC5 03                       .
@@ -10893,7 +10894,7 @@ LAA86:	.addr	sub_6AD5
 	.addr	sub_7ADF
 	.addr	sub_7B68
 	.addr	sub_7A9A
-	.addr	L74BE
+	.addr	sub_74BE
 	.addr	sub_7951
 	.addr	sub_77A3
 	.addr	sub_782A
@@ -10904,8 +10905,8 @@ LAA86:	.addr	sub_6AD5
 	.addr	sub_70E2
 	.addr	sub_9C41
 	.addr	sub_9BE0
-	.addr	L9BD0
-	.addr	L9CAD
+	.addr	sub_9BD0
+	.addr	sub_9CAD
 	.addr	L9E2C
 	.addr	L7FE9
 	.addr	L817C
