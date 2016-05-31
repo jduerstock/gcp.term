@@ -13,6 +13,7 @@ off_AC		:= $00AC
 off_AE		:= $00AE
 VDSLST		:= $0200
 CDTMF3		:= $022A
+CDTMF5		:= $022E
 SHFLOK		:= $02BE
 PCOLR3		:= $02C3
 MEMTOP		:= $02E5
@@ -9395,8 +9396,7 @@ L9CC2:	.byte	$00
 	.byte   $FF                             ; 9CCA FF                       .
 	ora     $01                             ; 9CCB 05 01                    ..
 	brk                                     ; 9CCD 00                       .
-L9CCE:  .byte   $C3                             ; 9CCE C3                       .
-L9CCF:  .byte   $9C                             ; 9CCF 9C                       .
+L9CCE:  .byte   $C3,$9C
 
 sub_9CD0:
 	stack_prolog L9CBA, $03
@@ -9415,51 +9415,30 @@ L9CEB:  lda     #$00                            ; 9CEB A9 00                    
 	lda     $A0                             ; 9CF1 A5 A0                    ..
 	sbc     #$05                            ; 9CF3 E9 05                    ..
 	sta     L9CC1                           ; 9CF5 8D C1 9C                 ...
-	clc                                     ; 9CF8 18                       .
-	lda     L9CCE                           ; 9CF9 AD CE 9C                 ...
-	adc     L9CC1                           ; 9CFC 6D C1 9C                 m..
-	sta     $AE                             ; 9CFF 85 AE                    ..
-	lda     L9CCF                           ; 9D01 AD CF 9C                 ...
-	adc     #$00                            ; 9D04 69 00                    i.
-	sta     $AF                             ; 9D06 85 AF                    ..
+	add16m8	off_AE, L9CCE, L9CC1
 	ldy     #$00                            ; 9D08 A0 00                    ..
 	lda     ($AE),y                         ; 9D0A B1 AE                    ..
 	sta     L9CC1                           ; 9D0C 8D C1 9C                 ...
 	lda     L9CC1                           ; 9D0F AD C1 9C                 ...
 	eor     L9CC2                           ; 9D12 4D C2 9C                 M..
-	beq     L9D1A                           ; 9D15 F0 03                    ..
-	jmp     L9D40                           ; 9D17 4C 40 9D                 L@.
-
-; ----------------------------------------------------------------------------
-L9D1A:  lda     #$00                            ; 9D1A A9 00                    ..
-	cmp     $022E                           ; 9D1C CD 2E 02                 ...
-	bcc     L9D24                           ; 9D1F 90 03                    ..
-	jmp     L9D29                           ; 9D21 4C 29 9D                 L).
-
-; ----------------------------------------------------------------------------
-L9D24:  lda     #$00                            ; 9D24 A9 00                    ..
-	sta     $A0                             ; 9D26 85 A0                    ..
+	lbne	L9D40
+	lda     #$00                            ; 9D1A A9 00                    ..
+	cmp     CDTMF5
+	lbcs	L9D29
+	ldi	$A0, $00
 	rts                                     ; 9D28 60                       `
 
 ; ----------------------------------------------------------------------------
 L9D29:  lda     L9CC0                           ; 9D29 AD C0 9C                 ...
 	cmp     L9CBE                           ; 9D2C CD BE 9C                 ...
 	lbcs	L9D3D
-	sec                                     ; 9D34 38                       8
-	lda     L9CBE                           ; 9D35 AD BE 9C                 ...
-	sbc     #$01                            ; 9D38 E9 01                    ..
-	sta     L9CBE                           ; 9D3A 8D BE 9C                 ...
+	sub8i	L9CBE, L9CBE, $01
 L9D3D:  jmp     L9D46                           ; 9D3D 4C 46 9D                 LF.
 
 ; ----------------------------------------------------------------------------
-L9D40:  lda     L9CBF                           ; 9D40 AD BF 9C                 ...
-	sta     L9CBE                           ; 9D43 8D BE 9C                 ...
-L9D46:  lda     L9CC1                           ; 9D46 AD C1 9C                 ...
-	sta     L9CC2                           ; 9D49 8D C2 9C                 ...
-	lda     L9CBA                           ; 9D4C AD BA 9C                 ...
-	sta     $AE                             ; 9D4F 85 AE                    ..
-	lda     L9CBB                           ; 9D51 AD BB 9C                 ...
-	sta     $AF                             ; 9D54 85 AF                    ..
+L9D40:	mv	L9CBE, L9CBF
+L9D46:	mv	L9CC2, L9CC1
+	dmv	off_AE, L9CBA
 	clc                                     ; 9D56 18                       .
 	lda     L46EB                           ; 9D57 AD EB 46                 ..F
 	adc     L9CC1                           ; 9D5A 6D C1 9C                 m..
@@ -9503,7 +9482,7 @@ L9D46:  lda     L9CC1                           ; 9D46 AD C1 9C                 
 
 ; ----------------------------------------------------------------------------
 L9DB4:  ldy     #$01                            ; 9DB4 A0 01                    ..
-	sty     $022E                           ; 9DB6 8C 2E 02                 ...
+	sty     CDTMF5
 	ldi	$0221, $00
 	lda     L9CBE                           ; 9DBE AD BE 9C                 ...
 	sta     $0220                           ; 9DC1 8D 20 02                 . .
