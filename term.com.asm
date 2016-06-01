@@ -4126,10 +4126,8 @@ L6607:	add16i	off_AE, L65E0, $0004
 	ldp16	L65DE
 	sub8m	off_AE, L65D9, L65D7
 	add8i	L65DC, off_AE, $01
-	lda     L65D8                           ; 6634 AD D8 65                 ..e
-	sta     L65DD                           ; 6637 8D DD 65                 ..e
-	lda     L65DA                           ; 663A AD DA 65                 ..e
-	sta     L664B                           ; 663D 8D 4B 66                 .Kf
+	mv	L65DD, L65D8
+	mv	L664B, L65DA
 L6640:  lda     L664B                           ; 6640 AD 4B 66                 .Kf
 	cmp     L65DD                           ; 6643 CD DD 65                 ..e
 	bcs     L664C                           ; 6646 B0 04                    ..
@@ -4149,10 +4147,8 @@ L664C:	shladdm8 off_AE, L65DE, L65DD
 	lda     ($AE),y                         ; 666B B1 AE                    ..
 	adc     #$00                            ; 666D 69 00                    i.
 	sta     $A1                             ; 666F 85 A1                    ..
-	lda     #$00                            ; 6671 A9 00                    ..
-	sta     $A3                             ; 6673 85 A3                    ..
-	lda     L65DB                           ; 6675 AD DB 65                 ..e
-	sta     $A4                             ; 6678 85 A4                    ..
+	ldi	$A3, $00
+	mv	$A4, L65DB
 	ldy     L65DC                           ; 667A AC DC 65                 ..e
 	ldxa	$A0
 	jsr     sub_45FC
@@ -4160,15 +4156,14 @@ L664C:	shladdm8 off_AE, L65DE, L65DD
 	jmp     L6640                           ; 6687 4C 40 66                 L@f
 
 ; ----------------------------------------------------------------------------
-L668A:  ldy     #$01                            ; 668A A0 01                    ..
-	sty     L4656                           ; 668C 8C 56 46                 .VF
+L668A:	yldi	L4656, $01
 	rts                                     ; 668F 60                       `
 
 ; ----------------------------------------------------------------------------
 L6690:  .word	$0000
 L6692:  .word	$0000
-L6694:  brk                                     ; 6694 00                       .
-L6695:  brk                                     ; 6695 00                       .
+L6694:  .byte	$00
+L6695:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 sub_6696:  
