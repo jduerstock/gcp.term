@@ -4554,8 +4554,8 @@ L6AB8:  ldy     #$01                            ; 6AB8 A0 01                    
 	rts                                     ; 6ABD 60                       `
 
 ; ----------------------------------------------------------------------------
-L6ABE:  .byte   $90                             ; 6ABE 90                       .
-L6ABF:  nop                                     ; 6ABF EA                       .
+L6ABE:  .byte   $90
+L6ABF:  .byte	$EA
 L6AC0:  tya                                     ; 6AC0 98                       .
 L6AC1:  pha                                     ; 6AC1 48                       H
 L6AC2:  .byte   $4C                             ; 6AC2 4C                       L
@@ -4575,11 +4575,10 @@ L6AD2:  .byte   $44                             ; 6AD2 44                       
 L6AD3:  .byte   $31                             ; 6AD3 31                       1
 L6AD4:  .byte   $3A                             ; 6AD4 3A                       :
 
+; ----------------------------------------------------------------------------
 sub_6AD5:
 	stack_prolog L6ABE, $05
-	lda     L6ABE                           ; 6ADE AD BE 6A                 ..j
-	jsr     sub_65B0
-	rdmv	L6AC4, $A0
+	func16_8 sub_65B0, L6AC4, L6ABE
 	lda     L6AC4                           ; 6AEE AD C4 6A                 ..j
 	ora     L6AC4+1
 	lbeq	L6AFF
