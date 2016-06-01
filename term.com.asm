@@ -4854,12 +4854,8 @@ L6E60:	.byte	$66                             ; 6E60 66                       f
 sub_6E61:  
 	stack_prolog L6E40, $05
 	func16_8 sub_65B0, L6E46, L6E40
-	lda     L6E47                           ; 6E7A AD 47 6E                 .Gn
-	sta     $A3                             ; 6E7D 85 A3                    ..
-	lda     #$00                            ; 6E7F A9 00                    ..
-	sta     $A5                             ; 6E81 85 A5                    ..
-	lda     #$06                            ; 6E83 A9 06                    ..
-	sta     $A4                             ; 6E85 85 A4                    ..
+	mv	$A3, L6E47
+	rdldi	$A4, $0006
 	ldy     L6E46                           ; 6E87 AC 46 6E                 .Fn
 	ldxai	$6E5B
 	jsr     sub_461F
