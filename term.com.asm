@@ -11050,12 +11050,10 @@ sub_ACB2:
 	pla                                     ; ACFD 68                       h
 	sta     $AF                             ; ACFE 85 AF                    ..
 	pla                                     ; AD00 68                       h
-	.byte   $85                             ; AD01 85                       .
-LAD02:	.byte	$AE                             ; AD02 AE                       .
-LAD03:  pla                                     ; AD03 68                       h
-	.byte   $85                             ; AD04 85                       .
-LAD05:	.byte	$A0                             ; AD05 A0                       .
-LAD06:  rts                                     ; AD06 60                       `
+	sta	$AE
+	pla                                     ; AD03 68                       h
+	sta	$A0
+	rts                                     ; AD06 60                       `
 
 ; ----------------------------------------------------------------------------
 LAD07:	pha                                     ; AD07 48                       H
@@ -11084,10 +11082,8 @@ LAD18:  sta     $D01A                           ; AD18 8D 1A D0                 
 ; ----------------------------------------------------------------------------
 
 LAD2E:
-	ldy     #$00                            ; AD2E A0 00                    ..
-	sty     $021B                           ; AD30 8C 1B 02                 ...
-	lda     #$1E                            ; AD33 A9 1E                    ..
-	sta     $021A                           ; AD35 8D 1A 02                 ...
+	yldi	$021B, $00
+	ldi	$021A, $1E
 	ldy     #$01                            ; AD38 A0 01                    ..
 	lda     $D5                             ; AD3A A5 D5                    ..
 	beq     LAD44                           ; AD3C F0 06                    ..
