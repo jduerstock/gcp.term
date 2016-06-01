@@ -4115,9 +4115,7 @@ L65E1:  brk                                     ; 65E1 00                       
 
 sub_65E2:  
 	stack_prolog L65D6, $05
-	lda	L65D6
-	jsr     sub_65B0
-	rdmv	L65E0, $A0
+	func16_8 sub_65B0, L65E0, L65D6
 	lda     L65E0                           ; 65FB AD E0 65                 ..e
 	ora     L65E1                           ; 65FE 0D E1 65                 ..e
 	lbne	L6607
