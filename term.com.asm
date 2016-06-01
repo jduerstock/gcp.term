@@ -4288,19 +4288,12 @@ sub_67D8:
 	rts                                     ; 67FC 60                       `
 
 ; ----------------------------------------------------------------------------
-L67FD:  lda     L67D0                           ; 67FD AD D0 67                 ..g
-	sta     $A3                             ; 6800 85 A3                    ..
-	lda     #$00                            ; 6802 A9 00                    ..
-	sta     $A5                             ; 6804 85 A5                    ..
-	lda     #$06                            ; 6806 A9 06                    ..
-	sta     $A4                             ; 6808 85 A4                    ..
+L67FD:	mv	$A3, L67D0
+	rdldi	$A4, $0006
 	ldy     L67CF                           ; 680A AC CF 67                 ..g
 	ldxai	L67D2
 	jsr     sub_461F
-	lda     L67C8                           ; 6814 AD C8 67                 ..g
-	sta     $AE                             ; 6817 85 AE                    ..
-	lda     L67C9                           ; 6819 AD C9 67                 ..g
-	sta     $AF                             ; 681C 85 AF                    ..
+	dmv	off_AE, L67C8
 	ldy     #$00                            ; 681E A0 00                    ..
 	lda     ($AE),y                         ; 6820 B1 AE                    ..
 	sta     L67CA                           ; 6822 8D CA 67                 ..g
