@@ -4851,11 +4851,9 @@ L6E5F:  brk                                     ; 6E5F 00                       
 L6E60:	.byte	$66                             ; 6E60 66                       f
 
 ; ----------------------------------------------------------------------------
-L6E61:  
+sub_6E61:  
 	stack_prolog L6E40, $05
-	lda	L6E40
-	jsr	sub_65B0
-	rdmv	L6E46, $A0
+	func16_8 sub_65B0, L6E46, L6E40
 	lda     L6E47                           ; 6E7A AD 47 6E                 .Gn
 	sta     $A3                             ; 6E7D 85 A3                    ..
 	lda     #$00                            ; 6E7F A9 00                    ..
@@ -10775,7 +10773,7 @@ LAA86:	.addr	sub_6AD5
 	.addr	sub_6696
 	.addr	sub_65E2
 	.addr	sub_7D4D
-	.addr	L6E61
+	.addr	sub_6E61
 	.addr	L6F68
 	.addr	L6F91
 	.addr	L6FEB
