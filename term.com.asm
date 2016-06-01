@@ -4124,14 +4124,8 @@ sub_65E2:
 ; ----------------------------------------------------------------------------
 L6607:	add16i	off_AE, L65E0, $0004
 	ldp16	L65DE
-	sec                                     ; 6623 38                       8
-	lda     L65D9                           ; 6624 AD D9 65                 ..e
-	sbc     L65D7                           ; 6627 ED D7 65                 ..e
-	sta     $AE                             ; 662A 85 AE                    ..
-	clc                                     ; 662C 18                       .
-	lda     $AE                             ; 662D A5 AE                    ..
-	adc     #$01                            ; 662F 69 01                    i.
-	sta     L65DC                           ; 6631 8D DC 65                 ..e
+	sub8m	off_AE, L65D9, L65D7
+	add8i	L65DC, off_AE, $01
 	lda     L65D8                           ; 6634 AD D8 65                 ..e
 	sta     L65DD                           ; 6637 8D DD 65                 ..e
 	lda     L65DA                           ; 663A AD DA 65                 ..e
