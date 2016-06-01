@@ -4096,20 +4096,15 @@ sub_65B0:
 	prolog
 	sta     L65AF                           ; 65B3 8D AF 65                 ..e
 	shladdm8 off_AE, L46E2, L65AF
-	ldy     #$01                            ; 65CA A0 01                    ..
-	lda     ($AE),y                         ; 65CC B1 AE                    ..
-	sta     $A1                             ; 65CE 85 A1                    ..
-	dey                                     ; 65D0 88                       .
-	lda     ($AE),y                         ; 65D1 B1 AE                    ..
-	sta     $A0                             ; 65D3 85 A0                    ..
+	ldp16	$A0
 	rts                                     ; 65D5 60                       `
 
 ; ----------------------------------------------------------------------------
-L65D6:	brk                                     ; 65D6 00                       .
-L65D7:  brk                                     ; 65D7 00                       .
-L65D8:  brk                                     ; 65D8 00                       .
-L65D9:  brk                                     ; 65D9 00                       .
-L65DA:  brk                                     ; 65DA 00                       .
+L65D6:	.byte	$00
+L65D7:	.byte	$00
+L65D8:	.byte	$00
+L65D9:	.byte	$00
+L65DA:	.byte	$00
 L65DB:  brk                                     ; 65DB 00                       .
 L65DC:  brk                                     ; 65DC 00                       .
 L65DD:  brk                                     ; 65DD 00                       .
@@ -9467,9 +9462,10 @@ L9DB4:	yldi	CDTMF5, $01
 	rts                                     ; 9DC8 60                       `
 
 ; ----------------------------------------------------------------------------
-L9DC9:  brk                                     ; 9DC9 00                       .
-L9DCA:  brk                                     ; 9DCA 00                       .
+L9DC9:	.byte	$00
+L9DCA:	.byte	$00
 
+; ----------------------------------------------------------------------------
 sub_9DCB:  
 	prolog
 	lda     L46E8                           ; 9DCE AD E8 46                 ..F
@@ -9481,8 +9477,7 @@ sub_9DCB:
 ; ----------------------------------------------------------------------------
 L9DDD:  lda     #$00                            ; 9DDD A9 00                    ..
 	jsr     read_trig
-	lda     $A0                             ; 9DE2 A5 A0                    ..
-	sta     L9DCA                           ; 9DE4 8D CA 9D                 ...
+	mv	L9DCA, $A0
 	lda     L9DCA                           ; 9DE7 AD CA 9D                 ...
 	eor     L9DC9                           ; 9DEA 4D C9 9D                 M..
 	lbne	L9DF7
@@ -9490,8 +9485,7 @@ L9DDD:  lda     #$00                            ; 9DDD A9 00                    
 	rts                                     ; 9DF6 60                       `
 
 ; ----------------------------------------------------------------------------
-L9DF7:  lda     L9DCA                           ; 9DF7 AD CA 9D                 ...
-	sta     L9DC9                           ; 9DFA 8D C9 9D                 ...
+L9DF7:	mv	L9DC9, L9DCA
 	lda     L9DCA                           ; 9DFD AD CA 9D                 ...
 	lbeq	L9E0A
 	ldi	$A0, $00
@@ -9502,7 +9496,7 @@ L9E0A:	ldi	$A0, $01
 	rts                                     ; 9E0E 60                       `
 
 ; ----------------------------------------------------------------------------
-L9E0F:  brk                                     ; 9E0F 00                       .
+L9E0F:	.byte	$00
 L9E10:  brk                                     ; 9E10 00                       .
 L9E11:  brk                                     ; 9E11 00                       .
 L9E12:  brk                                     ; 9E12 00                       .
@@ -9633,11 +9627,9 @@ L9F82:	ldi	$A3, $00
 	ldi	$A7, $00
 	mv	$A6, L9E1C
 	ldi	$A9, $00
-	lda     L9E19                           ; 9F9C AD 19 9E                 ...
-	sta     $A8                             ; 9F9F 85 A8                    ..
+	mv	$A8, L9E19
 	ldi	$AB, $00
-	lda     L9E1A                           ; 9FA5 AD 1A 9E                 ...
-	sta     $AA                             ; 9FA8 85 AA                    ..
+	mv	$AA, L9E1A
 	ldy     L9E0F                           ; 9FAA AC 0F 9E                 ...
 	ldxai	L9F7C
 	jsr     sub_55A0
@@ -9667,12 +9659,12 @@ L9FDE:  ldi	$A0, $01
 	rts                                     ; 9FE2 60                       `
 
 ; ----------------------------------------------------------------------------
-L9FE3:  brk                                     ; 9FE3 00                       .
-L9FE4:  brk                                     ; 9FE4 00                       .
-L9FE5:  brk                                     ; 9FE5 00                       .
-L9FE6:  brk                                     ; 9FE6 00                       .
-L9FE7:  brk                                     ; 9FE7 00                       .
-L9FE8:  brk                                     ; 9FE8 00                       .
+L9FE3:	.byte	$00
+L9FE4:	.byte	$00
+L9FE5:	.byte	$00
+L9FE6:	.byte	$00
+L9FE7:	.byte	$00
+L9FE8:	.byte	$00
 L9FE9:  brk                                     ; 9FE9 00                       .
 L9FEA:  brk                                     ; 9FEA 00                       .
 	brk                                     ; 9FEB 00                       .
