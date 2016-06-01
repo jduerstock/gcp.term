@@ -4256,26 +4256,26 @@ L6742:	dmv	off_AE, L66FA
 L67C3:  rts                                     ; 67C3 60                       `
 
 ; ----------------------------------------------------------------------------
-L67C4:  .byte   $6C                             ; 67C4 6C                       l
-L67C5:  .byte   $0C                             ; 67C5 0C                       .
+L67C4:  .byte   $6C
+L67C5:  .byte   $0C
 L67C6:  .byte	$00
-L67C7:  .byte   $AD                             ; 67C7 AD                       .
-L67C8:  .byte   $01                             ; 67C8 01                       .
-L67C9:  .byte   $D3                             ; 67C9 D3                       .
-L67CA:  .byte   $29                             ; 67CA 29                       )
-L67CB:  .byte   $FE                             ; 67CB FE                       .
-L67CC:  .byte   $8D                             ; 67CC 8D                       .
-L67CD:  .byte   $01                             ; 67CD 01                       .
-L67CE:  .byte   $D3                             ; 67CE D3                       .
+L67C7:  .byte   $AD
+L67C8:  .byte   $01
+L67C9:  .byte   $D3
+L67CA:  .byte   $29
+L67CB:  .byte   $FE
+L67CC:  .byte   $8D
+L67CD:  .byte   $01
+L67CE:  .byte   $D3
 L67CF:  .byte	$60
-L67D0:  .byte   $AD                             ; 67D0 AD                       .
-L67D1:  .byte   $01                             ; 67D1 01                       .
-L67D2:  .byte   $D3                             ; 67D2 D3                       .
-L67D3:  .byte   $09                             ; 67D3 09                       .
-L67D4:  .byte   $01                             ; 67D4 01                       .
-L67D5:  .byte   $8D                             ; 67D5 8D                       .
-L67D6:  .byte   $01                             ; 67D6 01                       .
-L67D7:  .byte   $D3                             ; 67D7 D3                       .
+L67D0:  .byte   $AD
+L67D1:  .byte   $01
+L67D2:  .byte   $D3
+L67D3:  .byte   $09
+L67D4:  .byte   $01
+L67D5:  .byte   $8D
+L67D6:  .byte   $01
+L67D7:  .byte   $D3
 
 sub_67D8:
 	stack_prolog L67C4, $05 
