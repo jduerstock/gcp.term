@@ -10941,12 +10941,7 @@ LABE8:  inc     LAB69                           ; ABE8 EE 69 AB                 
 
 ; ----------------------------------------------------------------------------
 LABEE:	shladdm8 off_AE, LAB5A, LAB69
-	ldy     #$01                            ; AC02 A0 01                    ..
-	lda     ($AE),y                         ; AC04 B1 AE                    ..
-	sta     LAB5D                           ; AC06 8D 5D AB                 .].
-	dey                                     ; AC09 88                       .
-	lda     ($AE),y                         ; AC0A B1 AE                    ..
-	sta     LAB5C                           ; AC0C 8D 5C AB                 .\.
+	ldp16	LAB5C
 	shladdm8 off_AE, LAB58, LAB69
 	iny                                     ; AC23 C8                       .
 	lda     ($AE),y                         ; AC24 B1 AE                    ..
