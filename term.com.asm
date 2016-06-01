@@ -4232,14 +4232,9 @@ L6742:	dmv	off_AE, L66FA
 	dey                                     ; 6770 88                       .
 	lda     ($AC),y                         ; 6771 B1 AC                    ..
 	sta     $A2                             ; 6773 85 A2                    ..
-	sec                                     ; 6775 38                       8
-	lda     L66F7                           ; 6776 AD F7 66                 ..f
-	sbc     L66F3                           ; 6779 ED F3 66                 ..f
-	sta     $AA                             ; 677C 85 AA                    ..
-	lda     #$00                            ; 677E A9 00                    ..
-	sta     $85                             ; 6780 85 85                    ..
-	lda     L66F6                           ; 6782 AD F6 66                 ..f
-	sta     $84                             ; 6785 85 84                    ..
+	sub8m	$AA, L66F7, L66F3
+	ldi	$85, $00
+	mv	$84, L66F6
 	lda     $AA                             ; 6787 A5 AA                    ..
 	ldx     #$00                            ; 6789 A2 00                    ..
 	jsr     sub_444A
@@ -4250,20 +4245,10 @@ L6742:	dmv	off_AE, L66FA
 	ldx     $A1                             ; 6795 A6 A1                    ..
 	lda     $A0                             ; 6797 A5 A0                    ..
 	jsr     sub_461F
-	sec                                     ; 679C 38                       8
-	lda     L66F7                           ; 679D AD F7 66                 ..f
-	sbc     L66F3                           ; 67A0 ED F3 66                 ..f
-	sta     $A2                             ; 67A3 85 A2                    ..
-	sec                                     ; 67A5 38                       8
-	lda     L66F6                           ; 67A6 AD F6 66                 ..f
-	sbc     #$01                            ; 67A9 E9 01                    ..
-	sta     $A3                             ; 67AB 85 A3                    ..
-	sec                                     ; 67AD 38                       8
-	lda     L66F7                           ; 67AE AD F7 66                 ..f
-	sbc     #$01                            ; 67B1 E9 01                    ..
-	sta     $A4                             ; 67B3 85 A4                    ..
-	lda     #$00                            ; 67B5 A9 00                    ..
-	sta     $A5                             ; 67B7 85 A5                    ..
+	sub8m	$A2, L66F7, L66F3
+	sub8i	$A3, L66F6, $01
+	sub8i	$A4, L66F7, $01
+	ldi	$A5, $00
 	ldy     $A2                             ; 67B9 A4 A2                    ..
 	ldx     #$00                            ; 67BB A2 00                    ..
 	lda     L66F2
