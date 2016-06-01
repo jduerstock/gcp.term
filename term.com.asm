@@ -11109,18 +11109,12 @@ LAD58:  rts                                     ; AD58 60                       
 ; ----------------------------------------------------------------------------
 
 sub_AD59:
-	lda     $02C4                           ; AD59 AD C4 02                 ...
-	sta     $D016                           ; AD5C 8D 16 D0                 ...
-	lda	CHBAS
-	sta     $D409                           ; AD62 8D 09 D4                 ...
-	lda     $02C8                           ; AD65 AD C8 02                 ...
-	sta     $D01A                           ; AD68 8D 1A D0                 ...
-	lda     $02C6                           ; AD6B AD C6 02                 ...
-	sta     $D018                           ; AD6E 8D 18 D0                 ...
-	lda     $02C5                           ; AD71 AD C5 02                 ...
-	sta     $D017                           ; AD74 8D 17 D0                 ...
-	ldy     #$01                            ; AD77 A0 01                    ..
-	sty     $E8                             ; AD79 84 E8                    ..
+	mv	$D016, $02C4
+	mv	$D409, CHBAS
+	mv	$D01A, $02C8
+	mv	$D018, $02C6
+	mv	$D017, $02C5
+	yldi	$E8, $01
 	jsr     sub_ACB2
 	jmp     SYSVBV
 
@@ -11134,19 +11128,15 @@ LAD84:  .byte	$00
 sub_AD85:
 	prolog
 	rdldi	$0228, LAD2E
-	ldy     #$00                            ; AD92 A0 00                    ..
-	sty     $021B                           ; AD94 8C 1B 02                 ...
-	lda     #$06                            ; AD97 A9 06                    ..
-	sta     $021A                           ; AD99 8D 1A 02                 ...
-	lda     #$00                            ; AD9C A9 00                    ..
-	sta     $A3                             ; AD9E 85 A3                    ..
+	yldi	$021B, $00
+	ldi	$021A, $06
+	ldi	$A3, $00
 	ldy     #$06                            ; ADA0 A0 06                    ..
 	ldxa	LAD83
 	jsr     sub_45F6
 	rdldi	$0208, $AC7E
 	rdldi	LAD81, sub_AD59
-	lda     #$08                            ; ADBF A9 08                    ..
-	sta     $84                             ; ADC1 85 84                    ..
+	ldi	$84, $08
 	lda     LAD82                           ; ADC3 AD 82 AD                 ...
 	tax                                     ; ADC6 AA                       .
 	lda     LAD81                           ; ADC7 AD 81 AD                 ...
