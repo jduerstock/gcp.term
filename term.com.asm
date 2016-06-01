@@ -4169,9 +4169,7 @@ L6695:  .byte	$00
 sub_6696:  
 	prolog
 	stxa	L6690
-	lda     L6690                           ; 669F AD 90 66                 ..f
-	jsr     sub_65B0
-	rdmv	L6692, $A0
+	func16_8 sub_65B0, L6692, L6690
 	lda     L6692                           ; 66AF AD 92 66                 ..f
 	ora     L6692+1                         ; 66B2 0D 93 66                 ..f
 	lbne	L66BB
