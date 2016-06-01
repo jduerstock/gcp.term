@@ -4193,29 +4193,26 @@ L66BB:  lda     L6692+1                         ; 66BB AD 93 66                 
 	rts                                     ; 66F1 60                       `
 
 ; ----------------------------------------------------------------------------
-L66F2:  brk                                     ; 66F2 00                       .
-L66F3:  brk                                     ; 66F3 00                       .
-L66F4:  brk                                     ; 66F4 00                       .
-L66F5:  brk                                     ; 66F5 00                       .
-L66F6:  brk                                     ; 66F6 00                       .
-L66F7:  brk                                     ; 66F7 00                       .
-	brk                                     ; 66F8 00                       .
-	brk                                     ; 66F9 00                       .
-L66FA:  brk                                     ; 66FA 00                       .
-L66FB:  brk                                     ; 66FB 00                       .
+L66F2:  .byte	$00	
+L66F3:  .byte	$00
+L66F4:  .byte	$00
+L66F5:  .byte	$00
+L66F6:	.byte	$00
+L66F7:	.byte	$00
+	.byte	$00
+	.byte	$00
+L66FA:	.byte	$00
+L66FB:	.byte	$00
 
 ; ----------------------------------------------------------------------------
 sub_66FC:  
 	prolog
 	stxa	L66F2
-	lda     L66F2                           ; 6705 AD F2 66                 ..f
-	jsr     sub_65B0
-	rdmv	L66F4, $A0
-	lda     L66F5                           ; 6715 AD F5 66                 ..f
-	sta     $A3                             ; 6718 85 A3                    ..
+	func16_8 sub_65B0, L66F4, L66F2
+	mv	$A3, L66F5
 	rdldi	$A4, $0006
 	ldy     L66F4                           ; 6722 AC F4 66                 ..f
-	ldxai	$66F6
+	ldxai	L66F6
 	jsr     sub_461F
 	lda     L66F3                           ; 672C AD F3 66                 ..f
 	cmp     L66F7                           ; 672F CD F7 66                 ..f
