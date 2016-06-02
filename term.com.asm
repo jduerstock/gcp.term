@@ -5790,21 +5790,18 @@ L7AC2:	add16i	off_AE, L7A98, $0005
 
 ; ----------------------------------------------------------------------------
 L7AD9:  .byte	$00
-L7ADA:	.byte	$91                             ; 7ADA 91                       .
-L7ADB:	.byte	$45                             ; 7ADB 45                       E
-L7ADC:  sec                                     ; 7ADC 38                       8
-L7ADD:  php                                     ; 7ADD 08                       .
-L7ADE:	.byte	$A5                             ; 7ADE A5                       .
+L7ADA:	.byte	$91
+L7ADB:	.byte	$45
+L7ADC:  .byte	$38
+L7ADD:  .byte	$08
+L7ADE:	.byte	$A5
 
+; ----------------------------------------------------------------------------
 sub_7ADF:  
 	stack_prolog L7AD9, $03
-	ldx     L7ADA                           ; 7AE8 AE DA 7A                 ..z
-	lda     L7AD9                           ; 7AEB AD D9 7A                 ..z
+	ldxa	L7AD9
 	jsr     sub_799B
-	lda     $A1                             ; 7AF1 A5 A1                    ..
-	sta     L7ADE                           ; 7AF3 8D DE 7A                 ..z
-	lda     $A0                             ; 7AF6 A5 A0                    ..
-	sta     L7ADD                           ; 7AF8 8D DD 7A                 ..z
+	rdmv	L7ADD, $A0
 	lda     L7ADD                           ; 7AFB AD DD 7A                 ..z
 	ora     L7ADE                           ; 7AFE 0D DE 7A                 ..z
 	lbne	L7B07
