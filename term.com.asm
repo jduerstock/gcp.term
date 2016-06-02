@@ -5606,9 +5606,7 @@ L78B1:  lda     #$12                            ; 78B1 A9 12                    
 	ldx     L7826                           ; 78BB AE 26 78                 .&x
 	lda     L4659,x                         ; 78BE BD 59 46                 .YF
 	sta     $A0                             ; 78C1 85 A0                    ..
-	lda     $A0                             ; 78C3 A5 A0                    ..
-	jsr     sub_7035
-	rdmv	L7828, $A0
+	func16_8 sub_7035, L7828, $A0
 	lda     L7828                           ; 78D2 AD 28 78                 .(x
 	ora     L7828+1
 	beq     L78F5                           ; 78D8 F0 1B                    ..
