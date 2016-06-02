@@ -7362,37 +7362,21 @@ L8BAD:  lda     L896A                           ; 8BAD AD 6A 89                 
 	jmp     L8CD5                           ; 8BCE 4C D5 8C                 L..
 
 ; ----------------------------------------------------------------------------
-L8BD1:  lda     L89A9                           ; 8BD1 AD A9 89                 ...
-	jsr     sub_65B0
-	lda     $A1                             ; 8BD7 A5 A1                    ..
-	sta     L8990                           ; 8BD9 8D 90 89                 ...
-	lda     $A0                             ; 8BDC A5 A0                    ..
-	sta     L898F                           ; 8BDE 8D 8F 89                 ...
-	lda     #$00                            ; 8BE1 A9 00                    ..
-	sta     $A3                             ; 8BE3 85 A3                    ..
-	lda     L898F                           ; 8BE5 AD 8F 89                 ...
-	sta     $AE                             ; 8BE8 85 AE                    ..
-	lda     L8990                           ; 8BEA AD 90 89                 ...
-	sta     $AF                             ; 8BED 85 AF                    ..
+L8BD1:	func16_8 sub_65B0, L898F, L89A9
+	ldi	$A3, $00
+	dmv	off_AE, L898F
 	sec                                     ; 8BEF 38                       8
 	ldy     #$00                            ; 8BF0 A0 00                    ..
 	lda     ($AE),y                         ; 8BF2 B1 AE                    ..
 	sbc     #$01                            ; 8BF4 E9 01                    ..
 	sta     $A4                             ; 8BF6 85 A4                    ..
-	clc                                     ; 8BF8 18                       .
-	lda     L898F                           ; 8BF9 AD 8F 89                 ...
-	adc     #$01                            ; 8BFC 69 01                    i.
-	sta     $AE                             ; 8BFE 85 AE                    ..
-	lda     L8990                           ; 8C00 AD 90 89                 ...
-	adc     #$00                            ; 8C03 69 00                    i.
-	sta     $AF                             ; 8C05 85 AF                    ..
+	add16i	off_AE, L898F, $0001
 	sec                                     ; 8C07 38                       8
 	lda     ($AE),y                         ; 8C08 B1 AE                    ..
 	sbc     #$01                            ; 8C0A E9 01                    ..
 	sta     $A5                             ; 8C0C 85 A5                    ..
 	ldy     #$00                            ; 8C0E A0 00                    ..
-	ldx     #$89                            ; 8C10 A2 89                    ..
-	lda     #$85                            ; 8C12 A9 85                    ..
+	ldxai	L8985
 	jsr     sub_4BF2
 	lda     #$89                            ; 8C17 A9 89                    ..
 	sta     $A3                             ; 8C19 85 A3                    ..
