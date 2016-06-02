@@ -7564,13 +7564,7 @@ sub_8E24:
 	sta     $AE                             ; 8E48 85 AE                    ..
 	txa                                     ; 8E4A 8A                       .
 	sta     $AF                             ; 8E4B 85 AF                    ..
-	clc                                     ; 8E4D 18                       .
-	lda     L4674                           ; 8E4E AD 74 46                 .tF
-	adc     $AE                             ; 8E51 65 AE                    e.
-	sta     $A0                             ; 8E53 85 A0                    ..
-	lda     L4675                           ; 8E55 AD 75 46                 .uF
-	adc     $AF                             ; 8E58 65 AF                    e.
-	sta     $A1                             ; 8E5A 85 A1                    ..
+	add16m	$A0, L4674, $AE
 	lda     L8E21                           ; 8E5C AD 21 8E                 .!.
 	sta     $A3                             ; 8E5F 85 A3                    ..
 	lda     #$00                            ; 8E61 A9 00                    ..
