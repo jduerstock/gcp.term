@@ -6227,7 +6227,8 @@ L7FE2:  lda     L7F92                           ; 7FE2 AD 92 7F                 
 L7FE8:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-L7FE9:	prolog
+sub_7FE9:	
+	prolog
 	sta     L7FE8                           ; 7FEC 8D E8 7F                 ...
 	lda     L7FE8                           ; 7FEF AD E8 7F                 ...
 	lsr     a                               ; 7FF2 4A                       J
@@ -6409,7 +6410,7 @@ L816D:	ldxa	L80B0
 L8176:  rts                                     ; 8176 60                       `
 
 ; ----------------------------------------------------------------------------
-	.byte   $F4                             ; 8177 F4                       .
+L8177:	.byte   $F4                             ; 8177 F4                       .
 	pha                                     ; 8178 48                       H
 L8179:  rts                                     ; 8179 60                       `
 
@@ -6417,10 +6418,8 @@ L8179:  rts                                     ; 8179 60                       
 L817A:	.byte	$AD                             ; 817A AD                       .
 L817B:	.byte	$6F                             ; 817B 6F                       o
 
-L817C:	prolog
-	jsr     sub_44D5                        ; 817F 20 D5 44                  .D
-	.byte   $77                             ; 8182 77                       w
-	sta     ($03,x)                         ; 8183 81 03                    ..
+sub_817C:	
+	stack_prolog L8177, $03
 	lda     #$81                            ; 8185 A9 81                    ..
 	sta     $A3                             ; 8187 85 A3                    ..
 	lda     #$00                            ; 8189 A9 00                    ..
@@ -10520,8 +10519,8 @@ LAA86:	.addr	sub_6AD5
 	.addr	sub_9BD0
 	.addr	sub_9CAD
 	.addr	sub_9E2C
-	.addr	L7FE9
-	.addr	L817C
+	.addr	sub_7FE9
+	.addr	sub_817C
 	.addr	L8003
 	.addr	L80BB
 	.addr	sub_8EFD
