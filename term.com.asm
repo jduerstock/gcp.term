@@ -7567,10 +7567,7 @@ sub_8E24:
 	add16m	$A0, L4674, $AE
 	lda     L8E21                           ; 8E5C AD 21 8E                 .!.
 	sta     $A3                             ; 8E5F 85 A3                    ..
-	lda     #$00                            ; 8E61 A9 00                    ..
-	sta     $A5                             ; 8E63 85 A5                    ..
-	lda     #$08                            ; 8E65 A9 08                    ..
-	sta     $A4                             ; 8E67 85 A4                    ..
+	rdldi	$A4, $0008
 	ldy     L8E20                           ; 8E69 AC 20 8E                 . .
 	ldxa	$A0
 	jsr     sub_461F
