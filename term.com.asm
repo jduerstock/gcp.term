@@ -6245,7 +6245,8 @@ sub_7FE9:
 L8001:  .word	$0000
 
 ; ----------------------------------------------------------------------------
-L8003:  prolog
+sub_8003:  
+	prolog
 	stxa	L8001
 	dmv	L474F, L8001
 	ldxai	$0000
@@ -6268,7 +6269,7 @@ sub_8020:
 	jsr     sub_45F6
 	ldx     #$00                            ; 803D A2 00                    ..
 	lda     #$00                            ; 803F A9 00                    ..
-	jsr     L8003                           ; 8041 20 03 80                  ..
+	jsr     sub_8003
 	rts                                     ; 8044 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -6326,11 +6327,9 @@ L80B6:  clv                                     ; 80B6 B8                       
 L80B9:  inx                                     ; 80B9 E8                       .
 L80BA:  .byte	$C9
 
-L80BB:	prolog
-	.byte	$8E
-	.byte   $AB                             ; 80BF AB                       .
-	.byte   $80                             ; 80C0 80                       .
-	sta     L80AA                           ; 80C1 8D AA 80                 ...
+sub_80BB:	
+	prolog
+	stxa	L80AA
 	lda     L474F                           ; 80C4 AD 4F 47                 .OG
 	eor     #$01                            ; 80C7 49 01                    I.
 	beq     L80CE                           ; 80C9 F0 03                    ..
@@ -6411,13 +6410,12 @@ L8176:  rts                                     ; 8176 60                       
 
 ; ----------------------------------------------------------------------------
 L8177:	.byte   $F4                             ; 8177 F4                       .
-	pha                                     ; 8178 48                       H
-L8179:  rts                                     ; 8179 60                       `
-
-; ----------------------------------------------------------------------------
+	.byte	$48
+L8179:  .byte	$60
 L817A:	.byte	$AD                             ; 817A AD                       .
 L817B:	.byte	$6F                             ; 817B 6F                       o
 
+; ----------------------------------------------------------------------------
 sub_817C:	
 	stack_prolog L8177, $03
 	lda     #$81                            ; 8185 A9 81                    ..
@@ -8352,10 +8350,9 @@ L968B:  .byte	$00
 L968C:  .byte	$00
 L968D:  .byte	$00
 
-L968E:	prolog
-	jsr     sub_44D5                           ; 9691 20 D5 44                  .D
-	.byte   $82                             ; 9694 82                       .
-	stx     $02,y                           ; 9695 96 02                    ..
+; ----------------------------------------------------------------------------
+sub_968E:
+	stack_prolog L9682, $02
 	lda     L9682                           ; 9697 AD 82 96                 ...
 	sta     L9052                           ; 969A 8D 52 90                 .R.
 	lda     L9052                           ; 969D AD 52 90                 .R.
@@ -10421,7 +10418,8 @@ LA9DC:  rts                                     ; A9DC 60                       
 LA9DD:	.byte	$00
 
 ; ----------------------------------------------------------------------------
-LA9DE:  prolog
+sub_A9DE:  
+	prolog
 	sta     LA9DD                           ; A9E1 8D DD A9                 ...
 	mv	L4658, LA9DD
 	rts                                     ; A9EA 60                       `
@@ -10430,8 +10428,9 @@ LA9DE:  prolog
 LA9EB:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-LA9EC:  prolog
-LA9EF:  sta     LA9EB                           ; A9EF 8D EB A9                 ...
+sub_A9EC:  
+	prolog
+	sta     LA9EB                           ; A9EF 8D EB A9                 ...
 	mv	L464E, LA9EB
 	rts
 
@@ -10466,7 +10465,7 @@ LAA28:  lda     #$00                            ; AA28 A9 00                    
 	lda     #$00                            ; AA4B A9 00                    ..
 	jsr     sub_9C41
 	lda     #$00                            ; AA50 A9 00                    ..
-	jsr     LA9EC                           ; AA52 20 EC A9                  ..
+	jsr     sub_A9EC
 LAA55:  lda     #$00                            ; AA55 A9 00                    ..
 	sta     $A3                             ; AA57 85 A3                    ..
 	lda     #$FF                            ; AA59 A9 FF                    ..
@@ -10477,15 +10476,14 @@ LAA55:  lda     #$00                            ; AA55 A9 00                    
 	lda     #$00                            ; AA66 A9 00                    ..
 	sta     $A3                             ; AA68 85 A3                    ..
 	ldy     #$10                            ; AA6A A0 10                    ..
-	ldx     #$B1                            ; AA6C A2 B1                    ..
-	lda     #$18                            ; AA6E A9 18                    ..
+	ldxai	$B118
 	jsr     sub_45F6
 	lda     #$FF                            ; AA73 A9 FF                    ..
 	sta     L4647                           ; AA75 8D 47 46                 .GF
 	lda     #$FF                            ; AA78 A9 FF                    ..
 	sta     L4648                           ; AA7A 8D 48 46                 .HF
 	lda     #$01                            ; AA7D A9 01                    ..
-	jsr     LA9DE                           ; AA7F 20 DE A9                  ..
+	jsr     sub_A9DE
 	rts                                     ; AA82 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -10521,16 +10519,16 @@ LAA86:	.addr	sub_6AD5
 	.addr	sub_9E2C
 	.addr	sub_7FE9
 	.addr	sub_817C
-	.addr	L8003
-	.addr	L80BB
+	.addr	sub_8003
+	.addr	sub_80BB
 	.addr	sub_8EFD
 	.addr	sub_8E7D
 	.addr	sub_8F55
 	.addr	sub_8E24
-	.addr	LA9DE
+	.addr	sub_A9DE
 	.addr	sub_A9FB
-	.addr	LA9EC
-	.addr	L968E
+	.addr	sub_A9EC
+	.addr	sub_968E
 	.addr	sub_97A1
 	.addr	sub_5E1E
 	.addr	sub_5E30
