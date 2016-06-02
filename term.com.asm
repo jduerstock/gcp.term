@@ -847,135 +847,135 @@ L466D:	.byte	$3C                             ; 466D 3C                       <
 L466E:	.byte	$3C                             ; 466E 3C                       <
 L466F:	.addr	$B0D4
 	.byte	$04
-	brk                                     ; 4672 00                       .
-L4673:  brk                                     ; 4673 00                       .
-L4674:  brk                                     ; 4674 00                       .
+	.byte	$00
+L4673:  .byte	$00
+L4674:  .byte	$00
 L4675:	.byte	$B4                             ; 4675 B4                       .
 L4676:  cpx     #$E0                            ; 4676 E0 E0                    ..
 L4678:	.byte	$76                             ; 4678 76                       v
 L4679:  lsr     $00                             ; 4679 46 00                    F.
-	brk                                     ; 467B 00                       .
-	brk                                     ; 467C 00                       .
-	brk                                     ; 467D 00                       .
-	brk                                     ; 467E 00                       .
-	brk                                     ; 467F 00                       .
-	brk                                     ; 4680 00                       .
-	brk                                     ; 4681 00                       .
-	brk                                     ; 4682 00                       .
-	brk                                     ; 4683 00                       .
-	brk                                     ; 4684 00                       .
-	brk                                     ; 4685 00                       .
-	brk                                     ; 4686 00                       .
-	brk                                     ; 4687 00                       .
-	brk                                     ; 4688 00                       .
-	brk                                     ; 4689 00                       .
-	brk                                     ; 468A 00                       .
-	brk                                     ; 468B 00                       .
-	brk                                     ; 468C 00                       .
-	brk                                     ; 468D 00                       .
-	brk                                     ; 468E 00                       .
-	brk                                     ; 468F 00                       .
-	brk                                     ; 4690 00                       .
-	brk                                     ; 4691 00                       .
-	brk                                     ; 4692 00                       .
-	brk                                     ; 4693 00                       .
-	brk                                     ; 4694 00                       .
-	brk                                     ; 4695 00                       .
-	brk                                     ; 4696 00                       .
-	brk                                     ; 4697 00                       .
-	brk                                     ; 4698 00                       .
-	brk                                     ; 4699 00                       .
-	brk                                     ; 469A 00                       .
-	brk                                     ; 469B 00                       .
-	brk                                     ; 469C 00                       .
-	brk                                     ; 469D 00                       .
-	brk                                     ; 469E 00                       .
-	brk                                     ; 469F 00                       .
-	brk                                     ; 46A0 00                       .
-	brk                                     ; 46A1 00                       .
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 L46A2:	.byte	$7A                             ; 46A2 7A                       z
 L46A3:  lsr     $1F                             ; 46A3 46 1F                    F.
 	lda     ($00),y                         ; 46A5 B1 00                    ..
-	brk                                     ; 46A7 00                       .
-	brk                                     ; 46A8 00                       .
-	brk                                     ; 46A9 00                       .
-	brk                                     ; 46AA 00                       .
-	brk                                     ; 46AB 00                       .
-	brk                                     ; 46AC 00                       .
-	brk                                     ; 46AD 00                       .
-	brk                                     ; 46AE 00                       .
-	brk                                     ; 46AF 00                       .
-	brk                                     ; 46B0 00                       .
-	brk                                     ; 46B1 00                       .
-	brk                                     ; 46B2 00                       .
-	brk                                     ; 46B3 00                       .
-	brk                                     ; 46B4 00                       .
-	brk                                     ; 46B5 00                       .
-	brk                                     ; 46B6 00                       .
-	brk                                     ; 46B7 00                       .
-	brk                                     ; 46B8 00                       .
-	brk                                     ; 46B9 00                       .
-	brk                                     ; 46BA 00                       .
-	brk                                     ; 46BB 00                       .
-	brk                                     ; 46BC 00                       .
-	brk                                     ; 46BD 00                       .
-	brk                                     ; 46BE 00                       .
-	brk                                     ; 46BF 00                       .
-	brk                                     ; 46C0 00                       .
-	brk                                     ; 46C1 00                       .
-	brk                                     ; 46C2 00                       .
-	brk                                     ; 46C3 00                       .
-	brk                                     ; 46C4 00                       .
-	brk                                     ; 46C5 00                       .
-	brk                                     ; 46C6 00                       .
-	brk                                     ; 46C7 00                       .
-	brk                                     ; 46C8 00                       .
-	brk                                     ; 46C9 00                       .
-	brk                                     ; 46CA 00                       .
-	brk                                     ; 46CB 00                       .
-	brk                                     ; 46CC 00                       .
-	brk                                     ; 46CD 00                       .
-	brk                                     ; 46CE 00                       .
-	brk                                     ; 46CF 00                       .
-	brk                                     ; 46D0 00                       .
-	brk                                     ; 46D1 00                       .
-	brk                                     ; 46D2 00                       .
-	brk                                     ; 46D3 00                       .
-	brk                                     ; 46D4 00                       .
-	brk                                     ; 46D5 00                       .
-	brk                                     ; 46D6 00                       .
-	brk                                     ; 46D7 00                       .
-	brk                                     ; 46D8 00                       .
-	brk                                     ; 46D9 00                       .
-	brk                                     ; 46DA 00                       .
-	brk                                     ; 46DB 00                       .
-	brk                                     ; 46DC 00                       .
-	brk                                     ; 46DD 00                       .
-	brk                                     ; 46DE 00                       .
-	brk                                     ; 46DF 00                       .
-	brk                                     ; 46E0 00                       .
-	brk                                     ; 46E1 00                       .
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 L46E2:	.byte	$A6                             ; 46E2 A6                       .
 L46E3:  lsr     $20                             ; 46E3 46 20                    F 
 	.byte   $20                             ; 46E5 20                        
 L46E6:	.byte	$50                             ; 46E6 50                       P
 L46E7:	.byte	$1E                             ; 46E7 1E                       .
 L46E8:	.byte	$10                             ; 46E8 10                       .
-L46E9:  brk                                     ; 46E9 00                       .
+L46E9:  .byte	$00
 L46EA:	.byte	$54                             ; 46EA 54                       T
 L46EB:  .word   $416F                             ; 46EB 6F                       o
 L46ED:	.byte	$73                             ; 46ED 73                       s
 L46EE:	.byte	$63                             ; 46EE 63                       c
-L46EF:  brk                                     ; 46EF 00                       .
-	brk                                     ; 46F0 00                       .
-	brk                                     ; 46F1 00                       .
-	brk                                     ; 46F2 00                       .
-	brk                                     ; 46F3 00                       .
-	brk                                     ; 46F4 00                       .
+L46EF:  .byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 L46F5:	.byte	$C0                             ; 46F5 C0                       .
 L46F6:  ;bcs     $470C                           ; 46F6 B0 14                    ..
 	.byte	$B0,$14
-	brk                                     ; 46F8 00                       .
+	.byte	$00
 L46F9:	dec     $1E,x                           ; 46F9 D6 1E                    ..
 	;bvc     L46FD                           ; 46FB 50 00                    P.
 	.byte	$50,$00
@@ -986,9 +986,9 @@ L46F9:	dec     $1E,x                           ; 46F9 D6 1E                    .
 	.byte	$4E,$3A,$44
 	.byte   $1F                             ; 4706 1F                       .
 	.byte   $4F                             ; 4707 4F                       O
-	brk                                     ; 4708 00                       .
-	brk                                     ; 4709 00                       .
-	brk                                     ; 470A 00                       .
+	.byte	$00
+	.byte	$00
+	.byte	$00
 	.byte	"*;      "
 	.byte   $63                             ; 4713 63                       c
 	.byte   $6F                             ; 4714 6F                       o
@@ -1019,16 +1019,16 @@ L46F9:	dec     $1E,x                           ; 46F9 D6 1E                    .
 	.byte   $44                             ; 4736 44                       D
 	.byte   $1F                             ; 4737 1F                       .
 	asl     a:$00,x                         ; 4738 1E 00 00                 ...
-	brk                                     ; 473B 00                       .
-	brk                                     ; 473C 00                       .
-	brk                                     ; 473D 00                       .
-	brk                                     ; 473E 00                       .
-	brk                                     ; 473F 00                       .
-	brk                                     ; 4740 00                       .
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 	.byte   $44                             ; 4741 44                       D
 	.byte   $1F                             ; 4742 1F                       .
 	.byte   $13                             ; 4743 13                       .
-	brk                                     ; 4744 00                       .
+	.byte	$00
 	.byte   $A7                             ; 4745 A7                       .
 	.byte   $04                             ; 4746 04                       .
 	.byte   $0C                             ; 4747 0C                       .
@@ -1037,11 +1037,11 @@ L46F9:	dec     $1E,x                           ; 46F9 D6 1E                    .
 sub_4749:  
 	jmp	L474C
 
-L474C:  brk                                     ; 474C 00                       .
-L474D:  brk                                     ; 474D 00                       .
-L474E:  brk                                     ; 474E 00                       .
-L474F:  brk                                     ; 474F 00                       .
-L4750:  brk                                     ; 4750 00                       .
+L474C:  .byte	$00
+L474D:  .byte	$00
+L474E:  .byte	$00
+L474F:  .byte	$00
+L4750:  .byte	$00
 L4751:  plp                                     ; 4751 28                       (
 L4752:	.byte	$32                             ; 4752 32                       2
 L4753:	.byte	$29                             ; 4753 29                       )
@@ -1053,10 +1053,10 @@ L4754:  cld                                     ; 4754 D8                       
 	cld                                     ; 475C D8                       .
 	bmi     L47DD                           ; 475D 30 7E                    0~
 	ora     ($00),y                         ; 475F 11 00                    ..
-	brk                                     ; 4761 00                       .
-L4762:  brk                                     ; 4762 00                       .
+	.byte	$00
+L4762:  .byte	$00
 L4763:  cld                                     ; 4763 D8                       .
-L4764:  brk                                     ; 4764 00                       .
+L4764:  .byte	$00
 L4765:	.byte	$05,"BBBBS"
 L476B:	.addr	L4765
 L476D:	.byte	$01,"B"
@@ -1330,7 +1330,7 @@ L499C:  sty     $A0                             ; 499C 84 A0                    
 	rts                                     ; 499E 60                       `
 
 ; ----------------------------------------------------------------------------
-L499F:  brk                                     ; 499F 00                       .
+L499F:  .byte	$00
 L49A0:  .byte	$00
 L49A1:  .byte	$00
 
@@ -1357,14 +1357,14 @@ L49C3:	.byte	$20                             ; 49C3 20
 L49C4:	.byte	$53                             ; 49C4 53                       S
 L49C5:	dec     $1E,x                           ; 49C5 D6 1E                    ..
 	.byte   $0C                             ; 49C7 0C                       .
-	brk                                     ; 49C8 00                       .
+	.byte	$00
 	eor     ($54,x)                         ; 49C9 41 54                    AT
 	eor     ($52,x)                         ; 49CB 41 52                    AR
 	eor     #$D8                            ; 49CD 49 D8                    I.
 	;bmi     L49DD                           ; 49CF 30 0C                    0.
 	.byte	$30,$0C
 L49D1:	.byte	$0F                             ; 49D1 0F                       .
-L49D2:  brk                                     ; 49D2 00                       .
+L49D2:  .byte	$00
 
 sub_49D3:  
 	prolog
@@ -1460,7 +1460,7 @@ L4A53:	stack_prolog L4A4E, $04
 ; ----------------------------------------------------------------------------
 L4AA1:	.byte   $02,"R:"
 
-L4AA4:  brk                                     ; 4AA4 00                       .
+L4AA4:  .byte	$00
 
 L4AA5:  and     #$0F                            ; 4AA5 29 0F                    ).
 	sta     $A0                             ; 4AA7 85 A0                    ..
@@ -1779,7 +1779,7 @@ L4CE9:	ldi	$A0, $01
 	rts                                     ; 4CED 60                       `
 
 ; ----------------------------------------------------------------------------
-L4CEE:  brk                                     ; 4CEE 00                       .
+L4CEE:  .byte	$00
 L4CEF:	.byte	$0D                             ; 4CEF 0D                       .
 L4CF0:	.byte	$3B                             ; 4CF0 3B                       ;
 L4CF1:	.byte	$44                             ; 4CF1 44                       D
@@ -2028,8 +2028,8 @@ sub_4F9D:
 L4FBB:	.byte	$53                             ; 4FBB 53                       S
 L4FBC:	.byte	$20                             ; 4FBC 20                        
 L4FBD:	.byte	$69                             ; 4FBD 69                       i
-L4FBE:  brk                                     ; 4FBE 00                       .
-L4FBF:  brk                                     ; 4FBF 00                       .
+L4FBE:  .byte	$00
+L4FBF:  .byte	$00
 L4FC0:	.byte	$74                             ; 4FC0 74                       t
 L4FC1:  pla                                     ; 4FC1 68                       h
 L4FC2:	.byte	$65                             ; 4FC2 65                       e
@@ -2333,8 +2333,8 @@ L526B:  cld                                     ; 526B D8                       
 L526C:	.byte	$30                             ; 526C 30                       0
 L526D:	.byte	$6F                             ; 526D 6F                       o
 L526E:  asl     $00                             ; 526E 06 00                    ..
-	brk                                     ; 5270 00                       .
-L5271:  brk                                     ; 5271 00                       .
+	.byte	$00
+L5271:  .byte	$00
 L5272:  cld                                     ; 5272 D8                       .
 L5273:	.byte	$30                             ; 5273 30                       0
 L5274:  jmp     L5277                           ; 5274 4C 77 52                 LwR
@@ -2412,9 +2412,9 @@ L5304:  ldx     L52E0                           ; 5304 AE E0 52                 
 
 ; ----------------------------------------------------------------------------
 L531D:	.byte	$FF                             ; 531D FF                       .
-L531E:  brk                                     ; 531E 00                       .
+L531E:  .byte	$00
 L531F:  adc     $00                             ; 531F 65 00                    e.
-	brk                                     ; 5321 00                       .
+	.byte	$00
 L5322:	.byte	$20                             ; 5322 20                        
 L5323:	.byte	$53                             ; 5323 53                       S
 L5324:	dec     $1E,x                           ; 5324 D6 1E                    ..
@@ -3405,9 +3405,9 @@ L5E51:	sub8i	L4653, L4653, $01
 L5E5A:  rts                                     ; 5E5A 60                       `
 
 ; ----------------------------------------------------------------------------
-L5E5B:  brk                                     ; 5E5B 00                       .
-L5E5C:  brk                                     ; 5E5C 00                       .
-L5E5D:  brk                                     ; 5E5D 00                       .
+L5E5B:  .byte	$00
+L5E5C:  .byte	$00
+L5E5D:  .byte	$00
 
 sub_5E5E:  
 	prolog
@@ -3493,28 +3493,28 @@ L5EF7:  sty     $A0                             ; 5EF7 84 A0                    
 	rts                                     ; 5EF9 60                       `
 
 ; ----------------------------------------------------------------------------
-L5EFA:	brk                                     ; 5EFA 00                       .
-	brk                                     ; 5EFB 00                       .
-	brk                                     ; 5EFC 00                       .
-	brk                                     ; 5EFD 00                       .
+L5EFA:	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 
 L5EFE:  prolog
 	jsr     sub_44D5                        ; 5F01 20 D5 44                  .D
 	.addr	L5EFA
 	.byte	$03
-L5F07:  brk                                     ; 5F07 00                       .
-L5F08:  brk                                     ; 5F08 00                       .
-L5F09:  brk                                     ; 5F09 00                       .
-L5F0A:  brk                                     ; 5F0A 00                       .
-L5F0B:  brk                                     ; 5F0B 00                       .
-L5F0C:  brk                                     ; 5F0C 00                       .
-L5F0D:  brk                                     ; 5F0D 00                       .
-L5F0E:  brk                                     ; 5F0E 00                       .
-L5F0F:  brk                                     ; 5F0F 00                       .
-L5F10:  brk                                     ; 5F10 00                       .
-L5F11:  brk                                     ; 5F11 00                       .
-L5F12:  brk                                     ; 5F12 00                       .
-L5F13:  brk                                     ; 5F13 00                       .
+L5F07:  .byte	$00
+L5F08:  .byte	$00
+L5F09:  .byte	$00
+L5F0A:  .byte	$00
+L5F0B:  .byte	$00
+L5F0C:  .byte	$00
+L5F0D:  .byte	$00
+L5F0E:  .byte	$00
+L5F0F:  .byte	$00
+L5F10:  .byte	$00
+L5F11:  .byte	$00
+L5F12:  .byte	$00
+L5F13:  .byte	$00
 L5F14:	.byte	$80                             ; 5F14 80                       .
 L5F15:	.byte	$B2                             ; 5F15 B2                       .
 
@@ -3560,8 +3560,8 @@ L5F75:  lda     L5F86                           ; 5F75 AD 86 5F                 
 	jmp     L5FE5                           ; 5F83 4C E5 5F                 L._
 
 ; ----------------------------------------------------------------------------
-L5F86:  brk                                     ; 5F86 00                       .
-L5F87:  brk                                     ; 5F87 00                       .
+L5F86:  .byte	$00
+L5F87:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 L5F88:  clc                                     ; 5F88 18                       .
@@ -3616,11 +3616,11 @@ L5FE5:  lda     L5F0F                           ; 5FE5 AD 0F 5F                 
 	rts                                     ; 5FEF 60                       `
 
 ; ----------------------------------------------------------------------------
-L5FF0:  brk                                     ; 5FF0 00                       .
-L5FF1:  brk                                     ; 5FF1 00                       .
-L5FF2:  brk                                     ; 5FF2 00                       .
-L5FF3:  brk                                     ; 5FF3 00                       .
-L5FF4:  brk                                     ; 5FF4 00                       .
+L5FF0:  .byte	$00
+L5FF1:  .byte	$00
+L5FF2:  .byte	$00
+L5FF3:  .byte	$00
+L5FF4:  .byte	$00
 
 sub_5FF5:  
 	stack_prolog L5FF0, $04
@@ -3632,13 +3632,13 @@ sub_5FF5:
 	rts                                     ; 601E 60                       `
 
 ; ----------------------------------------------------------------------------
-L601F:  brk                                     ; 601F 00                       .
-L6020:  brk                                     ; 6020 00                       .
-L6021:  brk                                     ; 6021 00                       .
-L6022:  brk                                     ; 6022 00                       .
-L6023:  brk                                     ; 6023 00                       .
-L6024:  brk                                     ; 6024 00                       .
-L6025:  brk                                     ; 6025 00                       .
+L601F:  .byte	$00
+L6020:  .byte	$00
+L6021:  .byte	$00
+L6022:  .byte	$00
+L6023:  .byte	$00
+L6024:  .byte	$00
+L6025:  .byte	$00
 
 L6026:  
 	stack_prolog L601F, $04
@@ -3653,14 +3653,14 @@ L6026:
 
 ; ----------------------------------------------------------------------------
 L6064:  .word	$0000
-L6066:  brk                                     ; 6066 00                       .
-L6067:  brk                                     ; 6067 00                       .
-L6068:  brk                                     ; 6068 00                       .
-L6069:  brk                                     ; 6069 00                       .
-L606A:  brk                                     ; 606A 00                       .
-L606B:  brk                                     ; 606B 00                       .
-L606C:  brk                                     ; 606C 00                       .
-L606D:  brk                                     ; 606D 00                       .
+L6066:  .byte	$00
+L6067:  .byte	$00
+L6068:  .byte	$00
+L6069:  .byte	$00
+L606A:  .byte	$00
+L606B:  .byte	$00
+L606C:  .byte	$00
+L606D:  .byte	$00
 
 sub_606E:
 	prolog
@@ -3763,13 +3763,13 @@ L617C:  lda     #$00                            ; 617C A9 00                    
 	rts                                     ; 6191 60                       `
 
 ; ----------------------------------------------------------------------------
-L6192:  brk                                     ; 6192 00                       .
-L6193:  brk                                     ; 6193 00                       .
+L6192:  .byte	$00
+L6193:  .byte	$00
 L6194:	.byte	$00,$00
-L6196:  brk                                     ; 6196 00                       .
-L6197:  brk                                     ; 6197 00                       .
-L6198:  brk                                     ; 6198 00                       .
-L6199:  brk                                     ; 6199 00                       .
+L6196:  .byte	$00
+L6197:  .byte	$00
+L6198:  .byte	$00
+L6199:  .byte	$00
 
 sub_619A:  
 	stack_prolog L6192, $03
@@ -3803,10 +3803,10 @@ sub_619A:
 	rts                                     ; 61FE 60                       `
 
 ; ----------------------------------------------------------------------------
-L61FF:  brk                                     ; 61FF 00                       .
-L6200:  brk                                     ; 6200 00                       .
-L6201:  brk                                     ; 6201 00                       .
-L6202:  brk                                     ; 6202 00                       .
+L61FF:  .byte	$00
+L6200:  .byte	$00
+L6201:  .byte	$00
+L6202:  .byte	$00
 
 sub_6203:  
 	prolog
@@ -3853,9 +3853,9 @@ sub_6203:
 	rts                                     ; 62CD 60                       `
 
 ; ----------------------------------------------------------------------------
-L62CE:  brk                                     ; 62CE 00                       .
-L62CF:  brk                                     ; 62CF 00                       .
-L62D0:  brk                                     ; 62D0 00                       .
+L62CE:  .byte	$00
+L62CF:  .byte	$00
+L62D0:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 sub_62D1:
@@ -3899,11 +3899,11 @@ L6328:	shladdi	off_AE, L466F, $0001
 	rts                                     ; 6368 60                       `
 
 ; ----------------------------------------------------------------------------
-L6369:  brk                                     ; 6369 00                       .
+L6369:  .byte	$00
 L636A:	.byte	$C4                             ; 636A C4                       .
 L636B:	.byte	$02                             ; 636B 02                       .
-L636C:  brk                                     ; 636C 00                       .
-L636D:  brk                                     ; 636D 00                       .
+L636C:  .byte	$00
+L636D:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 sub_636E:
@@ -3932,18 +3932,18 @@ sub_636E:
 	rts                                     ; 63D0 60                       `
 
 ; ----------------------------------------------------------------------------
-L63D1:  brk                                     ; 63D1 00                       .
-L63D2:  brk                                     ; 63D2 00                       .
-L63D3:  brk                                     ; 63D3 00                       .
-L63D4:  brk                                     ; 63D4 00                       .
-L63D5:  brk                                     ; 63D5 00                       .
-L63D6:  brk                                     ; 63D6 00                       .
-L63D7:  brk                                     ; 63D7 00                       .
-L63D8:  brk                                     ; 63D8 00                       .
-L63D9:  brk                                     ; 63D9 00                       .
-L63DA:  brk                                     ; 63DA 00                       .
-L63DB:  brk                                     ; 63DB 00                       .
-L63DC:  brk                                     ; 63DC 00                       .
+L63D1:  .byte	$00
+L63D2:  .byte	$00
+L63D3:  .byte	$00
+L63D4:  .byte	$00
+L63D5:  .byte	$00
+L63D6:  .byte	$00
+L63D7:  .byte	$00
+L63D8:  .byte	$00
+L63D9:  .byte	$00
+L63DA:  .byte	$00
+L63DB:  .byte	$00
+L63DC:  .byte	$00
 
 sub_63DD:  
 	prolog
@@ -4105,13 +4105,13 @@ L65D7:	.byte	$00
 L65D8:	.byte	$00
 L65D9:	.byte	$00
 L65DA:	.byte	$00
-L65DB:  brk                                     ; 65DB 00                       .
-L65DC:  brk                                     ; 65DC 00                       .
-L65DD:  brk                                     ; 65DD 00                       .
-L65DE:  brk                                     ; 65DE 00                       .
-L65DF:  brk                                     ; 65DF 00                       .
-L65E0:  brk                                     ; 65E0 00                       .
-L65E1:  brk                                     ; 65E1 00                       .
+L65DB:  .byte	$00
+L65DC:  .byte	$00
+L65DD:  .byte	$00
+L65DE:  .byte	$00
+L65DF:  .byte	$00
+L65E0:  .byte	$00
+L65E1:  .byte	$00
 
 sub_65E2:  
 	stack_prolog L65D6, $05
@@ -4446,16 +4446,16 @@ sub_696A:
 L6982:  .byte	$00
 L6983:	.byte	$00,$00
 L6985:	.byte	$00,$00
-L6987:  brk                                     ; 6987 00                       .
-L6988:  brk                                     ; 6988 00                       .
-L6989:  brk                                     ; 6989 00                       .
-L698A:	brk                                     ; 698A 00                       .
-L698B:  brk                                     ; 698B 00                       .
-L698C:  brk                                     ; 698C 00                       .
-L698D:  brk                                     ; 698D 00                       .
-L698E:  brk                                     ; 698E 00                       .
-L698F:  brk                                     ; 698F 00                       .
-L6990:  brk                                     ; 6990 00                       .
+L6987:  .byte	$00
+L6988:  .byte	$00
+L6989:  .byte	$00
+L698A:	.byte	$00
+L698B:  .byte	$00
+L698C:  .byte	$00
+L698D:  .byte	$00
+L698E:  .byte	$00
+L698F:  .byte	$00
+L6990:  .byte	$00
 L6991:  .byte	$00,$00
 L6993:	.byte	$00,$00
 
@@ -4827,8 +4827,8 @@ L6E42:	.byte	$66                             ; 6E42 66                       f
 L6E43:	.byte	$66                             ; 6E43 66                       f
 L6E44:	.byte	$6C                             ; 6E44 6C                       l
 L6E45:  sei                                     ; 6E45 78                       x
-L6E46:  brk                                     ; 6E46 00                       .
-L6E47:  brk                                     ; 6E47 00                       .
+L6E46:  .byte	$00
+L6E47:  .byte	$00
 L6E48:	.byte	$7E                             ; 6E48 7E                       ~
 L6E49:  rts                                     ; 6E49 60                       `
 
@@ -4846,8 +4846,8 @@ L6E53:	.addr	L6E4F
 L6E55:	.byte	$03,"CBs"
 L6E59:	.addr	L6E55
 L6E5B:  ror     $3E66                           ; 6E5B 6E 66 3E                 nf>
-	brk                                     ; 6E5E 00                       .
-L6E5F:  brk                                     ; 6E5F 00                       .
+	.byte	$00
+L6E5F:  .byte	$00
 L6E60:	.byte	$66                             ; 6E60 66                       f
 
 ; ----------------------------------------------------------------------------
@@ -5103,21 +5103,21 @@ L71A2:  .byte	$00
 L71A3:  .byte	$00
 L71A4:	.byte	$00
 	.byte	$00
-	brk                                     ; 71A6 00                       .
-	brk                                     ; 71A7 00                       .
-L71A8:	brk                                     ; 71A8 00                       .
-	brk                                     ; 71A9 00                       .
-	brk                                     ; 71AA 00                       .
-	brk                                     ; 71AB 00                       .
-L71AC:  brk                                     ; 71AC 00                       .
-L71AD:  brk                                     ; 71AD 00                       .
-L71AE:	brk                                     ; 71AE 00                       .
-	brk                                     ; 71AF 00                       .
-L71B0:  brk                                     ; 71B0 00                       .
-L71B1:  brk                                     ; 71B1 00                       .
-L71B2:  brk                                     ; 71B2 00                       .
-L71B3:  brk                                     ; 71B3 00                       .
-L71B4:  brk                                     ; 71B4 00                       .
+	.byte	$00
+	.byte	$00
+L71A8:	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+L71AC:  .byte	$00
+L71AD:  .byte	$00
+L71AE:	.byte	$00
+	.byte	$00
+L71B0:  .byte	$00
+L71B1:  .byte	$00
+L71B2:  .byte	$00
+L71B3:  .byte	$00
+L71B4:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 sub_71B5:  
@@ -5886,7 +5886,7 @@ L7AC2:	add16i	off_AE, L7A98, $0005
 	rts                                     ; 7AD8 60                       `
 
 ; ----------------------------------------------------------------------------
-L7AD9:  brk                                     ; 7AD9 00                       .
+L7AD9:  .byte	$00
 L7ADA:	.byte	$91                             ; 7ADA 91                       .
 L7ADB:	.byte	$45                             ; 7ADB 45                       E
 L7ADC:  sec                                     ; 7ADC 38                       8
@@ -6068,13 +6068,13 @@ L7CD6:	add16i	$A0, L7B56, $0006
 	rts                                     ; 7D43 60                       `
 
 ; ----------------------------------------------------------------------------
-L7D44:	brk                                     ; 7D44 00                       .
-L7D45:  brk                                     ; 7D45 00                       .
-L7D46:  brk                                     ; 7D46 00                       .
-L7D47:  brk                                     ; 7D47 00                       .
-L7D48:  brk                                     ; 7D48 00                       .
-L7D49:  brk                                     ; 7D49 00                       .
-L7D4A:  brk                                     ; 7D4A 00                       .
+L7D44:	.byte	$00
+L7D45:  .byte	$00
+L7D46:  .byte	$00
+L7D47:  .byte	$00
+L7D48:  .byte	$00
+L7D49:  .byte	$00
+L7D4A:  .byte	$00
 L7D4B:  .word	$0000
 
 sub_7D4D:
@@ -6125,24 +6125,24 @@ L7DA5:	add16i	off_AE, L7D4B, $0002
 	rts                                     ; 7E11 60                       `
 
 ; ----------------------------------------------------------------------------
-L7E12:  brk                                     ; 7E12 00                       .
-L7E13:	brk                                     ; 7E13 00                       .
-L7E14:  brk                                     ; 7E14 00                       .
-L7E15:  brk                                     ; 7E15 00                       .
-L7E16:  brk                                     ; 7E16 00                       .
-L7E17:  brk                                     ; 7E17 00                       .
-L7E18:  brk                                     ; 7E18 00                       .
-L7E19:  brk                                     ; 7E19 00                       .
-L7E1A:  brk                                     ; 7E1A 00                       .
-L7E1B:  brk                                     ; 7E1B 00                       .
-L7E1C:  brk                                     ; 7E1C 00                       .
-L7E1D:  brk                                     ; 7E1D 00                       .
-L7E1E:  brk                                     ; 7E1E 00                       .
-L7E1F:  brk                                     ; 7E1F 00                       .
-L7E20:  brk                                     ; 7E20 00                       .
-L7E21:  brk                                     ; 7E21 00                       .
-L7E22:  brk                                     ; 7E22 00                       .
-L7E23:  brk                                     ; 7E23 00                       .
+L7E12:  .byte	$00
+L7E13:	.byte	$00
+L7E14:  .byte	$00
+L7E15:  .byte	$00
+L7E16:  .byte	$00
+L7E17:  .byte	$00
+L7E18:  .byte	$00
+L7E19:  .byte	$00
+L7E1A:  .byte	$00
+L7E1B:  .byte	$00
+L7E1C:  .byte	$00
+L7E1D:  .byte	$00
+L7E1E:  .byte	$00
+L7E1F:  .byte	$00
+L7E20:  .byte	$00
+L7E21:  .byte	$00
+L7E22:  .byte	$00
+L7E23:  .byte	$00
 
 sub_7E24:
 	stack_prolog L7E12, $02
@@ -6226,7 +6226,7 @@ L7F2A:  lda     L7F35                           ; 7F2A AD 35 7F                 
 	jmp     L7F5F                           ; 7F32 4C 5F 7F                 L_.
 
 ; ----------------------------------------------------------------------------
-L7F35:  brk                                     ; 7F35 00                       .
+L7F35:  .byte	$00
 L7F36:  clc                                     ; 7F36 18                       .
 	lda     L7E17                           ; 7F37 AD 17 7E                 ..~
 	adc     L7E20                           ; 7F3A 6D 20 7E                 m ~
@@ -6261,18 +6261,18 @@ L7F5F:  lda     L7E21                           ; 7F5F AD 21 7E                 
 	rts                                     ; 7F73 60                       `
 
 ; ----------------------------------------------------------------------------
-L7F74:  brk                                     ; 7F74 00                       .
-L7F75:  brk                                     ; 7F75 00                       .
-	brk                                     ; 7F76 00                       .
-	brk                                     ; 7F77 00                       .
-	brk                                     ; 7F78 00                       .
-	brk                                     ; 7F79 00                       .
-	brk                                     ; 7F7A 00                       .
-	brk                                     ; 7F7B 00                       .
-	brk                                     ; 7F7C 00                       .
-	brk                                     ; 7F7D 00                       .
-	brk                                     ; 7F7E 00                       .
-	brk                                     ; 7F7F 00                       .
+L7F74:  .byte	$00
+L7F75:  .byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 
 L7F80:	prolog
 	stx     L7F75                           ; 7F83 8E 75 7F                 .u.
@@ -6282,11 +6282,11 @@ L7F80:	prolog
 	rts                                     ; 7F8D 60                       `
 
 ; ----------------------------------------------------------------------------
-L7F8E:  brk                                     ; 7F8E 00                       .
-L7F8F:  brk                                     ; 7F8F 00                       .
-L7F90:  brk                                     ; 7F90 00                       .
-L7F91:  brk                                     ; 7F91 00                       .
-L7F92:  brk                                     ; 7F92 00                       .
+L7F8E:  .byte	$00
+L7F8F:  .byte	$00
+L7F90:  .byte	$00
+L7F91:  .byte	$00
+L7F92:  .byte	$00
 
 sub_7F93:
 	prolog
@@ -6325,7 +6325,7 @@ L7FE2:  lda     L7F92                           ; 7FE2 AD 92 7F                 
 	rts                                     ; 7FE7 60                       `
 
 ; ----------------------------------------------------------------------------
-L7FE8:  brk                                     ; 7FE8 00                       .
+L7FE8:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 L7FE9:	prolog
@@ -6413,7 +6413,7 @@ L80AA:	.byte	$4F                             ; 80AA 4F                       O
 L80AB:	.byte	$4D                             ; 80AB 4D                       M
 L80AC:	.byte	$9B                             ; 80AC 9B                       .
 L80AD:	.byte	$A2                             ; 80AD A2                       .
-L80AE:  brk                                     ; 80AE 00                       .
+L80AE:  .byte	$00
 L80AF:	.byte	$B9                             ; 80AF B9                       .
 L80B0:	.byte	$5B                             ; 80B0 5B                       [
 L80B1:	.byte	$F3                             ; 80B1 F3                       .
@@ -7108,33 +7108,33 @@ L882C:  cpy     $A4                             ; 882C C4 A4                    
 	rts                                     ; 8830 60                       `
 
 ; ----------------------------------------------------------------------------
-L8831:  brk                                     ; 8831 00                       .
-L8832:  brk                                     ; 8832 00                       .
-L8833:  brk                                     ; 8833 00                       .
-L8834:	brk                                     ; 8834 00                       .
-L8835:  brk                                     ; 8835 00                       .
-L8836:  brk                                     ; 8836 00                       .
-L8837:  brk                                     ; 8837 00                       .
-L8838:  brk                                     ; 8838 00                       .
-L8839:  brk                                     ; 8839 00                       .
-L883A:  brk                                     ; 883A 00                       .
-L883B:  brk                                     ; 883B 00                       .
-L883C:  brk                                     ; 883C 00                       .
-	brk                                     ; 883D 00                       .
-L883E:  brk                                     ; 883E 00                       .
-L883F:  brk                                     ; 883F 00                       .
-L8840:  brk                                     ; 8840 00                       .
-L8841:  brk                                     ; 8841 00                       .
-L8842:  brk                                     ; 8842 00                       .
-L8843:  brk                                     ; 8843 00                       .
-	brk                                     ; 8844 00                       .
-	brk                                     ; 8845 00                       .
-L8846:  brk                                     ; 8846 00                       .
-	brk                                     ; 8847 00                       .
-	brk                                     ; 8848 00                       .
-	brk                                     ; 8849 00                       .
-L884A:  brk                                     ; 884A 00                       .
-L884B:  brk                                     ; 884B 00                       .
+L8831:  .byte	$00
+L8832:  .byte	$00
+L8833:  .byte	$00
+L8834:	.byte	$00
+L8835:  .byte	$00
+L8836:  .byte	$00
+L8837:  .byte	$00
+L8838:  .byte	$00
+L8839:  .byte	$00
+L883A:  .byte	$00
+L883B:  .byte	$00
+L883C:  .byte	$00
+	.byte	$00
+L883E:  .byte	$00
+L883F:  .byte	$00
+L8840:  .byte	$00
+L8841:  .byte	$00
+L8842:  .byte	$00
+L8843:  .byte	$00
+	.byte	$00
+	.byte	$00
+L8846:  .byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+L884A:  .byte	$00
+L884B:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 sub_884C:
@@ -7220,83 +7220,83 @@ L8921:  lda     L883A                           ; 8921 AD 3A 88                 
 L8960:  rts                                     ; 8960 60                       `
 
 ; ----------------------------------------------------------------------------
-L8961:  brk                                     ; 8961 00                       .
-L8962:  brk                                     ; 8962 00                       .
-L8963:  brk                                     ; 8963 00                       .
-L8964:  brk                                     ; 8964 00                       .
-L8965:  brk                                     ; 8965 00                       .
-	brk                                     ; 8966 00                       .
-	brk                                     ; 8967 00                       .
-L8968:  brk                                     ; 8968 00                       .
-L8969:  brk                                     ; 8969 00                       .
-L896A:  brk                                     ; 896A 00                       .
-L896B:  brk                                     ; 896B 00                       .
-L896C:  brk                                     ; 896C 00                       .
-L896D:	brk                                     ; 896D 00                       .
-	brk                                     ; 896E 00                       .
-	brk                                     ; 896F 00                       .
-	brk                                     ; 8970 00                       .
-	brk                                     ; 8971 00                       .
-	brk                                     ; 8972 00                       .
-	brk                                     ; 8973 00                       .
-	brk                                     ; 8974 00                       .
+L8961:  .byte	$00
+L8962:  .byte	$00
+L8963:  .byte	$00
+L8964:  .byte	$00
+L8965:  .byte	$00
+	.byte	$00
+	.byte	$00
+L8968:  .byte	$00
+L8969:  .byte	$00
+L896A:  .byte	$00
+L896B:  .byte	$00
+L896C:  .byte	$00
+L896D:	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 L8975:	.byte	$00
-	brk                                     ; 8976 00                       .
-	brk                                     ; 8977 00                       .
-	brk                                     ; 8978 00                       .
+	.byte	$00
+	.byte	$00
+	.byte	$00
 L8979:	.byte	$00
-	brk                                     ; 897A 00                       .
-	brk                                     ; 897B 00                       .
-	brk                                     ; 897C 00                       .
+	.byte	$00
+	.byte	$00
+	.byte	$00
 L897D:	.byte	$00
-	brk                                     ; 897E 00                       .
-	brk                                     ; 897F 00                       .
-	brk                                     ; 8980 00                       .
+	.byte	$00
+	.byte	$00
+	.byte	$00
 L8981:	.byte	$00
-	brk                                     ; 8982 00                       .
-	brk                                     ; 8983 00                       .
-	brk                                     ; 8984 00                       .
+	.byte	$00
+	.byte	$00
+	.byte	$00
 L8985:	.byte	$00
-	brk                                     ; 8986 00                       .
-	brk                                     ; 8987 00                       .
-	brk                                     ; 8988 00                       .
+	.byte	$00
+	.byte	$00
+	.byte	$00
 L8989:	.byte	$00
-	brk                                     ; 898A 00                       .
-	brk                                     ; 898B 00                       .
-	brk                                     ; 898C 00                       .
-L898D:  brk                                     ; 898D 00                       .
-L898E:  brk                                     ; 898E 00                       .
-L898F:  brk                                     ; 898F 00                       .
-L8990:  brk                                     ; 8990 00                       .
-L8991:  brk                                     ; 8991 00                       .
-L8992:  brk                                     ; 8992 00                       .
-L8993:  brk                                     ; 8993 00                       .
-L8994:  brk                                     ; 8994 00                       .
-L8995:  brk                                     ; 8995 00                       .
-L8996:  brk                                     ; 8996 00                       .
-L8997:  brk                                     ; 8997 00                       .
-L8998:  brk                                     ; 8998 00                       .
-L8999:  brk                                     ; 8999 00                       .
-L899A:  brk                                     ; 899A 00                       .
-L899B:  brk                                     ; 899B 00                       .
-L899C:  brk                                     ; 899C 00                       .
-L899D:  brk                                     ; 899D 00                       .
-	brk                                     ; 899E 00                       .
-	brk                                     ; 899F 00                       .
-	brk                                     ; 89A0 00                       .
-	brk                                     ; 89A1 00                       .
-L89A2:  brk                                     ; 89A2 00                       .
-	brk                                     ; 89A3 00                       .
-L89A4:  brk                                     ; 89A4 00                       .
-L89A5:  brk                                     ; 89A5 00                       .
-L89A6:  brk                                     ; 89A6 00                       .
-L89A7:  brk                                     ; 89A7 00                       .
-L89A8:  brk                                     ; 89A8 00                       .
-L89A9:  brk                                     ; 89A9 00                       .
-	brk                                     ; 89AA 00                       .
-L89AB:  brk                                     ; 89AB 00                       .
-L89AC:  brk                                     ; 89AC 00                       .
-L89AD:  brk                                     ; 89AD 00                       .
+	.byte	$00
+	.byte	$00
+	.byte	$00
+L898D:  .byte	$00
+L898E:  .byte	$00
+L898F:  .byte	$00
+L8990:  .byte	$00
+L8991:  .byte	$00
+L8992:  .byte	$00
+L8993:  .byte	$00
+L8994:  .byte	$00
+L8995:  .byte	$00
+L8996:  .byte	$00
+L8997:  .byte	$00
+L8998:  .byte	$00
+L8999:  .byte	$00
+L899A:  .byte	$00
+L899B:  .byte	$00
+L899C:  .byte	$00
+L899D:  .byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+L89A2:  .byte	$00
+	.byte	$00
+L89A4:  .byte	$00
+L89A5:  .byte	$00
+L89A6:  .byte	$00
+L89A7:  .byte	$00
+L89A8:  .byte	$00
+L89A9:  .byte	$00
+	.byte	$00
+L89AB:  .byte	$00
+L89AC:  .byte	$00
+L89AD:  .byte	$00
 
 L89AE:  prolog
 	sta     L8961                           ; 89B1 8D 61 89                 .a.
@@ -7551,14 +7551,14 @@ L8CD5:  lda     L896C                           ; 8CD5 AD 6C 89                 
 	rts                                     ; 8CF8 60                       `
 
 ; ----------------------------------------------------------------------------
-L8CF9:  brk                                     ; 8CF9 00                       .
-L8CFA:  brk                                     ; 8CFA 00                       .
-L8CFB:  brk                                     ; 8CFB 00                       .
-L8CFC:  brk                                     ; 8CFC 00                       .
-L8CFD:  brk                                     ; 8CFD 00                       .
-L8CFE:  brk                                     ; 8CFE 00                       .
-L8CFF:  brk                                     ; 8CFF 00                       .
-L8D00:  brk                                     ; 8D00 00                       .
+L8CF9:  .byte	$00
+L8CFA:  .byte	$00
+L8CFB:  .byte	$00
+L8CFC:  .byte	$00
+L8CFD:  .byte	$00
+L8CFE:  .byte	$00
+L8CFF:  .byte	$00
+L8D00:  .byte	$00
 sub_8D01:
 	prolog
 	lda     L4658                           ; 8D04 AD 58 46                 .XF
@@ -7599,7 +7599,7 @@ L8D89:  lda     L8D94                           ; 8D89 AD 94 8D                 
 	jmp     L8DFE                           ; 8D91 4C FE 8D                 L..
 
 ; ----------------------------------------------------------------------------
-L8D94:  brk                                     ; 8D94 00                       .
+L8D94:  .byte	$00
 L8D95:  sec                                     ; 8D95 38                       8
 	lda     L8CF9                           ; 8D96 AD F9 8C                 ...
 	sbc     #$01                            ; 8D99 E9 01                    ..
@@ -7668,11 +7668,11 @@ L8E10:	ldxa	L4762
 L8E1E:  rts                                     ; 8E1E 60                       `
 
 ; ----------------------------------------------------------------------------
-L8E1F:	brk                                     ; 8E1F 00                       .
-L8E20:  brk                                     ; 8E20 00                       .
-L8E21:  brk                                     ; 8E21 00                       .
-L8E22:  brk                                     ; 8E22 00                       .
-L8E23:  brk                                     ; 8E23 00                       .
+L8E1F:	.byte	$00
+L8E20:  .byte	$00
+L8E21:  .byte	$00
+L8E22:  .byte	$00
+L8E23:  .byte	$00
 
 sub_8E24:	
 	stack_prolog L8E1F, $02
@@ -7709,15 +7709,15 @@ sub_8E24:
 	rts                                     ; 8E73 60                       `
 
 ; ----------------------------------------------------------------------------
-L8E74:	brk                                     ; 8E74 00                       .
-L8E75:  brk                                     ; 8E75 00                       .
-	brk                                     ; 8E76 00                       .
-	brk                                     ; 8E77 00                       .
-	brk                                     ; 8E78 00                       .
-	brk                                     ; 8E79 00                       .
-	brk                                     ; 8E7A 00                       .
-L8E7B:  brk                                     ; 8E7B 00                       .
-L8E7C:  brk                                     ; 8E7C 00                       .
+L8E74:	.byte	$00
+L8E75:  .byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+L8E7B:  .byte	$00
+L8E7C:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 sub_8E7D:  
@@ -7755,11 +7755,11 @@ sub_8E7D:
 	rts                                     ; 8EF7 60                       `
 
 ; ----------------------------------------------------------------------------
-L8EF8:	brk                                     ; 8EF8 00                       .
-L8EF9:  brk                                     ; 8EF9 00                       .
-L8EFA:  brk                                     ; 8EFA 00                       .
-L8EFB:  brk                                     ; 8EFB 00                       .
-L8EFC:  brk                                     ; 8EFC 00                       .
+L8EF8:	.byte	$00
+L8EF9:  .byte	$00
+L8EFA:  .byte	$00
+L8EFB:  .byte	$00
+L8EFC:  .byte	$00
 
 sub_8EFD:
 	stack_prolog L8EF8, $02
@@ -7791,12 +7791,12 @@ L8F4C:  lsr     $46,x                           ; 8F4C 56 46                    
 	rts                                     ; 8F4E 60                       `
 
 ; ----------------------------------------------------------------------------
-L8F4F:	brk                                     ; 8F4F 00                       .
-	brk                                     ; 8F50 00                       .
-	brk                                     ; 8F51 00                       .
-	brk                                     ; 8F52 00                       .
-	brk                                     ; 8F53 00                       .
-	brk                                     ; 8F54 00                       .
+L8F4F:	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 
 ; ----------------------------------------------------------------------------
 sub_8F55:  
@@ -7816,9 +7816,9 @@ sub_8F55:
 	rts                                     ; 8F79 60                       `
 
 ; ----------------------------------------------------------------------------
-L8F7A:  brk                                     ; 8F7A 00                       .
-L8F7B:  brk                                     ; 8F7B 00                       .
-L8F7C:  brk                                     ; 8F7C 00                       .
+L8F7A:  .byte	$00
+L8F7B:  .byte	$00
+L8F7C:  .byte	$00
 
 
 ; ----------------------------------------------------------------------------
@@ -7895,30 +7895,30 @@ L8FDE:	dmv	off_AE, L4678
 	rts                                     ; 904F 60                       `
 
 ; ----------------------------------------------------------------------------
-L9050:  brk                                     ; 9050 00                       .
-L9051:  brk                                     ; 9051 00                       .
-L9052:  brk                                     ; 9052 00                       .
-L9053:  brk                                     ; 9053 00                       .
-L9054:  brk                                     ; 9054 00                       .
+L9050:  .byte	$00
+L9051:  .byte	$00
+L9052:  .byte	$00
+L9053:  .byte	$00
+L9054:  .byte	$00
 P9055:  .addr	$0000
-L9057:  brk                                     ; 9057 00                       .
-L9058:  brk                                     ; 9058 00                       .
-L9059:  brk                                     ; 9059 00                       .
-L905A:  brk                                     ; 905A 00                       .
-L905B:  brk                                     ; 905B 00                       .
-L905C:  brk                                     ; 905C 00                       .
-L905D:  brk                                     ; 905D 00                       .
-L905E:  brk                                     ; 905E 00                       .
+L9057:  .byte	$00
+L9058:  .byte	$00
+L9059:  .byte	$00
+L905A:  .byte	$00
+L905B:  .byte	$00
+L905C:  .byte	$00
+L905D:  .byte	$00
+L905E:  .byte	$00
 L905F:	.byte	$01                             ; 905F 01                       .
-L9060:  brk                                     ; 9060 00                       .
-L9061:  brk                                     ; 9061 00                       .
-	brk                                     ; 9062 00                       .
-	brk                                     ; 9063 00                       .
-L9064:  brk                                     ; 9064 00                       .
-L9065:  brk                                     ; 9065 00                       .
-L9066:  brk                                     ; 9066 00                       .
-L9067:  brk                                     ; 9067 00                       .
-L9068:  brk                                     ; 9068 00                       .
+L9060:  .byte	$00
+L9061:  .byte	$00
+	.byte	$00
+	.byte	$00
+L9064:  .byte	$00
+L9065:  .byte	$00
+L9066:  .byte	$00
+L9067:  .byte	$00
+L9068:  .byte	$00
 	.byte   $9F                             ; 9069 9F                       .
 	tya                                     ; 906A 98                       .
 	sta     $B39B,x                         ; 906B 9D 9B B3                 ...
@@ -7962,19 +7962,19 @@ L90AF:  inc     L9067                           ; 90AF EE 67 90                 
 	rts                                     ; 90C0 60                       `
 
 ; ----------------------------------------------------------------------------
-L90C1:  brk                                     ; 90C1 00                       .
-L90C2:  brk                                     ; 90C2 00                       .
-L90C3:  brk                                     ; 90C3 00                       .
-L90C4:  brk                                     ; 90C4 00                       .
-L90C5:  brk                                     ; 90C5 00                       .
-L90C6:  brk                                     ; 90C6 00                       .
-L90C7:  brk                                     ; 90C7 00                       .
-L90C8:  brk                                     ; 90C8 00                       .
-	brk                                     ; 90C9 00                       .
-	brk                                     ; 90CA 00                       .
-	brk                                     ; 90CB 00                       .
-L90CC:  brk                                     ; 90CC 00                       .
-L90CD:  brk                                     ; 90CD 00                       .
+L90C1:  .byte	$00
+L90C2:  .byte	$00
+L90C3:  .byte	$00
+L90C4:  .byte	$00
+L90C5:  .byte	$00
+L90C6:  .byte	$00
+L90C7:  .byte	$00
+L90C8:  .byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+L90CC:  .byte	$00
+L90CD:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 sub_90CE:
@@ -8010,22 +8010,22 @@ sub_90CE:
 	rts                                     ; 9135 60                       `
 
 ; ----------------------------------------------------------------------------
-L9136:  brk                                     ; 9136 00                       .
-L9137:  brk                                     ; 9137 00                       .
-L9138:  brk                                     ; 9138 00                       .
-L9139:  brk                                     ; 9139 00                       .
-L913A:  brk                                     ; 913A 00                       .
-L913B:  brk                                     ; 913B 00                       .
-L913C:  brk                                     ; 913C 00                       .
-L913D:  brk                                     ; 913D 00                       .
-L913E:  brk                                     ; 913E 00                       .
-L913F:  brk                                     ; 913F 00                       .
-L9140:  brk                                     ; 9140 00                       .
-L9141:  brk                                     ; 9141 00                       .
-	brk                                     ; 9142 00                       .
-	brk                                     ; 9143 00                       .
-L9144:  brk                                     ; 9144 00                       .
-L9145:  brk                                     ; 9145 00                       .
+L9136:  .byte	$00
+L9137:  .byte	$00
+L9138:  .byte	$00
+L9139:  .byte	$00
+L913A:  .byte	$00
+L913B:  .byte	$00
+L913C:  .byte	$00
+L913D:  .byte	$00
+L913E:  .byte	$00
+L913F:  .byte	$00
+L9140:  .byte	$00
+L9141:  .byte	$00
+	.byte	$00
+	.byte	$00
+L9144:  .byte	$00
+L9145:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 sub_9146:  
@@ -8128,23 +8128,23 @@ L9247:	ldi	$A0, $01
 	rts                                     ; 924B 60                       `
 
 ; ----------------------------------------------------------------------------
-L924C:  brk                                     ; 924C 00                       .
-L924D:  brk                                     ; 924D 00                       .
-L924E:  brk                                     ; 924E 00                       .
-L924F:  brk                                     ; 924F 00                       .
-L9250:  brk                                     ; 9250 00                       .
-L9251:  brk                                     ; 9251 00                       .
-L9252:  brk                                     ; 9252 00                       .
-L9253:  brk                                     ; 9253 00                       .
-L9254:  brk                                     ; 9254 00                       .
-L9255:  brk                                     ; 9255 00                       .
-L9256:  brk                                     ; 9256 00                       .
-L9257:  brk                                     ; 9257 00                       .
-L9258:  brk                                     ; 9258 00                       .
-	brk                                     ; 9259 00                       .
-	brk                                     ; 925A 00                       .
-L925B:  brk                                     ; 925B 00                       .
-L925C:  brk                                     ; 925C 00                       .
+L924C:  .byte	$00
+L924D:  .byte	$00
+L924E:  .byte	$00
+L924F:  .byte	$00
+L9250:  .byte	$00
+L9251:  .byte	$00
+L9252:  .byte	$00
+L9253:  .byte	$00
+L9254:  .byte	$00
+L9255:  .byte	$00
+L9256:  .byte	$00
+L9257:  .byte	$00
+L9258:  .byte	$00
+	.byte	$00
+	.byte	$00
+L925B:  .byte	$00
+L925C:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 L925D:  prolog
@@ -8233,15 +8233,15 @@ L935C:	ldi	$A0, $01
 	rts                                     ; 9360 60                       `
 
 ; ----------------------------------------------------------------------------
-L9361:  brk                                     ; 9361 00                       .
-L9362:  brk                                     ; 9362 00                       .
-L9363:  brk                                     ; 9363 00                       .
-L9364:  brk                                     ; 9364 00                       .
-L9365:  brk                                     ; 9365 00                       .
-L9366:  brk                                     ; 9366 00                       .
-	brk                                     ; 9367 00                       .
-L9368:  brk                                     ; 9368 00                       .
-	brk                                     ; 9369 00                       .
+L9361:  .byte	$00
+L9362:  .byte	$00
+L9363:  .byte	$00
+L9364:  .byte	$00
+L9365:  .byte	$00
+L9366:  .byte	$00
+	.byte	$00
+L9368:  .byte	$00
+	.byte	$00
 
 ; ----------------------------------------------------------------------------
 sub_936A:  
@@ -8291,23 +8291,23 @@ L9405:  lda     #$80                            ; 9405 A9 80                    
 	rts                                     ; 9415 60                       `
 
 ; ----------------------------------------------------------------------------
-L9416:  brk                                     ; 9416 00                       .
-	brk                                     ; 9417 00                       .
-	brk                                     ; 9418 00                       .
-L9419:  brk                                     ; 9419 00                       .
-L941A:  brk                                     ; 941A 00                       .
-	brk                                     ; 941B 00                       .
-L941C:	brk                                     ; 941C 00                       .
-	brk                                     ; 941D 00                       .
-L941E:  brk                                     ; 941E 00                       .
-L941F:  brk                                     ; 941F 00                       .
-	brk                                     ; 9420 00                       .
-	brk                                     ; 9421 00                       .
-L9422:  brk                                     ; 9422 00                       .
-	brk                                     ; 9423 00                       .
-L9424:  brk                                     ; 9424 00                       .
-	brk                                     ; 9425 00                       .
-L9426:  brk                                     ; 9426 00                       .
+L9416:  .byte	$00
+	.byte	$00
+	.byte	$00
+L9419:  .byte	$00
+L941A:  .byte	$00
+	.byte	$00
+L941C:	.byte	$00
+	.byte	$00
+L941E:  .byte	$00
+L941F:  .byte	$00
+	.byte	$00
+	.byte	$00
+L9422:  .byte	$00
+	.byte	$00
+L9424:  .byte	$00
+	.byte	$00
+L9426:  .byte	$00
 
 sub_9427:  
 	prolog
@@ -8536,18 +8536,18 @@ L9660:  lda     L961D                           ; 9660 AD 1D 96                 
 	rts                                     ; 9681 60                       `
 
 ; ----------------------------------------------------------------------------
-L9682:  brk                                     ; 9682 00                       .
-L9683:  brk                                     ; 9683 00                       .
-L9684:  brk                                     ; 9684 00                       .
-	brk                                     ; 9685 00                       .
-	brk                                     ; 9686 00                       .
-L9687:  brk                                     ; 9687 00                       .
-L9688:  brk                                     ; 9688 00                       .
-L9689:  brk                                     ; 9689 00                       .
-L968A:  brk                                     ; 968A 00                       .
-L968B:  brk                                     ; 968B 00                       .
-L968C:  brk                                     ; 968C 00                       .
-L968D:  brk                                     ; 968D 00                       .
+L9682:  .byte	$00
+L9683:  .byte	$00
+L9684:  .byte	$00
+	.byte	$00
+	.byte	$00
+L9687:  .byte	$00
+L9688:  .byte	$00
+L9689:  .byte	$00
+L968A:  .byte	$00
+L968B:  .byte	$00
+L968C:  .byte	$00
+L968D:  .byte	$00
 
 L968E:	prolog
 	jsr     sub_44D5                           ; 9691 20 D5 44                  .D
@@ -8644,11 +8644,11 @@ L968E:	prolog
 	rts                                     ; 979B 60                       `
 
 ; ----------------------------------------------------------------------------
-L979C:  brk                                     ; 979C 00                       .
-L979D:  brk                                     ; 979D 00                       .
-L979E:  brk                                     ; 979E 00                       .
-L979F:  brk                                     ; 979F 00                       .
-L97A0:  brk                                     ; 97A0 00                       .
+L979C:  .byte	$00
+L979D:  .byte	$00
+L979E:  .byte	$00
+L979F:  .byte	$00
+L97A0:  .byte	$00
 
 sub_97A1:  
 	prolog
@@ -9163,11 +9163,11 @@ sub_9BE0:
 	rts                                     ; 9C15 60                       `
 
 ; ----------------------------------------------------------------------------
-L9C16:  brk                                     ; 9C16 00                       .
-L9C17:  brk                                     ; 9C17 00                       .
-L9C18:  brk                                     ; 9C18 00                       .
-	brk                                     ; 9C19 00                       .
-	brk                                     ; 9C1A 00                       .
+L9C16:  .byte	$00
+L9C17:  .byte	$00
+L9C18:  .byte	$00
+	.byte	$00
+	.byte	$00
 	ora     ($01,x)                         ; 9C1B 01 01                    ..
 	ora     ($00,x)                         ; 9C1D 01 00                    ..
 	.byte   $FF                             ; 9C1F FF                       .
@@ -9175,10 +9175,10 @@ L9C18:  brk                                     ; 9C18 00                       
 	.byte   $FF                             ; 9C21 FF                       .
 L9C22:	.byte	$19                             ; 9C22 19                       .
 L9C23:	.byte	$9C                             ; 9C23 9C                       .
-	brk                                     ; 9C24 00                       .
+	.byte	$00
 	.byte   $FF                             ; 9C25 FF                       .
 	.byte   $FF                             ; 9C26 FF                       .
-	brk                                     ; 9C27 00                       .
+	.byte	$00
 	ora     ($01,x)                         ; 9C28 01 01                    ..
 	ora     ($00,x)                         ; 9C2A 01 00                    ..
 	.byte   $FF                             ; 9C2C FF                       .
@@ -9186,18 +9186,18 @@ L9C2D:	.byte	$24                             ; 9C2D 24                       $
 L9C2E:	.byte	$9C                             ; 9C2E 9C                       .
 L9C2F:	dec     $1E,x                           ; 9C2F D6 1E                    ..
 	ora     #$00                            ; 9C31 09 00                    ..
-	brk                                     ; 9C33 00                       .
-	brk                                     ; 9C34 00                       .
-	brk                                     ; 9C35 00                       .
-	brk                                     ; 9C36 00                       .
-	brk                                     ; 9C37 00                       .
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 L9C38:	dec     $1E,x                           ; 9C38 D6 1E                    ..
 	ora     #$00                            ; 9C3A 09 00                    ..
-	brk                                     ; 9C3C 00                       .
-	brk                                     ; 9C3D 00                       .
-	brk                                     ; 9C3E 00                       .
-	brk                                     ; 9C3F 00                       .
-	brk                                     ; 9C40 00                       .
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
 
 sub_9C41:  
 	stack_prolog L9C16, $02
@@ -9249,7 +9249,7 @@ L9CC2:	.byte	$00
 	.byte   $07                             ; 9CC9 07                       .
 	.byte   $FF                             ; 9CCA FF                       .
 	ora     $01                             ; 9CCB 05 01                    ..
-	brk                                     ; 9CCD 00                       .
+	.byte	$00
 L9CCE:	.byte	$C3,$9C
 
 sub_9CD0:
@@ -9356,34 +9356,34 @@ L9E0A:	ldi	$A0, $01
 
 ; ----------------------------------------------------------------------------
 L9E0F:	.byte	$00
-L9E10:  brk                                     ; 9E10 00                       .
-L9E11:  brk                                     ; 9E11 00                       .
-L9E12:  brk                                     ; 9E12 00                       .
-L9E13:  brk                                     ; 9E13 00                       .
-L9E14:  brk                                     ; 9E14 00                       .
-L9E15:  brk                                     ; 9E15 00                       .
-	brk                                     ; 9E16 00                       .
-	brk                                     ; 9E17 00                       .
-	brk                                     ; 9E18 00                       .
-L9E19:  brk                                     ; 9E19 00                       .
-L9E1A:  brk                                     ; 9E1A 00                       .
-L9E1B:  brk                                     ; 9E1B 00                       .
-L9E1C:  brk                                     ; 9E1C 00                       .
-L9E1D:  brk                                     ; 9E1D 00                       .
-L9E1E:  brk                                     ; 9E1E 00                       .
-L9E1F:  brk                                     ; 9E1F 00                       .
-L9E20:  brk                                     ; 9E20 00                       .
-L9E21:  brk                                     ; 9E21 00                       .
-	brk                                     ; 9E22 00                       .
-	brk                                     ; 9E23 00                       .
-	brk                                     ; 9E24 00                       .
-	brk                                     ; 9E25 00                       .
-	brk                                     ; 9E26 00                       .
-	brk                                     ; 9E27 00                       .
-L9E28:	brk                                     ; 9E28 00                       .
-	brk                                     ; 9E29 00                       .
-L9E2A:  brk                                     ; 9E2A 00                       .
-L9E2B:  brk                                     ; 9E2B 00                       .
+L9E10:  .byte	$00
+L9E11:  .byte	$00
+L9E12:  .byte	$00
+L9E13:  .byte	$00
+L9E14:  .byte	$00
+L9E15:  .byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+L9E19:  .byte	$00
+L9E1A:  .byte	$00
+L9E1B:  .byte	$00
+L9E1C:  .byte	$00
+L9E1D:  .byte	$00
+L9E1E:  .byte	$00
+L9E1F:  .byte	$00
+L9E20:  .byte	$00
+L9E21:  .byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+L9E28:	.byte	$00
+	.byte	$00
+L9E2A:  .byte	$00
+L9E2B:  .byte	$00
 
 L9E2C:	prolog
 	sta     L9E0F                           ; 9E2F 8D 0F 9E                 ...
@@ -9524,68 +9524,68 @@ L9FE5:	.byte	$00
 L9FE6:	.byte	$00
 L9FE7:	.byte	$00
 L9FE8:	.byte	$00
-L9FE9:  brk                                     ; 9FE9 00                       .
-L9FEA:  brk                                     ; 9FEA 00                       .
-	brk                                     ; 9FEB 00                       .
-	brk                                     ; 9FEC 00                       .
-L9FED:  brk                                     ; 9FED 00                       .
-L9FEE:  brk                                     ; 9FEE 00                       .
-L9FEF:  brk                                     ; 9FEF 00                       .
-L9FF0:  brk                                     ; 9FF0 00                       .
-L9FF1:  brk                                     ; 9FF1 00                       .
-L9FF2:  brk                                     ; 9FF2 00                       .
-L9FF3:  brk                                     ; 9FF3 00                       .
-L9FF4:  brk                                     ; 9FF4 00                       .
-L9FF5:	brk                                     ; 9FF5 00                       .
-	brk                                     ; 9FF6 00                       .
-	brk                                     ; 9FF7 00                       .
-	brk                                     ; 9FF8 00                       .
-L9FF9:	brk                                     ; 9FF9 00                       .
-	brk                                     ; 9FFA 00                       .
-	brk                                     ; 9FFB 00                       .
-	brk                                     ; 9FFC 00                       .
-	brk                                     ; 9FFD 00                       .
-	brk                                     ; 9FFE 00                       .
-	brk                                     ; 9FFF 00                       .
-	brk                                     ; A000 00                       .
-	brk                                     ; A001 00                       .
-	brk                                     ; A002 00                       .
-	brk                                     ; A003 00                       .
-	brk                                     ; A004 00                       .
-LA005:  brk                                     ; A005 00                       .
-LA006:  brk                                     ; A006 00                       .
-LA007:  brk                                     ; A007 00                       .
-LA008:  brk                                     ; A008 00                       .
-LA009:  brk                                     ; A009 00                       .
-LA00A:  brk                                     ; A00A 00                       .
-LA00B:  brk                                     ; A00B 00                       .
-LA00C:  brk                                     ; A00C 00                       .
-LA00D:  brk                                     ; A00D 00                       .
-LA00E:  brk                                     ; A00E 00                       .
-	brk                                     ; A00F 00                       .
-LA010:  brk                                     ; A010 00                       .
-LA011:  brk                                     ; A011 00                       .
-	brk                                     ; A012 00                       .
-	brk                                     ; A013 00                       .
-LA014:  brk                                     ; A014 00                       .
-LA015:  brk                                     ; A015 00                       .
-LA016:  brk                                     ; A016 00                       .
-LA017:  brk                                     ; A017 00                       .
-LA018:  brk                                     ; A018 00                       .
-LA019:  brk                                     ; A019 00                       .
-LA01A:  brk                                     ; A01A 00                       .
-LA01B:  brk                                     ; A01B 00                       .
-	brk                                     ; A01C 00                       .
-	brk                                     ; A01D 00                       .
-LA01E:  brk                                     ; A01E 00                       .
-LA01F:  brk                                     ; A01F 00                       .
-	brk                                     ; A020 00                       .
-	brk                                     ; A021 00                       .
-	brk                                     ; A022 00                       .
-LA023:  brk                                     ; A023 00                       .
-LA024:  brk                                     ; A024 00                       .
-LA025:  brk                                     ; A025 00                       .
-LA026:  brk                                     ; A026 00                       .
+L9FE9:  .byte	$00
+L9FEA:  .byte	$00
+	.byte	$00
+	.byte	$00
+L9FED:  .byte	$00
+L9FEE:  .byte	$00
+L9FEF:  .byte	$00
+L9FF0:  .byte	$00
+L9FF1:  .byte	$00
+L9FF2:  .byte	$00
+L9FF3:  .byte	$00
+L9FF4:  .byte	$00
+L9FF5:	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+L9FF9:	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+LA005:  .byte	$00
+LA006:  .byte	$00
+LA007:  .byte	$00
+LA008:  .byte	$00
+LA009:  .byte	$00
+LA00A:  .byte	$00
+LA00B:  .byte	$00
+LA00C:  .byte	$00
+LA00D:  .byte	$00
+LA00E:  .byte	$00
+	.byte	$00
+LA010:  .byte	$00
+LA011:  .byte	$00
+	.byte	$00
+	.byte	$00
+LA014:  .byte	$00
+LA015:  .byte	$00
+LA016:  .byte	$00
+LA017:  .byte	$00
+LA018:  .byte	$00
+LA019:  .byte	$00
+LA01A:  .byte	$00
+LA01B:  .byte	$00
+	.byte	$00
+	.byte	$00
+LA01E:  .byte	$00
+LA01F:  .byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+LA023:  .byte	$00
+LA024:  .byte	$00
+LA025:  .byte	$00
+LA026:  .byte	$00
 
 sub_A027:
 	stack_prolog L9FE3, $03
@@ -9822,12 +9822,12 @@ sub_A28D:
 	rts                                     ; A2A1 60                       `
 
 ; ----------------------------------------------------------------------------
-LA2A2:  brk                                     ; A2A2 00                       .
-LA2A3:  brk                                     ; A2A3 00                       .
-LA2A4:  brk                                     ; A2A4 00                       .
-LA2A5:  brk                                     ; A2A5 00                       .
-LA2A6:  brk                                     ; A2A6 00                       .
-LA2A7:  brk                                     ; A2A7 00                       .
+LA2A2:  .byte	$00
+LA2A3:  .byte	$00
+LA2A4:  .byte	$00
+LA2A5:  .byte	$00
+LA2A6:  .byte	$00
+LA2A7:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 sub_A2A8:
@@ -9900,7 +9900,7 @@ LA37D:  jsr     sub_5E30
 	rts                                     ; A380 60                       `
 
 ; ----------------------------------------------------------------------------
-LA381:  brk                                     ; A381 00                       .
+LA381:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 LA382:	prolog
@@ -9916,30 +9916,30 @@ LA3A1:  jsr     sub_5E30
 	rts                                     ; A3A4 60                       `
 
 ; ----------------------------------------------------------------------------
-LA3A5:  brk                                     ; A3A5 00                       .
-LA3A6:  brk                                     ; A3A6 00                       .
-LA3A7:  brk                                     ; A3A7 00                       .
-LA3A8:  brk                                     ; A3A8 00                       .
-LA3A9:  brk                                     ; A3A9 00                       .
-LA3AA:  brk                                     ; A3AA 00                       .
-LA3AB:  brk                                     ; A3AB 00                       .
-LA3AC:  brk                                     ; A3AC 00                       .
-LA3AD:  brk                                     ; A3AD 00                       .
-LA3AE:  brk                                     ; A3AE 00                       .
-LA3AF:  brk                                     ; A3AF 00                       .
-LA3B0:  brk                                     ; A3B0 00                       .
-LA3B1:  brk                                     ; A3B1 00                       .
-LA3B2:  brk                                     ; A3B2 00                       .
-LA3B3:  brk                                     ; A3B3 00                       .
-LA3B4:  brk                                     ; A3B4 00                       .
-LA3B5:  brk                                     ; A3B5 00                       .
-LA3B6:  brk                                     ; A3B6 00                       .
-LA3B7:  brk                                     ; A3B7 00                       .
-	brk                                     ; A3B8 00                       .
-	brk                                     ; A3B9 00                       .
-	brk                                     ; A3BA 00                       .
-LA3BB:  brk                                     ; A3BB 00                       .
-LA3BC:  brk                                     ; A3BC 00                       .
+LA3A5:  .byte	$00
+LA3A6:  .byte	$00
+LA3A7:  .byte	$00
+LA3A8:  .byte	$00
+LA3A9:  .byte	$00
+LA3AA:  .byte	$00
+LA3AB:  .byte	$00
+LA3AC:  .byte	$00
+LA3AD:  .byte	$00
+LA3AE:  .byte	$00
+LA3AF:  .byte	$00
+LA3B0:  .byte	$00
+LA3B1:  .byte	$00
+LA3B2:  .byte	$00
+LA3B3:  .byte	$00
+LA3B4:  .byte	$00
+LA3B5:  .byte	$00
+LA3B6:  .byte	$00
+LA3B7:  .byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+LA3BB:  .byte	$00
+LA3BC:  .byte	$00
 
 LA3BD:
 	stack_prolog LA3A5, $04
@@ -10065,31 +10065,31 @@ LA52A:  jsr     sub_5E30
 	rts                                     ; A52D 60                       `
 
 ; ----------------------------------------------------------------------------
-LA52E:  brk                                     ; A52E 00                       .
-LA52F:  brk                                     ; A52F 00                       .
-LA530:  brk                                     ; A530 00                       .
-LA531:  brk                                     ; A531 00                       .
-LA532:  brk                                     ; A532 00                       .
-LA533:  brk                                     ; A533 00                       .
-LA534:  brk                                     ; A534 00                       .
-LA535:  brk                                     ; A535 00                       .
-LA536:  brk                                     ; A536 00                       .
-LA537:  brk                                     ; A537 00                       .
-LA538:  brk                                     ; A538 00                       .
-LA539:  brk                                     ; A539 00                       .
-LA53A:  brk                                     ; A53A 00                       .
-LA53B:  brk                                     ; A53B 00                       .
-LA53C:  brk                                     ; A53C 00                       .
-LA53D:  brk                                     ; A53D 00                       .
-LA53E:  brk                                     ; A53E 00                       .
-LA53F:  brk                                     ; A53F 00                       .
-LA540:  brk                                     ; A540 00                       .
-LA541:  brk                                     ; A541 00                       .
-	brk                                     ; A542 00                       .
-	brk                                     ; A543 00                       .
-	brk                                     ; A544 00                       .
-LA545:  brk                                     ; A545 00                       .
-LA546:  brk                                     ; A546 00                       .
+LA52E:  .byte	$00
+LA52F:  .byte	$00
+LA530:  .byte	$00
+LA531:  .byte	$00
+LA532:  .byte	$00
+LA533:  .byte	$00
+LA534:  .byte	$00
+LA535:  .byte	$00
+LA536:  .byte	$00
+LA537:  .byte	$00
+LA538:  .byte	$00
+LA539:  .byte	$00
+LA53A:  .byte	$00
+LA53B:  .byte	$00
+LA53C:  .byte	$00
+LA53D:  .byte	$00
+LA53E:  .byte	$00
+LA53F:  .byte	$00
+LA540:  .byte	$00
+LA541:  .byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+LA545:  .byte	$00
+LA546:  .byte	$00
 
 LA547:
 	stack_prolog LA52E, $03
@@ -10147,7 +10147,7 @@ LA5F6:  lda     LA601                           ; A5F6 AD 01 A6                 
 	jmp     LA68A                           ; A5FE 4C 8A A6                 L..
 
 ; ----------------------------------------------------------------------------
-LA601:  brk                                     ; A601 00                       .
+LA601:  .byte	$00
 LA602:  ldy     #$01                            ; A602 A0 01                    ..
 	sty     LA538                           ; A604 8C 38 A5                 .8.
 	lda     LA536                           ; A607 AD 36 A5                 .6.
@@ -10236,24 +10236,24 @@ LA6AB:  lda     #$00                            ; A6AB A9 00                    
 	rts                                     ; A6CA 60                       `
 
 ; ----------------------------------------------------------------------------
-LA6CB:	brk                                     ; A6CB 00                       .
-	brk                                     ; A6CC 00                       .
-	brk                                     ; A6CD 00                       .
+LA6CB:	.byte	$00
+	.byte	$00
+	.byte	$00
 
 sub_A6CE:
 	stack_prolog LA6CB, $02
 	rts                                     ; A6D7 60                       `
 
 ; ----------------------------------------------------------------------------
-LA6D8:  brk                                     ; A6D8 00                       .
-LA6D9:  brk                                     ; A6D9 00                       .
-LA6DA:  brk                                     ; A6DA 00                       .
-LA6DB:  brk                                     ; A6DB 00                       .
-LA6DC:  brk                                     ; A6DC 00                       .
-LA6DD:  brk                                     ; A6DD 00                       .
-LA6DE:  brk                                     ; A6DE 00                       .
-LA6DF:  brk                                     ; A6DF 00                       .
-LA6E0:  brk                                     ; A6E0 00                       .
+LA6D8:  .byte	$00
+LA6D9:  .byte	$00
+LA6DA:  .byte	$00
+LA6DB:  .byte	$00
+LA6DC:  .byte	$00
+LA6DD:  .byte	$00
+LA6DE:  .byte	$00
+LA6DF:  .byte	$00
+LA6E0:  .byte	$00
 LA6E1:	.byte   $04,"done"
 LA6E6:	.addr	LA6E1
 
@@ -10337,9 +10337,9 @@ LA7B7:  lda     LA6D9                           ; A7B7 AD D9 A6                 
 	rts                                     ; A7C0 60                       `
 
 ; ----------------------------------------------------------------------------
-LA7C1:  brk                                     ; A7C1 00                       .
-LA7C2:  brk                                     ; A7C2 00                       .
-LA7C3:  brk                                     ; A7C3 00                       .
+LA7C1:  .byte	$00
+LA7C2:  .byte	$00
+LA7C3:  .byte	$00
 
 LA7C4:
 	stack_prolog LA7C1, $02
@@ -10357,9 +10357,9 @@ LA7C4:
 	rts                                     ; A7EF 60                       `
 
 ; ----------------------------------------------------------------------------
-LA7F0:  brk                                     ; A7F0 00                       .
-LA7F1:  brk                                     ; A7F1 00                       .
-LA7F2:  brk                                     ; A7F2 00                       .
+LA7F0:  .byte	$00
+LA7F1:  .byte	$00
+LA7F2:  .byte	$00
 
 LA7F3:
 	stack_prolog LA7F0, $02
@@ -10412,9 +10412,9 @@ LA841:  rts                                     ; A841 60                       
 LA842:	rts                                     ; A842 60                       `
 
 ; ----------------------------------------------------------------------------
-LA843:  brk                                     ; A843 00                       .
-LA844:  brk                                     ; A844 00                       .
-LA845:  brk                                     ; A845 00                       .
+LA843:  .byte	$00
+LA844:  .byte	$00
+LA845:  .byte	$00
 
 LA846:
 	stack_prolog LA843, $02
@@ -10439,20 +10439,20 @@ LA855:  lda     #$00                            ; A855 A9 00                    
 	rts                                     ; A886 60                       `
 
 ; ----------------------------------------------------------------------------
-LA887:  brk                                     ; A887 00                       .
-LA888:  brk                                     ; A888 00                       .
-LA889:  brk                                     ; A889 00                       .
-	brk                                     ; A88A 00                       .
-LA88B:  brk                                     ; A88B 00                       .
-LA88C:  brk                                     ; A88C 00                       .
-LA88D:  brk                                     ; A88D 00                       .
-LA88E:  brk                                     ; A88E 00                       .
-	brk                                     ; A88F 00                       .
-	brk                                     ; A890 00                       .
-	brk                                     ; A891 00                       .
-	brk                                     ; A892 00                       .
-LA893:  brk                                     ; A893 00                       .
-LA894:  brk                                     ; A894 00                       .
+LA887:  .byte	$00
+LA888:  .byte	$00
+LA889:  .byte	$00
+	.byte	$00
+LA88B:  .byte	$00
+LA88C:  .byte	$00
+LA88D:  .byte	$00
+LA88E:  .byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+	.byte	$00
+LA893:  .byte	$00
+LA894:  .byte	$00
 
 
 ; ----------------------------------------------------------------------------
@@ -10576,7 +10576,7 @@ LA96F:
 	rts                                     ; A98F 60                       `
 
 ; ----------------------------------------------------------------------------
-LA990:  brk                                     ; A990 00                       .
+LA990:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 sub_A991:
@@ -10753,9 +10753,9 @@ LAA86:	.addr	sub_6AD5
 	.addr	LA823
 	.addr	LA82B
 
-LAB08:	brk                                     ; AB08 00                       .
-	brk                                     ; AB09 00                       .
-	brk                                     ; AB0A 00                       .
+LAB08:	.byte	$00
+	.byte	$00
+	.byte	$00
 
 LAB0B:
 	stack_prolog LAB08, $02
@@ -10804,19 +10804,19 @@ LAB0B:
 	;rol     L753A                           ; AB50 2E 3A 75                 .:u
 	.byte	$2E,$3A,$75
 	ror     $77,x                           ; AB53 76 77                    vw
-	brk                                     ; AB55 00                       .
+	.byte	$00
 LAB56:	.byte	$14                             ; AB56 14                       .
 LAB57:	.byte	$AB                             ; AB57 AB                       .
 LAB58:  .addr	$0000
-LAB5A:  brk                                     ; AB5A 00                       .
-LAB5B:  brk                                     ; AB5B 00                       .
-LAB5C:  brk                                     ; AB5C 00                       .
-LAB5D:  brk                                     ; AB5D 00                       .
-	brk                                     ; AB5E 00                       .
-	brk                                     ; AB5F 00                       .
+LAB5A:  .byte	$00
+LAB5B:  .byte	$00
+LAB5C:  .byte	$00
+LAB5D:  .byte	$00
+	.byte	$00
+	.byte	$00
 LAB60:	.byte	$D6,$1E,$08,$00,$00,$00,$00,$00
-LAB68:  brk                                     ; AB68 00                       .
-LAB69:  brk                                     ; AB69 00                       .
+LAB68:  .byte	$00
+LAB69:  .byte	$00
 
 sub_AB6A:
 	prolog
@@ -11146,9 +11146,9 @@ LAED6:  rts                                     ; AED6 60                       
 ; ----------------------------------------------------------------------------
 LAED7:	.byte	$00,$01,$02,$00,$03,$00,$00,$00
 LAEDF:	.addr	LAED7
-LAEE1:  brk                                     ; AEE1 00                       .
-LAEE2:  brk                                     ; AEE2 00                       .
-LAEE3:  brk                                     ; AEE3 00                       .
+LAEE1:  .byte	$00
+LAEE2:  .byte	$00
+LAEE3:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 sub_AEE4:
@@ -11181,10 +11181,10 @@ LAF08:  ldy     #$00                            ; AF08 A0 00                    
 LAF35:  rts                                     ; AF35 60                       `
 
 ; ----------------------------------------------------------------------------
-LAF36:  brk                                     ; AF36 00                       .
-LAF37:  brk                                     ; AF37 00                       .
-LAF38:  brk                                     ; AF38 00                       .
-LAF39:  brk                                     ; AF39 00                       .
+LAF36:  .byte	$00
+LAF37:  .byte	$00
+LAF38:  .byte	$00
+LAF39:  .byte	$00
 
 sub_AF3A:
 	prolog
