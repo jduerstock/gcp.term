@@ -4897,20 +4897,12 @@ L6F07:  lda     L6E41                           ; 6F07 AD 41 6E                 
 	jsr     sub_4B97
 	lda     $A0                             ; 6F1D A5 A0                    ..
 	sta     L6E4A                           ; 6F1F 8D 4A 6E                 .Jn
-L6F22:  lda     #$00                            ; 6F22 A9 00                    ..
-	sta     $A3                             ; 6F24 85 A3                    ..
-	lda     #$00                            ; 6F26 A9 00                    ..
-	sta     $A5                             ; 6F28 85 A5                    ..
-	lda     L6E48                           ; 6F2A AD 48 6E                 .Hn
-	sta     $A4                             ; 6F2D 85 A4                    ..
-	lda     #$00                            ; 6F2F A9 00                    ..
-	sta     $A7                             ; 6F31 85 A7                    ..
-	lda     L6E4A                           ; 6F33 AD 4A 6E                 .Jn
-	sta     $A6                             ; 6F36 85 A6                    ..
-	lda     L6E4C                           ; 6F38 AD 4C 6E                 .Ln
-	sta     $A9                             ; 6F3B 85 A9                    ..
-	lda     L6E4B                           ; 6F3D AD 4B 6E                 .Kn
-	sta     $A8                             ; 6F40 85 A8                    ..
+L6F22:	ldi	$A3, $00
+	ldi	$A5, $00
+	mv	$A4, L6E48
+	ldi	$A7, $00
+	mv	$A6, L6E4A
+	rdmv	$A8, L6E4B
 	ldy     #$55                            ; 6F42 A0 55                    .U
 	ldxa	L6E4D
 	jsr     sub_55A0
