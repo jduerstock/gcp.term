@@ -11203,8 +11203,8 @@ LAF63:	lda     L4652                           ; AF63 AD 52 46                 .
 	lbeq	LAF94
 	lda     #$5C                            ; AF6D A9 5C                    .\
 	sta     $A3                             ; AF6F 85 A3                    ..
-	ldy     #$B2                            ; AF71 A0 B2                    ..
-	ldx     #$23                            ; AF73 A2 23                    .#
+	ldy     #>$B223
+	ldx     #<$B223
 	lda     L4652                           ; AF75 AD 52 46                 .RF
 	jsr     sub_458F
 	ldx     L4652                           ; AF7B AE 52 46                 .RF
