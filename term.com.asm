@@ -7588,12 +7588,7 @@ L8E7C:  .byte	$00
 sub_8E7D:  
 	stack_prolog L8E74, $06
 	shladdm8 off_AE, L46F5, L8E74
-	ldy     #$01                            ; 8E9A A0 01                    ..
-	lda     ($AE),y                         ; 8E9C B1 AE                    ..
-	sta     L8E7C                           ; 8E9E 8D 7C 8E                 .|.
-	dey                                     ; 8EA1 88                       .
-	lda     ($AE),y                         ; 8EA2 B1 AE                    ..
-	sta     L8E7B                           ; 8EA4 8D 7B 8E                 .{.
+	ldp16	L8E7B
 	add16i	off_AE, L8E7B, $0002
 	add16m8	off_AC, L4678, L8E75
 	lda     ($AC),y                         ; 8EC6 B1 AC                    ..
