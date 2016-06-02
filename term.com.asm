@@ -1924,8 +1924,7 @@ L4E49:	.byte	$54                             ; 4E49 54                       T
 sub_4E4A:  
 	prolog
 	stxa	L4E42
-	lda     L4E43                           ; 4E53 AD 43 4E                 .CN
-	sta     $A3                             ; 4E56 85 A3                    ..
+	mv	$A3, L4E43
 	rdldi	$A4, $0004
 	ldy     L4E42                           ; 4E60 AC 42 4E                 .BN
 	ldxai	L4E46
