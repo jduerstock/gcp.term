@@ -4948,17 +4948,12 @@ L6F91:	prolog
 L6FA5:  lda     L4647                           ; 6FA5 AD 47 46                 .GF
 	jsr     sub_65B0
 	rdmv	L6F8D, $A0
-	lda     L6F8E                           ; 6FB5 AD 8E 6F                 ..o
-	sta     $A3                             ; 6FB8 85 A3                    ..
-	lda     #$00                            ; 6FBA A9 00                    ..
-	sta     $A5                             ; 6FBC 85 A5                    ..
-	lda     #$02                            ; 6FBE A9 02                    ..
-	sta     $A4                             ; 6FC0 85 A4                    ..
+	mv	$A3, L6F8E
+	rdldi	$A4, $0002
 	ldy     L6F8D                           ; 6FC2 AC 8D 6F                 ..o
 	ldxai	L6F8F
 	jsr     sub_461F
-	lda     L6F8F                           ; 6FCC AD 8F 6F                 ..o
-	sta     $A3                             ; 6FCF 85 A3                    ..
+	mv	$A3, L6F8F
 	rdmv	$A4, L6F8B
 L6FDB:  ldy     L6F90                           ; 6FDB AC 90 6F                 ..o
 	ldx     #$00                            ; 6FDE A2 00                    ..
