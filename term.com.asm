@@ -10490,48 +10490,12 @@ LAA55:  lda     #$00                            ; AA55 A9 00                    
 ; ----------------------------------------------------------------------------
 	.byte   $4C                             ; AA83 4C                       L
 LAA84:  .addr   LAA86
-LAA86:	.addr	sub_6AD5
-	.addr	sub_6995
-	.addr	sub_67D8
-	.addr	sub_6696
-	.addr	sub_65E2
-	.addr	sub_7D4D
-	.addr	sub_6E61
-	.addr	sub_6F68
-	.addr	sub_6F91
-	.addr	sub_6FEB
-	.addr	sub_7A57
-	.addr	sub_7ADF
-	.addr	sub_7B68
-	.addr	sub_7A9A
-	.addr	sub_74BE
-	.addr	sub_7951
-	.addr	sub_77A3
-	.addr	sub_782A
-	.addr	sub_758C
-	.addr	sub_760A
-	.addr	sub_705F
-	.addr	sub_7096
-	.addr	sub_70E2
-	.addr	sub_9C41
-	.addr	sub_9BE0
-	.addr	sub_9BD0
-	.addr	sub_9CAD
-	.addr	sub_9E2C
-	.addr	sub_7FE9
-	.addr	sub_817C
-	.addr	sub_8003
-	.addr	sub_80BB
-	.addr	sub_8EFD
-	.addr	sub_8E7D
-	.addr	sub_8F55
-	.addr	sub_8E24
-	.addr	sub_A9DE
-	.addr	sub_A9FB
-	.addr	sub_A9EC
-	.addr	sub_968E
-	.addr	sub_97A1
-	.addr	sub_5E1E
+LAA86:	.addr	sub_6AD5,sub_6995,sub_67D8,sub_6696,sub_65E2,sub_7D4D,sub_6E61
+	.addr	sub_6F68,sub_6F91,sub_6FEB,sub_7A57,sub_7ADF,sub_7B68,sub_7A9A
+	.addr	sub_74BE,sub_7951,sub_77A3,sub_782A,sub_758C,sub_760A,sub_705F
+	.addr	sub_7096,sub_70E2,sub_9C41,sub_9BE0,sub_9BD0,sub_9CAD,sub_9E2C
+	.addr	sub_7FE9,sub_817C,sub_8003,sub_80BB,sub_8EFD,sub_8E7D,sub_8F55
+	.addr	sub_8E24,sub_A9DE,sub_A9FB,sub_A9EC,sub_968E,sub_97A1,sub_5E1E
 	.addr	sub_5E30
 	.addr	sub_A2A8
 	.addr	sub_A382
