@@ -7258,9 +7258,7 @@ sub_89AE:
 	add8m	$A0, L89A6, L8998
 	func16_8 sub_4945, L8995, $A0
 	add8m	$A0, L89A5, L8997
-	lda     $A0                             ; 8A45 A5 A0                    ..
-	jsr     sub_4945
-	rdmv	L8993, $A0
+	func16_8 sub_4945, L8993, $A0
 	rdldi	$84, $0028
 	lda     L8996                           ; 8A5C AD 96 89                 ...
 	tax                                     ; 8A5F AA                       .
@@ -7271,8 +7269,7 @@ sub_89AE:
 	sta     $AF                             ; 8A69 85 AF                    ..
 	add16m	off_AC, L466D, off_AE
 	add16m	L8964, off_AC, L8993
-	ldy     #$01                            ; 8A8B A0 01                    ..
-	sty     L8992                           ; 8A8D 8C 92 89                 ...
+	yldi	L8992, $01
 	sub8m	off_AE, L89A8, L89A6
 	add8i	L8AAC, off_AE, $01
 L8AA1:  lda     L8AAC                           ; 8AA1 AD AC 8A                 ...
@@ -7284,10 +7281,8 @@ L8AA1:  lda     L8AAC                           ; 8AA1 AD AC 8A                 
 L8AAC:	.byte	$00
 
 ; ----------------------------------------------------------------------------
-L8AAD:  lda     #$00                            ; 8AAD A9 00                    ..
-	sta     $A3                             ; 8AAF 85 A3                    ..
-	lda     L89A4                           ; 8AB1 AD A4 89                 ...
-	sta     $A4                             ; 8AB4 85 A4                    ..
+L8AAD:	ldi	$A3, $00
+	mv	$A4, L89A4
 	ldy     L8968                           ; 8AB6 AC 68 89                 .h.
 	ldxa	L8964
 	jsr     sub_45FC
@@ -7305,10 +7300,10 @@ L8AD9:  lda     L89A2                           ; 8AD9 AD A2 89                 
 	ldy     L896B                           ; 8AFF AC 6B 89                 .k.
 	ldxa	$A0
 	jsr     sub_4CF5
-	lda     #$89                            ; 8B09 A9 89                    ..
+	lda     #>L896D
 	sta     $A3                             ; 8B0B 85 A3                    ..
 	dmv	$A4, L8997
-	ldy     #$6D                            ; 8B17 A0 6D                    .m
+	ldy     #<L896D
 	ldxai	L897D
 	jsr     sub_4C1D
 	lda     #$89                            ; 8B20 A9 89                    ..
