@@ -293,6 +293,15 @@ SYSVBV		:= $E45F
 	sta	a1
 .endmacro
 
+.macro	stp16	a1
+	lda     a1+1
+	ldy     #$01
+	sta     ($AE),y
+	lda     a1
+	dey
+	sta     ($AE),y
+.endmacro
+
 	.segment "HDR00"
 
 	.word	$FFFF
@@ -4514,8 +4523,7 @@ L6A67:  lda     L6993                           ; 6A67 AD 93 69                 
 	ldy     #$1A                            ; 6AAD A0 1A                    ..
 	ldxa	L6993
 	jsr     sub_619A
-L6AB8:  ldy     #$01                            ; 6AB8 A0 01                    ..
-	sty     L4656                           ; 6ABA 8C 56 46                 .VF
+L6AB8:	yldi	L4656, $01
 	rts                                     ; 6ABD 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -4527,18 +4535,18 @@ L6AC2:	.byte	$4C
 L6AC3:	.byte	$B3
 L6AC4:	.byte	$EA,$4C
 L6AC6:	.byte   $94,$0A
-L6AC8:	.byte	$4C                             ; 6AC8 4C                       L
-L6AC9:	.byte	$BB                             ; 6AC9 BB                       .
-L6ACA:  asl     a                               ; 6ACA 0A                       .
-L6ACB:	.byte	$4C                             ; 6ACB 4C                       L
-L6ACC:	.byte	$C1                             ; 6ACC C1                       .
-L6ACD:  asl     a                               ; 6ACD 0A                       .
+L6AC8:	.byte	$4C
+L6AC9:	.byte	$BB
+L6ACA:	.byte	$0A
+L6ACB:	.byte	$4C
+L6ACC:	.byte	$C1
+L6ACD:	.byte	$0A
 L6ACE:	.byte	$4C,$C7
-L6AD0:  asl     a                               ; 6AD0 0A                       .
-L6AD1:	.byte	$9B                             ; 6AD1 9B                       .
-L6AD2:	.byte	$44                             ; 6AD2 44                       D
-L6AD3:	.byte	$31                             ; 6AD3 31                       1
-L6AD4:	.byte	$3A                             ; 6AD4 3A                       :
+L6AD0:  .byte	$0A
+L6AD1:	.byte	$9B
+L6AD2:	.byte	$44
+L6AD3:	.byte	$31
+L6AD4:	.byte	$3A
 
 ; ----------------------------------------------------------------------------
 sub_6AD5:
@@ -4595,8 +4603,7 @@ L6AFF:  ldx     #$00                            ; 6AFF A2 00                    
 	sta     $A0                             ; 6BB2 85 A0                    ..
 	lda     #$00                            ; 6BB4 A9 00                    ..
 	sta     $A1                             ; 6BB6 85 A1                    ..
-	ldx     $A1                             ; 6BB8 A6 A1                    ..
-	lda     $A0                             ; 6BBA A5 A0                    ..
+	ldxa	$A0
 	jsr     sub_606E
 	pull16	off_AE
 	lda     $A1                             ; 6BC5 A5 A1                    ..
@@ -4628,12 +4635,7 @@ L6C22:  .byte	$8A
 
 ; ----------------------------------------------------------------------------
 L6C23:	shladdm8 off_AE, L6AD1, L6AD0
-	lda     L6ACB                           ; 6C37 AD CB 6A                 ..j
-	ldy     #$01                            ; 6C3A A0 01                    ..
-	sta     ($AE),y                         ; 6C3C 91 AE                    ..
-	lda     L6ACA                           ; 6C3E AD CA 6A                 ..j
-	dey                                     ; 6C41 88                       .
-	sta     ($AE),y                         ; 6C85 91 AE                    ..
+	stp16	L6ACA
 	clc
 	lda	L6ACA
 	adc     L6ABF                           ; 6C48 6D BF 6A                 m.j
