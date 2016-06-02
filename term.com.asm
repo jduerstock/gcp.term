@@ -4979,9 +4979,9 @@ L70D6:	.byte	$00
 L70D7:	.byte	$00
 L70D8:	.byte	$00
 L70D9:	.byte	$63,$6B
-L70DB:	.byte	$7F                             ; 70DB 7F                       .
-L70DC:	.byte	$3E                             ; 70DC 3E                       >
-L70DD:	.byte	$36                             ; 70DD 36                       6
+L70DB:	.byte	$7F
+L70DC:	.byte	$3E
+L70DD:	.byte	$36
 L70DE:  .byte	$00
 L70DF:  .byte	$00
 L70E0:  .byte	$00
@@ -4992,12 +4992,8 @@ sub_70E2:
 	stack_prolog L70D6, $02
 	func16_8 sub_7035, L70D9, L70D6
 	add16i	L70DD, L70D9, $0022
-	lda     L70D8                           ; 710C AD D8 70                 ..p
-	sta     $A3                             ; 710F 85 A3                    ..
-	lda     #$00                            ; 7111 A9 00                    ..
-	sta     $A5                             ; 7113 85 A5                    ..
-	lda     #$04                            ; 7115 A9 04                    ..
-	sta     $A4                             ; 7117 85 A4                    ..
+	mv	$A3, L70D8
+	rdldi	$A4, $0004
 	ldy     L70D7                           ; 7119 AC D7 70                 ..p
 	ldxa	L70DD
 	jsr     sub_461F
