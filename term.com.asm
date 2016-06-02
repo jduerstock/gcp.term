@@ -1869,10 +1869,7 @@ L4D03:  lda     #$01                            ; 4D03 A9 01                    
 	sta     $A1                             ; 4DB1 85 A1                    ..
 	ldxa	$A0
 	jsr     sub_4990
-	pla                                     ; 4DBA 68                       h
-	sta     $AC                             ; 4DBB 85 AC                    ..
-	pla                                     ; 4DBD 68                       h
-	sta     $AD                             ; 4DBE 85 AD                    ..
+	pull16	off_AC
 	lda     $A0                             ; 4DC0 A5 A0                    ..
 	ldy     #$00                            ; 4DC2 A0 00                    ..
 	sta     ($AC),y                         ; 4DC4 91 AC                    ..
