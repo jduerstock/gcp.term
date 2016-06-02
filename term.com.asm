@@ -7245,9 +7245,7 @@ sub_89AE:
 	ldy     L8962                           ; 89D1 AC 62 89                 .b.
 	ldxai	L8997
 	jsr     sub_461F
-	lda     L899B                           ; 89DB AD 9B 89                 ...
-	jsr     sub_65B0
-	rdmv	L898D, $A0
+	func16_8 sub_65B0, L898D, L899B
 	add16i	L896B, L8962, $001A
 	lda     L896C                           ; 89FC AD 6C 89                 .l.
 	sta     $A3                             ; 89FF 85 A3                    ..
@@ -7258,9 +7256,7 @@ sub_89AE:
 	sub8m	off_AE, L89A7, L89A5
 	add8i	L8968, off_AE, $01
 	add8m	$A0, L89A6, L8998
-	lda     $A0                             ; 8A2D A5 A0                    ..
-	jsr     sub_4945
-	rdmv	L8995, $A0
+	func16_8 sub_4945, L8995, $A0
 	add8m	$A0, L89A5, L8997
 	lda     $A0                             ; 8A45 A5 A0                    ..
 	jsr     sub_4945
