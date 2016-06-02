@@ -6903,33 +6903,31 @@ L8560:	.byte	$A9                             ; 8560 A9                       .
 L8561:	.byte	$07                             ; 8561 07                       .
 L8562:	.byte	$8D                             ; 8562 8D                       .
 L8563:	.byte	$6C                             ; 8563 6C                       l
-L8564:  asl     a                               ; 8564 0A                       .
+L8564:  .byte	$0A
 L8565:  lda     $0A6C                           ; 8565 AD 6C 0A                 .l.
 	asl     a                               ; 8568 0A                       .
-L8569:  asl     a                               ; 8569 0A                       .
-L856A:  asl     a                               ; 856A 0A                       .
-L856B:  asl     a                               ; 856B 0A                       .
-L856C:  tax                                     ; 856C AA                       .
+L8569:  .byte	$0A
+L856A:  .byte	$0A
+L856B:  .byte	$0A
+L856C:  .byte	$AA
 L856D:	.byte	$20                             ; 856D 20                        
 L856E:	.byte	$B6                             ; 856E B6                       .
 L856F:	.byte	$F7                             ; 856F F7                       .
 L8570:	.byte	$CE                             ; 8570 CE                       .
 L8571:	.byte	$6C                             ; 8571 6C                       l
-L8572:  asl     a                               ; 8572 0A                       .
+L8572:  .byte	$0A
 
 sub_8573:  
 	stack_prolog L8550, $02
 	lda     L8550                           ; 857C AD 50 85                 .P.
 	jsr     sub_7035
 	rdmv	L8556, $A0
-	lda     L8557                           ; 858C AD 57 85                 .W.
-	sta     $A3                             ; 858F 85 A3                    ..
+	mv	$A3, L8557
 	rdldi	$A4, $0007
 	ldy     L8556                           ; 8599 AC 56 85                 .V.
 	ldxai	L8564
 	jsr     sub_461F
-	lda     L8552                           ; 85A3 AD 52 85                 .R.
-	sta     $A3                             ; 85A6 85 A3                    ..
+	mv	$A3, L8552
 	rdldi	$A4, $0004
 	ldy     L8551                           ; 85B0 AC 51 85                 .Q.
 	ldxai	L8560
@@ -7036,13 +7034,7 @@ L872A:	add16m8 $A2, L8558, L8553
 	ldx     L8572                           ; 873C AE 72 85                 .r.
 	lda     L855D                           ; 873F AD 5D 85                 .].
 	jsr     sub_8521
-	clc                                     ; 8745 18                       .
-	lda     L8558                           ; 8746 AD 58 85                 .X.
-	adc     L8554                           ; 8749 6D 54 85                 mT.
-	sta     $A2                             ; 874C 85 A2                    ..
-	lda     L8559                           ; 874E AD 59 85                 .Y.
-	adc     #$00                            ; 8751 69 00                    i.
-	sta     $A3                             ; 8753 85 A3                    ..
+	add16m8	$A2, L8558, L8554
 	ldy     $A2                             ; 8755 A4 A2                    ..
 	ldx     L856E                           ; 8757 AE 6E 85                 .n.
 	lda     L855E                           ; 875A AD 5E 85                 .^.
