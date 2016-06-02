@@ -9704,8 +9704,9 @@ LA37D:  jsr     sub_5E30
 LA381:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-LA382:	prolog
-LA385:	sta     LA381                           ; A385 8D 81 A3                 ...
+sub_A382:	
+	prolog
+	sta     LA381                           ; A385 8D 81 A3                 ...
 	jsr     sub_5E1E
 	lda     LA381                           ; A38B AD 81 A3                 ...
 	jsr     sub_A28D
@@ -10533,7 +10534,7 @@ LAA86:	.addr	sub_6AD5
 	.addr	sub_5E1E
 	.addr	sub_5E30
 	.addr	sub_A2A8
-	.addr	LA382
+	.addr	sub_A382
 	.addr	LA3BD
 	.addr	LA547
 	.addr	LA6E8
