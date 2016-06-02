@@ -7380,14 +7380,8 @@ L8BD1:	func16_8 sub_65B0, L898F, L89A9
 	jsr     sub_4BF2
 	lda     #$89                            ; 8C17 A9 89                    ..
 	sta     $A3                             ; 8C19 85 A3                    ..
-	sec                                     ; 8C1B 38                       8
-	lda     L89AB                           ; 8C1C AD AB 89                 ...
-	sbc     L8999                           ; 8C1F ED 99 89                 ...
-	sta     $A4                             ; 8C22 85 A4                    ..
-	sec                                     ; 8C24 38                       8
-	lda     L89AC                           ; 8C25 AD AC 89                 ...
-	sbc     L899A                           ; 8C28 ED 9A 89                 ...
-	sta     $A5                             ; 8C2B 85 A5                    ..
+	sub8m	$A4, L89AB, L8999
+	sub8m	$A5, L89AC, L899A
 	ldy     #$85                            ; 8C2D A0 85                    ..
 	ldxai	L8985
 	jsr     sub_4C1D
