@@ -4841,7 +4841,8 @@ L6F66:	.byte	$FF
 L6F67:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-L6F68:	prolog
+sub_6F68:	
+	prolog
 	stxa	L6F66
 	lda     L6F66                           ; 6F71 AD 66 6F                 .fo
 	eor     #$01                            ; 6F74 49 01                    I.
@@ -4862,7 +4863,8 @@ L6F8F:  .byte	$00
 L6F90:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-L6F91:	prolog
+sub_6F91:	
+	prolog
 	stxa	L6F8B
 	lda     L4647                           ; 6F9A AD 47 46                 .GF
 	eor     #$FF                            ; 6F9D 49 FF                    I.
@@ -4892,7 +4894,8 @@ L6FE9:	.byte   $F0
 L6FEA:	.byte	$F0
 
 ; ----------------------------------------------------------------------------
-L6FEB:	prolog
+sub_6FEB:	
+	prolog
 	stxa	L6FE7
 	lda     L4648                           ; 6FF4 AD 48 46                 .HF
 	eor     #$FF                            ; 6FF7 49 FF                    I.
@@ -5834,10 +5837,10 @@ L7B50:	.byte	$F0                             ; 7B50 F0                       .
 L7B51:	.byte	$F7                             ; 7B51 F7                       .
 L7B52:	.byte	$8C,$33
 L7B54:	.byte	$F0                             ; 7B54 F0                       .
-L7B55:  pha                                     ; 7B55 48                       H
+L7B55:  .byte	$48
 L7B56:	.byte	$38,$A0
 	.byte	$03
-	lda     ($45),y                         ; 7B59 B1 45                    .E
+	.byte	$B1,$45
 	.byte   $E9                             ; 7B5B E9                       .
 L7B5C:  .byte	$01
 L7B5D:	.byte	$91
@@ -9186,7 +9189,8 @@ L9E28:	.byte	$00
 L9E2A:  .byte	$00
 L9E2B:  .byte	$00
 
-L9E2C:	prolog
+sub_9E2C:	
+	prolog
 	sta     L9E0F                           ; 9E2F 8D 0F 9E                 ...
 	ldi	L9E19, $80
 	ldy     #$00                            ; 9E37 A0 00                    ..
@@ -10495,9 +10499,9 @@ LAA86:	.addr	sub_6AD5
 	.addr	sub_65E2
 	.addr	sub_7D4D
 	.addr	sub_6E61
-	.addr	L6F68
-	.addr	L6F91
-	.addr	L6FEB
+	.addr	sub_6F68
+	.addr	sub_6F91
+	.addr	sub_6FEB
 	.addr	sub_7A57
 	.addr	sub_7ADF
 	.addr	sub_7B68
@@ -10515,7 +10519,7 @@ LAA86:	.addr	sub_6AD5
 	.addr	sub_9BE0
 	.addr	sub_9BD0
 	.addr	sub_9CAD
-	.addr	L9E2C
+	.addr	sub_9E2C
 	.addr	L7FE9
 	.addr	L817C
 	.addr	L8003
