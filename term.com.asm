@@ -5694,8 +5694,7 @@ L799A:	.byte	$01                             ; 799A 01                       .
 
 sub_799B:  
 	prolog
-	stx     L7995                           ; 799E 8E 95 79                 ..y
-	sta     L7994                           ; 79A1 8D 94 79                 ..y
+	stxa	L7994
 	lda     L7994                           ; 79A4 AD 94 79                 ..y
 	jsr     sub_65B0
 	rdmv	L7996, $A0
