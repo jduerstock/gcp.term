@@ -5738,17 +5738,16 @@ L7A49:	rdldi	$A0, $00
 	rts                                     ; 7A51 60                       `
 
 ; ----------------------------------------------------------------------------
-L7A52:	.byte	$F0                             ; 7A52 F0                       .
-L7A53:	.byte	$F0                             ; 7A53 F0                       .
-L7A54:	.byte	$03                             ; 7A54 03                       .
-L7A55:	.byte	$4C                             ; 7A55 4C                       L
+L7A52:	.byte	$F0
+L7A53:	.byte	$F0
+L7A54:	.byte	$03
+L7A55:	.byte	$4C
 L7A56:	.byte	$B6
 
 ; ----------------------------------------------------------------------------
 sub_7A57:
 	stack_prolog L7A52, $02
-	ldx     L7A53                           ; 7A60 AE 53 7A                 .Sz
-	lda     L7A52                           ; 7A63 AD 52 7A                 .Rz
+	ldxa	L7A52
 	jsr     sub_799B
 	rdmv	L7A55, $A0
 	lda     L7A55                           ; 7A73 AD 55 7A                 .Uz
@@ -5766,10 +5765,10 @@ L7A7F:	dmv	off_AE, L7A55
 	rts                                     ; 7A94 60                       `
 
 ; ----------------------------------------------------------------------------
-L7A95:  pla                                     ; 7A95 68                       h
-L7A96:	.byte	$9D                             ; 7A96 9D                       .
-L7A97:	.byte	$9E                             ; 7A97 9E                       .
-L7A98:	.byte	$F0                             ; 7A98 F0                       .
+L7A95:  .byte	$68
+L7A96:	.byte	$9D
+L7A97:	.byte	$9E
+L7A98:	.byte	$F0
 L7A99:  .byte	$A9
 
 sub_7A9A:
