@@ -3881,8 +3881,7 @@ sub_62D1:
 	sta     $0230                           ; 62FB 8D 30 02                 .0.
 	lda     L62D0                           ; 62FE AD D0 62                 ..b
 	sta     $022F                           ; 6301 8D 2F 02                 ./.
-	lda     #$C0                            ; 6304 A9 C0                    ..
-	sta     $D40E                           ; 6306 8D 0E D4                 ...
+	ldi	$D40E, $C0
 	shladdi off_AE, L466F, $0001
 	iny                                     ; 631C C8                       .
 	lda     ($AE),y                         ; 631D B1 AE                    ..
@@ -7538,19 +7537,13 @@ L8D89:  lda     L8D94                           ; 8D89 AD 94 8D                 
 
 ; ----------------------------------------------------------------------------
 L8D94:  .byte	$00
-L8D95:  sec                                     ; 8D95 38                       8
-	lda     L8CF9                           ; 8D96 AD F9 8C                 ...
-	sbc     #$01                            ; 8D99 E9 01                    ..
-	sta     $AE                             ; 8D9B 85 AE                    ..
+
+; ----------------------------------------------------------------------------
+L8D95:	sub8i off_AE, L8CF9, $01
 	ldx     $AE                             ; 8D9D A6 AE                    ..
 	lda     L4659,x                         ; 8D9F BD 59 46                 .YF
 	sta     L8CFA                           ; 8DA2 8D FA 8C                 ...
-	lda     L8CFA                           ; 8DA5 AD FA 8C                 ...
-	jsr     sub_7035
-	lda     $A1                             ; 8DAB A5 A1                    ..
-	sta     L8CFC                           ; 8DAD 8D FC 8C                 ...
-	lda     $A0                             ; 8DB0 A5 A0                    ..
-	sta     L8CFB                           ; 8DB2 8D FB 8C                 ...
+	func16_8 sub_7035, L8CFB, L8CFA
 	clc                                     ; 8DB5 18                       .
 	lda     L8CFB                           ; 8DB6 AD FB 8C                 ...
 	adc     #$0C                            ; 8DB9 69 0C                    i.
