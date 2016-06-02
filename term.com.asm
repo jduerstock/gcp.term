@@ -206,6 +206,12 @@ SYSVBV		:= $E45F
 	sta	a1
 .endmacro
 
+.macro st2xa a1
+	sta	a1
+	txa
+	sta	a1+1
+.endmacro
+
 .macro ldxai a1
 	ldx	#>a1
 	lda	#<a1
@@ -1911,14 +1917,14 @@ L4E3D:  ldi	$A0, $01
 	rts                                     ; 4E41 60                       `
 
 ; ----------------------------------------------------------------------------
-L4E42:	.byte	$20                             ; 4E42 20                        
-L4E43:	.byte	$20                             ; 4E43 20                        
-L4E44:	.byte	$20                             ; 4E44 20                        
-L4E45:	.byte	$20                             ; 4E45 20                        
-L4E46:	.byte	$20                             ; 4E46 20                        
-L4E47:	.byte	$52                             ; 4E47 52                       R
-L4E48:	.byte	$45                             ; 4E48 45                       E
-L4E49:	.byte	$54                             ; 4E49 54                       T
+L4E42:	.byte	$20
+L4E43:	.byte	$20
+L4E44:	.byte	$20
+L4E45:	.byte	$20
+L4E46:	.byte	$20
+L4E47:	.byte	$52
+L4E48:	.byte	$45
+L4E49:	.byte	$54
 
 ; ----------------------------------------------------------------------------
 sub_4E4A:  
@@ -1939,9 +1945,7 @@ sub_4E4A:
 	lda     $AC                             ; 4E92 A5 AC                    ..
 	ldx     #$00                            ; 4E94 A2 00                    ..
 	jsr     sub_444A
-	sta     L4E44                           ; 4E99 8D 44 4E                 .DN
-	txa                                     ; 4E9C 8A                       .
-	sta     L4E45                           ; 4E9D 8D 45 4E                 .EN
+	st2xa	L4E44
 	rdmv	$A0, L4E44
 	rts                                     ; 4EAA 60                       `
 
@@ -3531,9 +3535,7 @@ sub_5F16:
 	tax                                     ; 5F26 AA                       .
 	lda     L5F07                           ; 5F27 AD 07 5F                 .._
 	jsr     sub_43E0
-	sta     L5F0C                           ; 5F2D 8D 0C 5F                 .._
-	txa                                     ; 5F30 8A                       .
-	sta     L5F0D                           ; 5F31 8D 0D 5F                 .._
+	st2xa	L5F0C
 	lda     L5F07                           ; 5F34 AD 07 5F                 .._
 	and     #$07                            ; 5F37 29 07                    ).
 	sta     L5F13                           ; 5F39 8D 13 5F                 .._
@@ -3679,9 +3681,7 @@ sub_606E:
 	tax                                     ; 608C AA                       .
 	lda     off_AE
 	jsr     sub_43E0
-	sta     L6066                           ; 6092 8D 66 60                 .f`
-	txa                                     ; 6095 8A                       .
-	sta     L6067                           ; 6096 8D 67 60                 .g`
+	st2xa	L6066
 	ldy     #$00                            ; 6099 A0 00                    ..
 	sty     L6069                           ; 609B 8C 69 60                 .i`
 	sty     L6068                           ; 609E 8C 68 60                 .h`
@@ -3741,9 +3741,7 @@ L60ED:  lda     L6067                           ; 60ED AD 67 60                 
 	tax                                     ; 6139 AA                       .
 	lda     L6068                           ; 613A AD 68 60                 .h`
 	jsr     sub_43D1
-	sta     $AE                             ; 6140 85 AE                    ..
-	txa                                     ; 6142 8A                       .
-	sta     $AF                             ; 6143 85 AF                    ..
+	st2xa	off_AE
 	add16m	L606C, MEMLO, off_AE
 	rdmv	$A0, L606C
 	rts                                     ; 6160 60                       `
@@ -3786,9 +3784,7 @@ sub_619A:
 	tax                                     ; 61B8 AA                       .
 	lda     $AE                             ; 61B9 A5 AE                    ..
 	jsr     sub_43E0
-	sta     L6196                           ; 61BE 8D 96 61                 ..a
-	txa                                     ; 61C1 8A                       .
-	sta     L6197                           ; 61C2 8D 97 61                 ..a
+	st2xa	L6196
 	sub16m	off_AE, L6192, MEMLO
 	lda     #$02                            ; 61D6 A9 02                    ..
 	sta     $84                             ; 61D8 85 84                    ..
@@ -3796,9 +3792,7 @@ sub_619A:
 	tax                                     ; 61DC AA                       .
 	lda     $AE                             ; 61DD A5 AE                    ..
 	jsr     sub_43E0
-	sta     L6198                           ; 61E2 8D 98 61                 ..a
-	txa                                     ; 61E5 8A                       .
-	sta     L6199                           ; 61E6 8D 99 61                 ..a
+	st2xa	L6198
 	lda     L6197                           ; 61E9 AD 97 61                 ..a
 	sta     $A3                             ; 61EC 85 A3                    ..
 	lda     #$01                            ; 61EE A9 01                    ..
@@ -4243,9 +4237,7 @@ L6742:	dmv	off_AE, L66FA
 	lda     $AA                             ; 6787 A5 AA                    ..
 	ldx     #$00                            ; 6789 A2 00                    ..
 	jsr     sub_444A
-	sta     $A4                             ; 678E 85 A4                    ..
-	txa                                     ; 6790 8A                       .
-	sta     $A5                             ; 6791 85 A5                    ..
+	st2xa	$A4
 	ldy     $A2                             ; 6793 A4 A2                    ..
 	ldx     $A1                             ; 6795 A6 A1                    ..
 	lda     $A0                             ; 6797 A5 A0                    ..
@@ -4582,9 +4574,7 @@ L6AFF:  ldx     #$00                            ; 6AFF A2 00                    
 	lda     L6ABF                           ; 6B6E AD BF 6A                 ..j
 	ldx     #$00                            ; 6B71 A2 00                    ..
 	jsr     sub_444A
-	sta     L6ACE                           ; 6B76 8D CE 6A                 ..j
-	txa                                     ; 6B79 8A                       .
-	sta     L6ACE+1
+	st2xa	L6ACE
 	add16i	off_AE, L6AC4, $0002
 	lda     L6ACE+1
 	ldy     #$01                            ; 6B8F A0 01                    ..
@@ -4657,9 +4647,7 @@ L6C5C:  lda     L6ACE+1
 	lda     L6AC1                           ; 6CB2 AD C1 6A                 ..j
 	ldx     #$00                            ; 6CB5 A2 00                    ..
 	jsr     sub_444A
-	sta     L6ACC                           ; 6CBA 8D CC 6A                 ..j
-	txa                                     ; 6CBD 8A                       .
-	sta     L6ACD                           ; 6CBE 8D CD 6A                 ..j
+	st2xa	L6ACC
 	ldxa	L6ACC
 	jsr     sub_606E
 	rdmv	L6AD3, $A0
@@ -6041,9 +6029,7 @@ L7DA5:	add16i	off_AE, L7D4B, $0002
 	lda     L7D45                           ; 7DBC AD 45 7D                 .E}
 	ldx     #$00                            ; 7DBF A2 00                    ..
 	jsr     sub_444A
-	sta     $AC                             ; 7DC4 85 AC                    ..
-	txa                                     ; 7DC6 8A                       .
-	sta     $AD                             ; 7DC7 85 AD                    ..
+	st2xa	off_AC
 	add16m	L7D4B, off_AE, off_AC
 	dmv	off_AE, L7D4B
 	lda     L7D4A                           ; 7DE2 AD 4A 7D                 .J}
@@ -6101,9 +6087,7 @@ L7E69:	dmv	off_AE, L7E1E
 	lda     L7E12                           ; 7E97 AD 12 7E                 ..~
 	ldx     #$00                            ; 7E9A A2 00                    ..
 	jsr     sub_444A
-	sta     $AC                             ; 7E9F 85 AC                    ..
-	txa                                     ; 7EA1 8A                       .
-	sta     $AD                             ; 7EA2 85 AD                    ..
+	st2xa	off_AC
 	add16m	L7E1A, $AE, $AC
 	lda     L7E1B                           ; 7EB3 AD 1B 7E                 ..~
 	sta     $A3                             ; 7EB6 85 A3                    ..
@@ -6915,9 +6899,7 @@ L8648:	rdldi	$84, $0028
 	lda     L8561                           ; 8650 AD 61 85                 .a.
 	ldx     #$00                            ; 8653 A2 00                    ..
 	jsr     sub_444A
-	sta     $AE                             ; 8658 85 AE                    ..
-	txa                                     ; 865A 8A                       .
-	sta     $AF                             ; 865B 85 AF                    ..
+	st2xa	off_AE
 	add16m	L8558, L466D, $AE
 	sub8m	L8555, L8562, L8560
 	mv	L8553, L8560
@@ -7118,9 +7100,7 @@ sub_884C:
 	lda     L8843                           ; 88C9 AD 43 88                 .C.
 	ldx     #$00                            ; 88CC A2 00                    ..
 	jsr     sub_444A
-	sta     $AE                             ; 88D1 85 AE                    ..
-	txa                                     ; 88D3 8A                       .
-	sta     $AF                             ; 88D4 85 AF                    ..
+	st2xa	off_AE
 	add16m	off_AC, L466D, off_AE
 	add16m8	L8837, off_AC, L8842
 	sub8m	off_AE, L8840, L883E
@@ -7260,9 +7240,7 @@ sub_89AE:
 	tax                                     ; 8A5F AA                       .
 	lda     L8995                           ; 8A60 AD 95 89                 ...
 	jsr     sub_444A
-	sta     $AE                             ; 8A66 85 AE                    ..
-	txa                                     ; 8A68 8A                       .
-	sta     $AF                             ; 8A69 85 AF                    ..
+	st2xa	off_AE
 	add16m	off_AC, L466D, off_AE
 	add16m	L8964, off_AC, L8993
 	yldi	L8992, $01
@@ -7557,9 +7535,7 @@ sub_8E24:
 	tax                                     ; 8E41 AA                       .
 	lda     L8E22                           ; 8E42 AD 22 8E                 .".
 	jsr     sub_43D1
-	sta     $AE                             ; 8E48 85 AE                    ..
-	txa                                     ; 8E4A 8A                       .
-	sta     $AF                             ; 8E4B 85 AF                    ..
+	st2xa	off_AE
 	add16m	$A0, L4674, $AE
 	lda     L8E21                           ; 8E5C AD 21 8E                 .!.
 	sta     $A3                             ; 8E5F 85 A3                    ..
@@ -7927,9 +7903,7 @@ sub_9146:
 	lda     $AC                             ; 91E2 A5 AC                    ..
 	ldx     #$00                            ; 91E4 A2 00                    ..
 	jsr     sub_444A
-	sta     L913E                           ; 91E9 8D 3E 91                 .>.
-	txa                                     ; 91EC 8A                       .
-	sta     L913F                           ; 91ED 8D 3F 91                 .?.
+	st2xa	L913E
 	lda     L913B                           ; 91F0 AD 3B 91                 .;.
 	sta     $A3                             ; 91F3 85 A3                    ..
 	lda     L913F                           ; 91F5 AD 3F 91                 .?.
@@ -8056,9 +8030,7 @@ L925D:  prolog
 	lda     $AC                             ; 9316 A5 AC                    ..
 	ldx     #$00                            ; 9318 A2 00                    ..
 	jsr     sub_444A
-	sta     L9255                           ; 931D 8D 55 92                 .U.
-	txa                                     ; 9320 8A                       .
-	sta     L9256                           ; 9321 8D 56 92                 .V.
+	st2xa	L9255
 	lda     L9252                           ; 9324 AD 52 92                 .R.
 	sta     $A3                             ; 9327 85 A3                    ..
 	rdmv	$A4, L9255
