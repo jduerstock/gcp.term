@@ -6848,19 +6848,8 @@ L84CC:	rts                                     ; 84CC 60                       `
 
 ; ----------------------------------------------------------------------------
 L84CD:	shladdm8 off_AE, L83FB, L83EE
-	ldy     #$01                            ; 84E1 A0 01                    ..
-	lda     ($AE),y                         ; 84E3 B1 AE                    ..
-	sta     L83F5                           ; 84E5 8D F5 83                 ...
-	dey                                     ; 84E8 88                       .
-	lda     ($AE),y                         ; 84E9 B1 AE                    ..
-	sta     L83F4                           ; 84EB 8D F4 83                 ...
-	clc                                     ; 84EE 18                       .
-	lda     L83F4                           ; 84EF AD F4 83                 ...
-	adc     L83ED                           ; 84F2 6D ED 83                 m..
-	sta     $AE                             ; 84F5 85 AE                    ..
-	lda     L83F5                           ; 84F7 AD F5 83                 ...
-	adc     #$00                            ; 84FA 69 00                    i.
-	sta     $AF                             ; 84FC 85 AF                    ..
+	ldp16 L83F4
+	add16m8 off_AE, L83F4, L83ED
 	lda     ($AE),y                         ; 84FE B1 AE                    ..
 L8500:  sta     L83F6                           ; 8500 8D F6 83                 ...
 	ldx     L83F6                           ; 8503 AE F6 83                 ...
@@ -6873,7 +6862,7 @@ L8500:  sta     L83F6                           ; 8500 8D F6 83                 
 L851C:  rts                                     ; 851C 60                       `
 
 ; ----------------------------------------------------------------------------
-L851D:  sed                                     ; 851D F8                       .
+L851D:	.byte	$F8
 L851E:	.byte	$4C                             ; 851E 4C                       L
 L851F:	.byte	$DD                             ; 851F DD                       .
 L8520:	.byte	$F3                             ; 8520 F3                       .
