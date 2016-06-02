@@ -4455,12 +4455,7 @@ L69B7:  lda     L6983+1
 	ldxai	L698A
 	jsr     sub_461F
 	dmv	off_AE, L698E
-	ldy     #$01                            ; 69D8 A0 01                    ..
-	lda     ($AE),y                         ; 69DA B1 AE                    ..
-	sta     L6985+1
-	dey                                     ; 69DF 88                       .
-	lda     ($AE),y                         ; 69E0 B1 AE                    ..
-	sta     L6985                           ; 69E2 8D 85 69                 ..i
+	ldp16	L6985
 	lda     L698B                           ; 69E5 AD 8B 69                 ..i
 	asl     a                               ; 69E8 0A                       .
 	sta     $A2                             ; 69E9 85 A2                    ..
@@ -4503,12 +4498,7 @@ L6A67:  lda     L6993                           ; 6A67 AD 93 69                 
 	ora     L6993+1
 	lbeq	L6AB8
 	dmv	off_AE, L6993
-	ldy     #$01                            ; 6A7C A0 01                    ..
-	lda     ($AE),y                         ; 6A7E B1 AE                    ..
-	sta     L6989                           ; 6A80 8D 89 69                 ..i
-	dey                                     ; 6A83 88                       .
-	lda     ($AE),y                         ; 6A84 B1 AE                    ..
-	sta     L6988                           ; 6A86 8D 88 69                 ..i
+	ldp16	L6988
 	dmv	off_AE, L6988
 	clc                                     ; 6A93 18                       .
 	lda     ($AE),y                         ; 6A94 B1 AE                    ..
