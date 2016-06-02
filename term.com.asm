@@ -7464,6 +7464,8 @@ L8CFD:  .byte	$00
 L8CFE:  .byte	$00
 L8CFF:  .byte	$00
 L8D00:  .byte	$00
+
+; ----------------------------------------------------------------------------
 sub_8D01:
 	prolog
 	lda     L4658                           ; 8D04 AD 58 46                 .XF
@@ -7484,12 +7486,7 @@ L8D0D:  lda     L4656                           ; 8D0D AD 56 46                 
 	add16i	off_AE, L8CFF, $03
 	add16i	L8CFD, off_AE, $01
 	dmv	off_AE, L8CFD
-	iny                                     ; 8D5F C8                       .
-	lda     ($AE),y                         ; 8D60 B1 AE                    ..
-	sta     L466E                           ; 8D62 8D 6E 46                 .nF
-	dey                                     ; 8D65 88                       .
-	lda     ($AE),y                         ; 8D66 B1 AE                    ..
-	sta     L466D                           ; 8D68 8D 6D 46                 .mF
+	ld2p16	L466D
 	dldi	$A3, $0003
 	ldy     #$C0                            ; 8D73 A0 C0                    ..
 	ldxa	L466D
@@ -7507,7 +7504,7 @@ L8D89:  lda     L8D94                           ; 8D89 AD 94 8D                 
 L8D94:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-L8D95:	sub8i off_AE, L8CF9, $01
+L8D95:	sub8i	off_AE, L8CF9, $01
 	ldx     $AE                             ; 8D9D A6 AE                    ..
 	lda     L4659,x                         ; 8D9F BD 59 46                 .YF
 	sta     L8CFA                           ; 8DA2 8D FA 8C                 ...
@@ -7552,15 +7549,14 @@ L8E21:  .byte	$00
 L8E22:  .byte	$00
 L8E23:  .byte	$00
 
+; ----------------------------------------------------------------------------
 sub_8E24:	
 	stack_prolog L8E1F, $02
 	lda	L8E1F
 	and	#$7F
 	sta     L8E22                           ; 8E32 8D 22 8E                 .".
-	lda     #$00                            ; 8E35 A9 00                    ..
-	sta     L8E23                           ; 8E37 8D 23 8E                 .#.
-	lda     #$03                            ; 8E3A A9 03                    ..
-	sta     $84                             ; 8E3C 85 84                    ..
+	ldi	L8E23, $00
+	ldi	$84, $03
 	lda     L8E23                           ; 8E3E AD 23 8E                 .#.
 	tax                                     ; 8E41 AA                       .
 	lda     L8E22                           ; 8E42 AD 22 8E                 .".
