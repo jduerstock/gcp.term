@@ -9743,7 +9743,7 @@ LA3B7:  .byte	$00
 LA3BB:  .byte	$00
 LA3BC:  .byte	$00
 
-LA3BD:
+sub_A3BD:
 	stack_prolog LA3A5, $04
 	lda     LA3A5                           ; A3C6 AD A5 A3                 ...
 	jsr     sub_65B0
@@ -9893,7 +9893,7 @@ LA541:  .byte	$00
 LA545:  .byte	$00
 LA546:  .byte	$00
 
-LA547:
+sub_A547:
 	stack_prolog LA52E, $03
 	lda     LA52E                           ; A550 AD 2E A5                 ...
 	jsr     sub_65B0
@@ -10059,7 +10059,7 @@ LA6E0:  .byte	$00
 LA6E1:	.byte   $04,"done"
 LA6E6:	.addr	LA6E1
 
-LA6E8:
+sub_A6E8:
 	stack_prolog LA6D8, $03
 	lda     LA6D8                           ; A6F1 AD D8 A6                 ...
 	jsr     sub_65B0
@@ -10143,7 +10143,7 @@ LA7C1:  .byte	$00
 LA7C2:  .byte	$00
 LA7C3:  .byte	$00
 
-LA7C4:
+sub_A7C4:
 	stack_prolog LA7C1, $02
 	jsr     sub_5E1E
 	lda     #$00                            ; A7D0 A9 00                    ..
@@ -10163,7 +10163,7 @@ LA7F0:  .byte	$00
 LA7F1:  .byte	$00
 LA7F2:  .byte	$00
 
-LA7F3:
+sub_A7F3:
 	stack_prolog LA7F0, $02
 	jsr     sub_5E1E
 	lda     #$00                            ; A7FF A9 00                    ..
@@ -10535,11 +10535,11 @@ LAA86:	.addr	sub_6AD5
 	.addr	sub_5E30
 	.addr	sub_A2A8
 	.addr	sub_A382
-	.addr	LA3BD
-	.addr	LA547
-	.addr	LA6E8
-	.addr	LA7C4
-	.addr	LA7F3
+	.addr	sub_A3BD
+	.addr	sub_A547
+	.addr	sub_A6E8
+	.addr	sub_A7C4
+	.addr	sub_A7F3
 	.addr	sub_A6CE
 	.addr	sub_A991
 	.addr	sub_4F5A
