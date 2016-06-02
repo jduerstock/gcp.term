@@ -4771,25 +4771,19 @@ L6E3B:  ldi	$A0, $01
 	rts                                     ; 6E3F 60                       `
 
 ; ----------------------------------------------------------------------------
-L6E40:	sei                                     ; 6E40 78                       x
+L6E40:	.byte	$78
 L6E41:	.byte	$6C                             ; 6E41 6C                       l
 L6E42:	.byte	$66                             ; 6E42 66                       f
 L6E43:	.byte	$66                             ; 6E43 66                       f
 L6E44:	.byte	$6C                             ; 6E44 6C                       l
-L6E45:  sei                                     ; 6E45 78                       x
+L6E45:  .byte	$78
 L6E46:  .byte	$00
 L6E47:  .byte	$00
 L6E48:	.byte	$7E                             ; 6E48 7E                       ~
-L6E49:  rts                                     ; 6E49 60                       `
-
-; ----------------------------------------------------------------------------
+L6E49:  .byte	$60
 L6E4A:	.byte	$7C                             ; 6E4A 7C                       |
-L6E4B:  rts                                     ; 6E4B 60                       `
-
-; ----------------------------------------------------------------------------
-L6E4C:  rts                                     ; 6E4C 60                       `
-
-; ----------------------------------------------------------------------------
+L6E4B:  .byte	$60
+L6E4C:  .byte	$60
 L6E4D:  .addr	$7E
 L6E4F:	.byte   $03,"CBS"
 L6E53:	.addr	L6E4F
@@ -4826,10 +4820,8 @@ sub_6E61:
 	lda     L6E41                           ; 6EDB AD 41 6E                 .An
 	lbne	L6EEF
 	rdmv	L6E4D, L6E59
-L6EEF:  lda     L6E43                           ; 6EEF AD 43 6E                 .Cn
-	sta     L6E48                           ; 6EF2 8D 48 6E                 .Hn
-	lda     L6E45                           ; 6EF5 AD 45 6E                 .En
-	sta     L6F06                           ; 6EF8 8D 06 6F                 ..o
+L6EEF:	mv	L6E48, L6E43
+	mv	L6F06, L6E45
 L6EFB:	lda     L6F06                           ; 6EFB AD 06 6F                 ..o
 	cmp     L6E48                           ; 6EFE CD 48 6E                 .Hn
 	bcs     L6F07                           ; 6F01 B0 04                    ..
@@ -4845,8 +4837,7 @@ L6F07:  lda     L6E41                           ; 6F07 AD 41 6E                 
 	ldy     L6E49                           ; 6F11 AC 49 6E                 .In
 	ldxa	L6E4B
 	jsr     sub_4B97
-	lda     $A0                             ; 6F1D A5 A0                    ..
-	sta     L6E4A                           ; 6F1F 8D 4A 6E                 .Jn
+	mv	L6E4A, $A0
 L6F22:	ldi	$A3, $00
 	ldi	$A5, $00
 	mv	$A4, L6E48
