@@ -5773,8 +5773,7 @@ L7A99:  .byte	$A9
 
 sub_7A9A:
 	stack_prolog L7A95, $02
-	ldx     L7A96                           ; 7AA3 AE 96 7A                 ..z
-	lda     L7A95                           ; 7AA6 AD 95 7A                 ..z
+	ldxa	L7A95
 	jsr     sub_799B
 	rdmv	L7A98, $A0
 	lda     L7A98                           ; 7AB6 AD 98 7A                 ..z
