@@ -7235,11 +7235,10 @@ L89AB:  .byte	$00
 L89AC:  .byte	$00
 L89AD:  .byte	$00
 
-L89AE:  prolog
+sub_89AE:  
+	prolog
 	sta     L8961                           ; 89B1 8D 61 89                 .a.
-	lda     L8961                           ; 89B4 AD 61 89                 .a.
-	jsr     sub_7035
-	rdmv	L8962, $A0
+	func16_8 sub_7035, L8962, L8961
 	lda     L8963                           ; 89C4 AD 63 89                 .c.
 	sta     $A3                             ; 89C7 85 A3                    ..
 	rdldi	$A4, $000E
@@ -7549,27 +7548,15 @@ L8D95:	sub8i off_AE, L8CF9, $01
 	lda     ($AE),y                         ; 8DC6 B1 AE                    ..
 	eor     #$FF                            ; 8DC8 49 FF                    I.
 	lbeq	L8DF8
-	clc                                     ; 8DCF 18                       .
-	lda     L8CFB                           ; 8DD0 AD FB 8C                 ...
-	adc     #$0A                            ; 8DD3 69 0A                    i.
-	sta     $AE                             ; 8DD5 85 AE                    ..
-	lda     L8CFC                           ; 8DD7 AD FC 8C                 ...
-	adc     #$00                            ; 8DDA 69 00                    i.
-	sta     $AF                             ; 8DDC 85 AF                    ..
+	add16i	off_AE, L8CFB, $000A
 	lda     ($AE),y                         ; 8DDE B1 AE                    ..
 	eor     #$01                            ; 8DE0 49 01                    I.
-	beq     L8DE7                           ; 8DE2 F0 03                    ..
-	jmp     L8DF8                           ; 8DE4 4C F8 8D                 L..
-
-; ----------------------------------------------------------------------------
-L8DE7:  lda     L8CFB                           ; 8DE7 AD FB 8C                 ...
+	lbne	L8DF8
+	lda     L8CFB                           ; 8DE7 AD FB 8C                 ...
 	ora     L8CFC                           ; 8DEA 0D FC 8C                 ...
-	bne     L8DF2                           ; 8DED D0 03                    ..
-	jmp     L8DF8                           ; 8DEF 4C F8 8D                 L..
-
-; ----------------------------------------------------------------------------
-L8DF2:  lda     L8CFA                           ; 8DF2 AD FA 8C                 ...
-	jsr     L89AE                           ; 8DF5 20 AE 89                  ..
+	lbeq	L8DF8
+	lda     L8CFA                           ; 8DF2 AD FA 8C                 ...
+	jsr     sub_89AE
 L8DF8:  inc     L8CF9                           ; 8DF8 EE F9 8C                 ...
 	jmp     L8D89                           ; 8DFB 4C 89 8D                 L..
 
