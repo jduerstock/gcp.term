@@ -7544,21 +7544,12 @@ L8D95:	sub8i off_AE, L8CF9, $01
 	lda     L4659,x                         ; 8D9F BD 59 46                 .YF
 	sta     L8CFA                           ; 8DA2 8D FA 8C                 ...
 	func16_8 sub_7035, L8CFB, L8CFA
-	clc                                     ; 8DB5 18                       .
-	lda     L8CFB                           ; 8DB6 AD FB 8C                 ...
-	adc     #$0C                            ; 8DB9 69 0C                    i.
-	sta     $AE                             ; 8DBB 85 AE                    ..
-	lda     L8CFC                           ; 8DBD AD FC 8C                 ...
-	adc     #$00                            ; 8DC0 69 00                    i.
-	sta     $AF                             ; 8DC2 85 AF                    ..
+	add16i	off_AE, L8CFB, $000C
 	ldy     #$00                            ; 8DC4 A0 00                    ..
 	lda     ($AE),y                         ; 8DC6 B1 AE                    ..
 	eor     #$FF                            ; 8DC8 49 FF                    I.
-	bne     L8DCF                           ; 8DCA D0 03                    ..
-	jmp     L8DF8                           ; 8DCC 4C F8 8D                 L..
-
-; ----------------------------------------------------------------------------
-L8DCF:  clc                                     ; 8DCF 18                       .
+	lbeq	L8DF8
+	clc                                     ; 8DCF 18                       .
 	lda     L8CFB                           ; 8DD0 AD FB 8C                 ...
 	adc     #$0A                            ; 8DD3 69 0A                    i.
 	sta     $AE                             ; 8DD5 85 AE                    ..
