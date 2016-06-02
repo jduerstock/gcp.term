@@ -4395,13 +4395,7 @@ L68F4:	add8m	off_AE, L67D1, L67C6
 	ldx     $A1                             ; 693B A6 A1                    ..
 	lda     $A0                             ; 693D A5 A0                    ..
 	jsr     sub_461F
-	clc                                     ; 6942 18                       .
-	lda     L67C8                           ; 6943 AD C8 67                 ..g
-	adc     L67CB                           ; 6946 6D CB 67                 m.g
-	sta     L67C8                           ; 6949 8D C8 67                 ..g
-	lda     L67C9                           ; 694C AD C9 67                 ..g
-	adc     #$00                            ; 694F 69 00                    i.
-	sta     L67C9                           ; 6951 8D C9 67                 ..g
+	add16m8 L67C8, L67C8, L67CB
 	sec                                     ; 6954 38                       8
 	lda     L67CA                           ; 6955 AD CA 67                 ..g
 	sbc     L67CB                           ; 6958 ED CB 67                 ..g
