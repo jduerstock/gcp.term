@@ -6707,8 +6707,7 @@ L8371:  lda     L474F                           ; 8371 AD 4F 47                 
 	eor     #$03                            ; 8374 49 03                    I.
 	lbne	L8386
 	mv	L4762, L81E4
-	ldy     #$01                            ; 8381 A0 01                    ..
-	sty     L4657                           ; 8383 8C 57 46                 .WF
+	yldi	L4657, $01
 L8386:  ldy     L81DA                           ; 8386 AC DA 81                 ...
 	ldx     #$00                            ; 8389 A2 00                    ..
 	lda     L4750                           ; 838B AD 50 47                 .PG
