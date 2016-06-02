@@ -4358,16 +4358,10 @@ L6861:  sec                                     ; 6861 38                       
 	lda     L67D3                           ; 68B6 AD D3 67                 ..g
 	sbc     #$01                            ; 68B9 E9 01                    ..
 	sta     $AE                             ; 68BB 85 AE                    ..
-	sec                                     ; 68BD 38                       8
-	lda     $AE                             ; 68BE A5 AE                    ..
-	sbc     L67CC                           ; 68C0 ED CC 67                 ..g
-	sta     L67C6                           ; 68C3 8D C6 67                 ..g
-L68C6:  lda     L67C7                           ; 68C6 AD C7 67                 ..g
-	sta     L67CB                           ; 68C9 8D CB 67                 ..g
-	ldy     #$00                            ; 68CC A0 00                    ..
-	sty     L67D1                           ; 68CE 8C D1 67                 ..g
-	lda     L67CC                           ; 68D1 AD CC 67                 ..g
-	sta     L68E2                           ; 68D4 8D E2 68                 ..h
+	sub8m	L67C6, off_AE, L67CC
+L68C6:	mv	L67CB, L67C7
+	yldi	L67D1, $00
+	mv	L68E2, L67CC
 L68D7:  lda     L68E2                           ; 68D7 AD E2 68                 ..h
 	cmp     L67D1                           ; 68DA CD D1 67                 ..g
 	bcs     L68E3                           ; 68DD B0 04                    ..
@@ -4381,10 +4375,7 @@ L68E3:  lda     L67CA                           ; 68E3 AD CA 67                 
 	cmp     L67C7                           ; 68E6 CD C7 67                 ..g
 	lbcs	L68F4
 	mv	L67CB, L67CA
-L68F4:  clc                                     ; 68F4 18                       .
-	lda     L67D1                           ; 68F5 AD D1 67                 ..g
-	adc     L67C6                           ; 68F8 6D C6 67                 m.g
-	sta     $AE                             ; 68FB 85 AE                    ..
+L68F4:	add8m	off_AE, L67D1, L67C6
 	shladdm8 off_AC, L67D6, off_AE
 	clc                                     ; 6910 18                       .
 	ldy     #$00                            ; 6911 A0 00                    ..
@@ -4395,13 +4386,7 @@ L68F4:  clc                                     ; 68F4 18                       
 	lda     ($AC),y                         ; 691B B1 AC                    ..
 	adc     #$00                            ; 691D 69 00                    i.
 	sta     $A1                             ; 691F 85 A1                    ..
-	clc                                     ; 6921 18                       .
-	lda     L67C8                           ; 6922 AD C8 67                 ..g
-	adc     #$01                            ; 6925 69 01                    i.
-	sta     $A2                             ; 6927 85 A2                    ..
-	lda     L67C9                           ; 6929 AD C9 67                 ..g
-	adc     #$00                            ; 692C 69 00                    i.
-	sta     $A3                             ; 692E 85 A3                    ..
+	add16i	$A2, L67C8, $01
 	lda     #$00                            ; 6930 A9 00                    ..
 	sta     $A5                             ; 6932 85 A5                    ..
 	lda     L67CB                           ; 6934 AD CB 67                 ..g
@@ -10289,8 +10274,8 @@ LA748:  ldx     LA6D9                           ; A748 AE D9 A6                 
 	lbne	LA7B7
 	lda     #$5C                            ; A753 A9 5C                    .\
 	sta     $A3                             ; A755 85 A3                    ..
-	ldy     #$B2                            ; A757 A0 B2                    ..
-	ldx     #$24                            ; A759 A2 24                    .$
+	ldy     #>LB224
+	ldx     #<LB224
 	lda     LA6D9                           ; A75B AD D9 A6                 ...
 	jsr     sub_458F
 	lda     LB224                           ; A761 AD 24 B2                 .$.
