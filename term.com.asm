@@ -22,6 +22,7 @@ DVSTAT		:= $02EA
 CRSINH		:= $02F0
 CH		:= $02FC
 CHBAS		:= $02F4
+L05C0		:= $05C0
 L3272           := $3272
 L3C20           := $3C20
 L4253           := $4253
@@ -628,7 +629,7 @@ L4523:  txa                                     ; 4523 8A                       
 	lsr     a                               ; 4527 4A                       J
 	tax                                     ; 4528 AA                       .
 	tya                                     ; 4529 98                       .
-	sta     $05C0,x                         ; 452A 9D C0 05                 ...
+	sta     L05C0,x                         ; 452A 9D C0 05                 ...
 L452D:  rts                                     ; 452D 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -646,7 +647,7 @@ L4539:  pha                                     ; 4539 48                       
 	sty     $A2                             ; 453C 84 A2                    ..
 	tay                                     ; 453E A8                       .
 	lda     #$00                            ; 453F A9 00                    ..
-	sta     $05C0,y                         ; 4541 99 C0 05                 ...
+	sta     L05C0,y                         ; 4541 99 C0 05                 ...
 	tay                                     ; 4544 A8                       .
 	lda     ($A1),y                         ; 4545 B1 A1                    ..
 	sta     $0500                           ; 4547 8D 00 05                 ...
@@ -1500,7 +1501,7 @@ L4ACB:  tya                                     ; 4ACB 98                       
 	bne     L4AE4                           ; 4ADC D0 06                    ..
 	tya                                     ; 4ADE 98                       .
 	ldy     $A0                             ; 4ADF A4 A0                    ..
-	sta     $05C0,y                         ; 4AE1 99 C0 05                 ...
+	sta     L05C0,y                         ; 4AE1 99 C0 05                 ...
 L4AE4:  rts                                     ; 4AE4 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -9753,7 +9754,7 @@ sub_A28D:
 	sta     LA28C                           ; A290 8D 8C A2                 ...
 	lda     #$00                            ; A293 A9 00                    ..
 	ldx     LA28C                           ; A295 AE 8C A2                 ...
-	sta     $05C0,x                         ; A298 9D C0 05                 ...
+	sta     L05C0,x                         ; A298 9D C0 05                 ...
 	lda     LA28C                           ; A29B AD 8C A2                 ...
 	jsr     sub_4569
 	rts                                     ; A2A1 60                       `
@@ -9780,7 +9781,7 @@ sub_A2A8:
 	ldi	LA2A6, $08
 LA2CE:  lda     #$00                            ; A2CE A9 00                    ..
 	ldx     LA2A2                           ; A2D0 AE A2 A2                 ...
-	sta     $05C0,x                         ; A2D3 9D C0 05                 ...
+	sta     L05C0,x                         ; A2D3 9D C0 05                 ...
 	add16i	off_AE, LA2A4, $0002
 	ldy     #$00                            ; A2E5 A0 00                    ..
 	lda     ($AE),y                         ; A2E7 B1 AE                    ..
@@ -10103,7 +10104,7 @@ LA619:  lda     LA52F                           ; A619 AD 2F A5                 
 	lda     $A0                             ; A61F A5 A0                    ..
 	sta     LA539                           ; A621 8D 39 A5                 .9.
 	ldx     LA52F                           ; A624 AE 2F A5                 ./.
-	lda     $05C0,x                         ; A627 BD C0 05                 ...
+	lda     L05C0,x                         ; A627 BD C0 05                 ...
 	sta     LA53C                           ; A62A 8D 3C A5                 .<.
 	lda     LA53C                           ; A62D AD 3C A5                 .<.
 	bne     LA63A                           ; A630 D0 08                    ..
@@ -10222,7 +10223,7 @@ LA70D:	add16i	off_AE, LA6DC, $0001
 	lda     LA6D9                           ; A742 AD D9 A6                 ...
 	jsr     sub_45D0
 LA748:  ldx     LA6D9                           ; A748 AE D9 A6                 ...
-	lda     $05C0,x                         ; A74B BD C0 05                 ...
+	lda     L05C0,x                         ; A74B BD C0 05                 ...
 	lbne	LA7B7
 	lda     #$5C                            ; A753 A9 5C                    .\
 	sta     $A3                             ; A755 85 A3                    ..
@@ -11123,6 +11124,7 @@ LAF37:  .byte	$00
 LAF38:  .byte	$00
 LAF39:  .byte	$00
 
+; ----------------------------------------------------------------------------
 sub_AF3A:
 	prolog
 	rdmv	L43BB, sub_5E5E+1
@@ -11130,22 +11132,20 @@ sub_AF3A:
 LAF4C:  lda     #$01                            ; AF4C A9 01                    ..
 	eor     #$01                            ; AF4E 49 01                    I.
 	lbne	LB0BE
-	ldy     #$00                            ; AF55 A0 00                    ..
-	sty     $4D                             ; AF57 84 4D                    .M
+	yldi	$4D, $00
 	lda     L4652                           ; AF59 AD 52 46                 .RF
 	eor     #$02                            ; AF5C 49 02                    I.
 	lbeq	LAFA2
 LAF63:	lda     L4652                           ; AF63 AD 52 46                 .RF
 	eor     #$02                            ; AF66 49 02                    I.
 	lbeq	LAF94
-	lda     #$5C                            ; AF6D A9 5C                    .\
-	sta     $A3                             ; AF6F 85 A3                    ..
+	ldi	$A3, $5C
 	ldy     #>$B223
 	ldx     #<$B223
 	lda     L4652                           ; AF75 AD 52 46                 .RF
 	jsr     sub_458F
 	ldx     L4652                           ; AF7B AE 52 46                 .RF
-	lda     $05C0,x                         ; AF7E BD C0 05                 ...
+	lda     L05C0,x                         ; AF7E BD C0 05                 ...
 	bne     LAF8B                           ; AF81 D0 08                    ..
 	lda     L464D                           ; AF83 AD 4D 46                 .MF
 	lbeq	LAF8E
