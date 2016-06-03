@@ -4280,9 +4280,7 @@ L67D7:	.byte	$D3
 
 sub_67D8:
 	stack_prolog L67C4, $05 
-	lda	L67C4
-	jsr     sub_65B0
-	rdmv	L67CF, $A0
+	func16_8 sub_65B0, L67CF, L67C4
 	lda     L67CF                           ; 67F1 AD CF 67                 ..g
 	ora     L67D0                           ; 67F4 0D D0 67                 ..g
 	lbne	L67FD
