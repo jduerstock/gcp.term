@@ -323,6 +323,11 @@ SYSVBV		:= $E45F
 	sta     ($AE),y
 .endmacro
 
+.macro	test16	a1
+	lda     a1
+	ora     a1+1
+.endmacro
+
 	.segment "HDR00"
 
 	.word	$FFFF
@@ -414,8 +419,8 @@ L43BD:	sta     L43B9                           ; 43BD 8D B9 43                 .
 
 ; ----------------------------------------------------------------------------
 	.byte   $13                             ; 43C3 13                       .
-	ora     ($01),y                         ; 43C4 11 01                    ..
-
+	.byte	$11
+	.byte	$01
 	.byte   $83                             ; 43C6 83                       .
 
 sub_43C7:  
@@ -9875,8 +9880,7 @@ LA530:  .byte	$00
 LA531:  .byte	$00
 LA532:  .byte	$00
 LA533:  .byte	$00
-LA534:  .byte	$00
-LA535:  .byte	$00
+LA534:  .byte	$00,$00
 LA536:  .byte	$00
 LA537:  .byte	$00
 LA538:  .byte	$00
@@ -9900,8 +9904,7 @@ sub_A547:
 	lda     LA52E                           ; A550 AD 2E A5                 ...
 	jsr     sub_65B0
 	rdmv	LA534, $A0
-	lda     LA534                           ; A560 AD 34 A5                 .4.
-	ora     LA535                           ; A563 0D 35 A5                 .5.
+	test16	LA534
 	lbne	LA56C
 LA56B:  rts                                     ; A56B 60                       `
 
@@ -9917,7 +9920,7 @@ LA56C:  lda     LA531                           ; A56C AD 31 A5                 
 	jsr     sub_461F
 	sub8m	off_AE, LA53F, LA53D
 LA58C:	add8i	LA536, off_AE, $01
-	lda     LA535                           ; A594 AD 35 A5                 .5.
+	lda     LA534+1
 	sta     $A3                             ; A597 85 A3                    ..
 	lda     #$00                            ; A599 A9 00                    ..
 	sta     $A5                             ; A59B 85 A5                    ..
@@ -10053,8 +10056,7 @@ LA6D8:  .byte	$00
 LA6D9:  .byte	$00
 LA6DA:  .byte	$00
 LA6DB:  .byte	$00
-LA6DC:  .byte	$00
-LA6DD:  .byte	$00
+LA6DC:  .byte	$00,$00
 LA6DE:  .byte	$00
 LA6DF:  .byte	$00
 LA6E0:  .byte	$00
@@ -10066,8 +10068,7 @@ sub_A6E8:
 	lda     LA6D8                           ; A6F1 AD D8 A6                 ...
 	jsr     sub_65B0
 	rdmv	LA6DC, $A0
-	lda     LA6DC                           ; A701 AD DC A6                 ...
-	ora     LA6DD                           ; A704 0D DD A6                 ...
+	test16	LA6DC
 	lbne	LA70D
 	rts                                     ; A70C 60                       `
 
