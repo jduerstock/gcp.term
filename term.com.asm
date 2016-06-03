@@ -27,6 +27,8 @@ L3272           := $3272
 L3C20           := $3C20
 L4253           := $4253
 LB16A		:= $B16A
+LB1C6		:= $B1C6
+LB1C9		:= $B1C9
 LB224		:= $B224
 HPOSP3		:= $D003
 TRIG0		:= $D010
@@ -2117,8 +2119,8 @@ L5036:	yldi	L4FBE, $01
 	rts                                     ; 503F 60                       `
 
 ; ----------------------------------------------------------------------------
-L5040:	mv	$B1C6, L4FBB
-	rdldi	L4FC2, $B1C6
+L5040:	mv	LB1C6, L4FBB
+	rdldi	L4FC2, LB1C6
 	lda     L4FBB                           ; 5050 AD BB 4F                 ..O
 	sta     L4FC1                           ; 5053 8D C1 4F                 ..O
 	ldy     #$01                            ; 5056 A0 01                    ..
@@ -2142,7 +2144,7 @@ L5085:  lda     L4FBF                           ; 5085 AD BF 4F                 
 	eor     #$01                            ; 5088 49 01                    I.
 	lbne	L50EF
 	lda     L4FBB                           ; 508F AD BB 4F                 ..O
-	eor     $B1C6                           ; 5092 4D C6 B1                 M..
+	eor     LB1C6                           ; 5092 4D C6 B1                 M..
 	lbeq	L50A4
 	yldi	L4FBE, $01
 	ldi	$A0, $00
@@ -2508,7 +2510,7 @@ sub_5394:
 	sty     L5392                           ; 5399 8C 92 53                 ..S
 	jsr     sub_4FC5
 	mv	L5391, $A0
-	mv	L5393, $B1C9
+	mv	L5393, LB1C9
 	lda     L5391                           ; 53AA AD 91 53                 ..S
 	eor     #$04                            ; 53AD 49 04                    I.
 	lbne	L53BE
@@ -2590,24 +2592,24 @@ L5471:	add8i	$AE, L531D, $01
 	lbne	L54E3
 	jsr     sub_537F
 	mv	L531D, $B1C8
-	lda     $B1C6                           ; 548C AD C6 B1                 ...
+	lda     LB1C6                           ; 548C AD C6 B1                 ...
 	and     #$80                            ; 548F 29 80                    ).
 	sta     $AE                             ; 5491 85 AE                    ..
 	lda     $AE                             ; 5493 A5 AE                    ..
 	lbeq	L54B8
-	lda     #$B1                            ; 549A A9 B1                    ..
+	lda     #>LB1C9
 	sta     $A3                             ; 549C 85 A3                    ..
-	lda     $B1C6                           ; 549E AD C6 B1                 ...
+	lda     LB1C6                           ; 549E AD C6 B1                 ...
 	and     #$7F                            ; 54A1 29 7F                    ).
 	sta     $AE                             ; 54A3 85 AE                    ..
 	sub8i	$A4, off_AE, $04
-	ldy     #$C9                            ; 54AC A0 C9                    ..
+	ldy     #<LB1C9
 	ldxai	LB224
 	jsr     L5197                           ; 54B2 20 97 51                  .Q
 	jmp     L54D6                           ; 54B5 4C D6 54                 L.T
 
 ; ----------------------------------------------------------------------------
-L54B8:	sub8i	L4649, $B1C6, $04
+L54B8:	sub8i	L4649, LB1C6, $04
 	lda     #$B1                            ; 54C1 A9 B1                    ..
 	sta     $A3                             ; 54C3 85 A3                    ..
 	lda     #$00                            ; 54C5 A9 00                    ..
@@ -2674,7 +2676,7 @@ L552F:  jsr     sub_4FC5
 L5547:  lda     L54FC                           ; 5547 AD FC 54                 ..T
 	eor     #$01                            ; 554A 49 01                    I.
 	lbne	L5579
-	mv	L54FD, $B1C9
+	mv	L54FD, LB1C9
 	lda     L54FD                           ; 5557 AD FD 54                 ..T
 	eor     #$06                            ; 555A 49 06                    I.
 	lbeq	L5579
