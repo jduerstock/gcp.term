@@ -6026,8 +6026,7 @@ L7E1A:  .byte	$00
 L7E1B:  .byte	$00
 L7E1C:  .byte	$00
 L7E1D:  .byte	$00
-L7E1E:  .byte	$00
-L7E1F:  .byte	$00
+L7E1E:  .byte	$00,$00
 L7E20:  .byte	$00
 L7E21:  .byte	$00
 L7E22:  .byte	$00
@@ -6040,8 +6039,7 @@ sub_7E24:
 	rdmv	L7E15, $A0
 	add16i	off_AE, L7E15, $0009
 	ldp16	L7E1E
-	lda     L7E1E                           ; 7E59 AD 1E 7E                 ..~
-	ora     L7E1F                           ; 7E5C 0D 1F 7E                 ..~
+	test16	L7E1E
 	lbne	L7E69
 L7E64:	ldi	$A0, $00
 	rts                                     ; 7E68 60                       `
@@ -6059,12 +6057,9 @@ L7E69:	dmv	off_AE, L7E1E
 	jsr     sub_444A
 	st2xa	off_AC
 	add16m	L7E1A, $AE, $AC
-	lda     L7E1B                           ; 7EB3 AD 1B 7E                 ..~
-	sta     $A3                             ; 7EB6 85 A3                    ..
-	lda     #$00                            ; 7EB8 A9 00                    ..
-	sta     $A5                             ; 7EBA 85 A5                    ..
-	lda     #$03                            ; 7EBC A9 03                    ..
-	sta     $A4                             ; 7EBE 85 A4                    ..
+	mv	$A3, L7E1A+1
+	ldi	$A5, $00
+	ldi	$A4, $03
 	ldy     L7E1A                           ; 7EC0 AC 1A 7E                 ..~
 	ldxai	L7E21
 	jsr     sub_461F
@@ -6084,13 +6079,7 @@ L7EF5:	ldi	$A0, $00
 	rts                                     ; 7EF9 60                       `
 
 ; ----------------------------------------------------------------------------
-L7EFA:  clc                                     ; 7EFA 18                       .
-	lda     L7E1C                           ; 7EFB AD 1C 7E                 ..~
-	adc     L7E23                           ; 7EFE 6D 23 7E                 m#~
-	sta     $AE                             ; 7F01 85 AE                    ..
-	lda     L7E1D                           ; 7F03 AD 1D 7E                 ..~
-	adc     #$00                            ; 7F06 69 00                    i.
-	sta     $AF                             ; 7F08 85 AF                    ..
+L7EFA:	add16m8	off_AE, L7E1C, L7E23
 	clc                                     ; 7F0A 18                       .
 	lda     $AE                             ; 7F0B A5 AE                    ..
 	adc     #$01                            ; 7F0D 69 01                    i.
