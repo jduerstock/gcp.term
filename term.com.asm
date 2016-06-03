@@ -911,7 +911,8 @@ L4679:  lsr     $00                             ; 4679 46 00                    
 	.byte	$00
 L46A2:	.byte	$7A                             ; 46A2 7A                       z
 L46A3:  lsr     $1F                             ; 46A3 46 1F                    F.
-	lda     ($00),y                         ; 46A5 B1 00                    ..
+	.byte	$B1
+L46A6:	.byte	$00
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -971,8 +972,8 @@ L46A3:  lsr     $1F                             ; 46A3 46 1F                    
 	.byte	$00
 	.byte	$00
 	.byte	$00
-L46E2:	.byte	$A6                             ; 46E2 A6                       .
-L46E3:  lsr     $20                             ; 46E3 46 20                    F 
+L46E2:	.addr	L46A6
+L46E4:	.byte	$20
 	.byte   $20                             ; 46E5 20                        
 L46E6:	.byte	$50                             ; 46E6 50                       P
 L46E7:	.byte	$1E                             ; 46E7 1E                       .
@@ -4537,7 +4538,7 @@ L6AD3:	.byte	$31
 L6AD4:	.byte	$3A
 
 ; ----------------------------------------------------------------------------
-sub_6AD5:
+sub_6AD5:					; "BBBBS"
 	stack_prolog L6ABE, $05
 	func16_8 sub_65B0, L6AC4, L6ABE
 	lda     L6AC4                           ; 6AEE AD C4 6A                 ..j
