@@ -4171,12 +4171,11 @@ L6694:  .byte	$00
 L6695:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-sub_6696:  
+sub_6696:					; "F"  
 	prolog
 	stxa	L6690
 	func16_8 sub_65B0, L6692, L6690
-	lda     L6692                           ; 66AF AD 92 66                 ..f
-	ora     L6692+1                         ; 66B2 0D 93 66                 ..f
+	test16	L6692
 	lbne	L66BB
 	rts                                     ; 66BA 60                       `
 
@@ -4270,8 +4269,7 @@ L67CB:	.byte	$FE
 L67CC:	.byte	$8D
 L67CD:	.byte	$01
 L67CE:	.byte	$D3
-L67CF:  .byte	$60
-L67D0:	.byte	$AD
+L67CF:  .byte	$60,$AD
 L67D1:	.byte	$01
 L67D2:	.byte	$D3
 L67D3:	.byte	$09
@@ -4280,16 +4278,15 @@ L67D5:	.byte	$8D
 L67D6:	.byte	$01
 L67D7:	.byte	$D3
 
-sub_67D8:
+sub_67D8:					; "D" - display?
 	stack_prolog L67C4, $05 
 	func16_8 sub_65B0, L67CF, L67C4
-	lda     L67CF                           ; 67F1 AD CF 67                 ..g
-	ora     L67D0                           ; 67F4 0D D0 67                 ..g
+	test16	L67CF
 	lbne	L67FD
 	rts                                     ; 67FC 60                       `
 
 ; ----------------------------------------------------------------------------
-L67FD:	mv	$A3, L67D0
+L67FD:	mv	$A3, L67CF+1
 	rdldi	$A4, $0006
 	ldy     L67CF                           ; 680A AC CF 67                 ..g
 	ldxai	L67D2
@@ -4436,7 +4433,7 @@ L6991:  .byte	$00,$00
 L6993:	.byte	$00,$00
 
 ; ----------------------------------------------------------------------------
-sub_6995:  
+sub_6995:					; "K" 
 	prolog
 	sta     L6982                           ; 6998 8D 82 69                 ..i
 	func16_8 sub_65B0, L6983, L6982
@@ -4536,11 +4533,10 @@ L6AD3:	.byte	$31
 L6AD4:	.byte	$3A
 
 ; ----------------------------------------------------------------------------
-sub_6AD5:					; "BBBBS"
+sub_6AD5:					; "C","BBBBS"
 	stack_prolog L6ABE, $05
 	func16_8 sub_65B0, L6AC4, L6ABE
-	lda     L6AC4                           ; 6AEE AD C4 6A                 ..j
-	ora     L6AC4+1
+	test16	L6AC4
 	lbeq	L6AFF
 	lda     L6ABE                           ; 6AF9 AD BE 6A                 ..j
 	jsr     sub_6995
@@ -10115,7 +10111,7 @@ LA799:  lda     LA6E0                           ; A799 AD E0 A6                 
 	sta     $A3                             ; A79C 85 A3                    ..
 	rdldi	$A4, $B224
 	ldy     LA6DE                           ; A7A6 AC DE A6                 ...
-LA7A9:  ldx     #$00                            ; A7A9 A2 00                    ..
+	ldx     #$00                            ; A7A9 A2 00                    ..
 	lda     LA6D8                           ; A7AB AD D8 A6                 ...
 	jsr     sub_67D8
 	jsr     sub_8D01
