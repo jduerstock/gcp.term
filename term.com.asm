@@ -10502,22 +10502,11 @@ LAB08:	.byte	$00
 
 LAB0B:
 	stack_prolog LAB08, $02
-	.byte	"C","K","D","F","W","Y","B","x"
-	;adc     L557A,y                         ; AB1C 79 7A 55                 yzU
-	.byte	$79,$7A,$55
-	lsr     $58,x                           ; AB1F 56 58                    VX
-	;lsr     L6463                           ; AB21 4E 63 64                 Ncd
-	.byte	$4E,$63,$64
-	.byte   $73                             ; AB24 73                       s
-	bvs     LAB94                           ; AB25 70 6D                    pm
-	;jmp     (L6261)                         ; AB27 6C 61 62                 lab
-	.byte	$6C,$61,$62
-	ror     $4A                             ; AB2A 66 4A                    fJ
-	ror     a                               ; AB2C 6A                       j
-	.byte   $53                             ; AB2D 53                       S
-	.byte   $54                             ; AB2E 54                       T
-	.byte   $2B                             ; AB2F 2B                       +
-	.byte	$4C,$4D,$50
+	.byte	"C","K","D","F","W","Y","B"
+	.byte	"x","y","z","U","V","X","N"
+	.byte	"c","d","s","p","m","l","a"
+	.byte	"b","f","J","j","S","T","+"
+	.byte	"L","M","P"
 	.byte   $52                             ; AB33 52                       R
 	.byte   $47                             ; AB34 47                       G
 	eor     ($4F,x)                         ; AB35 41 4F                    AO
