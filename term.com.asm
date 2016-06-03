@@ -10506,22 +10506,9 @@ LAB0B:
 	.byte	"x","y","z","U","V","X","N"
 	.byte	"c","d","s","p","m","l","a"
 	.byte	"b","f","J","j","S","T","+"
-	.byte	"L","M","P"
-	.byte   $52                             ; AB33 52                       R
-	.byte   $47                             ; AB34 47                       G
-	eor     ($4F,x)                         ; AB35 41 4F                    AO
-	.byte   $5A                             ; AB37 5A                       Z
-	;eor     L0069                           ; AB38 45 69                    Ei
-	.byte	$45,$69
-	pha                                     ; AB3A 48                       H
-	adc     $49                             ; AB3B 65 49                    eI
-	;bmi     LAB70                           ; AB3D 30 31                    01
-	.byte	$30,$31
-	.byte   $32                             ; AB3F 32                       2
-	.byte   $33                             ; AB40 33                       3
-	.byte   $34                             ; AB41 34                       4
-	and     $36,x                           ; AB42 35 36                    56
-	.byte   $37                             ; AB44 37                       7
+	.byte	"L","M","P","R","G","A","O"
+	.byte	"Z","E","i","H","e","I","0"
+	.byte	"1","2","3","4","5","6","7"
 	sec                                     ; AB45 38                       8
 	and     $076E,y                         ; AB46 39 6E 07                 9n.
 	.byte   $23                             ; AB49 23                       #
