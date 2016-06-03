@@ -201,6 +201,12 @@ SYSVBV		:= $E45F
 	lda	a1
 .endmacro
 
+.macro ld2xa a1
+	lda	a1+1
+	tax
+	lda	a1
+.endmacro
+
 .macro stxa a1
 	stx	a1+1
 	sta	a1
@@ -3776,22 +3782,17 @@ L6197:  .byte	$00
 L6198:  .byte	$00
 L6199:  .byte	$00
 
+; ----------------------------------------------------------------------------
 sub_619A:  
 	stack_prolog L6192, $03
 	add16i off_AE, L6194, $0003
-	lda     #$02                            ; 61B2 A9 02                    ..
-	sta     $84                             ; 61B4 85 84                    ..
-	lda     $AF                             ; 61B6 A5 AF                    ..
-	tax                                     ; 61B8 AA                       .
-	lda     $AE                             ; 61B9 A5 AE                    ..
+	ldi	$84, $02
+	ld2xa	off_AE
 	jsr     sub_43E0
 	st2xa	L6196
 	sub16m	off_AE, L6192, MEMLO
-	lda     #$02                            ; 61D6 A9 02                    ..
-	sta     $84                             ; 61D8 85 84                    ..
-	lda     $AF                             ; 61DA A5 AF                    ..
-	tax                                     ; 61DC AA                       .
-	lda     $AE                             ; 61DD A5 AE                    ..
+	ldi	$84, $02
+	ld2xa	off_AE
 	jsr     sub_43E0
 	st2xa	L6198
 	lda     L6197                           ; 61E9 AD 97 61                 ..a
