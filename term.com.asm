@@ -297,12 +297,20 @@ SYSVBV		:= $E45F
 	sta	a1
 .endmacro
 
-.macro	ld2p16	a1
+.macro	ld2p16	a1, a2
 	iny
+	.if	.paramcount = 2
+	lda	(a2),y
+	.else
 	lda	(off_AE),y
+	.endif
 	sta	a1+1
 	dey
+	.if	.paramcount = 2
+	lda	(a2),y
+	.else
 	lda	(off_AE),y
+	.endif
 	sta	a1
 .endmacro
 
@@ -3795,10 +3803,8 @@ sub_619A:
 	ld2xa	off_AE
 	jsr     sub_43E0
 	st2xa	L6198
-	lda     L6197                           ; 61E9 AD 97 61                 ..a
-	sta     $A3                             ; 61EC 85 A3                    ..
-	lda     #$01                            ; 61EE A9 01                    ..
-	sta     $A4                             ; 61F0 85 A4                    ..
+	mv	$A3, L6197
+	ldi	$A4, $01
 	ldy     L6196                           ; 61F2 AC 96 61                 ..a
 	ldxa	L6198
 	jsr     sub_5FF5
@@ -3810,17 +3816,13 @@ L6200:  .byte	$00
 L6201:  .byte	$00
 L6202:  .byte	$00
 
+; ----------------------------------------------------------------------------
 sub_6203:  
 	prolog
 	shladdi	off_AE, L466F, $0001
 	ldp16	$A0
 	dmv	off_AC, L466F
-	iny                                     ; 622E C8                       .
-	lda     ($AC),y                         ; 622F B1 AC                    ..
-	sta     $A3                             ; 6231 85 A3                    ..
-	dey                                     ; 6233 88                       .
-	lda     ($AC),y                         ; 6234 B1 AC                    ..
-	sta     $A2                             ; 6236 85 A2                    ..
+	ld2p16	$A2, $AC
 	lda     #$00                            ; 6238 A9 00                    ..
 	sta     $A5                             ; 623A 85 A5                    ..
 	lda     #$20                            ; 623C A9 20                    . 
