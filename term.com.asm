@@ -10509,11 +10509,8 @@ LAB0B:
 	.byte	"L","M","P","R","G","A","O"
 	.byte	"Z","E","i","H","e","I","0"
 	.byte	"1","2","3","4","5","6","7"
-	sec                                     ; AB45 38                       8
-	and     $076E,y                         ; AB46 39 6E 07                 9n.
-	.byte   $23                             ; AB49 23                       #
-	rol     a                               ; AB4A 2A                       *
-	and     $2524,x                         ; AB4B 3D 24 25                 =$%
+	.byte	"8","9","n",$07,"#","*","="
+	.byte	"$","%"
 	rol     $40                             ; AB4E 26 40                    &@
 	;rol     L753A                           ; AB50 2E 3A 75                 .:u
 	.byte	$2E,$3A,$75
