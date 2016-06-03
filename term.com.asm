@@ -2915,10 +2915,7 @@ L589F:	add8i	$A1, L474C, $01
 	ldx     $A1                             ; 58BD A6 A1                    ..
 	lda     L5594                           ; 58BF AD 94 55                 ..U
 	jsr     sub_51F7
-	clc                                     ; 58C5 18                       .
-	lda     L4650                           ; 58C6 AD 50 46                 .PF
-	adc     L5592                           ; 58C9 6D 92 55                 m.U
-	sta     L4650                           ; 58CC 8D 50 46                 .PF
+	add8m	L4650, L4650, L5592
 	lda     L4650                           ; 58CF AD 50 46                 .PF
 	eor     L5592                           ; 58D2 4D 92 55                 M.U
 	lbne	L58E6
