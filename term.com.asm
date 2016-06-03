@@ -26,6 +26,7 @@ L05C0		:= $05C0
 L3272           := $3272
 L3C20           := $3C20
 L4253           := $4253
+LB16A		:= $B16A
 LB224		:= $B224
 HPOSP3		:= $D003
 TRIG0		:= $D010
@@ -2511,7 +2512,7 @@ sub_5394:
 	lda     L5391                           ; 53AA AD 91 53                 ..S
 	eor     #$04                            ; 53AD 49 04                    I.
 	lbne	L53BE
-	ldxai	$B16A
+	ldxai	LB16A
 	jsr     sub_52E1
 	jmp     L545B                           ; 53BB 4C 5B 54                 L[T
 
@@ -2525,27 +2526,27 @@ L53BE:  lda     L5391                           ; 53BE AD 91 53                 
 	lda     $B1C8                           ; 53D2 AD C8 B1                 ...
 	eor     $B16C                           ; 53D5 4D 6C B1                 Ml.
 	lbne	L541E
-	sub8m	L4650, L4650, $B16A
+	sub8m	L4650, L4650, LB16A
 	clc                                     ; 53E7 18                       .
-	lda     #$6A                            ; 53E8 A9 6A                    .j
-	adc     $B16A                           ; 53EA 6D 6A B1                 mj.
+	lda     #<LB16A
+	adc     LB16A                           ; 53EA 6D 6A B1                 mj.
 	sta     $A2                             ; 53ED 85 A2                    ..
-	lda     #$B1                            ; 53EF A9 B1                    ..
+	lda     #>LB16A
 	adc     #$00                            ; 53F1 69 00                    i.
 	sta     $A3                             ; 53F3 85 A3                    ..
 	sec                                     ; 53F5 38                       8
 	lda     #$5A                            ; 53F6 A9 5A                    .Z
-	sbc     $B16A                           ; 53F8 ED 6A B1                 .j.
+	sbc     LB16A                           ; 53F8 ED 6A B1                 .j.
 	sta     $A4                             ; 53FB 85 A4                    ..
 	lda     #$00                            ; 53FD A9 00                    ..
 	sta     $A5                             ; 53FF 85 A5                    ..
 	ldy     $A2                             ; 5401 A4 A2                    ..
-	ldxai	$B16A
+	ldxai	LB16A
 	jsr     sub_461F
 	lda     L4650                           ; 540A AD 50 46                 .PF
 	lbeq	L541E
 	yldi	L464B, $00
-	ldxai	$B16A
+	ldxai	LB16A
 	jsr     sub_52E1
 L541E:  jmp     L5449                           ; 541E 4C 49 54                 LIT
 
@@ -2553,7 +2554,7 @@ L541E:  jmp     L5449                           ; 541E 4C 49 54                 
 L5421:  lda     L5393                           ; 5421 AD 93 53                 ..S
 	eor     #$15                            ; 5424 49 15                    I.
 	lbne	L5435
-	ldxai	$B16A
+	ldxai	LB16A
 	jsr     sub_52E1
 	jmp     L5449                           ; 5432 4C 49 54                 LIT
 
@@ -2561,14 +2562,14 @@ L5421:  lda     L5393                           ; 5421 AD 93 53                 
 L5435:	yldi	L5392, $01
 	lda     CDTMF3
 	lbne	L5449
-	ldxai	$B16A
+	ldxai	LB16A
 	jsr     sub_52E1
 L5449:  jmp     L545B                           ; 5449 4C 5B 54                 L[T
 
 ; ----------------------------------------------------------------------------
 L544C:  lda     CDTMF3
 	lbne	L545B
-	ldxai	$B16A
+	ldxai	LB16A
 	jsr     sub_52E1
 L545B:  lda     L5392                           ; 545B AD 92 53                 ..S
 	sta     $A0                             ; 545E 85 A0                    ..
@@ -2905,10 +2906,10 @@ L5887:  sec                                     ; 5887 38                       
 L589F:	add8i	$A1, L474C, $01
 	mv	$A3, L559F
 	clc                                     ; 58AC 18                       .
-	lda     #$6A                            ; 58AD A9 6A                    .j
+	lda     #<LB16A
 	adc     L4650                           ; 58AF 6D 50 46                 mPF
 	sta     $A4                             ; 58B2 85 A4                    ..
-	lda     #$B1                            ; 58B4 A9 B1                    ..
+	lda     #>LB16A
 	adc     #$00                            ; 58B6 69 00                    i.
 	sta     $A5                             ; 58B8 85 A5                    ..
 	ldy     L559E                           ; 58BA AC 9E 55                 ..U
@@ -2921,22 +2922,22 @@ L589F:	add8i	$A1, L474C, $01
 	lbne	L58E6
 	ldy     #$00                            ; 58DA A0 00                    ..
 	sty     L464B                           ; 58DC 8C 4B 46                 .KF
-	ldxai	$B16A
+	ldxai	LB16A
 	jsr     sub_52E1
 L58E6:  rts                                     ; 58E6 60                       `
 
 ; ----------------------------------------------------------------------------
-L58E7:	.byte	$44                             ; 58E7 44                       D
-L58E8:  plp                                     ; 58E8 28                       (
-L58E9:	.byte	$20                             ; 58E9 20                        
-L58EA:	.byte	$24                             ; 58EA 24                       $
-L58EB:	.byte	$46                             ; 58EB 46                       F
-L58EC:	.byte	$44                             ; 58EC 44                       D
-L58ED:	.byte	$29                             ; 58ED 29                       )
-L58EE:	.byte	$20                             ; 58EE 20                        
-L58EF:	.byte	$20                             ; 58EF 20                        
-L58F0:	.byte	$20                             ; 58F0 20                        
-L58F1:	.byte	$20                             ; 58F1 20                        
+L58E7:	.byte	$44
+L58E8:  .byte	$28
+L58E9:	.byte	$20
+L58EA:	.byte	$24
+L58EB:	.byte	$46
+L58EC:	.byte	$44
+L58ED:	.byte	$29
+L58EE:	.byte	$20
+L58EF:	.byte	$20
+L58F0:	.byte	$20
+L58F1:	.byte	$20
 
 sub_58F2:
 	stack_prolog L58E7, $03
