@@ -4118,7 +4118,7 @@ L65DF:  .byte	$00
 L65E0:  .byte	$00
 L65E1:  .byte	$00
 
-sub_65E2:  
+sub_65E2:  					; "W"
 	stack_prolog L65D6, $05
 	func16_8 sub_65B0, L65E0, L65D6
 	lda     L65E0                           ; 65FB AD E0 65                 ..e
@@ -5968,12 +5968,11 @@ L7D44:	.byte	$00
 L7D45:  .byte	$00
 L7D46:  .byte	$00
 L7D47:  .byte	$00
-L7D48:  .byte	$00
-L7D49:  .byte	$00
+L7D48:  .byte	$00,$00
 L7D4A:  .byte	$00
 L7D4B:  .word	$0000
 
-sub_7D4D:
+sub_7D4D:					; "Y"
 	stack_prolog L7D44, $03
 	lda	L7D44
 	jsr	sub_65B0
@@ -5982,25 +5981,21 @@ sub_7D4D:
 	and     #$01                            ; 7D69 29 01                    ).
 	sta     L7D4A                           ; 7D6B 8D 4A 7D                 .J}
 	lsr     L7D45                           ; 7D6E 4E 45 7D                 NE}
-	lda     L7D48                           ; 7D71 AD 48 7D                 .H}
-	ora     L7D49                           ; 7D74 0D 49 7D                 .I}
+	test16	L7D48
 	lbne	L7D7D
 	rts                                     ; 7D7C 60                       `
 
 ; ----------------------------------------------------------------------------
 L7D7D:	add16i	off_AE, L7D48, $0009
 	ldp16	L7D4B
-	lda     L7D4B                           ; 7D99 AD 4B 7D                 .K}
-	ora     L7D4B+1
+	test16	L7D4B
 	lbne	L7DA5
 	rts                                     ; 7DA4 60                       `
 
 ; ----------------------------------------------------------------------------
 L7DA5:	add16i	off_AE, L7D4B, $0002
-	lda     #$00                            ; 7DB4 A9 00                    ..
-	sta     $85                             ; 7DB6 85 85                    ..
-	lda     #$03                            ; 7DB8 A9 03                    ..
-	sta     $84                             ; 7DBA 85 84                    ..
+	ldi	$85, $00
+	ldi	$84, $03
 	lda     L7D45                           ; 7DBC AD 45 7D                 .E}
 	ldx     #$00                            ; 7DBF A2 00                    ..
 	jsr     sub_444A
