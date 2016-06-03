@@ -9330,8 +9330,7 @@ L9FE3:	.byte	$00
 L9FE4:	.byte	$00
 L9FE5:	.byte	$00
 L9FE6:	.byte	$00
-L9FE7:	.byte	$00
-L9FE8:	.byte	$00
+L9FE7:	.byte	$00,$00
 L9FE9:  .byte	$00
 L9FEA:  .byte	$00
 	.byte	$00
@@ -9400,13 +9399,12 @@ sub_A027:
 	ldxa	L9FE3
 	jsr     sub_799B
 	rdmv	L9FE7, $A0
-	lda     L9FE7                           ; A043 AD E7 9F                 ...
-	ora     L9FE8                           ; A046 0D E8 9F                 ...
+	test16	L9FE7
 	lbne	LA04F
 	rts                                     ; A04E 60                       `
 
 ; ----------------------------------------------------------------------------
-LA04F:  lda     L9FE8                           ; A04F AD E8 9F                 ...
+LA04F:  lda     L9FE7+1
 	sta     $A3                             ; A052 85 A3                    ..
 	lda     #$00                            ; A054 A9 00                    ..
 	sta     $A5                             ; A056 85 A5                    ..
@@ -9732,8 +9730,7 @@ LA3A8:  .byte	$00
 LA3A9:  .byte	$00
 LA3AA:  .byte	$00
 LA3AB:  .byte	$00
-LA3AC:  .byte	$00
-LA3AD:  .byte	$00
+LA3AC:  .byte	$00,$00
 LA3AE:  .byte	$00
 LA3AF:  .byte	$00
 LA3B0:  .byte	$00
@@ -9755,8 +9752,7 @@ sub_A3BD:
 	lda     LA3A5                           ; A3C6 AD A5 A3                 ...
 	jsr     sub_65B0
 	rdmv	LA3AC, $A0
-	lda     LA3AC                           ; A3D6 AD AC A3                 ...
-	ora     LA3AD                           ; A3D9 0D AD A3                 ...
+	test16	LA3AC
 	lbne	LA3E2
 	rts                                     ; A3E1 60                       `
 
@@ -9779,7 +9775,7 @@ LA3E2:  jsr     sub_5E1E
 	lda     $AE                             ; A406 A5 AE                    ..
 	adc     #$01                            ; A408 69 01                    i.
 	sta     LA3AE                           ; A40A 8D AE A3                 ...
-	lda     LA3AD                           ; A40D AD AD A3                 ...
+	lda     LA3AC+1
 	sta     $A3                             ; A410 85 A3                    ..
 	lda     #$00                            ; A412 A9 00                    ..
 	sta     $A5                             ; A414 85 A5                    ..
