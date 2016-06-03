@@ -9419,8 +9419,7 @@ LA04F:  lda     L9FE7+1
 	lda     #$06                            ; A093 A9 06                    ..
 	sta     $A4                             ; A095 85 A4                    ..
 	ldy     L9FED                           ; A097 AC ED 9F                 ...
-	ldx     #$A0                            ; A09A A2 A0                    ..
-	lda     #$14                            ; A09C A9 14                    ..
+	ldxai	LA014
 	jsr     sub_461F
 	lda     L9FE3                           ; A0A1 AD E3 9F                 ...
 	jsr	sub_65B0
@@ -10503,12 +10502,7 @@ LAB08:	.byte	$00
 
 LAB0B:
 	stack_prolog LAB08, $02
-	.byte   $43                             ; AB14 43                       C
-	.byte   $4B                             ; AB15 4B                       K
-	.byte   $44                             ; AB16 44                       D
-	lsr     $57                             ; AB17 46 57                    FW
-	;eor     L7842,y                         ; AB19 59 42 78                 YBx
-	.byte	$59,$42,$78
+	.byte	"C","K","D","F","W","Y","B","x"
 	;adc     L557A,y                         ; AB1C 79 7A 55                 yzU
 	.byte	$79,$7A,$55
 	lsr     $58,x                           ; AB1F 56 58                    VX
