@@ -10187,13 +10187,15 @@ sub_A81F:
 	rts                                     ; A822 60                       `
 
 ; ----------------------------------------------------------------------------
-LA823:	clc                                     ; A823 18                       .
+sub_A823:	
+	clc                                     ; A823 18                       .
 	adc     $B118,x                         ; A824 7D 18 B1                 }..
 	sta     $B118,x                         ; A827 9D 18 B1                 ...
 	rts                                     ; A82A 60                       `
 
 ; ----------------------------------------------------------------------------
-LA82B:	lda     $B118,x                         ; A82B BD 18 B1                 ...
+sub_A82B:	
+	lda     $B118,x                         ; A82B BD 18 B1                 ...
 	eor     #$FF                            ; A82E 49 FF                    I.
 	tay                                     ; A830 A8                       .
 	iny                                     ; A831 C8                       .
@@ -10211,7 +10213,8 @@ sub_A837:
 LA841:  rts                                     ; A841 60                       `
 
 ; ----------------------------------------------------------------------------
-LA842:	rts                                     ; A842 60                       `
+sub_A842:	
+	rts
 
 ; ----------------------------------------------------------------------------
 LA843:  .byte	$00
@@ -10367,7 +10370,7 @@ LA96D:	.byte	$D5
 LA96E:	.byte	$00
 
 ; ----------------------------------------------------------------------------
-LA96F:
+sub_A96F:
 	prolog
 	stx     LA96C                           ; A972 8E 6C A9                 .l.
 	sta     LA96B                           ; A975 8D 6B A9                 .k.
@@ -10497,22 +10500,9 @@ LAA86:	.addr	sub_6AD5,sub_6995,sub_67D8,sub_6696,sub_65E2,sub_7D4D,sub_6E61
 	.addr	sub_7FE9,sub_817C,sub_8003,sub_80BB,sub_8EFD,sub_8E7D,sub_8F55
 	.addr	sub_8E24,sub_A9DE,sub_A9FB,sub_A9EC,sub_968E,sub_97A1,sub_5E1E
 	.addr	sub_5E30,sub_A2A8,sub_A382,sub_A3BD,sub_A547,sub_A6E8,sub_A7C4
-	.addr	sub_A7F3
-	.addr	sub_A6CE
-	.addr	sub_A991
-	.addr	sub_4F5A
-	.addr	sub_A959
-	.addr	sub_4BA7
-	.addr	sub_A837
-	.addr	sub_A846
-	.addr	sub_4F9D
-	.addr	sub_8D01
-	.addr	sub_A895
-	.addr	LA842
-	.addr	LA96F
-	.addr	sub_A81F
-	.addr	LA823
-	.addr	LA82B
+	.addr	sub_A7F3,sub_A6CE,sub_A991,sub_4F5A,sub_A959,sub_4BA7,sub_A837
+	.addr	sub_A846,sub_4F9D,sub_8D01,sub_A895,sub_A842,sub_A96F,sub_A81F
+	.addr	sub_A823,sub_A82B
 
 LAB08:	.byte	$00
 	.byte	$00
