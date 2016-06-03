@@ -10502,7 +10502,7 @@ LAB08:	.byte	$00
 
 LAB0B:
 	stack_prolog LAB08, $02
-	.byte	"C","K","D","F","W","Y","B"
+LAB14:	.byte	"C","K","D","F","W","Y","B"
 	.byte	"x","y","z","U","V","X","N"
 	.byte	"c","d","s","p","m","l","a"
 	.byte	"b","f","J","j","S","T","+"
@@ -10510,14 +10510,10 @@ LAB0B:
 	.byte	"Z","E","i","H","e","I","0"
 	.byte	"1","2","3","4","5","6","7"
 	.byte	"8","9","n",$07,"#","*","="
-	.byte	"$","%"
-	rol     $40                             ; AB4E 26 40                    &@
-	;rol     L753A                           ; AB50 2E 3A 75                 .:u
-	.byte	$2E,$3A,$75
-	ror     $77,x                           ; AB53 76 77                    vw
+	.byte	"$","%","&","@",".",":","u"
+	.byte	"v","w"
 	.byte	$00
-LAB56:	.byte	$14                             ; AB56 14                       .
-LAB57:	.byte	$AB                             ; AB57 AB                       .
+LAB56:	.addr	LAB14
 LAB58:  .addr	$0000
 LAB5A:  .byte	$00
 LAB5B:  .byte	$00
