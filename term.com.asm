@@ -4443,8 +4443,7 @@ sub_6995:
 	prolog
 	sta     L6982                           ; 6998 8D 82 69                 ..i
 	func16_8 sub_65B0, L6983, L6982
-	lda     L6983                           ; 69AB AD 83 69                 ..i
-	ora     L6983+1
+	test16	L6983
 	lbne	L69B7
 	rts                                     ; 69B6 60                       `
 
