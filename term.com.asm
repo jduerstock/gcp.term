@@ -1863,17 +1863,8 @@ L4D03:  lda     #$01                            ; 4D03 A9 01                    
 	add8i	off_AE, L4CF4, $02
 	add16m8	off_AC, L4CF2, off_AE
 	push16	off_AC
-	clc                                     ; 4D7D 18                       .
-	lda     L4CF4                           ; 4D7E AD F4 4C                 ..L
-	adc     #$02                            ; 4D81 69 02                    i.
-	sta     $AE                             ; 4D83 85 AE                    ..
-	clc                                     ; 4D85 18                       .
-	lda     L4CEE                           ; 4D86 AD EE 4C                 ..L
-	adc     $AE                             ; 4D89 65 AE                    e.
-	sta     $AC                             ; 4D8B 85 AC                    ..
-	lda     L4CEF                           ; 4D8D AD EF 4C                 ..L
-	adc     #$00                            ; 4D90 69 00                    i.
-	sta     $AD                             ; 4D92 85 AD                    ..
+	add8i	off_AE, L4CF4, $02
+	add16m8	off_AC, L4CEE, off_AE
 	lda     ($AC),y                         ; 4D94 B1 AC                    ..
 	sta     $A0                             ; 4D96 85 A0                    ..
 	clc                                     ; 4D98 18                       .
