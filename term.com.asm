@@ -9167,17 +9167,12 @@ LA04F:	mv	$A3, L9FE7+1
 	ldy     #<L9FF9
 	ldxai	LA023
 	jsr     blockmove
-	lda     #$9F                            ; A133 A9 9F                    ..
-	sta     $A3                             ; A135 85 A3                    ..
-	lda     #$A0                            ; A137 A9 A0                    ..
-	sta     $A5                             ; A139 85 A5                    ..
-	lda     #$01                            ; A13B A9 01                    ..
-	sta     $A4                             ; A13D 85 A4                    ..
-	ldy     #$F9                            ; A13F A0 F9                    ..
+	ldi     $A3, >L9FF9
+	rdldi	$A4, $A001
+	ldy     #<L9FF9
 	ldxai	L9FF5
 	jsr     sub_4CF5
-	lda     $A0                             ; A148 A5 A0                    ..
-	sta     LA005                           ; A14A 8D 05 A0                 ...
+	mv	LA005, $A0
 	lda     LA005                           ; A14D AD 05 A0                 ...
 	lbne	LA156
 LA155:  rts                                     ; A155 60                       `
