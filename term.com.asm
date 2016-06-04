@@ -916,8 +916,7 @@ L466F:	.addr	$B0D4
 	.byte	$04
 	.byte	$00
 L4673:  .byte	$00
-L4674:  .byte	$00
-L4675:	.byte	$B4                             ; 4675 B4                       .
+L4674:  .addr	$B400
 L4676:  cpx     #$E0                            ; 4676 E0 E0                    ..
 L4678:	.byte	$76                             ; 4678 76                       v
 L4679:  lsr     $00                             ; 4679 46 00                    F.
@@ -7340,9 +7339,9 @@ sub_8E24:					; "Z"
 	ldi	L8E23, $00
 	ldi	$84, $03
 	ld2xa	L8E22
-	jsr     sub_43D1
+	jsr     sub_43D1			; off_AE = 8E22 << 3
 	st2xa	off_AE
-	add16m	$A0, L4674, off_AE
+	add16m	$A0, L4674, off_AE		; $A0 = 
 	mv	$A3, L8E21
 	rdldi	$A4, $0008
 	ldy     L8E20                           ; 8E69 AC 20 8E                 . .
@@ -7488,9 +7487,7 @@ L8FDE:	dmv	off_AE, L4678
 	add16i	off_AE, L4678, $0001
 	lda     #$08                            ; 8FFD A9 08                    ..
 	sta     $84                             ; 8FFF 85 84                    ..
-	lda     L4675                           ; 9001 AD 75 46                 .uF
-	tax                                     ; 9004 AA                       .
-	lda     L4674                           ; 9005 AD 74 46                 .tF
+	ld2xa	L4674
 	jsr     sub_43E0
 	ldy     #$00                            ; 900B A0 00                    ..
 	sta     ($AE),y                         ; 900D 91 AE                    ..
@@ -7501,8 +7498,7 @@ L8FDE:	dmv	off_AE, L4678
 	lda     #$00                            ; 9017 A9 00                    ..
 	sta     $A4                             ; 9019 85 A4                    ..
 	ldy     #$00                            ; 901B A0 00                    ..
-	ldx     L4675                           ; 901D AE 75 46                 .uF
-	lda     L4674                           ; 9020 AD 74 46                 .tF
+	ldxa	L4674
 	jsr     sub_461F
 	ldy     #$18                            ; 9026 A0 18                    ..
 	ldx     #$02                            ; 9028 A2 02                    ..
