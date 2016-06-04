@@ -1104,10 +1104,10 @@ L474D:  .byte	$00
 L474E:  .byte	$00
 L474F:  .byte	$00
 L4750:  .byte	$00
-L4751:  plp                                     ; 4751 28                       (
+L4751:  .byte	$28
 L4752:	.byte	$32                             ; 4752 32                       2
 L4753:	.byte	$29                             ; 4753 29                       )
-L4754:  cld                                     ; 4754 D8                       .
+L4754:  .byte	$D8
 	dec     $1E,x                           ; 4755 D6 1E                    ..
 	ora     a:$00                           ; 4757 0D 00 00                 ...
 	;ora     (L000C,x)                       ; 475A 01 0C                    ..
@@ -1122,22 +1122,14 @@ L4764:  .byte	$00
 L4765:	pcode	"BBBBS"
 L476D:	pcode	"B"
 L4771:	pcode	"BBBBS"
-L4779:	.byte	$02,"BC"
-L477C:	.addr	L4779
-L477E:	.byte	$06,"BBBBBC"
-L4785:	.addr	L477E
-L4787:	.byte	$04,"BDBB"
-L478C:	.addr	L4787
-L478E:	.byte	$06,"BDBBBB"
-L4795:	.addr	L478E
-L4797:	.byte	$02,"DB"
-L479A:	.addr	L4797
-L479C:	.byte	$01,"X"
-L479E:	.addr	L479C
-L47A0:	.byte	$01,"X"
-L47A2:	.addr	L47A0
-L47A4:	.byte	$03,"BBB"
-L47A8:	.addr	L47A4
+L4779:	pcode	"BC"
+L477E:	pcode	"BBBBBC"
+L4787:	pcode	"BDBB"
+L478E:	pcode	"BDBBBB"
+L4797:	pcode	"DB"
+L479C:	pcode	"X"
+L47A0:	pcode	"X"
+L47A4:	pcode	"BBB"
 L47AA:	.byte	$04,"BBBB"
 L47AF:	.addr	L47AA
 L47B1:	.byte	$03,"BBB"
