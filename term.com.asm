@@ -346,6 +346,14 @@ SYSVBV		:= $E45F
 	ora     a1+1
 .endmacro
 
+.macro	pcode	a1
+	.local	ptr
+ptr:
+	.byte	.strlen(a1)
+	.byte	a1
+	.addr	ptr
+.endmacro
+
 	.segment "HDR00"
 
 	.word	$FFFF
@@ -1109,10 +1117,9 @@ L4754:  cld                                     ; 4754 D8                       
 	ora     ($00),y                         ; 475F 11 00                    ..
 	.byte	$00
 L4762:  .byte	$00
-L4763:  cld                                     ; 4763 D8                       .
+L4763:  .byte	$D8
 L4764:  .byte	$00
-L4765:	.byte	$05,"BBBBS"
-L476B:	.addr	L4765
+L4765:	pcode	"BBBBS"
 L476D:	.byte	$01,"B"
 L476F:	.addr	L476D
 L4771:	.byte	$05,"BBBBS"
@@ -1243,7 +1250,7 @@ L48BC:	.byte	$01,"B"
 L48BE:	.addr	L48BC
 	.byte	$4C
 L48C1:  .addr	L48C3
-L48C3:	.addr	L476B
+L48C3:	.addr	L476D-2
 	.addr	L476F
 	.addr	L4777
 	.addr	L477C
