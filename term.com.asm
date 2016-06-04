@@ -4632,14 +4632,8 @@ L6C5C:	mv	$A3, L6ACE+1
 	jsr     sub_606E
 	rdmv	L6AD3, $A0
 	add16i	off_AE, L6AC4, $0007
-	lda     L6AD4                           ; 6CE3 AD D4 6A                 ..j
-	ldy     #$01                            ; 6CE6 A0 01                    ..
-	sta     ($AE),y                         ; 6CE8 91 AE                    ..
-	lda     L6AD3                           ; 6CEA AD D3 6A                 ..j
-	dey                                     ; 6CED 88                       .
-	sta     ($AE),y                         ; 6CEE 91 AE                    ..
-	lda     L6ACD                           ; 6CF0 AD CD 6A                 ..j
-	sta     $A3                             ; 6CF3 85 A3                    ..
+	stp16	L6AD3
+	mv	$A3, L6ACD
 	ldy     L6ACC                           ; 6CF5 AC CC 6A                 ..j
 	ldxa	L6AD3
 	jsr     sub_45F6
