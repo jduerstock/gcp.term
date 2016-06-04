@@ -346,6 +346,12 @@ SYSVBV		:= $E45F
 	ora     a1+1
 .endmacro
 
+.macro	and8i	a1, a2, i1
+	lda	a2
+	and	#i1
+	sta	a1
+.endmacro
+
 .macro	pcode	a1
 	.local	ptr
 ptr:
@@ -7333,19 +7339,14 @@ L8E23:  .byte	$00
 ; ----------------------------------------------------------------------------
 sub_8E24:	
 	stack_prolog L8E1F, $02
-	lda	L8E1F
-	and	#$7F
-	sta     L8E22                           ; 8E32 8D 22 8E                 .".
+	and8i	L8E22, L8E1F, $7F
 	ldi	L8E23, $00
 	ldi	$84, $03
-	lda     L8E23                           ; 8E3E AD 23 8E                 .#.
-	tax                                     ; 8E41 AA                       .
-	lda     L8E22                           ; 8E42 AD 22 8E                 .".
+	ld2xa	L8E22
 	jsr     sub_43D1
 	st2xa	off_AE
 	add16m	$A0, L4674, $AE
-	lda     L8E21                           ; 8E5C AD 21 8E                 .!.
-	sta     $A3                             ; 8E5F 85 A3                    ..
+	mv	$A3, L8E21
 	rdldi	$A4, $0008
 	ldy     L8E20                           ; 8E69 AC 20 8E                 . .
 	ldxa	$A0
