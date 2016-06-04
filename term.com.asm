@@ -9157,13 +9157,9 @@ LA04F:	mv	$A3, L9FE7+1
 	ldy     #$00                            ; A0FE A0 00                    ..
 	ldxai	L9FF9
 	jsr     sub_4BF2
-	lda     #$9F                            ; A107 A9 9F                    ..
-	sta     $A3                             ; A109 85 A3                    ..
-	lda	L9FF3
-	sta     $A4                             ; A10E 85 A4                    ..
-	lda     L9FF4                           ; A110 AD F4 9F                 ...
-	sta     $A5                             ; A113 85 A5                    ..
-	ldy     #$F9                            ; A115 A0 F9                    ..
+	ldi	$A3, >L9FF9
+	dmv	$A4, L9FF3
+	ldy     #<L9FF9
 	ldxai	L9FF9
 	jsr     sub_4C1D
 	ldi	$A3, >L9FF9
