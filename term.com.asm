@@ -9193,12 +9193,7 @@ LA175:	lbeq	LA17B
 LA17B:	dmv	off_AE, LA018
 	ldp16	L9FEF
 	shladdm8 off_AE, LA01E, LA024
-	iny                                     ; A1A6 C8                       .
-	lda     ($AE),y                         ; A1A7 B1 AE                    ..
-	sta     L9FF2                           ; A1A9 8D F2 9F                 ...
-	dey                                     ; A1AC 88                       .
-	lda     ($AE),y                         ; A1AD B1 AE                    ..
-	sta     L9FF1                           ; A1AF 8D F1 9F                 ...
+	ld2p16	L9FF1
 	sty     LA009                           ; A1B2 8C 09 A0                 ...
 	lda     LA024                           ; A1B5 AD 24 A0                 .$.
 	sta     LA00B                           ; A1B8 8D 0B A0                 ...
