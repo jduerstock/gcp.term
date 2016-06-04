@@ -2425,8 +2425,7 @@ sub_532A:
 	stp8	L531F
 	mv	L5329, L474C
 	sty     L464B                           ; 534A 8C 4B 46                 .KF
-	lda     L5323                           ; 534D AD 23 53                 .#S
-	sta     $A3                             ; 5350 85 A3                    ..
+	mv	$A3, L5323
 	rdldi	$A4, L5324
 	ldy     L5322                           ; 535A AC 22 53                 ."S
 	ldx     L531E                           ; 535D AE 1E 53                 ..S
