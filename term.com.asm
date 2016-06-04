@@ -5377,10 +5377,8 @@ L763E:  lda     L7607                           ; 763E AD 07 76                 
 	lda     L7607                           ; 7657 AD 07 76                 ..v
 	ldy     #$00                            ; 765A A0 00                    ..
 	sta     ($AE),y                         ; 765C 91 AE                    ..
-L765E:  lda     L7605                           ; 765E AD 05 76                 ..v
-	jsr     sub_72B1
-	ldy     #$01                            ; 7664 A0 01                    ..
-	sty     L4656                           ; 7666 8C 56 46                 .VF
+L765E:	proc8	sub_72B1, L7605
+	yldi	L4656, $01
 	rts                                     ; 7669 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -5389,15 +5387,15 @@ L766B:	.byte	$20                             ; 766B 20
 L766C:	.byte	$53                             ; 766C 53                       S
 L766D:	.byte	$EC                             ; 766D EC                       .
 L766E:	.byte	$90                             ; 766E 90                       .
-L766F:  clv                                     ; 766F B8                       .
+L766F:  .byte	$B8
 L7670:	.byte	$4C                             ; 7670 4C                       L
 L7671:	.byte	$11                             ; 7671 11                       .
 L7672:  .byte	$F0
 L7673:	.byte	$20
-	cpy     #$EB                            ; 7674 C0 EB                    ..
+	.byte	$C0,$EB
 	.byte	$20
 L7677:	.byte	$43,$EC
-	bcs     L76BA                           ; 7679 B0 3F                    .?
+	.byte	$B0,$3F
 L767B:	.byte	$20                             ; 767B 20                        
 L767C:	.byte	$75                             ; 767C 75                       u
 L767D:  .byte	$E9
@@ -5512,10 +5510,8 @@ sub_77A3:
 	lda     $AC                             ; 780D A5 AC                    ..
 	dey                                     ; 780F 88                       .
 	sta     ($AE),y                         ; 7810 91 AE                    ..
-	lda     L779E                           ; 7812 AD 9E 77                 ..w
-	jsr     sub_71B5
-	lda     L779E                           ; 7818 AD 9E 77                 ..w
-	jsr     sub_72B1
+	proc8	sub_71B5, L779E
+	proc8	sub_72B1, L779E
 	yldi	L4656, $01
 	rts                                     ; 7823 60                       `
 
@@ -5531,8 +5527,7 @@ sub_782A:
 	prolog
 	stxa	L7824
 	func16_8 sub_7035, L7828, L7824
-	lda     L7828                           ; 7843 AD 28 78                 .(x
-	ora     L7828+1
+	test16	L7828
 	lbne	L784F
 	rts                                     ; 784E 60                       `
 
@@ -5577,8 +5572,7 @@ L78B1:  lda     #$12                            ; 78B1 A9 12                    
 	lda     L4659,x                         ; 78BE BD 59 46                 .YF
 	sta     $A0                             ; 78C1 85 A0                    ..
 	func16_8 sub_7035, L7828, $A0
-	lda     L7828                           ; 78D2 AD 28 78                 .(x
-	ora     L7828+1
+	test16	L7828
 	beq     L78F5                           ; 78D8 F0 1B                    ..
 	add16i	off_AE, L7828, $000C
 	ldy     #$00                            ; 78E9 A0 00                    ..
