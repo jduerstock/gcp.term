@@ -1267,25 +1267,25 @@ L48C3:	.addr	L476D-2
 	.addr	L47CD-2
 	.addr	L47D2-2
 	.addr	L47D9-2
-	.addr	L47DD
-	.addr	L47E2
-	.addr	L47E7
-	.addr	L47EC
-	.addr	L47F2
-	.addr	L47F8
-	.addr	L47FC
-	.addr	L4800
-	.addr	L4804
-	.addr	L4808
-	.addr	L480F
-	.addr	L4814
-	.addr	L4819
-	.addr	L481F
-	.addr	L4829
-	.addr	L4832
-	.addr	L4838
-	.addr	L483D
-	.addr	L483F
+	.addr	L47DF-2
+	.addr	L47E4-2
+	.addr	L47E9-2
+	.addr	L47EE-2
+	.addr	L47F4-2
+	.addr	L47FA-2
+	.addr	L47FE-2
+	.addr	L4802-2
+	.addr	L4806-2
+	.addr	L480A-2
+	.addr	L4811-2
+	.addr	L4816-2
+	.addr	L481B-2
+	.addr	L4821-2
+	.addr	L482B-2
+	.addr	L4834-2
+	.addr	L483A-2
+	.addr	L483E-2
+	.addr	L4841-2
 	.addr	L4843
 	.addr	L4849
 	.addr	L484D
