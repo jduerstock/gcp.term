@@ -9624,23 +9624,15 @@ sub_A547:
 LA56B:  rts                                     ; A56B 60                       `
 
 ; ----------------------------------------------------------------------------
-LA56C:  lda     LA531                           ; A56C AD 31 A5                 .1.
-	sta     $A3                             ; A56F 85 A3                    ..
-	lda     #$00                            ; A571 A9 00                    ..
-	sta     $A5                             ; A573 85 A5                    ..
-	lda     #$04                            ; A575 A9 04                    ..
-	sta     $A4                             ; A577 85 A4                    ..
+LA56C:	mv	$A3, LA530+1
+	rdldi	$A4, $0004
 	ldy     LA530                           ; A579 AC 30 A5                 .0.
 	ldxai	LA53D
 	jsr     blockmove
 	sub8m	off_AE, LA53F, LA53D
 LA58C:	add8i	LA536, off_AE, $01
-	lda     LA534+1
-	sta     $A3                             ; A597 85 A3                    ..
-	lda     #$00                            ; A599 A9 00                    ..
-	sta     $A5                             ; A59B 85 A5                    ..
-	lda     #$06                            ; A59D A9 06                    ..
-	sta     $A4                             ; A59F 85 A4                    ..
+	mv	$A3, LA534+1
+	rdldi	$A4, $0006
 	ldy     LA534                           ; A5A1 AC 34 A5                 .4.
 	ldxai	LA541
 	jsr     blockmove
@@ -9670,10 +9662,10 @@ LA5F6:  lda     LA601                           ; A5F6 AD 01 A6                 
 
 ; ----------------------------------------------------------------------------
 LA601:  .byte	$00
-LA602:  ldy     #$01                            ; A602 A0 01                    ..
-	sty     LA538                           ; A604 8C 38 A5                 .8.
-	lda     LA536                           ; A607 AD 36 A5                 .6.
-	sta     LA618                           ; A60A 8D 18 A6                 ...
+
+; ----------------------------------------------------------------------------
+LA602:	yldi	LA538, $01
+	mv	LA618, LA536
 LA60D:  lda     LA618                           ; A60D AD 18 A6                 ...
 	cmp     LA538                           ; A610 CD 38 A5                 .8.
 	bcs     LA619                           ; A613 B0 04                    ..
