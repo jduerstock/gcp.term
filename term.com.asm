@@ -2422,11 +2422,8 @@ sub_532A:
 	prolog
 	stxa	L531E
 	dmv	off_AE, L5322
-	lda     L531F                           ; 533D AD 1F 53                 ..S
-	ldy	#$00
-	sta     ($AE),y                         ; 5342 91 AE                    ..
-	lda     L474C                           ; 5344 AD 4C 47                 .LG
-	sta     L5329                           ; 5347 8D 29 53                 .)S
+	stp8	L531F
+	mv	L5329, L474C
 	sty     L464B                           ; 534A 8C 4B 46                 .KF
 	lda     L5323                           ; 534D AD 23 53                 .#S
 	sta     $A3                             ; 5350 85 A3                    ..
