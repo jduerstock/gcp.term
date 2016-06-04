@@ -5347,10 +5347,8 @@ L75D9:  lda     L7588                           ; 75D9 AD 88 75                 
 	lda     L7588                           ; 75F2 AD 88 75                 ..u
 	ldy     #$00                            ; 75F5 A0 00                    ..
 	sta     ($AE),y                         ; 75F7 91 AE                    ..
-L75F9:  lda     L7586                           ; 75F9 AD 86 75                 ..u
-	jsr     sub_71B5
-	ldy     #$01                            ; 75FF A0 01                    ..
-	sty     L4656                           ; 7601 8C 56 46                 .VF
+L75F9:	proc8	sub_71B5, L7586
+	yldi	L4656, $01
 	rts                                     ; 7604 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -5417,8 +5415,7 @@ L7688:	.byte	$ED                             ; 7688 ED                       .
 sub_768A:  
 	stack_prolog L766A, $02
 	func16_8 sub_7035, L766D, L766A
-	lda     L766E                           ; 76A3 AD 6E 76                 .nv
-	sta     $A3                             ; 76A6 85 A3                    ..
+	mv	$A3, L766D+1
 	ldi	$A5, $00
 	ldi	$A4, $0C
 	ldy     L766D                           ; 76B0 AC 6D 76                 .mv
@@ -5435,8 +5432,7 @@ L76C7:  ldi	$A0, $00
 L76CC:	add8m	L766B, L766B, L7680
 	add8m	L766C, L766C, L7681
 	add16i	L767B, L766D, $0022
-	lda     L767C                           ; 76F1 AD 7C 76                 .|v
-	sta     $A3                             ; 76F4 85 A3                    ..
+	mv	$A3, L767C
 	sec                                     ; 76F6 38                       8
 	lda     #$00                            ; 76F7 A9 00                    ..
 	sbc     L766B                           ; 76F9 ED 6B 76                 .kv
@@ -5490,6 +5486,7 @@ L77A0:	.byte	$45
 L77A1:	.byt	$C8
 L77A2:	.byte	$A9
 
+; ----------------------------------------------------------------------------
 sub_77A3:  
 	stack_prolog L779E, $02
 	lda     L779E                           ; 77AC AD 9E 77                 ..w
