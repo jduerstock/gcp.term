@@ -1200,7 +1200,7 @@ L48B7:	.byte   $02,"BB"
 L48BA:	.addr	L48B7
 L48BC:	.byte	$01,"B"
 L48BE:	.addr	L48BC
-	.byte	$4C
+L48C0:	.byte	$4C
 L48C1:  .addr	L48C3
 L48C3:	.addr	L476D-2
 	.addr	L4771-2
@@ -1263,10 +1263,10 @@ L48C3:	.addr	L476D-2
 	.addr	L48A5-2
 	.addr	L48AA-2
 	.addr	L48AD-2
-	bcs     L4987                           ; 493D B0 48                    .H
-	lda     $48,x                           ; 493F B5 48                    .H
-	.addr	L48BA
-	.addr	L48BE
+	.addr	L48B2-2
+	.addr	L48B7-2
+	.addr	L48BC-2
+	.addr	L48C0-2
 
 sub_4945:  
 	sta     $A0                             ; 4945 85 A0                    ..
