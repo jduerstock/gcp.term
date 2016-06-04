@@ -4711,10 +4711,7 @@ L6D88:  ldx     #$00                            ; 6D88 A2 00                    
 	sta     $A0                             ; 6E15 85 A0                    ..
 	lda     L6AC3                           ; 6E17 AD C3 6A                 ..j
 	sta     $A3                             ; 6E1A 85 A3                    ..
-	lda     L6AC2                           ; 6E1C AD C2 6A                 ..j
-	sta     $AC                             ; 6E1F 85 AC                    ..
-	lda     L6AC3                           ; 6E21 AD C3 6A                 ..j
-	sta     $AD                             ; 6E24 85 AD                    ..
+	dmv	off_AC, L6AC2
 	clc                                     ; 6E26 18                       .
 	lda     ($AC),y                         ; 6E27 B1 AC                    ..
 	adc     #$01                            ; 6E29 69 01                    i.
