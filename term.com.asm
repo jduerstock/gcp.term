@@ -3659,11 +3659,8 @@ L60ED:  lda     L6067                           ; 60ED AD 67 60                 
 	ldy     L6066                           ; 6126 AC 66 60                 .f`
 	ldxa	L6068
 	jsr     sub_5FF5
-	lda     #$02                            ; 6132 A9 02                    ..
-	sta     $84                             ; 6134 85 84                    ..
-	lda     L6069                           ; 6136 AD 69 60                 .i`
-	tax                                     ; 6139 AA                       .
-	lda     L6068                           ; 613A AD 68 60                 .h`
+	ldi	$84, $02
+	ld2xa	L6068
 	jsr     sub_43D1
 	st2xa	off_AE
 	add16m	L606C, MEMLO, off_AE
@@ -7337,7 +7334,7 @@ L8E22:  .byte	$00
 L8E23:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-sub_8E24:	
+sub_8E24:					; "Z"
 	stack_prolog L8E1F, $02
 	and8i	L8E22, L8E1F, $7F
 	ldi	L8E23, $00
@@ -7345,7 +7342,7 @@ sub_8E24:
 	ld2xa	L8E22
 	jsr     sub_43D1
 	st2xa	off_AE
-	add16m	$A0, L4674, $AE
+	add16m	$A0, L4674, off_AE
 	mv	$A3, L8E21
 	rdldi	$A4, $0008
 	ldy     L8E20                           ; 8E69 AC 20 8E                 . .
