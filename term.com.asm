@@ -9206,8 +9206,7 @@ LA04F:  lda     L9FE7+1
 	lda     #$04                            ; A126 A9 04                    ..
 	sta     $A4                             ; A128 85 A4                    ..
 	ldy     #$F9                            ; A12A A0 F9                    ..
-	ldx     #$A0                            ; A12C A2 A0                    ..
-	lda     #$23                            ; A12E A9 23                    .#
+	ldxai	LA023
 	jsr     blockmove
 	lda     #$9F                            ; A133 A9 9F                    ..
 	sta     $A3                             ; A135 85 A3                    ..
