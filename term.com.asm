@@ -1120,10 +1120,8 @@ L4762:  .byte	$00
 L4763:  .byte	$D8
 L4764:  .byte	$00
 L4765:	pcode	"BBBBS"
-L476D:	.byte	$01,"B"
-L476F:	.addr	L476D
-L4771:	.byte	$05,"BBBBS"
-L4777:	.addr	L4771
+L476D:	pcode	"B"
+L4771:	pcode	"BBBBS"
 L4779:	.byte	$02,"BC"
 L477C:	.addr	L4779
 L477E:	.byte	$06,"BBBBBC"
@@ -1251,17 +1249,17 @@ L48BE:	.addr	L48BC
 	.byte	$4C
 L48C1:  .addr	L48C3
 L48C3:	.addr	L476D-2
-	.addr	L476F
-	.addr	L4777
-	.addr	L477C
-	.addr	L4785
-	.addr	L478C
-	.addr	L4795
-	.addr	L479A
-	.addr	L479E
-	.addr	L47A2
-	.addr	L47A8
-	.addr	L47AF
+	.addr	L4771-2
+	.addr	L4779-2
+	.addr	L477E-2
+	.addr	L4787-2
+	.addr	L478E-2
+	.addr	L4797-2
+	.addr	L479C-2
+	.addr	L47A0-2
+	.addr	L47A4-2
+	.addr	L47AA-2
+	.addr	L47B1-2
 	.addr	L47B5
 	.addr	L47BB
 	.addr	L47C1
