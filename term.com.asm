@@ -9149,19 +9149,11 @@ LA04F:	mv	$A3, L9FE7+1
 	sub8i	$A4, LA01A, $01
 	sub8i	$A5, LA01B, $01
 	ldy     #$00                            ; A0E1 A0 00                    ..
-	ldx     #$9F                            ; A0E3 A2 9F                    ..
-	lda     #$F5                            ; A0E5 A9 F5                    ..
+	ldxai	L9FF5
 	jsr     sub_4BF2
-	lda     #$00                            ; A0EA A9 00                    ..
-	sta     $A3                             ; A0EC 85 A3                    ..
-	sec                                     ; A0EE 38                       8
-	lda     LA014                           ; A0EF AD 14 A0                 ...
-	sbc     #$01                            ; A0F2 E9 01                    ..
-	sta     $A4                             ; A0F4 85 A4                    ..
-	sec                                     ; A0F6 38                       8
-	lda     LA015                           ; A0F7 AD 15 A0                 ...
-	sbc     #$01                            ; A0FA E9 01                    ..
-	sta     $A5                             ; A0FC 85 A5                    ..
+	ldi	$A3, $00
+	sub8i	$A4, LA014, $01
+	sub8i	$A5, LA015, $01
 	ldy     #$00                            ; A0FE A0 00                    ..
 	ldxai	L9FF9
 	jsr     sub_4BF2
