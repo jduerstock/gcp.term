@@ -9616,9 +9616,7 @@ LA546:  .byte	$00
 
 sub_A547:
 	stack_prolog LA52E, $03
-	lda     LA52E                           ; A550 AD 2E A5                 ...
-	jsr     sub_65B0
-	rdmv	LA534, $A0
+	func16_8 sub_65B0, LA534, LA52E
 	test16	LA534
 	lbne	LA56C
 LA56B:  rts                                     ; A56B 60                       `
