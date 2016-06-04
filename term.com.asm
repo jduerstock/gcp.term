@@ -9490,18 +9490,11 @@ LA3E2:  jsr     sub_5E1E
 	lda     LA3B5                           ; A3FD AD B5 A3                 ...
 	sbc     LA3B3                           ; A400 ED B3 A3                 ...
 	sta     $AE                             ; A403 85 AE                    ..
-	clc                                     ; A405 18                       .
-	lda     $AE                             ; A406 A5 AE                    ..
-	adc     #$01                            ; A408 69 01                    i.
-	sta     LA3AE                           ; A40A 8D AE A3                 ...
-	lda     LA3AC+1
-	sta     $A3                             ; A410 85 A3                    ..
-	lda     #$00                            ; A412 A9 00                    ..
-	sta     $A5                             ; A414 85 A5                    ..
-	lda     #$06                            ; A416 A9 06                    ..
-	sta     $A4                             ; A418 85 A4                    ..
+	add8i	LA3AE, off_AE, $01
+	mv	$A3, LA3AC+1
+	rdldi	$A4, $0006
 	ldy     LA3AC                           ; A41A AC AC A3                 ...
-	ldxai	$A3B7
+	ldxai	LA3B7
 	jsr     blockmove
 	shladdm8 off_AE, LA3BB, LA3B4
 	clc                                     ; A438 18                       .
@@ -9536,8 +9529,7 @@ LA476:  lda     LA3A7                           ; A476 AD A7 A3                 
 	ldxa	$A0
 	jsr     sub_4B97
 	mv	LA3B1, $A0
-LA49C:  ldy     #$01                            ; A49C A0 01                    ..
-	sty     LA3B0                           ; A49E 8C B0 A3                 ...
+LA49C:	yldi	LA3B0, $01
 	mv	LA4B2, LA3B1
 LA4A7:  lda     LA4B2                           ; A4A7 AD B2 A4                 ...
 	cmp     LA3B0                           ; A4AA CD B0 A3                 ...
@@ -9556,8 +9548,7 @@ LA4B3:	add16m8	off_AE, LA3AA, LA3B0
 	lbeq	LA4DD
 	lda     LA3B2                           ; A4D2 AD B2 A3                 ...
 	jsr     sub_4BC9
-	lda     $A0                             ; A4D8 A5 A0                    ..
-	sta     LA3B2                           ; A4DA 8D B2 A3                 ...
+	mv	LA3B2, $A0
 LA4DD:  ldx     LA3B2                           ; A4DD AE B2 A3                 ...
 	lda     LA3A6                           ; A4E0 AD A6 A3                 ...
 	jsr     sub_45C7
