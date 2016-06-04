@@ -1257,17 +1257,12 @@ L48C3:	.addr	L476D-2
 	.addr	L4889-2
 	.addr	L488F-2
 	.addr	L4893-2
-	.byte   $97                             ; 4931 97                       .
-	pha                                     ; 4932 48                       H
-	.byte   $9C                             ; 4933 9C                       .
-	pha                                     ; 4934 48                       H
-	ldy     #$48                            ; 4935 A0 48                    .H
-	.byte   $A3                             ; 4937 A3                       .
-	pha                                     ; 4938 48                       H
-	tay                                     ; 4939 A8                       .
-	pha                                     ; 493A 48                       H
-	.byte   $AB                             ; 493B AB                       .
-	pha                                     ; 493C 48                       H
+	.addr	L4899-2
+	.addr	L489E-2
+	.addr	L48A2-2
+	.addr	L48A5-2
+	.addr	L48AA-2
+	.addr	L48AD-2
 	bcs     L4987                           ; 493D B0 48                    .H
 	lda     $48,x                           ; 493F B5 48                    .H
 	.addr	L48BA
