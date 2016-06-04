@@ -863,7 +863,7 @@ L461A:  cpy     $A2                             ; 461A C4 A2                    
 ; $A3A2 = source
 ; $A4A5 = count
 
-sub_461F:
+blockmove:
 	sta     $A0                             ; 461F 85 A0                    ..
 	stx     $A1                             ; 4621 86 A1                    ..
 	sty	$A2
@@ -1114,7 +1114,7 @@ L4751:  .byte	$28
 L4752:	.byte	$32                             ; 4752 32                       2
 L4753:	.byte	$29                             ; 4753 29                       )
 L4754:  .byte	$D8
-	dec     $1E,x                           ; 4755 D6 1E                    ..
+L4755:	.byte	$D6,$1E
 	ora     a:$00                           ; 4757 0D 00 00                 ...
 	.byte	$01,$0C
 	.byte	$D8
@@ -1372,8 +1372,7 @@ L49D2:  .byte	$00
 sub_49D3:  
 	prolog
 	stxa	L49C3
-	lda	L49C3
-	sta	HPOSP3
+	mv	HPOSP3, L49C3
 	lda	L49C4
 	eor     L499F                           ; 49E5 4D 9F 49                 M.I
 	lbne	L49EE
@@ -1395,7 +1394,7 @@ L49EE:  clc                                     ; 49EE 18                       
 	sta     $A4                             ; 4A09 85 A4                    ..
 	ldy     L49D1                           ; 4A0B AC D1 49                 ..I
 	ldxai	L49C5
-	jsr     sub_461F
+	jsr     blockmove
 	lda     #$00                            ; 4A15 A9 00                    ..
 	sta     $A3                             ; 4A17 85 A3                    ..
 	ldy     #$0C                            ; 4A19 A0 0C                    ..
@@ -1417,9 +1416,8 @@ L49EE:  clc                                     ; 49EE 18                       
 	lda     #$0C                            ; 4A40 A9 0C                    ..
 	sta     $A4                             ; 4A42 85 A4                    ..
 	ldy     #$C5                            ; 4A44 A0 C5                    ..
-	ldx     $A1                             ; 4A46 A6 A1                    ..
-	lda     $A0                             ; 4A48 A5 A0                    ..
-	jsr     sub_461F
+	ldxa	$A0
+	jsr     blockmove
 	rts                                     ; 4A4D 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -1449,9 +1447,8 @@ L4A53:	stack_prolog L4A4E, $04
 	lda     L4A50                           ; 4A80 AD 50 4A                 .PJ
 	sta     $A4                             ; 4A83 85 A4                    ..
 	ldy     L4A4E                           ; 4A85 AC 4E 4A                 .NJ
-	ldx     $A1                             ; 4A88 A6 A1                    ..
-	lda     $A0                             ; 4A8A A5 A0                    ..
-	jsr     sub_461F
+	ldxa	$A0
+	jsr	blockmove
 	lda     #$02                            ; 4A8F A9 02                    ..
 	sta     $D00B                           ; 4A91 8D 0B D0                 ...
 	lda     L4A51                           ; 4A94 AD 51 4A                 .QJ
@@ -1686,7 +1683,7 @@ sub_4BF2:
 	sta     $A4                             ; 4C05 85 A4                    ..
 	ldy     #<L4BEE                         ; 4C07 A0 EE                    ..
 	ldxa	L4BEC
-	jsr     sub_461F
+	jsr     blockmove
 	rts                                     ; 4C12 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -1711,7 +1708,7 @@ sub_4C1D:
 	sta     $A4                             ; 4C31 85 A4                    ..
 	ldy     L4C15                           ; 4C33 AC 15 4C                 ..L
 	ldxai	L4C19
-	jsr     sub_461F
+	jsr     blockmove
 	add8m	$A2, L4C19, L4C17
 	add8m	$A3, L4C1A, L4C18
 	add8m	$A4, L4C1B, L4C17
@@ -1741,7 +1738,7 @@ sub_4C75:
 	sta     $A4                             ; 4C89 85 A4                    ..
 	ldy     L4C6F                           ; 4C8B AC 6F 4C                 .oL
 	ldxai	$4C71
-	jsr     sub_461F
+	jsr     blockmove
 	ldx     L4C71                           ; 4C95 AE 71 4C                 .qL
 	lda     L4C6D                           ; 4C98 AD 6D 4C                 .mL
 	jsr     sub_4955
@@ -1878,7 +1875,7 @@ sub_4E4A:
 	rdldi	$A4, $0004
 	ldy     L4E42                           ; 4E60 AC 42 4E                 .BN
 	ldxai	L4E46
-	jsr     sub_461F
+	jsr     blockmove
 	sub8m	off_AE, L4E48, L4E46
 	add8i	off_AC, off_AE, $01
 	sub8m	off_AE, L4E49, L4E47
@@ -2268,9 +2265,8 @@ L523B:  clc                                     ; 523B 18                       
 	lda     $A9                             ; 525D A5 A9                    ..
 	sta     $A4                             ; 525F 85 A4                    ..
 	ldy     $A2                             ; 5261 A4 A2                    ..
-	ldx     $A1                             ; 5263 A6 A1                    ..
-	lda     $A0                             ; 5265 A5 A0                    ..
-	jsr     sub_461F
+	ldxa	$A0
+	jsr     blockmove
 	rts                                     ; 526A 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -2452,7 +2448,7 @@ L53BE:  lda     L5391                           ; 53BE AD 91 53                 
 	sta     $A5                             ; 53FF 85 A5                    ..
 	ldy     $A2                             ; 5401 A4 A2                    ..
 	ldxai	LB16A
-	jsr     sub_461F
+	jsr     blockmove
 	lda     L4650                           ; 540A AD 50 46                 .PF
 	lbeq	L541E
 	yldi	L464B, $00
@@ -2526,7 +2522,7 @@ L54B8:	sub8i	L4649, LB1C6, $04
 	sta     $A4                             ; 54CB 85 A4                    ..
 	ldy     #$C9                            ; 54CD A0 C9                    ..
 	ldxai	LB224
-	jsr     sub_461F
+	jsr     blockmove
 L54D6:	yldi	L4651, $00
 	ldi	$A0, $01
 	rts                                     ; 54DF 60                       `
@@ -3735,7 +3731,7 @@ sub_6203:
 	sta     $A4                             ; 623E 85 A4                    ..
 	ldy     $A2                             ; 6240 A4 A2                    ..
 	ldxa	$A0
-	jsr     sub_461F
+	jsr     blockmove
 	shladdi	off_AE, L466F, $0001
 	ldp16	L61FF
 	add16i	off_AE, L61FF, $0003
@@ -3833,7 +3829,7 @@ sub_636E:
 	sta     $A4                             ; 63AD 85 A4                    ..
 	ldy     $A2                             ; 63AF A4 A2                    ..
 	ldxa	L636A
-	jsr     sub_461F
+	jsr     blockmove
 	add16i	off_AE, L636C, $0002
 	ldy     #$00                            ; 63C9 A0 00                    ..
 	lda     ($AE),y                         ; 63CB B1 AE                    ..
@@ -4084,12 +4080,11 @@ sub_6696:					; "F"
 	rts                                     ; 66BA 60                       `
 
 ; ----------------------------------------------------------------------------
-L66BB:  lda     L6692+1                         ; 66BB AD 93 66                 ..f
-	sta     $A3                             ; 66BE 85 A3                    ..
+L66BB:	mv	$A3, L6692+1
 	rdldi	$A4, $0002
 	ldy     L6692                           ; 66C8 AC 92 66                 ..f
 	ldxai	L6694
-	jsr     sub_461F
+	jsr     blockmove
 	sub8i	$A3, L6694, $01
 	sub8i	$A4, L6695, $01
 	lda     L6690+1
@@ -4121,7 +4116,7 @@ sub_66FC:
 	rdldi	$A4, $0006
 	ldy     L66F4                           ; 6722 AC F4 66                 ..f
 	ldxai	L66F6
-	jsr     sub_461F
+	jsr     blockmove
 	lda     L66F3                           ; 672C AD F3 66                 ..f
 	cmp     L66F7                           ; 672F CD F7 66                 ..f
 	lbcc	L6742
@@ -4148,9 +4143,8 @@ L6742:	dmv	off_AE, L66FA
 	jsr     sub_444A
 	st2xa	$A4
 	ldy     $A2                             ; 6793 A4 A2                    ..
-	ldx     $A1                             ; 6795 A6 A1                    ..
-	lda     $A0                             ; 6797 A5 A0                    ..
-	jsr     sub_461F
+	ldxa	$A0
+	jsr     blockmove
 	sub8m	$A2, L66F7, L66F3
 	sub8i	$A3, L66F6, $01
 	sub8i	$A4, L66F7, $01
@@ -4194,7 +4188,7 @@ L67FD:	mv	$A3, L67CF+1
 	rdldi	$A4, $0006
 	ldy     L67CF                           ; 680A AC CF 67                 ..g
 	ldxai	L67D2
-	jsr     sub_461F
+	jsr     blockmove
 	dmv	off_AE, L67C8
 	ldy     #$00                            ; 681E A0 00                    ..
 	lda     ($AE),y                         ; 6820 B1 AE                    ..
@@ -4210,17 +4204,11 @@ L683B:  lda     L67CA                           ; 683B AD CA 67                 
 	rts                                     ; 6843 60                       `
 
 ; ----------------------------------------------------------------------------
-L6844:  sec                                     ; 6844 38                       8
-	lda     L67D2                           ; 6845 AD D2 67                 ..g
-	sbc     L67C5                           ; 6848 ED C5 67                 ..g
-	sta     $AE                             ; 684B 85 AE                    ..
+L6844:	sub8m	off_AE, L67D2, L67C5
 	lda     $AE                             ; 684D A5 AE                    ..
 	cmp     L67C7                           ; 684F CD C7 67                 ..g
 	lbcs	L6861
-	sec                                     ; 6857 38                       8
-	lda     L67D2                           ; 6858 AD D2 67                 ..g
-	sbc     L67C5                           ; 685B ED C5 67                 ..g
-	sta     L67C7                           ; 685E 8D C7 67                 ..g
+	sub8m	L67C7, L67D2, L67C5
 L6861:  sec                                     ; 6861 38                       8
 	lda     L67CA                           ; 6862 AD CA 67                 ..g
 	sbc     #$01                            ; 6865 E9 01                    ..
@@ -4294,9 +4282,8 @@ L68F4:	add8m	off_AE, L67D1, L67C6
 	lda     L67CB                           ; 6934 AD CB 67                 ..g
 	sta     $A4                             ; 6937 85 A4                    ..
 	ldy     $A2                             ; 6939 A4 A2                    ..
-	ldx     $A1                             ; 693B A6 A1                    ..
-	lda     $A0                             ; 693D A5 A0                    ..
-	jsr     sub_461F
+	ldxa	$A0
+	jsr     blockmove
 	add16m8 L67C8, L67C8, L67CB
 	sub8m	L67CA, L67CA, L67CB
 	inc     L67D1                           ; 695E EE D1 67                 ..g
@@ -4350,7 +4337,7 @@ L69B7:	mv	$A3, L6983+1
 	rdldi	$A4, $000B
 	ldy     L6983                           ; 69C4 AC 83 69                 ..i
 	ldxai	L698A
-	jsr     sub_461F
+	jsr     blockmove
 	dmv	off_AE, L698E
 	ldp16	L6985
 	lda     L698B                           ; 69E5 AD 8B 69                 ..i
@@ -4625,9 +4612,8 @@ L6D88:  ldx     #$00                            ; 6D88 A2 00                    
 	lda     #$00                            ; 6E2D A9 00                    ..
 	sta     $A5                             ; 6E2F 85 A5                    ..
 	ldy     L6AC2                           ; 6E31 AC C2 6A                 ..j
-	ldx     $A1                             ; 6E34 A6 A1                    ..
-	lda     $A0                             ; 6E36 A5 A0                    ..
-	jsr     sub_461F
+	ldxa	$A0
+	jsr     blockmove
 L6E3B:  ldi	$A0, $01
 	rts                                     ; 6E3F 60                       `
 
@@ -4663,7 +4649,7 @@ sub_6E61:  					; "B"
 	rdldi	$A4, $0006
 	ldy     L6E46                           ; 6E87 AC 46 6E                 .Fn
 	ldxai	$6E5B
-	jsr     sub_461F
+	jsr     blockmove
 	sub8m	off_AE, L6E44, L6E42
 	add8i	L6E49, off_AE, $01
 	mv	L6E4A, L6E49
@@ -4749,14 +4735,12 @@ sub_6F91:
 	rts                                     ; 6FA4 60                       `
 
 ; ----------------------------------------------------------------------------
-L6FA5:  lda     L4647                           ; 6FA5 AD 47 46                 .GF
-	jsr     sub_65B0
-	rdmv	L6F8D, $A0
-	mv	$A3, L6F8E
+L6FA5:	func16_8 sub_65B0, L6F8D, L4647
+	mv	$A3, L6F8D+1
 	rdldi	$A4, $0002
 	ldy     L6F8D                           ; 6FC2 AC 8D 6F                 ..o
 	ldxai	L6F8F
-	jsr     sub_461F
+	jsr     blockmove
 	mv	$A3, L6F8F
 	rdmv	$A4, L6F8B
 L6FDB:  ldy     L6F90                           ; 6FDB AC 90 6F                 ..o
@@ -4835,7 +4819,7 @@ sub_7096:
 	rdldi	$A4, $0004
 	ldy     L7090                           ; 70CB AC 90 70                 ..p
 	ldxa	$A0
-	jsr     sub_461F
+	jsr     blockmove
 	rts                                     ; 70D5 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -4856,11 +4840,11 @@ sub_70E2:
 	stack_prolog L70D6, $02
 	func16_8 sub_7035, L70D9, L70D6
 	add16i	L70DD, L70D9, $0022
-	mv	$A3, L70D8
+	mv	$A3, L70D7+1
 	rdldi	$A4, $0004
 	ldy     L70D7                           ; 7119 AC D7 70                 ..p
 	ldxa	L70DD
-	jsr     sub_461F
+	jsr     blockmove
 	add16i	off_AE, L70D9, $0004
 	ldy     #$00                            ; 7134 A0 00                    ..
 	lda     ($AE),y                         ; 7136 B1 AE                    ..
@@ -4876,7 +4860,7 @@ sub_70E2:
 	sta     $A4                             ; 7156 85 A4                    ..
 	ldy     L70DB                           ; 7158 AC DB 70                 ..p
 	ldxai	L70E0
-	jsr     sub_461F
+	jsr     blockmove
 	add16i	off_AE, L70DD, $0002
 	clc                                     ; 7171 18                       .
 	ldy     #$00                            ; 7172 A0 00                    ..
@@ -4933,7 +4917,7 @@ sub_71B5:
 	sta     $A4                             ; 71D6 85 A4                    ..
 	ldy     L71A2                           ; 71D8 AC A2 71                 ..q
 	ldxai	L71AE
-	jsr     sub_461F
+	jsr     blockmove
 	func16_8 sub_65B0, L71AC, L71B2
 	sec                                     ; 71F2 38                       8
 	lda     #$00                            ; 71F3 A9 00                    ..
@@ -5004,11 +4988,11 @@ sub_72B1:
 	prolog
 	sta     L729F                           ; 72B4 8D 9F 72                 ..r
 	func16_8 sub_7035, L72A0, L729F
-	mv	$A3, L72A1
+	mv	$A3, L72A0+1
 	rdldi	$A4, $0007
 	ldy     L72A0                           ; 72D4 AC A0 72                 ..r
 	ldxai	L72AA
-	jsr     sub_461F
+	jsr     blockmove
 	sec                                     ; 72DE 38                       8
 	lda     #$00                            ; 72DF A9 00                    ..
 	sbc     L72AA                           ; 72E1 ED AA 72                 ..r
@@ -5214,11 +5198,10 @@ L753B:	add16i	off_AE, L74BC, $000D
 	sta     ($AE),y                         ; 754F 91 AE                    ..
 	add16i	$A0, L74BC, $000E
 	add16i	$A2, L74BA, $0001
-	ldi	$A5, $00
-	ldi	$A4, $08
+	rdldi	$A4, $0008
 	ldy     $A2                             ; 7577 A4 A2                    ..
 	ldxa	$A0
-	jsr     sub_461F
+	jsr	blockmove
 	yldi	L4656, $01
 	rts                                     ; 7585 60                       `
 
@@ -5319,11 +5302,10 @@ sub_768A:
 	stack_prolog L766A, $02
 	func16_8 sub_7035, L766D, L766A
 	mv	$A3, L766D+1
-	ldi	$A5, $00
-	ldi	$A4, $0C
+	rdldi	$A4, $000C
 	ldy     L766D                           ; 76B0 AC 6D 76                 .mv
 	ldxai	L767E
-	jsr     sub_461F
+	jsr     blockmove
 L76BA:  lda     L7688                           ; 76BA AD 88 76                 ..v
 	beq     L76C7                           ; 76BD F0 08                    ..
 	lda     L7687                           ; 76BF AD 87 76                 ..v
@@ -5759,9 +5741,8 @@ L7BEC:  lda     L7B52+1
 	lda     #$05                            ; 7BF5 A9 05                    ..
 	sta     $A4                             ; 7BF7 85 A4                    ..
 	ldy     L7B52                           ; 7BF9 AC 52 7B                 .R{
-	ldx     #$7B                            ; 7BFC A2 7B                    .{
-	lda     #$63                            ; 7BFE A9 63                    .c
-	jsr     sub_461F
+	ldxai	$7B63
+	jsr     blockmove
 	lda     L7B67                           ; 7C03 AD 67 7B                 .g{
 	cmp     L7B4F                           ; 7C06 CD 4F 7B                 .O{
 	lbcs	L7C1F
@@ -5787,21 +5768,17 @@ L7C59:  lda     L7B54                           ; 7C59 AD 54 7B                 
 	rts                                     ; 7C64 60                       `
 
 ; ----------------------------------------------------------------------------
-L7C65:  lda     L7B55                           ; 7C65 AD 55 7B                 .U{
-	sta     $A3                             ; 7C68 85 A3                    ..
-	lda     #$00                            ; 7C6A A9 00                    ..
-	sta     $A5                             ; 7C6C 85 A5                    ..
-	lda     #$06                            ; 7C6E A9 06                    ..
-	sta     $A4                             ; 7C70 85 A4                    ..
+L7C65:	mv	$A3, L7B54+1
+	rdldi	$A4, $0006
 	ldy     L7B54                           ; 7C72 AC 54 7B                 .T{
 	ldxai	L7B5D
-	jsr     sub_461F
+	jsr     blockmove
 	add16i	$A2, L7B54, $0006
 	sub16m	off_AC, L7B52, L7B54
 	sub16i	$A4, off_AC, $0006
 	ldy     $A2                             ; 7CA9 A4 A2                    ..
 	ldxa	L7B54
-	jsr     sub_461F
+	jsr     blockmove
 	lda     L7B54                           ; 7CB4 AD 54 7B                 .T{
 	cmp     L7B56                           ; 7CB7 CD 56 7B                 .V{
 	lda     L7B55                           ; 7CBA AD 55 7B                 .U{
@@ -5823,7 +5800,7 @@ L7CD6:	add16i	$A0, L7B56, $0006
 	sta     $A4                             ; 7D1C 85 A4                    ..
 	ldy     #$5D                            ; 7D1E A0 5D                    .]
 	ldxa	L7B56
-	jsr     sub_461F
+	jsr     blockmove
 	add16i	off_AE, L7B56, $0004
 	lda     L7B4F                           ; 7D38 AD 4F 7B                 .O{
 	ldy     #$00                            ; 7D3B A0 00                    ..
@@ -5928,11 +5905,10 @@ L7E69:	dmv	off_AE, L7E1E
 	st2xa	off_AC
 	add16m	L7E1A, $AE, $AC
 	mv	$A3, L7E1A+1
-	ldi	$A5, $00
-	ldi	$A4, $03
+	rdldi	$A4, $0003
 	ldy     L7E1A                           ; 7EC0 AC 1A 7E                 ..~
 	ldxai	L7E21
-	jsr     sub_461F
+	jsr     blockmove
 	lda     L7E22                           ; 7ECA AD 22 7E                 ."~
 	lbne	L7ED7
 	ldi	$A0, $00
@@ -6185,9 +6161,8 @@ L80DA:  lda     L4750                           ; 80DA AD 50 47                 
 	lda     #$05                            ; 80F3 A9 05                    ..
 	sta     $A4                             ; 80F5 85 A4                    ..
 	ldy     L80AC                           ; 80F7 AC AC 80                 ...
-	ldx     #$80                            ; 80FA A2 80                    ..
-	lda     #$B2                            ; 80FC A9 B2                    ..
-	jsr     sub_461F
+	ldxai	$80B2
+	jsr     blockmove
 	clc                                     ; 8101 18                       .
 	lda     L80AA                           ; 8102 AD AA 80                 ...
 	adc     L80B2                           ; 8105 6D B2 80                 m..
@@ -6218,7 +6193,7 @@ L811F:  ldx     L46EA                           ; 811F AE EA 46                 
 	ldy     L80AE                           ; 813F AC AE 80                 ...
 	ldx     #$80                            ; 8142 A2 80                    ..
 	lda     #$B7                            ; 8144 A9 B7                    ..
-	jsr     sub_461F
+	jsr     blockmove
 	clc                                     ; 8149 18                       .
 	lda     L80B0                           ; 814A AD B0 80                 ...
 	adc     L80B9                           ; 814D 6D B9 80                 m..
@@ -6256,9 +6231,8 @@ sub_817C:
 	lda     #$02                            ; 818D A9 02                    ..
 	sta     $A4                             ; 818F 85 A4                    ..
 	ldy     #$77                            ; 8191 A0 77                    .w
-	ldx     #$47                            ; 8193 A2 47                    .G
-	lda     #$53                            ; 8195 A9 53                    .S
-	jsr     sub_461F
+	ldxai	L4753
+	jsr     blockmove
 	lda     L8179                           ; 819A AD 79 81                 .y.
 	sta     $AE                             ; 819D 85 AE                    ..
 	lda     L817A                           ; 819F AD 7A 81                 .z.
@@ -6275,9 +6249,8 @@ sub_817C:
 	lda     #$00                            ; 81B8 A9 00                    ..
 	sta     $A5                             ; 81BA 85 A5                    ..
 	ldy     L8179                           ; 81BC AC 79 81                 .y.
-	ldx     #$47                            ; 81BF A2 47                    .G
-	lda     #$55                            ; 81C1 A9 55                    .U
-	jsr     sub_461F
+	ldxai	L4755
+	jsr     blockmove
 	lda     #$00                            ; 81C6 A9 00                    ..
 	sta     $A3                             ; 81C8 85 A3                    ..
 	lda     #$00                            ; 81CA A9 00                    ..
@@ -6329,7 +6302,7 @@ sub_81F2:
 	sta     $A4                             ; 822A 85 A4                    ..
 	ldy     L81DC                           ; 822C AC DC 81                 ...
 	ldxai	L81E8
-	jsr     sub_461F
+	jsr     blockmove
 	lda     #$00                            ; 8236 A9 00                    ..
 	sta     $A3                             ; 8238 85 A3                    ..
 	lda     #$27                            ; 823A A9 27                    .'
@@ -6532,7 +6505,7 @@ L8447:  lda     L4750                           ; 8447 AD 50 47                 
 	ldy     L83E7                           ; 8464 AC E7 83                 ...
 	ldx     #$84                            ; 8467 A2 84                    ..
 	lda     #$07                            ; 8469 A9 07                    ..
-	jsr     sub_461F
+	jsr     blockmove
 	lda     L840B                           ; 846E AD 0B 84                 ...
 	jsr     sub_65B0
 	lda     $A1                             ; 8474 A5 A1                    ..
@@ -6548,7 +6521,7 @@ L8447:  lda     L4750                           ; 8447 AD 50 47                 
 	ldy     L83E9                           ; 848B AC E9 83                 ...
 	ldx     #$83                            ; 848E A2 83                    ..
 	lda     #$F7                            ; 8490 A9 F7                    ..
-	jsr     sub_461F
+	jsr     blockmove
 	sec                                     ; 8495 38                       8
 	lda     L8407                           ; 8496 AD 07 84                 ...
 	sbc     L8409                           ; 8499 ED 09 84                 ...
@@ -6653,19 +6626,18 @@ sub_8573:
 	rdldi	$A4, $0007
 	ldy     L8556                           ; 8599 AC 56 85                 .V.
 	ldxai	L8564
-	jsr     sub_461F
-	mv	$A3, L8552
+	jsr     blockmove
+	mv	$A3, L8551+1
 	rdldi	$A4, $0004
 	ldy     L8551                           ; 85B0 AC 51 85                 .Q.
 	ldxai	L8560
-	jsr     sub_461F
+	jsr     blockmove
 	add16i	$A2, L8556, $000E
 	rdldi	$A4, $0008
 	ldy     $A2                             ; 85D1 A4 A2                    ..
 	ldxai	L856B
-	jsr     sub_461F
-	ldy     #$01                            ; 85DA A0 01                    ..
-	sty     $A0                             ; 85DC 84 A0                    ..
+	jsr     blockmove
+	yldi	$A0, $01
 	rdldi	$A1, L856B
 	ldx     #$08                            ; 85E6 A2 08                    ..
 	ldy     #$00                            ; 85E8 A0 00                    ..
@@ -6871,9 +6843,8 @@ sub_884C:
 	lda     #$04                            ; 885E A9 04                    ..
 	sta     $A4                             ; 8860 85 A4                    ..
 	ldy     L8833                           ; 8862 AC 33 88                 .3.
-	ldx     #$88                            ; 8865 A2 88                    ..
-	lda     #$3E                            ; 8867 A9 3E                    .>
-	jsr     sub_461F
+	ldxai	L883E
+	jsr     blockmove
 	lda     L8836                           ; 886C AD 36 88                 .6.
 	sta     $A3                             ; 886F 85 A3                    ..
 	lda     #$00                            ; 8871 A9 00                    ..
@@ -6881,9 +6852,8 @@ sub_884C:
 	lda     #$04                            ; 8875 A9 04                    ..
 	sta     $A4                             ; 8877 85 A4                    ..
 	ldy     L8835                           ; 8879 AC 35 88                 .5.
-	ldx     #$88                            ; 887C A2 88                    ..
-	lda     #$42                            ; 887E A9 42                    .B
-	jsr     sub_461F
+	ldxai	$8842
+	jsr     blockmove
 	lda     L8832                           ; 8883 AD 32 88                 .2.
 	sta     $A3                             ; 8886 85 A3                    ..
 	lda     #$00                            ; 8888 A9 00                    ..
@@ -6892,7 +6862,7 @@ sub_884C:
 	sta     $A4                             ; 888E 85 A4                    ..
 	ldy     L8831                           ; 8890 AC 31 88                 .1.
 	ldxai	L8846
-	jsr     sub_461F
+	jsr     blockmove
 	shladdm8 off_AE, L884A, L883F
 	clc                                     ; 88AE 18                       .
 	ldy     #$00                            ; 88AF A0 00                    ..
@@ -7025,20 +6995,18 @@ sub_89AE:
 	prolog
 	sta     L8961                           ; 89B1 8D 61 89                 .a.
 	func16_8 sub_7035, L8962, L8961
-	lda     L8963                           ; 89C4 AD 63 89                 .c.
-	sta     $A3                             ; 89C7 85 A3                    ..
+	mv	$A3, L8962+1
 	rdldi	$A4, $000E
 	ldy     L8962                           ; 89D1 AC 62 89                 .b.
 	ldxai	L8997
-	jsr     sub_461F
+	jsr     blockmove
 	func16_8 sub_65B0, L898D, L899B
 	add16i	L896B, L8962, $001A
-	lda     L896C                           ; 89FC AD 6C 89                 .l.
-	sta     $A3                             ; 89FF 85 A3                    ..
-	rdldi	$A4,$0004
+	mv	$A3, L896B+1
+	rdldi	$A4, $0004
 	ldy     L896B                           ; 8A09 AC 6B 89                 .k.
 	ldxai	$89A5
-	jsr     sub_461F
+	jsr	blockmove
 	sub8m	off_AE, L89A7, L89A5
 	add8i	L8968, off_AE, $01
 	add8m	$A0, L89A6, L8998
@@ -7046,9 +7014,7 @@ sub_89AE:
 	add8m	$A0, L89A5, L8997
 	func16_8 sub_4945, L8993, $A0
 	rdldi	$84, $0028
-	lda     L8996                           ; 8A5C AD 96 89                 ...
-	tax                                     ; 8A5F AA                       .
-	lda     L8995                           ; 8A60 AD 95 89                 ...
+	ld2xa	L8995
 	jsr     sub_444A
 	st2xa	off_AE
 	add16m	off_AC, L466D, off_AE
@@ -7131,7 +7097,7 @@ L8BA1:  lda     L8BAC                           ; 8BA1 AD AC 8B                 
 L8BAC:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-L8BAD:  lda     L896A                           ; 8BAD AD 6A 89                 .j.
+L8BAD:  lda     L8969+1
 	sta     $A3                             ; 8BB0 85 A3                    ..
 	lda     #$00                            ; 8BB2 A9 00                    ..
 	sta     $A5                             ; 8BB4 85 A5                    ..
@@ -7139,7 +7105,7 @@ L8BAD:  lda     L896A                           ; 8BAD AD 6A 89                 
 	sta     $A4                             ; 8BB8 85 A4                    ..
 	ldy     L8969                           ; 8BBA AC 69 89                 .i.
 	ldxai	L89A9
-	jsr     sub_461F
+	jsr     blockmove
 	lda     L89AD                           ; 8BC4 AD AD 89                 ...
 	eor     #$FF                            ; 8BC7 49 FF                    I.
 	lbne	L8BD1
@@ -7343,11 +7309,11 @@ sub_8E24:					; "Z"
 	jsr     sub_43D1			; off_AE = 8E22 << 3
 	st2xa	off_AE
 	add16m	$A0, L4674, off_AE		; $A0 = 
-	mv	$A3, L8E21
+	mv	$A3, L8E20+1
 	rdldi	$A4, $0008
 	ldy     L8E20                           ; 8E69 AC 20 8E                 . .
 	ldxa	$A0
-	jsr     sub_461F
+	jsr     blockmove
 	rts                                     ; 8E73 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -7368,20 +7334,16 @@ sub_8E7D:
 	ldp16	L8E7B
 	add16i	off_AE, L8E7B, $0002
 	add16m8	off_AC, L4678, L8E75
-	lda     ($AC),y                         ; 8EC6 B1 AC                    ..
-	sta     ($AE),y                         ; 8EC8 91 AE                    ..
+	lda     (off_AC),y
+	sta     (off_AE),y
 	jsr     sub_63DD
 	jsr     sub_62D1
 	add16i	$A0, L8E7B, $0003
-	lda     #>L8E76
-	sta     $A3                             ; 8EE1 85 A3                    ..
-	lda     #$00                            ; 8EE3 A9 00                    ..
-	sta     $A5                             ; 8EE5 85 A5                    ..
-	lda     #$05                            ; 8EE7 A9 05                    ..
-	sta     $A4                             ; 8EE9 85 A4                    ..
+	ldi	$A3, >L8E76
+	rdldi	$A4, $0005
 	ldy     #<L8E76
 	ldxa	$A0
-	jsr     sub_461F
+	jsr     blockmove
 	jsr     sub_636E
 	rts                                     ; 8EF7 60                       `
 
@@ -7432,16 +7394,11 @@ L8F4F:	.byte	$00
 ; ----------------------------------------------------------------------------
 sub_8F55:  
 	stack_prolog L8F4F, $05
-	lda	#$8F
-	sta     $A3                             ; 8F60 85 A3                    ..
-	lda     #$00                            ; 8F62 A9 00                    ..
-	sta     $A5                             ; 8F64 85 A5                    ..
-	lda     #$06                            ; 8F66 A9 06                    ..
-	sta     $A4                             ; 8F68 85 A4                    ..
-	ldy     #$4F                            ; 8F6A A0 4F                    .O
-	ldx     #$46                            ; 8F6C A2 46                    .F
-	lda     #$EF                            ; 8F6E A9 EF                    ..
-	jsr     sub_461F
+	ldi	$A3, >L8F4F
+	rdldi	$A4, $0006
+	ldy     #<L8F4F
+	ldxai	L46EF
+	jsr     blockmove
 	jsr     sub_63DD
 	jsr     sub_62D1
 	rts                                     ; 8F79 60                       `
@@ -7496,7 +7453,7 @@ L8FDE:	dmv	off_AE, L4678
 	rdldi	$A4, $0400
 	ldy     #<LE000
 	ldxa	L4674
-	jsr     sub_461F
+	jsr     blockmove
 	ldy     #$18                            ; 9026 A0 18                    ..
 	ldx     #$02                            ; 9028 A2 02                    ..
 	lda     #$00                            ; 902A A9 00                    ..
@@ -7616,7 +7573,7 @@ sub_90CE:
 	sta     $A4                             ; 90F2 85 A4                    ..
 	ldy     L90C3                           ; 90F4 AC C3 90                 ...
 	ldxai	L90C8
-	jsr     sub_461F
+	jsr     blockmove
 	shladdm8 off_AE, L90CC, L90C2
 	ldy     #$01
 	lda     ($AE),y                         ; 9114 B1 AE                    ..
@@ -7667,7 +7624,7 @@ sub_9146:
 	sta     $A4                             ; 916A 85 A4                    ..
 	ldy     L9138                           ; 916C AC 38 91                 .8.
 	ldxai	L9140
-	jsr     sub_461F
+	jsr     blockmove
 	lda     L9137                           ; 9176 AD 37 91                 .7.
 	cmp     L9141                           ; 9179 CD 41 91                 .A.
 	lbcs	L9242
@@ -7711,7 +7668,7 @@ sub_9146:
 	ldy     L913A                           ; 91FF AC 3A 91                 .:.
 	ldx     L913D                           ; 9202 AE 3D 91                 .=.
 	lda     L913C                           ; 9205 AD 3C 91                 .<.
-	jsr     sub_461F
+	jsr     blockmove
 	sec                                     ; 920B 38                       8
 	lda     L9141                           ; 920C AD 41 91                 .A.
 	sbc     #$01                            ; 920F E9 01                    ..
@@ -7784,7 +7741,7 @@ sub_925D:
 	sta     $A4                             ; 9281 85 A4                    ..
 	ldy     L924E                           ; 9283 AC 4E 92                 .N.
 	ldxai	L9257
-	jsr     sub_461F
+	jsr     blockmove
 	sec                                     ; 928D 38                       8
 	lda     L9258                           ; 928E AD 58 92                 .X.
 	sbc     #$01                            ; 9291 E9 01                    ..
@@ -7879,7 +7836,7 @@ sub_936A:
 	sta     $A4                             ; 939B 85 A4                    ..
 	ldy     $A2                             ; 939D A4 A2                    ..
 	ldxai	$9366
-	jsr     sub_461F
+	jsr     blockmove
 	lda     L905E                           ; 93A6 AD 5E 90                 .^.
 	sta     L9362                           ; 93A9 8D 62 93                 .b.
 	add8m	L9366, L9366, L9361
@@ -7950,7 +7907,7 @@ sub_9427:
 	sta     $A4                             ; 945B 85 A4                    ..
 	ldy     L9059                           ; 945D AC 59 90                 .Y.
 	ldxa	L905B
-	jsr     sub_461F
+	jsr     blockmove
 	jmp     L9470                           ; 9469 4C 70 94                 Lp.
 
 ; ----------------------------------------------------------------------------
@@ -8019,7 +7976,7 @@ L94E8:	shladdm8 off_AE, L9064, L9416
 	sta     $A4                             ; 9515 85 A4                    ..
 	ldy     L905B                           ; 9517 AC 5B 90                 .[.
 	ldxa	L9059
-	jsr     sub_461F
+	jsr     blockmove
 	ldx     L9416                           ; 9523 AE 16 94                 ...
 	lda     L9053                           ; 9526 AD 53 90                 .S.
 	jsr     sub_90CE
@@ -8029,8 +7986,8 @@ L94E8:	shladdm8 off_AE, L9064, L9416
 	ldi	$A5, $00
 	ldi	$A4, $07
 	ldy     P9055
-L9547:  ldxai	L941C
-	jsr     sub_461F
+	ldxai	L941C
+	jsr     blockmove
 	add16i	$A2, P9055, $001E
 	lda     #$00                            ; 955D A9 00                    ..
 	sta     $A5                             ; 955F 85 A5                    ..
@@ -8039,7 +7996,7 @@ L9547:  ldxai	L941C
 	ldy     $A2                             ; 9565 A4 A2                    ..
 	ldx     #$94                            ; 9567 A2 94                    ..
 	lda     #$23                            ; 9569 A9 23                    .#
-	jsr     sub_461F
+	jsr     blockmove
 	clc                                     ; 956E 18                       .
 	lda     L941F                           ; 956F AD 1F 94                 ...
 	adc     L9424                           ; 9572 6D 24 94                 m$.
@@ -8198,7 +8155,7 @@ sub_968E:
 	ldy     L9057                           ; 96E0 AC 57 90                 .W.
 	ldx     #$90                            ; 96E3 A2 90                    ..
 	lda     #$60                            ; 96E5 A9 60                    .`
-	jsr     sub_461F
+	jsr     blockmove
 	lda     L9683                           ; 96EA AD 83 96                 ...
 	sta     L9054                           ; 96ED 8D 54 90                 .T.
 	ldx     L9054                           ; 96F0 AE 54 90                 .T.
@@ -8444,7 +8401,7 @@ L991A:	add16m8 L979F, L9059, L905E
 	ldy     $A2                             ; 9948 A4 A2                    ..
 	ldx     L97A0                           ; 994A AE A0 97                 ...
 	lda     L979F                           ; 994D AD 9F 97                 ...
-	jsr     sub_461F
+	jsr     blockmove
 	sub8i	off_AE, L9060, $01
 	add16m8	off_AC, L9059, off_AE
 	lda     #$00                            ; 996A A9 00                    ..
@@ -8507,7 +8464,7 @@ L99B4:  lda     L905D                           ; 99B4 AD 5D 90                 
 	sta     $A5                             ; 99F0 85 A5                    ..
 	ldy     L979F                           ; 99F2 AC 9F 97                 ...
 	ldxa	$A0
-	jsr     sub_461F
+	jsr     blockmove
 	sec                                     ; 99FC 38                       8
 	lda     L9060                           ; 99FD AD 60 90                 .`.
 	sbc     #$01                            ; 9A00 E9 01                    ..
@@ -8780,12 +8737,12 @@ sub_9C41:
 	rdldi	$A4, $0009
 	ldy     L9C22                           ; 9C7D AC 22 9C                 .".
 	ldxai	L9C2F
-	jsr     sub_461F
-	mv	$A3, L9C2E
+	jsr     blockmove
+	mv	$A3, L9C2D+1
 	rdldi	$A4, $0009
 	ldy     L9C2D                           ; 9C94 AC 2D 9C                 .-.
 	ldxai	L9C38
-	jsr     sub_461F
+	jsr     blockmove
 	lda     L46E6                           ; 9C9E AD E6 46                 ..F
 	lbne	L9CAB
 	lda     #$00                            ; 9CA6 A9 00                    ..
@@ -8973,7 +8930,7 @@ sub_9E2C:
 	ldi	$A4, $05
 	ldy     L9E10                           ; 9E5F AC 10 9E                 ...
 	ldxai	L9E1D                           ; 9E64 A9 1D                    ..
-	jsr     sub_461F
+	jsr     blockmove
 	lda     L46E6                           ; 9E69 AD E6 46                 ..F
 	eor     #$02                            ; 9E6C 49 02                    I.
 	lbne	L9E94
@@ -9002,7 +8959,7 @@ L9E94:  lda     L46E6                           ; 9E94 AD E6 46                 
 	ldi	$A4, $04
 	ldy     L9E14                           ; 9EBE AC 14 9E                 ...
 	ldxai	L9E28
-	jsr     sub_461F
+	jsr     blockmove
 	dmv	L9E1B, L9E2A
 	jmp     L9F69                           ; 9ED4 4C 69 9F                 Li.
 
@@ -9022,7 +8979,7 @@ L9ED7:  lda     L46E6                           ; 9ED7 AD E6 46                 
 	rdldi	$A4, $0005
 	ldy     L9E10                           ; 9F14 AC 10 9E                 ...
 	ldxai	L9E1D
-	jsr     sub_461F
+	jsr     blockmove
 	lda     L9E21                           ; 9F1E AD 21 9E                 .!.
 	jsr     sub_65B0
 	rdmv	L9E12, $A0
@@ -9032,7 +8989,7 @@ L9ED7:  lda     L46E6                           ; 9ED7 AD E6 46                 
 	ldy     L9E12                           ; 9F3B AC 12 9E                 ...
 	ldx     #$9E                            ; 9F3E A2 9E                    ..
 	lda     #$22                            ; 9F40 A9 22                    ."
-	jsr     sub_461F
+	jsr     blockmove
 	sub8m	off_AE, L9E1D, L9E1F
 	sub8m	L9E1B, L4751, off_AE
 	sub8m	off_AE, L9E1E, L9E20
@@ -9176,7 +9133,7 @@ LA04F:  lda     L9FE7+1
 	sta     $A4                             ; A05A 85 A4                    ..
 	ldy     L9FE7                           ; A05C AC E7 9F                 ...
 	ldxai	LA00E
-	jsr     sub_461F
+	jsr     blockmove
 	add8m	L9FF3, LA010, L9FE5
 	add8m	L9FF4, LA011, L9FE6
 	lda     LA00E                           ; A07A AD 0E A0                 ...
@@ -9190,7 +9147,7 @@ LA04F:  lda     L9FE7+1
 	sta     $A4                             ; A095 85 A4                    ..
 	ldy     L9FED                           ; A097 AC ED 9F                 ...
 	ldxai	LA014
-	jsr     sub_461F
+	jsr     blockmove
 	lda     L9FE3                           ; A0A1 AD E3 9F                 ...
 	jsr	sub_65B0
 	rdmv	L9FE9, $A0
@@ -9203,7 +9160,7 @@ LA04F:  lda     L9FE7+1
 	ldy     L9FE9                           ; A0BE AC E9 9F                 ...
 	ldx     #$A0                            ; A0C1 A2 A0                    ..
 	lda     #$1A                            ; A0C3 A9 1A                    ..
-	jsr     sub_461F
+	jsr     blockmove
 	ldy     #$01                            ; A0C8 A0 01                    ..
 	sty     LA006                           ; A0CA 8C 06 A0                 ...
 	lda     #$00                            ; A0CD A9 00                    ..
@@ -9251,7 +9208,7 @@ LA04F:  lda     L9FE7+1
 	ldy     #$F9                            ; A12A A0 F9                    ..
 	ldx     #$A0                            ; A12C A2 A0                    ..
 	lda     #$23                            ; A12E A9 23                    .#
-	jsr     sub_461F
+	jsr     blockmove
 	lda     #$9F                            ; A133 A9 9F                    ..
 	sta     $A3                             ; A135 85 A3                    ..
 	lda     #$A0                            ; A137 A9 A0                    ..
@@ -9528,7 +9485,7 @@ LA3E2:  jsr     sub_5E1E
 	sta     $A4                             ; A3F0 85 A4                    ..
 	ldy     LA3A8                           ; A3F2 AC A8 A3                 ...
 	ldxai	$A3B3
-	jsr     sub_461F
+	jsr     blockmove
 	sec                                     ; A3FC 38                       8
 	lda     LA3B5                           ; A3FD AD B5 A3                 ...
 	sbc     LA3B3                           ; A400 ED B3 A3                 ...
@@ -9545,7 +9502,7 @@ LA3E2:  jsr     sub_5E1E
 	sta     $A4                             ; A418 85 A4                    ..
 	ldy     LA3AC                           ; A41A AC AC A3                 ...
 	ldxai	$A3B7
-	jsr     sub_461F
+	jsr     blockmove
 	shladdm8 off_AE, LA3BB, LA3B4
 	clc                                     ; A438 18                       .
 	ldy     #$00                            ; A439 A0 00                    ..
@@ -9675,7 +9632,7 @@ LA56C:  lda     LA531                           ; A56C AD 31 A5                 
 	sta     $A4                             ; A577 85 A4                    ..
 	ldy     LA530                           ; A579 AC 30 A5                 .0.
 	ldxai	LA53D
-	jsr     sub_461F
+	jsr     blockmove
 	sub8m	off_AE, LA53F, LA53D
 LA58C:	add8i	LA536, off_AE, $01
 	lda     LA534+1
@@ -9686,7 +9643,7 @@ LA58C:	add8i	LA536, off_AE, $01
 	sta     $A4                             ; A59F 85 A4                    ..
 	ldy     LA534                           ; A5A1 AC 34 A5                 .4.
 	ldxai	LA541
-	jsr     sub_461F
+	jsr     blockmove
 	shladdm8 off_AE, LA545, LA53E
 	clc                                     ; A5BF 18                       .
 	ldy     #$00                            ; A5C0 A0 00                    ..
@@ -10041,7 +9998,7 @@ sub_A895:
 	ldy     LA88D                           ; A8BB AC 8D A8                 ...
 	ldx     #$A8                            ; A8BE A2 A8                    ..
 	lda     #$8F                            ; A8C0 A9 8F                    ..
-	jsr     sub_461F
+	jsr     blockmove
 	lda     LA888                           ; A8C5 AD 88 A8                 ...
 	asl     a                               ; A8C8 0A                       .
 	php                                     ; A8C9 08                       .
