@@ -1934,8 +1934,7 @@ sub_4E4A:
 	sub8m	off_AE, L4E49, L4E47
 	add8i	$AA, off_AE, $01
 	ldi	$85, $00
-	lda     $AA                             ; 4E8E A5 AA                    ..
-	sta     $84                             ; 4E90 85 84                    ..
+	mv	$84, $AA
 	lda     $AC                             ; 4E92 A5 AC                    ..
 	ldx     #$00                            ; 4E94 A2 00                    ..
 	jsr     sub_444A
@@ -2044,8 +2043,7 @@ sub_4FC5:
 	ldi	L4FBD, $00
 	lda     $A0                             ; 4FD0 A5 A0                    ..
 	sta     L4FBC                           ; 4FD2 8D BC 4F                 ..O
-	lda     L4FBC                           ; 4FD5 AD BC 4F                 ..O
-	ora     L4FBD                           ; 4FD8 0D BD 4F                 ..O
+	test16	L4FBC
 	lbne	L4FE5
 	ldi	$A0, $00
 	rts                                     ; 4FE4 60                       `
@@ -2099,8 +2097,7 @@ L5040:	mv	LB1C6, L4FBB
 	ldi	L4FBD, $00
 	lda     $A0                             ; 5066 A5 A0                    ..
 	sta     L4FBC                           ; 5068 8D BC 4F                 ..O
-	lda     L4FBC                           ; 506B AD BC 4F                 ..O
-	ora     L4FBD                           ; 506E 0D BD 4F                 ..O
+	test16	L4FBC
 	lbne	L507B
 	ldi	$A0, $00
 	rts                                     ; 507A 60                       `
@@ -2131,8 +2128,7 @@ L50A4:	add16m8 off_AE, L4FC2, L4FBF
 	sta     L4FBD                           ; 50CD 8D BD 4F                 ..O
 	lda     $A0                             ; 50D0 A5 A0                    ..
 	sta     L4FBC                           ; 50D2 8D BC 4F                 ..O
-	lda     L4FBC                           ; 50D5 AD BC 4F                 ..O
-	ora     L4FBD                           ; 50D8 0D BD 4F                 ..O
+	test16	L4FBC
 	lbne	L50E5
 	ldi	$A0, $00
 	rts                                     ; 50E4 60                       `
@@ -2205,19 +2201,16 @@ L5161:  jsr     modem_status
 	jsr     sub_45A3
 	lda     $A0                             ; 5182 A5 A0                    ..
 	sta     L4FBB                           ; 5184 8D BB 4F                 ..O
-L5187:  lda     L4FBC                           ; 5187 AD BC 4F                 ..O
-	ora     L4FBD                           ; 518A 0D BD 4F                 ..O
+L5187:  test16	L4FBC
 	lbne	L50EF
-	lda     #$00                            ; 5192 A9 00                    ..
-	sta     $A0                             ; 5194 85 A0                    ..
+	ldi	$A0, $00
 	rts                                     ; 5196 60                       `
 
 ; ----------------------------------------------------------------------------
 L5197:  sta     $A0                             ; 5197 85 A0                    ..
 	stx     $A1                             ; 5199 86 A1                    ..
 	sty     $A2                             ; 519B 84 A2                    ..
-	ldy     #$00                            ; 519D A0 00                    ..
-	sty     $A6                             ; 519F 84 A6                    ..
+	yldi	$A6, $00
 	sty     $A5                             ; 51A1 84 A5                    ..
 L51A3:  lda     $A5                             ; 51A3 A5 A5                    ..
 	cmp     $A4                             ; 51A5 C5 A4                    ..
@@ -2415,7 +2408,7 @@ L5304:  ldx     L52E0                           ; 5304 AE E0 52                 
 ; ----------------------------------------------------------------------------
 L531D:	.byte	$FF                             ; 531D FF                       .
 L531E:  .byte	$00
-L531F:  adc     $00                             ; 531F 65 00                    e.
+L531F:  .byte	$65,$00
 	.byte	$00
 L5322:	.byte	$20                             ; 5322 20                        
 L5323:	.byte	$53                             ; 5323 53                       S
