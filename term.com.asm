@@ -1860,21 +1860,9 @@ L4D03:  lda     #$01                            ; 4D03 A9 01                    
 	jsr     sub_4983
 	pull16	off_AE
 	stp8	$A0
-	clc                                     ; 4D60 18                       .
-	lda     L4CF4                           ; 4D61 AD F4 4C                 ..L
-	adc     #$02                            ; 4D64 69 02                    i.
-	sta     $AE                             ; 4D66 85 AE                    ..
-	clc                                     ; 4D68 18                       .
-	lda     L4CF2                           ; 4D69 AD F2 4C                 ..L
-	adc     $AE                             ; 4D6C 65 AE                    e.
-	sta     $AC                             ; 4D6E 85 AC                    ..
-	lda     L4CF3                           ; 4D70 AD F3 4C                 ..L
-	adc     #$00                            ; 4D73 69 00                    i.
-	sta     $AD                             ; 4D75 85 AD                    ..
-	lda     $AD                             ; 4D77 A5 AD                    ..
-	pha                                     ; 4D79 48                       H
-	lda     $AC                             ; 4D7A A5 AC                    ..
-	pha                                     ; 4D7C 48                       H
+	add8i	off_AE, L4CF4, $02
+	add16m8	off_AC, L4CF2, off_AE
+	push16	off_AC
 	clc                                     ; 4D7D 18                       .
 	lda     L4CF4                           ; 4D7E AD F4 4C                 ..L
 	adc     #$02                            ; 4D81 69 02                    i.
