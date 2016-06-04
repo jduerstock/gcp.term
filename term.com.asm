@@ -4579,12 +4579,7 @@ L6AFF:  ldx     #$00                            ; 6AFF A2 00                    
 	ldxa	$A0
 	jsr     sub_606E
 	pull16	off_AE
-	lda     $A1                             ; 6BC5 A5 A1                    ..
-	ldy     #$01                            ; 6BC7 A0 01                    ..
-	sta     ($AE),y                         ; 6BC9 91 AE                    ..
-	lda     $A0                             ; 6BCB A5 A0                    ..
-	dey                                     ; 6BCD 88                       .
-	sta     ($AE),y                         ; 6BCE 91 AE                    ..
+	stp16	$A0
 	ldxa	L6ACE
 	jsr     sub_606E
 	rdmv	L6AC6, $A0
