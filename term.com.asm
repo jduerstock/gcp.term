@@ -2005,13 +2005,11 @@ L4EFA:  lda     #$00                            ; 4EFA A9 00                    
 L4F59:  rts                                     ; 4F59 60                       `
 
 ; ----------------------------------------------------------------------------
-sub_4F5A:  
-	ldy     #$01                            ; 4F5A A0 01                    ..
-	sty     CRSINH
+sub_4F5A:					; "^G" - bell?
+	yldi	CRSINH, $01
 	lda     #$FD                            ; 4F5F A9 FD                    ..
 	jsr     sub_45C4
-	ldy     #$01                            ; 4F64 A0 01                    ..
-	sty     L4656                           ; 4F66 8C 56 46                 .VF
+	yldi	L4656, $01
 	rts                                     ; 4F69 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -4772,7 +4770,7 @@ L6E5F:  .byte	$00
 L6E60:	.byte	$66                             ; 6E60 66                       f
 
 ; ----------------------------------------------------------------------------
-sub_6E61:  
+sub_6E61:  					; "B"
 	stack_prolog L6E40, $05
 	func16_8 sub_65B0, L6E46, L6E40
 	mv	$A3, L6E47
@@ -6094,13 +6092,7 @@ L7F2A:  lda     L7F35                           ; 7F2A AD 35 7F                 
 L7F35:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-L7F36:  clc                                     ; 7F36 18                       .
-	lda     L7E17                           ; 7F37 AD 17 7E                 ..~
-	adc     L7E20                           ; 7F3A 6D 20 7E                 m ~
-	sta     $AE                             ; 7F3D 85 AE                    ..
-	lda     L7E18                           ; 7F3F AD 18 7E                 ..~
-	adc     #$00                            ; 7F42 69 00                    i.
-	sta     $AF                             ; 7F44 85 AF                    ..
+L7F36:  add16m8 off_AE, L7E17, L7E20
 	ldy     #$00                            ; 7F46 A0 00                    ..
 	lda     ($AE),y                         ; 7F48 B1 AE                    ..
 	eor     L7E14                           ; 7F4A 4D 14 7E                 M.~
@@ -6141,11 +6133,10 @@ L7F75:  .byte	$00
 	.byte	$00
 	.byte	$00
 
+; ----------------------------------------------------------------------------
 L7F80:	prolog
-	stx     L7F75                           ; 7F83 8E 75 7F                 .u.
-	sta     L7F74                           ; 7F86 8D 74 7F                 .t.
-	lda     #$00                            ; 7F89 A9 00                    ..
-	sta     $A0                             ; 7F8B 85 A0                    ..
+	stxa	L7F74
+	ldi	$A0, $00
 	rts                                     ; 7F8D 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -6155,10 +6146,10 @@ L7F90:  .byte	$00
 L7F91:  .byte	$00
 L7F92:  .byte	$00
 
+; ----------------------------------------------------------------------------
 sub_7F93:
 	prolog
-	stx     L7F8F                           ; 7F96 8E 8F 7F                 ...
-	sta     L7F8E                           ; 7F99 8D 8E 7F                 ...
+	stxa	L7F8E
 	ldy     #$00                            ; 7F9C A0 00                    ..
 	sty     L7F90                           ; 7F9E 8C 90 7F                 ...
 L7FA1:  lda     #$07                            ; 7FA1 A9 07                    ..
@@ -6247,8 +6238,7 @@ L8046:  .byte	$48
 ; ----------------------------------------------------------------------------
 sub_8047:  
 	prolog
-	stx     L8046                           ; 804A 8E 46 80                 .F.
-	sta     L8045                           ; 804D 8D 45 80                 .E.
+	stxa	L8045
 	lda     #$27                            ; 8050 A9 27                    .'
 	cmp     L8045                           ; 8052 CD 45 80                 .E.
 	lbcs	L805B
@@ -10453,15 +10443,15 @@ LAA55:  lda     #$00                            ; AA55 A9 00                    
 ; ----------------------------------------------------------------------------
 	.byte   $4C                             ; AA83 4C                       L
 LAA84:  .addr   LAA86
-LAA86:	.addr	sub_6AD5,sub_6995,sub_67D8,sub_6696,sub_65E2,sub_7D4D,sub_6E61
-	.addr	sub_6F68,sub_6F91,sub_6FEB,sub_7A57,sub_7ADF,sub_7B68,sub_7A9A
-	.addr	sub_74BE,sub_7951,sub_77A3,sub_782A,sub_758C,sub_760A,sub_705F
-	.addr	sub_7096,sub_70E2,sub_9C41,sub_9BE0,sub_9BD0,sub_9CAD,sub_9E2C
-	.addr	sub_7FE9,sub_817C,sub_8003,sub_80BB,sub_8EFD,sub_8E7D,sub_8F55
-	.addr	sub_8E24,sub_A9DE,sub_A9FB,sub_A9EC,sub_968E,sub_97A1,sub_5E1E
-	.addr	sub_5E30,sub_A2A8,sub_A382,sub_A3BD,sub_A547,sub_A6E8,sub_A7C4
-	.addr	sub_A7F3,sub_A6CE,sub_A991,sub_4F5A,sub_A959,sub_4BA7,sub_A837
-	.addr	sub_A846,sub_4F9D,sub_8D01,sub_A895,sub_A842,sub_A96F,sub_A81F
+LAA86:	.addr	sub_6AD5,sub_6995,sub_67D8,sub_6696,sub_65E2,sub_7D4D,sub_6E61	; "CKDFWYB"
+	.addr	sub_6F68,sub_6F91,sub_6FEB,sub_7A57,sub_7ADF,sub_7B68,sub_7A9A	; "xyzUVXN"
+	.addr	sub_74BE,sub_7951,sub_77A3,sub_782A,sub_758C,sub_760A,sub_705F	; "cdspmla"
+	.addr	sub_7096,sub_70E2,sub_9C41,sub_9BE0,sub_9BD0,sub_9CAD,sub_9E2C	; "bfJjST+"
+	.addr	sub_7FE9,sub_817C,sub_8003,sub_80BB,sub_8EFD,sub_8E7D,sub_8F55	; "LMPRGAO"
+	.addr	sub_8E24,sub_A9DE,sub_A9FB,sub_A9EC,sub_968E,sub_97A1,sub_5E1E	; "ZEiHeI0"
+	.addr	sub_5E30,sub_A2A8,sub_A382,sub_A3BD,sub_A547,sub_A6E8,sub_A7C4	; "1234567"
+	.addr	sub_A7F3,sub_A6CE,sub_A991,sub_4F5A,sub_A959,sub_4BA7,sub_A837	; "89n.#*="
+	.addr	sub_A846,sub_4F9D,sub_8D01,sub_A895,sub_A842,sub_A96F,sub_A81F	; "vw"
 	.addr	sub_A823,sub_A82B
 
 LAB08:	.byte	$00
