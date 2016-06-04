@@ -9989,35 +9989,20 @@ sub_A895:
 	ldxai	LA88F
 	jsr     blockmove
 	shladdm8 off_AE, LA893, LA888
-	ldy     #$01                            ; A8D9 A0 01                    ..
-	lda     ($AE),y                         ; A8DB B1 AE                    ..
-	sta     LA88C                           ; A8DD 8D 8C A8                 ...
-	dey                                     ; A8E0 88                       .
-	lda     ($AE),y                         ; A8E1 B1 AE                    ..
-	sta     LA88B                           ; A8E3 8D 8B A8                 ...
-LA8E6:  lda     LA88B                           ; A8E6 AD 8B A8                 ...
-	sta     $AE                             ; A8E9 85 AE                    ..
-	lda     LA88C                           ; A8EB AD 8C A8                 ...
-	sta     $AF                             ; A8EE 85 AF                    ..
+	ldp16	LA88B
+LA8E6:	dmv	off_AE, LA88B
 	ldy     #$00                            ; A8F0 A0 00                    ..
 	lda     ($AE),y                         ; A8F2 B1 AE                    ..
 	eor     #$1E                            ; A8F4 49 1E                    I.
-	beq     LA8FB                           ; A8F6 F0 03                    ..
-	jmp     LA8FE                           ; A8F8 4C FE A8                 L..
+	lbne	LA8FE
+	jmp     LA958                           ; A8FB 4C 58 A9                 LX.
 
 ; ----------------------------------------------------------------------------
-LA8FB:  jmp     LA958                           ; A8FB 4C 58 A9                 LX.
-
-; ----------------------------------------------------------------------------
-LA8FE:  ldy     #$00                            ; A8FE A0 00                    ..
-	sty     LA889                           ; A900 8C 89 A8                 ...
+LA8FE:	yldi	LA889, $00
 LA903:  lda     #$5B                            ; A903 A9 5B                    .[
 	cmp     LA889                           ; A905 CD 89 A8                 ...
-	bcs     LA90D                           ; A908 B0 03                    ..
-	jmp     LA936                           ; A90A 4C 36 A9                 L6.
-
-; ----------------------------------------------------------------------------
-LA90D:  clc                                     ; A90D 18                       .
+	lbcc	LA936
+	clc                                     ; A90D 18                       .
 	lda     LA88B                           ; A90E AD 8B A8                 ...
 	adc     LA889                           ; A911 6D 89 A8                 m..
 	sta     $AE                             ; A914 85 AE                    ..
