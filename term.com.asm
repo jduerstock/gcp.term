@@ -10002,13 +10002,7 @@ LA8FE:	yldi	LA889, $00
 LA903:  lda     #$5B                            ; A903 A9 5B                    .[
 	cmp     LA889                           ; A905 CD 89 A8                 ...
 	lbcc	LA936
-	clc                                     ; A90D 18                       .
-	lda     LA88B                           ; A90E AD 8B A8                 ...
-	adc     LA889                           ; A911 6D 89 A8                 m..
-	sta     $AE                             ; A914 85 AE                    ..
-	lda     LA88C                           ; A916 AD 8C A8                 ...
-	adc     #$00                            ; A919 69 00                    i.
-	sta     $AF                             ; A91B 85 AF                    ..
+	add16m8	off_AE, LA88B, LA889
 	ldy     #$00                            ; A91D A0 00                    ..
 	lda     ($AE),y                         ; A91F B1 AE                    ..
 	sta     $A0                             ; A921 85 A0                    ..
