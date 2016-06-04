@@ -318,6 +318,12 @@ SYSVBV		:= $E45F
 	sta	a1
 .endmacro
 
+.macro	stp8	a1
+	lda	a1
+	ldy	#$00
+	sta	(off_AE),y
+.endmacro
+
 .macro	stp16	a1
 	lda     a1+1
 	ldy     #$01
@@ -1853,9 +1859,7 @@ L4D03:  lda     #$01                            ; 4D03 A9 01                    
 	ldxa	$A0
 	jsr     sub_4983
 	pull16	off_AE
-	lda     $A0                             ; 4D5A A5 A0                    ..
-	ldy     #$00                            ; 4D5C A0 00                    ..
-	sta     ($AE),y                         ; 4D5E 91 AE                    ..
+	stp8	$A0
 	clc                                     ; 4D60 18                       .
 	lda     L4CF4                           ; 4D61 AD F4 4C                 ..L
 	adc     #$02                            ; 4D64 69 02                    i.
@@ -5712,8 +5716,7 @@ sub_7A57:
 	ldxa	L7A52
 	jsr     sub_799B
 	rdmv	L7A55, $A0
-	lda     L7A55                           ; 7A73 AD 55 7A                 .Uz
-	ora     L7A56                           ; 7A76 0D 56 7A                 .Vz
+	test16	L7A55
 	lbne	L7A7F
 	rts                                     ; 7A7E 60                       `
 
@@ -5733,13 +5736,13 @@ L7A97:	.byte	$9E
 L7A98:	.byte	$F0
 L7A99:  .byte	$A9
 
+; ----------------------------------------------------------------------------
 sub_7A9A:
 	stack_prolog L7A95, $02
 	ldxa	L7A95
 	jsr     sub_799B
 	rdmv	L7A98, $A0
-	lda     L7A98                           ; 7AB6 AD 98 7A                 ..z
-	ora     L7A99                           ; 7AB9 0D 99 7A                 ..z
+	test16	L7A98
 	lbne	L7AC2
 	rts                                     ; 7AC1 60                       `
 
@@ -5764,8 +5767,7 @@ sub_7ADF:
 	ldxa	L7AD9
 	jsr     sub_799B
 	rdmv	L7ADD, $A0
-	lda     L7ADD                           ; 7AFB AD DD 7A                 ..z
-	ora     L7ADE                           ; 7AFE 0D DE 7A                 ..z
+	test16	L7ADD
 	lbne	L7B07
 	rts                                     ; 7B06 60                       `
 
