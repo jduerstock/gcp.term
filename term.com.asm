@@ -37,6 +37,7 @@ HPOSP3		:= $D003
 TRIG0		:= $D010
 CONSOL		:= $D01F
 KBCODE		:= $D209
+LE000		:= $E000
 CIOV            := $E456
 SETVBV          := $E45C
 SYSVBV		:= $E45F
@@ -7485,19 +7486,15 @@ L8FDE:	dmv	off_AE, L4678
 	ldy     #$00                            ; 8FEA A0 00                    ..
 	sta     ($AE),y                         ; 8FEC 91 AE                    ..
 	add16i	off_AE, L4678, $0001
-	lda     #$08                            ; 8FFD A9 08                    ..
-	sta     $84                             ; 8FFF 85 84                    ..
+	ldi	$84, $08
 	ld2xa	L4674
 	jsr     sub_43E0
 	ldy     #$00                            ; 900B A0 00                    ..
 	sta     ($AE),y                         ; 900D 91 AE                    ..
-	lda     #$E0                            ; 900F A9 E0                    ..
+	lda     #>LE000
 	sta     $A3                             ; 9011 85 A3                    ..
-	lda     #$04                            ; 9013 A9 04                    ..
-	sta     $A5                             ; 9015 85 A5                    ..
-	lda     #$00                            ; 9017 A9 00                    ..
-	sta     $A4                             ; 9019 85 A4                    ..
-	ldy     #$00                            ; 901B A0 00                    ..
+	rdldi	$A4, $0400
+	ldy     #<LE000
 	ldxa	L4674
 	jsr     sub_461F
 	ldy     #$18                            ; 9026 A0 18                    ..
