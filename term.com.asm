@@ -318,6 +318,12 @@ SYSVBV		:= $E45F
 	sta	a1
 .endmacro
 
+.macro	ldp8	a1
+	ldy	#$00
+	lda	($AE),y
+	sta	$A0
+.endmacro
+
 .macro	stp8	a1
 	lda	a1
 	ldy	#$00
@@ -1891,9 +1897,7 @@ L4DCC:  dmv	$AE, L4CF2
 
 ; ----------------------------------------------------------------------------
 L4E02:	add16i	off_AE, L4CF2, $0001
-	ldy     #$00                            ; 4E11 A0 00                    ..
-	lda     ($AE),y                         ; 4E13 B1 AE                    ..
-	sta     $A0                             ; 4E15 85 A0                    ..
+	ldp8	$A0
 	add16i	off_AE, L4CF2, $0003
 	lda     ($AE),y                         ; 4E26 B1 AE                    ..
 	sta     $A1                             ; 4E28 85 A1                    ..
