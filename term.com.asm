@@ -9970,7 +9970,7 @@ LA88B:  .byte	$00
 LA88C:  .byte	$00
 LA88D:  .byte	$00
 LA88E:  .byte	$00
-	.byte	$00
+LA88F:	.byte	$00
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -9981,35 +9981,14 @@ LA894:  .byte	$00
 ; ----------------------------------------------------------------------------
 sub_A895:  
 	prolog
-	stx     LA888                           ; A898 8E 88 A8                 ...
-	sta     LA887                           ; A89B 8D 87 A8                 ...
-	lda     LA887                           ; A89E AD 87 A8                 ...
-	jsr     sub_65B0
-	lda     $A1                             ; A8A4 A5 A1                    ..
-	sta     LA88E                           ; A8A6 8D 8E A8                 ...
-	lda     $A0                             ; A8A9 A5 A0                    ..
-	sta     LA88D                           ; A8AB 8D 8D A8                 ...
-	lda     LA88E                           ; A8AE AD 8E A8                 ...
-	sta     $A3                             ; A8B1 85 A3                    ..
-	lda     #$00                            ; A8B3 A9 00                    ..
-	sta     $A5                             ; A8B5 85 A5                    ..
-	lda     #$06                            ; A8B7 A9 06                    ..
-	sta     $A4                             ; A8B9 85 A4                    ..
+	stxa	LA887
+	func16_8 sub_65B0, LA88D, LA887
+	mv	$A3, LA88D+1
+	rdldi	$A4, $0006
 	ldy     LA88D                           ; A8BB AC 8D A8                 ...
-	ldx     #$A8                            ; A8BE A2 A8                    ..
-	lda     #$8F                            ; A8C0 A9 8F                    ..
+	ldxai	LA88F
 	jsr     blockmove
-	lda     LA888                           ; A8C5 AD 88 A8                 ...
-	asl     a                               ; A8C8 0A                       .
-	php                                     ; A8C9 08                       .
-	clc                                     ; A8CA 18                       .
-	adc     LA893                           ; A8CB 6D 93 A8                 m..
-	sta     $AE                             ; A8CE 85 AE                    ..
-	lda     #$00                            ; A8D0 A9 00                    ..
-	rol     a                               ; A8D2 2A                       *
-	plp                                     ; A8D3 28                       (
-	adc     LA894                           ; A8D4 6D 94 A8                 m..
-	sta     $AF                             ; A8D7 85 AF                    ..
+	shladdm8 off_AE, LA893, LA888
 	ldy     #$01                            ; A8D9 A0 01                    ..
 	lda     ($AE),y                         ; A8DB B1 AE                    ..
 	sta     LA88C                           ; A8DD 8D 8C A8                 ...
