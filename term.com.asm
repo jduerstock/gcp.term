@@ -2996,8 +2996,7 @@ L5ADD:  lda     L58EE                           ; 5ADD AD EE 58                 
 	ldx     L4654                           ; 5B0B AE 54 46                 .TF
 	lda     LB224,x                         ; 5B0E BD 24 B2                 .$.
 	sta     $A0                             ; 5B11 85 A0                    ..
-	lda     $A0                             ; 5B13 A5 A0                    ..
-	jsr     sub_4B39
+	proc8	sub_4B39, $A0
 	pull16	off_AE
 	lda     $A0                             ; 5B1E A5 A0                    ..
 	ldy     #$00                            ; 5B20 A0 00                    ..
