@@ -4561,20 +4561,14 @@ L6AFF:  ldx     #$00                            ; 6AFF A2 00                    
 	add16i	off_AE, L6AC4, $0001
 	lda     L6AC0                           ; 6B60 AD C0 6A                 ..j
 	sta     ($AE),y                         ; 6B63 91 AE                    ..
-	lda     #$00                            ; 6B65 A9 00                    ..
-	sta     $85                             ; 6B67 85 85                    ..
+	ldi	$85, $00
 	mv	$84, L6AC0
 	lda     L6ABF                           ; 6B6E AD BF 6A                 ..j
 	ldx     #$00                            ; 6B71 A2 00                    ..
 	jsr     sub_444A
 	st2xa	L6ACE
 	add16i	off_AE, L6AC4, $0002
-	lda     L6ACE+1
-	ldy     #$01                            ; 6B8F A0 01                    ..
-	sta     ($AE),y                         ; 6B91 91 AE                    ..
-	lda     L6ACE                           ; 6B93 AD CE 6A                 ..j
-	dey                                     ; 6B96 88                       .
-	sta     ($AE),y                         ; 6B97 91 AE                    ..
+	stp16	L6ACE
 	add16i	off_AE, L6AC4, $0004
 	push16	off_AE
 	lda     L6AC0                           ; 6BAE AD C0 6A                 ..j
