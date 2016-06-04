@@ -9125,20 +9125,14 @@ sub_A027:
 	rts                                     ; A04E 60                       `
 
 ; ----------------------------------------------------------------------------
-LA04F:  lda     L9FE7+1
-	sta     $A3                             ; A052 85 A3                    ..
-	lda     #$00                            ; A054 A9 00                    ..
-	sta     $A5                             ; A056 85 A5                    ..
-	lda     #$06                            ; A058 A9 06                    ..
-	sta     $A4                             ; A05A 85 A4                    ..
+LA04F:	mv	$A3, L9FE7+1
+	rdldi	$A4, $0006
 	ldy     L9FE7                           ; A05C AC E7 9F                 ...
 	ldxai	LA00E
 	jsr     blockmove
 	add8m	L9FF3, LA010, L9FE5
 	add8m	L9FF4, LA011, L9FE6
-	lda     LA00E                           ; A07A AD 0E A0                 ...
-	jsr     sub_65B0
-	rdmv	L9FED, $A0
+	func16_8 sub_65B0, L9FED, LA00E
 	lda     L9FEE                           ; A08A AD EE 9F                 ...
 	sta     $A3                             ; A08D 85 A3                    ..
 	lda     #$00                            ; A08F A9 00                    ..
