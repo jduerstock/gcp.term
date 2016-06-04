@@ -5632,8 +5632,7 @@ sub_7951:
 	prolog
 	sta     L794E                           ; 7954 8D 4E 79                 .Ny
 	func16_8 sub_7035, L794F, L794E
-	lda     L794F                           ; 7967 AD 4F 79                 .Oy
-	ora     L794F+1
+	test16	L794F
 	lbne	L7973
 L7972:  rts                                     ; 7972 60                       `
 
@@ -5661,8 +5660,7 @@ sub_799B:
 	func16_8 sub_65B0, L7996, L7994
 L79B4:  add16i	off_AE, L7996, $0007
 	ldp16	L7998
-	lda     L7998                           ; 79D0 AD 98 79                 ..y
-	ora     L7998+1
+	test16	L7998
 	lbne	L79E4
 	rdldi	$A0, $0000
 	rts                                     ; 79E3 60                       `
