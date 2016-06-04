@@ -9486,10 +9486,7 @@ LA3E2:  jsr     sub_5E1E
 	ldy     LA3A8                           ; A3F2 AC A8 A3                 ...
 	ldxai	$A3B3
 	jsr     blockmove
-	sec                                     ; A3FC 38                       8
-	lda     LA3B5                           ; A3FD AD B5 A3                 ...
-	sbc     LA3B3                           ; A400 ED B3 A3                 ...
-	sta     $AE                             ; A403 85 AE                    ..
+	sub8m	off_AE, LA3B5, LA3B3
 	add8i	LA3AE, off_AE, $01
 	mv	$A3, LA3AC+1
 	rdldi	$A4, $0006
