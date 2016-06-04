@@ -9477,14 +9477,10 @@ sub_A3BD:
 
 ; ----------------------------------------------------------------------------
 LA3E2:  jsr     sub_5E1E
-	lda     LA3A9                           ; A3E5 AD A9 A3                 ...
-	sta     $A3                             ; A3E8 85 A3                    ..
-	lda     #$00                            ; A3EA A9 00                    ..
-	sta     $A5                             ; A3EC 85 A5                    ..
-	lda     #$04                            ; A3EE A9 04                    ..
-	sta     $A4                             ; A3F0 85 A4                    ..
+	mv	$A3, LA3A8+1
+	rdldi	$A4, $0004
 	ldy     LA3A8                           ; A3F2 AC A8 A3                 ...
-	ldxai	$A3B3
+	ldxai	LA3B3
 	jsr     blockmove
 	sub8m	off_AE, LA3B5, LA3B3
 	add8i	LA3AE, off_AE, $01
