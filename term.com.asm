@@ -9133,18 +9133,12 @@ LA04F:	mv	$A3, L9FE7+1
 	add8m	L9FF3, LA010, L9FE5
 	add8m	L9FF4, LA011, L9FE6
 	func16_8 sub_65B0, L9FED, LA00E
-	lda     L9FEE                           ; A08A AD EE 9F                 ...
-	sta     $A3                             ; A08D 85 A3                    ..
-	lda     #$00                            ; A08F A9 00                    ..
-	sta     $A5                             ; A091 85 A5                    ..
-	lda     #$06                            ; A093 A9 06                    ..
-	sta     $A4                             ; A095 85 A4                    ..
+	mv	$A3, L9FED+1
+	rdldi	$A4, $0006
 	ldy     L9FED                           ; A097 AC ED 9F                 ...
 	ldxai	LA014
 	jsr     blockmove
-	lda     L9FE3                           ; A0A1 AD E3 9F                 ...
-	jsr	sub_65B0
-	rdmv	L9FE9, $A0
+	func16_8 sub_65B0, L9FE9, L9FE3
 	lda     L9FEA                           ; A0B1 AD EA 9F                 ...
 	sta     $A3                             ; A0B4 85 A3                    ..
 	lda     #$00                            ; A0B6 A9 00                    ..
