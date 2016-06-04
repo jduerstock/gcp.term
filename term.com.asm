@@ -1882,9 +1882,7 @@ L4D03:  lda     #$01                            ; 4D03 A9 01                    
 
 ; ----------------------------------------------------------------------------
 L4DCC:  dmv	$AE, L4CF2
-	ldy     #$00                            ; 4DD6 A0 00                    ..
-	lda     ($AE),y                         ; 4DD8 B1 AE                    ..
-	sta     $A0                             ; 4DDA 85 A0                    ..
+	ldp8	$A0
 	add16i	off_AE, L4CF2, $0002
 	lda     ($AE),y                         ; 4DEB B1 AE                    ..
 	sta     $A1                             ; 4DED 85 A1                    ..
