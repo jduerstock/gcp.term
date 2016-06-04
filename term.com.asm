@@ -1170,10 +1170,8 @@ L485F:	pcode	"BDDR"
 L4866:	pcode	"BDR"
 L486C:	pcode	"BDs"
 L4872:	pcode	"Ds"
-L4877:	.byte	$02,"Ds"
-L487A:	.addr	L4877
-L487C:	.byte	$03,"BDB"
-L4880:	.addr	L487C
+L4877:	pcode	"Ds"
+L487C:	pcode	"BDB"
 L4882:	.byte	$01,"C"
 L4884:	.addr	L4882
 L4886:	.byte	$00
@@ -1254,13 +1252,11 @@ L48C3:	.addr	L476D-2
 	.addr	L4872-2
 	.addr	L4877-2
 	.addr	L487C-2
-	.byte   $80                             ; 4927 80                       .
-	pha                                     ; 4928 48                       H
-	sty     $48                             ; 4929 84 48                    .H
-	.byte   $87                             ; 492B 87                       .
-	pha                                     ; 492C 48                       H
-	.addr	L488D
-	sta     ($48),y                         ; 492F 91 48                    .H
+	.addr	L4882-2
+	.addr	L4886-2
+	.addr	L4889-2
+	.addr	L488F-2
+	.addr	L4893-2
 	.byte   $97                             ; 4931 97                       .
 	pha                                     ; 4932 48                       H
 	.byte   $9C                             ; 4933 9C                       .
