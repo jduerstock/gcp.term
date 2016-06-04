@@ -5416,9 +5416,7 @@ L7688:	.byte	$ED                             ; 7688 ED                       .
 
 sub_768A:  
 	stack_prolog L766A, $02
-	lda     L766A                           ; 7693 AD 6A 76                 .jv
-	jsr     sub_7035
-	rdmv	L766D, $A0
+	func16_8 sub_7035, L766D, L766A
 	lda     L766E                           ; 76A3 AD 6E 76                 .nv
 	sta     $A3                             ; 76A6 85 A3                    ..
 	ldi	$A5, $00
@@ -10772,8 +10770,7 @@ sub_AEE4:
 	rts                                     ; AF07 60                       `
 
 ; ----------------------------------------------------------------------------
-LAF08:  ldy     #$00                            ; AF08 A0 00                    ..
-	sty     LAEE3                           ; AF0A 8C E3 AE                 ...
+LAF08:	yldi	LAEE3, $00
 	add16m8	off_AE, LAEDF, LAEE2
 	lda     (off_AE),y
 	sta     LAEE1                           ; AF1F 8D E1 AE                 ...
@@ -10781,8 +10778,7 @@ LAF08:  ldy     #$00                            ; AF08 A0 00                    
 	lbeq	LAF35
 	lda     LAEE1                           ; AF2A AD E1 AE                 ...
 	jsr     sub_4BA7
-	ldy     #$01                            ; AF30 A0 01                    ..
-	sty     LAEE3                           ; AF32 8C E3 AE                 ...
+	yldi	LAEE3, $01
 LAF35:  rts                                     ; AF35 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -10855,8 +10851,7 @@ LAFCB:  lda	CH
 LAFE2:  lda     SHFLOK
 	and     #$40                            ; AFE5 29 40                    )@
 	sta     SHFLOK
-	ldy     #$00                            ; AFEA A0 00                    ..
-	sty     $02B6                           ; AFEC 8C B6 02                 ...
+	yldi	$02B6, $00
 	lda	CH
 	and     #$3F                            ; AFF2 29 3F                    )?
 	sta     LAF39                           ; AFF4 8D 39 AF                 .9.
