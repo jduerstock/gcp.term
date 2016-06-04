@@ -1286,18 +1286,18 @@ L48C3:	.addr	L476D-2
 	.addr	L483A-2
 	.addr	L483E-2
 	.addr	L4841-2
-	.addr	L4843
-	.addr	L4849
-	.addr	L484D
-	.addr	L4850
-	.addr	L4853
-	.addr	L4859
-	.addr	L485D
-	.addr	L4864
-	.addr	L486A
-	.addr	L4870
-	.addr	L4875
-	.addr	L487A
+	.addr	L4845-2
+	.addr	L484B-2
+	.addr	L484F-2
+	.addr	L4852-2
+	.addr	L4855-2
+	.addr	L485B-2
+	.addr	L485F-2
+	.addr	L4866-2
+	.addr	L486C-2
+	.addr	L4872-2
+	.addr	L4877-2
+	.addr	L487C-2
 	.byte   $80                             ; 4927 80                       .
 	pha                                     ; 4928 48                       H
 	sty     $48                             ; 4929 84 48                    .H
