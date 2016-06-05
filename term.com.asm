@@ -6914,7 +6914,7 @@ L896D:	.byte	$00
 	.byte	$00
 	.byte	$00
 	.byte	$00
-	.byte	$00
+L8971:	.byte	$00
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -7053,15 +7053,13 @@ L8AD9:  lda     L89A2                           ; 8AD9 AD A2 89                 
 	jsr     sub_884C
 L8B4E:	add16i	off_AE, L898D, $0007
 	ldp16	L8969
-	lda     #$00                            ; 8B6A A9 00                    ..
-	sta     $A3                             ; 8B6C 85 A3                    ..
+	ldi	$A3, $00
 	sub8i	$A4, L899C, $01
 	sub8i	$A5, L899D, $01
 	ldy     #$00                            ; 8B7E A0 00                    ..
 	ldxai	$8971
 	jsr     sub_4BF2
-	ldy     #$01                            ; 8B87 A0 01                    ..
-	sty     L8992                           ; 8B89 8C 92 89                 ...
+	yldi	L8992, $01
 	add16i	off_AE, L898D, $0006
 	dey                                     ; 8B9B 88                       .
 	lda     ($AE),y                         ; 8B9C B1 AE                    ..
@@ -7075,18 +7073,14 @@ L8BA1:  lda     L8BAC                           ; 8BA1 AD AC 8B                 
 L8BAC:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-L8BAD:  lda     L8969+1
-	sta     $A3                             ; 8BB0 85 A3                    ..
-	lda     #$00                            ; 8BB2 A9 00                    ..
-	sta     $A5                             ; 8BB4 85 A5                    ..
-	lda     #$05                            ; 8BB6 A9 05                    ..
-	sta     $A4                             ; 8BB8 85 A4                    ..
+L8BAD:	mv	$A3, L8969+1
+	rdldi	$A4, $0005
 	ldy     L8969                           ; 8BBA AC 69 89                 .i.
 	ldxai	L89A9
 	jsr     blockmove
 	lda     L89AD                           ; 8BC4 AD AD 89                 ...
 	eor     #$FF                            ; 8BC7 49 FF                    I.
-	lbne	L8BD1
+	lbne    L8BD1
 	jmp     L8CD5                           ; 8BCE 4C D5 8C                 L..
 
 ; ----------------------------------------------------------------------------
@@ -7106,33 +7100,23 @@ L8BD1:	func16_8 sub_65B0, L898F, L89A9
 	ldy     #$00                            ; 8C0E A0 00                    ..
 	ldxai	L8985
 	jsr     sub_4BF2
-	lda     #$89                            ; 8C17 A9 89                    ..
-	sta     $A3                             ; 8C19 85 A3                    ..
+	ldi	$A3, >L8985
 	sub8m	$A4, L89AB, L8999
 	sub8m	$A5, L89AC, L899A
-	ldy     #$85                            ; 8C2D A0 85                    ..
+	ldy     #<L8985
 	ldxai	L8985
 	jsr     sub_4C1D
-	lda     #$89                            ; 8C36 A9 89                    ..
-	sta     $A3                             ; 8C38 85 A3                    ..
-	lda     #$89                            ; 8C3A A9 89                    ..
-	sta     $A5                             ; 8C3C 85 A5                    ..
-	lda     #$89                            ; 8C3E A9 89                    ..
-	sta     $A4                             ; 8C40 85 A4                    ..
-	ldy     #$71                            ; 8C42 A0 71                    .q
+	ldi	$A3, >L8971
+	rdldi	$A4, L8989
+	ldy     #<L8971
 	ldxai	L8985
 	jsr     sub_4CF5
-	lda     $A0                             ; 8C4B A5 A0                    ..
-	sta     L8991                           ; 8C4D 8D 91 89                 ...
+	mv	L8991, $A0
 	lda     L8991                           ; 8C50 AD 91 89                 ...
 	eor     #$01                            ; 8C53 49 01                    I.
 	lbne	L8CBE
-	lda     L896C                           ; 8C5A AD 6C 89                 .l.
-	sta     $A3                             ; 8C5D 85 A3                    ..
-	lda     #$89                            ; 8C5F A9 89                    ..
-	sta     $A5                             ; 8C61 85 A5                    ..
-	lda     #$79                            ; 8C63 A9 79                    .y
-	sta     $A4                             ; 8C65 85 A4                    ..
+	mv	$A3, L896B+1
+	rdldi	$A4, L8979
 	ldy     L896B                           ; 8C67 AC 6B 89                 .k.
 	ldxai	L8989
 	jsr     sub_4CF5
