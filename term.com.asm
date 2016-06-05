@@ -8971,18 +8971,13 @@ L9ED7:  lda     L46E6                           ; 9ED7 AD E6 46                 
 	lda     L474F                           ; 9EED AD 4F 47                 .OG
 	eor     #$02                            ; 9EF0 49 02                    I.
 	lbne	L9F69
-	lda     L4750                           ; 9EF7 AD 50 47                 .PG
-	jsr     sub_7035
-	rdmv	L9E10, $A0
-	lda     L9E11                           ; 9F07 AD 11 9E                 ...
-	sta     $A3                             ; 9F0A 85 A3                    ..
+	func16_8 sub_7035, L9E10, L4750	
+	mv	$A3, L9E10+1
 	rdldi	$A4, $0005
 	ldy     L9E10                           ; 9F14 AC 10 9E                 ...
 	ldxai	L9E1D
 	jsr     blockmove
-	lda     L9E21                           ; 9F1E AD 21 9E                 .!.
-	jsr     sub_65B0
-	rdmv	L9E12, $A0
+	func16_8 sub_65B0, L9E12, L9E21
 	mv	$A3, L9E12+1
 	rdldi	$A4, $0006
 	ldy     L9E12                           ; 9F3B AC 12 9E                 ...
