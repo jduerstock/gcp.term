@@ -8392,32 +8392,18 @@ L98FF:  lda     L979C                           ; 98FF AD 9C 97                 
 ; ----------------------------------------------------------------------------
 L991A:	add16m8 L979F, L9059, L905E
 	add16i	$A2, L979F, $0001
-	sec                                     ; 993B 38                       8
-	lda     L9060                           ; 993C AD 60 90                 .`.
-	sbc     L905E                           ; 993F ED 5E 90                 .^.
-	sta     $A4                             ; 9942 85 A4                    ..
-	lda     #$00                            ; 9944 A9 00                    ..
-	sta     $A5                             ; 9946 85 A5                    ..
+	sub8m	$A4, L9060, L905E
+	ldi	$A5, $00
 	ldy     $A2                             ; 9948 A4 A2                    ..
-	ldx     L97A0                           ; 994A AE A0 97                 ...
-	lda     L979F                           ; 994D AD 9F 97                 ...
+	ldxa	L979F
 	jsr     blockmove
 	sub8i	off_AE, L9060, $01
 	add16m8	off_AC, L9059, off_AE
 	lda     #$00                            ; 996A A9 00                    ..
 	ldy     #$00                            ; 996C A0 00                    ..
 	sta     ($AC),y                         ; 996E 91 AC                    ..
-	sec                                     ; 9970 38                       8
-	lda     L905D                           ; 9971 AD 5D 90                 .].
-	sbc     #$01                            ; 9974 E9 01                    ..
-	sta     L905D                           ; 9976 8D 5D 90                 .].
-	clc                                     ; 9979 18                       .
-	lda     L9059                           ; 997A AD 59 90                 .Y.
-	adc     L905E                           ; 997D 6D 5E 90                 m^.
-	sta     $AE                             ; 9980 85 AE                    ..
-	lda     L905A                           ; 9982 AD 5A 90                 .Z.
-	adc     #$00                            ; 9985 69 00                    i.
-	sta     $AF                             ; 9987 85 AF                    ..
+	sub8i	L905D, L905D, $01
+	add16m8	off_AE, L9059, L905E
 	lda     ($AE),y                         ; 9989 B1 AE                    ..
 	eor     #$80                            ; 998B 49 80                    I.
 	sta     ($AE),y                         ; 998D 91 AE                    ..
