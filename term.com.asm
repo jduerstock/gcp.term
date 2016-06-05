@@ -1991,8 +1991,7 @@ sub_4FC5:
 ; ----------------------------------------------------------------------------
 L4FE5:  lda     #$02                            ; 4FE5 A9 02                    ..
 	jsr     sub_45A3
-L4FEA:  lda     $A0                             ; 4FEA A5 A0                    ..
-	sta     L4FBB                           ; 4FEC 8D BB 4F                 ..O
+	mv	L4FBB, $A0
 	lda     L4FBE                           ; 4FEF AD BE 4F                 ..O
 	eor     #$01                            ; 4FF2 49 01                    I.
 	lbne	L5015
@@ -2076,18 +2075,9 @@ L50A4:	add16m8 off_AE, L4FC2, L4FBF
 ; ----------------------------------------------------------------------------
 L50E5:  lda     #$02                            ; 50E5 A9 02                    ..
 	jsr     sub_45A3
-	lda     $A0                             ; 50EA A5 A0                    ..
-	sta     L4FBB                           ; 50EC 8D BB 4F                 ..O
-L50EF:  clc                                     ; 50EF 18                       .
-	lda     L4FC2                           ; 50F0 AD C2 4F                 ..O
-	adc     L4FBF                           ; 50F3 6D BF 4F                 m.O
-	sta     $AE                             ; 50F6 85 AE                    ..
-	lda     L4FC3                           ; 50F8 AD C3 4F                 ..O
-	adc     #$00                            ; 50FB 69 00                    i.
-	sta     $AF                             ; 50FD 85 AF                    ..
-	lda     L4FBB                           ; 50FF AD BB 4F                 ..O
-	ldy     #$00                            ; 5102 A0 00                    ..
-	sta     ($AE),y                         ; 5104 91 AE                    ..
+	mv	L4FBB, $A0
+L50EF:	add16m8	off_AE, L4FC2, L4FBF
+	stp8	L4FBB
 	clc                                     ; 5106 18                       .
 	lda     L4FC1                           ; 5107 AD C1 4F                 ..O
 	adc     L4FBB                           ; 510A 6D BB 4F                 m.O
