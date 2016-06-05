@@ -8440,13 +8440,7 @@ L999C:  lda     L979C                           ; 999C AD 9C 97                 
 L99B4:  lda     L905D                           ; 99B4 AD 5D 90                 .].
 	cmp     L905E                           ; 99B7 CD 5E 90                 .^.
 	lbcc	L9A35
-	clc                                     ; 99BF 18                       .
-	lda     L9059                           ; 99C0 AD 59 90                 .Y.
-	adc     L905E                           ; 99C3 6D 5E 90                 m^.
-	sta     L979F                           ; 99C6 8D 9F 97                 ...
-	lda     L905A                           ; 99C9 AD 5A 90                 .Z.
-	adc     #$00                            ; 99CC 69 00                    i.
-	sta     L97A0                           ; 99CE 8D A0 97                 ...
+	add16m8	L979F, L9059, L905E
 	sec                                     ; 99D1 38                       8
 	lda     L979F                           ; 99D2 AD 9F 97                 ...
 	sbc     #$01                            ; 99D5 E9 01                    ..
