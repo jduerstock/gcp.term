@@ -7939,10 +7939,7 @@ L9499:  lda     #$7F                            ; 9499 A9 7F                    
 	jmp     L94E8                           ; 94A8 4C E8 94                 L..
 
 ; ----------------------------------------------------------------------------
-L94AB:  sec                                     ; 94AB 38                       8
-	lda     L9061                           ; 94AC AD 61 90                 .a.
-	sbc     #$01                            ; 94AF E9 01                    ..
-	sta     $AE                             ; 94B1 85 AE                    ..
+L94AB:	sub8i	off_AE, L9061, $01
 	lda     $AE                             ; 94B3 A5 AE                    ..
 	cmp     L9416                           ; 94B5 CD 16 94                 ...
 	lbcs	L94E8
@@ -7963,12 +7960,9 @@ L94DF:  sec                                     ; 94DF 38                       
 	sta     L9416                           ; 94E5 8D 16 94                 ...
 L94E8:	shladdm8 off_AE, L9064, L9416
 	ldp16	L905B
-	lda     L905C                           ; 9509 AD 5C 90                 .\.
-	sta     $A3                             ; 950C 85 A3                    ..
-	lda     #$00                            ; 950E A9 00                    ..
-	sta     $A5                             ; 9510 85 A5                    ..
-	lda     L9060                           ; 9512 AD 60 90                 .`.
-	sta     $A4                             ; 9515 85 A4                    ..
+	mv	$A3, L905B+1
+	ldi	$A5, $00
+	mv	$A4, L9060
 	ldy     L905B                           ; 9517 AC 5B 90                 .[.
 	ldxa	L9059
 	jsr     blockmove
