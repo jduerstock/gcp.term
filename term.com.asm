@@ -7417,10 +7417,7 @@ sub_8F7D:
 	ldy     #$50                            ; 8F84 A0 50                    .P
 	ldxai	L46F9
 	jsr     sub_45F6
-	lda     #$46                            ; 8F8D A9 46                    .F
-	sta     L8F7C                           ; 8F8F 8D 7C 8F                 .|.
-	lda     #$F9                            ; 8F92 A9 F9                    ..
-	sta     L8F7B                           ; 8F94 8D 7B 8F                 .{.
+	rdldi	L8F7B, L46F9
 	ldy     #$00                            ; 8F97 A0 00                    ..
 	sty     L8F7A                           ; 8F99 8C 7A 8F                 .z.
 L8F9C:  lda     #$09                            ; 8F9C A9 09                    ..
