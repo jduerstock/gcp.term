@@ -8143,10 +8143,8 @@ sub_968E:
 	ldy     L9057                           ; 96E0 AC 57 90                 .W.
 	ldxai	L9060
 	jsr     blockmove
-	lda     L9683                           ; 96EA AD 83 96                 ...
-	sta     L9054                           ; 96ED 8D 54 90                 .T.
-	ldx     L9054                           ; 96F0 AE 54 90                 .T.
-	lda     L9053                           ; 96F3 AD 53 90                 .S.
+	mv	L9054, L9683
+	ldxa	L9053
 	jsr     sub_799B
 	lda     $A1                             ; 96F9 A5 A1                    ..
 	sta     L968D                           ; 96FB 8D 8D 96                 ...
@@ -8157,8 +8155,7 @@ sub_968E:
 	lda     #$00                            ; 9708 A9 00                    ..
 	sta     $A3                             ; 970A 85 A3                    ..
 	ldy     #$00                            ; 970C A0 00                    ..
-	ldx     L9054                           ; 970E AE 54 90                 .T.
-	lda     L9053                           ; 9711 AD 53 90                 .S.
+	ldxa	L9053
 	jsr     sub_7ADF                        ; 9714 20 DF 7A                  .z
 	dmv	off_AE, L968C
 	ldy     #$00                            ; 9721 A0 00                    ..
