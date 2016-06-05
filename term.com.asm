@@ -1982,8 +1982,7 @@ sub_4FC5:
 	prolog
 	jsr     modem_status
 	ldi	L4FBD, $00
-	lda     $A0                             ; 4FD0 A5 A0                    ..
-	sta     L4FBC                           ; 4FD2 8D BC 4F                 ..O
+	mv	L4FBC, $A0
 	test16	L4FBC
 	lbne	L4FE5
 	ldi	$A0, $00
