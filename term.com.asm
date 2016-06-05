@@ -2700,9 +2700,7 @@ L581B:	add16m8 off_AE, L5598, L5593
 	jsr     sub_4BC9
 	mv	L5595, $A0
 L5847:	add16m8	off_AE, L559E, L5594
-	lda     L5595                           ; 5857 AD 95 55                 ..U
-	ldy     #$00                            ; 585A A0 00                    ..
-	sta     ($AE),y                         ; 585C 91 AE                    ..
+	stp8	L5595
 	inc     L5594                           ; 585E EE 94 55                 ..U
 	inc     L5593                           ; 5861 EE 93 55                 ..U
 	jmp     L580F                           ; 5864 4C 0F 58                 L.X
