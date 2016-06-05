@@ -9772,8 +9772,7 @@ sub_AB6A:
 	prolog
 	rdmv	LAB58, LAA84
 	rdmv	LAB5A, L48C1
-	ldy     #$00                            ; AB85 A0 00                    ..
-	sty     LAB69                           ; AB87 8C 69 AB                 .i.
+	yldi	LAB69, $00
 	iny                                     ; AB8A C8                       .
 	sty     L4651                           ; AB8B 8C 51 46                 .QF
 	mv	LAB68, LB224
