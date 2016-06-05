@@ -2229,25 +2229,17 @@ L5273:	.byte	$30                             ; 5273 30                       0
 L5274:  prolog
 	stxa	L526B
 	dmv	off_AE, L526B
-	ldy     #$00                            ; 5287 A0 00                    ..
-	lda     ($AE),y                         ; 5289 B1 AE                    ..
-	sta     L526D                           ; 528B 8D 6D 52                 .mR
-	lda     L526C                           ; 528E AD 6C 52                 .lR
-	sta     L5273                           ; 5291 8D 73 52                 .sR
-	lda     L526B                           ; 5294 AD 6B 52                 .kR
-	sta     L5272                           ; 5297 8D 72 52                 .rR
+	ldp8	L526D
+	rdmv	L5272, L526B
 	sty     L526E                           ; 529A 8C 6E 52                 .nR
-	sec                                     ; 529D 38                       8
-	lda     L526D                           ; 529E AD 6D 52                 .mR
-	sbc     #$01                            ; 52A1 E9 01                    ..
-	sta     L52B1                           ; 52A3 8D B1 52                 ..R
+	sub8i	L52B1, L526D, $01
 L52A6:  lda     L52B1                           ; 52A6 AD B1 52                 ..R
 	cmp     L526E                           ; 52A9 CD 6E 52                 .nR
 	bcs     L52B2                           ; 52AC B0 04                    ..
 	jmp     L52D7                           ; 52AE 4C D7 52                 L.R
 
 ; ----------------------------------------------------------------------------
-L52B1:	.byte	$65                             ; 52B1 65                       e
+L52B1:	.byte	$65
 
 ; ----------------------------------------------------------------------------
 L52B2:  clc                                     ; 52B2 18                       .
