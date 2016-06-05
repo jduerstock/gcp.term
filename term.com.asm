@@ -2242,16 +2242,8 @@ L52A6:  lda     L52B1                           ; 52A6 AD B1 52                 
 L52B1:	.byte	$65
 
 ; ----------------------------------------------------------------------------
-L52B2:  clc                                     ; 52B2 18                       .
-	lda     L5272                           ; 52B3 AD 72 52                 .rR
-	adc     L526E                           ; 52B6 6D 6E 52                 mnR
-	sta     $AE                             ; 52B9 85 AE                    ..
-	lda     L5273                           ; 52BB AD 73 52                 .sR
-	adc     #$00                            ; 52BE 69 00                    i.
-	sta	$AF
-	ldy     #$00                            ; 52C2 A0 00                    ..
-	lda     ($AE),y                         ; 52C4 B1 AE                    ..
-	sta     L5271                           ; 52C6 8D 71 52                 .qR
+L52B2:	add16m8	off_AE, L5272, L526E
+	ldp8	L5271
 	ldx     L5271                           ; 52C9 AE 71 52                 .qR
 	lda     #$02                            ; 52CC A9 02                    ..
 	jsr     sub_45C7
