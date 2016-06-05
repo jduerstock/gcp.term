@@ -7899,12 +7899,9 @@ sub_9427:
 	lda     L9050                           ; 9445 AD 50 90                 .P.
 	eor     #$01                            ; 9448 49 01                    I.
 	lbne	L9499
-	lda     L905A                           ; 944F AD 5A 90                 .Z.
-	sta     $A3                             ; 9452 85 A3                    ..
-	lda     #$00                            ; 9454 A9 00                    ..
-	sta     $A5                             ; 9456 85 A5                    ..
-	lda     L9060                           ; 9458 AD 60 90                 .`.
-	sta     $A4                             ; 945B 85 A4                    ..
+	mv	$A3, L905A
+	ldi	$A5, $00
+	mv	$A4, L9060
 	ldy     L9059                           ; 945D AC 59 90                 .Y.
 	ldxa	L905B
 	jsr     blockmove
