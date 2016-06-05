@@ -8612,26 +8612,10 @@ L9B23:  sec                                     ; 9B23 38                       
 	jmp     L9BC6                           ; 9B54 4C C6 9B                 L..
 
 ; ----------------------------------------------------------------------------
-L9B57:  clc                                     ; 9B57 18                       .
-	lda     L9059                           ; 9B58 AD 59 90                 .Y.
-	adc     L905E                           ; 9B5B 6D 5E 90                 m^.
-	sta     L979F                           ; 9B5E 8D 9F 97                 ...
-	lda     L905A                           ; 9B61 AD 5A 90                 .Z.
-	adc     #$00                            ; 9B64 69 00                    i.
-	sta     L97A0                           ; 9B66 8D A0 97                 ...
-	clc                                     ; 9B69 18                       .
-	lda     L979F                           ; 9B6A AD 9F 97                 ...
-	adc     #$01                            ; 9B6D 69 01                    i.
-	sta     $A0                             ; 9B6F 85 A0                    ..
-	lda     L97A0                           ; 9B71 AD A0 97                 ...
-	adc     #$00                            ; 9B74 69 00                    i.
-	sta     $A1                             ; 9B76 85 A1                    ..
-	lda     L97A0                           ; 9B78 AD A0 97                 ...
-	sta     $A3                             ; 9B7B 85 A3                    ..
-	sec                                     ; 9B7D 38                       8
-	lda     L9060                           ; 9B7E AD 60 90                 .`.
-	sbc     L905E                           ; 9B81 ED 5E 90                 .^.
-	sta     $AC                             ; 9B84 85 AC                    ..
+L9B57:	add16m8	L979F, L9059, L905E
+	add16i	$A0, L979F, $0001
+	mv	$A3, L97A0
+	sub8m	off_AC, L9060, L905E
 	sub8i	$A4, $AC, $01
 	ldi	$A5, $00
 	ldy     L979F                           ; 9B91 AC 9F 97                 ...
