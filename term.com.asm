@@ -8270,10 +8270,7 @@ L97EC:  lda     L979D                           ; 97EC AD 9D 97                 
 L9810:  lda     L979C                           ; 9810 AD 9C 97                 ...
 	eor     #$2C                            ; 9813 49 2C                    I,
 	lbne	L9830
-	clc                                     ; 981A 18                       .
-	lda     L905E                           ; 981B AD 5E 90                 .^.
-	adc     #$04                            ; 981E 69 04                    i.
-	sta     $AE                             ; 9820 85 AE                    ..
+	add8i	off_AE, L905E, $04
 	lda     $AE                             ; 9822 A5 AE                    ..
 	and     #$FC                            ; 9824 29 FC                    ).
 	sta     $A0                             ; 9826 85 A0                    ..
