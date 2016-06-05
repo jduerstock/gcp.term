@@ -8955,9 +8955,7 @@ LA2CE:  lda     #$00                            ; A2CE A9 00                    
 	ldx     LA2A2                           ; A2D0 AE A2 A2                 ...
 	sta     L05C0,x                         ; A2D3 9D C0 05                 ...
 	add16i	off_AE, LA2A4, $0002
-	ldy     #$00                            ; A2E5 A0 00                    ..
-	lda     ($AE),y                         ; A2E7 B1 AE                    ..
-	sta     LA2A7                           ; A2E9 8D A7 A2                 ...
+	ldp8	LA2A7
 	lda     LA2A7                           ; A2EC AD A7 A2                 ...
 	eor     #$3F                            ; A2EF 49 3F                    I?
 	lbne	LA30A
@@ -10028,13 +10026,15 @@ sub_ADEA:
 	rdmv	sub_4749+1, sub_AB6A+1
 	rdmv	sub_5D64+1, sub_8D01+1
 	jsr     sub_AD85
+;--		sub_AD85();
 	jsr     sub_6203
+;--		sub_6203();
 	jsr     sub_5D67
+;--		sub_5D67();
 	jsr     sub_A9FB
+;--		sub_A9FB();
 	sei                                     ; AE5A 78                       x
-	lda     $10                             ; AE5B A5 10                    ..
-	and     #$7F                            ; AE5D 29 7F                    ).
-	sta     $10                             ; AE5F 85 10                    ..
+	and8i	$10, $10, $7F
 	cli                                     ; AE61 58                       X
 	jmp     LAE70                           ; AE62 4C 70 AE                 Lp.
 
@@ -10048,7 +10048,9 @@ LAE70:  lda     #>LAE65
 	ldx     #$02                            ; AE76 A2 02                    ..
 	lda     #$03                            ; AE78 A9 03                    ..
 	jsr     sub_A2A8
-	rts                                     ; AE7D 60                       `
+;--		sub_A2A8(3,2,"D:INIT.MAC");
+	rts
+;--	}
 
 ; ----------------------------------------------------------------------------
 LAE7E:	.byte	$00
