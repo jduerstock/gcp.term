@@ -8693,15 +8693,14 @@ sub_9BE0:
 ; ----------------------------------------------------------------------------
 L9C16:  .byte	$00
 L9C17:  .byte	$00,$00
-	.byte	$00
+L9C19:	.byte	$00
 	.byte	$00
 	ora     ($01,x)                         ; 9C1B 01 01                    ..
 	ora     ($00,x)                         ; 9C1D 01 00                    ..
 	.byte   $FF                             ; 9C1F FF                       .
 	.byte   $FF                             ; 9C20 FF                       .
 	.byte   $FF                             ; 9C21 FF                       .
-L9C22:	.byte	$19                             ; 9C22 19                       .
-L9C23:	.byte	$9C                             ; 9C23 9C                       .
+L9C22:	.addr	L9C19
 L9C24:	.byte	$00
 	.byte   $FF                             ; 9C25 FF                       .
 	.byte   $FF                             ; 9C26 FF                       .
@@ -8731,7 +8730,7 @@ sub_9C41:
 	dmv	L46E9, L9C17
 	rdldi	L46EB, L9C2F
 	rdldi	L46ED, L9C38
-	mv	$A3, L9C23
+	mv	$A3, L9C22+1
 	rdldi	$A4, $0009
 	ldy     L9C22                           ; 9C7D AC 22 9C                 .".
 	ldxai	L9C2F
