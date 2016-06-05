@@ -8902,7 +8902,7 @@ L9E1E:  .byte	$00
 L9E1F:  .byte	$00
 L9E20:  .byte	$00
 L9E21:  .byte	$00
-	.byte	$00
+L9E22:	.byte	$00
 	.byte	$00
 	.byte	$00
 	.byte	$00
@@ -8983,12 +8983,10 @@ L9ED7:  lda     L46E6                           ; 9ED7 AD E6 46                 
 	lda     L9E21                           ; 9F1E AD 21 9E                 .!.
 	jsr     sub_65B0
 	rdmv	L9E12, $A0
-	lda     L9E13                           ; 9F2E AD 13 9E                 ...
-	sta     $A3                             ; 9F31 85 A3                    ..
+	mv	$A3, L9E12+1
 	rdldi	$A4, $0006
 	ldy     L9E12                           ; 9F3B AC 12 9E                 ...
-	ldx     #$9E                            ; 9F3E A2 9E                    ..
-	lda     #$22                            ; 9F40 A9 22                    ."
+	ldxai	L9E22
 	jsr     blockmove
 	sub8m	off_AE, L9E1D, L9E1F
 	sub8m	L9E1B, L4751, off_AE
@@ -9206,10 +9204,8 @@ LA1C1:  lda     LA1CC                           ; A1C1 AD CC A1                 
 LA1CC:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-LA1CD:  lda     LA023                           ; A1CD AD 23 A0                 .#.
-	sta     LA00A                           ; A1D0 8D 0A A0                 ...
-	lda     LA025                           ; A1D3 AD 25 A0                 .%.
-	sta     LA1E4                           ; A1D6 8D E4 A1                 ...
+LA1CD:	mv	LA00A, LA023
+	mv	LA1E4, LA025
 LA1D9:  lda     LA1E4                           ; A1D9 AD E4 A1                 ...
 	cmp     LA00A                           ; A1DC CD 0A A0                 ...
 	bcs     LA1E5                           ; A1DF B0 04                    ..
