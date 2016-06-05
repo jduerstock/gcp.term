@@ -893,6 +893,15 @@ L4641:  cpy     $A4                             ; 4641 C4 A4                    
 	rts                                     ; 4645 60                       `
 
 ; ----------------------------------------------------------------------------
+.macro	blkmv_imi s1, d1, c1
+	mv	$A3, d1+1
+	rdldi	$A4, c1
+	ldy     d1
+	ldxai	s1
+	jsr     blockmove
+.endmacro
+
+; ----------------------------------------------------------------------------
 	.byte   $2D                             ; 4646 2D                       -
 L4647:	.byte	$FF                             ; 4647 FF                       .
 L4648:	.byte	$FF                             ; 4648 FF                       .
@@ -1392,15 +1401,7 @@ L49EE:  clc                                     ; 49EE 18                       
 	lda     #$B3                            ; 49F7 A9 B3                    ..
 	adc     #$00                            ; 49F9 69 00                    i.
 	sta     L49D2                           ; 49FB 8D D2 49                 ..I
-	lda     L49D2                           ; 49FE AD D2 49                 ..I
-	sta     $A3                             ; 4A01 85 A3                    ..
-	lda     #$00                            ; 4A03 A9 00                    ..
-	sta     $A5                             ; 4A05 85 A5                    ..
-	lda     #$0C                            ; 4A07 A9 0C                    ..
-	sta     $A4                             ; 4A09 85 A4                    ..
-	ldy     L49D1                           ; 4A0B AC D1 49                 ..I
-	ldxai	L49C5
-	jsr     blockmove
+	blkmv_imi L49C5, L49D1, $000C
 	lda     #$00                            ; 4A15 A9 00                    ..
 	sta     $A3                             ; 4A17 85 A3                    ..
 	ldy     #$0C                            ; 4A19 A0 0C                    ..
