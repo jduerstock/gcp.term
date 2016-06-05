@@ -1675,22 +1675,11 @@ sub_4BC9:
 
 ; ----------------------------------------------------------------------------
 L4BEC:	.word	$7220
-L4BEE:	.byte	$32
-	.byte	$20
-	.byte	$53
-	.byte	$42
+L4BEE:	.byte	$32,$20,$53,$42
 
 sub_4BF2:  
 	stack_prolog L4BEC, $05
-	lda     #>L4BEE
-	sta     $A3                             ; 4BFD 85 A3                    ..
-	lda     #$00                            ; 4BFF A9 00                    ..
-	sta     $A5                             ; 4C01 85 A5                    ..
-	lda     #$04                            ; 4C03 A9 04                    ..
-	sta     $A4                             ; 4C05 85 A4                    ..
-	ldy     #<L4BEE                         ; 4C07 A0 EE                    ..
-	ldxa	L4BEC
-	jsr     blockmove
+	blkmv_mii L4BEC, L4BEE, $0004
 	rts                                     ; 4C12 60                       `
 
 ; ----------------------------------------------------------------------------
