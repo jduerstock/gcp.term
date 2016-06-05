@@ -324,7 +324,7 @@ SYSVBV		:= $E45F
 .macro	ldp8	a1
 	ldy	#$00
 	lda	($AE),y
-	sta	$A0
+	sta	a1
 .endmacro
 
 .macro	stp8	a1
@@ -1779,27 +1779,21 @@ L4CE9:	ldi	$A0, $01
 	rts                                     ; 4CED 60                       `
 
 ; ----------------------------------------------------------------------------
-L4CEE:  .byte	$00
-L4CEF:	.byte	$0D                             ; 4CEF 0D                       .
-L4CF0:	.byte	$3B                             ; 4CF0 3B                       ;
-L4CF1:	.byte	$44                             ; 4CF1 44                       D
-L4CF2:	.byte	$45                             ; 4CF2 45                       E
-L4CF3:	.byte	$53                             ; 4CF3 53                       S
+L4CEE:  .byte	$00,$0D
+L4CF0:	.byte	$3B,$44
+L4CF2:	.byte	$45,$53
 L4CF4:	.byte	$43                             ; 4CF4 43                       C
 
 sub_4CF5:
 	stack_prolog L4CEE, $05
-	ldy     #$00                            ; 4CFE A0 00                    ..
-	sty     L4CF4                           ; 4D00 8C F4 4C                 ..L
+	yldi	L4CF4, $00
 L4D03:  lda     #$01                            ; 4D03 A9 01                    ..
 	cmp     L4CF4                           ; 4D05 CD F4 4C                 ..L
 	lbcc	L4DCC
 	add16m8 off_AE, L4CF2, L4CF4
 	push16	off_AE
 	add16m8	off_AE, L4CEE, L4CF4
-	ldy     #$00                            ; 4D33 A0 00                    ..
-	lda     ($AE),y                         ; 4D35 B1 AE                    ..
-	sta     $A0                             ; 4D37 85 A0                    ..
+	ldp8	$A0
 	add16m8 off_AE, L4CF0, L4CF4
 	lda     ($AE),y                         ; 4D49 B1 AE                    ..
 	sta     $A1                             ; 4D4B 85 A1                    ..
@@ -7120,13 +7114,12 @@ L8BD1:	func16_8 sub_65B0, L898F, L89A9
 	ldy     L896B                           ; 8C67 AC 6B 89                 .k.
 	ldxai	L8989
 	jsr     sub_4CF5
-	lda     #$89                            ; 8C71 A9 89                    ..
-	sta     $A3                             ; 8C73 85 A3                    ..
+	ldi	$A3, >L8979
 	lda     L8997                           ; 8C75 AD 97 89                 ...
 	sta     $A4                             ; 8C78 85 A4                    ..
 	lda     L8998                           ; 8C7A AD 98 89                 ...
 	sta     $A5                             ; 8C7D 85 A5                    ..
-	ldy     #$79                            ; 8C7F A0 79                    .y
+	ldy     #<L8979
 	ldxai	L8975
 	jsr     sub_4C1D
 	lda     #$89                            ; 8C88 A9 89                    ..
