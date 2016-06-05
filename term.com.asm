@@ -7593,8 +7593,7 @@ sub_90CE:
 ; ----------------------------------------------------------------------------
 L9136:  .byte	$00
 L9137:  .byte	$00
-L9138:  .byte	$00
-L9139:  .byte	$00
+L9138:  .byte	$00,$00
 L913A:  .byte	$00
 L913B:  .byte	$00
 L913C:  .byte	$00
@@ -7602,7 +7601,7 @@ L913D:  .byte	$00
 L913E:  .byte	$00
 L913F:  .byte	$00
 L9140:  .byte	$00
-L9141:  .byte	$00
+L9141:	.byte	$00
 	.byte	$00
 	.byte	$00
 L9144:  .byte	$00
@@ -7613,12 +7612,8 @@ sub_9146:
 	prolog
 	stxa	L9136
 	func16_8 sub_65B0, L9138, L9136
-	lda     L9139                           ; 915F AD 39 91                 .9.
-	sta     $A3                             ; 9162 85 A3                    ..
-	lda     #$00                            ; 9164 A9 00                    ..
-	sta     $A5                             ; 9166 85 A5                    ..
-	lda     #$06                            ; 9168 A9 06                    ..
-	sta     $A4                             ; 916A 85 A4                    ..
+	mv	$A3, L9138+1
+	rdldi	$A4, $0006
 	ldy     L9138                           ; 916C AC 38 91                 .8.
 	ldxai	L9140
 	jsr     blockmove
@@ -7626,12 +7621,7 @@ sub_9146:
 	cmp     L9141                           ; 9179 CD 41 91                 .A.
 	lbcs	L9242
 	shladdm8 off_AE, L9144, L9137
-	ldy     #$01                            ; 9195 A0 01                    ..
-	lda     ($AE),y                         ; 9197 B1 AE                    ..
-	sta     L913D                           ; 9199 8D 3D 91                 .=.
-	dey                                     ; 919C 88                       .
-	lda     ($AE),y                         ; 919D B1 AE                    ..
-	sta     L913C                           ; 919F 8D 3C 91                 .<.
+	ldp16	L913C
 	add8i	off_AE, L9137, $01
 	shladdm8 off_AC, L9144, off_AE
 	iny                                     ; 91BD C8                       .
