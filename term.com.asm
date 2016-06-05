@@ -16,6 +16,7 @@ VDSLST		:= $0200
 CDTMV3		:= $021C
 CDTMF3		:= $022A
 CDTMF5		:= $022E
+DLIST		:= $0230
 SHFLOK		:= $02BE
 PCOLR3		:= $02C3
 MEMTOP		:= $02E5
@@ -10009,16 +10010,13 @@ sub_AD85:
 
 ; ----------------------------------------------------------------------------
 sub_ADEA:
+;--	void sub_ADEA()
 	prolog
+;--	{
 	dmv	off_AE, L466F
-	lda     $0231                           ; ADF7 AD 31 02                 .1.
-	ldy     #$01                            ; ADFA A0 01                    ..
-	sta     ($AE),y                         ; ADFC 91 AE                    ..
-	lda     $0230                           ; ADFE AD 30 02                 .0.
-	dey                                     ; AE01 88                       .
-	sta     ($AE),y                         ; AE02 91 AE                    ..
+	stp16	DLIST
 	shladdi off_AE, L466F, $01
-	sub8i off_AC, $0230, $00
+	sub8i	off_AC, $0230, $00
 	lda     $0231                           ; AE1F AD 31 02                 .1.
 	sbc     #$04                            ; AE22 E9 04                    ..
 	iny                                     ; AE24 C8                       .
@@ -10139,7 +10137,7 @@ sub_AF3A:
 	rdmv	sub_43BA+1, sub_5E5E+1
 ;--		ptr_43BA = &sub_5E5E;
 	jsr     sub_ADEA
-;--		sub_AD3A();
+;--		sub_ADEA();
 LAF4C:  lda     #$01                            ; AF4C A9 01                    ..
 	eor     #$01                            ; AF4E 49 01                    I.
 	lbne	LB0BE
