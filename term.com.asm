@@ -1982,9 +1982,7 @@ L5010:	ldi	$A0, $00
 ; ----------------------------------------------------------------------------
 L5015:  lda     L464F                           ; 5015 AD 4F 46                 .OF
 	lbne	L5085
-	lda     L4FBB                           ; 501D AD BB 4F                 ..O
-	and     #$7F                            ; 5020 29 7F                    ).
-	sta     L4FC0                           ; 5022 8D C0 4F                 ..O
+	and8i	L4FC0, L4FBB, $7F
 	lda     L4FC0                           ; 5025 AD C0 4F                 ..O
 	cmp     #$05                            ; 5028 C9 05                    ..
 	bcc     L5036                           ; 502A 90 0A                    ..
@@ -2012,9 +2010,7 @@ L5040:	mv	LB1C6, L4FBB
 	rts                                     ; 507A 60                       `
 
 ; ----------------------------------------------------------------------------
-L507B:  lda     #$02                            ; 507B A9 02                    ..
-	jsr     sub_45A3
-	mv	L4FBB, $A0
+L507B:	func8_8i sub_45A3, L4FBB, $02
 L5085:  lda     L4FBF                           ; 5085 AD BF 4F                 ..O
 	eor     #$01                            ; 5088 49 01                    I.
 	lbne	L50EF
@@ -2118,9 +2114,7 @@ L51A3:  lda     $A5                             ; 51A3 A5 A5                    
 	ldy     $A5                             ; 51AC A4 A5                    ..
 	lda     ($A2),y                         ; 51AE B1 A2                    ..
 	sta     $A7                             ; 51B0 85 A7                    ..
-	lda     $A7                             ; 51B2 A5 A7                    ..
-	and     #$7F                            ; 51B4 29 7F                    ).
-	sta     $A8                             ; 51B6 85 A8                    ..
+	and8i	$A8, $A7, $7F
 	lda     $A8                             ; 51B8 A5 A8                    ..
 	eor     $A7                             ; 51BA 45 A7                    E.
 	lbeq	L51E4
@@ -2424,16 +2418,12 @@ L5471:	add8i	$AE, L531D, $01
 	lbne	L54E3
 	jsr     sub_537F
 	mv	L531D, LB1C8
-	lda     LB1C6                           ; 548C AD C6 B1                 ...
-	and     #$80                            ; 548F 29 80                    ).
-	sta     $AE                             ; 5491 85 AE                    ..
+	and8i	off_AE, LB1C6, $80
 	lda     $AE                             ; 5493 A5 AE                    ..
 	lbeq	L54B8
 	lda     #>LB1C9
 	sta     $A3                             ; 549C 85 A3                    ..
-	lda     LB1C6                           ; 549E AD C6 B1                 ...
-	and     #$7F                            ; 54A1 29 7F                    ).
-	sta     $AE                             ; 54A3 85 AE                    ..
+	and8i	off_AE, LB1C6, $7F
 	sub8i	$A4, off_AE, $04
 	ldy     #<LB1C9
 	ldxai	LB224
@@ -2442,13 +2432,9 @@ L5471:	add8i	$AE, L531D, $01
 
 ; ----------------------------------------------------------------------------
 L54B8:	sub8i	L4649, LB1C6, $04
-	lda     #$B1                            ; 54C1 A9 B1                    ..
-	sta     $A3                             ; 54C3 85 A3                    ..
-	lda     #$00                            ; 54C5 A9 00                    ..
-	sta     $A5                             ; 54C7 85 A5                    ..
-	lda     #$5C                            ; 54C9 A9 5C                    .\
-	sta     $A4                             ; 54CB 85 A4                    ..
-	ldy     #$C9                            ; 54CD A0 C9                    ..
+	ldi	$A3, >LB1C9
+	rdldi	$A4, $005C
+	ldy     #<LB1C9
 	ldxai	LB224
 	jsr     blockmove
 L54D6:	yldi	L4651, $00
