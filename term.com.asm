@@ -15,6 +15,7 @@ off_AE		:= $00AE
 VDSLST		:= $0200
 CDTMV3		:= $021C
 CDTMF3		:= $022A
+SRTIMR		:= $022B
 CDTMF5		:= $022E
 DLIST		:= $0230
 SHFLOK		:= $02BE
@@ -23,11 +24,12 @@ MEMTOP		:= $02E5
 MEMLO		:= $02E7
 DVSTAT		:= $02EA
 CRSINH		:= $02F0
+KEYDEL		:= $02F1
+CH1		:= $02F2
 CH		:= $02FC
 CHBAS		:= $02F4
 L05C0		:= $05C0
 L3272           := $3272
-L3C20           := $3C20
 L4253           := $4253
 LB16A		:= $B16A
 LB16C		:= $B16C
@@ -9820,13 +9822,11 @@ LABEE:	shladdm8 off_AE, LAB5A, LAB69
 	dey                                     ; AC3E 88                       .
 	lda     ($AE),y                         ; AC3F B1 AE                    ..
 	sta     $A0                             ; AC41 85 A0                    ..
-	lda     #$AB                            ; AC43 A9 AB                    ..
-	sta     $A3                             ; AC45 85 A3                    ..
-	ldy     #$60                            ; AC47 A0 60                    .`
+	ldi	$A3, >LAB60
+	ldy     #<LAB60
 	ldxa	$A0
 	jsr     sub_58F2                        ; AC4D 20 F2 58                  .X
-	ldy     #$00                            ; AC50 A0 00                    ..
-	sty     LAB69                           ; AC52 8C 69 AB                 .i.
+	yldi	LAB69, $00
 LAC55:  lda     #$07                            ; AC55 A9 07                    ..
 	cmp     LAB69                           ; AC57 CD 69 AB                 .i.
 	lbcc	LAC70
@@ -9850,22 +9850,19 @@ sub_AC7E:
 	txa                                     ; AC7E 8A                       .
 	pha                                     ; AC7F 48                       H
 	lda     KBCODE
-	eor     $02F2                           ; AC83 4D F2 02                 M..
+	eor     CH1
 	bne     LAC8D                           ; AC86 D0 05                    ..
-	lda     $02F1                           ; AC88 AD F1 02                 ...
+	lda     KEYDEL
 	bne     LACA9                           ; AC8B D0 1C                    ..
 LAC8D:  lda     $D209                           ; AC8D AD 09 D2                 ...
-	sta     $02F2                           ; AC90 8D F2 02                 ...
+	sta     CH1
 	ldx     L474D                           ; AC93 AE 4D 47                 .MG
 	sta     $B138,x                         ; AC96 9D 38 B1                 .8.
 	inc     L474D                           ; AC99 EE 4D 47                 .MG
-	lda     L474D                           ; AC9C AD 4D 47                 .MG
-	and     #$0F                            ; AC9F 29 0F                    ).
-	sta     L474D                           ; ACA1 8D 4D 47                 .MG
+	and8i	L474D, L474D, $0F
 	ldx     #$01                            ; ACA4 A2 01                    ..
-	stx     $02F1                           ; ACA6 8E F1 02                 ...
-LACA9:  lda     #$11                            ; ACA9 A9 11                    ..
-	sta     $022B                           ; ACAB 8D 2B 02                 .+.
+	stx     KEYDEL
+LACA9:	ldi	SRTIMR, $11
 	pla                                     ; ACAE 68                       h
 	tax                                     ; ACAF AA                       .
 	pla                                     ; ACB0 68                       h
