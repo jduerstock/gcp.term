@@ -8161,9 +8161,7 @@ sub_968E:
 	ldy     #$00                            ; 9721 A0 00                    ..
 	lda     (off_AE),y                      ; 9723 B1 AE                    ..
 	sta     L968B                           ; 9725 8D 8B 96                 ...
-	lda     L968B                           ; 9728 AD 8B 96                 ...
-	jsr     sub_65B0
-	rdmv	L9687, $A0
+	func16_8 sub_65B0, L9687, L968B
 	dmv	off_AE, L9687
 	ldy     #$00                            ; 9742 A0 00                    ..
 	lda     (off_AE),y
