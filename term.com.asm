@@ -290,6 +290,12 @@ SYSVBV		:= $E45F
 	jsr	p1
 .endmacro
 
+.macro	func8_8i f1, a1, i1
+	lda     #i1
+	jsr     f1
+	mv	a1, $A0
+.endmacro
+
 .macro	func16_8 f1, a1, a2
 	proc8	f1, a2
 	rdmv	a1, $A0
@@ -2033,9 +2039,8 @@ L5040:	mv	LB1C6, L4FBB
 	sty     L464F                           ; 5058 8C 4F 46                 .OF
 	sty     L4FBF                           ; 505B 8C BF 4F                 ..O
 	jsr     modem_status
-	ldi	L4FBD, $00
-	lda     $A0                             ; 5066 A5 A0                    ..
-	sta     L4FBC                           ; 5068 8D BC 4F                 ..O
+	ldi	L4FBC+1, $00
+	mv	L4FBC, $A0
 	test16	L4FBC
 	lbne	L507B
 	ldi	$A0, $00
@@ -4204,14 +4209,8 @@ L6861:  sec                                     ; 6861 38                       
 	ldx     #$00                            ; 6874 A2 00                    ..
 	jsr     sub_447F
 	sta     L67CC                           ; 6879 8D CC 67                 ..g
-	clc                                     ; 687C 18                       .
-	lda     L67C6                           ; 687D AD C6 67                 ..g
-	adc     L67CC                           ; 6880 6D CC 67                 m.g
-	sta     $AE                             ; 6883 85 AE                    ..
-	sec                                     ; 6885 38                       8
-	lda     L67D3                           ; 6886 AD D3 67                 ..g
-	sbc     #$01                            ; 6889 E9 01                    ..
-	sta     $AC                             ; 688B 85 AC                    ..
+	add8m	off_AE, L67C6, L67CC
+	sub8i	off_AC, L67D3, $01
 	sec                                     ; 688D 38                       8
 	lda     $AE                             ; 688E A5 AE                    ..
 	sbc     $AC                             ; 6890 E5 AC                    ..
