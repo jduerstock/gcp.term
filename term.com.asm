@@ -18,6 +18,7 @@ CDTMF3		:= $022A
 SRTIMR		:= $022B
 CDTMF5		:= $022E
 DLIST		:= $0230
+INVFLG		:= $02B6
 SHFLOK		:= $02BE
 PCOLR3		:= $02C3
 MEMTOP		:= $02E5
@@ -8109,8 +8110,7 @@ L98E0:  lda     L979C                           ; 98E0 AD 9C 97                 
 	eor     #$CF                            ; 98E3 49 CF                    I.
 	lbne	L98FF
 	sub8i	$A0, L9061, $01
-	lda     $A0                             ; 98F2 A5 A0                    ..
-	jsr     sub_9427
+	proc8	sub_9427, $A0
 	lda     #$00                            ; 98F7 A9 00                    ..
 	jsr     sub_961E
 	jmp     L9BCE                           ; 98FC 4C CE 9B                 L..
@@ -10174,10 +10174,8 @@ LAFCB:  lda	CH
 	jmp     LB01A                           ; AFDF 4C 1A B0                 L..
 
 ; ----------------------------------------------------------------------------
-LAFE2:  lda     SHFLOK
-	and     #$40                            ; AFE5 29 40                    )@
-	sta     SHFLOK
-	yldi	$02B6, $00
+LAFE2:	and8i	SHFLOK, SHFLOK, $40
+	yldi	INVFLG, $00
 	lda	CH
 	and     #$3F                            ; AFF2 29 3F                    )?
 	sta     LAF39                           ; AFF4 8D 39 AF                 .9.
