@@ -7358,10 +7358,7 @@ sub_8EFD:
 	stack_prolog L8EF8, $02
 	shladdm8 off_AE, L46F5, L8EF8
 	ldp16	L8EFB
-	lda     L8EFB                           ; 8F27 AD FB 8E                 ...
-	sta     $AE                             ; 8F2A 85 AE                    ..
-	lda     L8EFC                           ; 8F2C AD FC 8E                 ...
-	sta     $AF                             ; 8F2F 85 AF                    ..
+	dmv	off_AE, L8EFB
 	lda     L8EF9                           ; 8F31 AD F9 8E                 ...
 	sta     ($AE),y                         ; 8F34 91 AE                    ..
 	clc                                     ; 8F36 18                       .
