@@ -7962,12 +7962,7 @@ L94DF:  sec                                     ; 94DF 38                       
 	sbc     #$01                            ; 94E3 E9 01                    ..
 	sta     L9416                           ; 94E5 8D 16 94                 ...
 L94E8:	shladdm8 off_AE, L9064, L9416
-	ldy     #$01                            ; 94FC A0 01                    ..
-	lda     ($AE),y                         ; 94FE B1 AE                    ..
-	sta     L905C                           ; 9500 8D 5C 90                 .\.
-	dey                                     ; 9503 88                       .
-	lda     ($AE),y                         ; 9504 B1 AE                    ..
-	sta     L905B                           ; 9506 8D 5B 90                 .[.
+	ldp16	L905B
 	lda     L905C                           ; 9509 AD 5C 90                 .\.
 	sta     $A3                             ; 950C 85 A3                    ..
 	lda     #$00                            ; 950E A9 00                    ..
