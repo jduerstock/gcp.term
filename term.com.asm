@@ -1683,24 +1683,19 @@ sub_4BF2:
 	rts                                     ; 4C12 60                       `
 
 ; ----------------------------------------------------------------------------
-L4C13:	.byte	$79                             ; 4C13 79                       y
-L4C14:	.byte	$31                             ; 4C14 31                       1
-L4C15:	.byte	$2C                             ; 4C15 2C                       ,
-L4C16:	.byte	$20                             ; 4C16 20                        
-L4C17:	.byte	$72                             ; 4C17 72                       r
-L4C18:	.byte	$32                             ; 4C18 32                       2
-L4C19:  sei                                     ; 4C19 78                       x
-L4C1A:	.byte   $32                             ; 4C1A 32                       2
-L4C1B:	.byte	$2C                             ; 4C1B 2C                       ,
-L4C1C:	.byte	$20                             ; 4C1C 20                        
+L4C13:	.byte	$79,$31
+L4C15:	.byte	$2C,$20
+L4C17:	.byte	$72
+L4C18:	.byte	$32
+L4C19:  .byte	$78,$32,$2C,$20
 
 sub_4C1D:  
 	stack_prolog L4C13, $05
 	blkmv_imi L4C19, L4C15, $0004
 	add8m	$A2, L4C19, L4C17
-	add8m	$A3, L4C1A, L4C18
-	add8m	$A4, L4C1B, L4C17
-	add8m	$A5, L4C1C, L4C18
+	add8m	$A3, L4C19+1, L4C18
+	add8m	$A4, L4C19+2, L4C17
+	add8m	$A5, L4C19+3, L4C18
 	ldy     $A2                             ; 4C61 A4 A2                    ..
 	ldxa	L4C13
 	jsr     sub_4BF2
@@ -1716,6 +1711,7 @@ L4C72:	.byte	$2B                             ; 4C72 2B                       +
 L4C73:	.byte	$79                             ; 4C73 79                       y
 L4C74:	.byte	$2C                             ; 4C74 2C                       ,
 
+; ----------------------------------------------------------------------------
 sub_4C75:  
 	stack_prolog L4C6D, $03
 	lda     L4C70                           ; 4C7E AD 70 4C                 .pL
