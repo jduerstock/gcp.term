@@ -7418,8 +7418,7 @@ sub_8F7D:
 	ldxai	L46F9
 	jsr     sub_45F6
 	rdldi	L8F7B, L46F9
-	ldy     #$00                            ; 8F97 A0 00                    ..
-	sty     L8F7A                           ; 8F99 8C 7A 8F                 .z.
+	yldi	L8F7A, $00
 L8F9C:  lda     #$09                            ; 8F9C A9 09                    ..
 	cmp     L8F7A                           ; 8F9E CD 7A 8F                 .z.
 	lbcc	L8FDE
