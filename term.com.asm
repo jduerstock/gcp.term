@@ -1714,15 +1714,7 @@ L4C74:	.byte	$2C                             ; 4C74 2C                       ,
 ; ----------------------------------------------------------------------------
 sub_4C75:  
 	stack_prolog L4C6D, $03
-	lda     L4C70                           ; 4C7E AD 70 4C                 .pL
-	sta     $A3                             ; 4C81 85 A3                    ..
-	lda     #$00                            ; 4C83 A9 00                    ..
-	sta     $A5                             ; 4C85 85 A5                    ..
-	lda     #$04                            ; 4C87 A9 04                    ..
-	sta     $A4                             ; 4C89 85 A4                    ..
-	ldy     L4C6F                           ; 4C8B AC 6F 4C                 .oL
-	ldxai	$4C71
-	jsr     blockmove
+	blkmv_imi L4C71, L4C6F, $0004
 	ldx     L4C71                           ; 4C95 AE 71 4C                 .qL
 	lda     L4C6D                           ; 4C98 AD 6D 4C                 .mL
 	jsr     sub_4955
