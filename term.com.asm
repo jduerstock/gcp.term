@@ -7669,10 +7669,7 @@ sub_9146:
 	ldx     L913D                           ; 9202 AE 3D 91                 .=.
 	lda     L913C                           ; 9205 AD 3C 91                 .<.
 	jsr     blockmove
-	sec                                     ; 920B 38                       8
-	lda     L9141                           ; 920C AD 41 91                 .A.
-	sbc     #$01                            ; 920F E9 01                    ..
-	sta     $AE                             ; 9211 85 AE                    ..
+	sub8i	off_AE, L9141, $01
 	lda     $AE                             ; 9213 A5 AE                    ..
 	asl     a                               ; 9215 0A                       .
 	php                                     ; 9216 08                       .
