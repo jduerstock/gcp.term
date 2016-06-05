@@ -8603,19 +8603,12 @@ L9B23:  sec                                     ; 9B23 38                       
 	lda     L905E                           ; 9B2B AD 5E 90                 .^.
 	eor     $AE                             ; 9B2E 45 AE                    E.
 	lbne	L9B57
-	clc                                     ; 9B35 18                       .
-	lda     L9059                           ; 9B36 AD 59 90                 .Y.
-	adc     L905E                           ; 9B39 6D 5E 90                 m^.
-	sta     $AE                             ; 9B3C 85 AE                    ..
-	lda     L905A                           ; 9B3E AD 5A 90                 .Z.
-	adc     #$00                            ; 9B41 69 00                    i.
-	sta     $AF                             ; 9B43 85 AF                    ..
+	add16m8	off_AE, L9059, L905E
 	lda     L979D                           ; 9B45 AD 9D 97                 ...
 	eor     #$80                            ; 9B48 49 80                    I.
 	ldy     #$00                            ; 9B4A A0 00                    ..
 	sta     ($AE),y                         ; 9B4C 91 AE                    ..
-	lda     L9060                           ; 9B4E AD 60 90                 .`.
-	sta     L905D                           ; 9B51 8D 5D 90                 .].
+	mv	L905D, L9060
 	jmp     L9BC6                           ; 9B54 4C C6 9B                 L..
 
 ; ----------------------------------------------------------------------------
@@ -8639,12 +8632,8 @@ L9B57:  clc                                     ; 9B57 18                       
 	lda     L9060                           ; 9B7E AD 60 90                 .`.
 	sbc     L905E                           ; 9B81 ED 5E 90                 .^.
 	sta     $AC                             ; 9B84 85 AC                    ..
-	sec                                     ; 9B86 38                       8
-	lda     $AC                             ; 9B87 A5 AC                    ..
-	sbc     #$01                            ; 9B89 E9 01                    ..
-	sta     $A4                             ; 9B8B 85 A4                    ..
-	lda     #$00                            ; 9B8D A9 00                    ..
-	sta     $A5                             ; 9B8F 85 A5                    ..
+	sub8i	$A4, $AC, $01
+	ldi	$A5, $00
 	ldy     L979F                           ; 9B91 AC 9F 97                 ...
 	ldxa	$A0
 	jsr     sub_4EB1
@@ -8659,8 +8648,7 @@ L9B57:  clc                                     ; 9B57 18                       
 	inc     L905D                           ; 9BC0 EE 5D 90                 .].
 	inc     L905E                           ; 9BC3 EE 5E 90                 .^.
 L9BC6:  jsr     sub_936A
-	ldy     #$01                            ; 9BC9 A0 01                    ..
-	sty     L9050                           ; 9BCB 8C 50 90                 .P.
+	yldi	L9050, $01
 L9BCE:  rts                                     ; 9BCE 60                       `
 
 ; ----------------------------------------------------------------------------
