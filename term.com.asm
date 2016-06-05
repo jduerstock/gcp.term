@@ -901,6 +901,14 @@ L4641:  cpy     $A4                             ; 4641 C4 A4                    
 	jsr     blockmove
 .endmacro
 
+.macro	blkmv_mii s1, d1, c1
+	ldi	$A3, >d1
+	rdldi	$A4, c1
+	ldy     #<d1
+	ldxa	s1
+	jsr     blockmove
+.endmacro
+
 ; ----------------------------------------------------------------------------
 	.byte   $2D                             ; 4646 2D                       -
 L4647:	.byte	$FF                             ; 4647 FF                       .
@@ -1416,15 +1424,7 @@ L49EE:  clc                                     ; 49EE 18                       
 	lda     #$B3                            ; 4A32 A9 B3                    ..
 	adc     #$00                            ; 4A34 69 00                    i.
 	sta     $A1                             ; 4A36 85 A1                    ..
-	lda     #$49                            ; 4A38 A9 49                    .I
-	sta     $A3                             ; 4A3A 85 A3                    ..
-	lda     #$00                            ; 4A3C A9 00                    ..
-	sta     $A5                             ; 4A3E 85 A5                    ..
-	lda     #$0C                            ; 4A40 A9 0C                    ..
-	sta     $A4                             ; 4A42 85 A4                    ..
-	ldy     #$C5                            ; 4A44 A0 C5                    ..
-	ldxa	$A0
-	jsr     blockmove
+	blkmv_mii $A0, L49C5, $000C
 	rts                                     ; 4A4D 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -1434,6 +1434,7 @@ L4A50:	.byte	$49                             ; 4A50 49                       I
 L4A51:	.byte	$50                             ; 4A51 50                       P
 L4A52:	.byte	$54                             ; 4A52 54                       T
 
+; ----------------------------------------------------------------------------
 L4A53:	stack_prolog L4A4E, $04
 	lda     #$00                            ; 4A5C A9 00                    ..
 	sta     $A3                             ; 4A5E 85 A3                    ..
