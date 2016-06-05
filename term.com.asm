@@ -34,6 +34,7 @@ LB1C9		:= $B1C9
 LB223		:= $B223
 LB224		:= $B224
 HPOSP3		:= $D003
+SIZEP3		:= $D00B
 TRIG0		:= $D010
 CONSOL		:= $D01F
 KBCODE		:= $D209
@@ -1454,7 +1455,7 @@ L4A53:	stack_prolog L4A4E, $04
 	ldy     L4A4E                           ; 4A85 AC 4E 4A                 .NJ
 	ldxa	$A0
 	jsr	blockmove
-	ldi	$D00B, $02
+	ldi	SIZEP3, $02
 	mv	HPOSP3, L4A51
 	mv	L499F, L4A52
 	rts                                     ; 4AA0 60                       `
