@@ -1448,21 +1448,15 @@ L4A53:	stack_prolog L4A4E, $04
 	lda     #$B3                            ; 4A71 A9 B3                    ..
 	adc     #$00                            ; 4A73 69 00                    i.
 	sta     $A1                             ; 4A75 85 A1                    ..
-	lda     L4A4F                           ; 4A77 AD 4F 4A                 .OJ
-	sta     $A3                             ; 4A7A 85 A3                    ..
-	lda     #$00                            ; 4A7C A9 00                    ..
-	sta     $A5                             ; 4A7E 85 A5                    ..
-	lda     L4A50                           ; 4A80 AD 50 4A                 .PJ
-	sta     $A4                             ; 4A83 85 A4                    ..
+	mv	$A3, L4A4E+1
+	ldi	$A5, $00
+	mv	$A4, L4A50
 	ldy     L4A4E                           ; 4A85 AC 4E 4A                 .NJ
 	ldxa	$A0
 	jsr	blockmove
-	lda     #$02                            ; 4A8F A9 02                    ..
-	sta     $D00B                           ; 4A91 8D 0B D0                 ...
-	lda     L4A51                           ; 4A94 AD 51 4A                 .QJ
-	sta     HPOSP3
-	lda     L4A52                           ; 4A9A AD 52 4A                 .RJ
-	sta     L499F                           ; 4A9D 8D 9F 49                 ..I
+	ldi	$D00B, $02
+	mv	HPOSP3, L4A51
+	mv	L499F, L4A52
 	rts                                     ; 4AA0 60                       `
 
 ; ----------------------------------------------------------------------------
