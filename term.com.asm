@@ -7361,13 +7361,7 @@ sub_8EFD:
 	dmv	off_AE, L8EFB
 	lda     L8EF9                           ; 8F31 AD F9 8E                 ...
 	sta     ($AE),y                         ; 8F34 91 AE                    ..
-	clc                                     ; 8F36 18                       .
-	lda     L8EFB                           ; 8F37 AD FB 8E                 ...
-	adc     #$01                            ; 8F3A 69 01                    i.
-	sta     $AE                             ; 8F3C 85 AE                    ..
-	lda     L8EFC                           ; 8F3E AD FC 8E                 ...
-	adc     #$00                            ; 8F41 69 00                    i.
-	sta     $AF                             ; 8F43 85 AF                    ..
+	add16i	off_AE, L8EFB, $0001
 	lda     L8EFA                           ; 8F45 AD FA 8E                 ...
 	sta     ($AE),y                         ; 8F48 91 AE                    ..
 	iny                                     ; 8F4A C8                       .
