@@ -8465,17 +8465,8 @@ L99B4:  lda     L905D                           ; 99B4 AD 5D 90                 
 	ldy     L979F                           ; 99F2 AC 9F 97                 ...
 	ldxa	$A0
 	jsr     blockmove
-	sec                                     ; 99FC 38                       8
-	lda     L9060                           ; 99FD AD 60 90                 .`.
-	sbc     #$01                            ; 9A00 E9 01                    ..
-	sta     $AE                             ; 9A02 85 AE                    ..
-	clc                                     ; 9A04 18                       .
-	lda     L9059                           ; 9A05 AD 59 90                 .Y.
-	adc     $AE                             ; 9A08 65 AE                    e.
-	sta     $AC                             ; 9A0A 85 AC                    ..
-	lda     L905A                           ; 9A0C AD 5A 90                 .Z.
-	adc     #$00                            ; 9A0F 69 00                    i.
-	sta     $AD                             ; 9A11 85 AD                    ..
+	sub8i	off_AE, L9060, $01
+	add16m8	off_AC, L9059, off_AE
 	lda     #$00                            ; 9A13 A9 00                    ..
 	ldy     #$00                            ; 9A15 A0 00                    ..
 	sta     ($AC),y                         ; 9A17 91 AC                    ..
@@ -8485,10 +8476,7 @@ L99B4:  lda     L905D                           ; 99B4 AD 5D 90                 
 	lda     L905D                           ; 9A1E AD 5D 90                 .].
 	sbc     #$01                            ; 9A21 E9 01                    ..
 	sta     L905D                           ; 9A23 8D 5D 90                 .].
-	sec                                     ; 9A26 38                       8
-	lda     L905E                           ; 9A27 AD 5E 90                 .^.
-	sbc     #$01                            ; 9A2A E9 01                    ..
-	sta     L905E                           ; 9A2C 8D 5E 90                 .^.
+	sub8i	L905E, L905E, $01
 	jsr     sub_936A
 	jmp     L9A42                           ; 9A32 4C 42 9A                 LB.
 
@@ -8552,18 +8540,14 @@ L9AB8:  lda     L9051                           ; 9AB8 AD 51 90                 
 	jmp     L9AC4                           ; 9ABE 4C C4 9A                 L..
 
 ; ----------------------------------------------------------------------------
-	.byte   $02                             ; 9AC1 02                       .
-	.byte   $43                             ; 9AC2 43                       C
-	.byte   $42                             ; 9AC3 42                       B
-L9AC4:  lda     #$00                            ; 9AC4 A9 00                    ..
-	sta     $A3                             ; 9AC6 85 A3                    ..
-	lda     #$00                            ; 9AC8 A9 00                    ..
-	sta     $A5                             ; 9ACA 85 A5                    ..
-	lda     L9051                           ; 9ACC AD 51 90                 .Q.
-	sta     $A4                             ; 9ACF 85 A4                    ..
+L9AC1:	.byte	$02,"CB"
+
+; ----------------------------------------------------------------------------
+L9AC4:	ldi	$A3, $00
+	ldi	$A5, $00
+	mv	$A4, L9051
 	ldy     #$49                            ; 9AD1 A0 49                    .I
-	ldx     #$9A                            ; 9AD3 A2 9A                    ..
-	lda     #$C1                            ; 9AD5 A9 C1                    ..
+	ldxai	L9AC1
 	jsr     sub_55A0
 	lda     L9051                           ; 9ADA AD 51 90                 .Q.
 	jsr     sub_9427
@@ -8575,8 +8559,7 @@ L9AE5:  jmp     L9BCE                           ; 9AE5 4C CE 9B                 
 L9AE8:  lda     L979C                           ; 9AE8 AD 9C 97                 ...
 	eor     #$76                            ; 9AEB 49 76                    Iv
 	lbne	L9B05
-	ldy     #$00                            ; 9AF2 A0 00                    ..
-	sty     L9050                           ; 9AF4 8C 50 90                 .P.
+	yldi	L9050, $00
 	lda     L9051                           ; 9AF7 AD 51 90                 .Q.
 	jsr     sub_9427 
 	lda     #$00                            ; 9AFD A9 00                    ..
