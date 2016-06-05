@@ -8138,15 +8138,10 @@ sub_968E:
 	lda     ($AE),y                         ; 96BE B1 AE                    ..
 	sta     L9053                           ; 96C0 8D 53 90                 .S.
 	func16_8 sub_65B0, L9057, L9053
-	lda     L9058                           ; 96D3 AD 58 90                 .X.
-	sta     $A3                             ; 96D6 85 A3                    ..
-	lda     #$00                            ; 96D8 A9 00                    ..
-	sta     $A5                             ; 96DA 85 A5                    ..
-	lda     #$06                            ; 96DC A9 06                    ..
-	sta     $A4                             ; 96DE 85 A4                    ..
+	mv	$A3, L9057+1
+	rdldi	$A4, $0006
 	ldy     L9057                           ; 96E0 AC 57 90                 .W.
-	ldx     #$90                            ; 96E3 A2 90                    ..
-	lda     #$60                            ; 96E5 A9 60                    .`
+	ldxai	L9060
 	jsr     blockmove
 	lda     L9683                           ; 96EA AD 83 96                 ...
 	sta     L9054                           ; 96ED 8D 54 90                 .T.
