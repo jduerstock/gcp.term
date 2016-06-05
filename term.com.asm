@@ -1696,15 +1696,7 @@ L4C1C:	.byte	$20                             ; 4C1C 20
 
 sub_4C1D:  
 	stack_prolog L4C13, $05
-	lda	L4C16
-	sta     $A3                             ; 4C29 85 A3                    ..
-	lda	#$00
-	sta     $A5                             ; 4C2D 85 A5                    ..
-	lda     #$04                            ; 4C2F A9 04                    ..
-	sta     $A4                             ; 4C31 85 A4                    ..
-	ldy     L4C15                           ; 4C33 AC 15 4C                 ..L
-	ldxai	L4C19
-	jsr     blockmove
+	blkmv_imi L4C19, L4C15, $0004
 	add8m	$A2, L4C19, L4C17
 	add8m	$A3, L4C1A, L4C18
 	add8m	$A4, L4C1B, L4C17
