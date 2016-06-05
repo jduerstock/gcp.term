@@ -2804,8 +2804,7 @@ L591F:	add16m8	off_AE, L58E7, L58ED
 	jsr     sub_4B39
 	lda     $A0                             ; 5993 A5 A0                    ..
 	sta     L58EE                           ; 5995 8D EE 58                 ..X
-	ldy     #$00                            ; 5998 A0 00                    ..
-	sty     L58EF                           ; 599A 8C EF 58                 ..X
+	yldi	L58EF, $00
 	lda     L58EE                           ; 599D AD EE 58                 ..X
 	lbne	L59E1
 	clc                                     ; 59A5 18                       .
@@ -2997,11 +2996,9 @@ L5BD2:	clc                                     ; 5BD2 18                       .
 	lda     #$B2                            ; 5C12 A9 B2                    ..
 	adc     #$00                            ; 5C14 69 00                    i.
 	sta     $A1                             ; 5C16 85 A1                    ..
-	ldx     $A1                             ; 5C18 A6 A1                    ..
-	lda     $A0                             ; 5C1A A5 A0                    ..
+	ldxa	$A0
 	jsr     sub_4B47
-	lda     $A0                             ; 5C1F A5 A0                    ..
-	sta     L58F0                           ; 5C21 8D F0 58                 ..X
+	mv	L58F0, $A0
 	dmv	off_AE, L58EB
 	lda     L58F0                           ; 5C2E AD F0 58                 ..X
 	ldy     #$00                            ; 5C31 A0 00                    ..
@@ -3030,9 +3027,7 @@ L5C54:  ldx     L4654                           ; 5C54 AE 54 46                 
 	jsr     sub_4B7B
 	mv	L58F1, $A0
 L5C72:	add16m8 off_AE, L58EB, L58EF
-	lda     L58F1                           ; 5C82 AD F1 58                 ..X
-	ldy     #$00                            ; 5C85 A0 00                    ..
-	sta     ($AE),y                         ; 5C87 91 AE                    ..
+	stp8	L58F1
 	inc     L4654                           ; 5C89 EE 54 46                 .TF
 	inc     L58EF                           ; 5C8C EE EF 58                 ..X
 	jmp     L5C48                           ; 5C8F 4C 48 5C                 LH\
