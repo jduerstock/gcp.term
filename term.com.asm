@@ -7730,15 +7730,9 @@ sub_925D:
 	prolog
 	stx     L924D                           ; 9260 8E 4D 92                 .M.
 	sta     L924C                           ; 9263 8D 4C 92                 .L.
-	lda     L924C                           ; 9266 AD 4C 92                 .L.
-	jsr     sub_65B0
-	rdmv	L924E, $A0
-	lda     L924F                           ; 9276 AD 4F 92                 .O.
-	sta     $A3                             ; 9279 85 A3                    ..
-	lda     #$00                            ; 927B A9 00                    ..
-	sta     $A5                             ; 927D 85 A5                    ..
-	lda     #$06                            ; 927F A9 06                    ..
-	sta     $A4                             ; 9281 85 A4                    ..
+	func16_8 sub_65B0, L924E, L924C
+	mv	$A3, L924E+1
+	rdldi	$A4, $0006
 	ldy     L924E                           ; 9283 AC 4E 92                 .N.
 	ldxai	L9257
 	jsr     blockmove
