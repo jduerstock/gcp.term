@@ -2740,8 +2740,7 @@ L589F:	add8i	$A1, L474C, $01
 	lda     L4650                           ; 58CF AD 50 46                 .PF
 	eor     L5592                           ; 58D2 4D 92 55                 M.U
 	lbne	L58E6
-	ldy     #$00                            ; 58DA A0 00                    ..
-	sty     L464B                           ; 58DC 8C 4B 46                 .KF
+	yldi	L464B, $00
 	ldxai	LB16A
 	jsr     sub_52E1
 L58E6:  rts                                     ; 58E6 60                       `
@@ -2778,9 +2777,7 @@ L591E:	.byte	$20                             ; 591E 20
 
 ; ----------------------------------------------------------------------------
 L591F:	add16m8	off_AE, L58E7, L58ED
-	ldy     #$00                            ; 592F A0 00                    ..
-	lda     ($AE),y                         ; 5931 B1 AE                    ..
-	sta     L58EE                           ; 5933 8D EE 58                 ..X
+	ldp8	L58EE
 	lda     L58EE                           ; 5936 AD EE 58                 ..X
 	eor     #'A'
 	lbne	L5A35
