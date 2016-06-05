@@ -8442,14 +8442,9 @@ L99B4:  lda     L905D                           ; 99B4 AD 5D 90                 
 	lbcc	L9A35
 	add16m8	L979F, L9059, L905E
 	sub16i	$A0, L979F, $01
-	lda     L97A0                           ; 99E0 AD A0 97                 ...
-	sta     $A3                             ; 99E3 85 A3                    ..
-	sec                                     ; 99E5 38                       8
-	lda     L9060                           ; 99E6 AD 60 90                 .`.
-	sbc     L905E                           ; 99E9 ED 5E 90                 .^.
-	sta     $A4                             ; 99EC 85 A4                    ..
-	lda     #$00                            ; 99EE A9 00                    ..
-	sta     $A5                             ; 99F0 85 A5                    ..
+	mv	$A3, L979F+1
+	sub8m	$A4, L9060, L905E
+	ldi	$A5, $00
 	ldy     L979F                           ; 99F2 AC 9F 97                 ...
 	ldxa	$A0
 	jsr     blockmove
