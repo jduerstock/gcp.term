@@ -8455,10 +8455,7 @@ L99B4:  lda     L905D                           ; 99B4 AD 5D 90                 
 	sta     ($AC),y                         ; 9A17 91 AC                    ..
 	iny                                     ; 9A19 C8                       .
 	sty     L9050                           ; 9A1A 8C 50 90                 .P.
-	sec                                     ; 9A1D 38                       8
-	lda     L905D                           ; 9A1E AD 5D 90                 .].
-	sbc     #$01                            ; 9A21 E9 01                    ..
-	sta     L905D                           ; 9A23 8D 5D 90                 .].
+	sub8i	L905D, L905D, $01
 	sub8i	L905E, L905E, $01
 	jsr     sub_936A
 	jmp     L9A42                           ; 9A32 4C 42 9A                 LB.
