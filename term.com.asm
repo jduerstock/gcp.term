@@ -7357,12 +7357,7 @@ L8EFC:  .byte	$00
 sub_8EFD:
 	stack_prolog L8EF8, $02
 	shladdm8 off_AE, L46F5, L8EF8
-	ldy     #$01                            ; 8F1A A0 01                    ..
-	lda     ($AE),y                         ; 8F1C B1 AE                    ..
-	sta     L8EFC                           ; 8F1E 8D FC 8E                 ...
-	dey                                     ; 8F21 88                       .
-	lda     ($AE),y                         ; 8F22 B1 AE                    ..
-	sta     L8EFB                           ; 8F24 8D FB 8E                 ...
+	ldp16	L8EFB
 	lda     L8EFB                           ; 8F27 AD FB 8E                 ...
 	sta     $AE                             ; 8F2A 85 AE                    ..
 	lda     L8EFC                           ; 8F2C AD FC 8E                 ...
@@ -7412,8 +7407,7 @@ L8F7C:  .byte	$00
 ; ----------------------------------------------------------------------------
 sub_8F7D:  
 	prolog
-	lda     #$00                            ; 8F80 A9 00                    ..
-	sta     $A3                             ; 8F82 85 A3                    ..
+	ldi	$A3, $00
 	ldy     #$50                            ; 8F84 A0 50                    .P
 	ldxai	L46F9
 	jsr     sub_45F6
