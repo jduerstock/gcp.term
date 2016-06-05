@@ -920,6 +920,14 @@ L4641:  cpy     $A4                             ; 4641 C4 A4                    
 	jsr	blockmove
 .endmacro
 
+.macro	blkmv_iii s1, d1, c1
+	ldi	$A3, >d1
+	rdldi	$A4, c1
+	ldy     #<d1
+	ldxai	s1
+	jsr     blockmove
+.endmacro
+
 ; ----------------------------------------------------------------------------
 	.byte   $2D                             ; 4646 2D                       -
 L4647:	.byte	$FF                             ; 4647 FF                       .
@@ -2432,11 +2440,7 @@ L5471:	add8i	$AE, L531D, $01
 
 ; ----------------------------------------------------------------------------
 L54B8:	sub8i	L4649, LB1C6, $04
-	ldi	$A3, >LB1C9
-	rdldi	$A4, $005C
-	ldy     #<LB1C9
-	ldxai	LB224
-	jsr     blockmove
+	blkmv_iii LB224, LB1C9, $005C
 L54D6:	yldi	L4651, $00
 	ldi	$A0, $01
 	rts                                     ; 54DF 60                       `
