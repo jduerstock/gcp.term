@@ -7670,17 +7670,7 @@ sub_9146:
 	lda     L913C                           ; 9205 AD 3C 91                 .<.
 	jsr     blockmove
 	sub8i	off_AE, L9141, $01
-	lda     $AE                             ; 9213 A5 AE                    ..
-	asl     a                               ; 9215 0A                       .
-	php                                     ; 9216 08                       .
-	clc                                     ; 9217 18                       .
-	adc     L9144                           ; 9218 6D 44 91                 mD.
-	sta     $AC                             ; 921B 85 AC                    ..
-	lda     #$00                            ; 921D A9 00                    ..
-	rol     a                               ; 921F 2A                       *
-	plp                                     ; 9220 28                       (
-	adc     L9145                           ; 9221 6D 45 91                 mE.
-	sta     $AD                             ; 9224 85 AD                    ..
+	shladd8m off_AC, L9144, off_AE
 	ldy     #$01                            ; 9226 A0 01                    ..
 	lda     ($AC),y                         ; 9228 B1 AC                    ..
 	sta     $A1                             ; 922A 85 A1                    ..
