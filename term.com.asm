@@ -7680,8 +7680,7 @@ sub_9146:
 	lda     #$00                            ; 9231 A9 00                    ..
 	sta     $A3                             ; 9233 85 A3                    ..
 	ldy     L9140                           ; 9235 AC 40 91                 .@.
-	ldx     $A1                             ; 9238 A6 A1                    ..
-	lda     $A0                             ; 923A A5 A0                    ..
+	ldxa	$A0
 	jsr     sub_45F6
 	jmp     L9247                           ; 923F 4C 47 92                 LG.
 
