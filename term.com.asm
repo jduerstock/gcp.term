@@ -8137,12 +8137,7 @@ sub_968E:
 	ldy     #$00                            ; 96BC A0 00                    ..
 	lda     ($AE),y                         ; 96BE B1 AE                    ..
 	sta     L9053                           ; 96C0 8D 53 90                 .S.
-	lda     L9053                           ; 96C3 AD 53 90                 .S.
-	jsr     sub_65B0
-	lda     $A1                             ; 96C9 A5 A1                    ..
-	sta     L9058                           ; 96CB 8D 58 90                 .X.
-	lda     $A0                             ; 96CE A5 A0                    ..
-	sta     L9057                           ; 96D0 8D 57 90                 .W.
+	func16_8 sub_65B0, L9057, L9053
 	lda     L9058                           ; 96D3 AD 58 90                 .X.
 	sta     $A3                             ; 96D6 85 A3                    ..
 	lda     #$00                            ; 96D8 A9 00                    ..
