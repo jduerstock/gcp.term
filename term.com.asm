@@ -1841,11 +1841,7 @@ L4E49:	.byte	$54
 sub_4E4A:  
 	prolog
 	stxa	L4E42
-	mv	$A3, L4E43
-	rdldi	$A4, $0004
-	ldy     L4E42                           ; 4E60 AC 42 4E                 .BN
-	ldxai	L4E46
-	jsr     blockmove
+	blkmv_imi L4E46, L4E42, $0004
 	sub8m	off_AE, L4E48, L4E46
 	add8i	off_AC, off_AE, $01
 	sub8m	off_AE, L4E49, L4E47
