@@ -8441,13 +8441,7 @@ L99B4:  lda     L905D                           ; 99B4 AD 5D 90                 
 	cmp     L905E                           ; 99B7 CD 5E 90                 .^.
 	lbcc	L9A35
 	add16m8	L979F, L9059, L905E
-	sec                                     ; 99D1 38                       8
-	lda     L979F                           ; 99D2 AD 9F 97                 ...
-	sbc     #$01                            ; 99D5 E9 01                    ..
-	sta     $A0                             ; 99D7 85 A0                    ..
-	lda     L97A0                           ; 99D9 AD A0 97                 ...
-	sbc     #$00                            ; 99DC E9 00                    ..
-	sta     $A1                             ; 99DE 85 A1                    ..
+	sub16i	$A0, L979F, $01
 	lda     L97A0                           ; 99E0 AD A0 97                 ...
 	sta     $A3                             ; 99E3 85 A3                    ..
 	sec                                     ; 99E5 38                       8
