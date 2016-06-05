@@ -8285,10 +8285,7 @@ L9810:  lda     L979C                           ; 9810 AD 9C 97                 
 L9830:  lda     L979C                           ; 9830 AD 9C 97                 ...
 	eor     #$87                            ; 9833 49 87                    I.
 	lbne	L984A
-	clc                                     ; 983A 18                       .
-	lda     L905E                           ; 983B AD 5E 90                 .^.
-	adc     #$01                            ; 983E 69 01                    i.
-	sta     $A0                             ; 9840 85 A0                    ..
+	add8i	$A0, L905E, $01
 	lda     $A0                             ; 9842 A5 A0                    ..
 	jsr     sub_961E
 	jmp     L9BCE                           ; 9847 4C CE 9B                 L..
@@ -8297,10 +8294,7 @@ L9830:  lda     L979C                           ; 9830 AD 9C 97                 
 L984A:  lda     L979C                           ; 984A AD 9C 97                 ...
 	eor     #$86                            ; 984D 49 86                    I.
 	lbne	L9864
-	sec                                     ; 9854 38                       8
-	lda     L905E                           ; 9855 AD 5E 90                 .^.
-	sbc     #$01                            ; 9858 E9 01                    ..
-	sta     $A0                             ; 985A 85 A0                    ..
+	sub8i	$A0, L905E, $01
 	lda     $A0                             ; 985C A5 A0                    ..
 	jsr     sub_961E
 	jmp     L9BCE                           ; 9861 4C CE 9B                 L..
