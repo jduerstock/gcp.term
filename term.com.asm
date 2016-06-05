@@ -910,6 +910,15 @@ L4641:  cpy     $A4                             ; 4641 C4 A4                    
 	jsr     blockmove
 .endmacro
 
+.macro	blkmv_mm8 s1, d1, c1
+	mv	$A3, d1+1
+	ldi	$A5, $00
+	mv	$A4, c1
+	ldy     d1
+	ldxa	s1
+	jsr	blockmove
+.endmacro
+
 ; ----------------------------------------------------------------------------
 	.byte   $2D                             ; 4646 2D                       -
 L4647:	.byte	$FF                             ; 4647 FF                       .
@@ -1449,12 +1458,7 @@ L4A53:	stack_prolog L4A4E, $04
 	lda     #$B3                            ; 4A71 A9 B3                    ..
 	adc     #$00                            ; 4A73 69 00                    i.
 	sta     $A1                             ; 4A75 85 A1                    ..
-	mv	$A3, L4A4E+1
-	ldi	$A5, $00
-	mv	$A4, L4A50
-	ldy     L4A4E                           ; 4A85 AC 4E 4A                 .NJ
-	ldxa	$A0
-	jsr	blockmove
+	blkmv_mm8 $A0, L4A4E, L4A50
 	ldi	SIZEP3, $02
 	mv	HPOSP3, L4A51
 	mv	L499F, L4A52
