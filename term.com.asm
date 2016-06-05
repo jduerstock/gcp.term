@@ -8089,24 +8089,16 @@ L9889:  lda     L979C                           ; 9889 AD 9C 97                 
 L98A9:  lda     L979C                           ; 98A9 AD 9C 97                 ...
 	eor     #$8F                            ; 98AC 49 8F                    I.
 	lbne	L98C9
-	clc                                     ; 98B3 18                       .
-	lda     L9051                           ; 98B4 AD 51 90                 .Q.
-	adc     #$01                            ; 98B7 69 01                    i.
-	sta     $A0                             ; 98B9 85 A0                    ..
-	lda     $A0                             ; 98BB A5 A0                    ..
-	jsr     sub_9427
-	lda     L905E                           ; 98C0 AD 5E 90                 .^.
-	jsr     sub_961E
+	add8i	$A0, L9051, $01
+	proc8	sub_9427, $A0
+	proc8	sub_961E, L905E
 	jmp     L9BCE                           ; 98C6 4C CE 9B                 L..
 
 ; ----------------------------------------------------------------------------
 L98C9:  lda     L979C                           ; 98C9 AD 9C 97                 ...
 	eor     #$CE                            ; 98CC 49 CE                    I.
-	beq     L98D3                           ; 98CE F0 03                    ..
-	jmp     L98E0                           ; 98D0 4C E0 98                 L..
-
-; ----------------------------------------------------------------------------
-L98D3:  lda     #$00                            ; 98D3 A9 00                    ..
+	lbne	L98E0
+	lda     #$00                            ; 98D3 A9 00                    ..
 	jsr     sub_9427
 	lda     #$00                            ; 98D8 A9 00                    ..
 	jsr     sub_961E
