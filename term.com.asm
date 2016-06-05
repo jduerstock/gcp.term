@@ -7041,25 +7041,18 @@ L8AD9:  lda     L89A2                           ; 8AD9 AD A2 89                 
 	ldy     #<L896D
 	ldxai	L897D
 	jsr     sub_4C1D
-	lda     #$89                            ; 8B20 A9 89                    ..
-	sta     $A3                             ; 8B22 85 A3                    ..
+	ldi	$A3, >L896D
 	dmv	$A4, L8999
-	ldy     #$6D                            ; 8B2E A0 6D                    .m
-	ldxai	$8979
+	ldy     #<L896D
+	ldxai	L8979
 	jsr     sub_4C1D
-	lda     #$89                            ; 8B37 A9 89                    ..
-	sta     $A3                             ; 8B39 85 A3                    ..
+	ldi	$A3, >L8979
 	rdldi	$A4, L897D
-	ldy     #$79                            ; 8B43 A0 79                    .y
+	ldy     #<L8979
 	ldxa	L898D
 	jsr     sub_884C
 L8B4E:	add16i	off_AE, L898D, $0007
-	ldy     #$01                            ; 8B5D A0 01                    ..
-	lda     ($AE),y                         ; 8B5F B1 AE                    ..
-	sta     L896A                           ; 8B61 8D 6A 89                 .j.
-	dey                                     ; 8B64 88                       .
-	lda     ($AE),y                         ; 8B65 B1 AE                    ..
-	sta     L8969                           ; 8B67 8D 69 89                 .i.
+	ldp16	L8969
 	lda     #$00                            ; 8B6A A9 00                    ..
 	sta     $A3                             ; 8B6C 85 A3                    ..
 	sub8i	$A4, L899C, $01
