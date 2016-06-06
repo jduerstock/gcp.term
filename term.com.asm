@@ -9021,9 +9021,7 @@ LA3BC:  .byte	$00
 
 sub_A3BD:
 	stack_prolog LA3A5, $04
-	lda     LA3A5                           ; A3C6 AD A5 A3                 ...
-	jsr     sub_65B0
-	rdmv	LA3AC, $A0
+	func16_8 sub_65B0, LA3AC, LA3A5
 	test16	LA3AC
 	lbne	LA3E2
 	rts                                     ; A3E1 60                       `
