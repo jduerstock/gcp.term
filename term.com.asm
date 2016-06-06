@@ -4737,7 +4737,7 @@ L70E0:  .byte	$00
 L70E1:	.byte	$66
 
 ; ----------------------------------------------------------------------------
-sub_70E2:
+cmd_lf:
 	stack_prolog L70D6, $02
 	func16_8 sub_7035, L70D9, L70D6
 	add16i	L70DD, L70D9, $0022
@@ -5933,7 +5933,7 @@ L7FE2:  lda     L7F92                           ; 7FE2 AD 92 7F                 
 L7FE8:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-sub_7FE9:	
+cmd_ul:	
 	prolog
 	sta     L7FE8                           ; 7FEC 8D E8 7F                 ...
 	lda     L7FE8                           ; 7FEF AD E8 7F                 ...
@@ -8313,7 +8313,7 @@ L9BCE:  rts                                     ; 9BCE 60                       
 L9BCF:	.byte	$00
 
 ; ----------------------------------------------------------------------------
-sub_9BD0:  
+cmd_us:  
 	prolog
 	sta     L9BCF                           ; 9BD3 8D CF 9B                 ...
 	mv	L46E7, L9BCF
@@ -8325,7 +8325,7 @@ L9BDE:	.byte	$00
 L9BDF:	.byte	$00
 
 ; ----------------------------------------------------------------------------
-sub_9BE0:	
+cmd_lj:	
 	stack_prolog L9BDD, $02
 	add16m8 off_AE, L46EB, L9BDD
 	lda     L9BDE                           ; 9BF9 AD DE 9B                 ...
@@ -8358,7 +8358,7 @@ L9C38:	dec     $1E,x                           ; 9C38 D6 1E                    .
 	.byte	$00
 	.byte	$00
 
-sub_9C41:  
+cmd_uj:  
 	stack_prolog L9C16, $02
 	mv	L46E6, L9C16
 	dmv	L46E9, L9C17
@@ -8377,14 +8377,14 @@ sub_9C41:
 	lda     L46E6                           ; 9C9E AD E6 46                 ..F
 	lbne	L9CAB
 	lda     #$00                            ; 9CA6 A9 00                    ..
-	jsr     sub_9BD0
+	jsr     cmd_us
 L9CAB:  rts                                     ; 9CAB 60                       `
 
 ; ----------------------------------------------------------------------------
 L9CAC:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-sub_9CAD:	
+cmd_ut:	
 	prolog
 	sta     L9CAC                           ; 9CB0 8D AC 9C                 ...
 	mv	L46E8, L9CAC
@@ -8544,7 +8544,7 @@ L9E28:	.byte	$00
 L9E2A:  .byte	$00
 L9E2B:  .byte	$00
 
-sub_9E2C:	
+cmd_pl:	
 	prolog
 	sta     L9E0F                           ; 9E2F 8D 0F 9E                 ...
 	ldi	L9E19, $80
@@ -9630,7 +9630,7 @@ LAA28:  lda     #$00                            ; AA28 A9 00                    
 	jsr	sub_8020
 	jsr     sub_8F7D
 	lda     #$00                            ; AA4B A9 00                    ..
-	jsr     sub_9C41
+	jsr     cmd_uj
 	lda     #$00                            ; AA50 A9 00                    ..
 	jsr     sub_A9EC
 LAA55:  lda     #$00                            ; AA55 A9 00                    ..
@@ -9659,8 +9659,8 @@ LAA84:  .addr   LAA86
 LAA86:	.addr	cmd_uc,cmd_uk,cmd_ud,cmd_uf,cmd_uw,cmd_uy,cmd_ub		; "CKDFWYB"
 	.addr	cmd_lx,cmd_ly,cmd_lz,cmd_uu,cmd_uv,cmd_ux,cmd_un		; "xyzUVXN"
 	.addr	cmd_lc,cmd_ld,cmd_ls,cmd_lp,cmd_lm,cmd_ll,cmd_la		; "cdspmla"
-	.addr	cmd_lb,sub_70E2,sub_9C41,sub_9BE0,sub_9BD0,sub_9CAD,sub_9E2C	; "bfJjST+"
-	.addr	sub_7FE9,sub_817C,sub_8003,sub_80BB,sub_8EFD,sub_8E7D,sub_8F55	; "LMPRGAO"
+	.addr	cmd_lb,cmd_lf,cmd_uj,cmd_lj,cmd_us,cmd_ut,cmd_pl		; "bfJjST+"
+	.addr	cmd_ul,sub_817C,sub_8003,sub_80BB,sub_8EFD,sub_8E7D,sub_8F55	; "LMPRGAO"
 	.addr	sub_8E24,sub_A9DE,sub_A9FB,sub_A9EC,sub_968E,sub_97A1,sub_5E1E	; "ZEiHeI0"
 	.addr	sub_5E30,sub_A2A8,sub_A382,sub_A3BD,sub_A547,sub_A6E8,sub_A7C4	; "1234567"
 	.addr	sub_A7F3,sub_A6CE,sub_A991,sub_4F5A,sub_A959,sub_4BA7,sub_A837	; "89n.#*="
