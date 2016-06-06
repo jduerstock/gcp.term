@@ -9251,7 +9251,7 @@ LA6E0:  .byte	$00
 LA6E1:	.byte   $04,"done"
 LA6E6:	.addr	LA6E1
 
-sub_A6E8:
+cmd_d6:
 	stack_prolog LA6D8, $03
 	lda     LA6D8                           ; A6F1 AD D8 A6                 ...
 	jsr     sub_65B0
@@ -9334,7 +9334,7 @@ LA7C1:  .byte	$00
 LA7C2:  .byte	$00
 LA7C3:  .byte	$00
 
-sub_A7C4:
+cmd_d7:
 	stack_prolog LA7C1, $02
 	jsr     cmd_d0
 	lda     #$00                            ; A7D0 A9 00                    ..
@@ -9644,7 +9644,7 @@ LAA86:	.addr	cmd_uc,cmd_uk,cmd_ud,cmd_uf,cmd_uw,cmd_uy,cmd_ub		; "CKDFWYB"
 	.addr	cmd_lb,cmd_lf,cmd_uj,cmd_lj,cmd_us,cmd_ut,cmd_pl		; "bfJjST+"
 	.addr	cmd_ul,cmd_um,cmd_up,cmd_ur,cmd_ug,cmd_ua,cmd_uo		; "LMPRGAO"
 	.addr	cmd_uz,cmd_ue,cmd_li,cmd_uh,cmd_le,cmd_ui,cmd_d0		; "ZEiHeI0"
-	.addr	cmd_d1,cmd_d2,cmd_d3,cmd_d4,cmd_d5,sub_A6E8,sub_A7C4		; "1234567"
+	.addr	cmd_d1,cmd_d2,cmd_d3,cmd_d4,cmd_d5,cmd_d6,cmd_d7		; "1234567"
 	.addr	sub_A7F3,sub_A6CE,sub_A991,sub_4F5A,sub_A959,sub_4BA7,sub_A837	; "89n.#*="
 	.addr	sub_A846,sub_4F9D,sub_8D01,sub_A895,sub_A842,sub_A96F,sub_A81F	; "$%&@.:u"
 	.addr	sub_A823,sub_A82B						; "vw"
