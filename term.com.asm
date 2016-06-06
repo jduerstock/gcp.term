@@ -14,6 +14,7 @@ off_AC		:= $00AC
 off_AE		:= $00AE
 VDSLST		:= $0200
 CDTMV3		:= $021C
+CDTMV5		:= $0220
 CDTMF3		:= $022A
 SRTIMR		:= $022B
 CDTMF5		:= $022E
@@ -8474,8 +8475,8 @@ L9D46:	mv	L9CC2, L9CC1
 
 ; ----------------------------------------------------------------------------
 L9DB4:	yldi	CDTMF5, $01
-	ldi	$0221, $00
-	mv	$0220, L9CBE
+	ldi	CDTMV5+1, $00
+	mv	CDTMV5, L9CBE
 	ldi	$A0, $01
 	rts                                     ; 9DC8 60                       `
 
