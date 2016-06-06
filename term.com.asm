@@ -9030,11 +9030,7 @@ sub_A3BD:
 
 ; ----------------------------------------------------------------------------
 LA3E2:  jsr     sub_5E1E
-	mv	$A3, LA3A8+1
-	rdldi	$A4, $0004
-	ldy     LA3A8                           ; A3F2 AC A8 A3                 ...
-	ldxai	LA3B3
-	jsr     blockmove
+	blkmv_imi LA3B3, LA3A8, $0004
 	sub8m	off_AE, LA3B5, LA3B3
 	add8i	LA3AE, off_AE, $01
 	blkmv_imi LA3B7, LA3AC, $0006
