@@ -9182,10 +9182,8 @@ LA58C:	add8i	LA536, off_AE, $01
 	ldy     #$00                            ; A5E2 A0 00                    ..
 	sty     LA53B                           ; A5E4 8C 3B A5                 .;.
 	sty     LA53A                           ; A5E7 8C 3A A5                 .:.
-	lda     LA53E                           ; A5EA AD 3E A5                 .>.
-	sta     LA537                           ; A5ED 8D 37 A5                 .7.
-	lda     LA540                           ; A5F0 AD 40 A5                 .@.
-	sta     LA601                           ; A5F3 8D 01 A6                 ...
+	mv	LA537, LA53E
+	mv	LA601, LA540
 LA5F6:  lda     LA601                           ; A5F6 AD 01 A6                 ...
 	cmp     LA537                           ; A5F9 CD 37 A5                 .7.
 	bcs     LA602                           ; A5FC B0 04                    ..
