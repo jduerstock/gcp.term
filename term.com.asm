@@ -9510,11 +9510,7 @@ sub_A895:
 	prolog
 	stxa	LA887
 	func16_8 sub_65B0, LA88D, LA887
-	mv	$A3, LA88D+1
-	rdldi	$A4, $0006
-	ldy     LA88D                           ; A8BB AC 8D A8                 ...
-	ldxai	LA88F
-	jsr     blockmove
+	blkmv_imi LA88F, LA88D, $0006
 	shladdm8 off_AE, LA893, LA888
 	ldp16	LA88B
 LA8E6:	dmv	off_AE, LA88B
