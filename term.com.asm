@@ -9159,11 +9159,7 @@ sub_A547:
 LA56B:  rts                                     ; A56B 60                       `
 
 ; ----------------------------------------------------------------------------
-LA56C:	mv	$A3, LA530+1
-	rdldi	$A4, $0004
-	ldy     LA530                           ; A579 AC 30 A5                 .0.
-	ldxai	LA53D
-	jsr     blockmove
+LA56C:	blkmv_imi LA53D, LA530, $0004
 	sub8m	off_AE, LA53F, LA53D
 LA58C:	add8i	LA536, off_AE, $01
 	blkmv_imi LA541, LA534, $0006
