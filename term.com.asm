@@ -4483,8 +4483,7 @@ L6D88:  ldx     #$00                            ; 6D88 A2 00                    
 	lda     ($AE),y                         ; 6DE1 B1 AE                    ..
 	adc     #$01                            ; 6DE3 69 01                    i.
 	sta     $A0                             ; 6DE5 85 A0                    ..
-	lda     #$00                            ; 6DE7 A9 00                    ..
-	sta     $A1                             ; 6DE9 85 A1                    ..
+	ldi	$A1, $00
 	ldxa	$A0
 	jsr     sub_606E                        ; 6DEF 20 6E 60                  n`
 	pull16	off_AE
@@ -4501,15 +4500,13 @@ L6D88:  ldx     #$00                            ; 6D88 A2 00                    
 	dey                                     ; 6E12 88                       .
 	lda     ($AE),y                         ; 6E13 B1 AE                    ..
 	sta     $A0                             ; 6E15 85 A0                    ..
-	lda     L6AC3                           ; 6E17 AD C3 6A                 ..j
-	sta     $A3                             ; 6E1A 85 A3                    ..
+	mv	$A3, L6AC2+1
 	dmv	off_AC, L6AC2
 	clc                                     ; 6E26 18                       .
 	lda     ($AC),y                         ; 6E27 B1 AC                    ..
 	adc     #$01                            ; 6E29 69 01                    i.
 	sta     $A4                             ; 6E2B 85 A4                    ..
-	lda     #$00                            ; 6E2D A9 00                    ..
-	sta     $A5                             ; 6E2F 85 A5                    ..
+	ldi	$A5, $00
 	ldy     L6AC2                           ; 6E31 AC C2 6A                 ..j
 	ldxa	$A0
 	jsr     blockmove
