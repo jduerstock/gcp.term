@@ -4601,7 +4601,7 @@ L6F66:	.byte	$FF
 L6F67:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-sub_6F68:	
+cmd_lx:	
 	prolog
 	stxa	L6F66
 	lda     L6F66                           ; 6F71 AD 66 6F                 .fo
@@ -4623,7 +4623,7 @@ L6F8F:  .byte	$00
 L6F90:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-sub_6F91:	
+cmd_ly:	
 	prolog
 	stxa	L6F8B
 	lda     L4647                           ; 6F9A AD 47 46                 .GF
@@ -4652,7 +4652,7 @@ L6FE9:	.byte   $F0
 L6FEA:	.byte	$F0
 
 ; ----------------------------------------------------------------------------
-sub_6FEB:	
+cmd_lz:	
 	prolog
 	stxa	L6FE7
 	lda     L4648                           ; 6FF4 AD 48 46                 .HF
@@ -5491,7 +5491,7 @@ L7A55:	.byte	$4C
 L7A56:	.byte	$B6
 
 ; ----------------------------------------------------------------------------
-sub_7A57:
+cmd_uu:
 	stack_prolog L7A52, $02
 	ldxa	L7A52
 	jsr     sub_799B
@@ -5517,7 +5517,7 @@ L7A98:	.byte	$F0
 L7A99:  .byte	$A9
 
 ; ----------------------------------------------------------------------------
-sub_7A9A:
+cmd_un:
 	stack_prolog L7A95, $02
 	ldxa	L7A95
 	jsr     sub_799B
@@ -5528,9 +5528,7 @@ sub_7A9A:
 
 ; ----------------------------------------------------------------------------
 L7AC2:	add16i	off_AE, L7A98, $0005
-	lda     L7A97                           ; 7AD1 AD 97 7A                 ..z
-	ldy     #$00                            ; 7AD4 A0 00                    ..
-	sta     (off_AE),y                      ; 7AD6 91 AE                    ..
+	stp8	L7A97
 	rts                                     ; 7AD8 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -5542,7 +5540,7 @@ L7ADD:  .byte	$08
 L7ADE:	.byte	$A5
 
 ; ----------------------------------------------------------------------------
-sub_7ADF:  
+cmd_uv:  
 	stack_prolog L7AD9, $03
 	ldxa	L7AD9
 	jsr     sub_799B
@@ -5592,7 +5590,7 @@ L7B64:  sta     ($45),y                         ; 7B64 91 45                    
 	iny                                     ; 7B66 C8                       .
 L7B67:  .byte	$A9
 
-sub_7B68:
+cmd_ux:
 	stack_prolog L7B4D, $02
 	sec                                     ; 7B71 38                       8
 	lda     L7B4F                           ; 7B72 AD 4F 7B                 .O{
@@ -7670,7 +7668,7 @@ L9405:  lda     #$80                            ; 9405 A9 80                    
 	sta     $A3                             ; 9407 85 A3                    ..
 	ldy     L9363                           ; 9409 AC 63 93                 .c.
 	ldxa	L9053
-	jsr     sub_7ADF                        ; 9412 20 DF 7A                  .z
+	jsr     cmd_uv
 	rts                                     ; 9415 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -7823,9 +7821,8 @@ L95CA:  clc                                     ; 95CA 18                       
 L95DC:  lda     L9051                           ; 95DC AD 51 90                 .Q.
 	sta     $A3                             ; 95DF 85 A3                    ..
 	ldy     #$80                            ; 95E1 A0 80                    ..
-	ldx     L9054                           ; 95E3 AE 54 90                 .T.
-	lda     L9053                           ; 95E6 AD 53 90                 .S.
-	jsr     sub_7ADF                        ; 95E9 20 DF 7A                  .z
+	ldxa	L9053
+	jsr     cmd_uv
 	lda     L941F                           ; 95EC AD 1F 94                 ...
 	sta     $A3                             ; 95EF 85 A3                    ..
 	ldy     L941E                           ; 95F1 AC 1E 94                 ...
@@ -7938,7 +7935,7 @@ sub_968E:
 	sta     $A3                             ; 970A 85 A3                    ..
 	ldy     #$00                            ; 970C A0 00                    ..
 	ldxa	L9053
-	jsr     sub_7ADF                        ; 9714 20 DF 7A                  .z
+	jsr     cmd_uv
 	dmv	off_AE, L968C
 	ldy     #$00                            ; 9721 A0 00                    ..
 	lda     (off_AE),y                      ; 9723 B1 AE                    ..
@@ -8879,7 +8876,7 @@ LA25D:  lda     LA006                           ; A25D AD 06 A0                 
 	sta     $A3                             ; A26A 85 A3                    ..
 	ldy     L9FF3                           ; A26C AC F3 9F                 ...
 	ldxa	L9FE3
-	jsr     sub_7ADF                        ; A275 20 DF 7A                  .z
+	jsr     cmd_uv
 	lda     L474F                           ; A278 AD 4F 47                 .OG
 	eor     #$03                            ; A27B 49 03                    I.
 	lbne	LA28B
@@ -9696,7 +9693,7 @@ LAA55:  lda     #$00                            ; AA55 A9 00                    
 	.byte   $4C                             ; AA83 4C                       L
 LAA84:  .addr   LAA86
 LAA86:	.addr	cmd_uc,cmd_uk,cmd_ud,cmd_uf,cmd_uw,cmd_uy,cmd_ub		; "CKDFWYB"
-	.addr	sub_6F68,sub_6F91,sub_6FEB,sub_7A57,sub_7ADF,sub_7B68,sub_7A9A	; "xyzUVXN"
+	.addr	cmd_lx,cmd_ly,cmd_lz,cmd_uu,cmd_uv,cmd_ux,cmd_un		; "xyzUVXN"
 	.addr	sub_74BE,sub_7951,sub_77A3,sub_782A,sub_758C,sub_760A,sub_705F	; "cdspmla"
 	.addr	sub_7096,sub_70E2,sub_9C41,sub_9BE0,sub_9BD0,sub_9CAD,sub_9E2C	; "bfJjST+"
 	.addr	sub_7FE9,sub_817C,sub_8003,sub_80BB,sub_8EFD,sub_8E7D,sub_8F55	; "LMPRGAO"
