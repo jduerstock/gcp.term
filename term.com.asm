@@ -8786,11 +8786,7 @@ LA04F:	mv	$A3, L9FE7+1
 	ldy     #<L9FF9
 	ldxai	L9FF9
 	jsr     sub_4C1D
-	ldi	$A3, >L9FF9
-	rdldi	$A4, $0004
-	ldy     #<L9FF9
-	ldxai	LA023
-	jsr     blockmove
+	blkmv_iii LA023, L9FF9, $0004
 	ldi     $A3, >L9FF9
 	rdldi	$A4, $A001
 	ldy     #<L9FF9
