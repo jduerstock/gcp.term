@@ -4690,7 +4690,7 @@ sub_7035:
 L705B:	.byte	$66,$3E
 L705D:  .word   $7C06
 
-sub_705F:	
+cmd_la:	
 	prolog
 	stxa	L705B
 	func16_8 sub_7035, L705D, L705B
@@ -5059,10 +5059,10 @@ L74B8:	.byte	$32                             ; 74B8 32                       2
 L74B9:	.byte	$F0                             ; 74B9 F0                       .
 L74BA:	.byte	$91                             ; 74BA 91                       .
 L74BB:	.byte	$47                             ; 74BB 47                       G
-L74BC:  clc                                     ; 74BC 18                       .
+L74BC:  .byte	$18
 L74BD:  .byte	$A5
 
-sub_74BE:
+cmd_lc:
 	stack_prolog L74B8, $03
 	lda     L74B8                           ; 74C7 AD B8 74                 ..t
 	jsr     sub_7035
@@ -5110,7 +5110,7 @@ L7589:	.byte	$A6                             ; 7589 A6                       .
 L758A:	.byte	$F0                             ; 758A F0                       .
 L758B:	.byte	$9D                             ; 758B 9D                       .
 
-sub_758C:  
+cmd_lm:  
 	stack_prolog L7586, $03
 	lda     L7586                           ; 7595 AD 86 75                 ..u
 	jsr     sub_7035
@@ -5143,7 +5143,7 @@ L7607:	.byte	$FA                             ; 7607 FA                       .
 L7608:	.byte	$E9                             ; 7608 E9                       .
 L7609:	.byte	$53                             ; 7609 53                       S
 
-sub_760A:
+cmd_ll:
 	stack_prolog L7605, $02
 	lda     L7605                           ; 7613 AD 05 76                 ..v
 	jsr     sub_7035
@@ -5253,7 +5253,7 @@ L777E:	lbne	L7799
 	ldy     L766B                           ; 7788 AC 6B 76                 .kv
 	ldx     L7682                           ; 778B AE 82 76                 ..v
 	lda     L766A                           ; 778E AD 6A 76                 .jv
-	jsr     sub_758C
+	jsr     cmd_lm
 	ldi	$A0, $01
 	rts                                     ; 7798 60                       `
 
@@ -5269,7 +5269,7 @@ L77A1:	.byt	$C8
 L77A2:	.byte	$A9
 
 ; ----------------------------------------------------------------------------
-sub_77A3:  
+cmd_ls:  
 	stack_prolog L779E, $02
 	lda     L779E                           ; 77AC AD 9E 77                 ..w
 	jsr     sub_7035
@@ -5307,7 +5307,7 @@ L7827:	.byte	$4C
 L7828:	.byte	$17,$F0
 
 ; ----------------------------------------------------------------------------
-sub_782A:  
+cmd_lp:  
 	prolog
 	stxa	L7824
 	func16_8 sub_7035, L7828, L7824
@@ -5412,7 +5412,7 @@ L794E:	.byte	$0D
 L794F:	.byte	$F0,$05
 
 ; ----------------------------------------------------------------------------
-sub_7951:
+cmd_ld:
 	prolog
 	sta     L794E                           ; 7954 8D 4E 79                 .Ny
 	func16_8 sub_7035, L794F, L794E
@@ -5423,7 +5423,7 @@ L7972:  rts                                     ; 7972 60                       
 ; ----------------------------------------------------------------------------
 L7973:  ldx     #$FF                            ; 7973 A2 FF                    ..
 	lda     L794E                           ; 7975 AD 4E 79                 .Ny
-	jsr     sub_782A
+	jsr     cmd_lp
 	ldi	$A3, $00
 	ldy     #$26                            ; 797F A0 26                    .&
 	ldxa	L794F
@@ -7828,7 +7828,7 @@ L95DC:  lda     L9051                           ; 95DC AD 51 90                 
 	ldy     L941E                           ; 95F1 AC 1E 94                 ...
 	ldx     L9053                           ; 95F4 AE 53 90                 .S.
 	lda     L9052                           ; 95F7 AD 52 90                 .R.
-	jsr     sub_758C
+	jsr     cmd_lm
 	ldy     #$00                            ; 95FD A0 00                    ..
 	sty     L9050                           ; 95FF 8C 50 90                 .P.
 	clc                                     ; 9602 18                       .
@@ -9694,7 +9694,7 @@ LAA55:  lda     #$00                            ; AA55 A9 00                    
 LAA84:  .addr   LAA86
 LAA86:	.addr	cmd_uc,cmd_uk,cmd_ud,cmd_uf,cmd_uw,cmd_uy,cmd_ub		; "CKDFWYB"
 	.addr	cmd_lx,cmd_ly,cmd_lz,cmd_uu,cmd_uv,cmd_ux,cmd_un		; "xyzUVXN"
-	.addr	sub_74BE,sub_7951,sub_77A3,sub_782A,sub_758C,sub_760A,sub_705F	; "cdspmla"
+	.addr	cmd_lc,cmd_ld,cmd_ls,cmd_lp,cmd_lm,cmd_ll,cmd_la		; "cdspmla"
 	.addr	sub_7096,sub_70E2,sub_9C41,sub_9BE0,sub_9BD0,sub_9CAD,sub_9E2C	; "bfJjST+"
 	.addr	sub_7FE9,sub_817C,sub_8003,sub_80BB,sub_8EFD,sub_8E7D,sub_8F55	; "LMPRGAO"
 	.addr	sub_8E24,sub_A9DE,sub_A9FB,sub_A9EC,sub_968E,sub_97A1,sub_5E1E	; "ZEiHeI0"
