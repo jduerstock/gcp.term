@@ -3932,7 +3932,7 @@ L65DF:  .byte	$00
 L65E0:  .byte	$00
 L65E1:  .byte	$00
 
-sub_65E2:  					; "W"
+cmd_uw:  					; "W"
 	stack_prolog L65D6, $05
 	func16_8 sub_65B0, L65E0, L65D6
 	lda     L65E0                           ; 65FB AD E0 65                 ..e
@@ -3985,7 +3985,7 @@ L6694:  .byte	$00
 L6695:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-sub_6696:					; "F"  
+cmd_uf:						; "F"  
 	prolog
 	stxa	L6690
 	func16_8 sub_65B0, L6692, L6690
@@ -4006,7 +4006,7 @@ L66BB:	mv	$A3, L6692+1
 	ldy     #$00                            ; 66E7 A0 00                    ..
 	ldx     #$00                            ; 66E9 A2 00                    ..
 	lda     L6690                           ; 66EB AD 90 66                 ..f
-	jsr     sub_65E2
+	jsr     cmd_uw
 	rts                                     ; 66F1 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -4026,7 +4026,7 @@ sub_66FC:
 	prolog
 	stxa	L66F2
 	func16_8 sub_65B0, L66F4, L66F2
-	mv	$A3, L66F5
+	mv	$A3, L66F4+1
 	rdldi	$A4, $0006
 	ldy     L66F4                           ; 6722 AC F4 66                 ..f
 	ldxai	L66F6
@@ -4036,7 +4036,7 @@ sub_66FC:
 	lbcc	L6742
 	ldx     #$00                            ; 6737 A2 00                    ..
 	lda     L66F2
-	jsr     sub_6696
+	jsr     cmd_uf
 	jmp     L67C3                           ; 673F 4C C3 67                 L.g
 
 ; ----------------------------------------------------------------------------
@@ -4066,7 +4066,7 @@ L6742:	dmv	off_AE, L66FA
 	ldy     $A2                             ; 67B9 A4 A2                    ..
 	ldx     #$00                            ; 67BB A2 00                    ..
 	lda     L66F2
-	jsr     sub_65E2
+	jsr     cmd_uw
 L67C3:  rts                                     ; 67C3 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -4090,7 +4090,7 @@ L67D5:	.byte	$8D
 L67D6:	.byte	$01
 L67D7:	.byte	$D3
 
-sub_67D8:					; "D" - display?
+cmd_ud:					; "D" - display?
 	stack_prolog L67C4, $05 
 	func16_8 sub_65B0, L67CF, L67C4
 	test16	L67CF
@@ -4224,7 +4224,7 @@ L6991:  .byte	$00,$00
 L6993:	.byte	$00,$00
 
 ; ----------------------------------------------------------------------------
-sub_6995:					; "K" 
+cmd_uk:						; "K" 
 	prolog
 	sta     L6982                           ; 6998 8D 82 69                 ..i
 	func16_8 sub_65B0, L6983, L6982
@@ -4324,13 +4324,13 @@ L6AD3:	.byte	$31
 L6AD4:	.byte	$3A
 
 ; ----------------------------------------------------------------------------
-sub_6AD5:					; "C","BBBBS"
+cmd_uc:						; "C","BBBBS"
 	stack_prolog L6ABE, $05
 	func16_8 sub_65B0, L6AC4, L6ABE
 	test16	L6AC4
 	lbeq	L6AFF
 	lda     L6ABE                           ; 6AF9 AD BE 6A                 ..j
-	jsr     sub_6995
+	jsr     cmd_uk
 L6AFF:  ldx     #$00                            ; 6AFF A2 00                    ..
 	lda     #$0B                            ; 6B01 A9 0B                    ..
 	jsr     sub_606E
@@ -4539,7 +4539,7 @@ L6E5F:  .byte	$00
 L6E60:	.byte	$66                             ; 6E60 66                       f
 
 ; ----------------------------------------------------------------------------
-sub_6E61:  					; "B"
+cmd_ub:  					; "B"
 	stack_prolog L6E40, $05
 	func16_8 sub_65B0, L6E46, L6E40
 	mv	$A3, L6E47
@@ -4643,7 +4643,7 @@ L6FA5:	func16_8 sub_65B0, L6F8D, L4647
 L6FDB:  ldy     L6F90                           ; 6FDB AC 90 6F                 ..o
 	ldx     #$00                            ; 6FDE A2 00                    ..
 	lda     L4647                           ; 6FE0 AD 47 46                 .GF
-	jsr     sub_67D8
+	jsr     cmd_ud
 	rts                                     ; 6FE6 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -4672,7 +4672,7 @@ L6FFF:  lda     L4648                           ; 6FFF AD 48 46                 
 	ldy     #$00                            ; 7029 A0 00                    ..
 	ldx     #$00                            ; 702B A2 00                    ..
 	lda     L4648
-	jsr     sub_67D8
+	jsr     cmd_ud
 	rts                                     ; 7033 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -5715,7 +5715,7 @@ L7D48:  .byte	$00,$00
 L7D4A:  .byte	$00
 L7D4B:  .word	$0000
 
-sub_7D4D:					; "Y"
+cmd_uy:						; "Y"
 	stack_prolog L7D44, $03
 	lda	L7D44
 	jsr	sub_65B0
@@ -9372,7 +9372,7 @@ LA799:  lda     LA6E0                           ; A799 AD E0 A6                 
 	ldy     LA6DE                           ; A7A6 AC DE A6                 ...
 	ldx     #$00                            ; A7A9 A2 00                    ..
 	lda     LA6D8                           ; A7AB AD D8 A6                 ...
-	jsr     sub_67D8
+	jsr     cmd_ud
 	jsr     sub_8D01
 	jmp     LA748                           ; A7B4 4C 48 A7                 LH.
 
@@ -9695,7 +9695,7 @@ LAA55:  lda     #$00                            ; AA55 A9 00                    
 ; ----------------------------------------------------------------------------
 	.byte   $4C                             ; AA83 4C                       L
 LAA84:  .addr   LAA86
-LAA86:	.addr	sub_6AD5,sub_6995,sub_67D8,sub_6696,sub_65E2,sub_7D4D,sub_6E61	; "CKDFWYB"
+LAA86:	.addr	cmd_uc,cmd_uk,cmd_ud,cmd_uf,cmd_uw,cmd_uy,cmd_ub		; "CKDFWYB"
 	.addr	sub_6F68,sub_6F91,sub_6FEB,sub_7A57,sub_7ADF,sub_7B68,sub_7A9A	; "xyzUVXN"
 	.addr	sub_74BE,sub_7951,sub_77A3,sub_782A,sub_758C,sub_760A,sub_705F	; "cdspmla"
 	.addr	sub_7096,sub_70E2,sub_9C41,sub_9BE0,sub_9BD0,sub_9CAD,sub_9E2C	; "bfJjST+"
@@ -9703,8 +9703,8 @@ LAA86:	.addr	sub_6AD5,sub_6995,sub_67D8,sub_6696,sub_65E2,sub_7D4D,sub_6E61	; "C
 	.addr	sub_8E24,sub_A9DE,sub_A9FB,sub_A9EC,sub_968E,sub_97A1,sub_5E1E	; "ZEiHeI0"
 	.addr	sub_5E30,sub_A2A8,sub_A382,sub_A3BD,sub_A547,sub_A6E8,sub_A7C4	; "1234567"
 	.addr	sub_A7F3,sub_A6CE,sub_A991,sub_4F5A,sub_A959,sub_4BA7,sub_A837	; "89n.#*="
-	.addr	sub_A846,sub_4F9D,sub_8D01,sub_A895,sub_A842,sub_A96F,sub_A81F	; "vw"
-	.addr	sub_A823,sub_A82B
+	.addr	sub_A846,sub_4F9D,sub_8D01,sub_A895,sub_A842,sub_A96F,sub_A81F	; "$%&@.:u"
+	.addr	sub_A823,sub_A82B						; "vw"
 
 LAB08:	.byte	$00
 	.byte	$00
