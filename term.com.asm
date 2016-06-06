@@ -9037,11 +9037,7 @@ LA3E2:  jsr     sub_5E1E
 	jsr     blockmove
 	sub8m	off_AE, LA3B5, LA3B3
 	add8i	LA3AE, off_AE, $01
-	mv	$A3, LA3AC+1
-	rdldi	$A4, $0006
-	ldy     LA3AC                           ; A41A AC AC A3                 ...
-	ldxai	LA3B7
-	jsr     blockmove
+	blkmv_imi LA3B7, LA3AC, $0006
 	shladdm8 off_AE, LA3BB, LA3B4
 	clc                                     ; A438 18                       .
 	ldy     #$00                            ; A439 A0 00                    ..
