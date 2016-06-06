@@ -47,7 +47,7 @@ LAF8E:  jsr     sub_AB6A
 LAF94:  lda     L4652                           ; AF94 AD 52 46                 .RF
 	jsr     sub_A28D
 	ldi	L4652, $02
-	jsr     sub_5E30
+	jsr     cmd_d1
 LAFA2:  lda	CH
 	eor     #$FF                            ; AFA5 49 FF                    I.
 	beq     LAFAC                           ; AFA7 F0 03                    ..
@@ -88,7 +88,7 @@ LAFE2:	and8i	SHFLOK, SHFLOK, $40
 
 ; ----------------------------------------------------------------------------
 LB00C:  lda	CH
-	jsr     sub_97A1
+	jsr     cmd_ui
 LB012:  ldi	CH, $FF
 	jmp     LAFA2                           ; B017 4C A2 AF                 L..
 

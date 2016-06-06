@@ -24,8 +24,8 @@ sub_ADEA:
 ;--		sub_6203();
 	jsr     sub_5D67
 ;--		sub_5D67();
-	jsr     sub_A9FB
-;--		sub_A9FB();
+	jsr     cmd_li
+;--		cmd_li();
 	sei                                     ; AE5A 78                       x
 	and8i	$10, $10, $7F
 	cli                                     ; AE61 58                       X
@@ -40,8 +40,8 @@ LAE70:  lda     #>LAE65
 	ldy     #<LAE65
 	ldx     #$02                            ; AE76 A2 02                    ..
 	lda     #$03                            ; AE78 A9 03                    ..
-	jsr     sub_A2A8
-;--		sub_A2A8(3,2,"D:INIT.MAC");
+	jsr     cmd_d2
+;--		cmd_d2(3,2,"D:INIT.MAC");
 	rts
 ;--	}
 

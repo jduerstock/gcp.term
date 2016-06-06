@@ -3229,7 +3229,7 @@ L5E10:  lda     #$00                            ; 5E10 A9 00                    
 	rts                                     ; 5E1D 60                       `
 
 ; ----------------------------------------------------------------------------
-sub_5E1E:
+cmd_d0:
 	prolog 
 	lda     L4653                           ; 5E21 AD 53 46                 .SF
 	lbne	L5E2C
@@ -3238,7 +3238,7 @@ L5E2C:  inc     L4653                           ; 5E2C EE 53 46                 
 	rts                                     ; 5E2F 60                       `
 
 ; ----------------------------------------------------------------------------
-sub_5E30:
+cmd_d1:
 	prolog
 	lda     L4653                           ; 5E33 AD 53 46                 .SF
 	lbne	L5E3C
@@ -3271,7 +3271,7 @@ sub_5E5E:
 L5E72:  lda     #$00                            ; 5E72 A9 00                    ..
 	cmp     L4653                           ; 5E74 CD 53 46                 .SF
 	lbcs	L5E82
-	jsr     sub_5E30
+	jsr     cmd_d1
 	jmp     L5E72                           ; 5E7F 4C 72 5E                 Lr^
 
 ; ----------------------------------------------------------------------------
@@ -3302,7 +3302,7 @@ L5E8F:  lda     #$00                            ; 5E8F A9 00                    
 L5EB2:  lda     L4653                           ; 5EB2 AD 53 46                 .SF
 	cmp     L5E5D                           ; 5EB5 CD 5D 5E                 .]^
 	lbcs	L5EC3
-	jsr     sub_5E1E
+	jsr     cmd_d0
 	jmp     L5EB2                           ; 5EC0 4C B2 5E                 L.^
 
 ; ----------------------------------------------------------------------------
@@ -5951,7 +5951,7 @@ cmd_ul:
 L8001:  .word	$0000
 
 ; ----------------------------------------------------------------------------
-sub_8003:  
+cmd_up:  
 	prolog
 	stxa	L8001
 	dmv	L474F, L8001
@@ -5975,7 +5975,7 @@ sub_8020:
 	jsr     sub_45F6
 	ldx     #$00                            ; 803D A2 00                    ..
 	lda     #$00                            ; 803F A9 00                    ..
-	jsr     sub_8003
+	jsr     cmd_up
 	rts                                     ; 8044 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -6033,7 +6033,7 @@ L80B6:  clv                                     ; 80B6 B8                       
 L80B9:  inx                                     ; 80B9 E8                       .
 L80BA:  .byte	$C9
 
-sub_80BB:	
+cmd_ur:	
 	prolog
 	stxa	L80AA
 	lda     L474F                           ; 80C4 AD 4F 47                 .OG
@@ -6124,21 +6124,11 @@ L817B:	.byte	$6F                             ; 817B 6F                       o
 cmd_um:	
 	stack_prolog L8177, $03
 	blkmv_iii L4753, L8177, $0002
-	lda     L8179                           ; 819A AD 79 81                 .y.
-	sta     $AE                             ; 819D 85 AE                    ..
-	lda     L817A                           ; 819F AD 7A 81                 .z.
-	sta     $AF                             ; 81A2 85 AF                    ..
-	ldy     #$00                            ; 81A4 A0 00                    ..
-	lda     ($AE),y                         ; 81A6 B1 AE                    ..
-	sta     L817B                           ; 81A8 8D 7B 81                 .{.
-	lda     L817A                           ; 81AB AD 7A 81                 .z.
-	sta     $A3                             ; 81AE 85 A3                    ..
-	clc                                     ; 81B0 18                       .
-	lda     L817B                           ; 81B1 AD 7B 81                 .{.
-	adc     #$01                            ; 81B4 69 01                    i.
-	sta     $A4                             ; 81B6 85 A4                    ..
-	lda     #$00                            ; 81B8 A9 00                    ..
-	sta     $A5                             ; 81BA 85 A5                    ..
+	dmv	off_AE, L8179
+	ldp8	L817B
+	mv	$A3, L8179+1
+	add8i	$A4, L817B, $01
+	ldi	$A5, $00
 	ldy     L8179                           ; 81BC AC 79 81                 .y.
 	ldxai	L4755
 	jsr     blockmove
@@ -7152,7 +7142,7 @@ L8E22:  .byte	$00
 L8E23:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-sub_8E24:					; "Z"
+cmd_uz:						; "Z"
 	stack_prolog L8E1F, $02
 	and8i	L8E22, L8E1F, $7F
 	ldi	L8E23, $00
@@ -7180,7 +7170,7 @@ L8E7B:  .byte	$00
 L8E7C:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-sub_8E7D:  
+cmd_ua:  
 	stack_prolog L8E74, $06
 	shladdm8 off_AE, L46F5, L8E74
 	ldp16	L8E7B
@@ -7206,7 +7196,7 @@ L8EFA:  .byte	$00
 L8EFB:  .byte	$00
 L8EFC:  .byte	$00
 
-sub_8EFD:
+cmd_ug:
 	stack_prolog L8EF8, $02
 	shladdm8 off_AE, L46F5, L8EF8
 	ldp16	L8EFB
@@ -7229,7 +7219,7 @@ L8F4F:	.byte	$00
 	.byte	$00
 
 ; ----------------------------------------------------------------------------
-sub_8F55:  
+cmd_uo:  
 	stack_prolog L8F4F, $05
 	ldi	$A3, >L8F4F
 	rdldi	$A4, $0006
@@ -7289,7 +7279,7 @@ L8FDE:	dmv	off_AE, L4678
 	ldy     #$18                            ; 9026 A0 18                    ..
 	ldx     #$02                            ; 9028 A2 02                    ..
 	lda     #$00                            ; 902A A9 00                    ..
-	jsr     sub_8EFD
+	jsr     cmd_ug
 	lda     #$CA                            ; 902F A9 CA                    ..
 	sta     $A3                             ; 9031 85 A3                    ..
 	lda     #$94                            ; 9033 A9 94                    ..
@@ -7301,10 +7291,10 @@ L8FDE:	dmv	off_AE, L4678
 	ldy     #$28                            ; 903F A0 28                    .(
 	ldx     #$00                            ; 9041 A2 00                    ..
 	lda     #$00                            ; 9043 A9 00                    ..
-	jsr     sub_8E7D
+	jsr     cmd_ua
 	ldx     #$0F                            ; 9048 A2 0F                    ..
 	lda     #$00                            ; 904A A9 00                    ..
-	jsr     sub_8F55
+	jsr     cmd_uo
 	rts                                     ; 904F 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -7904,7 +7894,7 @@ L968C:  .byte	$00
 L968D:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-sub_968E:
+cmd_le:
 	stack_prolog L9682, $02
 	mv	L9052, L9682
 	func16_8 sub_7035, P9055, L9052
@@ -7982,7 +7972,7 @@ L979F:  .byte	$00
 L97A0:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-sub_97A1:  
+cmd_ui:  
 	prolog
 	sta     L979C                           ; 97A4 8D 9C 97                 ...
 	lda     L464E                           ; 97A7 AD 4E 46                 .NF
@@ -8887,9 +8877,9 @@ LA2A6:  .byte	$00
 LA2A7:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-sub_A2A8:
+cmd_d2:
 	stack_prolog LA2A2, $03
-	jsr     sub_5E1E
+	jsr     cmd_d0
 	lda     LA2A2                           ; A2B4 AD A2 A2                 ...
 	jsr     sub_A28D
 	ldi	LA2A6, $04
@@ -8950,7 +8940,7 @@ LA36C:  lda     LA2A3                           ; A36C AD A3 A2                 
 	rts                                     ; A37C 60                       `
 
 ; ----------------------------------------------------------------------------
-LA37D:  jsr     sub_5E30
+LA37D:  jsr     cmd_d1
 	rts                                     ; A380 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -8960,14 +8950,14 @@ LA381:  .byte	$00
 sub_A382:	
 	prolog
 	sta     LA381                           ; A385 8D 81 A3                 ...
-	jsr     sub_5E1E
+	jsr     cmd_d0
 	lda     LA381                           ; A38B AD 81 A3                 ...
 	jsr     sub_A28D
 	lda     L4652                           ; A391 AD 52 46                 .RF
 	eor     LA381                           ; A394 4D 81 A3                 M..
 	lbne	LA3A1
 	ldi	L4652, $02
-LA3A1:  jsr     sub_5E30
+LA3A1:  jsr     cmd_d1
 	rts                                     ; A3A4 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -9003,7 +8993,7 @@ sub_A3BD:
 	rts                                     ; A3E1 60                       `
 
 ; ----------------------------------------------------------------------------
-LA3E2:  jsr     sub_5E1E
+LA3E2:  jsr     cmd_d0
 	blkmv_imi LA3B3, LA3A8, $0004
 	sub8m	off_AE, LA3B5, LA3B3
 	add8i	LA3AE, off_AE, $01
@@ -9088,7 +9078,7 @@ LA512:	add16m8 LA3AA, LA3AA, LA3B7
 	jmp     LA46A                           ; A527 4C 6A A4                 Lj.
 
 ; ----------------------------------------------------------------------------
-LA52A:  jsr     sub_5E30
+LA52A:  jsr     cmd_d1
 	rts                                     ; A52D 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -9140,7 +9130,7 @@ LA58C:	add8i	LA536, off_AE, $01
 	adc     #$00                            ; A5CC 69 00                    i.
 	sta     $AD                             ; A5CE 85 AD                    ..
 	sub16i	LA532, off_AC, $0001
-	jsr     sub_5E1E
+	jsr     cmd_d0
 	ldy     #$00                            ; A5E2 A0 00                    ..
 	sty     LA53B                           ; A5E4 8C 3B A5                 .;.
 	sty     LA53A                           ; A5E7 8C 3A A5                 .:.
@@ -9209,7 +9199,7 @@ LA672:	add16m8 LA532, LA532, LA541
 	jmp     LA5F6                           ; A687 4C F6 A5                 L..
 
 ; ----------------------------------------------------------------------------
-LA68A:  jsr     sub_5E30
+LA68A:  jsr     cmd_d1
 	lda     LA53A                           ; A68D AD 3A A5                 .:.
 	sta     LA537                           ; A690 8D 37 A5                 .7.
 	lda     #$08                            ; A693 A9 08                    ..
@@ -9275,7 +9265,7 @@ LA70D:	add16i	off_AE, LA6DC, $0001
 	ldy     #$00                            ; A71C A0 00                    ..
 	lda     (off_AE),y
 	sta     LA6DE                           ; A720 8D DE A6                 ...
-	jsr     sub_5E1E
+	jsr     cmd_d0
 	lda     LA6D9                           ; A726 AD D9 A6                 ...
 	jsr     sub_A28D
 	lda     #$06                            ; A72C A9 06                    ..
@@ -9336,7 +9326,7 @@ LA799:  lda     LA6E0                           ; A799 AD E0 A6                 
 ; ----------------------------------------------------------------------------
 LA7B7:  lda     LA6D9                           ; A7B7 AD D9 A6                 ...
 	jsr     sub_A28D
-	jsr     sub_5E30
+	jsr     cmd_d1
 	rts                                     ; A7C0 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -9346,7 +9336,7 @@ LA7C3:  .byte	$00
 
 sub_A7C4:
 	stack_prolog LA7C1, $02
-	jsr     sub_5E1E
+	jsr     cmd_d0
 	lda     #$00                            ; A7D0 A9 00                    ..
 	sta     $A3                             ; A7D2 85 A3                    ..
 	lda     #$00                            ; A7D4 A9 00                    ..
@@ -9356,7 +9346,7 @@ sub_A7C4:
 	ldx     #$00                            ; A7E4 A2 00                    ..
 	lda     LA7C1                           ; A7E6 AD C1 A7                 ...
 	jsr     sub_45D0
-	jsr     sub_5E30
+	jsr     cmd_d1
 	rts                                     ; A7EF 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -9366,7 +9356,7 @@ LA7F2:  .byte	$00
 
 sub_A7F3:
 	stack_prolog LA7F0, $02
-	jsr     sub_5E1E
+	jsr     cmd_d0
 	lda     #$00                            ; A7FF A9 00                    ..
 	sta     $A3                             ; A801 85 A3                    ..
 	lda     #$00                            ; A803 A9 00                    ..
@@ -9379,7 +9369,7 @@ sub_A7F3:
 	ldx     #$00                            ; A813 A2 00                    ..
 	lda     LA7F0                           ; A815 AD F0 A7                 ...
 	jsr     sub_45D0
-	jsr     sub_5E30
+	jsr     cmd_d1
 	rts                                     ; A81E 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -9577,7 +9567,7 @@ LA9DC:  rts                                     ; A9DC 60                       
 LA9DD:	.byte	$00
 
 ; ----------------------------------------------------------------------------
-sub_A9DE:  
+cmd_ue:  
 	prolog
 	sta     LA9DD                           ; A9E1 8D DD A9                 ...
 	mv	L4658, LA9DD
@@ -9587,7 +9577,7 @@ sub_A9DE:
 LA9EB:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-sub_A9EC:  
+cmd_uh:  
 	prolog
 	sta     LA9EB                           ; A9EF 8D EB A9                 ...
 	mv	L464E, LA9EB
@@ -9597,7 +9587,7 @@ sub_A9EC:
 LA9F9:	.word	$0000
 
 ; ----------------------------------------------------------------------------
-sub_A9FB:
+cmd_li:
 	prolog
 	sub16m	LA9F9, MEMTOP, MEMLO
 	lda     LA9F9+1
@@ -9624,7 +9614,7 @@ LAA28:  lda     #$00                            ; AA28 A9 00                    
 	lda     #$00                            ; AA4B A9 00                    ..
 	jsr     cmd_uj
 	lda     #$00                            ; AA50 A9 00                    ..
-	jsr     sub_A9EC
+	jsr     cmd_uh
 LAA55:  lda     #$00                            ; AA55 A9 00                    ..
 	sta     $A3                             ; AA57 85 A3                    ..
 	lda     #$FF                            ; AA59 A9 FF                    ..
@@ -9642,7 +9632,7 @@ LAA55:  lda     #$00                            ; AA55 A9 00                    
 	lda     #$FF                            ; AA78 A9 FF                    ..
 	sta     L4648                           ; AA7A 8D 48 46                 .HF
 	lda     #$01                            ; AA7D A9 01                    ..
-	jsr     sub_A9DE
+	jsr     cmd_ue
 	rts                                     ; AA82 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -9652,9 +9642,9 @@ LAA86:	.addr	cmd_uc,cmd_uk,cmd_ud,cmd_uf,cmd_uw,cmd_uy,cmd_ub		; "CKDFWYB"
 	.addr	cmd_lx,cmd_ly,cmd_lz,cmd_uu,cmd_uv,cmd_ux,cmd_un		; "xyzUVXN"
 	.addr	cmd_lc,cmd_ld,cmd_ls,cmd_lp,cmd_lm,cmd_ll,cmd_la		; "cdspmla"
 	.addr	cmd_lb,cmd_lf,cmd_uj,cmd_lj,cmd_us,cmd_ut,cmd_pl		; "bfJjST+"
-	.addr	cmd_ul,cmd_um,sub_8003,sub_80BB,sub_8EFD,sub_8E7D,sub_8F55	; "LMPRGAO"
-	.addr	sub_8E24,sub_A9DE,sub_A9FB,sub_A9EC,sub_968E,sub_97A1,sub_5E1E	; "ZEiHeI0"
-	.addr	sub_5E30,sub_A2A8,sub_A382,sub_A3BD,sub_A547,sub_A6E8,sub_A7C4	; "1234567"
+	.addr	cmd_ul,cmd_um,cmd_up,cmd_ur,cmd_ug,cmd_ua,cmd_uo		; "LMPRGAO"
+	.addr	cmd_uz,cmd_ue,cmd_li,cmd_uh,cmd_le,cmd_ui,cmd_d0		; "ZEiHeI0"
+	.addr	cmd_d1,cmd_d2,sub_A382,sub_A3BD,sub_A547,sub_A6E8,sub_A7C4	; "1234567"
 	.addr	sub_A7F3,sub_A6CE,sub_A991,sub_4F5A,sub_A959,sub_4BA7,sub_A837	; "89n.#*="
 	.addr	sub_A846,sub_4F9D,sub_8D01,sub_A895,sub_A842,sub_A96F,sub_A81F	; "$%&@.:u"
 	.addr	sub_A823,sub_A82B						; "vw"
