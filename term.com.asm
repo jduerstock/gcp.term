@@ -22,6 +22,7 @@ DLIST		:= $0230
 INVFLG		:= $02B6
 SHFLOK		:= $02BE
 PCOLR3		:= $02C3
+INITAD		:= $02E2
 MEMTOP		:= $02E5
 MEMLO		:= $02E7
 DVSTAT		:= $02EA
@@ -10248,7 +10249,8 @@ LB0BE:  rts                                     ; B0BE 60                       
 
 	.segment "HDR01"
 
-	.addr	$02E2,$02E3
+	.addr	INITAD
+	.addr	INITAD+1
 
 	.segment "SEG01"
 
