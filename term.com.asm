@@ -8749,11 +8749,7 @@ sub_A027:
 	rts                                     ; A04E 60                       `
 
 ; ----------------------------------------------------------------------------
-LA04F:	mv	$A3, L9FE7+1
-	rdldi	$A4, $0006
-	ldy     L9FE7                           ; A05C AC E7 9F                 ...
-	ldxai	LA00E
-	jsr     blockmove
+LA04F:	blkmv_imi LA00E, L9FE7, $0006
 	add8m	L9FF3, LA010, L9FE5
 	add8m	L9FF4, LA011, L9FE6
 	func16_8 sub_65B0, L9FED, LA00E
