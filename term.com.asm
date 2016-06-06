@@ -920,6 +920,14 @@ L4641:  cpy     $A4                             ; 4641 C4 A4                    
 	jsr     blockmove
 .endmacro
 
+.macro	blkmv_mmi s1, d1, c1
+	mv	$A3, d1+1
+	rdldi	$A4, c1
+	ldy     d1
+	ldxa	s1
+	jsr     blockmove
+.endmacro
+
 .macro	blkmv_mm8 s1, d1, c1
 	mv	$A3, d1+1
 	ldi	$A5, $00
@@ -4708,16 +4716,12 @@ L7092:	.byte	$66
 L7093:  .byte	$66,$66
 	.byte	$66
 
-sub_7096:
+cmd_lb:
 	stack_prolog L708F, $02
 	func16_8 sub_7035, L7092, L708F
 	add16i	$A0, L7092, $001E
-	mv	$A3, L7091
-	rdldi	$A4, $0004
-	ldy     L7090                           ; 70CB AC 90 70                 ..p
-	ldxa	$A0
-	jsr     blockmove
-	rts                                     ; 70D5 60                       `
+	blkmv_mmi $A0, L7090, $0004
+	rts
 
 ; ----------------------------------------------------------------------------
 L70D6:	.byte	$00
@@ -9695,7 +9699,7 @@ LAA84:  .addr   LAA86
 LAA86:	.addr	cmd_uc,cmd_uk,cmd_ud,cmd_uf,cmd_uw,cmd_uy,cmd_ub		; "CKDFWYB"
 	.addr	cmd_lx,cmd_ly,cmd_lz,cmd_uu,cmd_uv,cmd_ux,cmd_un		; "xyzUVXN"
 	.addr	cmd_lc,cmd_ld,cmd_ls,cmd_lp,cmd_lm,cmd_ll,cmd_la		; "cdspmla"
-	.addr	sub_7096,sub_70E2,sub_9C41,sub_9BE0,sub_9BD0,sub_9CAD,sub_9E2C	; "bfJjST+"
+	.addr	cmd_lb,sub_70E2,sub_9C41,sub_9BE0,sub_9BD0,sub_9CAD,sub_9E2C	; "bfJjST+"
 	.addr	sub_7FE9,sub_817C,sub_8003,sub_80BB,sub_8EFD,sub_8E7D,sub_8F55	; "LMPRGAO"
 	.addr	sub_8E24,sub_A9DE,sub_A9FB,sub_A9EC,sub_968E,sub_97A1,sub_5E1E	; "ZEiHeI0"
 	.addr	sub_5E30,sub_A2A8,sub_A382,sub_A3BD,sub_A547,sub_A6E8,sub_A7C4	; "1234567"
