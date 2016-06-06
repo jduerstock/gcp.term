@@ -8763,11 +8763,7 @@ LA04F:	mv	$A3, L9FE7+1
 	ldxai	LA014
 	jsr     blockmove
 	func16_8 sub_65B0, L9FE9, L9FE3
-	mv	$A3, L9FE9+1
-	rdldi	$A4, $0009
-	ldy     L9FE9                           ; A0BE AC E9 9F                 ...
-	ldxai	$A01A
-	jsr     blockmove
+	blkmv_imi $A01A, L9FE9, $0009
 	yldi	LA006, $01
 	ldi	$A3, $00
 	sub8i	$A4, LA01A, $01
