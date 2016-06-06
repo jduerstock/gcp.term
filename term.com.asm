@@ -9923,18 +9923,7 @@ LAD4E:  lda     $D7                             ; AD4E A5 D7                    
 	sty     $DA                             ; AD56 84 DA                    ..
 LAD58:  rts                                     ; AD58 60                       `
 
-; ----------------------------------------------------------------------------
-
-sub_AD59:
-	mv	$D016, $02C4
-	mv	$D409, CHBAS
-	mv	$D01A, $02C8
-	mv	$D018, $02C6
-	mv	$D017, $02C5
-	yldi	$E8, $01
-	jsr     sub_ACB2
-	jmp     SYSVBV
-
+	.include "sub-ad59.asm"
 	.include "sub-ad85.asm"
 	.include "sub-adea.asm"
 	.include "sub-ae81.asm"
