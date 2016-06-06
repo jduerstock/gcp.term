@@ -9166,11 +9166,7 @@ LA56C:	mv	$A3, LA530+1
 	jsr     blockmove
 	sub8m	off_AE, LA53F, LA53D
 LA58C:	add8i	LA536, off_AE, $01
-	mv	$A3, LA534+1
-	rdldi	$A4, $0006
-	ldy     LA534                           ; A5A1 AC 34 A5                 .4.
-	ldxai	LA541
-	jsr     blockmove
+	blkmv_imi LA541, LA534, $0006
 	shladdm8 off_AE, LA545, LA53E
 	clc                                     ; A5BF 18                       .
 	ldy     #$00                            ; A5C0 A0 00                    ..
