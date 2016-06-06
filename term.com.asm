@@ -6121,17 +6121,9 @@ L817A:	.byte	$AD                             ; 817A AD                       .
 L817B:	.byte	$6F                             ; 817B 6F                       o
 
 ; ----------------------------------------------------------------------------
-sub_817C:	
+cmd_um:	
 	stack_prolog L8177, $03
-	lda     #$81                            ; 8185 A9 81                    ..
-	sta     $A3                             ; 8187 85 A3                    ..
-	lda     #$00                            ; 8189 A9 00                    ..
-	sta     $A5                             ; 818B 85 A5                    ..
-	lda     #$02                            ; 818D A9 02                    ..
-	sta     $A4                             ; 818F 85 A4                    ..
-	ldy     #$77                            ; 8191 A0 77                    .w
-	ldxai	L4753
-	jsr     blockmove
+	blkmv_iii L4753, L8177, $0002
 	lda     L8179                           ; 819A AD 79 81                 .y.
 	sta     $AE                             ; 819D 85 AE                    ..
 	lda     L817A                           ; 819F AD 7A 81                 .z.
@@ -9660,7 +9652,7 @@ LAA86:	.addr	cmd_uc,cmd_uk,cmd_ud,cmd_uf,cmd_uw,cmd_uy,cmd_ub		; "CKDFWYB"
 	.addr	cmd_lx,cmd_ly,cmd_lz,cmd_uu,cmd_uv,cmd_ux,cmd_un		; "xyzUVXN"
 	.addr	cmd_lc,cmd_ld,cmd_ls,cmd_lp,cmd_lm,cmd_ll,cmd_la		; "cdspmla"
 	.addr	cmd_lb,cmd_lf,cmd_uj,cmd_lj,cmd_us,cmd_ut,cmd_pl		; "bfJjST+"
-	.addr	cmd_ul,sub_817C,sub_8003,sub_80BB,sub_8EFD,sub_8E7D,sub_8F55	; "LMPRGAO"
+	.addr	cmd_ul,cmd_um,sub_8003,sub_80BB,sub_8EFD,sub_8E7D,sub_8F55	; "LMPRGAO"
 	.addr	sub_8E24,sub_A9DE,sub_A9FB,sub_A9EC,sub_968E,sub_97A1,sub_5E1E	; "ZEiHeI0"
 	.addr	sub_5E30,sub_A2A8,sub_A382,sub_A3BD,sub_A547,sub_A6E8,sub_A7C4	; "1234567"
 	.addr	sub_A7F3,sub_A6CE,sub_A991,sub_4F5A,sub_A959,sub_4BA7,sub_A837	; "89n.#*="
