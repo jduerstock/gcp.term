@@ -8237,13 +8237,7 @@ cmd_pl:
 	sty     L9E1B                           ; 9E3C 8C 1B 9E                 ...
 	sty     L9E1C                           ; 9E3F 8C 1C 9E                 ...
 	func16_8 sub_7035, L9E10, L46E9
-	lda     L9E11                           ; 9E52 AD 11 9E                 ...
-	sta     $A3                             ; 9E55 85 A3                    ..
-	ldi	$A5, $00
-	ldi	$A4, $05
-	ldy     L9E10                           ; 9E5F AC 10 9E                 ...
-	ldxai	L9E1D                           ; 9E64 A9 1D                    ..
-	jsr     blockmove
+	blkmv_imi L9E1D, L9E10, $0005
 	lda     L46E6                           ; 9E69 AD E6 46                 ..F
 	eor     #$02                            ; 9E6C 49 02                    I.
 	lbne	L9E94
