@@ -6601,11 +6601,7 @@ sub_89AE:
 	blkmv_imi L8997, L8962, $000E
 	func16_8 sub_65B0, L898D, L899B
 	add16i	L896B, L8962, $001A
-	mv	$A3, L896B+1
-	rdldi	$A4, $0004
-	ldy     L896B                           ; 8A09 AC 6B 89                 .k.
-	ldxai	$89A5
-	jsr	blockmove
+	blkmv_imi L89A5, L896B, $0004
 	sub8m	off_AE, L89A7, L89A5
 	add8i	L8968, off_AE, $01
 	add8m	$A0, L89A6, L8998
