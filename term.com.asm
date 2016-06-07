@@ -8061,11 +8061,7 @@ cmd_uj:
 	rdldi	L46EB, L9C2F
 	rdldi	L46ED, L9C38
 	blkmv_imi L9C2F, L9C22, $0009
-	mv	$A3, L9C2D+1
-	rdldi	$A4, $0009
-	ldy     L9C2D                           ; 9C94 AC 2D 9C                 .-.
-	ldxai	L9C38
-	jsr     blockmove
+	blkmv_imi L9C38, L9C2D, $0009
 	lda     L46E6                           ; 9C9E AD E6 46                 ..F
 	lbne	L9CAB
 	lda     #$00                            ; 9CA6 A9 00                    ..
