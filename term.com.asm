@@ -3309,13 +3309,7 @@ L5F86:  .byte	$00
 L5F87:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-L5F88:  clc                                     ; 5F88 18                       .
-	lda     L5F14                           ; 5F89 AD 14 5F                 .._
-	adc     L5F0C                           ; 5F8C 6D 0C 5F                 m._
-	sta     $A1                             ; 5F8F 85 A1                    ..
-	lda     L5F15                           ; 5F91 AD 15 5F                 .._
-	adc     L5F0D                           ; 5F94 6D 0D 5F                 m._
-	sta     $A2                             ; 5F97 85 A2                    ..
+L5F88:	add16m	$A1, L5F14, L5F0C
 	lda     L5F0B                           ; 5F99 AD 0B 5F                 .._
 	sta     $A3                             ; 5F9C 85 A3                    ..
 	ldy     $A2                             ; 5F9E A4 A2                    ..
