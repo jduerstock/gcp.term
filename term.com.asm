@@ -3407,13 +3407,7 @@ L60A1:	lda     L6068                           ; 60A1 AD 68 60                 .
 	ldy     $A2                             ; 60BF A4 A2                    ..
 	ldxa	L6068
 	jsr     L6026                           ; 60C7 20 26 60                  &`
-	clc                                     ; 60CA 18                       .
-	lda     L6068                           ; 60CB AD 68 60                 .h`
-	adc     $A0                             ; 60CE 65 A0                    e.
-	sta     L6068                           ; 60D0 8D 68 60                 .h`
-	lda     L6069                           ; 60D3 AD 69 60                 .i`
-	adc     $A1                             ; 60D6 65 A1                    e.
-	sta     L6069                           ; 60D8 8D 69 60                 .i`
+	add16m	L6068, L6068, $A0
 	lda     L6068                           ; 60DB AD 68 60                 .h`
 	cmp     #$F8                            ; 60DE C9 F8                    ..
 	lda     L6069                           ; 60E0 AD 69 60                 .i`
