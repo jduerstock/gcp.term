@@ -597,7 +597,7 @@ L446C:  sta     $86                             ; 446C 85 86                    
 	jmp     SetSign
 
 ; ----------------------------------------------------------------------------
-sub_447F:  
+DivI:  
 	jsr     SMOps
 	lda     $85                             ; 4482 A5 85                    ..
 	beq     L44AD                           ; 4484 F0 27                    .'
@@ -643,7 +643,7 @@ L44BD:  dex                                     ; 44BD CA                       
 	jmp     SetSign
 
 ; ----------------------------------------------------------------------------
-	jsr     sub_447F
+	jsr     DivI
 	lda     $86                             ; 44D0 A5 86                    ..
 	ldx     $87                             ; 44D2 A6 87                    ..
 	rts                                     ; 44D4 60                       `
@@ -4005,7 +4005,7 @@ L6861:	sub8i	off_AE, L67CA, $01
 	mv	$84, L67C7
 	lda     $AE                             ; 6872 A5 AE                    ..
 	ldx     #$00                            ; 6874 A2 00                    ..
-	jsr     sub_447F
+	jsr     DivI
 	sta     L67CC                           ; 6879 8D CC 67                 ..g
 	add8m	off_AE, L67C6, L67CC
 	sub8i	off_AC, L67D3, $01
