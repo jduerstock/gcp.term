@@ -4143,8 +4143,7 @@ L69B7:	mv	$A3, L6983+1
 	lda     #$00                            ; 6A34 A9 00                    ..
 	dey                                     ; 6A36 88                       .
 	sta     ($AE),y                         ; 6A37 91 AE                    ..
-	lda     L6991                           ; 6A39 AD 91 69                 ..i
-	ora     L6991+1
+	test16	L6991
 	lbeq	L6A67
 	rdldi	$84, $0006
 	lda     L6990                           ; 6A4C AD 90 69                 ..i
@@ -4156,8 +4155,7 @@ L69B7:	mv	$A3, L6983+1
 	ldy     L6987                           ; 6A5B AC 87 69                 ..i
 	ldxa	L6991
 	jsr     sub_619A
-L6A67:  lda     L6993                           ; 6A67 AD 93 69                 ..i
-	ora     L6993+1
+L6A67:	test16	L6993
 	lbeq	L6AB8
 	dmv	off_AE, L6993
 	ldp16	L6988
@@ -4171,8 +4169,7 @@ L6A67:  lda     L6993                           ; 6A67 AD 93 69                 
 	ldy     $A2                             ; 6A9E A4 A2                    ..
 	ldxa	L6988
 	jsr     sub_619A
-	lda	#$00
-	sta     $A3                             ; 6AAB 85 A3                    ..
+	ldi	$A3, $00
 	ldy     #$1A                            ; 6AAD A0 1A                    ..
 	ldxa	L6993
 	jsr     sub_619A
