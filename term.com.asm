@@ -9452,7 +9452,7 @@ LA894:  .byte	$00
 
 
 ; ----------------------------------------------------------------------------
-sub_A895:  
+cmd_40:  
 	prolog
 	stxa	LA887
 	func16_8 sub_65B0, LA88D, LA887
@@ -9643,7 +9643,7 @@ LAA86:	.addr	cmd_uc,cmd_uk,cmd_ud,cmd_uf,cmd_uw,cmd_uy,cmd_ub		; "CKDFWYB"
 	.addr	cmd_uz,cmd_ue,cmd_li,cmd_uh,cmd_le,cmd_ui,cmd_d0		; "ZEiHeI0"
 	.addr	cmd_d1,cmd_d2,cmd_d3,cmd_d4,cmd_d5,cmd_d6,cmd_d7		; "1234567"
 	.addr	cmd_d8,cmd_d9,cmd_ln,cmd_07,sub_A959,sub_4BA7,sub_A837		; "89n.#*="
-	.addr	sub_A846,sub_4F9D,sub_8D01,sub_A895,cmd_2e,cmd_3a,cmd_lu	; "$%&@.:u"
+	.addr	sub_A846,sub_4F9D,sub_8D01,cmd_40,cmd_2e,cmd_3a,cmd_lu		; "$%&@.:u"
 	.addr	cmd_lv,cmd_lw							; "vw"
 
 LAB08:	.byte	$00
