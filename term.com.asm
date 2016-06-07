@@ -6471,16 +6471,8 @@ L884B:  .byte	$00
 sub_884C:
 	stack_prolog L8831, $05
 	blkmv_imi L883E, L8833, $0004
-	mv	$A3, L8835+1
-	rdldi	$A4, $0004
-	ldy     L8835                           ; 8879 AC 35 88                 .5.
-	ldxai	$8842
-	jsr     blockmove
-	mv	$A3, L8831+1
-	rdldi	$A4, $0006
-	ldy     L8831                           ; 8890 AC 31 88                 .1.
-	ldxai	L8846
-	jsr     blockmove
+	blkmv_imi L8842, L8835, $0004
+	blkmv_imi L8846, L8831, $0006
 	shladdm8 off_AE, L884A, L883F
 	clc                                     ; 88AE 18                       .
 	ldy     #$00                            ; 88AF A0 00                    ..
