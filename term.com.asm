@@ -8275,11 +8275,7 @@ L9ED7:  lda     L46E6                           ; 9ED7 AD E6 46                 
 	func16_8 sub_7035, L9E10, L4750	
 	blkmv_imi L9E1D, L9E10, $0005
 	func16_8 sub_65B0, L9E12, L9E21
-	mv	$A3, L9E12+1
-	rdldi	$A4, $0006
-	ldy     L9E12                           ; 9F3B AC 12 9E                 ...
-	ldxai	L9E22
-	jsr     blockmove
+	blkmv_imi L9E22, L9E12, $0006
 	sub8m	off_AE, L9E1D, L9E1F
 	sub8m	L9E1B, L4751, off_AE
 	sub8m	off_AE, L9E1E, L9E20
