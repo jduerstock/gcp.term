@@ -7254,10 +7254,7 @@ sub_925D:
 	stxa	L924C
 	func16_8 sub_65B0, L924E, L924C
 	blkmv_imi L9257, L924E, $0006
-	sec                                     ; 928D 38                       8
-	lda     L9258                           ; 928E AD 58 92                 .X.
-	sbc     #$01                            ; 9291 E9 01                    ..
-	sta     $A1                             ; 9293 85 A1                    ..
+	sub8i	$A1, L9258, $01
 	ldx     $A1                             ; 9295 A6 A1                    ..
 	lda     L924C                           ; 9297 AD 4C 92                 .L.
 	jsr     sub_90CE
