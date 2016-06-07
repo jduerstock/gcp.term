@@ -143,9 +143,8 @@ LB0A3:  jsr     sub_A9A3
 	eor     #$01                            ; B0A9 49 01                    I.
 	lbne	LB0B3
 	jsr     sub_AE81
-LB0B3:  jsr     sub_8D01
-	ldy     #$00                            ; B0B6 A0 00                    ..
-	sty     L464D                           ; B0B8 8C 4D 46                 .MF
+LB0B3:  jsr     cmd_26
+	yldi	L464D, $00
 	jmp     LAF4C                           ; B0BB 4C 4C AF                 LL.
 
 ;--		}

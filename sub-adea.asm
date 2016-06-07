@@ -17,7 +17,7 @@ sub_ADEA:
 	sta     ($AE),y                         ; AE2A 91 AE                    ..
 	rdldi	MEMTOP, L4327
 	rdmv	sub_4749+1, sub_AB6A+1
-	rdmv	sub_5D64+1, sub_8D01+1
+	rdmv	sub_5D64+1, cmd_26+1
 	jsr     sub_AD85
 ;--		sub_AD85();
 	jsr     sub_6203
