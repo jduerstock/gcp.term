@@ -4734,9 +4734,7 @@ cmd_lf:
 	add16i	L70DD, L70D9, $0022
 	blkmv_mmi L70DD, L70D7, $0004
 	add16i	off_AE, L70D9, $0004
-	ldy     #$00                            ; 7134 A0 00                    ..
-	lda     ($AE),y                         ; 7136 B1 AE                    ..
-	sta     L70DF                           ; 7138 8D DF 70                 ..p
+	ldp8	L70DF
 	lda     L70DF                           ; 713B AD DF 70                 ..p
 	jsr     sub_65B0
 	rdmv	L70DB, $A0
