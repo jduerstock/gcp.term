@@ -8115,9 +8115,7 @@ sub_9CD0:
 L9CEB:	proc8i	sub_45D6, $00
 	sub8i	L9CC1, $A0, $05
 	add16m8	off_AE, L9CCE, L9CC1
-	ldy     #$00                            ; 9D08 A0 00                    ..
-	lda     ($AE),y                         ; 9D0A B1 AE                    ..
-	sta     L9CC1                           ; 9D0C 8D C1 9C                 ...
+	ldp8	L9CC1
 	lda     L9CC1                           ; 9D0F AD C1 9C                 ...
 	eor     L9CC2                           ; 9D12 4D C2 9C                 M..
 	lbne	L9D40
