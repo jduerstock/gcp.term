@@ -5981,7 +5981,7 @@ cmd_um:
 
 ; ----------------------------------------------------------------------------
 L81D9:	.byte	$01                             ; 81D9 01                       .
-L81DA:  tya                                     ; 81DA 98                       .
+L81DA:  .byte	$98
 L81DB:	.byte	$8D                             ; 81DB 8D                       .
 L81DC:	.byte	$B4                             ; 81DC B4                       .
 L81DD:	.byte	$09
@@ -6010,17 +6010,8 @@ sub_81F2:
 	sta     L81D9                           ; 81F8 8D D9 81                 ...
 	add8m	L81E4, L4751, L81D9
 	add8m	L81E5, L4752, L81DA
-	lda     L4750                           ; 820F AD 50 47                 .PG
-	jsr     sub_7035
-	rdmv	L81DC, $A0
-	mv	$A3, L81DD
-	lda     #$00                            ; 8224 A9 00                    ..
-	sta     $A5                             ; 8226 85 A5                    ..
-	lda     #$0A                            ; 8228 A9 0A                    ..
-	sta     $A4                             ; 822A 85 A4                    ..
-	ldy     L81DC                           ; 822C AC DC 81                 ...
-	ldxai	L81E8
-	jsr     blockmove
+	func16_8 sub_7035, L81DC, L4750
+	blkmv_imi L81E8, L81DC, $000A
 	lda     #$00                            ; 8236 A9 00                    ..
 	sta     $A3                             ; 8238 85 A3                    ..
 	lda     #$27                            ; 823A A9 27                    .'
