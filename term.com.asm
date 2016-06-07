@@ -6273,8 +6273,8 @@ L8561:	.byte	$07                             ; 8561 07                       .
 L8562:	.byte	$8D                             ; 8562 8D                       .
 L8563:	.byte	$6C                             ; 8563 6C                       l
 L8564:  .byte	$0A
-L8565:  lda     $0A6C                           ; 8565 AD 6C 0A                 .l.
-	asl     a                               ; 8568 0A                       .
+L8565:	.byte	$AD,$6C,$0A
+	.byte	$0A
 L8569:  .byte	$0A
 L856A:  .byte	$0A
 L856B:  .byte	$0A
