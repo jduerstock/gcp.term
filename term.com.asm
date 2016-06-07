@@ -6288,14 +6288,8 @@ L8572:  .byte	$0A
 
 sub_8573:  
 	stack_prolog L8550, $02
-	lda     L8550                           ; 857C AD 50 85                 .P.
-	jsr     sub_7035
-	rdmv	L8556, $A0
-	mv	$A3, L8557
-	rdldi	$A4, $0007
-	ldy     L8556                           ; 8599 AC 56 85                 .V.
-	ldxai	L8564
-	jsr     blockmove
+	func16_8 sub_7035, L8556, L8550
+	blkmv_imi L8564, L8556, $0007
 	mv	$A3, L8551+1
 	rdldi	$A4, $0004
 	ldy     L8551                           ; 85B0 AC 51 85                 .Q.
