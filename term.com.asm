@@ -939,6 +939,15 @@ L4641:  cpy     $A4                             ; 4641 C4 A4                    
 	jsr	blockmove
 .endmacro
 
+.macro	blkmv_mm16 s1, d1, c1
+	mv	$A3, d1+1
+	mv	$A5, c1+1
+	mv	$A4, c1
+	ldy     d1
+	ldxa	s1
+	jsr	blockmove
+.endmacro
+
 .macro	blkmv_iii s1, d1, c1
 	ldi	$A3, >d1
 	rdldi	$A4, c1
@@ -7196,16 +7205,7 @@ sub_9146:
 	ldx     #$00                            ; 91E4 A2 00                    ..
 	jsr     sub_444A
 	st2xa	L913E
-	lda     L913B                           ; 91F0 AD 3B 91                 .;.
-	sta     $A3                             ; 91F3 85 A3                    ..
-	lda     L913F                           ; 91F5 AD 3F 91                 .?.
-	sta     $A5                             ; 91F8 85 A5                    ..
-	lda     L913E                           ; 91FA AD 3E 91                 .>.
-	sta     $A4                             ; 91FD 85 A4                    ..
-	ldy     L913A                           ; 91FF AC 3A 91                 .:.
-	ldx     L913D                           ; 9202 AE 3D 91                 .=.
-	lda     L913C                           ; 9205 AD 3C 91                 .<.
-	jsr     blockmove
+	blkmv_mm16 L913C, L913A, L913E
 	sub8i	off_AE, L9141, $01
 	shladdm8 off_AC, L9144, off_AE
 	ldy     #$01                            ; 9226 A0 01                    ..
