@@ -6303,8 +6303,7 @@ sub_8573:
 L85EA:  lda     ($A1),y                         ; 85EA B1 A1                    ..
 	cmp     #$41                            ; 85EC C9 41                    .A
 	beq     L85F4                           ; 85EE F0 04                    ..
-	lda     #$00                            ; 85F0 A9 00                    ..
-	sta     $A0                             ; 85F2 85 A0                    ..
+	ldi	$A0, $00
 L85F4:  iny                                     ; 85F4 C8                       .
 	dex                                     ; 85F5 CA                       .
 	bne     L85EA                           ; 85F6 D0 F2                    ..
@@ -6313,15 +6312,13 @@ L85F4:  iny                                     ; 85F4 C8                       
 	rts                                     ; 85FC 60                       `
 
 ; ----------------------------------------------------------------------------
-L85FD:  ldy     #$00                            ; 85FD A0 00                    ..
-	sty     L855D                           ; 85FF 8C 5D 85                 .].
+L85FD:	yldi	L855D, $00
 	lda     L8564                           ; 8602 AD 64 85                 .d.
 	eor     L8560                           ; 8605 4D 60 85                 M`.
 	lbne	L8611
 L860D:  iny                                     ; 860D C8                       .
 	sty     L855D                           ; 860E 8C 5D 85                 .].
-L8611:  ldy     #$00                            ; 8611 A0 00                    ..
-	sty     L855E                           ; 8613 8C 5E 85                 .^.
+L8611:	yldi	L855E, $00
 	add8m	off_AE, L8564, L8569
 	sub8i	off_AC, off_AE, $01
 	lda     $AC                             ; 8626 A5 AC                    ..
@@ -6329,8 +6326,7 @@ L8611:  ldy     #$00                            ; 8611 A0 00                    
 	lbne	L8634
 	iny                                     ; 8630 C8                       .
 	sty     L855E                           ; 8631 8C 5E 85                 .^.
-L8634:  ldy     #$00                            ; 8634 A0 00                    ..
-	sty     L855F                           ; 8636 8C 5F 85                 ._.
+L8634:	yldi	L855F, $00
 	lda     L8565                           ; 8639 AD 65 85                 .e.
 	eor     L8561                           ; 863C 4D 61 85                 Ma.
 	lbne	L8648
@@ -6370,12 +6366,8 @@ L86C8:	add16m8	$A2, L8558, L8553
 	lda     L855E                           ; 86F8 AD 5E 85                 .^.
 	jsr     sub_8521
 	add16i	L8558, L8558, $0028
-L870F:  ldy     #$01                            ; 870F A0 01                    ..
-	sty     L855C                           ; 8711 8C 5C 85                 .\.
-	sec                                     ; 8714 38                       8
-	lda     L8563                           ; 8715 AD 63 85                 .c.
-	sbc     L8561                           ; 8718 ED 61 85                 .a.
-	sta     L8729                           ; 871B 8D 29 87                 .).
+L870F:	yldi	L855C, $01
+	sub8m	L8729, L8563, L8561
 L871E:  lda     L8729                           ; 871E AD 29 87                 .).
 	cmp     L855C                           ; 8721 CD 5C 85                 .\.
 	bcs     L872A                           ; 8724 B0 04                    ..
@@ -6412,14 +6404,9 @@ L87AA:  lda     L8570                           ; 87AA AD 70 85                 
 	eor     #$41                            ; 87AD 49 41                    IA
 	lbeq	L87E2
 	add16m8	L855A, L8558, L8553
-	clc                                     ; 87C6 18                       .
-	lda     L8555                           ; 87C7 AD 55 85                 .U.
-	adc     #$01                            ; 87CA 69 01                    i.
-	sta     $A2                             ; 87CC 85 A2                    ..
-	lda     #$00                            ; 87CE A9 00                    ..
-	sta     $A3                             ; 87D0 85 A3                    ..
-	lda     L8570                           ; 87D2 AD 70 85                 .p.
-	sta     $A4                             ; 87D5 85 A4                    ..
+	add8i	$A2, L8555, $01
+	ldi	$A3, $00
+	mv	$A4, L8570
 	ldy     $A2                             ; 87D7 A4 A2                    ..
 	ldxa	L855A
 	jsr     memset
@@ -6428,13 +6415,7 @@ L87E2:	add16m8	$A2, L8558, L8553
 	ldx     L8571                           ; 87F4 AE 71 85                 .q.
 	lda     L855D                           ; 87F7 AD 5D 85                 .].
 	jsr     sub_8521
-	clc                                     ; 87FD 18                       .
-	lda     L8558                           ; 87FE AD 58 85                 .X.
-	adc     L8554                           ; 8801 6D 54 85                 mT.
-	sta     $A2                             ; 8804 85 A2                    ..
-	lda     L8559                           ; 8806 AD 59 85                 .Y.
-	adc     #$00                            ; 8809 69 00                    i.
-	sta     $A3                             ; 880B 85 A3                    ..
+	add16m8 $a2, L8558, L8554
 	ldy     $A2                             ; 880D A4 A2                    ..
 	ldx     L856F                           ; 880F AE 6F 85                 .o.
 	lda     L855E                           ; 8812 AD 5E 85                 .^.
