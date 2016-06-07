@@ -8114,12 +8114,8 @@ sub_9CD0:
 	rts                                     ; 9CEA 60                       `
 
 ; ----------------------------------------------------------------------------
-L9CEB:  lda     #$00                            ; 9CEB A9 00                    ..
-	jsr     sub_45D6
-	sec                                     ; 9CF0 38                       8
-	lda     $A0                             ; 9CF1 A5 A0                    ..
-	sbc     #$05                            ; 9CF3 E9 05                    ..
-	sta     L9CC1                           ; 9CF5 8D C1 9C                 ...
+L9CEB:	proc8i	sub_45D6, $00
+	sub8i	L9CC1, $A0, $05
 	add16m8	off_AE, L9CCE, L9CC1
 	ldy     #$00                            ; 9D08 A0 00                    ..
 	lda     ($AE),y                         ; 9D0A B1 AE                    ..
