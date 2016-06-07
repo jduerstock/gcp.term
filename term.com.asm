@@ -3333,13 +3333,9 @@ L5FBA:  inc16	L5F0E
 	lda     L5F12                           ; 5FC5 AD 12 5F                 .._
 	lbne	L5FDA
 	ldi	L5F12, $80
-	inc     L5F0C                           ; 5FD2 EE 0C 5F                 .._
-	bne     L5FDA                           ; 5FD5 D0 03                    ..
-	inc     L5F0D                           ; 5FD7 EE 0D 5F                 .._
-L5FDA:  inc     L5F10                           ; 5FDA EE 10 5F                 .._
-	bne     L5FE2                           ; 5FDD D0 03                    ..
-	inc     L5F11                           ; 5FDF EE 11 5F                 .._
-L5FE2:  jmp     L5F75                           ; 5FE2 4C 75 5F                 Lu_
+	inc16	L5F0C
+L5FDA:	inc16	L5F10
+	jmp     L5F75                           ; 5FE2 4C 75 5F                 Lu_
 
 ; ----------------------------------------------------------------------------
 L5FE5:	rdmv	$A0, L5F0E
