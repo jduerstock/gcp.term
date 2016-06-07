@@ -4732,11 +4732,7 @@ cmd_lf:
 	stack_prolog L70D6, $02
 	func16_8 sub_7035, L70D9, L70D6
 	add16i	L70DD, L70D9, $0022
-	mv	$A3, L70D7+1
-	rdldi	$A4, $0004
-	ldy     L70D7                           ; 7119 AC D7 70                 ..p
-	ldxa	L70DD
-	jsr     blockmove
+	blkmv_mmi L70DD, L70D7, $0004
 	add16i	off_AE, L70D9, $0004
 	ldy     #$00                            ; 7134 A0 00                    ..
 	lda     ($AE),y                         ; 7136 B1 AE                    ..
