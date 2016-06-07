@@ -42,6 +42,7 @@ LB1C8		:= $B1C8
 LB1C9		:= $B1C9
 LB223		:= $B223
 LB224		:= $B224
+LB380		:= $B380
 HPOSP3		:= $D003
 SIZEP3		:= $D00B
 TRIG0		:= $D010
@@ -1327,8 +1328,7 @@ L49C5:	.byte	$D6,$1E
 	.byte	$41,$52
 	.byte	$49,$D8
 	.byte	$30,$0C
-L49D1:	.byte	$0F                             ; 49D1 0F                       .
-L49D2:  .byte	$00
+L49D1:	.byte	$0F,$00
 
 sub_49D3:  
 	prolog
@@ -1341,25 +1341,24 @@ sub_49D3:
 
 ; ----------------------------------------------------------------------------
 L49EE:  clc                                     ; 49EE 18                       .
-	lda     #$80                            ; 49EF A9 80                    ..
+	lda     #<LB380
 	adc     L499F                           ; 49F1 6D 9F 49                 m.I
 	sta     L49D1                           ; 49F4 8D D1 49                 ..I
-	lda     #$B3                            ; 49F7 A9 B3                    ..
+	lda     #>LB380
 	adc     #$00                            ; 49F9 69 00                    i.
-	sta     L49D2                           ; 49FB 8D D2 49                 ..I
+	sta     L49D1+1
 	blkmv_imi L49C5, L49D1, $000C
-	lda     #$00                            ; 4A15 A9 00                    ..
-	sta     $A3                             ; 4A17 85 A3                    ..
+	ldi	$A3, $00
 	ldy     #$0C                            ; 4A19 A0 0C                    ..
 	ldxa	L49D1
 	jsr     bzero
 	lda     L49C4                           ; 4A24 AD C4 49                 ..I
 	sta     L499F                           ; 4A27 8D 9F 49                 ..I
 	clc                                     ; 4A2A 18                       .
-	lda     #$80                            ; 4A2B A9 80                    ..
+	lda     #<LB380
 	adc     L499F                           ; 4A2D 6D 9F 49                 m.I
 	sta     $A0                             ; 4A30 85 A0                    ..
-	lda     #$B3                            ; 4A32 A9 B3                    ..
+	lda     #>LB380
 	adc     #$00                            ; 4A34 69 00                    i.
 	sta     $A1                             ; 4A36 85 A1                    ..
 	blkmv_mii $A0, L49C5, $000C
