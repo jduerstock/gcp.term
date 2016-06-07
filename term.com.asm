@@ -978,49 +978,10 @@ L466F:	.addr	$B0D4
 L4673:  .byte	$00
 L4674:  .addr	$B400
 L4676:  cpx     #$E0                            ; 4676 E0 E0                    ..
-L4678:	.byte	$76                             ; 4678 76                       v
-L4679:  lsr     $00                             ; 4679 46 00                    F.
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-L46A2:	.byte	$7A                             ; 46A2 7A                       z
-L46A3:  lsr     $1F                             ; 46A3 46 1F                    F.
+L4678:	.addr	L4676
+L467A:	.res	40, $00
+L46A2:	.addr	L467A
+	.byte	$1F
 	.byte	$B1
 L46A6:	.res	60, $00
 L46E2:	.addr	L46A6
