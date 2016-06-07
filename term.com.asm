@@ -7626,21 +7626,14 @@ cmd_le:
 	mv	L9054, L9683
 	ldxa	L9053
 	jsr     sub_799B
-	lda     $A1                             ; 96F9 A5 A1                    ..
-	sta     L968D                           ; 96FB 8D 8D 96                 ...
-	lda     $A0                             ; 96FE A5 A0                    ..
-	sta     L968C                           ; 9700 8D 8C 96                 ...
-	ldy     #$00                            ; 9703 A0 00                    ..
-	sty     L905E                           ; 9705 8C 5E 90                 .^.
-	lda     #$00                            ; 9708 A9 00                    ..
-	sta     $A3                             ; 970A 85 A3                    ..
+	rdmv	L968C, $A0
+	yldi	L905E, $00
+	ldi	$A3, $00
 	ldy     #$00                            ; 970C A0 00                    ..
 	ldxa	L9053
 	jsr     cmd_uv
 	dmv	off_AE, L968C
-	ldy     #$00                            ; 9721 A0 00                    ..
-	lda     (off_AE),y                      ; 9723 B1 AE                    ..
-	sta     L968B                           ; 9725 8D 8B 96                 ...
+	ldp8	L968B
 	func16_8 sub_65B0, L9687, L968B
 	dmv	off_AE, L9687
 	ldy     #$00                            ; 9742 A0 00                    ..
