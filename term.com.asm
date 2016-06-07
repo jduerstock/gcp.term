@@ -8107,10 +8107,8 @@ sub_9CD0:
 	stack_prolog L9CBA, $03
 	lda     L46E7                           ; 9CD9 AD E7 46                 ..F
 	lbne	L9CEB
-	ldy     #$00                            ; 9CE1 A0 00                    ..
-	sty     L9CC2                           ; 9CE3 8C C2 9C                 ...
-	lda     #$00                            ; 9CE6 A9 00                    ..
-	sta     $A0                             ; 9CE8 85 A0                    ..
+	yldi	L9CC2, $00
+	ldi	$A0, $00
 	rts                                     ; 9CEA 60                       `
 
 ; ----------------------------------------------------------------------------
