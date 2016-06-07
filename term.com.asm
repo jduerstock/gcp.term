@@ -6598,11 +6598,7 @@ sub_89AE:
 	prolog
 	sta     L8961                           ; 89B1 8D 61 89                 .a.
 	func16_8 sub_7035, L8962, L8961
-	mv	$A3, L8962+1
-	rdldi	$A4, $000E
-	ldy     L8962                           ; 89D1 AC 62 89                 .b.
-	ldxai	L8997
-	jsr     blockmove
+	blkmv_imi L8997, L8962, $000E
 	func16_8 sub_65B0, L898D, L899B
 	add16i	L896B, L8962, $001A
 	mv	$A3, L896B+1
