@@ -301,6 +301,11 @@ SYSVBV		:= $E45F
 	jsr	p1
 .endmacro
 
+.macro	proc8i	p1, a1
+	lda	#a1
+	jsr	p1
+.endmacro
+
 .macro	func8_8i f1, a1, i1
 	lda     #i1
 	jsr     f1
@@ -8064,8 +8069,7 @@ cmd_uj:
 	blkmv_imi L9C38, L9C2D, $0009
 	lda     L46E6                           ; 9C9E AD E6 46                 ..F
 	lbne	L9CAB
-	lda     #$00                            ; 9CA6 A9 00                    ..
-	jsr     cmd_us
+	proc8i	cmd_us, $00
 L9CAB:  rts                                     ; 9CAB 60                       `
 
 ; ----------------------------------------------------------------------------
