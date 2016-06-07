@@ -6205,16 +6205,7 @@ L843C:  lda     L474F                           ; 843C AD 4F 47                 
 L8447:	func16_8 sub_7035, L83E7, L4750
 	blkmv_imi L8407, L83E7, $0005
 	func16_8 sub_65B0, L83E9, L840B
-	lda     L83EA                           ; 847E AD EA 83                 ...
-	sta     $A3                             ; 8481 85 A3                    ..
-	lda     #$00                            ; 8483 A9 00                    ..
-	sta     $A5                             ; 8485 85 A5                    ..
-	lda     #$09                            ; 8487 A9 09                    ..
-	sta     $A4                             ; 8489 85 A4                    ..
-	ldy     L83E9                           ; 848B AC E9 83                 ...
-	ldx     #$83                            ; 848E A2 83                    ..
-	lda     #$F7                            ; 8490 A9 F7                    ..
-	jsr     blockmove
+	blkmv_imi L83F7, L83E9, $0009
 	sec                                     ; 8495 38                       8
 	lda     L8407                           ; 8496 AD 07 84                 ...
 	sbc     L8409                           ; 8499 ED 09 84                 ...
