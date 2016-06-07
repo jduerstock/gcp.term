@@ -7622,11 +7622,7 @@ cmd_le:
 	lda     ($AE),y                         ; 96BE B1 AE                    ..
 	sta     L9053                           ; 96C0 8D 53 90                 .S.
 	func16_8 sub_65B0, L9057, L9053
-	mv	$A3, L9057+1
-	rdldi	$A4, $0006
-	ldy     L9057                           ; 96E0 AC 57 90                 .W.
-	ldxai	L9060
-	jsr     blockmove
+	blkmv_imi L9060, L9057, $0006
 	mv	L9054, L9683
 	ldxa	L9053
 	jsr     sub_799B
