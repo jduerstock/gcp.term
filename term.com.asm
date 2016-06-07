@@ -1372,7 +1372,8 @@ L4A51:	.byte	$50                             ; 4A51 50                       P
 L4A52:	.byte	$54                             ; 4A52 54                       T
 
 ; ----------------------------------------------------------------------------
-L4A53:	stack_prolog L4A4E, $04
+sub_4A53:	
+	stack_prolog L4A4E, $04
 	lda     #$00                            ; 4A5C A9 00                    ..
 	sta     $A3                             ; 4A5E 85 A3                    ..
 	ldy     #$80                            ; 4A60 A0 80                    ..
@@ -1396,7 +1397,8 @@ L4AA1:	.byte   $02,"R:"
 
 L4AA4:  .byte	$00
 
-L4AA5:  and     #$0F                            ; 4AA5 29 0F                    ).
+sub_4AA5:  
+	and     #$0F                            ; 4AA5 29 0F                    ).
 	sta     $A0                             ; 4AA7 85 A0                    ..
 	stx     $A1                             ; 4AA9 86 A1                    ..
 	asl     a                               ; 4AAB 0A                       .
@@ -3090,13 +3092,10 @@ L5DB9:  lda     #$00                            ; 5DB9 A9 00                    
 	ldy     #$06                            ; 5DCD A0 06                    ..
 	ldx     #$00                            ; 5DCF A2 00                    ..
 	lda     #$02                            ; 5DD1 A9 02                    ..
-	jsr     L4AA5                           ; 5DD3 20 A5 4A                  .J
+	jsr     sub_4AA5
 	lda     $B148                           ; 5DD6 AD 48 B1                 .H.
 	eor     #$01                            ; 5DD9 49 01                    I.
-	beq     L5DE0                           ; 5DDB F0 03                    ..
-	jmp     L5DF9                           ; 5DDD 4C F9 5D                 L.]
-
-; ----------------------------------------------------------------------------
+	lbne	L5DF9
 L5DE0:  lda     #$00                            ; 5DE0 A9 00                    ..
 	sta     $A3                             ; 5DE2 85 A3                    ..
 	lda     #$00                            ; 5DE4 A9 00                    ..
@@ -3248,10 +3247,8 @@ L5EFA:	.byte	$00
 	.byte	$00
 	.byte	$00
 
-L5EFE:  prolog
-	jsr     sub_44D5                        ; 5F01 20 D5 44                  .D
-	.addr	L5EFA
-	.byte	$03
+L5EFE:  
+	stack_prolog L5EFA, $03
 L5F07:  .byte	$00
 L5F08:  .byte	$00
 L5F09:  .byte	$00
@@ -6006,9 +6003,8 @@ cmd_um:
 	lda     #$00                            ; 81CA A9 00                    ..
 	sta     $A4                             ; 81CC 85 A4                    ..
 	ldy     L817B                           ; 81CE AC 7B 81                 .{.
-	ldx     #$47                            ; 81D1 A2 47                    .G
-	lda     #$56                            ; 81D3 A9 56                    .V
-	jsr     L4A53                           ; 81D5 20 53 4A                  SJ
+	ldxai	$4756
+	jsr     sub_4A53
 	rts                                     ; 81D8 60                       `
 
 ; ----------------------------------------------------------------------------
