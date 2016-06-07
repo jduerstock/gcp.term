@@ -1952,7 +1952,7 @@ L4F9B:  rts                                     ; 4F9B 60                       
 L4F9C:  .byte	$30
 
 ; ----------------------------------------------------------------------------
-sub_4F9D:
+cmd_25:
 	prolog
 	sta     L4F9C                           ; 4FA0 8D 9C 4F                 ..O
 	rdldi	$84, $0006
@@ -9395,7 +9395,7 @@ cmd_lw:
 	rts                                     ; A836 60                       `
 
 ; ----------------------------------------------------------------------------
-sub_A837:
+cmd_3d:
 	stx     $A0                             ; A837 86 A0                    ..
 	cmp     $A0                             ; A839 C5 A0                    ..
 	bne     LA841                           ; A83B D0 04                    ..
@@ -9412,7 +9412,7 @@ LA843:  .byte	$00
 LA844:  .byte	$00
 LA845:  .byte	$00
 
-sub_A846:
+cmd_24:
 	stack_prolog LA843, $02
 	jmp     LA855                           ; A84F 4C 55 A8                 LU.
 
@@ -9642,8 +9642,8 @@ LAA86:	.addr	cmd_uc,cmd_uk,cmd_ud,cmd_uf,cmd_uw,cmd_uy,cmd_ub		; "CKDFWYB"
 	.addr	cmd_ul,cmd_um,cmd_up,cmd_ur,cmd_ug,cmd_ua,cmd_uo		; "LMPRGAO"
 	.addr	cmd_uz,cmd_ue,cmd_li,cmd_uh,cmd_le,cmd_ui,cmd_d0		; "ZEiHeI0"
 	.addr	cmd_d1,cmd_d2,cmd_d3,cmd_d4,cmd_d5,cmd_d6,cmd_d7		; "1234567"
-	.addr	cmd_d8,cmd_d9,cmd_ln,cmd_07,sub_A959,sub_4BA7,sub_A837		; "89n.#*="
-	.addr	sub_A846,sub_4F9D,cmd_26,cmd_40,cmd_2e,cmd_3a,cmd_lu		; "$%&@.:u"
+	.addr	cmd_d8,cmd_d9,cmd_ln,cmd_07,sub_A959,sub_4BA7,cmd_3d		; "89n.#*="
+	.addr	cmd_24,cmd_25,cmd_26,cmd_40,cmd_2e,cmd_3a,cmd_lu		; "$%&@.:u"
 	.addr	cmd_lv,cmd_lw							; "vw"
 
 LAB08:	.byte	$00
