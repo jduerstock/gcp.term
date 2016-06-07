@@ -6205,15 +6205,14 @@ L843C:  lda     L474F                           ; 843C AD 4F 47                 
 L8447:  lda     L4750                           ; 8447 AD 50 47                 .PG
 	jsr     sub_7035
 	rdmv	L83E7, $A0
-	lda     L83E8                           ; 8457 AD E8 83                 ...
+	lda     L83E7+1
 	sta     $A3                             ; 845A 85 A3                    ..
 	lda     #$00                            ; 845C A9 00                    ..
 	sta     $A5                             ; 845E 85 A5                    ..
 	lda     #$05                            ; 8460 A9 05                    ..
 	sta     $A4                             ; 8462 85 A4                    ..
 	ldy     L83E7                           ; 8464 AC E7 83                 ...
-	ldx     #$84                            ; 8467 A2 84                    ..
-	lda     #$07                            ; 8469 A9 07                    ..
+	ldxai	L8407
 	jsr     blockmove
 	lda     L840B                           ; 846E AD 0B 84                 ...
 	jsr     sub_65B0
