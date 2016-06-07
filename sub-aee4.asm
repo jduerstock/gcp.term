@@ -28,7 +28,7 @@ LAF08:	yldi	LAEE3, $00
 	lda     LAEE1                           ; AF22 AD E1 AE                 ...
 	lbeq	LAF35
 	lda     LAEE1                           ; AF2A AD E1 AE                 ...
-	jsr     sub_4BA7
+	jsr     cmd_2a
 	yldi	LAEE3, $01
 LAF35:  rts                                     ; AF35 60                       `
 

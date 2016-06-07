@@ -1655,7 +1655,7 @@ L4BA2:  iny                                     ; 4BA2 C8                       
 	rts                                     ; 4BA6 60                       `
 
 ; ----------------------------------------------------------------------------
-sub_4BA7:  
+cmd_2a:  
 	tax                                     ; 4BA7 AA                       .
 	lda     $B14A,x                         ; 4BA8 BD 4A B1                 .J.
 	cmp     #$80                            ; 4BAB C9 80                    ..
@@ -2290,7 +2290,7 @@ sub_52E1:
 	ldy     #$00                            ; 52F7 A0 00                    ..
 	sty     L464B                           ; 52F9 8C 4B 46                 .KF
 	lda     #$11                            ; 52FC A9 11                    ..
-	jsr     sub_4BA7
+	jsr     cmd_2a
 	jsr     sub_4749
 L5304:	ldxa	L52DF
 	jsr     sub_5274
@@ -5920,7 +5920,7 @@ L7FA1:  lda     #$07                            ; 7FA1 A9 07                    
 	adc     L7F91                           ; 7FD2 6D 91 7F                 m..
 	sta     $A0                             ; 7FD5 85 A0                    ..
 	lda     $A0                             ; 7FD7 A5 A0                    ..
-	jsr     sub_4BA7
+	jsr     cmd_2a
 L7FDC:  inc     L7F90                           ; 7FDC EE 90 7F                 ...
 	jmp     L7FA1                           ; 7FDF 4C A1 7F                 L..
 
@@ -6275,7 +6275,7 @@ L8334:  lda     L81E2                           ; 8334 AD E2 81                 
 	cmp     L81D9                           ; 8352 CD D9 81                 ...
 	lbcs	L8362
 	lda     #$0D                            ; 835A A9 0D                    ..
-	jsr     sub_4BA7
+	jsr     cmd_2a
 	jmp     L8371                           ; 835F 4C 71 83                 Lq.
 
 ; ----------------------------------------------------------------------------
@@ -6283,7 +6283,7 @@ L8362:  lda     #$00                            ; 8362 A9 00                    
 	cmp     L81D9                           ; 8364 CD D9 81                 ...
 	lbcs	L8371
 	lda     #$0F                            ; 836C A9 0F                    ..
-	jsr     sub_4BA7
+	jsr     cmd_2a
 L8371:  lda     L474F                           ; 8371 AD 4F 47                 .OG
 	eor     #$03                            ; 8374 49 03                    I.
 	lbne	L8386
@@ -6299,7 +6299,7 @@ L8386:  ldy     L81DA                           ; 8386 AC DA 81                 
 	cmp     L81DA                           ; 839A CD DA 81                 ...
 	lbcs	L83AA
 	lda     #$0E                            ; 83A2 A9 0E                    ..
-	jsr     sub_4BA7
+	jsr     cmd_2a
 	jmp     L83B9                           ; 83A7 4C B9 83                 L..
 
 ; ----------------------------------------------------------------------------
@@ -6307,7 +6307,7 @@ L83AA:  lda     #$00                            ; 83AA A9 00                    
 	cmp     L81DA                           ; 83AC CD DA 81                 ...
 	lbcs	L83B9
 	lda     #$10                            ; 83B4 A9 10                    ..
-	jsr     sub_4BA7
+	jsr     cmd_2a
 L83B9:  lda     L474F                           ; 83B9 AD 4F 47                 .OG
 	eor     #$03                            ; 83BC 49 03                    I.
 	lbne	L83CE
@@ -7591,7 +7591,7 @@ sub_925D:
 
 ; ----------------------------------------------------------------------------
 L9352:  lda     #$11                            ; 9352 A9 11                    ..
-	jsr     sub_4BA7
+	jsr     cmd_2a
 	ldi	$A0, $00
 	rts                                     ; 935B 60                       `
 
@@ -8008,7 +8008,7 @@ L97EC:  lda     L979D                           ; 97EC AD 9D 97                 
 	lda     #$00                            ; 9803 A9 00                    ..
 	jsr     sub_961E
 	lda     #$15                            ; 9808 A9 15                    ..
-	jsr     sub_4BA7
+	jsr     cmd_2a
 	jmp     L9BCE                           ; 980D 4C CE 9B                 L..
 
 ; ----------------------------------------------------------------------------
@@ -9400,7 +9400,7 @@ cmd_3d:
 	cmp     $A0                             ; A839 C5 A0                    ..
 	bne     LA841                           ; A83B D0 04                    ..
 	tya                                     ; A83D 98                       .
-	jsr     sub_4BA7
+	jsr     cmd_2a
 LA841:  rts                                     ; A841 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -9541,21 +9541,21 @@ sub_A9A3:
 	eor     #$01                            ; A9A8 49 01                    I.
 	lbne	LA9B8
 LA9AF:  lda     #$12                            ; A9AF A9 12                    ..
-	jsr     sub_4BA7
+	jsr     cmd_2a
 	ldy     #$00                            ; A9B4 A0 00                    ..
 	sty     $D8                             ; A9B6 84 D8                    ..
 LA9B8:  lda     $D9                             ; A9B8 A5 D9                    ..
 	eor     #$01                            ; A9BA 49 01                    I.
 	lbne	LA9CA
 	lda     #$13                            ; A9C1 A9 13                    ..
-	jsr     sub_4BA7
+	jsr     cmd_2a
 	ldy     #$00                            ; A9C6 A0 00                    ..
 	sty     $D9                             ; A9C8 84 D9                    ..
 LA9CA:  lda     $DA                             ; A9CA A5 DA                    ..
 	eor     #$01                            ; A9CC 49 01                    I.
 	lbne	LA9DC
 	lda     #$14                            ; A9D3 A9 14                    ..
-	jsr     sub_4BA7
+	jsr     cmd_2a
 	ldy     #$00                            ; A9D8 A0 00                    ..
 	sty     $DA                             ; A9DA 84 DA                    ..
 LA9DC:  rts                                     ; A9DC 60                       `
@@ -9642,7 +9642,7 @@ LAA86:	.addr	cmd_uc,cmd_uk,cmd_ud,cmd_uf,cmd_uw,cmd_uy,cmd_ub		; "CKDFWYB"
 	.addr	cmd_ul,cmd_um,cmd_up,cmd_ur,cmd_ug,cmd_ua,cmd_uo		; "LMPRGAO"
 	.addr	cmd_uz,cmd_ue,cmd_li,cmd_uh,cmd_le,cmd_ui,cmd_d0		; "ZEiHeI0"
 	.addr	cmd_d1,cmd_d2,cmd_d3,cmd_d4,cmd_d5,cmd_d6,cmd_d7		; "1234567"
-	.addr	cmd_d8,cmd_d9,cmd_ln,cmd_07,sub_A959,sub_4BA7,cmd_3d		; "89n.#*="
+	.addr	cmd_d8,cmd_d9,cmd_ln,cmd_07,sub_A959,cmd_2a,cmd_3d		; "89n.#*="
 	.addr	cmd_24,cmd_25,cmd_26,cmd_40,cmd_2e,cmd_3a,cmd_lu		; "$%&@.:u"
 	.addr	cmd_lv,cmd_lw							; "vw"
 
