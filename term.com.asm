@@ -4641,11 +4641,7 @@ cmd_ly:
 
 ; ----------------------------------------------------------------------------
 L6FA5:	func16_8 sub_65B0, L6F8D, L4647
-	mv	$A3, L6F8D+1
-	rdldi	$A4, $0002
-	ldy     L6F8D                           ; 6FC2 AC 8D 6F                 ..o
-	ldxai	L6F8F
-	jsr     blockmove
+	blkmv_imi L6F8F, L6F8D, $0002
 	mv	$A3, L6F8F
 	rdmv	$A4, L6F8B
 L6FDB:  ldy     L6F90                           ; 6FDB AC 90 6F                 ..o
