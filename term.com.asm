@@ -4736,15 +4736,7 @@ cmd_lf:
 	add16i	off_AE, L70D9, $0004
 	ldp8	L70DF
 	func16_8 sub_65B0, L70DB, L70DF
-	lda     L70DC                           ; 714B AD DC 70                 ..p
-	sta     $A3                             ; 714E 85 A3                    ..
-	lda     #$00                            ; 7150 A9 00                    ..
-	sta     $A5                             ; 7152 85 A5                    ..
-	lda     #$02                            ; 7154 A9 02                    ..
-	sta     $A4                             ; 7156 85 A4                    ..
-	ldy     L70DB                           ; 7158 AC DB 70                 ..p
-	ldxai	L70E0
-	jsr     blockmove
+	blkmv_imi L70E0, L70DB, $0002
 	add16i	off_AE, L70DD, $0002
 	clc                                     ; 7171 18                       .
 	ldy     #$00                            ; 7172 A0 00                    ..
