@@ -7642,19 +7642,8 @@ cmd_le:
 	jsr     sub_4990
 	lda     $A0                             ; 9750 A5 A0                    ..
 	sta     L9060                           ; 9752 8D 60 90                 .`.
-	clc                                     ; 9755 18                       .
-	lda     L9687                           ; 9756 AD 87 96                 ...
-	adc     #$04                            ; 9759 69 04                    i.
-	sta     $AE                             ; 975B 85 AE                    ..
-	lda     L9688                           ; 975D AD 88 96                 ...
-	adc     #$00                            ; 9760 69 00                    i.
-	sta     $AF                             ; 9762 85 AF                    ..
-	ldy     #$01                            ; 9764 A0 01                    ..
-	lda     ($AE),y                         ; 9766 B1 AE                    ..
-	sta     L968A                           ; 9768 8D 8A 96                 ...
-	dey                                     ; 976B 88                       .
-	lda     ($AE),y                         ; 976C B1 AE                    ..
-	sta     L9689                           ; 976E 8D 89 96                 ...
+	add16i	off_AE, L9687, $0004
+	ldp16	L9689
 	dmv	off_AE, L9689
 	iny                                     ; 977B C8                       .
 	lda     ($AE),y                         ; 977C B1 AE                    ..
