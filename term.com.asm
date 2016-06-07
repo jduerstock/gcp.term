@@ -1000,8 +1000,8 @@ L46A2:	.addr	L467A
 	.byte	$B1
 L46A6:	.res	60, $00
 L46E2:	.addr	L46A6
-L46E4:	.byte	$20
-	.byte   $20                             ; 46E5 20                        
+	.byte	$20
+	.byte   $20
 L46E6:	.byte	$50                             ; 46E6 50                       P
 L46E7:	.byte	$1E                             ; 46E7 1E                       .
 L46E8:	.byte	$10                             ; 46E8 10                       .
@@ -8060,11 +8060,7 @@ cmd_uj:
 	dmv	L46E9, L9C17
 	rdldi	L46EB, L9C2F
 	rdldi	L46ED, L9C38
-	mv	$A3, L9C22+1
-	rdldi	$A4, $0009
-	ldy     L9C22                           ; 9C7D AC 22 9C                 .".
-	ldxai	L9C2F
-	jsr     blockmove
+	blkmv_imi L9C2F, L9C22, $0009
 	mv	$A3, L9C2D+1
 	rdldi	$A4, $0009
 	ldy     L9C2D                           ; 9C94 AC 2D 9C                 .-.
