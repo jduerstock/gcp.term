@@ -9373,19 +9373,19 @@ cmd_d8:
 	rts                                     ; A81E 60                       `
 
 ; ----------------------------------------------------------------------------
-sub_A81F:
+cmd_lu:
 	sta     $B118,x                         ; A81F 9D 18 B1                 ...
 	rts                                     ; A822 60                       `
 
 ; ----------------------------------------------------------------------------
-sub_A823:	
+cmd_lv:	
 	clc                                     ; A823 18                       .
 	adc     $B118,x                         ; A824 7D 18 B1                 }..
 	sta     $B118,x                         ; A827 9D 18 B1                 ...
 	rts                                     ; A82A 60                       `
 
 ; ----------------------------------------------------------------------------
-sub_A82B:	
+cmd_lw:	
 	lda     $B118,x                         ; A82B BD 18 B1                 ...
 	eor     #$FF                            ; A82E 49 FF                    I.
 	tay                                     ; A830 A8                       .
@@ -9404,7 +9404,7 @@ sub_A837:
 LA841:  rts                                     ; A841 60                       `
 
 ; ----------------------------------------------------------------------------
-sub_A842:	
+cmd_2e:	
 	rts
 
 ; ----------------------------------------------------------------------------
@@ -9515,14 +9515,12 @@ LA96D:	.byte	$D5
 LA96E:	.byte	$00
 
 ; ----------------------------------------------------------------------------
-sub_A96F:
+cmd_3a:
 	prolog
 	stx     LA96C                           ; A972 8E 6C A9                 .l.
 	sta     LA96B                           ; A975 8D 6B A9                 .k.
 	add16m8	off_AE, LA96D, LA96B
-	lda     LA96C                           ; A988 AD 6C A9                 .l.
-	ldy     #$00                            ; A98B A0 00                    ..
-	sta     ($AE),y                         ; A98D 91 AE                    ..
+	stp8	LA96C
 	rts                                     ; A98F 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -9646,8 +9644,8 @@ LAA86:	.addr	cmd_uc,cmd_uk,cmd_ud,cmd_uf,cmd_uw,cmd_uy,cmd_ub		; "CKDFWYB"
 	.addr	cmd_uz,cmd_ue,cmd_li,cmd_uh,cmd_le,cmd_ui,cmd_d0		; "ZEiHeI0"
 	.addr	cmd_d1,cmd_d2,cmd_d3,cmd_d4,cmd_d5,cmd_d6,cmd_d7		; "1234567"
 	.addr	cmd_d8,cmd_d9,cmd_ln,cmd_07,sub_A959,sub_4BA7,sub_A837		; "89n.#*="
-	.addr	sub_A846,sub_4F9D,sub_8D01,sub_A895,sub_A842,sub_A96F,sub_A81F	; "$%&@.:u"
-	.addr	sub_A823,sub_A82B						; "vw"
+	.addr	sub_A846,sub_4F9D,sub_8D01,sub_A895,cmd_2e,cmd_3a,cmd_lu	; "$%&@.:u"
+	.addr	cmd_lv,cmd_lw							; "vw"
 
 LAB08:	.byte	$00
 	.byte	$00
