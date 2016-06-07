@@ -8502,16 +8502,11 @@ L9FB7:  jmp     L9FBE                           ; 9FB7 4C BE 9F                 
 L9FBA:	.byte	$03,"cBB"
 
 ; ----------------------------------------------------------------------------
-L9FBE:  lda     #$00                            ; 9FBE A9 00                    ..
-	sta     $A3                             ; 9FC0 85 A3                    ..
-	lda     #$00                            ; 9FC2 A9 00                    ..
-	sta     $A5                             ; 9FC4 85 A5                    ..
-	lda     L9E1B                           ; 9FC6 AD 1B 9E                 ...
-	sta     $A4                             ; 9FC9 85 A4                    ..
-	lda     #$00                            ; 9FCB A9 00                    ..
-	sta     $A7                             ; 9FCD 85 A7                    ..
-	lda     L9E1C                           ; 9FCF AD 1C 9E                 ...
-	sta     $A6                             ; 9FD2 85 A6                    ..
+L9FBE:	ldi	$A3, $00
+	ldi	$A5, $00
+	mv	$A4, L9E1B
+	ldi	$A7, $00
+	mv	$A6, L9E1C
 	ldy     L9E0F                           ; 9FD4 AC 0F 9E                 ...
 	ldxai	L9FBA
 	jsr     sub_55A0
