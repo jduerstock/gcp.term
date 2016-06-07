@@ -6290,11 +6290,7 @@ sub_8573:
 	stack_prolog L8550, $02
 	func16_8 sub_7035, L8556, L8550
 	blkmv_imi L8564, L8556, $0007
-	mv	$A3, L8551+1
-	rdldi	$A4, $0004
-	ldy     L8551                           ; 85B0 AC 51 85                 .Q.
-	ldxai	L8560
-	jsr     blockmove
+	blkmv_imi L8560, L8551, $0004
 	add16i	$A2, L8556, $000E
 	rdldi	$A4, $0008
 	ldy     $A2                             ; 85D1 A4 A2                    ..
