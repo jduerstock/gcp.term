@@ -3359,7 +3359,7 @@ L6023:  .byte	$00
 L6024:  .byte	$00
 L6025:  .byte	$00
 
-L6026:  
+sub_6026:  
 	stack_prolog L601F, $04
 	rdldi	sub_5EFE+1, sub_5EDF
 	dmv	$A3, L6022
@@ -3406,7 +3406,7 @@ L60A1:	lda     L6068                           ; 60A1 AD 68 60                 .
 	sta     $AF                             ; 60BD 85 AF                    ..
 	ldy     $A2                             ; 60BF A4 A2                    ..
 	ldxa	L6068
-	jsr     L6026                           ; 60C7 20 26 60                  &`
+	jsr     sub_6026
 	add16m	L6068, L6068, $A0
 	lda     L6068                           ; 60DB AD 68 60                 .h`
 	cmp     #$F8                            ; 60DE C9 F8                    ..
@@ -3422,7 +3422,7 @@ L60ED:  lda     L6067                           ; 60ED AD 67 60                 
 	sta     $A4                             ; 60F4 85 A4                    ..
 	ldy     L6066                           ; 60F6 AC 66 60                 .f`
 	ldxa	L6068
-	jsr     L6026                           ; 60FF 20 26 60                  &`
+	jsr     sub_6026
 	rdmv	L606A, $A0
 	lda     L606A                           ; 610C AD 6A 60                 .j`
 	cmp     L6066                           ; 610F CD 66 60                 .f`
@@ -6175,7 +6175,6 @@ L83F8:	.byte	$D0,$E7
 L83FB:	.byte	$09                             ; 83FB 09                       .
 L83FC:  ldy     #$B8                            ; 83FC A0 B8                    ..
 	ldx     #$20                            ; 83FE A2 20                    . 
-	;jsr     LF823                           ; 8400 20 23 F8                  #.
 	.byte	$20,$23,$F8
 	lda     #$04                            ; 8403 A9 04                    ..
 	.byte   $9D                             ; 8405 9D                       .
@@ -6184,7 +6183,7 @@ L8407:	.byte	$03                             ; 8407 03                       .
 L8408:	.byte	$A9                             ; 8408 A9                       .
 L8409:	.byte	$03                             ; 8409 03                       .
 L840A:	.byte	$20                             ; 840A 20                        
-L840B:  clv                                     ; 840B B8                       .
+L840B:  .byte	$B8
 
 ; ----------------------------------------------------------------------------
 sub_840C:  
