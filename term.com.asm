@@ -3328,10 +3328,8 @@ L5F88:  clc                                     ; 5F88 18                       
 	rts                                     ; 5FB9 60                       `
 
 ; ----------------------------------------------------------------------------
-L5FBA:  inc     L5F0E                           ; 5FBA EE 0E 5F                 .._
-	bne     L5FC2                           ; 5FBD D0 03                    ..
-	inc     L5F0F                           ; 5FBF EE 0F 5F                 .._
-L5FC2:  lsr     L5F12                           ; 5FC2 4E 12 5F                 N._
+L5FBA:  inc16	L5F0E
+	lsr     L5F12                           ; 5FC2 4E 12 5F                 N._
 	lda     L5F12                           ; 5FC5 AD 12 5F                 .._
 	lbne	L5FDA
 	ldi	L5F12, $80
