@@ -1914,7 +1914,7 @@ L4EFA:  lda     #$00                            ; 4EFA A9 00                    
 L4F59:  rts                                     ; 4F59 60                       `
 
 ; ----------------------------------------------------------------------------
-sub_4F5A:					; "^G" - bell?
+cmd_07:						; "^G" - bell?
 	yldi	CRSINH, $01
 	lda     #$FD                            ; 4F5F A9 FD                    ..
 	jsr     sub_45C4
@@ -8096,7 +8096,7 @@ L98FF:  lda     L979C                           ; 98FF AD 9C 97                 
 	lda     L905E                           ; 9909 AD 5E 90                 .^.
 	cmp     L905D                           ; 990C CD 5D 90                 .].
 	lbcc	L991A
-	jsr     sub_4F5A
+	jsr     cmd_07
 	jmp     L9999                           ; 9917 4C 99 99                 L..
 
 ; ----------------------------------------------------------------------------
@@ -8129,7 +8129,7 @@ L999C:  lda     L979C                           ; 999C AD 9C 97                 
 	lbne	L9A45
 	lda     L905E                           ; 99A6 AD 5E 90                 .^.
 	lbne	L99B4
-	jsr     sub_4F5A
+	jsr     cmd_07
 	jmp     L9A42                           ; 99B1 4C 42 9A                 LB.
 
 ; ----------------------------------------------------------------------------
@@ -8248,7 +8248,7 @@ L9B05:  lda     L979D                           ; 9B05 AD 9D 97                 
 	lda     L905D                           ; 9B12 AD 5D 90                 .].
 	eor     L9060                           ; 9B15 4D 60 90                 M`.
 	lbne	L9B23
-L9B1D:  jsr     sub_4F5A
+L9B1D:  jsr     cmd_07
 	jmp     L9BCE                           ; 9B20 4C CE 9B                 L..
 
 ; ----------------------------------------------------------------------------
@@ -9235,7 +9235,7 @@ LA6CB:	.byte	$00
 	.byte	$00
 	.byte	$00
 
-sub_A6CE:
+cmd_d9:
 	stack_prolog LA6CB, $02
 	rts                                     ; A6D7 60                       `
 
@@ -9529,7 +9529,7 @@ sub_A96F:
 LA990:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-sub_A991:
+cmd_ln:
 	prolog
 	sta     LA990                           ; A994 8D 90 A9                 ...
 	lda     LA990                           ; A997 AD 90 A9                 ...
@@ -9645,7 +9645,7 @@ LAA86:	.addr	cmd_uc,cmd_uk,cmd_ud,cmd_uf,cmd_uw,cmd_uy,cmd_ub		; "CKDFWYB"
 	.addr	cmd_ul,cmd_um,cmd_up,cmd_ur,cmd_ug,cmd_ua,cmd_uo		; "LMPRGAO"
 	.addr	cmd_uz,cmd_ue,cmd_li,cmd_uh,cmd_le,cmd_ui,cmd_d0		; "ZEiHeI0"
 	.addr	cmd_d1,cmd_d2,cmd_d3,cmd_d4,cmd_d5,cmd_d6,cmd_d7		; "1234567"
-	.addr	cmd_d8,sub_A6CE,sub_A991,sub_4F5A,sub_A959,sub_4BA7,sub_A837	; "89n.#*="
+	.addr	cmd_d8,cmd_d9,cmd_ln,cmd_07,sub_A959,sub_4BA7,sub_A837		; "89n.#*="
 	.addr	sub_A846,sub_4F9D,sub_8D01,sub_A895,sub_A842,sub_A96F,sub_A81F	; "$%&@.:u"
 	.addr	sub_A823,sub_A82B						; "vw"
 
