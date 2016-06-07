@@ -3247,7 +3247,7 @@ L5EFA:	.byte	$00
 	.byte	$00
 	.byte	$00
 
-L5EFE:  
+sub_5EFE:  
 	stack_prolog L5EFA, $03
 L5F07:  .byte	$00
 L5F08:  .byte	$00
@@ -3321,16 +3321,10 @@ L5F88:  clc                                     ; 5F88 18                       
 	ldy     $A2                             ; 5F9E A4 A2                    ..
 	ldx     $A1                             ; 5FA0 A6 A1                    ..
 	lda     L5F12                           ; 5FA2 AD 12 5F                 .._
-	jsr     L5EFE                           ; 5FA5 20 FE 5E                  .^
+	jsr     sub_5EFE
 	lda     $A0                             ; 5FA8 A5 A0                    ..
-	beq     L5FAF                           ; 5FAA F0 03                    ..
-	jmp     L5FBA                           ; 5FAC 4C BA 5F                 L._
-
-; ----------------------------------------------------------------------------
-L5FAF:  lda     L5F0F                           ; 5FAF AD 0F 5F                 .._
-	sta     $A1                             ; 5FB2 85 A1                    ..
-	lda     L5F0E                           ; 5FB4 AD 0E 5F                 .._
-	sta     $A0                             ; 5FB7 85 A0                    ..
+	lbne	L5FBA
+	rdmv	$A0, L5F0E
 	rts                                     ; 5FB9 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -3369,7 +3363,7 @@ L5FF4:  .byte	$00
 
 sub_5FF5:  
 	stack_prolog L5FF0, $04
-	rdldi	L5EFE+1, sub_5EC4
+	rdldi	sub_5EFE+1, sub_5EC4
 	dmv	$A3, L5FF3
 	ldy     L5FF2                           ; 6012 AC F2 5F                 .._
 	ldxa	L5FF0
@@ -3387,7 +3381,7 @@ L6025:  .byte	$00
 
 L6026:  
 	stack_prolog L601F, $04
-	rdldi	L5EFE+1, sub_5EDF
+	rdldi	sub_5EFE+1, sub_5EDF
 	dmv	$A3, L6022
 	ldy     L6021                           ; 6043 AC 21 60                 .!`
 	ldxa	L601F
