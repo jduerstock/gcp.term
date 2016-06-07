@@ -3334,8 +3334,7 @@ L5FBA:  inc     L5F0E                           ; 5FBA EE 0E 5F                 
 L5FC2:  lsr     L5F12                           ; 5FC2 4E 12 5F                 N._
 	lda     L5F12                           ; 5FC5 AD 12 5F                 .._
 	lbne	L5FDA
-	lda     #$80                            ; 5FCD A9 80                    ..
-	sta     L5F12                           ; 5FCF 8D 12 5F                 .._
+	ldi	L5F12, $80
 	inc     L5F0C                           ; 5FD2 EE 0C 5F                 .._
 	bne     L5FDA                           ; 5FD5 D0 03                    ..
 	inc     L5F0D                           ; 5FD7 EE 0D 5F                 .._
