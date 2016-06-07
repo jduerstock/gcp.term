@@ -1376,13 +1376,13 @@ L4A53:	stack_prolog L4A4E, $04
 	lda     #$00                            ; 4A5C A9 00                    ..
 	sta     $A3                             ; 4A5E 85 A3                    ..
 	ldy     #$80                            ; 4A60 A0 80                    ..
-	ldxai	$B380
+	ldxai	LB380
 	jsr     bzero
 	clc                                     ; 4A69 18                       .
-	lda     #$80                            ; 4A6A A9 80                    ..
+	lda     #<LB380
 	adc     L4A52                           ; 4A6C 6D 52 4A                 mRJ
 	sta     $A0                             ; 4A6F 85 A0                    ..
-	lda     #$B3                            ; 4A71 A9 B3                    ..
+	lda     #>LB380
 	adc     #$00                            ; 4A73 69 00                    i.
 	sta     $A1                             ; 4A75 85 A1                    ..
 	blkmv_mm8 $A0, L4A4E, L4A50
