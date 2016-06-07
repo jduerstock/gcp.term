@@ -545,7 +545,8 @@ L4423:  ldi	$87, $00
 	rts                                     ; 4427 60                       `
 
 ; ----------------------------------------------------------------------------
-L4428:  beq     L4445                           ; 4428 F0 1B                    ..
+MultB:  
+	beq     L4445                           ; 4428 F0 1B                    ..
 	dex                                     ; 442A CA                       .
 	stx     $C7                             ; 442B 86 C7                    ..
 	tax                                     ; 442D AA                       .
@@ -567,7 +568,7 @@ L4445:  lda     $86                             ; 4445 A5 86                    
 	rts                                     ; 4449 60                       `
 
 ; ----------------------------------------------------------------------------
-sub_444A:
+MultI:
 	jsr     SMOps
 	ldx     $82                             ; 444D A6 82                    ..
 	beq     L446C                           ; 444F F0 1B                    ..
@@ -589,10 +590,10 @@ L4469:  dex                                     ; 4469 CA                       
 L446C:  sta     $86                             ; 446C 85 86                    ..
 	lda     $82                             ; 446E A5 82                    ..
 	ldx     $85                             ; 4470 A6 85                    ..
-	jsr     L4428                           ; 4472 20 28 44                  (D
+	jsr     MultB
 	lda     $83                             ; 4475 A5 83                    ..
 	ldx     $84                             ; 4477 A6 84                    ..
-	jsr     L4428                           ; 4479 20 28 44                  (D
+	jsr     MultB
 	jmp     SetSign
 
 ; ----------------------------------------------------------------------------
@@ -1789,7 +1790,7 @@ sub_4E4A:
 	mv	$84, $AA
 	lda     $AC                             ; 4E92 A5 AC                    ..
 	ldx     #$00                            ; 4E94 A2 00                    ..
-	jsr     sub_444A
+	jsr     MultI
 	st2xa	L4E44
 	rdmv	$A0, L4E44
 	rts                                     ; 4EAA 60                       `
@@ -1871,7 +1872,7 @@ cmd_25:
 	rdldi	$84, $0006
 	lda     L4F9C                           ; 4FAB AD 9C 4F                 ..O
 	ldx     #$00                            ; 4FAE A2 00                    ..
-	jsr     sub_444A
+	jsr     MultI
 	sta     $A0                             ; 4FB3 85 A0                    ..
 	lda     $A0                             ; 4FB5 A5 A0                    ..
 	jsr     sub_4F6D
@@ -3930,7 +3931,7 @@ L6742:	dmv	off_AE, L66FA
 	mv	$84, L66F6
 	lda     $AA                             ; 6787 A5 AA                    ..
 	ldx     #$00                            ; 6789 A2 00                    ..
-	jsr     sub_444A
+	jsr     MultI
 	st2xa	$A4
 	ldy     $A2                             ; 6793 A4 A2                    ..
 	ldxa	$A0
@@ -4147,7 +4148,7 @@ L69B7:	mv	$A3, L6983+1
 	rdldi	$84, $0006
 	lda     L6990                           ; 6A4C AD 90 69                 ..i
 	ldx     #$00                            ; 6A4F A2 00                    ..
-	jsr     sub_444A
+	jsr     MultI
 	sta     L6987                           ; 6A54 8D 87 69                 ..i
 	lda     #$00                            ; 6A57 A9 00                    ..
 	sta     $A3                             ; 6A59 85 A3                    ..
@@ -4234,7 +4235,7 @@ L6AFF:  ldx     #$00                            ; 6AFF A2 00                    
 	mv	$84, L6AC0
 	lda     L6ABF                           ; 6B6E AD BF 6A                 ..j
 	ldx     #$00                            ; 6B71 A2 00                    ..
-	jsr     sub_444A
+	jsr     MultI
 	st2xa	L6ACE
 	add16i	off_AE, L6AC4, $0002
 	stp16	L6ACE
@@ -4293,7 +4294,7 @@ L6C5C:	mv	$A3, L6ACE+1
 	rdldi	$84, $0006
 	lda     L6AC1                           ; 6CB2 AD C1 6A                 ..j
 	ldx     #$00                            ; 6CB5 A2 00                    ..
-	jsr     sub_444A
+	jsr     MultI
 	st2xa	L6ACC
 	ldxa	L6ACC
 	jsr     sub_606E
@@ -5131,7 +5132,7 @@ cmd_ls:
 	mv	$84, L77A0
 	lda     L779F                           ; 77FE AD 9F 77                 ..w
 	ldx     #$00                            ; 7801 A2 00                    ..
-	jsr     sub_444A
+	jsr     MultI
 	sta     $AC                             ; 7806 85 AC                    ..
 	txa                                     ; 7808 8A                       .
 	ldy     #$01                            ; 7809 A0 01                    ..
@@ -5584,7 +5585,7 @@ L7DA5:	add16i	off_AE, L7D4B, $0002
 	ldi	$84, $03
 	lda     L7D45                           ; 7DBC AD 45 7D                 .E}
 	ldx     #$00                            ; 7DBF A2 00                    ..
-	jsr     sub_444A
+	jsr     MultI
 	st2xa	off_AC
 	add16m	L7D4B, off_AE, off_AC
 	dmv	off_AE, L7D4B
@@ -5641,7 +5642,7 @@ L7E69:	dmv	off_AE, L7E1E
 	sta     $84                             ; 7E95 85 84                    ..
 	lda     L7E12                           ; 7E97 AD 12 7E                 ..~
 	ldx     #$00                            ; 7E9A A2 00                    ..
-	jsr     sub_444A
+	jsr     MultI
 	st2xa	off_AC
 	add16m	L7E1A, $AE, $AC
 	mv	$A3, L7E1A+1
@@ -6345,7 +6346,7 @@ L8634:	yldi	L855F, $00
 L8648:	rdldi	$84, $0028
 	lda     L8561                           ; 8650 AD 61 85                 .a.
 	ldx     #$00                            ; 8653 A2 00                    ..
-	jsr     sub_444A
+	jsr     MultI
 	st2xa	off_AE
 	add16m	L8558, L466D, $AE
 	sub8m	L8555, L8562, L8560
@@ -6495,7 +6496,7 @@ sub_884C:
 	sta     $84                             ; 88C7 85 84                    ..
 	lda     L8843                           ; 88C9 AD 43 88                 .C.
 	ldx     #$00                            ; 88CC A2 00                    ..
-	jsr     sub_444A
+	jsr     MultI
 	st2xa	off_AE
 	add16m	off_AC, L466D, off_AE
 	add16m8	L8837, off_AC, L8842
@@ -6620,7 +6621,7 @@ sub_89AE:
 	func16_8 sub_4945, L8993, $A0
 	rdldi	$84, $0028
 	ld2xa	L8995
-	jsr     sub_444A
+	jsr     MultI
 	st2xa	off_AE
 	add16m	off_AC, L466D, off_AE
 	add16m	L8964, off_AC, L8993
@@ -7204,7 +7205,7 @@ sub_9146:
 	sta     $84                             ; 91E0 85 84                    ..
 	lda     $AC                             ; 91E2 A5 AC                    ..
 	ldx     #$00                            ; 91E4 A2 00                    ..
-	jsr     sub_444A
+	jsr     MultI
 	st2xa	L913E
 	blkmv_mm16 L913C, L913A, L913E
 	sub8i	off_AE, L9141, $01
@@ -7295,7 +7296,7 @@ sub_925D:
 	sta     $84                             ; 9314 85 84                    ..
 	lda     $AC                             ; 9316 A5 AC                    ..
 	ldx     #$00                            ; 9318 A2 00                    ..
-	jsr     sub_444A
+	jsr     MultI
 	st2xa	L9255
 	lda     L9252                           ; 9324 AD 52 92                 .R.
 	sta     $A3                             ; 9327 85 A3                    ..
