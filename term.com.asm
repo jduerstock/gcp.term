@@ -7251,14 +7251,9 @@ L925C:  .byte	$00
 ; ----------------------------------------------------------------------------
 sub_925D:  
 	prolog
-	stx     L924D                           ; 9260 8E 4D 92                 .M.
-	sta     L924C                           ; 9263 8D 4C 92                 .L.
+	stxa	L924C
 	func16_8 sub_65B0, L924E, L924C
-	mv	$A3, L924E+1
-	rdldi	$A4, $0006
-	ldy     L924E                           ; 9283 AC 4E 92                 .N.
-	ldxai	L9257
-	jsr     blockmove
+	blkmv_imi L9257, L924E, $0006
 	sec                                     ; 928D 38                       8
 	lda     L9258                           ; 928E AD 58 92                 .X.
 	sbc     #$01                            ; 9291 E9 01                    ..
