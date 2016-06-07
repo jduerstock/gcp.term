@@ -6208,10 +6208,7 @@ L8447:	func16_8 sub_7035, L83E7, L4750
 	blkmv_imi L83F7, L83E9, $0009
 	sub8m	off_AE, L8407, L8409
 	sub8m	L83ED, L83E5, off_AE
-	sec                                     ; 84A7 38                       8
-	lda     L8408                           ; 84A8 AD 08 84                 ...
-	sbc     L840A                           ; 84AB ED 0A 84                 ...
-	sta     $AE                             ; 84AE 85 AE                    ..
+	sub8m	off_AE, L8408, L840A
 	sec                                     ; 84B0 38                       8
 	lda     L83E6                           ; 84B1 AD E6 83                 ...
 	sbc     $AE                             ; 84B4 E5 AE                    ..
