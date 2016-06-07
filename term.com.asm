@@ -7636,9 +7636,7 @@ cmd_le:
 	ldp8	L968B
 	func16_8 sub_65B0, L9687, L968B
 	dmv	off_AE, L9687
-	ldy     #$00                            ; 9742 A0 00                    ..
-	lda     (off_AE),y
-	sta     $A1                             ; 9746 85 A1                    ..
+	ldp8	$A1
 	ldx     $A1                             ; 9748 A6 A1                    ..
 	lda     L9060                           ; 974A AD 60 90                 .`.
 	jsr     sub_4990
