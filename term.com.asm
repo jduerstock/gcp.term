@@ -3383,14 +3383,10 @@ L606D:  .byte	$00
 
 sub_606E:
 	prolog
-	stx     L6064+1                         ; 6071 8E 65 60                 .e`
-	sta     L6064                           ; 6074 8D 64 60                 .d`
+	stxa	L6064
 	add16i	off_AE, L6064, $0003
-	lda     #$02                            ; 6086 A9 02                    ..
-	sta     $84                             ; 6088 85 84                    ..
-	lda     off_AE+1
-	tax                                     ; 608C AA                       .
-	lda     off_AE
+	ldi	$84, $02
+	ld2xa	off_AE
 	jsr     sub_43E0
 	st2xa	L6066
 	ldy     #$00                            ; 6099 A0 00                    ..
