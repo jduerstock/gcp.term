@@ -8260,13 +8260,7 @@ L9E94:  lda     L46E6                           ; 9E94 AD E6 46                 
 	lda     L46E9                           ; 9EA1 AD E9 46                 ..F
 	jsr     sub_799B
 	rdmv	L9E14, $A0
-	lda     L9E15                           ; 9EB1 AD 15 9E                 ...
-	sta     $A3                             ; 9EB4 85 A3                    ..
-	ldi	$A5, $00
-	ldi	$A4, $04
-	ldy     L9E14                           ; 9EBE AC 14 9E                 ...
-	ldxai	L9E28
-	jsr     blockmove
+	blkmv_imi L9E28, L9E14, $0004
 	dmv	L9E1B, L9E2A
 	jmp     L9F69                           ; 9ED4 4C 69 9F                 Li.
 
