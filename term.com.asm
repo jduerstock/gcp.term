@@ -847,12 +847,12 @@ read_trig:
 	rts                                     ; 45F5 60                       `
 
 ; ----------------------------------------------------------------------------
-sub_45F6:
+bzero:
 	pha                                     ; 45F6 48                       H
 	ldi	$A4, $00
 	pla                                     ; 45FB 68                       h
 
-sub_45FC:
+memset:
 	sta     $A0                             ; 45FC 85 A0                    ..
 	stx     $A1                             ; 45FE 86 A1                    ..
 	sty     $A2                             ; 4600 84 A2                    ..
@@ -1352,7 +1352,7 @@ L49EE:  clc                                     ; 49EE 18                       
 	sta     $A3                             ; 4A17 85 A3                    ..
 	ldy     #$0C                            ; 4A19 A0 0C                    ..
 	ldxa	L49D1
-	jsr     sub_45F6
+	jsr     bzero
 	lda     L49C4                           ; 4A24 AD C4 49                 ..I
 	sta     L499F                           ; 4A27 8D 9F 49                 ..I
 	clc                                     ; 4A2A 18                       .
@@ -1378,7 +1378,7 @@ L4A53:	stack_prolog L4A4E, $04
 	sta     $A3                             ; 4A5E 85 A3                    ..
 	ldy     #$80                            ; 4A60 A0 80                    ..
 	ldxai	$B380
-	jsr     sub_45F6
+	jsr     bzero
 	clc                                     ; 4A69 18                       .
 	lda     #$80                            ; 4A6A A9 80                    ..
 	adc     L4A52                           ; 4A6C 6D 52 4A                 mRJ
@@ -3716,7 +3716,7 @@ sub_63DD:
 	sta     $A4                             ; 647F 85 A4                    ..
 	ldy     #$17                            ; 6481 A0 17                    ..
 	ldxa	L63D7
-	jsr     sub_45FC
+	jsr     memset
 	add16i	off_AE, L63D9, $0001
 	ldy     #$00                            ; 649B A0 00                    ..
 	lda     ($AE),y                         ; 649D B1 AE                    ..
@@ -3777,9 +3777,8 @@ L64D5:	shladdm8 off_AE, L46F5, L63DB
 	lda     L63DC                           ; 6545 AD DC 63                 ..c
 	sta     $A4                             ; 6548 85 A4                    ..
 	ldy     $A2                             ; 654A A4 A2                    ..
-	ldx     $A1                             ; 654C A6 A1                    ..
-	lda     $A0                             ; 654E A5 A0                    ..
-	jsr     sub_45FC
+	ldxa	$A0
+	jsr     memset
 	add16i	off_AE, L63D9, $0001
 	clc                                     ; 6562 18                       .
 	lda     L63D5                           ; 6563 AD D5 63                 ..c
@@ -3880,7 +3879,7 @@ L664C:	shladdm8 off_AE, L65DE, L65DD
 	mv	$A4, L65DB
 	ldy     L65DC                           ; 667A AC DC 65                 ..e
 	ldxa	$A0
-	jsr     sub_45FC
+	jsr     memset
 	inc     L65DD                           ; 6684 EE DD 65                 ..e
 	jmp     L6640                           ; 6687 4C 40 66                 L@f
 
@@ -4113,7 +4112,7 @@ sub_696A:
 	sta     $A3                             ; 6974 85 A3                    ..
 	ldy     $A2                             ; 6976 A4 A2                    ..
 	ldxa	L46E2
-	jsr     sub_45F6
+	jsr     bzero
 	rts                                     ; 6981 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -4256,7 +4255,7 @@ L6AFF:  ldx     #$00                            ; 6AFF A2 00                    
 	sta     $A3                             ; 6B33 85 A3                    ..
 	ldy     #$0B                            ; 6B35 A0 0B                    ..
 	ldxa	L6AC4
-	jsr     sub_45F6
+	jsr     bzero
 	dmv	off_AE, L6AC4
 	lda	L6ABF
 	ldy     #$00                            ; 6B4D A0 00                    ..
@@ -4311,11 +4310,9 @@ L6C5C:	mv	$A3, L6ACE+1
 	ldi	$A4, $00
 	ldy     L6ACE                           ; 6C65 AC CE 6A                 ..j
 	ldxa	L6AC6
-	jsr     sub_45FC
+	jsr     memset
 	add16i	off_AE, L6AC4, $0006
-	lda     L6AC1                           ; 6C80 AD C1 6A                 ..j
-	ldy     #$00                            ; 6C83 A0 00                    ..
-	sta     ($AE),y                         ; 6C85 91 AE                    ..
+	stp8	L6AC1
 	add16i	off_AE, L6AC4, $0007
 	lda     #$00                            ; 6C96 A9 00                    ..
 	iny                                     ; 6C98 C8                       .
@@ -4339,7 +4336,7 @@ L6C5C:	mv	$A3, L6ACE+1
 	mv	$A3, L6ACD
 	ldy     L6ACC                           ; 6CF5 AC CC 6A                 ..j
 	ldxa	L6AD3
-	jsr     sub_45F6
+	jsr     bzero
 	ldy     #$00                            ; 6D01 A0 00                    ..
 	sty     L6AD0                           ; 6D03 8C D0 6A                 ..j
 	sub8i	L6D1A, L6AC1, $01
@@ -4385,7 +4382,7 @@ L6D88:  ldx     #$00                            ; 6D88 A2 00                    
 	sta     $A3                             ; 6DB7 85 A3                    ..
 	ldy     #$1A                            ; 6DB9 A0 1A                    ..
 	ldxa	L6AC8
-	jsr     sub_45F6
+	jsr     bzero
 	dmv	off_AE, L6AC8
 	push16	off_AE
 	dmv	off_AE, L6AC2
@@ -4918,7 +4915,7 @@ sub_747D:
 	sta     $A3                             ; 7487 85 A3                    ..
 	ldy     $A2                             ; 7489 A4 A2                    ..
 	ldxa	L46A2
-	jsr     sub_45F6
+	jsr     bzero
 	ldy     #$00                            ; 7494 A0 00                    ..
 	sty     L747C                           ; 7496 8C 7C 74                 .|t
 L7499:  lda     #$13                            ; 7499 A9 13                    ..
@@ -4964,7 +4961,7 @@ cmd_lc:
 	ldi	$A3, $00
 	ldy     #$26                            ; 7518 A0 26                    .&
 	ldxa	L74BC
-	jsr     sub_45F6
+	jsr     bzero
 	inc     L4673                           ; 7523 EE 73 46                 .sF
 	add16i	off_AE, L74BC, $000C
 	lda     #$FF                            ; 7535 A9 FF                    ..
@@ -5843,13 +5840,12 @@ sub_8020:
 	sta     $A3                             ; 8025 85 A3                    ..
 	ldy     #$04                            ; 8027 A0 04                    ..
 	ldxai	L474F
-	jsr     sub_45F6
+	jsr     bzero
 	lda     #$00                            ; 8030 A9 00                    ..
 	sta     $A3                             ; 8032 85 A3                    ..
 	ldy     #$0E                            ; 8034 A0 0E                    ..
-	ldx     #$47                            ; 8036 A2 47                    .G
-	lda     #$53                            ; 8038 A9 53                    .S
-	jsr     sub_45F6
+	ldxai	L4753
+	jsr     bzero
 	ldx     #$00                            ; 803D A2 00                    ..
 	lda     #$00                            ; 803F A9 00                    ..
 	jsr     cmd_up
@@ -6457,7 +6453,7 @@ L8648:	rdldi	$84, $0028
 	sta     $A4                             ; 86BB 85 A4                    ..
 	ldy     $A2                             ; 86BD A4 A2                    ..
 	ldxa	L855A
-	jsr     sub_45FC
+	jsr     memset
 L86C8:	add16m8	$A2, L8558, L8553
 	ldy     $A2                             ; 86D8 A4 A2                    ..
 	ldx     L856B                           ; 86DA AE 6B 85                 .k.
@@ -6521,14 +6517,8 @@ L87AA:  lda     L8570                           ; 87AA AD 70 85                 
 	sta     $A4                             ; 87D5 85 A4                    ..
 	ldy     $A2                             ; 87D7 A4 A2                    ..
 	ldxa	L855A
-	jsr     sub_45FC
-L87E2:  clc                                     ; 87E2 18                       .
-	lda     L8558                           ; 87E3 AD 58 85                 .X.
-	adc     L8553                           ; 87E6 6D 53 85                 mS.
-	sta     $A2                             ; 87E9 85 A2                    ..
-	lda     L8559                           ; 87EB AD 59 85                 .Y.
-	adc     #$00                            ; 87EE 69 00                    i.
-	sta     $A3                             ; 87F0 85 A3                    ..
+	jsr     memset
+L87E2:	add16m8	$A2, L8558, L8553
 	ldy     $A2                             ; 87F2 A4 A2                    ..
 	ldx     L8571                           ; 87F4 AE 71 85                 .q.
 	lda     L855D                           ; 87F7 AD 5D 85                 .].
@@ -6778,7 +6768,7 @@ L8AAD:	ldi	$A3, $00
 	mv	$A4, L89A4
 	ldy     L8968                           ; 8AB6 AC 68 89                 .h.
 	ldxa	L8964
-	jsr     sub_45FC
+	jsr     memset
 	add16i	L8964, L8964, $0028
 	inc     L8992                           ; 8AD3 EE 92 89                 ...
 	jmp     L8AA1                           ; 8AD6 4C A1 8A                 L..
@@ -6959,7 +6949,7 @@ L8D0D:  lda     L4656                           ; 8D0D AD 56 46                 
 	dldi	$A3, $0003
 	ldy     #$C0                            ; 8D73 A0 C0                    ..
 	ldxa	L466D
-	jsr     sub_45FC
+	jsr     memset
 	ldy     #$01                            ; 8D7E A0 01                    ..
 	sty     L8CF9                           ; 8D80 8C F9 8C                 ...
 	lda     L4673                           ; 8D83 AD 73 46                 .sF
@@ -7112,14 +7102,13 @@ L8F7A:  .byte	$00
 L8F7B:  .byte	$00
 L8F7C:  .byte	$00
 
-
 ; ----------------------------------------------------------------------------
 sub_8F7D:  
 	prolog
 	ldi	$A3, $00
 	ldy     #$50                            ; 8F84 A0 50                    .P
 	ldxai	L46F9
-	jsr     sub_45F6
+	jsr     bzero
 	rdldi	L8F7B, L46F9
 	yldi	L8F7A, $00
 L8F9C:  lda     #$09                            ; 8F9C A9 09                    ..
@@ -7367,7 +7356,7 @@ sub_9146:
 	sta     $A3                             ; 9233 85 A3                    ..
 	ldy     L9140                           ; 9235 AC 40 91                 .@.
 	ldxa	$A0
-	jsr     sub_45F6
+	jsr     bzero
 	jmp     L9247                           ; 923F 4C 47 92                 LG.
 
 ; ----------------------------------------------------------------------------
@@ -7463,7 +7452,7 @@ sub_925D:
 	sta     $A3                             ; 9341 85 A3                    ..
 	ldy     L9257                           ; 9343 AC 57 92                 .W.
 	ldxa	L9251
-	jsr     sub_45F6
+	jsr     bzero
 	jmp     L935C                           ; 934F 4C 5C 93                 L\.
 
 ; ----------------------------------------------------------------------------
@@ -9495,12 +9484,12 @@ LAA55:  lda     #$00                            ; AA55 A9 00                    
 	sta     $A4                             ; AA5B 85 A4                    ..
 	ldy     #$20                            ; AA5D A0 20                    . 
 	ldxai	$B14A
-	jsr     sub_45FC
+	jsr     memset
 	lda     #$00                            ; AA66 A9 00                    ..
 	sta     $A3                             ; AA68 85 A3                    ..
 	ldy     #$10                            ; AA6A A0 10                    ..
 	ldxai	$B118
-	jsr     sub_45F6
+	jsr     bzero
 	lda     #$FF                            ; AA73 A9 FF                    ..
 	sta     L4647                           ; AA75 8D 47 46                 .GF
 	lda     #$FF                            ; AA78 A9 FF                    ..
