@@ -35,6 +35,7 @@ CHBAS		:= $02F4
 L05C0		:= $05C0
 L3272           := $3272
 L4253           := $4253
+LB14A		:= $B14A
 LB16A		:= $B16A
 LB16C		:= $B16C
 LB1C6		:= $B1C6
@@ -1591,7 +1592,7 @@ L4BA2:  iny                                     ; 4BA2 C8                       
 ; ----------------------------------------------------------------------------
 cmd_2a:  
 	tax                                     ; 4BA7 AA                       .
-	lda     $B14A,x                         ; 4BA8 BD 4A B1                 .J.
+	lda     LB14A,x                         ; 4BA8 BD 4A B1                 .J.
 	cmp     #$80                            ; 4BAB C9 80                    ..
 	bcs     L4BB7                           ; 4BAD B0 08                    ..
 	lda     #$01                            ; 4BAF A9 01                    ..
@@ -8996,7 +8997,7 @@ cmd_23:
 	lda     #$00                            ; A95C A9 00                    ..
 	sta     $B800,x                         ; A95E 9D 00 B8                 ...
 	lda     $A0                             ; A961 A5 A0                    ..
-	sta     $B14A,x                         ; A963 9D 4A B1                 .J.
+	sta     LB14A,x                         ; A963 9D 4A B1                 .J.
 	tya                                     ; A966 98                       .
 	sta     $BC00,x                         ; A967 9D 00 BC                 ...
 	rts                                     ; A96A 60                       `
@@ -9080,8 +9081,7 @@ LA9F9:	.word	$0000
 cmd_li:
 	prolog
 	sub16m	LA9F9, MEMTOP, MEMLO
-	lda     LA9F9+1
-	sta     $A3                             ; AA14 85 A3                    ..
+	mv	$A3, LA9F9+1
 	ldy     LA9F9                           ; AA16 AC F9 A9                 ...
 	ldxa	MEMLO
 	jsr     sub_619A
@@ -9091,8 +9091,7 @@ cmd_li:
 LAA25:	.byte	$02,"CH"
 
 ; ----------------------------------------------------------------------------
-LAA28:  lda     #$00                            ; AA28 A9 00                    ..
-	sta     $A3                             ; AA2A 85 A3                    ..
+LAA28:	ldi	$A3, $00
 	rdmv	$A4, LA9F9
 	ldy     #$46                            ; AA36 A0 46                    .F
 	ldxai	LAA25
@@ -9101,16 +9100,12 @@ LAA28:  lda     #$00                            ; AA28 A9 00                    
 	jsr     sub_696A
 	jsr	sub_8020
 	jsr     sub_8F7D
-	lda     #$00                            ; AA4B A9 00                    ..
-	jsr     cmd_uj
-	lda     #$00                            ; AA50 A9 00                    ..
-	jsr     cmd_uh
-LAA55:  lda     #$00                            ; AA55 A9 00                    ..
-	sta     $A3                             ; AA57 85 A3                    ..
-	lda     #$FF                            ; AA59 A9 FF                    ..
-	sta     $A4                             ; AA5B 85 A4                    ..
+	proc8i	cmd_uj, $00
+	proc8i	cmd_uh, $00
+	ldi	$A3, $00
+	ldi	$A4, $FF
 	ldy     #$20                            ; AA5D A0 20                    . 
-	ldxai	$B14A
+	ldxai	LB14A
 	jsr     memset
 	lda     #$00                            ; AA66 A9 00                    ..
 	sta     $A3                             ; AA68 85 A3                    ..
