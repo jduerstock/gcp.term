@@ -7418,10 +7418,7 @@ L94AB:	sub8i	off_AE, L9061, $01
 	ldx     $A1                             ; 94D7 A6 A1                    ..
 	lda     L9053                           ; 94D9 AD 53 90                 .S.
 	jsr     sub_66FC
-L94DF:  sec                                     ; 94DF 38                       8
-	lda     L9061                           ; 94E0 AD 61 90                 .a.
-	sbc     #$01                            ; 94E3 E9 01                    ..
-	sta     L9416                           ; 94E5 8D 16 94                 ...
+L94DF:	sub8i	L9416, L9061, $01
 L94E8:	shladdm8 off_AE, L9064, L9416
 	ldp16	L905B
 	mv	$A3, L905B+1
