@@ -7319,8 +7319,7 @@ sub_936A:
 	ldy     $A2                             ; 939D A4 A2                    ..
 	ldxai	L9366
 	jsr     blockmove
-	lda     L905E                           ; 93A6 AD 5E 90                 .^.
-	sta     L9362                           ; 93A9 8D 62 93                 .b.
+	mv	L9362, L905E
 	add8m	L9366, L9366, L9361
 	add8m	L9368, L9368, L9361
 	ldx     L9366                           ; 93C0 AE 66 93                 .f.
