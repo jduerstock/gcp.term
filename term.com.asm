@@ -9035,24 +9035,18 @@ sub_A9A3:
 	lda     $D8                             ; A9A6 A5 D8                    ..
 	eor     #$01                            ; A9A8 49 01                    I.
 	lbne	LA9B8
-LA9AF:  lda     #$12                            ; A9AF A9 12                    ..
-	jsr     cmd_2a
-	ldy     #$00                            ; A9B4 A0 00                    ..
-	sty     $D8                             ; A9B6 84 D8                    ..
+LA9AF:	proc8i	cmd_2a, $12
+	yldi	$D8, $00
 LA9B8:  lda     $D9                             ; A9B8 A5 D9                    ..
 	eor     #$01                            ; A9BA 49 01                    I.
 	lbne	LA9CA
-	lda     #$13                            ; A9C1 A9 13                    ..
-	jsr     cmd_2a
-	ldy     #$00                            ; A9C6 A0 00                    ..
-	sty     $D9                             ; A9C8 84 D9                    ..
+	proc8i	cmd_2a, $13
+	yldi	$D9, $00
 LA9CA:  lda     $DA                             ; A9CA A5 DA                    ..
 	eor     #$01                            ; A9CC 49 01                    I.
 	lbne	LA9DC
-	lda     #$14                            ; A9D3 A9 14                    ..
-	jsr     cmd_2a
-	ldy     #$00                            ; A9D8 A0 00                    ..
-	sty     $DA                             ; A9DA 84 DA                    ..
+	proc8i	cmd_2a, $14
+	yldi	$DA, $00
 LA9DC:  rts                                     ; A9DC 60                       `
 
 	.include "cmd-ue.asm"
