@@ -2858,13 +2858,7 @@ L5B6E:  lda     #$03                            ; 5B6E A9 03                    
 	lbcc	L5BBE
 	add16m8 off_AE, L58EB, L58EF
 	push16	off_AE
-	clc                                     ; 5B8E 18                       .
-	lda     #$24                            ; 5B8F A9 24                    .$
-	adc     L4654                           ; 5B91 6D 54 46                 mTF
-	sta     $A0                             ; 5B94 85 A0                    ..
-	lda     #$B2                            ; 5B96 A9 B2                    ..
-	adc     #$00                            ; 5B98 69 00                    i.
-	sta     $A1                             ; 5B9A 85 A1                    ..
+	addi16m8 $A0, LB224, L4654
 	ldxa	$A0
 	jsr     sub_4B47
 	pull16	off_AE
@@ -2885,13 +2879,7 @@ L5BC1:  lda     L58EE                           ; 5BC1 AD EE 58                 
 	lda     L58EE                           ; 5BC8 AD EE 58                 ..X
 	eor     #'s'
 	lbne	L5C95
-L5BD2:	clc                                     ; 5BD2 18                       .
-	lda     #$24                            ; 5BD3 A9 24                    .$
-	adc     L4654                           ; 5BD5 6D 54 46                 mTF
-	sta     L58EB                           ; 5BD8 8D EB 58                 ..X
-	lda     #$B2                            ; 5BDB A9 B2                    ..
-	adc     #$00                            ; 5BDD 69 00                    i.
-	sta     L58EC                           ; 5BDF 8D EC 58                 ..X
+L5BD2:	addi16m8 L58EB, LB224, L4654
 	dmv	off_AE, L58E9
 	lda     L58EC                           ; 5BEC AD EC 58                 ..X
 	ldy     #$01                            ; 5BEF A0 01                    ..
