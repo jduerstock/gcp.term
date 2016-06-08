@@ -2209,8 +2209,7 @@ sub_52E1:
 	cmp     L464B                           ; 52EF CD 4B 46                 .KF
 	lbcs	L5304
 	yldi	L464B, $00
-	lda     #$11                            ; 52FC A9 11                    ..
-	jsr     cmd_2a
+	proc8i	cmd_2a, $11
 	jsr     sub_4749
 L5304:	ldxa	L52DF
 	jsr     sub_5274
