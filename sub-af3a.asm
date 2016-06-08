@@ -136,8 +136,7 @@ LB092:  jsr     sub_9DCB
 	lda     $A0                             ; B095 A5 A0                    ..
 	eor     #$01                            ; B097 49 01                    I.
 	lbne	LB0A3
-	lda     #$00                            ; B09E A9 00                    ..
-	jsr     cmd_2a
+	proc8i	cmd_2a, $00
 LB0A3:  jsr     sub_A9A3
 	lda     L4764                           ; B0A6 AD 64 47                 .dG
 	eor     #$01                            ; B0A9 49 01                    I.
