@@ -2856,13 +2856,7 @@ L5B2A:  lda     L58EE                           ; 5B2A AD EE 58                 
 L5B6E:  lda     #$03                            ; 5B6E A9 03                    ..
 	cmp     L58EF                           ; 5B70 CD EF 58                 ..X
 	lbcc	L5BBE
-	clc                                     ; 5B78 18                       .
-	lda     L58EB                           ; 5B79 AD EB 58                 ..X
-	adc     L58EF                           ; 5B7C 6D EF 58                 m.X
-	sta     $AE                             ; 5B7F 85 AE                    ..
-	lda     L58EC                           ; 5B81 AD EC 58                 ..X
-	adc     #$00                            ; 5B84 69 00                    i.
-	sta     $AF                             ; 5B86 85 AF                    ..
+	add16m8 off_AE, L58EB, L58EF
 	push16	off_AE
 	clc                                     ; 5B8E 18                       .
 	lda     #$24                            ; 5B8F A9 24                    .$
