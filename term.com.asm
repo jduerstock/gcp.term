@@ -2352,8 +2352,7 @@ L544C:  lda     CDTMF3
 	lbne	L545B
 	ldxai	LB16A
 	jsr     sub_52E1
-L545B:  lda     L5392                           ; 545B AD 92 53                 ..S
-	sta     $A0                             ; 545E 85 A0                    ..
+L545B:	mv	$A0, L5392
 	rts                                     ; 5460 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -2374,8 +2373,7 @@ L5471:	add8i	$AE, L531D, $01
 	and8i	off_AE, LB1C6, $80
 	lda     $AE                             ; 5493 A5 AE                    ..
 	lbeq	L54B8
-	lda     #>LB1C9
-	sta     $A3                             ; 549C 85 A3                    ..
+	ldi	$A3, >LB1C9
 	and8i	off_AE, LB1C6, $7F
 	sub8i	$A4, off_AE, $04
 	ldy     #<LB1C9
