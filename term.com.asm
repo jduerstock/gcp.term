@@ -6058,8 +6058,7 @@ L82AD:	yldi	L81E2, $01
 ; ----------------------------------------------------------------------------
 L82B5:	add16i	L81E6, L81DC, $001E
 	dmv	$A3, L81E7
-	lda     L81E9                           ; 82D0 AD E9 81                 ...
-	sta     $A5                             ; 82D3 85 A5                    ..
+	mv	$A5, L81E9
 	ldy     L81E6                           ; 82D5 AC E6 81                 ...
 	ldxai	L81DE
 	jsr     sub_4C1D
@@ -6067,9 +6066,8 @@ L82B5:	add16i	L81E6, L81DC, $001E
 	sub8i	L81E0, off_AE, $01
 	add8m	off_AE, L81E1, L81EE
 	sub8i	L81E1, off_AE, $01
-	lda     #$81                            ; 8301 A9 81                    ..
-	sta     $A3                             ; 8303 85 A3                    ..
-	ldy     #$DE                            ; 8305 A0 DE                    ..
+	ldi	$A3, >L81DE
+	ldy     #<L81DE
 	ldxa	L81E4
 	jsr     sub_4C75
 	lda     $A0                             ; 8310 A5 A0                    ..
