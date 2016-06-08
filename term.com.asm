@@ -2888,9 +2888,7 @@ L5BD2:	addi16m8 L58EB, LB224, L4654
 	jsr     sub_4B47
 	mv	L58F0, $A0
 	dmv	off_AE, L58EB
-	lda     L58F0                           ; 5C2E AD F0 58                 ..X
-	ldy     #$00                            ; 5C31 A0 00                    ..
-	sta     ($AE),y                         ; 5C33 91 AE                    ..
+	stp8	L58F0
 	add8i	L4654, L4654, $02
 	iny                                     ; 5C3E C8                       .
 	sty     L58EF                           ; 5C3F 8C EF 58                 ..X
