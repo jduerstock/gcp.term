@@ -2814,9 +2814,7 @@ L5AAE:	dmv	off_AE, L58EB
 	sta     $A0                             ; 5AC4 85 A0                    ..
 	proc8	sub_4B7B, $A0
 	pull16	off_AE
-	lda     $A0                             ; 5AD1 A5 A0                    ..
-	ldy     #$00                            ; 5AD3 A0 00                    ..
-	sta     (off_AE),y
+	stp8	$A0
 	inc     L4654                           ; 5AD7 EE 54 46                 .TF
 	jmp     L5CF5                           ; 5ADA 4C F5 5C                 L.\
 
@@ -2908,9 +2906,7 @@ L5C54:  ldx     L4654                           ; 5C54 AE 54 46                 
 	lda     L58EE                           ; 5C5D AD EE 58                 ..X
 	eor     #'S'
 	lbne	L5C72
-	lda     L58F1                           ; 5C67 AD F1 58                 ..X
-	jsr     sub_4B7B
-	mv	L58F1, $A0
+	func8_8	sub_4B7B, L58F1, L58F1
 L5C72:	add16m8 off_AE, L58EB, L58EF
 	stp8	L58F1
 	inc     L4654                           ; 5C89 EE 54 46                 .TF
