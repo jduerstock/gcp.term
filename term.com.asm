@@ -6019,8 +6019,7 @@ sub_81F2:
 	lda     #$17                            ; 823E A9 17                    ..
 	sta     $A5                             ; 8240 85 A5                    ..
 	ldy     #$00                            ; 8242 A0 00                    ..
-	ldx     #$81                            ; 8244 A2 81                    ..
-	lda     #$DE                            ; 8246 A9 DE                    ..
+	ldxai	L81DE
 	jsr     sub_4BF2
 	lda     #$81                            ; 824B A9 81                    ..
 	sta     $A3                             ; 824D 85 A3                    ..
