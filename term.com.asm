@@ -2843,13 +2843,7 @@ L5ADD:  lda     L58EE                           ; 5ADD AD EE 58                 
 L5B2A:  lda     L58EE                           ; 5B2A AD EE 58                 ..X
 	eor     #'R'
 	lbne	L5BC1
-	clc                                     ; 5B34 18                       .
-	lda     #$24                            ; 5B35 A9 24                    .$
-	adc     L4654                           ; 5B37 6D 54 46                 mTF
-	sta     L58EB                           ; 5B3A 8D EB 58                 ..X
-	lda     #$B2                            ; 5B3D A9 B2                    ..
-	adc     #$00                            ; 5B3F 69 00                    i.
-	sta     L58EC                           ; 5B41 8D EC 58                 ..X
+	addi16m8 L58EB, LB224, L4654
 	dmv	off_AE, L58E9
 	lda     L58EC                           ; 5B4E AD EC 58                 ..X
 	iny                                     ; 5B51 C8                       .
