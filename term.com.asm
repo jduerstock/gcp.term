@@ -5757,8 +5757,7 @@ L7FA1:  lda     #$07                            ; 7FA1 A9 07                    
 	lda     #$05                            ; 7FD0 A9 05                    ..
 	adc     L7F91                           ; 7FD2 6D 91 7F                 m..
 	sta     $A0                             ; 7FD5 85 A0                    ..
-	lda     $A0                             ; 7FD7 A5 A0                    ..
-	jsr     cmd_2a
+	proc8	cmd_2a, $A0
 L7FDC:  inc     L7F90                           ; 7FDC EE 90 7F                 ...
 	jmp     L7FA1                           ; 7FDF 4C A1 7F                 L..
 
