@@ -2791,13 +2791,7 @@ L5A35:  lda     L58EE                           ; 5A35 AD EE 58                 
 	inc16	L58E9
 L5A53:	dmv	off_AE, L58EB
 	push16	off_AE
-	clc                                     ; 5A63 18                       .
-	lda     #$24                            ; 5A64 A9 24                    .$
-	adc     L4654                           ; 5A66 6D 54 46                 mTF
-	sta     $A0                             ; 5A69 85 A0                    ..
-	lda     #$B2                            ; 5A6B A9 B2                    ..
-	adc     #$00                            ; 5A6D 69 00                    i.
-	sta     $A1                             ; 5A6F 85 A1                    ..
+	addi16m8 $A0, LB224, L4654
 	ldxa	$A0
 	jsr     sub_4B47
 	pull16	off_AE
