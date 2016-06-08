@@ -9158,8 +9158,7 @@ LAB14:	.byte	"C","K","D","F","W","Y","B"
 	.byte	$00
 LAB56:	.addr	LAB14
 LAB58:  .addr	$0000
-LAB5A:  .byte	$00
-LAB5B:  .byte	$00
+LAB5A:  .addr	$0000
 LAB5C:  .byte	$00
 LAB5D:  .byte	$00
 	.byte	$00
