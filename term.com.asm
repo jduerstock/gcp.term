@@ -7433,22 +7433,10 @@ L94E8:	shladdm8 off_AE, L9064, L9416
 	ldy     $A2                             ; 9565 A4 A2                    ..
 	ldxai	L9423
 	jsr     blockmove
-	clc                                     ; 956E 18                       .
-	lda     L941F                           ; 956F AD 1F 94                 ...
-	adc     L9424                           ; 9572 6D 24 94                 m$.
-	sta     L9419                           ; 9575 8D 19 94                 ...
-	clc                                     ; 9578 18                       .
-	lda     L941F                           ; 9579 AD 1F 94                 ...
-	adc     L9426                           ; 957C 6D 26 94                 m&.
-	sta     $AE                             ; 957F 85 AE                    ..
-	clc                                     ; 9581 18                       .
-	lda     $AE                             ; 9582 A5 AE                    ..
-	adc     L9422                           ; 9584 6D 22 94                 m".
-	sta     $AC                             ; 9587 85 AC                    ..
-	sec                                     ; 9589 38                       8
-	lda     $AC                             ; 958A A5 AC                    ..
-	sbc     #$01                            ; 958C E9 01                    ..
-	sta     L941A                           ; 958E 8D 1A 94                 ...
+	add8m	L9419, L941F, L9424
+	add8m	off_AE, L941F, L9426
+	add8m	off_AC, off_AE, L9422
+	sub8i	L941A, off_AC, $01
 	ldx     L9419                           ; 9591 AE 19 94                 ...
 	lda     L9051                           ; 9594 AD 51 90                 .Q.
 	jsr     sub_4955
