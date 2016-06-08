@@ -2745,13 +2745,7 @@ L591F:	add16m8	off_AE, L58E7, L58ED
 	yldi	L58EF, $00
 	lda     L58EE                           ; 599D AD EE 58                 ..X
 	lbne	L59E1
-	clc                                     ; 59A5 18                       .
-	lda     #$24                            ; 59A6 A9 24                    .$
-	adc     L4654                           ; 59A8 6D 54 46                 mTF
-	sta     $A0                             ; 59AB 85 A0                    ..
-	lda     #$B2                            ; 59AD A9 B2                    ..
-	adc     #$00                            ; 59AF 69 00                    i.
-	sta     $A1                             ; 59B1 85 A1                    ..
+	addi16m8 $A0, LB224, L4654
 	ldxa	$A0
 	jsr     sub_4B47
 	lda     $A0                             ; 59BA A5 A0                    ..
