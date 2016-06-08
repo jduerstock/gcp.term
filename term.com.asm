@@ -35,6 +35,7 @@ CHBAS		:= $02F4
 L05C0		:= $05C0
 L3272           := $3272
 L4253           := $4253
+LB118		:= $B118
 LB14A		:= $B14A
 LB16A		:= $B16A
 LB16C		:= $B16C
@@ -1536,7 +1537,7 @@ sub_4B47:
 	sbc     #$30                            ; 4B57 E9 30                    .0
 	and     #$3F                            ; 4B59 29 3F                    )?
 	tax                                     ; 4B5B AA                       .
-	lda     $B118,x                         ; 4B5C BD 18 B1                 ...
+	lda     LB118,x                         ; 4B5C BD 18 B1                 ...
 	sta     $A0                             ; 4B5F 85 A0                    ..
 	rts                                     ; 4B61 60                       `
 
@@ -8868,24 +8869,24 @@ cmd_d8:
 
 ; ----------------------------------------------------------------------------
 cmd_lu:
-	sta     $B118,x                         ; A81F 9D 18 B1                 ...
+	sta     LB118,x                         ; A81F 9D 18 B1                 ...
 	rts                                     ; A822 60                       `
 
 ; ----------------------------------------------------------------------------
 cmd_lv:
 	clc                                     ; A823 18                       .
-	adc     $B118,x                         ; A824 7D 18 B1                 }..
-	sta     $B118,x                         ; A827 9D 18 B1                 ...
+	adc     LB118,x                         ; A824 7D 18 B1                 }..
+	sta     LB118,x                         ; A827 9D 18 B1                 ...
 	rts                                     ; A82A 60                       `
 
 ; ----------------------------------------------------------------------------
 cmd_lw:
-	lda     $B118,x                         ; A82B BD 18 B1                 ...
+	lda     LB118,x                         ; A82B BD 18 B1                 ...
 	eor     #$FF                            ; A82E 49 FF                    I.
 	tay                                     ; A830 A8                       .
 	iny                                     ; A831 C8                       .
 	tya                                     ; A832 98                       .
-	sta     $B118,x                         ; A833 9D 18 B1                 ...
+	sta     LB118,x                         ; A833 9D 18 B1                 ...
 	rts                                     ; A836 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -9107,17 +9108,13 @@ LAA28:	ldi	$A3, $00
 	ldy     #$20                            ; AA5D A0 20                    . 
 	ldxai	LB14A
 	jsr     memset
-	lda     #$00                            ; AA66 A9 00                    ..
-	sta     $A3                             ; AA68 85 A3                    ..
+	ldi	$A3, $00
 	ldy     #$10                            ; AA6A A0 10                    ..
-	ldxai	$B118
+	ldxai	LB118
 	jsr     bzero
-	lda     #$FF                            ; AA73 A9 FF                    ..
-	sta     L4647                           ; AA75 8D 47 46                 .GF
-	lda     #$FF                            ; AA78 A9 FF                    ..
-	sta     L4648                           ; AA7A 8D 48 46                 .HF
-	lda     #$01                            ; AA7D A9 01                    ..
-	jsr     cmd_ue
+	ldi	L4647, $FF
+	ldi	L4648, $FF
+	proc8i	cmd_ue, $01
 	rts                                     ; AA82 60                       `
 
 	.include "sub-ab6a.asm"
