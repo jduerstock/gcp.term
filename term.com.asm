@@ -186,6 +186,16 @@ SYSVBV		:= $E45F
         sta     a1+1
 .endmacro
 
+.macro addi16m8 a1, a2, a3
+	clc
+        lda     #<a2
+        adc     a3
+        sta     a1
+        lda     #>a2
+        adc     #$00
+        sta     a1+1
+.endmacro
+
 .macro add8m a1, a2, a3
 	clc
         lda     a2
@@ -2715,13 +2725,7 @@ L591F:	add16m8	off_AE, L58E7, L58ED
 	lda     L58EE                           ; 5936 AD EE 58                 ..X
 	eor     #'A'
 	lbne	L5A35
-	clc                                     ; 5940 18                       .
-	lda     #$24                            ; 5941 A9 24                    .$
-	adc     L4654                           ; 5943 6D 54 46                 mTF
-	sta     L58EB                           ; 5946 8D EB 58                 ..X
-	lda     #$B2                            ; 5949 A9 B2                    ..
-	adc     #$00                            ; 594B 69 00                    i.
-	sta     L58EC                           ; 594D 8D EC 58                 ..X
+	addi16m8 L58EB, LB224, L4654
 	dmv	off_AE, L58E9
 	lda     L58EC                           ; 595A AD EC 58                 ..X
 	iny                                     ; 595D C8                       .
