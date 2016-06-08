@@ -322,6 +322,11 @@ SYSVBV		:= $E45F
 	mv	a1, $A0
 .endmacro
 
+.macro	func8_8 f1, a1, a2
+	proc8	f1, a2
+	mv	a1, $A0
+.endmacro
+
 .macro	func16_8 f1, a1, a2
 	proc8	f1, a2
 	rdmv	a1, $A0
@@ -2764,15 +2769,8 @@ L59E1:  lda     L58EF                           ; 59E1 AD EF 58                 
 	lbcs	L5A32
 	add16m8	off_AE, L58EB, L58EF
 	push16	off_AE
-	clc                                     ; 5A02 18                       .
-	lda     #$24                            ; 5A03 A9 24                    .$
-	adc     L4654                           ; 5A05 6D 54 46                 mTF
-	sta     $A0                             ; 5A08 85 A0                    ..
-	lda     #$B2                            ; 5A0A A9 B2                    ..
-	adc     #$00                            ; 5A0C 69 00                    i.
-	sta     $A1                             ; 5A0E 85 A1                    ..
-	ldx     $A1                             ; 5A10 A6 A1                    ..
-	lda     $A0                             ; 5A12 A5 A0                    ..
+	addi16m8 $A0, LB224, L4654
+	ldxa	$A0
 	jsr     sub_4B47
 	pull16	off_AE
 	lda     $A0                             ; 5A1D A5 A0                    ..
