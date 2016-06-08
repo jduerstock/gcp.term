@@ -2314,13 +2314,7 @@ L53BE:  lda     L5391                           ; 53BE AD 91 53                 
 	eor     LB16C                           ; 53D5 4D 6C B1                 Ml.
 	lbne	L541E
 	sub8m	L4650, L4650, LB16A
-	clc                                     ; 53E7 18                       .
-	lda     #<LB16A
-	adc     LB16A                           ; 53EA 6D 6A B1                 mj.
-	sta     $A2                             ; 53ED 85 A2                    ..
-	lda     #>LB16A
-	adc     #$00                            ; 53F1 69 00                    i.
-	sta     $A3                             ; 53F3 85 A3                    ..
+	addi16m8 $A2, LB16A, LB16A
 	sec                                     ; 53F5 38                       8
 	lda     #$5A                            ; 53F6 A9 5A                    .Z
 	sbc     LB16A                           ; 53F8 ED 6A B1                 .j.
