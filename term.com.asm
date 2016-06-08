@@ -2881,12 +2881,7 @@ L5BC1:  lda     L58EE                           ; 5BC1 AD EE 58                 
 	lbne	L5C95
 L5BD2:	addi16m8 L58EB, LB224, L4654
 	dmv	off_AE, L58E9
-	lda     L58EC                           ; 5BEC AD EC 58                 ..X
-	ldy     #$01                            ; 5BEF A0 01                    ..
-	sta     ($AE),y                         ; 5BF1 91 AE                    ..
-	lda     L58EB                           ; 5BF3 AD EB 58                 ..X
-	dey                                     ; 5BF6 88                       .
-	sta     ($AE),y                         ; 5BF7 91 AE                    ..
+	stp16	L58EB
 	add16i	L58E9, L58E9, $0002
 	clc                                     ; 5C0A 18                       .
 	lda     #$24                            ; 5C0B A9 24                    .$
