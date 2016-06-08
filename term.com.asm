@@ -2892,8 +2892,7 @@ L5BD2:	addi16m8 L58EB, LB224, L4654
 	add8i	L4654, L4654, $02
 	iny                                     ; 5C3E C8                       .
 	sty     L58EF                           ; 5C3F 8C EF 58                 ..X
-	lda     L58F0                           ; 5C42 AD F0 58                 ..X
-	sta     L5C53                           ; 5C45 8D 53 5C                 .S\
+	mv	L5C53, L58F0
 L5C48:  lda     L5C53                           ; 5C48 AD 53 5C                 .S\
 	cmp     L58EF                           ; 5C4B CD EF 58                 ..X
 	bcs     L5C54                           ; 5C4E B0 04                    ..
