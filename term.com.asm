@@ -7363,7 +7363,7 @@ L941F:  .byte	$00
 	.byte	$00
 	.byte	$00
 L9422:  .byte	$00
-	.byte	$00
+L9423:	.byte	$00
 L9424:  .byte	$00
 	.byte	$00
 L9426:  .byte	$00
@@ -7429,13 +7429,9 @@ L94E8:	shladdm8 off_AE, L9064, L9416
 	mv	L9051, L9416
 	blkmv_imi L941C, P9055, $0007
 	add16i	$A2, P9055, $001E
-	lda     #$00                            ; 955D A9 00                    ..
-	sta     $A5                             ; 955F 85 A5                    ..
-	lda     #$04                            ; 9561 A9 04                    ..
-	sta     $A4                             ; 9563 85 A4                    ..
+	rdldi	$A4, $0004
 	ldy     $A2                             ; 9565 A4 A2                    ..
-	ldx     #$94                            ; 9567 A2 94                    ..
-	lda     #$23                            ; 9569 A9 23                    .#
+	ldxai	L9423
 	jsr     blockmove
 	clc                                     ; 956E 18                       .
 	lda     L941F                           ; 956F AD 1F 94                 ...
