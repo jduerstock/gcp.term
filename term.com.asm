@@ -9065,16 +9065,7 @@ cmd_ue:
 	mv	L4658, LA9DD
 	rts                                     ; A9EA 60                       `
 
-; ----------------------------------------------------------------------------
-LA9EB:  .byte	$00
-
-; ----------------------------------------------------------------------------
-cmd_uh:  
-	prolog
-	sta     LA9EB                           ; A9EF 8D EB A9                 ...
-	mv	L464E, LA9EB
-	rts
-
+	.include "cmd-uh.asm"
 	.include "cmd-li.asm"
 	.include "sub-ab6a.asm"
 	.include "sub-ac7e.asm"
