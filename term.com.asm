@@ -9143,7 +9143,7 @@ LAB08:	.byte	$00
 	.byte	$00
 	.byte	$00
 
-LAB0B:
+sub_AB0B:
 	stack_prolog LAB08, $02
 LAB14:	.byte	"C","K","D","F","W","Y","B"
 	.byte	"x","y","z","U","V","X","N"
@@ -9208,10 +9208,10 @@ LABEE:	shladdm8 off_AE, LAB5A, LAB69
 	shladdm8 off_AE, LAB58, LAB69
 	iny                                     ; AC23 C8                       .
 	lda     ($AE),y                         ; AC24 B1 AE                    ..
-	sta     LAB0B+2                         ; AC26 8D 0D AB                 ...
+	sta     sub_AB0B+2
 	dey                                     ; AC29 88                       .
 	lda     ($AE),y                         ; AC2A B1 AE                    ..
-	sta     LAB0B+1                         ; AC2C 8D 0C AB                 ...
+	sta     sub_AB0B+1
 	dmv	off_AE, LAB5C
 	iny                                     ; AC39 C8                       .
 	lda     ($AE),y                         ; AC3A B1 AE                    ..
@@ -9237,7 +9237,7 @@ LAC55:  lda     #$07                            ; AC55 A9 07                    
 ; ----------------------------------------------------------------------------
 LAC70:  ldy     $A2                             ; AC70 A4 A2                    ..
 	ldxa	$A0
-	jsr     LAB0B                           ; AC76 20 0B AB                  ..
+	jsr     sub_AB0B
 	ldi	$A0, $01
 	rts                                     ; AC7D 60                       `
 
