@@ -2822,8 +2822,7 @@ L5AAE:	dmv	off_AE, L58EB
 	ldx     L4654                           ; 5ABE AE 54 46                 .TF
 	lda     LB224,x
 	sta     $A0                             ; 5AC4 85 A0                    ..
-	lda     $A0                             ; 5AC6 A5 A0                    ..
-	jsr     sub_4B7B
+	proc8	sub_4B7B, $A0
 	pull16	off_AE
 	lda     $A0                             ; 5AD1 A5 A0                    ..
 	ldy     #$00                            ; 5AD3 A0 00                    ..
