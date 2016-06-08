@@ -7421,12 +7421,7 @@ L94AB:	sub8i	off_AE, L9061, $01
 L94DF:	sub8i	L9416, L9061, $01
 L94E8:	shladdm8 off_AE, L9064, L9416
 	ldp16	L905B
-	mv	$A3, L905B+1
-	ldi	$A5, $00
-	mv	$A4, L9060
-	ldy     L905B                           ; 9517 AC 5B 90                 .[.
-	ldxa	L9059
-	jsr     blockmove
+	blkmv_mm8 L9059, L905B, L9060
 	ldx     L9416                           ; 9523 AE 16 94                 ...
 	lda     L9053                           ; 9526 AD 53 90                 .S.
 	jsr     sub_90CE
