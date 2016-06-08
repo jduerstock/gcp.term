@@ -9009,20 +9009,7 @@ cmd_23:
 	rts                                     ; A96A 60                       `
 ;--	}
 
-; ----------------------------------------------------------------------------
-LA96B:	.byte	$00
-LA96C:	.byte	$00
-LA96D:	.addr	$00D5
-
-; ----------------------------------------------------------------------------
-cmd_3a:						; ":"
-	prolog
-	stx     LA96C                           ; A972 8E 6C A9                 .l.
-	sta     LA96B                           ; A975 8D 6B A9                 .k.
-	add16m8	off_AE, LA96D, LA96B
-	stp8	LA96C
-	rts                                     ; A98F 60                       `
-
+	.include "cmd-3a.asm"
 	.include "cmd-ln.asm"
 	.include "sub-a9a3.asm"
 	.include "cmd-ue.asm"
