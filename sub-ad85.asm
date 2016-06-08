@@ -29,6 +29,6 @@ sub_AD85:
 	ldx     $A1                             ; ADD8 A6 A1                    ..
 	lda     #$06                            ; ADDA A9 06                    ..
 	jsr     SETVBV
-	rdldi	VDSLST, LAD07
+	rdldi	VDSLST, sub_AD07
 	rts                                     ; ADE9 60                       `
 
