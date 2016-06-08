@@ -7456,26 +7456,16 @@ L95B8:  ldx     L941A                           ; 95B8 AE 1A 94                 
 	lbne	L95DC
 L95CA:	add8m	off_AE, L941F, L9051
 	sub8m	L941F, off_AE, L941A
-L95DC:  lda     L9051                           ; 95DC AD 51 90                 .Q.
-	sta     $A3                             ; 95DF 85 A3                    ..
+L95DC:	mv	$A3, L9051
 	ldy     #$80                            ; 95E1 A0 80                    ..
 	ldxa	L9053
 	jsr     cmd_uv
-	lda     L941F                           ; 95EC AD 1F 94                 ...
-	sta     $A3                             ; 95EF 85 A3                    ..
+	mv	$A3, L941F
 	ldy     L941E                           ; 95F1 AC 1E 94                 ...
-	ldx     L9053                           ; 95F4 AE 53 90                 .S.
-	lda     L9052                           ; 95F7 AD 52 90                 .R.
+	ldxa	L9052
 	jsr     cmd_lm
-	ldy     #$00                            ; 95FD A0 00                    ..
-	sty     L9050                           ; 95FF 8C 50 90                 .P.
-	clc                                     ; 9602 18                       .
-	lda     L9059                           ; 9603 AD 59 90                 .Y.
-	adc     L905E                           ; 9606 6D 5E 90                 m^.
-	sta     $AE                             ; 9609 85 AE                    ..
-	lda     L905A                           ; 960B AD 5A 90                 .Z.
-	adc     #$00                            ; 960E 69 00                    i.
-	sta     $AF                             ; 9610 85 AF                    ..
+	yldi	L9050, $00
+	add16m8	off_AE, L9059, L905E
 	lda     ($AE),y                         ; 9612 B1 AE                    ..
 	eor     #$80                            ; 9614 49 80                    I.
 	sta     ($AE),y                         ; 9616 91 AE                    ..
