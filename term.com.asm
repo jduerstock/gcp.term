@@ -8918,9 +8918,7 @@ LA852:	.byte   $02,"cS"
 LA855:	ldi	$A3, $00
 	dmv	off_AE, LA844
 	ldi	$A5, $00
-	ldy     #$00                            ; A867 A0 00                    ..
-	lda     ($AE),y                         ; A869 B1 AE                    ..
-	sta     $A4                             ; A86B 85 A4                    ..
+	ldp8	$A4
 	add16i	$A6, LA844, $0001
 	ldy     LA843                           ; A87C AC 43 A8                 .C.
 	ldxai	$A852
