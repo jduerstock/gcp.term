@@ -2883,13 +2883,7 @@ L5BD2:	addi16m8 L58EB, LB224, L4654
 	dmv	off_AE, L58E9
 	stp16	L58EB
 	add16i	L58E9, L58E9, $0002
-	clc                                     ; 5C0A 18                       .
-	lda     #$24                            ; 5C0B A9 24                    .$
-	adc     L4654                           ; 5C0D 6D 54 46                 mTF
-	sta     $A0                             ; 5C10 85 A0                    ..
-	lda     #$B2                            ; 5C12 A9 B2                    ..
-	adc     #$00                            ; 5C14 69 00                    i.
-	sta     $A1                             ; 5C16 85 A1                    ..
+	addi16m8 $A0, LB224, L4654
 	ldxa	$A0
 	jsr     sub_4B47
 	mv	L58F0, $A0
