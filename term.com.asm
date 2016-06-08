@@ -7427,12 +7427,7 @@ L94E8:	shladdm8 off_AE, L9064, L9416
 	jsr     sub_90CE
 	mv	L905D, $A0
 	mv	L9051, L9416
-	mv	$A3, P9055+1
-	ldi	$A5, $00
-	ldi	$A4, $07
-	ldy     P9055
-	ldxai	L941C
-	jsr     blockmove
+	blkmv_imi L941C, P9055, $0007
 	add16i	$A2, P9055, $001E
 	lda     #$00                            ; 955D A9 00                    ..
 	sta     $A5                             ; 955F 85 A5                    ..
