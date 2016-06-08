@@ -9055,16 +9055,7 @@ LA9CA:  lda     $DA                             ; A9CA A5 DA                    
 	sty     $DA                             ; A9DA 84 DA                    ..
 LA9DC:  rts                                     ; A9DC 60                       `
 
-; ----------------------------------------------------------------------------
-LA9DD:	.byte	$00
-
-; ----------------------------------------------------------------------------
-cmd_ue:  
-	prolog
-	sta     LA9DD                           ; A9E1 8D DD A9                 ...
-	mv	L4658, LA9DD
-	rts                                     ; A9EA 60                       `
-
+	.include "cmd-ue.asm"
 	.include "cmd-uh.asm"
 	.include "cmd-li.asm"
 	.include "sub-ab6a.asm"
