@@ -7454,14 +7454,8 @@ L95B8:  ldx     L941A                           ; 95B8 AE 1A 94                 
 	lda     $A0                             ; 95C1 A5 A0                    ..
 	eor     #$01                            ; 95C3 49 01                    I.
 	lbne	L95DC
-L95CA:  clc                                     ; 95CA 18                       .
-	lda     L941F                           ; 95CB AD 1F 94                 ...
-	adc     L9051                           ; 95CE 6D 51 90                 mQ.
-	sta     $AE                             ; 95D1 85 AE                    ..
-	sec                                     ; 95D3 38                       8
-	lda     $AE                             ; 95D4 A5 AE                    ..
-	sbc     L941A                           ; 95D6 ED 1A 94                 ...
-	sta     L941F                           ; 95D9 8D 1F 94                 ...
+L95CA:	add8m	off_AE, L941F, L9051
+	sub8m	L941F, off_AE, L941A
 L95DC:  lda     L9051                           ; 95DC AD 51 90                 .Q.
 	sta     $A3                             ; 95DF 85 A3                    ..
 	ldy     #$80                            ; 95E1 A0 80                    ..
