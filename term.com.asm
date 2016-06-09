@@ -7761,10 +7761,8 @@ L9AC4:	ldi	$A3, $00
 	ldy     #$49                            ; 9AD1 A0 49                    .I
 	ldxai	L9AC1
 	jsr     sub_55A0
-	lda     L9051                           ; 9ADA AD 51 90                 .Q.
-	jsr     sub_9427
-	lda     #$00                            ; 9AE0 A9 00                    ..
-	jsr     sub_961E
+	proc8	sub_9427, L9051
+	proc8i	sub_961E, $00
 L9AE5:  jmp     L9BCE                           ; 9AE5 4C CE 9B                 L..
 
 ; ----------------------------------------------------------------------------
@@ -7791,10 +7789,7 @@ L9B1D:  jsr     cmd_07
 	jmp     L9BCE                           ; 9B20 4C CE 9B                 L..
 
 ; ----------------------------------------------------------------------------
-L9B23:  sec                                     ; 9B23 38                       8
-	lda     L9060                           ; 9B24 AD 60 90                 .`.
-	sbc     #$01                            ; 9B27 E9 01                    ..
-	sta     $AE                             ; 9B29 85 AE                    ..
+L9B23:	sub8i	off_AE, L9060, $01
 	lda     L905E                           ; 9B2B AD 5E 90                 .^.
 	eor     $AE                             ; 9B2E 45 AE                    E.
 	lbne	L9B57
