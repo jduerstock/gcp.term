@@ -8706,16 +8706,11 @@ LA68A:  jsr     cmd_d1
 LA6A7:	.byte	$03,"CBB"
 
 ; ----------------------------------------------------------------------------
-LA6AB:  lda     #$00                            ; A6AB A9 00                    ..
-	sta     $A3                             ; A6AD 85 A3                    ..
-	lda     #$00                            ; A6AF A9 00                    ..
-	sta     $A5                             ; A6B1 85 A5                    ..
-	lda     LA538                           ; A6B3 AD 38 A5                 .8.
-	sta     $A4                             ; A6B6 85 A4                    ..
-	lda     #$00                            ; A6B8 A9 00                    ..
-	sta     $A7                             ; A6BA 85 A7                    ..
-	lda     LA537                           ; A6BC AD 37 A5                 .7.
-	sta     $A6                             ; A6BF 85 A6                    ..
+LA6AB:	ldi	$A3, $00
+	ldi	$A5, $00
+	mv	$A4, LA538
+	ldi	$A7, $00
+	mv	$A6, LA537
 	ldy     #$04                            ; A6C1 A0 04                    ..
 	ldxai	LA6A7
 	jsr     sub_55A0
