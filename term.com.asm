@@ -8757,9 +8757,7 @@ cmd_d6:
 
 ; ----------------------------------------------------------------------------
 LA70D:	add16i	off_AE, LA6DC, $0001
-	ldy     #$00                            ; A71C A0 00                    ..
-	lda     (off_AE),y
-	sta     LA6DE                           ; A720 8D DE A6                 ...
+	ldp8	LA6DE
 	jsr     cmd_d0
 	lda     LA6D9                           ; A726 AD D9 A6                 ...
 	jsr     sub_A28D
@@ -8832,10 +8830,8 @@ LA7C3:  .byte	$00
 cmd_d7:
 	stack_prolog LA7C1, $02
 	jsr     cmd_d0
-	lda     #$00                            ; A7D0 A9 00                    ..
-	sta     $A3                             ; A7D2 85 A3                    ..
-	lda     #$00                            ; A7D4 A9 00                    ..
-	sta     $A4                             ; A7D6 85 A4                    ..
+	ldi	$A3, $00
+	ldi	$A4, $00
 	rdmv	$A5, LA7C2
 	ldy     #$20                            ; A7E2 A0 20                    . 
 	ldx     #$00                            ; A7E4 A2 00                    ..
