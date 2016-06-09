@@ -8313,9 +8313,7 @@ LA1E5:	add16m8	off_AE, L9FEF, LA009
 	lda     $A0                             ; A207 A5 A0                    ..
 	lbne	LA23C
 	add16m8 off_AE, L9FF1, LA00A
-	ldy     #$00                            ; A21E A0 00                    ..
-	lda     ($AE),y                         ; A220 B1 AE                    ..
-	sta     LA00D                           ; A222 8D 0D A0                 ...
+	ldp8	LA00D
 	ldx     LA00D                           ; A225 AE 0D A0                 ...
 	lda     L9FE3                           ; A228 AD E3 9F                 ...
 	jsr     sub_7F93
