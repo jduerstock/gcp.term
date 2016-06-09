@@ -8775,13 +8775,7 @@ cmd_lu:
 	sta     LB118,x                         ; A81F 9D 18 B1                 ...
 	rts                                     ; A822 60                       `
 
-; ----------------------------------------------------------------------------
-cmd_lv:
-	clc                                     ; A823 18                       .
-	adc     LB118,x                         ; A824 7D 18 B1                 }..
-	sta     LB118,x                         ; A827 9D 18 B1                 ...
-	rts                                     ; A82A 60                       `
-
+	.include "cmd-lv.asm"
 	.include "cmd-lw.asm"
 	.include "cmd-3d.asm"
 	.include "cmd-2e.asm"
