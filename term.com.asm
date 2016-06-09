@@ -6068,8 +6068,7 @@ L8386:  ldy     L81DA                           ; 8386 AC DA 81                 
 L83AA:  lda     #$00                            ; 83AA A9 00                    ..
 	cmp     L81DA                           ; 83AC CD DA 81                 ...
 	lbcs	L83B9
-	lda     #$10                            ; 83B4 A9 10                    ..
-	jsr     cmd_2a
+	proc8i	cmd_2a, $10
 L83B9:  lda     L474F                           ; 83B9 AD 4F 47                 .OG
 	eor     #$03                            ; 83BC 49 03                    I.
 	lbne	L83CE
@@ -6083,10 +6082,10 @@ L83D1:	dmv	L4762, L81E4
 L83E2:  rts                                     ; 83E2 60                       `
 
 ; ----------------------------------------------------------------------------
-L83E3:	.byte	$09                             ; 83E3 09                       .
-L83E4:	.byte	$4C                             ; 83E4 4C                       L
-L83E5:	.byte	$DD                             ; 83E5 DD                       .
-L83E6:	.byte	$F3                             ; 83E6 F3                       .
+L83E3:	.byte	$09
+L83E4:	.byte	$4C
+L83E5:	.byte	$DD
+L83E6:	.byte	$F3
 L83E7:	.byte	$A9                             ; 83E7 A9                       .
 L83E8:	.byte	$00
 L83E9:	.byte	$F0                             ; 83E9 F0                       .
@@ -6410,10 +6409,8 @@ sub_884C:
 	lda     ($AE),y                         ; 88BA B1 AE                    ..
 	adc     #$00                            ; 88BC 69 00                    i.
 	sta     L8839+1
-	lda     #$00                            ; 88C1 A9 00                    ..
-	sta     $85                             ; 88C3 85 85                    ..
-	lda     #$28                            ; 88C5 A9 28                    .(
-	sta     $84                             ; 88C7 85 84                    ..
+	ldi	$85, $00
+	ldi	$84, $28
 	lda     L8843                           ; 88C9 AD 43 88                 .C.
 	ldx     #$00                            ; 88CC A2 00                    ..
 	jsr     MultI
