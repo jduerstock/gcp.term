@@ -8444,10 +8444,9 @@ LA381:  .byte	$00
 ; ----------------------------------------------------------------------------
 cmd_d3:
 	prolog
-	sta     LA381                           ; A385 8D 81 A3                 ...
-	jsr     cmd_d0
-	lda     LA381                           ; A38B AD 81 A3                 ...
-	jsr     sub_A28D
+	sta	LA381
+	jsr	cmd_d0
+	proc8	sub_A28D, LA381
 	lda     L4652                           ; A391 AD 52 46                 .RF
 	eor     LA381                           ; A394 4D 81 A3                 M..
 	lbne	LA3A1
@@ -8504,12 +8503,9 @@ LA3E2:  jsr     cmd_d0
 	adc     #$00                            ; A445 69 00                    i.
 	sta     $AD                             ; A447 85 AD                    ..
 	sub16i	LA3AA, off_AC, $0001
-	lda     LA3AE                           ; A458 AD AE A3                 ...
-	sta     LA3B1                           ; A45B 8D B1 A3                 ...
-	lda     LA3B4                           ; A45E AD B4 A3                 ...
-	sta     LA3AF                           ; A461 8D AF A3                 ...
-	lda     LA3B6                           ; A464 AD B6 A3                 ...
-	sta     LA475                           ; A467 8D 75 A4                 .u.
+	mv	LA3B1, LA3AE
+	mv	LA3AF, LA3B4
+	mv	LA475, LA3B6
 LA46A:  lda     LA475                           ; A46A AD 75 A4                 .u.
 	cmp     LA3AF                           ; A46D CD AF A3                 ...
 	bcs     LA476                           ; A470 B0 04                    ..
