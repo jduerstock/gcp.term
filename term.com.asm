@@ -6840,8 +6840,7 @@ cmd_ua:
 L8EF8:	.byte	$00
 L8EF9:  .byte	$00
 L8EFA:  .byte	$00
-L8EFB:  .byte	$00
-L8EFC:  .byte	$00
+L8EFB:  .addr	$0000
 
 cmd_ug:
 	stack_prolog L8EF8, $02
