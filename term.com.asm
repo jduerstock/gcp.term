@@ -8303,9 +8303,7 @@ LA1E4:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 LA1E5:	add16m8	off_AE, L9FEF, LA009
-	ldy     #$00                            ; A1F5 A0 00                    ..
-	lda     ($AE),y                         ; A1F7 B1 AE                    ..
-	sta     LA00C                           ; A1F9 8D 0C A0                 ...
+	ldp8	LA00C
 	ldy     LA00C                           ; A1FC AC 0C A0                 ...
 	ldx     L9FE3                           ; A1FF AE E3 9F                 ...
 	lda     #$04                            ; A202 A9 04                    ..
