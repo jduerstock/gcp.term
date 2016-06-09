@@ -6811,11 +6811,7 @@ cmd_uz:						; "Z"
 	jsr     sub_43D1			; off_AE = 8E22 << 3
 	st2xa	off_AE
 	add16m	$A0, L4674, off_AE		; $A0 = 
-	mv	$A3, L8E20+1
-	rdldi	$A4, $0008
-	ldy     L8E20                           ; 8E69 AC 20 8E                 . .
-	ldxa	$A0
-	jsr     blockmove
+	blkmv_mmi $A0, L8E20, $0008
 	rts                                     ; 8E73 60                       `
 
 ; ----------------------------------------------------------------------------
