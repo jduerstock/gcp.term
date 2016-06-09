@@ -8538,9 +8538,7 @@ LA4B2:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 LA4B3:	add16m8	off_AE, LA3AA, LA3B0
-	ldy     #$00                            ; A4C3 A0 00                    ..
-	lda     ($AE),y                         ; A4C5 B1 AE                    ..
-	sta     LA3B2                           ; A4C7 8D B2 A3                 ...
+	ldp8	LA3B2
 	lda     LA3A7                           ; A4CA AD A7 A3                 ...
 	lbeq	LA4DD
 	lda     LA3B2                           ; A4D2 AD B2 A3                 ...
