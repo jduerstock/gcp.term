@@ -7730,7 +7730,7 @@ L9A72:	ldi	$A3, $00
 	ldi	$A5, $00
 	mv	$A4, L9051
 	ldy     #$44                            ; 9A7F A0 44                    .D
-	ldxai	$9A6F
+	ldxai	L9A6F
 	jsr     sub_55A0
 	proc8	sub_9427, L9051
 	proc8i	sub_961E, $00
