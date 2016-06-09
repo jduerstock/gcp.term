@@ -7849,9 +7849,7 @@ L9BDF:	.byte	$00
 cmd_lj:
 	stack_prolog L9BDD, $02
 	add16m8 off_AE, L46EB, L9BDD
-	lda     L9BDE                           ; 9BF9 AD DE 9B                 ...
-	ldy     #$00                            ; 9BFC A0 00                    ..
-	sta     ($AE),y                         ; 9BFE 91 AE                    ..
+	stp8	L9BDE
 	add16m8 off_AE, L46ED, L9BDD
 	lda     L9BDF                           ; 9C10 AD DF 9B                 ...
 	sta     ($AE),y                         ; 9C13 91 AE                    ..
