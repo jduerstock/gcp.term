@@ -8782,16 +8782,7 @@ cmd_lv:
 	sta     LB118,x                         ; A827 9D 18 B1                 ...
 	rts                                     ; A82A 60                       `
 
-; ----------------------------------------------------------------------------
-cmd_lw:
-	lda     LB118,x                         ; A82B BD 18 B1                 ...
-	eor     #$FF                            ; A82E 49 FF                    I.
-	tay                                     ; A830 A8                       .
-	iny                                     ; A831 C8                       .
-	tya                                     ; A832 98                       .
-	sta     LB118,x                         ; A833 9D 18 B1                 ...
-	rts                                     ; A836 60                       `
-
+	.include "cmd-lw.asm"
 	.include "cmd-3d.asm"
 	.include "cmd-2e.asm"
 	.include "cmd-24.asm"
