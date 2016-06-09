@@ -8695,13 +8695,9 @@ LA672:	add16m8 LA532, LA532, LA541
 
 ; ----------------------------------------------------------------------------
 LA68A:  jsr     cmd_d1
-	lda     LA53A                           ; A68D AD 3A A5                 .:.
-	sta     LA537                           ; A690 8D 37 A5                 .7.
-	lda     #$08                            ; A693 A9 08                    ..
-	sta     $84                             ; A695 85 84                    ..
-	lda     LA53B                           ; A697 AD 3B A5                 .;.
-	tax                                     ; A69A AA                       .
-	lda     LA53A                           ; A69B AD 3A A5                 .:.
+	mv	LA537, LA53A
+	ldi	$84, $08
+	ld2xa	LA53A
 	jsr     sub_43E0
 	sta     LA538                           ; A6A1 8D 38 A5                 .8.
 	jmp     LA6AB                           ; A6A4 4C AB A6                 L..
