@@ -6991,8 +6991,7 @@ L907B:	.addr	L9069
 sub_907D:
 	prolog
 	sta     L9066                           ; 9080 8D 66 90                 .f.
-	ldy     #$00                            ; 9083 A0 00                    ..
-	sty     L9067                           ; 9085 8C 67 90                 .g.
+	yldi	L9067, $00
 L9088:	add16m8	off_AE, L907B, L9067
 	ldy     #$00                            ; 9098 A0 00                    ..
 	lda     ($AE),y                         ; 909A B1 AE                    ..
