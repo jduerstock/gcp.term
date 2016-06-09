@@ -50,11 +50,8 @@ LAF94:  lda     L4652                           ; AF94 AD 52 46                 
 	jsr     cmd_d1
 LAFA2:  lda	CH
 	eor     #$FF                            ; AFA5 49 FF                    I.
-	beq     LAFAC                           ; AFA7 F0 03                    ..
-	jmp     LAFCB                           ; AFA9 4C CB AF                 L..
-
-; ----------------------------------------------------------------------------
-LAFAC:  lda     L474D                           ; AFAC AD 4D 47                 .MG
+	lbne	LAFCB
+	lda     L474D                           ; AFAC AD 4D 47                 .MG
 	eor     L474E                           ; AFAF 4D 4E 47                 MNG
 	lbeq	LAFCB
 	ldx     L474E                           ; AFB7 AE 4E 47                 .NG
