@@ -8885,19 +8885,8 @@ cmd_lw:
 	sta     LB118,x                         ; A833 9D 18 B1                 ...
 	rts                                     ; A836 60                       `
 
-; ----------------------------------------------------------------------------
-cmd_3d:
-	stx     $A0                             ; A837 86 A0                    ..
-	cmp     $A0                             ; A839 C5 A0                    ..
-	bne     LA841                           ; A83B D0 04                    ..
-	tya                                     ; A83D 98                       .
-	jsr     cmd_2a
-LA841:  rts                                     ; A841 60                       `
-
-; ----------------------------------------------------------------------------
-cmd_2e:
-	rts
-
+	.include "cmd-3d.asm"
+	.include "cmd-2e.asm"
 	.include "cmd-24.asm"
 	.include "cmd-40.asm"
 	.include "cmd-23.asm"
