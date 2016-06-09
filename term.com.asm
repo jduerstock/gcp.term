@@ -6981,9 +6981,7 @@ L9065:  .byte	$00
 L9066:  .byte	$00
 L9067:  .byte	$00
 L9068:  .byte	$00
-L9069:	.byte   $9F                             ; 9069 9F                       .
-	tya                                     ; 906A 98                       .
-	sta     $B39B,x                         ; 906B 9D 9B B3                 ...
+L9069:	.byte   $9F,$98,$9D,$9B,$B3
 	lda     $B0,x                           ; 906E B5 B0                    ..
 	.byte   $B2                             ; 9070 B2                       .
 	ldx     $27                             ; 9071 A6 27                    .'
