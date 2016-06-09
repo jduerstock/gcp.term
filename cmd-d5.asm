@@ -93,9 +93,7 @@ LA63A:  jmp     LA662                           ; A63A 4C 62 A6                 
 ; ----------------------------------------------------------------------------
 LA63D:	add16m8 off_AE, LA532, LA538
 	stp8	LA539
-	inc     LA53A                           ; A654 EE 3A A5                 .:.
-	bne     LA65C                           ; A657 D0 03                    ..
-	inc     LA53B                           ; A659 EE 3B A5                 .;.
+	inc16	LA53A
 LA65C:  inc     LA538                           ; A65C EE 38 A5                 .8.
 	jmp     LA60D                           ; A65F 4C 0D A6                 L..
 
