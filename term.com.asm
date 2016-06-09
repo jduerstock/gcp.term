@@ -8632,15 +8632,7 @@ LA6AB:	ldi	$A3, $00
 	jsr     sub_55A0
 	rts                                     ; A6CA 60                       `
 
-; ----------------------------------------------------------------------------
-LA6CB:	.byte	$00
-	.byte	$00
-	.byte	$00
-
-cmd_d9:
-	stack_prolog LA6CB, $02
-	rts                                     ; A6D7 60                       `
-
+	.include "cmd-d9.asm"
 	.include "cmd-d6.asm"
 	.include "cmd-d7.asm"
 	.include "cmd-d8.asm"
