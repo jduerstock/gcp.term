@@ -7912,17 +7912,7 @@ L9CBF:	.byte	$0C                             ; 9CBF 0C                       .
 L9CC0:	.byte	$02                             ; 9CC0 02                       .
 L9CC1:	.byte	$00
 L9CC2:	.byte	$00
-L9CC3:	.byte   $04                             ; 9CC3 04                       .
-	.byte   $02                             ; 9CC4 02                       .
-	.byte   $03                             ; 9CC5 03                       .
-	.byte   $FF                             ; 9CC6 FF                       .
-	.byte	$06
-	.byte	$08
-	.byte   $07                             ; 9CC9 07                       .
-	.byte   $FF                             ; 9CCA FF                       .
-	.byte	$05
-	.byte	$01
-	.byte	$00
+L9CC3:	.byte   $04,$02,$03,$FF,$06,$08,$07,$FF,$05,$01,$00
 L9CCE:	.addr	L9CC3
 
 sub_9CD0:
