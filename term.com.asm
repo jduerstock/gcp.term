@@ -7817,9 +7817,7 @@ L9B57:	add16m8	L979F, L9059, L905E
 	ldxa	$A0
 	jsr     sub_4EB1
 	add16m8	off_AE, L9059, L905E
-	lda     L979D                           ; 9BAB AD 9D 97                 ...
-	ldy     #$00                            ; 9BAE A0 00                    ..
-	sta     (off_AE),y
+	stp8	L979D
 	ldxa	L905D
 	jsr     sub_4983
 	lda     $A0                             ; 9BBB A5 A0                    ..
