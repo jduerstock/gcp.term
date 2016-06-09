@@ -8669,9 +8669,7 @@ LA63A:  jmp     LA662                           ; A63A 4C 62 A6                 
 
 ; ----------------------------------------------------------------------------
 LA63D:	add16m8 off_AE, LA532, LA538
-	lda     LA539                           ; A64D AD 39 A5                 .9.
-	ldy     #$00                            ; A650 A0 00                    ..
-	sta     ($AE),y                         ; A652 91 AE                    ..
+	stp8	LA539
 	inc     LA53A                           ; A654 EE 3A A5                 .:.
 	bne     LA65C                           ; A657 D0 03                    ..
 	inc     LA53B                           ; A659 EE 3B A5                 .;.
