@@ -7912,16 +7912,18 @@ L9CBF:	.byte	$0C                             ; 9CBF 0C                       .
 L9CC0:	.byte	$02                             ; 9CC0 02                       .
 L9CC1:	.byte	$00
 L9CC2:	.byte	$00
-	.byte   $04                             ; 9CC3 04                       .
+L9CC3:	.byte   $04                             ; 9CC3 04                       .
 	.byte   $02                             ; 9CC4 02                       .
 	.byte   $03                             ; 9CC5 03                       .
 	.byte   $FF                             ; 9CC6 FF                       .
-	asl     $08                             ; 9CC7 06 08                    ..
+	.byte	$06
+	.byte	$08
 	.byte   $07                             ; 9CC9 07                       .
 	.byte   $FF                             ; 9CCA FF                       .
-	ora     $01                             ; 9CCB 05 01                    ..
+	.byte	$05
+	.byte	$01
 	.byte	$00
-L9CCE:	.byte	$C3,$9C
+L9CCE:	.addr	L9CC3
 
 sub_9CD0:
 	stack_prolog L9CBA, $03
