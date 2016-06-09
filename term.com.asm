@@ -7864,13 +7864,7 @@ L9C19:	.byte	$00,$00,$01,$01,$01,$00,$FF,$FF,$FF
 L9C22:	.addr	L9C19
 L9C24:	.byte	$00,$FF,$FF,$00,$01,$01,$01,$00,$FF
 L9C2D:	.addr	L9C24
-L9C2F:	dec     $1E,x                           ; 9C2F D6 1E                    ..
-	ora     #$00                            ; 9C31 09 00                    ..
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
+L9C2F:	.byte	$D6,$1E,$09,$00,$00,$00,$00,$00,$00
 L9C38:	dec     $1E,x                           ; 9C38 D6 1E                    ..
 	ora     #$00                            ; 9C3A 09 00                    ..
 	.byte	$00
