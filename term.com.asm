@@ -8770,11 +8770,7 @@ cmd_d8:
 	jsr     cmd_d1
 	rts                                     ; A81E 60                       `
 
-; ----------------------------------------------------------------------------
-cmd_lu:
-	sta     LB118,x                         ; A81F 9D 18 B1                 ...
-	rts                                     ; A822 60                       `
-
+	.include "cmd-lu.asm"
 	.include "cmd-lv.asm"
 	.include "cmd-lw.asm"
 	.include "cmd-3d.asm"
