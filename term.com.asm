@@ -8749,20 +8749,14 @@ cmd_d7:
 
 ; ----------------------------------------------------------------------------
 LA7F0:  .byte	$00
-LA7F1:  .byte	$00
-LA7F2:  .byte	$00
+LA7F1:  .byte	$00,$00
 
 cmd_d8:
 	stack_prolog LA7F0, $02
 	jsr     cmd_d0
-	lda     #$00                            ; A7FF A9 00                    ..
-	sta     $A3                             ; A801 85 A3                    ..
-	lda     #$00                            ; A803 A9 00                    ..
-	sta     $A4                             ; A805 85 A4                    ..
-	lda     LA7F2                           ; A807 AD F2 A7                 ...
-	sta     $A6                             ; A80A 85 A6                    ..
-	lda     LA7F1                           ; A80C AD F1 A7                 ...
-	sta     $A5                             ; A80F 85 A5                    ..
+	ldi	$A3, $00
+	ldi	$A4, $00
+	rdmv	$A5, LA7F1
 	ldy     #$21                            ; A811 A0 21                    .!
 	ldx     #$00                            ; A813 A2 00                    ..
 	lda     LA7F0                           ; A815 AD F0 A7                 ...
