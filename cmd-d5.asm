@@ -11,8 +11,7 @@ LA536:  .byte	$00
 LA537:  .byte	$00
 LA538:  .byte	$00
 LA539:  .byte	$00
-LA53A:  .byte	$00
-LA53B:  .byte	$00
+LA53A:  .word	$0000
 LA53C:  .byte	$00
 LA53D:  .byte	$00
 LA53E:  .byte	$00
@@ -50,7 +49,7 @@ LA58C:	add8i	LA536, off_AE, $01
 	sub16i	LA532, off_AC, $0001
 	jsr     cmd_d0
 	ldy     #$00                            ; A5E2 A0 00                    ..
-	sty     LA53B                           ; A5E4 8C 3B A5                 .;.
+	sty     LA53A+1
 	sty     LA53A                           ; A5E7 8C 3A A5                 .:.
 	mv	LA537, LA53E
 	mv	LA601, LA540
@@ -94,7 +93,7 @@ LA63A:  jmp     LA662                           ; A63A 4C 62 A6                 
 LA63D:	add16m8 off_AE, LA532, LA538
 	stp8	LA539
 	inc16	LA53A
-LA65C:  inc     LA538                           ; A65C EE 38 A5                 .8.
+	inc     LA538                           ; A65C EE 38 A5                 .8.
 	jmp     LA60D                           ; A65F 4C 0D A6                 L..
 
 ; ----------------------------------------------------------------------------
