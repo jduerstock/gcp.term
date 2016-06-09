@@ -93,7 +93,7 @@ LB012:  ldi	CH, $FF
 LB01A:  jsr     sub_AEE4
 	ldi	$A3, >LAF38
 	ldy     #<LAF38
-	ldxai	$AF37
+	ldxai	LAF37
 	jsr     sub_9CD0
 	lda     $A0                             ; B02A A5 A0                    ..
 	eor     #$01                            ; B02C 49 01                    I.
