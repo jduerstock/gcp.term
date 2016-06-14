@@ -6910,8 +6910,8 @@ L8FDE:	dmv	off_AE, L4678
 	jsr     cmd_ug
 	ldi	$A3, $CA
 	ldi	$A4, $94
-	ldi	$A5, $46
-	ldi	$A6, $88
+	ldi	$A5, <L8846
+	ldi	$A6, >L8846
 	ldy     #$28                            ; 903F A0 28                    .(
 	ldx     #$00                            ; 9041 A2 00                    ..
 	lda     #$00                            ; 9043 A9 00                    ..
