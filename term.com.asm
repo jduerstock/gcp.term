@@ -1408,8 +1408,7 @@ L4A52:	.byte	$54                             ; 4A52 54                       T
 ; ----------------------------------------------------------------------------
 sub_4A53:
 	stack_prolog L4A4E, $04
-	lda     #$00                            ; 4A5C A9 00                    ..
-	sta     $A3                             ; 4A5E 85 A3                    ..
+	ldi	$A3, $00
 	ldy     #$80                            ; 4A60 A0 80                    ..
 	ldxai	LB380
 	jsr     bzero
@@ -1470,10 +1469,8 @@ L4AE5:	.byte	$0D                             ; 4AE5 0D                       .
 sub_4AE6:  
 	prolog
 	sta     L4AE5                           ; 4AE9 8D E5 4A                 ..J
-	lda     #$00                            ; 4AEC A9 00                    ..
-	sta     $A3                             ; 4AEE 85 A3                    ..
-	lda     #$00                            ; 4AF0 A9 00                    ..
-	sta     $A4                             ; 4AF2 85 A4                    ..
+	ldi	$A3, $00
+	ldi	$A4, $00
 	rdldi	$A5, L4AA1
 	ldy     #$0D                            ; 4AFC A0 0D                    ..
 	ldx     #$00                            ; 4AFE A2 00                    ..
@@ -3016,8 +3013,7 @@ sub_5D67:
 	lbeq	L5DB9
 	lda     #$02                            ; 5D74 A9 02                    ..
 	jsr     Close
-	lda     #$0D                            ; 5D79 A9 0D                    ..
-	sta     $A3                             ; 5D7B 85 A3                    ..
+	ldi	$A3, $0D
 	ldy     #>L4AA1
 	ldx     #<L4AA1
 	lda     #$02                            ; 5D81 A9 02                    ..
@@ -3065,12 +3061,10 @@ L5DE0:  lda     #$00                            ; 5DE0 A9 00                    
 	lda     #$02                            ; 5DF4 A9 02                    ..
 	jsr     XIO
 L5DF9:  jsr     sub_5D64
-	lda     #$2A                            ; 5DFC A9 2A                    .*
-	sta     $022F                           ; 5DFE 8D 2F 02                 ./.
+	ldi	$022F, $2A
 	lda     #$02                            ; 5E01 A9 02                    ..
 	jsr     sub_4F6D
-	ldy     #$00                            ; 5E06 A0 00                    ..
-	sty     L4653                           ; 5E08 8C 53 46                 .SF
+	yldi	L4653, $00
 	jmp     L5E10                           ; 5E0B 4C 10 5E                 L.^
 
 ; ----------------------------------------------------------------------------
