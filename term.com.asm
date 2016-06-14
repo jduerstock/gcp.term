@@ -7783,16 +7783,7 @@ L9BC6:  jsr     sub_936A
 	yldi	L9050, $01
 L9BCE:  rts                                     ; 9BCE 60                       `
 
-; ----------------------------------------------------------------------------
-L9BCF:	.byte	$00
-
-; ----------------------------------------------------------------------------
-cmd_us:  
-	prolog
-	sta     L9BCF                           ; 9BD3 8D CF 9B                 ...
-	mv	L46E7, L9BCF
-	rts                                     ; 9BDC 60                       `
-
+	.include "cmd-us.asm"
 	.include "cmd-lj.asm"
 	.include "cmd-uj.asm"
 	.include "cmd-ut.asm"
