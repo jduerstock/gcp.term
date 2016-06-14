@@ -116,7 +116,7 @@ LA68A:  jsr     cmd_d1
 	mv	LA537, LA53A
 	ldi	$84, $08
 	ld2xa	LA53A
-	jsr     sub_43E0
+	jsr	RShift
 	sta     LA538                           ; A6A1 8D 38 A5                 .8.
 	jmp     LA6AB                           ; A6A4 4C AB A6                 L..
 

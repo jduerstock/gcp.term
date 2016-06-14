@@ -519,7 +519,7 @@ L43D7:  asl     a                               ; 43D7 0A                       
 L43DF:  rts                                     ; 43DF 60                       `
 
 ; ----------------------------------------------------------------------------
-sub_43E0:
+RShift:
 	ldy     $84                             ; 43E0 A4 84                    ..
 	beq     L43EE                           ; 43E2 F0 0A                    ..
 	stx     $85                             ; 43E4 86 85                    ..
@@ -3232,7 +3232,7 @@ sub_5F16:
 	lda     L5F08                           ; 5F23 AD 08 5F                 .._
 	tax                                     ; 5F26 AA                       .
 	lda     L5F07                           ; 5F27 AD 07 5F                 .._
-	jsr     sub_43E0
+	jsr     RShift
 	st2xa	L5F0C
 	lda     L5F07                           ; 5F34 AD 07 5F                 .._
 	and     #$07                            ; 5F37 29 07                    ).
@@ -3246,7 +3246,7 @@ L5F4B:  lda     L5F13                           ; 5F4B AD 13 5F                 
 	sta     $84                             ; 5F4E 85 84                    ..
 	lda     #$80                            ; 5F50 A9 80                    ..
 	ldx     #$00                            ; 5F52 A2 00                    ..
-	jsr     sub_43E0
+	jsr     RShift
 	sta     L5F12                           ; 5F57 8D 12 5F                 .._
 	ldy     #$00                            ; 5F5A A0 00                    ..
 	sty     L5F0F                           ; 5F5C 8C 0F 5F                 .._
@@ -3348,7 +3348,7 @@ sub_606E:
 	add16i	off_AE, L6064, $0003
 	ldi	$84, $02
 	ld2xa	off_AE
-	jsr     sub_43E0
+	jsr     RShift
 	st2xa	L6066
 	ldy     #$00                            ; 6099 A0 00                    ..
 	sty     L6069                           ; 609B 8C 69 60                 .i`
@@ -3440,12 +3440,12 @@ sub_619A:
 	add16i off_AE, L6194, $0003
 	ldi	$84, $02
 	ld2xa	off_AE
-	jsr     sub_43E0
+	jsr     RShift
 	st2xa	L6196
 	sub16m	off_AE, L6192, MEMLO
 	ldi	$84, $02
 	ld2xa	off_AE
-	jsr     sub_43E0
+	jsr     RShift
 	st2xa	L6198
 	mv	$A3, L6197
 	ldi	$A4, $01
@@ -6905,7 +6905,7 @@ L8FDE:	dmv	off_AE, L4678
 	add16i	off_AE, L4678, $0001
 	ldi	$84, $08
 	ld2xa	L4674
-	jsr     sub_43E0
+	jsr     RShift
 	ldy     #$00                            ; 900B A0 00                    ..
 	sta     ($AE),y                         ; 900D 91 AE                    ..
 	lda     #>LE000
