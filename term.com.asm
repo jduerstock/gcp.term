@@ -507,7 +507,7 @@ sub_43C7:
 	jmp     sub_43BA
 
 ; ----------------------------------------------------------------------------
-sub_43D1:
+LShift:
 	ldy     $84                             ; 43D1 A4 84                    ..
 	beq     L43DF                           ; 43D3 F0 0A                    ..
 	stx     $85                             ; 43D5 86 85                    ..
@@ -3399,7 +3399,7 @@ L60ED:  lda     L6067                           ; 60ED AD 67 60                 
 	jsr     sub_5FF5
 	ldi	$84, $02
 	ld2xa	L6068
-	jsr     sub_43D1
+	jsr     LShift
 	st2xa	off_AE
 	add16m	L606C, MEMLO, off_AE
 	rdmv	$A0, L606C
@@ -6806,7 +6806,7 @@ cmd_uz:						; "Z"
 	ldi	L8E23, $00
 	ldi	$84, $03
 	ld2xa	L8E22
-	jsr     sub_43D1			; off_AE = 8E22 << 3
+	jsr     LShift				; off_AE = 8E22 << 3
 	st2xa	off_AE
 	add16m	$A0, L4674, off_AE		; $A0 = 
 	blkmv_mmi $A0, L8E20, $0008
