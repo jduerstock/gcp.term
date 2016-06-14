@@ -6892,12 +6892,7 @@ L8F9C:  lda     #$09                            ; 8F9C A9 09                    
 	cmp     L8F7A                           ; 8F9E CD 7A 8F                 .z.
 	lbcc	L8FDE
 	shladdm8 off_AE, L46F5, L8F7A
-	lda     L8F7C                           ; 8FBA AD 7C 8F                 .|.
-	ldy     #$01                            ; 8FBD A0 01                    ..
-	sta     ($AE),y                         ; 8FBF 91 AE                    ..
-	lda     L8F7B                           ; 8FC1 AD 7B 8F                 .{.
-	dey                                     ; 8FC4 88                       .
-	sta     ($AE),y                         ; 8FC5 91 AE                    ..
+	stp16	L8F7B
 	add16i	L8F7B, L8F7B, $0008
 	inc     L8F7A                           ; 8FD8 EE 7A 8F                 .z.
 	jmp     L8F9C                           ; 8FDB 4C 9C 8F                 L..
