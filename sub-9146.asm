@@ -56,8 +56,7 @@ sub_9146:
 	dey                                     ; 922C 88                       .
 	lda     ($AC),y                         ; 922D B1 AC                    ..
 	sta     $A0                             ; 922F 85 A0                    ..
-	lda     #$00                            ; 9231 A9 00                    ..
-	sta     $A3                             ; 9233 85 A3                    ..
+	ldi	$A3, $00
 	ldy     L9140                           ; 9235 AC 40 91                 .@.
 	ldxa	$A0
 	jsr     bzero
