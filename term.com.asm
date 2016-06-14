@@ -6958,36 +6958,8 @@ L9061:  .byte	$00
 	.byte	$00
 L9064:  .byte	$00
 L9065:  .byte	$00
-L9066:  .byte	$00
-L9067:  .byte	$00
-L9068:  .byte	$00
-L9069:	.byte   $9F,$98,$9D,$9B,$B3,$B5,$B0,$B2,$A6
-	.byte	$27,$67,$A7,$E7
-	.byte	$11,$51,$91,$D1
-	.byte	$FF
-L907B:	.addr	L9069
 
-; ----------------------------------------------------------------------------
-sub_907D:
-	prolog
-	sta     L9066                           ; 9080 8D 66 90                 .f.
-	yldi	L9067, $00
-L9088:	add16m8	off_AE, L907B, L9067
-	ldp8	L9068
-	lda     L9066                           ; 909F AD 66 90                 .f.
-	eor     L9068                           ; 90A2 4D 68 90                 Mh.
-	lbne	L90AF
-L90AA:  ldi	$A0, $01
-	rts                                     ; 90AE 60                       `
-
-; ----------------------------------------------------------------------------
-L90AF:  inc     L9067                           ; 90AF EE 67 90                 .g.
-	lda     L9068                           ; 90B2 AD 68 90                 .h.
-	eor     #$FF                            ; 90B5 49 FF                    I.
-	lbne	L9088
-	ldi	$A0, $00
-	rts                                     ; 90C0 60                       `
-
+	.include "sub-907d.asm"
 	.include "sub-90ce.asm"
 	.include "sub-9146.asm"
 	.include "sub-925d.asm"
