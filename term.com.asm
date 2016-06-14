@@ -8364,22 +8364,7 @@ LA36C:  lda     LA2A3                           ; A36C AD A3 A2                 
 LA37D:  jsr     cmd_d1
 	rts                                     ; A380 60                       `
 
-; ----------------------------------------------------------------------------
-LA381:  .byte	$00
-
-; ----------------------------------------------------------------------------
-cmd_d3:
-	prolog
-	sta	LA381
-	jsr	cmd_d0
-	proc8	sub_A28D, LA381
-	lda     L4652                           ; A391 AD 52 46                 .RF
-	eor     LA381                           ; A394 4D 81 A3                 M..
-	lbne	LA3A1
-	ldi	L4652, $02
-LA3A1:  jsr     cmd_d1
-	rts                                     ; A3A4 60                       `
-
+	.include "cmd-d3.asm"
 	.include "cmd-d4.asm"
 	.include "cmd-d5.asm"
 	.include "cmd-d9.asm"
