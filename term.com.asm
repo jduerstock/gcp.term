@@ -7076,10 +7076,7 @@ sub_9146:
 	dey                                     ; 91C3 88                       .
 	lda     ($AC),y                         ; 91C4 B1 AC                    ..
 	sta     L913A                           ; 91C6 8D 3A 91                 .:.
-	sec                                     ; 91C9 38                       8
-	lda     L9141                           ; 91CA AD 41 91                 .A.
-	sbc     L9137                           ; 91CD ED 37 91                 .7.
-	sta     $AE                             ; 91D0 85 AE                    ..
+	sub8m	off_AE, L9141, L9137
 	sec                                     ; 91D2 38                       8
 	lda     $AE                             ; 91D3 A5 AE                    ..
 	sbc     #$01                            ; 91D5 E9 01                    ..
