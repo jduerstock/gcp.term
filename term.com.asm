@@ -8276,20 +8276,7 @@ LA25D:  lda     LA006                           ; A25D AD 06 A0                 
 	jsr     sub_81F2
 LA28B:  rts                                     ; A28B 60                       `
 
-; ----------------------------------------------------------------------------
-LA28C:  .byte	$00
-
-; ----------------------------------------------------------------------------
-sub_A28D:  
-	prolog
-	sta     LA28C                           ; A290 8D 8C A2                 ...
-	lda     #$00                            ; A293 A9 00                    ..
-	ldx     LA28C                           ; A295 AE 8C A2                 ...
-	sta     L05C0,x                         ; A298 9D C0 05                 ...
-	lda     LA28C                           ; A29B AD 8C A2                 ...
-	jsr     Close
-	rts                                     ; A2A1 60                       `
-
+	.include "sub-a28d.asm"
 	.include "cmd-d2.asm"
 	.include "cmd-d3.asm"
 	.include "cmd-d4.asm"
