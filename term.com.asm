@@ -7434,9 +7434,7 @@ cmd_le:
 	mv	L9052, L9682
 	func16_8 sub_7035, P9055, L9052
 	add16i	off_AE, P9055, $0004
-	ldy     #$00                            ; 96BC A0 00                    ..
-	lda     ($AE),y                         ; 96BE B1 AE                    ..
-	sta     L9053                           ; 96C0 8D 53 90                 .S.
+	ldp8	L9053
 	func16_8 sub_65B0, L9057, L9053
 	blkmv_imi L9060, L9057, $0006
 	mv	L9054, L9683
