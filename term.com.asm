@@ -846,7 +846,7 @@ sub_45C7:
 	jmp     L45A5                           ; 45CD 4C A5 45                 L.E
 
 ; ----------------------------------------------------------------------------
-sub_45D0:
+XIO:
 	jsr     XIOstr
 	jmp     ChkErr
 
@@ -1478,7 +1478,7 @@ sub_4AE6:
 	ldy     #$0D                            ; 4AFC A0 0D                    ..
 	ldx     #$00                            ; 4AFE A2 00                    ..
 	lda     L4AE5                           ; 4B00 AD E5 4A                 ..J
-	jsr     sub_45D0
+	jsr     XIO
 	rts                                     ; 4B06 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -2997,7 +2997,7 @@ L5D40:  lda     $B148                           ; 5D40 AD 48 B1                 
 	ldy     #$5A                            ; 5D52 A0 5A                    .Z
 	ldx     #$00                            ; 5D54 A2 00                    ..
 	lda     #$02                            ; 5D56 A9 02                    ..
-	jsr     sub_45D0
+	jsr     XIO
 	jmp     L5D63                           ; 5D5B 4C 63 5D                 Lc]
 
 ; ----------------------------------------------------------------------------
@@ -3018,19 +3018,17 @@ sub_5D67:
 	jsr     Close
 	lda     #$0D                            ; 5D79 A9 0D                    ..
 	sta     $A3                             ; 5D7B 85 A3                    ..
-	ldy     #$4A                            ; 5D7D A0 4A                    .J
-	ldx     #$A1                            ; 5D7F A2 A1                    ..
+	ldy     #>L4AA1
+	ldx     #<L4AA1
 	lda     #$02                            ; 5D81 A9 02                    ..
 	jsr     Open
-	lda     $B149                           ; 5D86 AD 49 B1                 .I.
-	sta     $A3                             ; 5D89 85 A3                    ..
-	lda     #$00                            ; 5D8B A9 00                    ..
-	sta     $A4                             ; 5D8D 85 A4                    ..
+	mv	$A3, $B149
+	ldi	$A4, $00
 	rdldi	$A5, L4AA1
 	ldy     #$24                            ; 5D97 A0 24                    .$
 	ldx     #$00                            ; 5D99 A2 00                    ..
 	lda     #$02                            ; 5D9B A9 02                    ..
-	jsr     sub_45D0
+	jsr     XIO
 	lda     #$20                            ; 5DA0 A9 20                    . 
 	sta     $A3                             ; 5DA2 85 A3                    ..
 	lda     #$00                            ; 5DA4 A9 00                    ..
@@ -3039,7 +3037,7 @@ sub_5D67:
 	ldy     #$26                            ; 5DB0 A0 26                    .&
 	ldx     #$00                            ; 5DB2 A2 00                    ..
 	lda     #$02                            ; 5DB4 A9 02                    ..
-	jsr     sub_45D0
+	jsr     XIO
 L5DB9:  lda     #$00                            ; 5DB9 A9 00                    ..
 	sta     $A4                             ; 5DBB 85 A4                    ..
 	lda     #$80                            ; 5DBD A9 80                    ..
@@ -3065,7 +3063,7 @@ L5DE0:  lda     #$00                            ; 5DE0 A9 00                    
 	ldy     #$59                            ; 5DF0 A0 59                    .Y
 	ldx     #$00                            ; 5DF2 A2 00                    ..
 	lda     #$02                            ; 5DF4 A9 02                    ..
-	jsr     sub_45D0
+	jsr     XIO
 L5DF9:  jsr     sub_5D64
 	lda     #$2A                            ; 5DFC A9 2A                    .*
 	sta     $022F                           ; 5DFE 8D 2F 02                 ./.

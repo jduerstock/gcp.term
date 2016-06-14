@@ -12,7 +12,7 @@ cmd_d8:
 	ldy     #$21                            ; A811 A0 21                    .!
 	ldx     #$00                            ; A813 A2 00                    ..
 	lda     LA7F0                           ; A815 AD F0 A7                 ...
-	jsr     sub_45D0
+	jsr     XIO
 	jsr     cmd_d1
 	rts                                     ; A81E 60                       `
 

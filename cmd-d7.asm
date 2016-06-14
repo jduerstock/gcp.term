@@ -13,7 +13,7 @@ cmd_d7:
 	ldy     #$20                            ; A7E2 A0 20                    . 
 	ldx     #$00                            ; A7E4 A2 00                    ..
 	lda     LA7C1                           ; A7E6 AD C1 A7                 ...
-	jsr     sub_45D0
+	jsr     XIO
 	jsr     cmd_d1
 	rts                                     ; A7EF 60                       `
 
