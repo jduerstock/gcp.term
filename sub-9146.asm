@@ -40,10 +40,7 @@ sub_9146:
 	lda     ($AC),y                         ; 91C4 B1 AC                    ..
 	sta     L913A                           ; 91C6 8D 3A 91                 .:.
 	sub8m	off_AE, L9141, L9137
-	sec                                     ; 91D2 38                       8
-	lda     $AE                             ; 91D3 A5 AE                    ..
-	sbc     #$01                            ; 91D5 E9 01                    ..
-	sta     $AC                             ; 91D7 85 AC                    ..
+	sub8i	off_AC, off_AE, $01
 	lda     #$00                            ; 91D9 A9 00                    ..
 	sta     $85                             ; 91DB 85 85                    ..
 	lda     L9140                           ; 91DD AD 40 91                 .@.
