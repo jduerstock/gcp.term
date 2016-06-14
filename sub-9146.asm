@@ -41,10 +41,8 @@ sub_9146:
 	sta     L913A                           ; 91C6 8D 3A 91                 .:.
 	sub8m	off_AE, L9141, L9137
 	sub8i	off_AC, off_AE, $01
-	lda     #$00                            ; 91D9 A9 00                    ..
-	sta     $85                             ; 91DB 85 85                    ..
-	lda     L9140                           ; 91DD AD 40 91                 .@.
-	sta     $84                             ; 91E0 85 84                    ..
+	ldi	$85, $00
+	mv	$84, L9140
 	lda     $AC                             ; 91E2 A5 AC                    ..
 	ldx     #$00                            ; 91E4 A2 00                    ..
 	jsr     MultI
