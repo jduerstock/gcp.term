@@ -3700,8 +3700,7 @@ L65DC:  .byte	$00
 L65DD:  .byte	$00
 L65DE:  .byte	$00
 L65DF:  .byte	$00
-L65E0:  .byte	$00
-L65E1:  .byte	$00
+L65E0:  .byte	$00,$00
 
 cmd_uw:  					; "W"
 	stack_prolog L65D6, $05
@@ -6712,48 +6711,8 @@ L8E06:  lda     L4657                           ; 8E06 AD 57 46                 
 	yldi	L4657, $00
 L8E1E:  rts                                     ; 8E1E 60                       `
 
-; ----------------------------------------------------------------------------
-L8E1F:	.byte	$00
-L8E20:  .byte	$00
-L8E21:  .byte	$00
-L8E22:  .byte	$00
-L8E23:  .byte	$00
-
-; ----------------------------------------------------------------------------
-cmd_uz:						; "Z"
-	stack_prolog L8E1F, $02
-	and8i	L8E22, L8E1F, $7F
-	ldi	L8E23, $00
-	ldi	$84, $03
-	ld2xa	L8E22
-	jsr     LShift				; off_AE = 8E22 << 3
-	st2xa	off_AE
-	add16m	$A0, L4674, off_AE		; $A0 = 
-	blkmv_mmi $A0, L8E20, $0008
-	rts                                     ; 8E73 60                       `
-
-; ----------------------------------------------------------------------------
-L8E74:	.byte	$00
-L8E75:  .byte	$00
-L8E76:	.byte	$00,$00,$00,$00,$00
-L8E7B:  .addr	$0000
-
-; ----------------------------------------------------------------------------
-cmd_ua:  
-	stack_prolog L8E74, $06
-	shladdm8 off_AE, L46F5, L8E74
-	ldp16	L8E7B
-	add16i	off_AE, L8E7B, $0002
-	add16m8	off_AC, L4678, L8E75
-	lda     (off_AC),y
-	sta     (off_AE),y
-	jsr     sub_63DD
-	jsr     sub_62D1
-	add16i	$A0, L8E7B, $0003
-	blkmv_mii $A0, L8E76, $0005
-	jsr     sub_636E
-	rts                                     ; 8EF7 60                       `
-
+	.include "cmd-uz.asm"
+	.include "cmd-ua.asm"
 	.include "cmd-ug.asm"
 	.include "cmd-uo.asm"
 	.include "sub-8f7d.asm"
