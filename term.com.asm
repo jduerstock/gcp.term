@@ -6717,12 +6717,7 @@ L8D0D:  lda     L4656                           ; 8D0D AD 56 46                 
 	eor     #$01                            ; 8D10 49 01                    I.
 	lbne	L8E06
 	shladdi off_AE, L466F, $01
-	ldy     #$01                            ; 8D2A A0 01                    ..
-	lda     ($AE),y                         ; 8D2C B1 AE                    ..
-	sta     L8D00                           ; 8D2E 8D 00 8D                 ...
-	dey                                     ; 8D31 88                       .
-	lda     ($AE),y                         ; 8D32 B1 AE                    ..
-	sta     L8CFF                           ; 8D34 8D FF 8C                 ...
+	ldp16	L8CFF
 	add16i	off_AE, L8CFF, $03
 	add16i	L8CFD, off_AE, $01
 	dmv	off_AE, L8CFD
@@ -6766,19 +6761,14 @@ L8DF8:  inc     L8CF9                           ; 8DF8 EE F9 8C                 
 	jmp     L8D89                           ; 8DFB 4C 89 8D                 L..
 
 ; ----------------------------------------------------------------------------
-L8DFE:  ldy     #$00                            ; 8DFE A0 00                    ..
-	sty     L4656                           ; 8E00 8C 56 46                 .VF
+L8DFE:	yldi	L4656, $00
 	jsr     sub_63DD
 L8E06:  lda     L4657                           ; 8E06 AD 57 46                 .WF
 	eor     #$01                            ; 8E09 49 01                    I.
-	beq     L8E10                           ; 8E0B F0 03                    ..
-	jmp     L8E1E                           ; 8E0D 4C 1E 8E                 L..
-
-; ----------------------------------------------------------------------------
-L8E10:	ldxa	L4762
+	lbne	L8E1E
+	ldxa	L4762
 	jsr     sub_8047
-	ldy     #$00                            ; 8E19 A0 00                    ..
-	sty     L4657                           ; 8E1B 8C 57 46                 .WF
+	yldi	L4657, $00
 L8E1E:  rts                                     ; 8E1E 60                       `
 
 ; ----------------------------------------------------------------------------
