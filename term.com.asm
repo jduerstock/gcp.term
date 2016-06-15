@@ -3583,8 +3583,7 @@ L63DC:  .byte	$00
 
 sub_63DD:  
 	prolog
-	lda     L46EF                           ; 63E0 AD EF 46                 ..F
-	sta     L63DB                           ; 63E3 8D DB 63                 ..c
+	mv	L63DB, L46EF
 	shladdm8 off_AE, L46F5, L63DB
 	ldp16	L63D9
 	shladdi off_AE, L466F, $0001
