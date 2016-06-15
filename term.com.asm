@@ -3635,12 +3635,7 @@ L64B5:  lda     #$05                            ; 64B5 A9 05                    
 
 ; ----------------------------------------------------------------------------
 L64D5:	shladdm8 off_AE, L46F5, L63DB
-	ldy     #$01                            ; 64E9 A0 01                    ..
-	lda     ($AE),y                         ; 64EB B1 AE                    ..
-	sta     L63DA                           ; 64ED 8D DA 63                 ..c
-	dey                                     ; 64F0 88                       .
-	lda     ($AE),y                         ; 64F1 B1 AE                    ..
-	sta     L63D9                           ; 64F3 8D D9 63                 ..c
+	ldp16	L63D9
 	dmv	off_AE, L63D9
 	lda     ($AE),y                         ; 6500 B1 AE                    ..
 	sta     L63DC                           ; 6502 8D DC 63                 ..c
