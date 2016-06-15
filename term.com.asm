@@ -6898,12 +6898,7 @@ L8FDE:	dmv	off_AE, L4678
 	jsr     RShift
 	ldy     #$00                            ; 900B A0 00                    ..
 	sta     ($AE),y                         ; 900D 91 AE                    ..
-	lda     #>LE000
-	sta     $A3                             ; 9011 85 A3                    ..
-	rdldi	$A4, $0400
-	ldy     #<LE000
-	ldxa	L4674
-	jsr     blockmove
+	blkmv_mii L4674, LE000, $0400
 	ldy     #$18                            ; 9026 A0 18                    ..
 	ldx     #$02                            ; 9028 A2 02                    ..
 	lda     #$00                            ; 902A A9 00                    ..
