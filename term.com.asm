@@ -3624,11 +3624,8 @@ sub_63DD:
 	yldi	L63D6, $01
 L64B5:  lda     #$05                            ; 64B5 A9 05                    ..
 	cmp     L63D6                           ; 64B7 CD D6 63                 ..c
-	bcs     L64BF                           ; 64BA B0 03                    ..
-	jmp     L6580                           ; 64BC 4C 80 65                 L.e
-
-; ----------------------------------------------------------------------------
-L64BF:  ldx     L63D6                           ; 64BF AE D6 63                 ..c
+	lbcc	L6580
+	ldx     L63D6                           ; 64BF AE D6 63                 ..c
 	lda     L46EF,x                         ; 64C2 BD EF 46                 ..F
 	sta     L63DB                           ; 64C5 8D DB 63                 ..c
 	lda     L63DB                           ; 64C8 AD DB 63                 ..c
