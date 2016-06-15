@@ -3679,17 +3679,8 @@ L657A:	inc     L63D6                           ; 657A EE D6 63                 .
 	jmp     L64B5                           ; 657D 4C B5 64                 L.d
 
 ; ----------------------------------------------------------------------------
-L6580:  clc                                     ; 6580 18                       .
-	lda     L63D3                           ; 6581 AD D3 63                 ..c
-	adc     #$1E                            ; 6584 69 1E                    i.
-	sta     L63D1                           ; 6586 8D D1 63                 ..c
-	lda     L63D4                           ; 6589 AD D4 63                 ..c
-	adc     #$00                            ; 658C 69 00                    i.
-	sta     L63D2                           ; 658E 8D D2 63                 ..c
-	lda     L63D1                           ; 6591 AD D1 63                 ..c
-	sta     $AE                             ; 6594 85 AE                    ..
-	lda     L63D2                           ; 6596 AD D2 63                 ..c
-	sta     $AF                             ; 6599 85 AF                    ..
+L6580:	add16i L63D1, L63D3, $001E
+	dmv	off_AE, L63D1
 	lda     L63D4                           ; 659B AD D4 63                 ..c
 	ldy     #$01                            ; 659E A0 01                    ..
 	sta     ($AE),y                         ; 65A0 91 AE                    ..
