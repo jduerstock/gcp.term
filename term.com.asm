@@ -1268,8 +1268,7 @@ sub_4945:
 	sta     $A1                             ; 494A 85 A1                    ..
 	cpx     #$80                            ; 494C E0 80                    ..
 	bmi     L4954                           ; 494E 30 04                    0.
-	lda     #$FF                            ; 4950 A9 FF                    ..
-	sta     $A1                             ; 4952 85 A1                    ..
+	ldi	$A1, $FF
 L4954:  rts                                     ; 4954 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -6644,10 +6643,7 @@ L8BD1:	func16_8 sub_65B0, L898F, L89A9
 	ldxai	L8989
 	jsr     sub_4CF5
 	ldi	$A3, >L8979
-	lda     L8997                           ; 8C75 AD 97 89                 ...
-	sta     $A4                             ; 8C78 85 A4                    ..
-	lda     L8998                           ; 8C7A AD 98 89                 ...
-	sta     $A5                             ; 8C7D 85 A5                    ..
+	dmv	$A4, L8997
 	ldy     #<L8979
 	ldxai	L8975
 	jsr     sub_4C1D
@@ -6845,58 +6841,7 @@ cmd_uo:
 	jsr     sub_62D1
 	rts                                     ; 8F79 60                       `
 
-; ----------------------------------------------------------------------------
-L8F7A:  .byte	$00
-L8F7B:  .byte	$00
-L8F7C:  .byte	$00
-
-; ----------------------------------------------------------------------------
-sub_8F7D:  
-	prolog
-	ldi	$A3, $00
-	ldy     #$50                            ; 8F84 A0 50                    .P
-	ldxai	L46F9
-	jsr     bzero
-	rdldi	L8F7B, L46F9
-	yldi	L8F7A, $00
-L8F9C:  lda     #$09                            ; 8F9C A9 09                    ..
-	cmp     L8F7A                           ; 8F9E CD 7A 8F                 .z.
-	lbcc	L8FDE
-	shladdm8 off_AE, L46F5, L8F7A
-	stp16	L8F7B
-	add16i	L8F7B, L8F7B, $0008
-	inc     L8F7A                           ; 8FD8 EE 7A 8F                 .z.
-	jmp     L8F9C                           ; 8FDB 4C 9C 8F                 L..
-
-; ----------------------------------------------------------------------------
-L8FDE:	dmv	off_AE, L4678
-	lda     #$E0                            ; 8FE8 A9 E0                    ..
-	ldy     #$00                            ; 8FEA A0 00                    ..
-	sta     ($AE),y                         ; 8FEC 91 AE                    ..
-	add16i	off_AE, L4678, $0001
-	ldi	$84, $08
-	ld2xa	L4674
-	jsr     RShift
-	ldy     #$00                            ; 900B A0 00                    ..
-	sta     ($AE),y                         ; 900D 91 AE                    ..
-	blkmv_mii L4674, LE000, $0400
-	ldy     #$18                            ; 9026 A0 18                    ..
-	ldx     #$02                            ; 9028 A2 02                    ..
-	lda     #$00                            ; 902A A9 00                    ..
-	jsr     cmd_ug
-	ldi	$A3, $CA
-	ldi	$A4, $94
-	ldi	$A5, <L8846
-	ldi	$A6, >L8846
-	ldy     #$28                            ; 903F A0 28                    .(
-	ldx     #$00                            ; 9041 A2 00                    ..
-	lda     #$00                            ; 9043 A9 00                    ..
-	jsr     cmd_ua
-	ldx     #$0F                            ; 9048 A2 0F                    ..
-	lda     #$00                            ; 904A A9 00                    ..
-	jsr     cmd_uo
-	rts                                     ; 904F 60                       `
-
+	.include "sub-8f7d.asm"
 	.include "global2.asm"
 	.include "sub-907d.asm"
 	.include "sub-90ce.asm"
