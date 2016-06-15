@@ -3771,8 +3771,7 @@ L66BB:	mv	$A3, L6692+1
 	jsr     blockmove
 	sub8i	$A3, L6694, $01
 	sub8i	$A4, L6695, $01
-	lda     L6690+1
-	sta     $A5                             ; 66E5 85 A5                    ..
+	mv	$A5, L6690+1
 	ldy     #$00                            ; 66E7 A0 00                    ..
 	ldx     #$00                            ; 66E9 A2 00                    ..
 	lda     L6690                           ; 66EB AD 90 66                 ..f
