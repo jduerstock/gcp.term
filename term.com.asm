@@ -3605,10 +3605,8 @@ sub_63DD:
 	add16i	off_AE, L63D3, $0003
 	lda     L63D6                           ; 6473 AD D6 63                 ..c
 	sta     ($AE),y                         ; 6476 91 AE                    ..
-	lda     #$00                            ; 6478 A9 00                    ..
-	sta     $A3                             ; 647A 85 A3                    ..
-	lda     L63DC                           ; 647C AD DC 63                 ..c
-	sta     $A4                             ; 647F 85 A4                    ..
+	ldi	$A3, $00
+	mv	$A4, L63DC
 	ldy     #$17                            ; 6481 A0 17                    ..
 	ldxa	L63D7
 	jsr     memset
