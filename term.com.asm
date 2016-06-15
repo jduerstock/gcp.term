@@ -6832,11 +6832,7 @@ L8F4F:	.byte	$00
 ; ----------------------------------------------------------------------------
 cmd_uo:  
 	stack_prolog L8F4F, $05
-	ldi	$A3, >L8F4F
-	rdldi	$A4, $0006
-	ldy     #<L8F4F
-	ldxai	L46EF
-	jsr     blockmove
+	blkmv_iii L46EF, L8F4F, $0006
 	jsr     sub_63DD
 	jsr     sub_62D1
 	rts                                     ; 8F79 60                       `
