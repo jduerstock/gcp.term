@@ -3620,12 +3620,8 @@ sub_63DD:
 	ldx     #$02                            ; 64A1 A2 02                    ..
 	lda     $A0                             ; 64A3 A5 A0                    ..
 	jsr     sub_4983
-	sec                                     ; 64A8 38                       8
-	lda     $A0                             ; 64A9 A5 A0                    ..
-	sbc     #$01                            ; 64AB E9 01                    ..
-	sta     L63D5                           ; 64AD 8D D5 63                 ..c
-	ldy     #$01                            ; 64B0 A0 01                    ..
-	sty     L63D6                           ; 64B2 8C D6 63                 ..c
+	sub8i	L63D5, $A0, $01
+	yldi	L63D6, $01
 L64B5:  lda     #$05                            ; 64B5 A9 05                    ..
 	cmp     L63D6                           ; 64B7 CD D6 63                 ..c
 	bcs     L64BF                           ; 64BA B0 03                    ..
