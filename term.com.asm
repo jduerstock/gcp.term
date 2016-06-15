@@ -6758,8 +6758,7 @@ L8D95:	sub8i	off_AE, L8CF9, $01
 	lda     ($AE),y                         ; 8DDE B1 AE                    ..
 	eor     #$01                            ; 8DE0 49 01                    I.
 	lbne	L8DF8
-	lda     L8CFB                           ; 8DE7 AD FB 8C                 ...
-	ora     L8CFC                           ; 8DEA 0D FC 8C                 ...
+	test16	L8CFB
 	lbeq	L8DF8
 	lda     L8CFA                           ; 8DF2 AD FA 8C                 ...
 	jsr     sub_89AE
