@@ -6269,10 +6269,8 @@ L8648:	rdldi	$84, $0028
 	lbeq	L86C8
 	add16m8	L855A, L8558, L8553
 	add8i	$A2, L8555, $01
-	lda     #$00                            ; 86B4 A9 00                    ..
-	sta     $A3                             ; 86B6 85 A3                    ..
-	lda     L856C                           ; 86B8 AD 6C 85                 .l.
-	sta     $A4                             ; 86BB 85 A4                    ..
+	ldi	$A3, $00
+	mv	$A4, L856C
 	ldy     $A2                             ; 86BD A4 A2                    ..
 	ldxa	L855A
 	jsr     memset
@@ -6602,11 +6600,7 @@ L8BA1:  lda     L8BAC                           ; 8BA1 AD AC 8B                 
 L8BAC:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-L8BAD:	mv	$A3, L8969+1
-	rdldi	$A4, $0005
-	ldy     L8969                           ; 8BBA AC 69 89                 .i.
-	ldxai	L89A9
-	jsr     blockmove
+L8BAD:	blkmv_imi L89A9, L8969, $0005
 	lda     L89AD                           ; 8BC4 AD AD 89                 ...
 	eor     #$FF                            ; 8BC7 49 FF                    I.
 	lbne    L8BD1
@@ -6726,10 +6720,8 @@ L8D0D:  lda     L4656                           ; 8D0D AD 56 46                 
 	ldy     #$C0                            ; 8D73 A0 C0                    ..
 	ldxa	L466D
 	jsr     memset
-	ldy     #$01                            ; 8D7E A0 01                    ..
-	sty     L8CF9                           ; 8D80 8C F9 8C                 ...
-	lda     L4673                           ; 8D83 AD 73 46                 .sF
-	sta     L8D94                           ; 8D86 8D 94 8D                 ...
+	yldi	L8CF9, $01
+	mv	L8D94, L4673
 L8D89:  lda     L8D94                           ; 8D89 AD 94 8D                 ...
 	cmp     L8CF9                           ; 8D8C CD F9 8C                 ...
 	bcs     L8D95                           ; 8D8F B0 04                    ..
