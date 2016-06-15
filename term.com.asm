@@ -6105,24 +6105,7 @@ L8500:  sta     L83F6                           ; 8500 8D F6 83                 
 	jsr     sub_81F2
 L851C:  rts                                     ; 851C 60                       `
 
-; ----------------------------------------------------------------------------
-L851D:	.byte	$F8
-L851E:	.byte	$4C
-L851F:	.byte	$DD,$F3
-
-; ----------------------------------------------------------------------------
-sub_8521:  
-	stack_prolog L851D, $03
-	lda     L851D                           ; 852A AD 1D 85                 ...
-	eor     #$01                            ; 852D 49 01                    I.
-	lbne	L854F
-	lda     L851E                           ; 8534 AD 1E 85                 ...
-	eor     #$41                            ; 8537 49 41                    IA
-	lbeq	L854F
-	dmv	off_AE, L851F
-	stp8	L851E
-L854F:  rts                                     ; 854F 60                       `
-
+	.include "sub-8521.asm"
 	.include "sub-8573.asm"
 	.include "sub-884c.asm"
 	.include "sub-89ae.asm"
