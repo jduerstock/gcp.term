@@ -3598,13 +3598,7 @@ sub_63DD:
 	dmv	off_AE, L63D9
 	lda     ($AE),y                         ; 6441 B1 AE                    ..
 	sta     L63DC                           ; 6443 8D DC 63                 ..c
-	clc                                     ; 6446 18                       .
-	lda     L63D3                           ; 6447 AD D3 63                 ..c
-	adc     #$03                            ; 644A 69 03                    i.
-	sta     $AE                             ; 644C 85 AE                    ..
-	lda     L63D4                           ; 644E AD D4 63                 ..c
-	adc     #$00                            ; 6451 69 00                    i.
-	sta     $AF                             ; 6453 85 AF                    ..
+	add16i	off_AE, L63D3, $0003
 	lda     ($AE),y                         ; 6455 B1 AE                    ..
 	and     #$F0                            ; 6457 29 F0                    ).
 	sta     $AC                             ; 6459 85 AC                    ..
