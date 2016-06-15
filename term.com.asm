@@ -3586,12 +3586,7 @@ sub_63DD:
 	lda     L46EF                           ; 63E0 AD EF 46                 ..F
 	sta     L63DB                           ; 63E3 8D DB 63                 ..c
 	shladdm8 off_AE, L46F5, L63DB
-	ldy     #$01                            ; 63FA A0 01                    ..
-	lda     ($AE),y                         ; 63FC B1 AE                    ..
-	sta     L63DA                           ; 63FE 8D DA 63                 ..c
-	dey                                     ; 6401 88                       .
-	lda     ($AE),y                         ; 6402 B1 AE                    ..
-	sta     L63D9                           ; 6404 8D D9 63                 ..c
+	ldp16	L63D9
 	shladdi off_AE, L466F, $0001
 	iny                                     ; 641A C8                       .
 	lda     ($AE),y                         ; 641B B1 AE                    ..
