@@ -3681,12 +3681,7 @@ L657A:	inc     L63D6                           ; 657A EE D6 63                 .
 ; ----------------------------------------------------------------------------
 L6580:	add16i L63D1, L63D3, $001E
 	dmv	off_AE, L63D1
-	lda     L63D4                           ; 659B AD D4 63                 ..c
-	ldy     #$01                            ; 659E A0 01                    ..
-	sta     ($AE),y                         ; 65A0 91 AE                    ..
-	lda     L63D3                           ; 65A2 AD D3 63                 ..c
-	dey                                     ; 65A5 88                       .
-	sta     ($AE),y                         ; 65A6 91 AE                    ..
+	stp16	L63D3
 	jsr     sub_636E
 	jsr     sub_62D1
 	rts                                     ; 65AE 60                       `
