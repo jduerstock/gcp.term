@@ -3649,14 +3649,9 @@ L64D5:	shladdm8 off_AE, L46F5, L63DB
 	lda     #$18                            ; 6533 A9 18                    ..
 	sbc     L63D5                           ; 6535 ED D5 63                 ..c
 	sta     $AC                             ; 6538 85 AC                    ..
-	sec                                     ; 653A 38                       8
-	lda     $AC                             ; 653B A5 AC                    ..
-	sbc     #$01                            ; 653D E9 01                    ..
-	sta     $A2                             ; 653F 85 A2                    ..
-	lda     #$00                            ; 6541 A9 00                    ..
-	sta     $A3                             ; 6543 85 A3                    ..
-	lda     L63DC                           ; 6545 AD DC 63                 ..c
-	sta     $A4                             ; 6548 85 A4                    ..
+	sub8i	$A2, off_AC, $01
+	ldi	$A3, $00
+	mv	$A4, L63DC
 	ldy     $A2                             ; 654A A4 A2                    ..
 	ldxa	$A0
 	jsr     memset
