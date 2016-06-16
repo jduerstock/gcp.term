@@ -4642,9 +4642,7 @@ sub_72B1:
 	ldxai	$72A2
 	jsr	sub_4CF5
 	pull16	off_AE
-	lda     $A0                             ; 735B A5 A0                    ..
-	ldy     #$00                            ; 735D A0 00                    ..
-	sta     ($AE),y                         ; 735F 91 AE                    ..
+	stp8	$A0
 	rts                                     ; 7361 60                       `
 
 	.include "sub-7368.asm"
