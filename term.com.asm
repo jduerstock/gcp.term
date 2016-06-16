@@ -5236,28 +5236,7 @@ L7A7F:	dmv	off_AE, L7A55
 	sty     L4656                           ; 7A91 8C 56 46                 .VF
 	rts                                     ; 7A94 60                       `
 
-; ----------------------------------------------------------------------------
-L7A95:  .byte	$68
-L7A96:	.byte	$9D
-L7A97:	.byte	$9E
-L7A98:	.byte	$F0
-L7A99:  .byte	$A9
-
-; ----------------------------------------------------------------------------
-cmd_un:
-	stack_prolog L7A95, $02
-	ldxa	L7A95
-	jsr     sub_799B
-	rdmv	L7A98, $A0
-	test16	L7A98
-	lbne	L7AC2
-	rts                                     ; 7AC1 60                       `
-
-; ----------------------------------------------------------------------------
-L7AC2:	add16i	off_AE, L7A98, $0005
-	stp8	L7A97
-	rts                                     ; 7AD8 60                       `
-
+	.include "cmd-un.asm"
 	.include "cmd-uv.asm"
 	.include "cmd-ux.asm"
 	.include "cmd-uy.asm"
