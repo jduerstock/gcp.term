@@ -5312,7 +5312,8 @@ L7B5C:  .byte	$01
 L7B5D:	.byte	$91
 	eor     $C8                             ; 7B5E 45 C8                    E.
 	lda     ($45),y                         ; 7B60 B1 45                    .E
-	sbc     #$00                            ; 7B62 E9 00                    ..
+	.byte	$E9
+L7B63:	.byte	$00
 L7B64:  sta     ($45),y                         ; 7B64 91 45                    .E
 	iny                                     ; 7B66 C8                       .
 L7B67:  .byte	$A9
@@ -5356,15 +5357,7 @@ L7BE0:  lda     L7BEB                           ; 7BE0 AD EB 7B                 
 L7BEB:	.byte	$F6                             ; 7BEB F6                       .
 
 ; ----------------------------------------------------------------------------
-L7BEC:  lda     L7B52+1
-	sta     $A3                             ; 7BEF 85 A3                    ..
-	lda     #$00                            ; 7BF1 A9 00                    ..
-	sta     $A5                             ; 7BF3 85 A5                    ..
-	lda     #$05                            ; 7BF5 A9 05                    ..
-	sta     $A4                             ; 7BF7 85 A4                    ..
-	ldy     L7B52                           ; 7BF9 AC 52 7B                 .R{
-	ldxai	$7B63
-	jsr     blockmove
+L7BEC:	blkmv_imi L7B63, L7B52, $0005
 	lda     L7B67                           ; 7C03 AD 67 7B                 .g{
 	cmp     L7B4F                           ; 7C06 CD 4F 7B                 .O{
 	lbcs	L7C1F
