@@ -5759,10 +5759,7 @@ cmd_ur:
 	stxa	L80AA
 	lda     L474F                           ; 80C4 AD 4F 47                 .OG
 	eor     #$01                            ; 80C7 49 01                    I.
-	beq     L80CE                           ; 80C9 F0 03                    ..
-	jmp     L80DA                           ; 80CB 4C DA 80                 L..
-
-; ----------------------------------------------------------------------------
+	lbne	L80DA
 L80CE:	ldxa	L80AA
 	jsr     sub_8047
 	jmp     L8176                           ; 80D7 4C 76 81                 Lv.
@@ -5770,19 +5767,8 @@ L80CE:	ldxa	L80AA
 ; ----------------------------------------------------------------------------
 L80DA:  lda     L4750                           ; 80DA AD 50 47                 .PG
 	jsr     sub_7035
-	lda     $A1                             ; 80E0 A5 A1                    ..
-	sta     L80AD                           ; 80E2 8D AD 80                 ...
-	lda     $A0                             ; 80E5 A5 A0                    ..
-	sta     L80AC                           ; 80E7 8D AC 80                 ...
-	lda     L80AD                           ; 80EA AD AD 80                 ...
-	sta     $A3                             ; 80ED 85 A3                    ..
-	lda     #$00                            ; 80EF A9 00                    ..
-	sta     $A5                             ; 80F1 85 A5                    ..
-	lda     #$05                            ; 80F3 A9 05                    ..
-	sta     $A4                             ; 80F5 85 A4                    ..
-	ldy     L80AC                           ; 80F7 AC AC 80                 ...
-	ldxai	$80B2
-	jsr     blockmove
+	rdmv	L80AC, $A0
+	blkmv_imi L80B2, L80AC, $0005
 	clc                                     ; 8101 18                       .
 	lda     L80AA                           ; 8102 AD AA 80                 ...
 	adc     L80B2                           ; 8105 6D B2 80                 m..
