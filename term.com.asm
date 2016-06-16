@@ -1610,24 +1610,24 @@ L4BC4:  sta     $A1                             ; 4BC4 85 A1                    
 
 ; ----------------------------------------------------------------------------
 sub_4BC9:  
-	sta     $A0				; $A2 = $A0 & $60
+	sta     $A0
 	and     #$60
-	sta     $A2
-	asl     a				; $A3 = $A2 << 1
-	sta     $A3                             
+	sta     $A2				; $A2 = $A0 & $60
+	asl     a
+	sta     $A3                             ; $A3 = $A2 << 1
 	eor     $A2				; $A1 = ($A3 ^ $A2 ^ $FF & $40) >> 1
 	eor     #$FF
 	and     #$40
 	lsr     a
-	sta     $A1
-	lda     $A0                             ; 4BDB A5 A0                    ..
-	and     #$9F                            ; 4BDD 29 9F                    ).
-	sta     $A0                             ; 4BDF 85 A0                    ..
-	lda     $A3                             ; 4BE1 A5 A3                    ..
-	and     #$40                            ; 4BE3 29 40                    )@
-	ora     $A0                             ; 4BE5 05 A0                    ..
-	ora     $A1                             ; 4BE7 05 A1                    ..
-	sta     $A0                             ; 4BE9 85 A0                    ..
+	sta     $A1				; $A1 = ($A3 ^ $A2 ^ $FF & $40) >> 1
+	lda     $A0
+	and     #$9F
+	sta     $A0				; $A0 = $A0 & $9F
+	lda     $A3
+	and     #$40
+	ora     $A0
+	ora     $A1
+	sta     $A0				; $A0 = $A3 & $40 | $A0 | $A1
 	rts                                     ; 4BEB 60                       `
 
 ; ----------------------------------------------------------------------------
@@ -1818,7 +1818,7 @@ L4EAC:	.byte	$46                             ; 4EAC 46                       F
 L4EAD:	.byte	$20                             ; 4EAD 20                        
 L4EAE:	.byte	$67                             ; 4EAE 67                       g
 L4EAF:	.byte	$74                             ; 4EAF 74                       t
-L4EB0:  plp                                     ; 4EB0 28                       (
+L4EB0:  .byte	$28
 
 sub_4EB1:  
 	stack_prolog L4EAB, $05
