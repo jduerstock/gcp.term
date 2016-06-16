@@ -5778,15 +5778,7 @@ L80DA:  lda     L4750                           ; 80DA AD 50 47                 
 	lda     L80B6                           ; 8122 AD B6 80                 ...
 	jsr     sub_799B
 	rdmv	L80AE, $A0
-	lda     L80AF                           ; 8132 AD AF 80                 ...
-	sta     $A3                             ; 8135 85 A3                    ..
-	lda     #$00                            ; 8137 A9 00                    ..
-	sta     $A5                             ; 8139 85 A5                    ..
-	lda     #$04                            ; 813B A9 04                    ..
-	sta     $A4                             ; 813D 85 A4                    ..
-	ldy     L80AE                           ; 813F AC AE 80                 ...
-	ldxai	L80B7
-	jsr     blockmove
+	blkmv_imi L80B7, L80AE, $0004
 	clc                                     ; 8149 18                       .
 	lda     L80B0                           ; 814A AD B0 80                 ...
 	adc     L80B9                           ; 814D 6D B9 80                 m..
