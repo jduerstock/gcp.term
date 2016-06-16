@@ -3443,10 +3443,8 @@ sub_619A:
 	rts                                     ; 61FE 60                       `
 
 ; ----------------------------------------------------------------------------
-L61FF:  .byte	$00
-L6200:  .byte	$00
-L6201:  .byte	$00
-L6202:  .byte	$00
+L61FF:  .byte	$00,$00
+L6201:  .byte	$00,$00
 
 ; ----------------------------------------------------------------------------
 sub_6203:  
@@ -3455,10 +3453,7 @@ sub_6203:
 	ldp16	$A0
 	dmv	off_AC, L466F
 	ld2p16	$A2, $AC
-	lda     #$00                            ; 6238 A9 00                    ..
-	sta     $A5                             ; 623A 85 A5                    ..
-	lda     #$20                            ; 623C A9 20                    . 
-	sta     $A4                             ; 623E 85 A4                    ..
+	rdldi	$A4, $0020
 	ldy     $A2                             ; 6240 A4 A2                    ..
 	ldxa	$A0
 	jsr     blockmove
@@ -3467,20 +3462,22 @@ sub_6203:
 	add16i	off_AE, L61FF, $0003
 	add16i	L6201, off_AE, $0001
 	dmv	off_AE, L6201
+;--		*L6201 = L61FF + 0x20;
 	clc                                     ; 6291 18                       .
 	lda     L61FF                           ; 6292 AD FF 61                 ..a
 	adc     #$20                            ; 6295 69 20                    i 
 	sta     $AC                             ; 6297 85 AC                    ..
-	lda     L6200                           ; 6299 AD 00 62                 ..b
+	lda     L61FF+1
 	adc     #$00                            ; 629C 69 00                    i.
 	iny                                     ; 629E C8                       .
 	sta     ($AE),y                         ; 629F 91 AE                    ..
 	lda     $AC                             ; 62A1 A5 AC                    ..
 	dey                                     ; 62A3 88                       .
 	sta     ($AE),y                         ; 62A4 91 AE                    ..
+;--
 	add16i	L6201, L61FF, $001E
 	dmv	off_AE, L6201
-	lda     L6200                           ; 62C1 AD 00 62                 ..b
+	lda     L61FF+1
 	iny                                     ; 62C4 C8                       .
 	sta     ($AE),y                         ; 62C5 91 AE                    ..
 	lda     L61FF                           ; 62C7 AD FF 61                 ..a
@@ -3543,8 +3540,7 @@ L636D:  .byte	$00
 ; ----------------------------------------------------------------------------
 sub_636E:
 	prolog
-	lda     L46EF                           ; 6371 AD EF 46                 ..F
-	sta     L6369                           ; 6374 8D 69 63                 .ic
+	mv	L6369, L46EF
 	shladdm8 off_AE, L46F5, L6369 
 	ldp16	L636C
 	add16i	$A2, L636C, $0003
