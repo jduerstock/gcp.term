@@ -4575,23 +4575,26 @@ sub_71B5:
 	ldxai	L71A4
 	jsr     sub_4CF5
 	pull16	off_AE
-	lda     $A0                             ; 7298 A5 A0                    ..
-	ldy     #$00                            ; 729A A0 00                    ..
-	sta     ($AE),y                         ; 729C 91 AE                    ..
+	stp8	$A0
 	rts                                     ; 729E 60                       `
 
 ; ----------------------------------------------------------------------------
 L729F:	.byte	$10                             ; 729F 10                       .
 L72A0:	.byte	$D0                             ; 72A0 D0                       .
 L72A1:	.byte	$E2                             ; 72A1 E2                       .
-L72A2:	lda     $43                             ; 72A2 A5 43                    .C
-	.byte	$8D,$E7
+L72A2:	.byte	$A5
+	.byte	$43
+	.byte	$8D
+	.byte	$E7
 L72A6:	.byte	$02
-	lda     $44                             ; 72A7 A5 44                    .D
+	.byte	$A5
+	.byte	$44
 	.byte   $8D                             ; 72A9 8D                       .
-L72AA:  inx                                     ; 72AA E8                       .
+L72AA:  .byte	$E8
 L72AB:	.byte	$02                             ; 72AB 02                       .
-	.byte	$4C,$9E,$E5
+	.byte	$4C
+	.byte	$9E
+	.byte	$E5
 L72AF:  .byte	$18
 L72B0:	.byte	$A5                             ; 72B0 A5                       .
 
