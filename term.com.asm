@@ -3865,15 +3865,9 @@ cmd_ud:					; "D" - display?
 	rts                                     ; 67FC 60                       `
 
 ; ----------------------------------------------------------------------------
-L67FD:	mv	$A3, L67CF+1
-	rdldi	$A4, $0006
-	ldy     L67CF                           ; 680A AC CF 67                 ..g
-	ldxai	L67D2
-	jsr     blockmove
+L67FD:	blkmv_imi L67D2, L67CF, $0006
 	dmv	off_AE, L67C8
-	ldy     #$00                            ; 681E A0 00                    ..
-	lda     ($AE),y                         ; 6820 B1 AE                    ..
-	sta     L67CA                           ; 6822 8D CA 67                 ..g
+	ldp8	L67CA
 	lda     L67D4                           ; 6825 AD D4 67                 ..g
 	cmp     L67CA                           ; 6828 CD CA 67                 ..g
 	lda     L67D5                           ; 682B AD D5 67                 ..g
