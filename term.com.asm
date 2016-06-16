@@ -5750,7 +5750,7 @@ L80B3:	.byte	$CD                             ; 80B3 CD                       .
 L80B4:	.byte	$09                             ; 80B4 09                       .
 L80B5:	.byte	$9D                             ; 80B5 9D                       .
 L80B6:  clv                                     ; 80B6 B8                       .
-	ora     #$C8                            ; 80B7 09 C8                    ..
+L80B7:	ora     #$C8                            ; 80B7 09 C8                    ..
 L80B9:  inx                                     ; 80B9 E8                       .
 L80BA:  .byte	$C9
 
@@ -5800,10 +5800,7 @@ L80DA:  lda     L4750                           ; 80DA AD 50 47                 
 L811F:  ldx     L46EA                           ; 811F AE EA 46                 ..F
 	lda     L80B6                           ; 8122 AD B6 80                 ...
 	jsr     sub_799B
-	lda     $A1                             ; 8128 A5 A1                    ..
-	sta     L80AF                           ; 812A 8D AF 80                 ...
-	lda     $A0                             ; 812D A5 A0                    ..
-	sta     L80AE                           ; 812F 8D AE 80                 ...
+	rdmv	L80AE, $A0
 	lda     L80AF                           ; 8132 AD AF 80                 ...
 	sta     $A3                             ; 8135 85 A3                    ..
 	lda     #$00                            ; 8137 A9 00                    ..
@@ -5811,8 +5808,7 @@ L811F:  ldx     L46EA                           ; 811F AE EA 46                 
 	lda     #$04                            ; 813B A9 04                    ..
 	sta     $A4                             ; 813D 85 A4                    ..
 	ldy     L80AE                           ; 813F AC AE 80                 ...
-	ldx     #$80                            ; 8142 A2 80                    ..
-	lda     #$B7                            ; 8144 A9 B7                    ..
+	ldxai	L80B7
 	jsr     blockmove
 	clc                                     ; 8149 18                       .
 	lda     L80B0                           ; 814A AD B0 80                 ...
