@@ -4839,13 +4839,9 @@ L758B:	.byte	$9D                             ; 758B 9D                       .
 
 cmd_lm:  
 	stack_prolog L7586, $03
-	lda     L7586                           ; 7595 AD 86 75                 ..u
-	jsr     sub_7035
-	rdmv	L758A, $A0
+	func16_8 sub_7035, L758A, L7586
 	add16i	off_AE, L758A, $0004
-	lda     L7587                           ; 75B4 AD 87 75                 ..u
-	ldy     #$00                            ; 75B7 A0 00                    ..
-	sta     ($AE),y                         ; 75B9 91 AE                    ..
+	stp8	L7587
 	lda     L7589                           ; 75BB AD 89 75                 ..u
 	eor     #$80                            ; 75BE 49 80                    I.
 	lbeq	L75D9
@@ -4856,9 +4852,7 @@ L75D9:  lda     L7588                           ; 75D9 AD 88 75                 
 	eor     #$80                            ; 75DC 49 80                    I.
 	lbeq	L75F9
 	add16i	off_AE, L758A, $0002
-	lda     L7588                           ; 75F2 AD 88 75                 ..u
-	ldy     #$00                            ; 75F5 A0 00                    ..
-	sta     ($AE),y                         ; 75F7 91 AE                    ..
+	stp8	L7588
 L75F9:	proc8	sub_71B5, L7586
 	yldi	L4656, $01
 	rts                                     ; 7604 60                       `
