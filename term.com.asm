@@ -4591,11 +4591,8 @@ L72A6:	.byte	$02
 	.byte   $8D                             ; 72A9 8D                       .
 L72AA:  inx                                     ; 72AA E8                       .
 L72AB:	.byte	$02                             ; 72AB 02                       .
-	;jmp     LE59E                           ; 72AC 4C 9E E5                 L..
 	.byte	$4C,$9E,$E5
-
-; ----------------------------------------------------------------------------
-L72AF:  clc                                     ; 72AF 18                       .
+L72AF:  .byte	$18
 L72B0:	.byte	$A5                             ; 72B0 A5                       .
 
 ; ----------------------------------------------------------------------------
@@ -4635,10 +4632,9 @@ sub_72B1:
 	jsr     sub_4BF2
 	add16i	off_AE, L72A0, $000A
 	push16	off_AE
-	lda     #$72                            ; 7339 A9 72                    .r
-	sta     $A3                             ; 733B 85 A3                    ..
+	ldi	$A3, >L72A6
 	add16i	$A4, L72A0, $001A
-	ldy     #$A6                            ; 734C A0 A6                    ..
+	ldy     #<L72A6
 	ldxai	$72A2
 	jsr	sub_4CF5
 	pull16	off_AE
