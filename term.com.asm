@@ -5779,22 +5779,10 @@ L80DA:  lda     L4750                           ; 80DA AD 50 47                 
 	jsr     sub_799B
 	rdmv	L80AE, $A0
 	blkmv_imi L80B7, L80AE, $0004
-	clc                                     ; 8149 18                       .
-	lda     L80B0                           ; 814A AD B0 80                 ...
-	adc     L80B9                           ; 814D 6D B9 80                 m..
-	sta     $AE                             ; 8150 85 AE                    ..
-	sec                                     ; 8152 38                       8
-	lda     $AE                             ; 8153 A5 AE                    ..
-	sbc     L80B4                           ; 8155 ED B4 80                 ...
-	sta     L80B0                           ; 8158 8D B0 80                 ...
-	clc                                     ; 815B 18                       .
-	lda     L80B1                           ; 815C AD B1 80                 ...
-	adc     L80BA                           ; 815F 6D BA 80                 m..
-	sta     $AE                             ; 8162 85 AE                    ..
-	sec                                     ; 8164 38                       8
-	lda     $AE                             ; 8165 A5 AE                    ..
-	sbc     L80B5                           ; 8167 ED B5 80                 ...
-	sta     L80B1                           ; 816A 8D B1 80                 ...
+	add8m	off_AE, L80B0, L80B9
+	sub8m	L80B0, off_AE, L80B4
+	add8m	off_AE, L80B1, L80BA
+	sub8m	L80B1, off_AE, L80B5
 L816D:	ldxa	L80B0
 	jsr     sub_8047
 L8176:  rts                                     ; 8176 60                       `
