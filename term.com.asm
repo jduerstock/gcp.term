@@ -4433,34 +4433,8 @@ sub_7035:
 	ldp16	$A0
 	rts                                     ; 705A 60                       `
 
-; ----------------------------------------------------------------------------
-L705B:	.byte	$66
-L705C:	.byte	$3E
-L705D:  .word   $7C06
-
-cmd_la:
-	prolog
-	stxa	L705B
-	func16_8 sub_7035, L705D, L705B
-	add16i	off_AE, L705D, $0009
-	stp8	L705C
-	rts                                     ; 708E 60                       `
-
-; ----------------------------------------------------------------------------
-L708F:	.byte	$00
-L7090:	.byte	$00
-L7091:	.byte	$7C
-L7092:	.byte	$66
-L7093:  .byte	$66,$66
-	.byte	$66
-
-cmd_lb:
-	stack_prolog L708F, $02
-	func16_8 sub_7035, L7092, L708F
-	add16i	$A0, L7092, $001E
-	blkmv_mmi $A0, L7090, $0004
-	rts
-
+	.include "cmd-la.asm"
+	.include "cmd-lb.asm"
 	.include "cmd-lf.asm"
 	.include "sub-71b5.asm"
 	.include "sub-72b1.asm"
