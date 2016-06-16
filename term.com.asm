@@ -4791,22 +4791,14 @@ L74BD:  .byte	$A5
 
 cmd_lc:
 	stack_prolog L74B8, $03
-	lda     L74B8                           ; 74C7 AD B8 74                 ..t
-	jsr     sub_7035
-	rdmv	L74BC, $A0
-	lda     L74BC                           ; 74D7 AD BC 74                 ..t
-	ora     L74BD                           ; 74DA 0D BD 74                 ..t
+	func16_8 sub_7035, L74BC, L74B8
+	test16	L74BC
 	lbne	L753B
 	ldxai	$0026
 	jsr     sub_606E
 	rdmv	L74BC, $A0
 	shladdm8 off_AE, L46A2, L74B8
-	lda     L74BD                           ; 7507 AD BD 74                 ..t
-	ldy     #$01                            ; 750A A0 01                    ..
-	sta     ($AE),y                         ; 750C 91 AE                    ..
-	lda     L74BC                           ; 750E AD BC 74                 ..t
-	dey                                     ; 7511 88                       .
-	sta     ($AE),y                         ; 7512 91 AE                    ..
+	stp16	L74BC
 	ldi	$A3, $00
 	ldy     #$26                            ; 7518 A0 26                    .&
 	ldxa	L74BC
@@ -4817,9 +4809,7 @@ cmd_lc:
 	ldy     #$00                            ; 7537 A0 00                    ..
 	sta	(off_AE),y
 L753B:	add16i	off_AE, L74BC, $000D
-	lda     L74B9                           ; 754A AD B9 74                 ..t
-	ldy     #$00                            ; 754D A0 00                    ..
-	sta     ($AE),y                         ; 754F 91 AE                    ..
+	stp8	L74B9
 	add16i	$A0, L74BC, $000E
 	add16i	$A2, L74BA, $0001
 	rdldi	$A4, $0008
