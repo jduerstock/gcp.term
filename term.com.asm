@@ -4533,15 +4533,7 @@ sub_71B5:
 	prolog
 	sta     L71A1                           ; 71B8 8D A1 71                 ..q
 	func16_8 sub_7035, L71A2, L71A1
-	lda     L71A3                           ; 71CB AD A3 71                 ..q
-	sta     $A3                             ; 71CE 85 A3                    ..
-	lda     #$00                            ; 71D0 A9 00                    ..
-	sta     $A5                             ; 71D2 85 A5                    ..
-	lda     #$07                            ; 71D4 A9 07                    ..
-	sta     $A4                             ; 71D6 85 A4                    ..
-	ldy     L71A2                           ; 71D8 AC A2 71                 ..q
-	ldxai	L71AE
-	jsr     blockmove
+	blkmv_imi L71AE, L71A2, $0007
 	func16_8 sub_65B0, L71AC, L71B2
 	sec                                     ; 71F2 38                       8
 	lda     #$00                            ; 71F3 A9 00                    ..
