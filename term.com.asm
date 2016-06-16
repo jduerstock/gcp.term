@@ -3196,6 +3196,8 @@ L5EFA:	.byte	$00
 
 sub_5EFE:  
 	stack_prolog L5EFA, $03
+
+; ----------------------------------------------------------------------------
 L5F07:  .byte	$00
 L5F08:  .byte	$00
 L5F09:  .byte	$00
@@ -3209,8 +3211,7 @@ L5F10:  .byte	$00
 L5F11:  .byte	$00
 L5F12:  .byte	$00
 L5F13:  .byte	$00
-L5F14:	.byte	$80                             ; 5F14 80                       .
-L5F15:	.byte	$B2                             ; 5F15 B2                       .
+L5F14:	.word	$B280
 
 sub_5F16:  
 	stack_prolog L5F07, $04
@@ -3240,10 +3241,8 @@ L5F4B:  lda     L5F13                           ; 5F4B AD 13 5F                 
 	sty     L5F11                           ; 5F62 8C 11 5F                 .._
 	iny                                     ; 5F65 C8                       .
 	sty     L5F10                           ; 5F66 8C 10 5F                 .._
-	lda     L5F09                           ; 5F69 AD 09 5F                 .._
-	sta     L5F86                           ; 5F6C 8D 86 5F                 .._
-	lda     L5F0A                           ; 5F6F AD 0A 5F                 .._
-	sta     L5F87                           ; 5F72 8D 87 5F                 .._
+	mv	L5F86, L5F09
+	mv	L5F87, L5F0A
 L5F75:  lda     L5F86                           ; 5F75 AD 86 5F                 .._
 	cmp     L5F10                           ; 5F78 CD 10 5F                 .._
 	lda     L5F87                           ; 5F7B AD 87 5F                 .._
