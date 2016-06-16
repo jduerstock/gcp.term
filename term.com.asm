@@ -5414,15 +5414,7 @@ L7CD6:	add16i	$A0, L7B56, $0006
 	ldy     L7B56                           ; 7D08 AC 56 7B                 .V{
 	ldxa	$A0
 	jsr     sub_4EB1
-	lda     #$7B                            ; 7D12 A9 7B                    .{
-	sta     $A3                             ; 7D14 85 A3                    ..
-	lda     #$00                            ; 7D16 A9 00                    ..
-	sta     $A5                             ; 7D18 85 A5                    ..
-	lda     #$06                            ; 7D1A A9 06                    ..
-	sta     $A4                             ; 7D1C 85 A4                    ..
-	ldy     #$5D                            ; 7D1E A0 5D                    .]
-	ldxa	L7B56
-	jsr     blockmove
+	blkmv_mii L7B56, L7B5D, $0006
 	add16i	off_AE, L7B56, $0004
 	lda     L7B4F                           ; 7D38 AD 4F 7B                 .O{
 	ldy     #$00                            ; 7D3B A0 00                    ..
