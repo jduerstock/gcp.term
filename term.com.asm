@@ -3793,11 +3793,7 @@ sub_66FC:
 	prolog
 	stxa	L66F2
 	func16_8 sub_65B0, L66F4, L66F2
-	mv	$A3, L66F4+1
-	rdldi	$A4, $0006
-	ldy     L66F4                           ; 6722 AC F4 66                 ..f
-	ldxai	L66F6
-	jsr     blockmove
+	blkmv_imi L66F6, L66F4, $0006
 	lda     L66F3                           ; 672C AD F3 66                 ..f
 	cmp     L66F7                           ; 672F CD F7 66                 ..f
 	lbcc	L6742
