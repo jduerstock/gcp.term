@@ -5793,11 +5793,8 @@ L80DA:  lda     L4750                           ; 80DA AD 50 47                 
 	sta     L80B1                           ; 8112 8D B1 80                 ...
 	lda     L474F                           ; 8115 AD 4F 47                 .OG
 	eor     #$03                            ; 8118 49 03                    I.
-	beq     L811F                           ; 811A F0 03                    ..
-	jmp     L816D                           ; 811C 4C 6D 81                 Lm.
-
-; ----------------------------------------------------------------------------
-L811F:  ldx     L46EA                           ; 811F AE EA 46                 ..F
+	lbne	L816D
+	ldx     L46EA                           ; 811F AE EA 46                 ..F
 	lda     L80B6                           ; 8122 AD B6 80                 ...
 	jsr     sub_799B
 	rdmv	L80AE, $A0
