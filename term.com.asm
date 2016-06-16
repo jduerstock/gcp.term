@@ -5390,11 +5390,7 @@ L7C59:  lda     L7B54                           ; 7C59 AD 54 7B                 
 	rts                                     ; 7C64 60                       `
 
 ; ----------------------------------------------------------------------------
-L7C65:	mv	$A3, L7B54+1
-	rdldi	$A4, $0006
-	ldy     L7B54                           ; 7C72 AC 54 7B                 .T{
-	ldxai	L7B5D
-	jsr     blockmove
+L7C65:	blkmv_imi L7B5D, L7B54, $0006
 	add16i	$A2, L7B54, $0006
 	sub16m	off_AC, L7B52, L7B54
 	sub16i	$A4, off_AC, $0006
