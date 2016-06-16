@@ -1041,8 +1041,7 @@ L46EF:  .byte	$00
 	.byte	$00
 	.byte	$00
 L46F5:	.byte	$C0                             ; 46F5 C0                       .
-L46F6:  ;bcs     $470C                           ; 46F6 B0 14                    ..
-	.byte	$B0,$14
+L46F6:	.byte	$B0,$14
 	.byte	$00
 L46F9:	dec     $1E,x                           ; 46F9 D6 1E                    ..
 	;bvc     L46FD                           ; 46FB 50 00                    P.
@@ -4743,36 +4742,7 @@ L7467:  lda     L73D7                           ; 7467 AD D7 73                 
 L7477:  ldi	$A0, $FF
 	rts                                     ; 747B 60                       `
 
-; ----------------------------------------------------------------------------
-L747C:	.byte	$25                             ; 747C 25                       %
-
-; ----------------------------------------------------------------------------
-sub_747D:  
-	prolog
-	lda     #$14                            ; 7480 A9 14                    ..
-	asl     a                               ; 7482 0A                       .
-	sta     $A2                             ; 7483 85 A2                    ..
-	lda     #$00                            ; 7485 A9 00                    ..
-	sta     $A3                             ; 7487 85 A3                    ..
-	ldy     $A2                             ; 7489 A4 A2                    ..
-	ldxa	L46A2
-	jsr     bzero
-	ldy     #$00                            ; 7494 A0 00                    ..
-	sty     L747C                           ; 7496 8C 7C 74                 .|t
-L7499:  lda     #$13                            ; 7499 A9 13                    ..
-	cmp     L747C                           ; 749B CD 7C 74                 .|t
-	lbcc	L74B2
-	lda     L747C                           ; 74A3 AD 7C 74                 .|t
-	ldx     L747C                           ; 74A6 AE 7C 74                 .|t
-	sta     L4659,x                         ; 74A9 9D 59 46                 .YF
-	inc     L747C                           ; 74AC EE 7C 74                 .|t
-	jmp     L7499                           ; 74AF 4C 99 74                 L.t
-
-; ----------------------------------------------------------------------------
-L74B2:  ldy     #$00                            ; 74B2 A0 00                    ..
-	sty     L4673                           ; 74B4 8C 73 46                 .sF
-	rts                                     ; 74B7 60                       `
-
+	.include "sub-747d.asm"
 	.include "cmd-lc.asm"
 	.include "cmd-lm.asm"
 	.include "cmd-ll.asm"
