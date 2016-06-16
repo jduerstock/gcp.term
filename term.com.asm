@@ -3677,17 +3677,7 @@ L6580:	add16i L63D1, L63D3, $001E
 	jsr     sub_62D1
 	rts                                     ; 65AE 60                       `
 
-; ----------------------------------------------------------------------------
-L65AF:  .byte	$00
-
-; ----------------------------------------------------------------------------
-sub_65B0:  
-	prolog
-	sta     L65AF                           ; 65B3 8D AF 65                 ..e
-	shladdm8 off_AE, L46E2, L65AF
-	ldp16	$A0
-	rts                                     ; 65D5 60                       `
-
+	.include "sub-65b0.asm"
 	.include "cmd-uw.asm"
 	.include "cmd-uf.asm"
 	.include "sub-66fc.asm"
