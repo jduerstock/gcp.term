@@ -4243,12 +4243,7 @@ L6D88:  ldx     #$00                            ; 6D88 A2 00                    
 	ldxa	$A0
 	jsr     sub_606E                        ; 6DEF 20 6E 60                  n`
 	pull16	off_AE
-	lda     $A1                             ; 6DF8 A5 A1                    ..
-	ldy     #$01                            ; 6DFA A0 01                    ..
-	sta     ($AE),y                         ; 6DFC 91 AE                    ..
-	lda     $A0                             ; 6DFE A5 A0                    ..
-	dey                                     ; 6E00 88                       .
-	sta     ($AE),y                         ; 6E01 91 AE                    ..
+	stp16	$A0
 	dmv	off_AE, L6AC8
 	iny                                     ; 6E0D C8                       .
 	lda     ($AE),y                         ; 6E0E B1 AE                    ..
