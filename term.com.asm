@@ -3548,17 +3548,12 @@ sub_636E:
 	shladdm8 off_AE, L46F5, L6369 
 	ldp16	L636C
 	add16i	$A2, L636C, $0003
-	lda     #$00                            ; 63A7 A9 00                    ..
-	sta     $A5                             ; 63A9 85 A5                    ..
-	lda     #$05                            ; 63AB A9 05                    ..
-	sta     $A4                             ; 63AD 85 A4                    ..
+	rdldi	$A4, $0005
 	ldy     $A2                             ; 63AF A4 A2                    ..
 	ldxa	L636A
 	jsr     blockmove
 	add16i	off_AE, L636C, $0002
-	ldy     #$00                            ; 63C9 A0 00                    ..
-	lda     ($AE),y                         ; 63CB B1 AE                    ..
-	sta	CHBAS
+	ldp8	CHBAS
 	rts                                     ; 63D0 60                       `
 
 ; ----------------------------------------------------------------------------
