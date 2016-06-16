@@ -4603,12 +4603,8 @@ sub_72B1:
 	prolog
 	sta     L729F                           ; 72B4 8D 9F 72                 ..r
 	func16_8 sub_7035, L72A0, L729F
-	mv	$A3, L72A0+1
-	rdldi	$A4, $0007
-	ldy     L72A0                           ; 72D4 AC A0 72                 ..r
-	ldxai	L72AA
-	jsr     blockmove
-	sec                                     ; 72DE 38                       8
+	blkmv_imi L72AA, L72A0, $0007
+	sec
 	lda     #$00                            ; 72DF A9 00                    ..
 	sbc     L72AA                           ; 72E1 ED AA 72                 ..r
 	sta     $A2                             ; 72E4 85 A2                    ..
