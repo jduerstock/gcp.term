@@ -4422,17 +4422,7 @@ L6FFF:	func16_8 sub_65B0, L6FE9, L4648
 	jsr     cmd_ud
 	rts                                     ; 7033 60                       `
 
-; ----------------------------------------------------------------------------
-L7034:	.byte   $66
-
-; ----------------------------------------------------------------------------
-sub_7035:  
-	prolog
-	sta     L7034                           ; 7038 8D 34 70                 .4p
-	shladdm8 off_AE, L46A2, L7034
-	ldp16	$A0
-	rts                                     ; 705A 60                       `
-
+	.include "sub-7035.asm"
 	.include "cmd-la.asm"
 	.include "cmd-lb.asm"
 	.include "cmd-lf.asm"
