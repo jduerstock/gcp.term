@@ -4992,15 +4992,12 @@ L7799:	ldi	$A0, $00
 L779E:	.byte	$02
 L779F:	.byte	$91
 L77A0:	.byte	$45
-L77A1:	.byte	$C8
-L77A2:	.byte	$A9
+L77A1:	.byte	$C8,$A9
 
 ; ----------------------------------------------------------------------------
 cmd_ls:  
 	stack_prolog L779E, $02
-	lda     L779E                           ; 77AC AD 9E 77                 ..w
-	jsr     sub_7035
-	rdmv	L77A1, $A0
+	func16_8 sub_7035, L77A1, L779E
 	add16i	off_AE, L77A1, $0005
 	stp8	L779F
 	add16i	off_AE, L77A1, $0006
