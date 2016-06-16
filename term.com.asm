@@ -5769,14 +5769,8 @@ L80DA:  lda     L4750                           ; 80DA AD 50 47                 
 	jsr     sub_7035
 	rdmv	L80AC, $A0
 	blkmv_imi L80B2, L80AC, $0005
-	clc                                     ; 8101 18                       .
-	lda     L80AA                           ; 8102 AD AA 80                 ...
-	adc     L80B2                           ; 8105 6D B2 80                 m..
-	sta     L80B0                           ; 8108 8D B0 80                 ...
-	clc                                     ; 810B 18                       .
-	lda     L80AB                           ; 810C AD AB 80                 ...
-	adc     L80B3                           ; 810F 6D B3 80                 m..
-	sta     L80B1                           ; 8112 8D B1 80                 ...
+	add8m	L80B0, L80AA, L80B2
+	add8m	L80B1, L80AB, L80B3
 	lda     L474F                           ; 8115 AD 4F 47                 .OG
 	eor     #$03                            ; 8118 49 03                    I.
 	lbne	L816D
