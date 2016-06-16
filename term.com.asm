@@ -4297,11 +4297,7 @@ L6E60:	.byte	$66                             ; 6E60 66                       f
 cmd_ub:  					; "B"
 	stack_prolog L6E40, $05
 	func16_8 sub_65B0, L6E46, L6E40
-	mv	$A3, L6E47
-	rdldi	$A4, $0006
-	ldy     L6E46                           ; 6E87 AC 46 6E                 .Fn
-	ldxai	$6E5B
-	jsr     blockmove
+	blkmv_imi L6E5B, L6E46, $0006
 	sub8m	off_AE, L6E44, L6E42
 	add8i	L6E49, off_AE, $01
 	mv	L6E4A, L6E49
