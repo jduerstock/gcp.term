@@ -3546,12 +3546,7 @@ sub_636E:
 	lda     L46EF                           ; 6371 AD EF 46                 ..F
 	sta     L6369                           ; 6374 8D 69 63                 .ic
 	shladdm8 off_AE, L46F5, L6369 
-	ldy     #$01                            ; 638B A0 01                    ..
-	lda     ($AE),y                         ; 638D B1 AE                    ..
-	sta     L636D                           ; 638F 8D 6D 63                 .mc
-	dey                                     ; 6392 88                       .
-	lda     ($AE),y                         ; 6393 B1 AE                    ..
-	sta     L636C                           ; 6395 8D 6C 63                 .lc
+	ldp16	L636C
 	add16i	$A2, L636C, $0003
 	lda     #$00                            ; 63A7 A9 00                    ..
 	sta     $A5                             ; 63A9 85 A5                    ..
