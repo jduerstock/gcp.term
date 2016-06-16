@@ -4872,23 +4872,17 @@ L7609:	.byte	$53                             ; 7609 53                       S
 
 cmd_ll:
 	stack_prolog L7605, $02
-	lda     L7605                           ; 7613 AD 05 76                 ..v
-	jsr     sub_7035
-	rdmv	L7608, $A0
+	func16_8 sub_7035, L7608, L7605
 	lda     L7606                           ; 7623 AD 06 76                 ..v
 	eor     #$80                            ; 7626 49 80                    I.
 	lbeq	L763E
 	dmv	off_AE, L7608
-	lda     L7606                           ; 7637 AD 06 76                 ..v
-	ldy     #$00                            ; 763A A0 00                    ..
-	sta     (off_AE),y
+	stp8	L7606
 L763E:  lda     L7607                           ; 763E AD 07 76                 ..v
 	eor     #$80                            ; 7641 49 80                    I.
 	lbeq	L765E
 	add16i	off_AE, L7608, $0001
-	lda     L7607                           ; 7657 AD 07 76                 ..v
-	ldy     #$00                            ; 765A A0 00                    ..
-	sta     ($AE),y                         ; 765C 91 AE                    ..
+	stp8	L7607
 L765E:	proc8	sub_72B1, L7605
 	yldi	L4656, $01
 	rts                                     ; 7669 60                       `
