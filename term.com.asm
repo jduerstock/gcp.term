@@ -5002,9 +5002,7 @@ cmd_ls:
 	jsr     sub_7035
 	rdmv	L77A1, $A0
 	add16i	off_AE, L77A1, $0005
-	lda     L779F                           ; 77CB AD 9F 77                 ..w
-	ldy     #$00                            ; 77CE A0 00                    ..
-	sta     ($AE),y                         ; 77D0 91 AE                    ..
+	stp8	L779F
 	add16i	off_AE, L77A1, $0006
 	lda     L77A0                           ; 77E1 AD A0 77                 ..w
 	sta     ($AE),y                         ; 77E4 91 AE                    ..
