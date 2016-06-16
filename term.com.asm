@@ -3241,8 +3241,7 @@ L5F4B:  lda     L5F13                           ; 5F4B AD 13 5F                 
 	sty     L5F11                           ; 5F62 8C 11 5F                 .._
 	iny                                     ; 5F65 C8                       .
 	sty     L5F10                           ; 5F66 8C 10 5F                 .._
-	mv	L5F86, L5F09
-	mv	L5F87, L5F0A
+	dmv	L5F86, L5F09
 L5F75:  lda     L5F86                           ; 5F75 AD 86 5F                 .._
 	cmp     L5F10                           ; 5F78 CD 10 5F                 .._
 	lda     L5F87                           ; 5F7B AD 87 5F                 .._
