@@ -3074,20 +3074,7 @@ L5E10:	ldi	$A3, $00
 	jsr     sub_55A0
 	rts                                     ; 5E1D 60                       `
 
-; ----------------------------------------------------------------------------
-cmd_d0:
-	prolog 
-;--		if (L4653 == 0) {
-;--			sub_5CFC();
-;--		}
-	lda     L4653                           ; 5E21 AD 53 46                 .SF
-	lbne	L5E2C
-	jsr     sub_5CFC
-;--		L4653++;
-L5E2C:  inc     L4653                           ; 5E2C EE 53 46                 .SF
-	rts                                     ; 5E2F 60                       `
-;--	}
-
+	.include "cmd-d0.asm"
 	.include "cmd-d1.asm"
 	.include "sub-5e5e.asm"
 	.include "sub-5ec4.asm"
