@@ -2783,9 +2783,7 @@ L5A53:	dmv	off_AE, L58EB
 	ldxa	$A0
 	jsr     sub_4B47
 	pull16	off_AE
-	lda     $A0                             ; 5A7E A5 A0                    ..
-	ldy     #$00                            ; 5A80 A0 00                    ..
-	sta     ($AE),y                         ; 5A82 91 AE                    ..
+	stp8	$A0
 	add8i	L4654, L4654, $02
 	jmp     L5CF5                           ; 5A8D 4C F5 5C                 L.\
 
