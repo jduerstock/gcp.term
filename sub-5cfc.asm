@@ -27,10 +27,8 @@ L5D1F:	yldi	$022F, $00
 L5D29:  jsr     modem_status
 	lda     $A0                             ; 5D2C A5 A0                    ..
 	lbeq	L5D40
-L5D33:  lda     #$02                            ; 5D33 A9 02                    ..
-	jsr     sub_45A3
-	lda     #$02                            ; 5D38 A9 02                    ..
-	jsr     sub_4F6D
+L5D33:	proc8i	sub_45A3, $02
+	proc8i	sub_4F6D, $02
 	jmp     L5D29                           ; 5D3D 4C 29 5D                 L)]
 
 ; ----------------------------------------------------------------------------
