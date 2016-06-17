@@ -2260,14 +2260,7 @@ sub_532A:
 	jsr     sub_5274
 	rts                                     ; 5372 60                       `
 
-; ----------------------------------------------------------------------------
-sub_5373:
-	prolog
-	ldx     #$1B                            ; 5376 A2 1B                    ..
-	lda     L531D                           ; 5378 AD 1D 53                 ..S
-	jsr     sub_532A
-	rts                                     ; 537E 60                       `
-
+	.include "sub-5373.asm"
 	.include "sub-537f.asm"
 	.include "sub-5388.asm"
 	.include "sub-5394.asm"
