@@ -3188,15 +3188,7 @@ sub_5EDF:
 L5EF7:  sty     $A0                             ; 5EF7 84 A0                    ..
 	rts                                     ; 5EF9 60                       `
 
-; ----------------------------------------------------------------------------
-L5EFA:	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-
-sub_5EFE:  
-	stack_prolog L5EFA, $03
-
+	.include "sub-5efe.asm"
 	.include "sub-5f16.asm"
 	.include "sub-5ff5.asm"
 	.include "sub-6026.asm"
