@@ -840,6 +840,7 @@ sub_45C4:
 	lda     $B7                             ; 45C5 A5 B7                    ..
 
 sub_45C7:
+;--	void sub_45c7(uint8_t iocb,chr)		; put character
 	stx     $A1                             ; 45C7 86 A1                    ..
 	ldy     $A1                             ; 45C9 A4 A1                    ..
 	ldx     #$0B				; put buffer
@@ -2155,13 +2156,7 @@ L523B:  clc                                     ; 523B 18                       
 	lda     #$00                            ; 5242 A9 00                    ..
 	sbc     $A6                             ; 5244 E5 A6                    ..
 	sta     ($A4),y                         ; 5246 91 A4                    ..
-	clc                                     ; 5248 18                       .
-	lda     $A4                             ; 5249 A5 A4                    ..
-	adc     #$03                            ; 524B 69 03                    i.
-	sta     $A0                             ; 524D 85 A0                    ..
-	lda     $A5                             ; 524F A5 A5                    ..
-	adc     #$00                            ; 5251 69 00                    i.
-	sta	$A1
+	add16i	$A0, $A4, $0003
 	blkmv_mm8 $A0, $A2, $A9
 	rts                                     ; 526A 60                       `
 
