@@ -2761,9 +2761,7 @@ L59E1:  lda     L58EF                           ; 59E1 AD EF 58                 
 	ldxa	$A0
 	jsr     sub_4B47
 	pull16	off_AE
-	lda     $A0                             ; 5A1D A5 A0                    ..
-	ldy     #$00                            ; 5A1F A0 00                    ..
-	sta     ($AE),y                         ; 5A21 91 AE                    ..
+	stp8	$A0
 	add8i	L4654, L4654, $02
 	inc     L58EF                           ; 5A2C EE EF 58                 ..X
 	jmp     L59E1                           ; 5A2F 4C E1 59                 L.Y
