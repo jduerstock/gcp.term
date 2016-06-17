@@ -73,11 +73,8 @@ LA60D:  lda     LA618                           ; A60D AD 18 A6                 
 LA618:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-LA619:  lda     LA52F                           ; A619 AD 2F A5                 ./.
-	jsr     sub_45A3
-	lda     $A0                             ; A61F A5 A0                    ..
-	sta     LA539                           ; A621 8D 39 A5                 .9.
-	ldx     LA52F                           ; A624 AE 2F A5                 ./.
+LA619:	func8_8	sub_45A3, LA539, LA52F
+	ldx	LA52F				; A624 AE 2F A5                 ./.
 	lda     L05C0,x                         ; A627 BD C0 05                 ...
 	sta     LA53C                           ; A62A 8D 3C A5                 .<.
 	lda     LA53C                           ; A62D AD 3C A5                 .<.
