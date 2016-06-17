@@ -32,6 +32,7 @@ KEYDEL		:= $02F1
 CH1		:= $02F2
 CH		:= $02FC
 CHBAS		:= $02F4
+ICCOM		:= $0342
 L05C0		:= $05C0
 L3272           := $3272
 L4253           := $4253
@@ -823,7 +824,7 @@ L45A5:  stx     $A4                             ; 45A5 86 A4                    
 	asl     a                               ; 45AA 0A                       .
 	tax                                     ; 45AB AA                       .
 	lda     $A4                             ; 45AC A5 A4                    ..
-	sta     $0342,x                         ; 45AE 9D 42 03                 .B.
+	sta     ICCOM,x                         ; 45AE 9D 42 03                 .B.
 	lda     #$00                            ; 45B1 A9 00                    ..
 	sta     $0348,x                         ; 45B3 9D 48 03                 .H.
 	sta     $0349,x                         ; 45B6 9D 49 03                 .I.
