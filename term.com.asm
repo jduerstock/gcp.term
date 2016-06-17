@@ -3022,10 +3022,7 @@ sub_5D67:
 	ldx     #$00                            ; 5D99 A2 00                    ..
 	lda     #$02                            ; 5D9B A9 02                    ..
 	jsr     XIO
-	lda     #$20                            ; 5DA0 A9 20                    . 
-	sta     $A3                             ; 5DA2 85 A3                    ..
-	lda     #$00                            ; 5DA4 A9 00                    ..
-	sta     $A4                             ; 5DA6 85 A4                    ..
+	dldi	$A3, $0020
 	rdldi	$A5, L4AA1
 	ldy     #$26                            ; 5DB0 A0 26                    .&
 	ldx     #$00                            ; 5DB2 A2 00                    ..
