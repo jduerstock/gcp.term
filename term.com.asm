@@ -2274,13 +2274,7 @@ sub_537F:
 	jsr     sub_532A
 	rts                                     ; 5387 60                       `
 
-; ----------------------------------------------------------------------------
-sub_5388:  
-	ldx     #$15                            ; 5388 A2 15                    ..
-	lda     LB1C8                           ; 538A AD C8 B1                 ...
-	jsr     sub_532A
-	rts                                     ; 5390 60                       `
-
+	.include "sub-5388.asm"
 	.include "sub-5394.asm"
 	.include "sub-5461.asm"
 	.include "sub-54ff.asm"
