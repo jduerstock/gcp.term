@@ -2207,27 +2207,7 @@ L52D7:  ldx     #$0A                            ; 52D7 A2 0A                    
 	jsr	sub_45C7
 	rts					; 52DE 60
 
-; ----------------------------------------------------------------------------
-L52DF:	.byte	$32
-L52E0:  .byte	$D8
-
-; ----------------------------------------------------------------------------
-sub_52E1:  
-	prolog
-	stxa	L52DF
-	inc     L464B                           ; 52EA EE 4B 46                 .KF
-	lda     #$0A                            ; 52ED A9 0A                    ..
-	cmp     L464B                           ; 52EF CD 4B 46                 .KF
-	lbcs	L5304
-	yldi	L464B, $00
-	proc8i	cmd_2a, $11
-	jsr     sub_4749
-L5304:	ldxa	L52DF
-	jsr     sub_5274
-	yldi	CDTMF3, $01
-	rdldi	CDTMV3, $0258			; 10 seconds
-	rts                                     ; 531C 60                       `
-
+	.include "sub-52e1.asm"
 	.include "sub-532a.asm"
 	.include "sub-5373.asm"
 	.include "sub-537f.asm"
