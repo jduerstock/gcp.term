@@ -2316,8 +2316,7 @@ L53BE:  lda     L5391                           ; 53BE AD 91 53                 
 	lda     #$5A                            ; 53F6 A9 5A                    .Z
 	sbc     LB16A                           ; 53F8 ED 6A B1                 .j.
 	sta     $A4                             ; 53FB 85 A4                    ..
-	lda     #$00                            ; 53FD A9 00                    ..
-	sta     $A5                             ; 53FF 85 A5                    ..
+	ldi	$A5, $00
 	ldy     $A2                             ; 5401 A4 A2                    ..
 	ldxai	LB16A
 	jsr     blockmove
@@ -2964,6 +2963,9 @@ L5D11:  lda     L4650                           ; 5D11 AD 50 46                 
 	lbeq	L5D1F
 	jsr     sub_5394
 	jmp     L5D11                           ; 5D1C 4C 11 5D                 L.]
+;--		while (L4650 != 0) {
+;--			sub_5394();
+;--		}
 
 ; ----------------------------------------------------------------------------
 L5D1F:	yldi	$022F, $00
@@ -3075,11 +3077,16 @@ L5E10:	ldi	$A3, $00
 ; ----------------------------------------------------------------------------
 cmd_d0:
 	prolog 
+;--		if (L4653 == 0) {
+;--			sub_5CFC();
+;--		}
 	lda     L4653                           ; 5E21 AD 53 46                 .SF
 	lbne	L5E2C
 	jsr     sub_5CFC
+;--		L4653++;
 L5E2C:  inc     L4653                           ; 5E2C EE 53 46                 .SF
 	rts                                     ; 5E2F 60                       `
+;--	}
 
 ; ----------------------------------------------------------------------------
 cmd_d1:
@@ -3108,10 +3115,8 @@ L5E5D:  .byte	$00
 sub_5E5E:  
 	prolog
 	stxa	L5E5B
-	ldy     #$00                            ; 5E67 A0 00                    ..
-	sty     L4AA4                           ; 5E69 8C A4 4A                 ..J
-	lda     L4653                           ; 5E6C AD 53 46                 .SF
-	sta     L5E5D                           ; 5E6F 8D 5D 5E                 .]^
+	yldi	L4AA4, $00
+	mv	L5E5D, L4653
 L5E72:  lda     #$00                            ; 5E72 A9 00                    ..
 	cmp     L4653                           ; 5E74 CD 53 46                 .SF
 	lbcs	L5E82
@@ -3126,20 +3131,16 @@ L5E82:	mv	L464D, L5E5B
 L5E8B:	.byte	$03,"CBB"
 
 ; ----------------------------------------------------------------------------
-L5E8F:  lda     #$00                            ; 5E8F A9 00                    ..
-	sta     $A3                             ; 5E91 85 A3                    ..
-	lda     #$00                            ; 5E93 A9 00                    ..
-	sta     $A5                             ; 5E95 85 A5                    ..
-	lda     L5E5B                           ; 5E97 AD 5B 5E                 .[^
-	sta     $A4                             ; 5E9A 85 A4                    ..
+L5E8F:	ldi	$A3, $00
+	ldi	$A5, $00
+	mv	$A4, L5E5B
 	lda     L5E5C                           ; 5E9C AD 5C 5E                 .\^
 	lsr     a                               ; 5E9F 4A                       J
 	lsr     a                               ; 5EA0 4A                       J
 	lsr     a                               ; 5EA1 4A                       J
 	lsr     a                               ; 5EA2 4A                       J
 	sta     $A6                             ; 5EA3 85 A6                    ..
-	lda     #$00                            ; 5EA5 A9 00                    ..
-	sta     $A7                             ; 5EA7 85 A7                    ..
+	ldi	$A7, $00
 	ldy     #$2A                            ; 5EA9 A0 2A                    .*
 	ldxai	L5E8B
 	jsr     sub_55A0
