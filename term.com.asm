@@ -1555,25 +1555,7 @@ L4B62:  jsr     sub_4B39
 	sta     $A0                             ; 4B78 85 A0                    ..
 	rts                                     ; 4B7A 60                       `
 
-; ----------------------------------------------------------------------------
-sub_4B7B:  
-	tay                                     ; 4B7B A8                       .
-	and     #$80                            ; 4B7C 29 80                    ).
-	sta     $A0                             ; 4B7E 85 A0                    ..
-	tya                                     ; 4B80 98                       .
-	and     #$7F                            ; 4B81 29 7F                    ).
-	cmp     #$20                            ; 4B83 C9 20                    . 
-	bcs     L4B8B                           ; 4B85 B0 04                    ..
-	adc     #$40                            ; 4B87 69 40                    i@
-	bcc     L4B92                           ; 4B89 90 07                    ..
-L4B8B:  cmp     #$60                            ; 4B8B C9 60                    .`
-	bcs     L4B92                           ; 4B8D B0 03                    ..
-	sec                                     ; 4B8F 38                       8
-	sbc     #$20                            ; 4B90 E9 20                    . 
-L4B92:  ora     $A0                             ; 4B92 05 A0                    ..
-	sta     $A0                             ; 4B94 85 A0                    ..
-	rts                                     ; 4B96 60                       `
-
+	.include "sub-4b7b.asm"
 	.include "sub-4b97.asm"
 	.include "cmd-2a.asm"
 	.include "sub-4bb8.asm"
