@@ -1854,10 +1854,6 @@ cmd_07:						; "^G" - bell?
 	yldi	L4656, $01
 	rts                                     ; 4F69 60                       `
 
-; ----------------------------------------------------------------------------
-L4F6A:	.byte	$00
-L4F6B:	.byte	$00,$2E
-
 	.include "sub-4f6d.asm"
 	.include "cmd-25.asm"
 	.include "sub-4fc5.asm"
