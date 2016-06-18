@@ -40,9 +40,7 @@ L6AFF:  ldx     #$00                            ; 6AFF A2 00                    
 	ldxa	L6AC4
 	jsr     bzero
 	dmv	off_AE, L6AC4
-	lda	L6ABF
-	ldy     #$00                            ; 6B4D A0 00                    ..
-	sta     ($AE),y                         ; 6B4F 91 AE                    ..
+	stp8	L6ABF
 	add16i	off_AE, L6AC4, $0001
 	lda     L6AC0                           ; 6B60 AD C0 6A                 ..j
 	sta     ($AE),y                         ; 6B63 91 AE                    ..
