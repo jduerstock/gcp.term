@@ -1815,12 +1815,9 @@ sub_4E4A:
 	rts                                     ; 4EAA 60                       `
 
 ; ----------------------------------------------------------------------------
-L4EAB:	.byte	$49                             ; 4EAB 49                       I
-L4EAC:	.byte	$46                             ; 4EAC 46                       F
-L4EAD:	.byte	$20                             ; 4EAD 20                        
-L4EAE:	.byte	$67                             ; 4EAE 67                       g
-L4EAF:	.byte	$74                             ; 4EAF 74                       t
-L4EB0:  .byte	$28
+L4EAB:	.byte	$49,$46
+L4EAD:	.byte	$20,$67
+L4EAF:	.byte	$74,$28
 
 sub_4EB1:  
 	stack_prolog L4EAB, $05
@@ -1831,7 +1828,7 @@ sub_4EB1:
 L4EFA:  lda     #$00                            ; 4EFA A9 00                    ..
 	cmp     L4EAF                           ; 4EFC CD AF 4E                 ..N
 	lda     #$00                            ; 4EFF A9 00                    ..
-	sbc     L4EB0                           ; 4F01 ED B0 4E                 ..N
+	sbc     L4EAF+1
 	lbcs	L4F59
 	sub16i	L4EAF, L4EAF, $0001
 	dmv	off_AE, L4EAB
@@ -1846,14 +1843,7 @@ L4EFA:  lda     #$00                            ; 4EFA A9 00                    
 ; ----------------------------------------------------------------------------
 L4F59:  rts                                     ; 4F59 60                       `
 
-; ----------------------------------------------------------------------------
-cmd_07:						; "^G" - bell?
-	yldi	CRSINH, $01
-	lda     #$FD                            ; 4F5F A9 FD                    ..
-	jsr     sub_45C4
-	yldi	L4656, $01
-	rts                                     ; 4F69 60                       `
-
+	.include "cmd-07.asm"
 	.include "sub-4f6d.asm"
 	.include "cmd-25.asm"
 	.include "sub-4fc5.asm"
