@@ -10,3 +10,8 @@ sub_65B0:
 	ldp16	$A0
 	rts                                     ; 65D5 60                       `
 
+;--	uint16_t sub_65b0(uint8_t a)
+;--	{
+;--		return(L46E2+a*2);
+;--	}
+;--

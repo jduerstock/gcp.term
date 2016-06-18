@@ -4,23 +4,25 @@ LA887:  .byte	$00
 LA888:  .byte	$00
 LA889:  .byte	$00
 	.byte	$00
-LA88B:  .byte	$00
-LA88C:  .byte	$00
+LA88B:  .byte	$00,$00
 LA88D:  .byte	$00
 LA88E:  .byte	$00
 LA88F:	.byte	$00
 	.byte	$00
 	.byte	$00
 	.byte	$00
-LA893:  .byte	$00
-LA894:  .byte	$00
+LA893:  .byte	$00,$00
 
 
 ; ----------------------------------------------------------------------------
 cmd_40:						; "@" "BB"
 	prolog
+;--	void cmd_40(uint8_t a, uint8_t x)
 	stxa	LA887
 	func16_8 sub_65B0, LA88D, LA887
+;--		uint16_t LA88D;
+;--
+;--		LA88D = sub_65B0(a);
 	blkmv_imi LA88F, LA88D, $0006
 	shladdm8 off_AE, LA893, LA888
 	ldp16	LA88B
@@ -38,9 +40,9 @@ LA903:  lda     #$5B                            ; A903 A9 5B                    
 	lbcc	LA936
 	add16m8	off_AE, LA88B, LA889
 	ldp8	$A0
-	lda     $A0                             ; A923 A5 A0                    ..
-	jsr     sub_4BC9
-	lda     $A0                             ; A928 A5 A0                    ..
+	lda	$A0
+	jsr	sub_4BC9
+	lda	$A0
 	ldx     LA889                           ; A92A AE 89 A8                 ...
 	sta     LB224,x                         ; A92D 9D 24 B2                 .$.
 	inc     LA889                           ; A930 EE 89 A8                 ...
