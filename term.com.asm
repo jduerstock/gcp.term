@@ -1632,15 +1632,7 @@ sub_4BC9:
 	sta     $A0				; $A0 = $A3 & $40 | $A0 | $A1
 	rts                                     ; 4BEB 60                       `
 
-; ----------------------------------------------------------------------------
-L4BEC:	.word	$7220
-L4BEE:	.byte	$32,$20,$53,$42
-
-sub_4BF2:  
-	stack_prolog L4BEC, $05
-	blkmv_mii L4BEC, L4BEE, $0004
-	rts                                     ; 4C12 60                       `
-
+	.include "sub-4bf2.asm"
 	.include "sub-4c1d.asm"
 	.include "sub-4c75.asm"
 	.include "sub-4cf5.asm"
