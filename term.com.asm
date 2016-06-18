@@ -1904,7 +1904,7 @@ L4FBD:	.byte	$69                             ; 4FBD 69                       i
 L4FBE:  .byte	$00
 L4FBF:  .byte	$00
 L4FC0:	.byte	$74                             ; 4FC0 74                       t
-L4FC1:  pla                                     ; 4FC1 68                       h
+L4FC1:	.byte	$68
 L4FC2:	.byte	$65                             ; 4FC2 65                       e
 L4FC3:	.byte	$20                             ; 4FC3 20                        
 	.byte   $72                             ; 4FC4 72                       r
@@ -1981,39 +1981,27 @@ L5085:  lda     L4FBF                           ; 5085 AD BF 4F                 
 
 ; ----------------------------------------------------------------------------
 L50A4:	add16m8 off_AE, L4FC2, L4FBF
-	lda     L4FBB                           ; 50B4 AD BB 4F                 ..O
-	ldy     #$00                            ; 50B7 A0 00                    ..
-	sta     ($AE),y                         ; 50B9 91 AE                    ..
+	stp8	L4FBB
 	add8m	L4FC1, L4FC1, L4FBB
 	inc     L4FBF                           ; 50C5 EE BF 4F                 ..O
 	jsr     modem_status
-	lda     #$00                            ; 50CB A9 00                    ..
-	sta     L4FBD                           ; 50CD 8D BD 4F                 ..O
-	lda     $A0                             ; 50D0 A5 A0                    ..
-	sta     L4FBC                           ; 50D2 8D BC 4F                 ..O
+	ldi	L4FBD, $00
+	mv	L4FBC, $A0
 	test16	L4FBC
 	lbne	L50E5
 	ldi	$A0, $00
 	rts                                     ; 50E4 60                       `
 
 ; ----------------------------------------------------------------------------
-L50E5:  lda     #$02                            ; 50E5 A9 02                    ..
-	jsr     sub_45A3
-	mv	L4FBB, $A0
+L50E5:	func8_8i sub_45A3, L4FBB, $02
 L50EF:	add16m8	off_AE, L4FC2, L4FBF
 	stp8	L4FBB
-	clc                                     ; 5106 18                       .
-	lda     L4FC1                           ; 5107 AD C1 4F                 ..O
-	adc     L4FBB                           ; 510A 6D BB 4F                 m.O
-	sta     L4FC1                           ; 510D 8D C1 4F                 ..O
+	add8m	L4FC1, L4FC1, L4FBB
 	inc     L4FBF                           ; 5110 EE BF 4F                 ..O
 	lda     L4FBB                           ; 5113 AD BB 4F                 ..O
 	eor     #$0A                            ; 5116 49 0A                    I.
 	lbne	L514C
-	clc                                     ; 511D 18                       .
-	lda     L4FC0                           ; 511E AD C0 4F                 ..O
-	adc     #$01                            ; 5121 69 01                    i.
-	sta     $AE                             ; 5123 85 AE                    ..
+	add8i	off_AE, L4FC0, $01
 	lda     L4FBF                           ; 5125 AD BF 4F                 ..O
 	eor     $AE                             ; 5128 45 AE                    E.
 	lbne	L514C
