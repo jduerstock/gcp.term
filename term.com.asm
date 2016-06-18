@@ -1510,17 +1510,7 @@ L4B35:  iny                                     ; 4B35 C8                       
 	sta     ($AE),y                         ; 4B36 91 AE                    ..
 	rts                                     ; 4B38 60                       `
 
-; ----------------------------------------------------------------------------
-sub_4B39:  
-	sec                                     ; 4B39 38                       8
-	sbc     #$30                            ; 4B3A E9 30                    .0
-	and     #$1F                            ; 4B3C 29 1F                    ).
-	cmp     #$0A                            ; 4B3E C9 0A                    ..
-	bcc     L4B44                           ; 4B40 90 02                    ..
-	sbc     #$07                            ; 4B42 E9 07                    ..
-L4B44:  sta     $A0                             ; 4B44 85 A0                    ..
-	rts                                     ; 4B46 60                       `
-
+	.include "sub-4b39.asm"
 	.include "sub-4b47.asm"
 	.include "sub-4b7b.asm"
 	.include "sub-4b97.asm"
