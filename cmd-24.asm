@@ -4,7 +4,7 @@ LA843:  .byte	$00
 LA844:  .byte	$00
 LA845:  .byte	$00
 
-cmd_24:
+cmd_24:						; "$" "CS"
 	stack_prolog LA843, $02
 	jmp     LA855                           ; A84F 4C 55 A8                 LU.
 
@@ -18,7 +18,7 @@ LA855:	ldi	$A3, $00
 	ldp8	$A4
 	add16i	$A6, LA844, $0001
 	ldy     LA843                           ; A87C AC 43 A8                 .C.
-	ldxai	$A852
+	ldxai	LA852
 	jsr     sub_55A0
 	rts                                     ; A886 60                       `
 

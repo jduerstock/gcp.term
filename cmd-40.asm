@@ -17,7 +17,7 @@ LA894:  .byte	$00
 
 
 ; ----------------------------------------------------------------------------
-cmd_40:  
+cmd_40:						; "@" "BB"
 	prolog
 	stxa	LA887
 	func16_8 sub_65B0, LA88D, LA887
@@ -37,9 +37,7 @@ LA903:  lda     #$5B                            ; A903 A9 5B                    
 	cmp     LA889                           ; A905 CD 89 A8                 ...
 	lbcc	LA936
 	add16m8	off_AE, LA88B, LA889
-	ldy     #$00                            ; A91D A0 00                    ..
-	lda     ($AE),y                         ; A91F B1 AE                    ..
-	sta     $A0                             ; A921 85 A0                    ..
+	ldp8	$A0
 	lda     $A0                             ; A923 A5 A0                    ..
 	jsr     sub_4BC9
 	lda     $A0                             ; A928 A5 A0                    ..
