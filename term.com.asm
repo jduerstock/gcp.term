@@ -1610,28 +1610,7 @@ L4BC4:  sta     $A1                             ; 4BC4 85 A1                    
 	sty     $A0                             ; 4BC6 84 A0                    ..
 	rts                                     ; 4BC8 60                       `
 
-; ----------------------------------------------------------------------------
-sub_4BC9:  
-	sta     $A0
-	and     #$60
-	sta     $A2				; $A2 = $A0 & $60
-	asl     a
-	sta     $A3                             ; $A3 = $A2 << 1
-	eor     $A2				; $A1 = ($A3 ^ $A2 ^ $FF & $40) >> 1
-	eor     #$FF
-	and     #$40
-	lsr     a
-	sta     $A1				; $A1 = ($A3 ^ $A2 ^ $FF & $40) >> 1
-	lda     $A0
-	and     #$9F
-	sta     $A0				; $A0 = $A0 & $9F
-	lda     $A3
-	and     #$40
-	ora     $A0
-	ora     $A1
-	sta     $A0				; $A0 = $A3 & $40 | $A0 | $A1
-	rts                                     ; 4BEB 60                       `
-
+	.include "sub-4bc9.asm"
 	.include "sub-4bf2.asm"
 	.include "sub-4c1d.asm"
 	.include "sub-4c75.asm"
