@@ -118,8 +118,7 @@ L6C5C:	mv	$A3, L6ACE+1
 	ldy     L6ACC                           ; 6CF5 AC CC 6A                 ..j
 	ldxa	L6AD3
 	jsr     bzero
-	ldy     #$00                            ; 6D01 A0 00                    ..
-	sty     L6AD0                           ; 6D03 8C D0 6A                 ..j
+	yldi	L6AD0, $00
 	sub8i	L6D1A, L6AC1, $01
 L6D0F:  lda     L6D1A                           ; 6D0F AD 1A 6D                 ..m
 	cmp     L6AD0                           ; 6D12 CD D0 6A                 ..j
@@ -159,8 +158,7 @@ L6D88:  ldx     #$00                            ; 6D88 A2 00                    
 	rdmv	L6AC8, $A0
 	add16i	off_AE, L6AC4, $0009
 	stp16	L6AC8
-	lda     #$00                            ; 6DB5 A9 00                    ..
-	sta     $A3                             ; 6DB7 85 A3                    ..
+	ldi	$A3, $00
 	ldy     #$1A                            ; 6DB9 A0 1A                    ..
 	ldxa	L6AC8
 	jsr     bzero
