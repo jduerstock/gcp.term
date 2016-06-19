@@ -4,10 +4,8 @@ L8CF9:  .byte	$00
 L8CFA:  .byte	$00
 L8CFB:  .byte	$00
 L8CFC:  .byte	$00
-L8CFD:  .byte	$00
-L8CFE:  .byte	$00
-L8CFF:  .byte	$00
-L8D00:  .byte	$00
+L8CFD:  .word	$0000
+L8CFF:  .word	$0000
 
 ; ----------------------------------------------------------------------------
 cmd_26:						; "&" ""
@@ -73,3 +71,32 @@ L8E06:  lda     L4657                           ; 8E06 AD 57 46                 
 	yldi	L4657, $00
 L8E1E:  rts                                     ; 8E1E 60                       `
 
+;--	void cmd_26();
+;--	{
+;--		uint16_t L8CFF;
+;--	
+;--		if (L4658 == 0) return;
+;--		if (L4656 == 1) {
+;--			L8CFF = r16(L466F + 2);
+;--			L8CFD = L8CFF + 3 + 1;
+;--			L466D = r16(L8CFD);
+;--			memset(L466D, 0xc0, 3);
+;--			L8CF9 = 1;
+;--			L8D94 = L4673;
+;--			while (L8CF9 < L8D94) {
+;--				L8CFA = L4659[L8CF9-1];
+;--				L8CFB = sub_7035(L8CFA);
+;--				if ((r8(L8CFB+12) == 0xff) && (r8(L8CFB+10) == 0x01) && (L8CFB != 0) {
+;--					sub_89AE(L8CFA);
+;--				}
+;--				L8CF9++;
+;--			}
+;--			L4646 = 0;
+;--			sub_63DD();
+;--		}
+;--		if (L4657 == 1) {
+;--			sub_8047(L4762);
+;--			L4657 = 0;
+;--		}
+;--	}
+;--

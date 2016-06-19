@@ -9,3 +9,8 @@ cmd_uh:  					; "H" "D"
 	mv	L464E, LA9EB
 	rts
 
+;--	void cmd_uh(uint8_t a)
+;--	{
+;--		L464E = a;
+;--	}
+;--

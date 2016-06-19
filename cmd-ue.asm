@@ -9,3 +9,8 @@ cmd_ue:  					; "E" "D"
 	mv	L4658, LA9DD
 	rts                                     ; A9EA 60                       `
 
+;--	void cmd_ue(uint8_t a)
+;--	{
+;--		L4658 = a;
+;--	}
+;--
