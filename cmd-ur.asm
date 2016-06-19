@@ -17,7 +17,7 @@ L80B7:	ora     #$C8                            ; 80B7 09 C8                    .
 L80B9:  inx                                     ; 80B9 E8                       .
 L80BA:  .byte	$C9
 
-cmd_ur:
+cmd_ur:						; "R" "BB"
 	prolog
 	stxa	L80AA
 	lda     L474F                           ; 80C4 AD 4F 47                 .OG

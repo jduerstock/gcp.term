@@ -8,7 +8,7 @@ L8F4F:	.byte	$00
 	.byte	$00
 
 ; ----------------------------------------------------------------------------
-cmd_uo:  
+cmd_uo:						; "O" "DDDDDD"
 	stack_prolog L8F4F, $05
 	blkmv_iii L46EF, L8F4F, $0006
 	jsr     sub_63DD

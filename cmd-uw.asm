@@ -12,7 +12,7 @@ L65DE:  .byte	$00
 L65DF:  .byte	$00
 L65E0:  .byte	$00,$00
 
-cmd_uw:  					; "W"
+cmd_uw:  					; "W" "BBBBBC"
 	stack_prolog L65D6, $05
 	func16_8 sub_65B0, L65E0, L65D6
 	test16	L65E0

@@ -14,21 +14,21 @@ L7B56:	.byte	$38,$A0
 	.byte   $E9                             ; 7B5B E9                       .
 L7B5C:  .byte	$01
 L7B5D:	.byte	$91
-	eor     $C8                             ; 7B5E 45 C8                    E.
-	lda     ($45),y                         ; 7B60 B1 45                    .E
+	.byte	$45
+	.byte	$C8
+	.byte	$B1
+	.byte	$45
 	.byte	$E9
 L7B63:	.byte	$00
-L7B64:  sta     ($45),y                         ; 7B64 91 45                    .E
-	iny                                     ; 7B66 C8                       .
+L7B64:  .byte	$91
+	.byte	$45
+	.byte	$C8
 L7B67:  .byte	$A9
 
 ; ----------------------------------------------------------------------------
-cmd_ux:
+cmd_ux:						; "X" "BBB"
 	stack_prolog L7B4D, $02
-	sec                                     ; 7B71 38                       8
-	lda     L7B4F                           ; 7B72 AD 4F 7B                 .O{
-	sbc     #$01                            ; 7B75 E9 01                    ..
-	sta     L7B4F                           ; 7B77 8D 4F 7B                 .O{
+	sub8i	L7B4F, L7B4F, $01
 	lda     L7B4D                           ; 7B7A AD 4D 7B                 .M{
 	jsr     sub_65B0
 	lda     $A1                             ; 7B80 A5 A1                    ..
@@ -37,8 +37,7 @@ cmd_ux:
 	sta     L7B50                           ; 7B87 8D 50 7B                 .P{
 	add16i	off_AE, L7B50, $0007
 	ldp16	L7B52
-	lda     L7B52                           ; 7BA6 AD 52 7B                 .R{
-	ora     L7B52+1
+	test16	L7B52
 	lbne	L7BB2
 	rts                                     ; 7BB1 60                       `
 
