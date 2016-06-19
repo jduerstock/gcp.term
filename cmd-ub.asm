@@ -24,7 +24,7 @@ L6E5F:  .byte	$00
 L6E60:	.byte	$66                             ; 6E60 66                       f
 
 ; ----------------------------------------------------------------------------
-cmd_ub:  					; "B"
+cmd_ub:  					; "B" "BDBBBB"
 	stack_prolog L6E40, $05
 	func16_8 sub_65B0, L6E46, L6E40
 	blkmv_imi L6E5B, L6E46, $0006

@@ -5,7 +5,7 @@ L8EF9:  .byte	$00
 L8EFA:  .byte	$00
 L8EFB:  .addr	$0000
 
-cmd_ug:
+cmd_ug:						; "G" "DDB"
 	stack_prolog L8EF8, $02
 	shladdm8 off_AE, L46F5, L8EF8
 	ldp16	L8EFB

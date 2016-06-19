@@ -3,10 +3,9 @@
 L7605:  .byte	$60
 L7606:  .byte	$E8
 L7607:	.byte	$FA                             ; 7607 FA                       .
-L7608:	.byte	$E9                             ; 7608 E9                       .
-L7609:	.byte	$53                             ; 7609 53                       S
+L7608:	.byte	$E9,$53
 
-cmd_ll:
+cmd_ll:						; "l" "BBB"
 	stack_prolog L7605, $02
 	func16_8 sub_7035, L7608, L7605
 	lda     L7606                           ; 7623 AD 06 76                 ..v

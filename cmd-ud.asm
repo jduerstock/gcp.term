@@ -20,7 +20,7 @@ L67D5:	.byte	$8D
 L67D6:	.byte	$01
 L67D7:	.byte	$D3
 
-cmd_ud:					; "D" - display?
+cmd_ud:						; "D","BBBBS"
 	stack_prolog L67C4, $05 
 	func16_8 sub_65B0, L67CF, L67C4
 	test16	L67CF

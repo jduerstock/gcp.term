@@ -11,7 +11,7 @@ LA6E0:  .byte	$00
 LA6E1:	.byte   $04,"done"
 LA6E6:	.addr	LA6E1
 
-cmd_d6:
+cmd_d6:						; "6" "BDs"
 	stack_prolog LA6D8, $03
 	lda     LA6D8                           ; A6F1 AD D8 A6                 ...
 	jsr     sub_65B0

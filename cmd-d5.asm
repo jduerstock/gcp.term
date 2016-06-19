@@ -24,7 +24,7 @@ LA541:  .byte	$00
 LA545:  .byte	$00
 LA546:  .byte	$00
 
-cmd_d5:
+cmd_d5:						; "5" "BDR"
 	stack_prolog LA52E, $03
 	func16_8 sub_65B0, LA534, LA52E
 	test16	LA534

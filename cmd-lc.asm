@@ -7,7 +7,7 @@ L74BB:	.byte	$47                             ; 74BB 47                       G
 L74BC:  .byte	$18
 L74BD:  .byte	$A5
 
-cmd_lc:
+cmd_lc:						; "c" "BCS"
 	stack_prolog L74B8, $03
 	func16_8 sub_7035, L74BC, L74B8
 	test16	L74BC

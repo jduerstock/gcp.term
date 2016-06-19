@@ -30,7 +30,7 @@ L9E28:	.byte	$00
 L9E2A:  .byte	$00
 L9E2B:  .byte	$00
 
-cmd_2b:						; "+"
+cmd_2b:						; "+" "C"
 	prolog
 	sta     L9E0F                           ; 9E2F 8D 0F 9E                 ...
 	ldi	L9E19, $80

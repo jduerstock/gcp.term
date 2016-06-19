@@ -24,7 +24,7 @@ LA3B7:  .byte	$00
 LA3BB:  .byte	$00
 LA3BC:  .byte	$00
 
-cmd_d4:
+cmd_d4:						; "4" "BDDR"
 	stack_prolog LA3A5, $04
 	func16_8 sub_65B0, LA3AC, LA3A5
 	test16	LA3AC

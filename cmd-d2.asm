@@ -8,7 +8,7 @@ LA2A6:  .byte	$00
 LA2A7:  .byte	$00
 
 ; ----------------------------------------------------------------------------
-cmd_d2:
+cmd_d2:						; "2" "DDs"
 	stack_prolog LA2A2, $03
 	jsr     cmd_d0
 	lda     LA2A2                           ; A2B4 AD A2 A2                 ...
@@ -33,7 +33,7 @@ LA30A:  lda     LA2A6                           ; A30A AD A6 A2                 
 	sta     $A3                             ; A30D 85 A3                    ..
 	lda     #$00                            ; A30F A9 00                    ..
 	sta     $A4                             ; A311 85 A4                    ..
-	ldy     LA2A5                           ; A313 AC A5 A2                 ...
+	ldy     LA2A4+1
 	ldx     LA2A4                           ; A316 AE A4 A2                 ...
 	lda     LA2A2                           ; A319 AD A2 A2                 ...
 	jsr     Open

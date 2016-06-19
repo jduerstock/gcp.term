@@ -4,7 +4,7 @@ L705B:	.byte	$66
 L705C:	.byte	$3E
 L705D:  .word   $7C06
 
-cmd_la:
+cmd_la:						; "a" "BD"
 	prolog
 	stxa	L705B
 	func16_8 sub_7035, L705D, L705B

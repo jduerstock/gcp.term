@@ -3,7 +3,7 @@
 LA9F9:	.word	$0000
 
 ; ----------------------------------------------------------------------------
-cmd_li:
+cmd_li:						; "i" "" -- initialize?
 	prolog
 	sub16m	LA9F9, MEMTOP, MEMLO
 	mv	$A3, LA9F9+1

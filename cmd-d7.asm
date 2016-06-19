@@ -4,7 +4,7 @@ LA7C1:  .byte	$00
 LA7C2:  .byte	$00
 LA7C3:  .byte	$00
 
-cmd_d7:
+cmd_d7:						; "7" "Ds"
 	stack_prolog LA7C1, $02
 	jsr     cmd_d0
 	ldi	$A3, $00

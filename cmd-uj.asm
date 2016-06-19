@@ -9,7 +9,7 @@ L9C2D:	.addr	L9C24
 L9C2F:	.byte	$D6,$1E,$09,$00,$00,$00,$00,$00,$00
 L9C38:	.byte	$D6,$1E,$09,$00,$00,$00,$00,$00,$00
 
-cmd_uj:  
+cmd_uj:						; "J" "DBB"
 	stack_prolog L9C16, $02
 	mv	L46E6, L9C16
 	dmv	L46E9, L9C17
