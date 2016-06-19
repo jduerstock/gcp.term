@@ -7,8 +7,8 @@ sub_ADEA:
 	dmv	off_AE, L466F
 	stp16	DLIST
 	shladdi off_AE, L466F, $01
-	sub8i	off_AC, $0230, $00
-	lda     $0231                           ; AE1F AD 31 02                 .1.
+	sub8i	off_AC, DLIST, $00
+	lda     DLIST+1
 	sbc     #$04                            ; AE22 E9 04                    ..
 	iny                                     ; AE24 C8                       .
 	sta     ($AE),y                         ; AE25 91 AE                    ..
