@@ -1,4 +1,20 @@
 
+.ifndef MONOLITH
+	.include "action.inc"
+
+	.import Close
+	.import XIO
+
+	.import L4650
+
+	.import modem_status
+
+	.import sub_45A3
+	.import sub_4F6D
+	.import sub_5394
+	.import sub_55A0
+.endif
+
 ; ----------------------------------------------------------------------------
 sub_5CFC:  
 	prolog
