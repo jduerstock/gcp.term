@@ -1,4 +1,46 @@
 
+.ifndef MONOLITH
+	.include "action.inc"
+
+	.import ATRACT
+	.import CH
+	.import INVFLG
+	.import SHFLOK
+
+	.import	L05C0
+
+	.import	L464D
+	.import	L4652
+	.import L46E6
+	.import L46E9
+	.import	L474D
+	.import	L474E
+	.import	L4764
+	.import	LB223
+
+	.import cmd_26
+	.import cmd_2a
+	.import cmd_d1
+	.import cmd_ui
+
+	.import sub_43BA
+	.import sub_458F
+	.import sub_54FF
+	.import sub_5E5E
+	.import sub_768A
+	.import sub_840C
+	.import sub_907D
+	.import sub_9CD0
+	.import sub_9DCB
+	.import sub_A027
+	.import sub_A28D
+	.import sub_A9A3
+	.import sub_AB6A
+	.import sub_ADEA
+	.import sub_AE81
+	.import sub_AEE4
+.endif
+
 ; ----------------------------------------------------------------------------
 LAF36:  .byte	$00
 LAF37:  .byte	$00
