@@ -1,4 +1,16 @@
 
+.ifndef MONOLITH
+	.include "action.inc"
+
+	.import L4650
+	.import LB1C9
+
+	.import sub_4FC5
+	.import sub_5388
+	.import sub_5394
+	.import sub_5461
+.endif
+
 ; ----------------------------------------------------------------------------
 L54FC:	.byte	$44                             ; 54FC 44                       D
 L54FD:	.byte	$6F                             ; 54FD 6F                       o
