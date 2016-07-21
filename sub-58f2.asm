@@ -1,4 +1,20 @@
 
+.ifndef MONOLITH
+	.include "action.inc"
+
+	.import off_AE: zeropage
+
+	.import L4649
+	.import L4654
+	.import LB224
+
+	.import SArgs
+
+	.import sub_4B39
+	.import sub_4B47
+	.import sub_4B7B
+.endif
+
 ; ----------------------------------------------------------------------------
 L58E7:	.byte	$44
 L58E8:  .byte	$28
