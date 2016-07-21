@@ -1138,14 +1138,7 @@ sub_4AE6:
 	jsr     XIO
 	rts                                     ; 4B06 60                       `
 
-; ----------------------------------------------------------------------------
-modem_status:  
-	prolog
-	lda     #$02                            ; 4B0A A9 02                    ..
-	jsr     sub_4AE6
-	mv	$A0, DVSTAT+1
-	rts                                     ; 4B14 60                       `
-
+	.include "modem-status.asm"
 	.include "tohex.asm"
 	.include "sub-4b39.asm"
 	.include "sub-4b47.asm"
