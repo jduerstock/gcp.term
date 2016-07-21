@@ -1,4 +1,26 @@
 
+.ifndef MONOLITH
+	.include "action.inc"
+
+	.import off_AC: zeropage
+	.import off_AE: zeropage
+
+	.import L464B
+	.import L4650
+	.import L4653 
+	.import L466F
+	.import L474C
+	.import LB16A
+
+	.import SArgs
+
+	.import tohex
+	.import sub_4BC9
+	.import sub_51F7
+	.import sub_52E1
+	.import sub_5394
+.endif
+
 ; ----------------------------------------------------------------------------
 L557E:	.byte	$30,$5D
 L5580:	.byte	$03,$00,$00,$11,$20
@@ -26,7 +48,7 @@ sub_55A0:
 	lda     #$00                            ; 55A9 A9 00                    ..
 	cmp     L4653                           ; 55AB CD 53 46                 .SF
 	lbcs	L55B4
-L55B3:  rts                                     ; 55B3 60                       `
+	rts
 
 ; ----------------------------------------------------------------------------
 L55B4:	shladdi	off_AE, L466F, $0001
