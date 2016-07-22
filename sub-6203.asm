@@ -1,4 +1,15 @@
 
+.ifndef MONOLITH
+	.include "action.inc"
+
+	.import off_AC: zeropage
+	.import off_AE: zeropage
+
+	.import L466F
+
+	.import	blockmove
+.endif
+
 ; ----------------------------------------------------------------------------
 L61FF:  .byte	$00,$00
 L6201:  .byte	$00,$00
