@@ -35,6 +35,7 @@ CH1		:= $02F2
 CH		:= $02FC
 CHBAS		:= $02F4
 ICCOM		:= $0342
+ICBA		:= $0344
 L05C0		:= $05C0
 L3272           := $3272
 L4253           := $4253
@@ -114,10 +115,10 @@ L4378:  tay                                     ; 4378 A8                       
 	clc                                     ; 4383 18                       .
 	lda     $A5                             ; 4384 A5 A5                    ..
 	adc     #$01                            ; 4386 69 01                    i.
-L4388:  sta     $0344,x                         ; 4388 9D 44 03                 .D.
+L4388:  sta     ICBA,x
 	lda     $A6                             ; 438B A5 A6                    ..
 	adc     #$00                            ; 438D 69 00                    i.
-	sta     $0345,x                         ; 438F 9D 45 03                 .E.
+	sta     ICBA+1,x
 	jmp     CIOV
 
 ; ----------------------------------------------------------------------------
@@ -1111,9 +1112,9 @@ sub_4AA5:
 	lda     $A7                             ; 4AC6 A5 A7                    ..
 	sta     $034B,x                         ; 4AC8 9D 4B 03                 .K.
 L4ACB:  tya                                     ; 4ACB 98                       .
-	sta     $0345,x                         ; 4ACC 9D 45 03                 .E.
+	sta     ICBA+1,x
 	lda     $A1                             ; 4ACF A5 A1                    ..
-	sta     $0344,x                         ; 4AD1 9D 44 03                 .D.
+	sta     ICBA,x
 	jsr     CIOV
 	sty     L4AA4                           ; 4AD7 8C A4 4A                 ..J
 	cpy     #$88                            ; 4ADA C0 88                    ..
