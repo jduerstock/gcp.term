@@ -338,8 +338,12 @@
 .macro	pcode	a1
 	.local	ptr
 ptr:
-	.byte	.strlen(a1)
-	.byte	a1
+	.if	.strlen(a1) > 0
+		.byte	.strlen(a1)
+		.byte	a1
+	.else
+		.byte	$00
+	.endif
 	.addr	ptr
 .endmacro
 
