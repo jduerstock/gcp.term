@@ -37,6 +37,8 @@ CHBAS		:= $02F4
 ICCOM		:= $0342
 ICBA		:= $0344
 ICBL		:= $0348
+ICAX1		:= $034A
+ICAX2		:= $034B
 L05C0		:= $05C0
 L3272           := $3272
 L4253           := $4253
@@ -104,9 +106,9 @@ XIOstr:
 	sta     ICCOM,x                         ; 4367 9D 42 03                 .B.
 	lda     $A3                             ; 436A A5 A3                    ..
 	beq     L4378                           ; 436C F0 0A                    ..
-	sta     $034A,x                         ; 436E 9D 4A 03                 .J.
+	sta     ICAX1,x
 	lda     $A4                             ; 4371 A5 A4                    ..
-	sta     $034B,x                         ; 4373 9D 4B 03                 .K.
+	sta     ICAX2,x
 	lda     #$00                            ; 4376 A9 00                    ..
 L4378:  tay                                     ; 4378 A8                       .
 	sta     ICBL+1,x
@@ -1036,13 +1038,7 @@ sub_49D3:
 	rts                                     ; 49ED 60                       `
 
 ; ----------------------------------------------------------------------------
-L49EE:  clc                                     ; 49EE 18                       .
-	lda     #<LB380
-	adc     L499F                           ; 49F1 6D 9F 49                 m.I
-	sta     L49D1                           ; 49F4 8D D1 49                 ..I
-	lda     #>LB380
-	adc     #$00                            ; 49F9 69 00                    i.
-	sta     L49D1+1
+L49EE:	addi16m8 L49D1, LB380, L499F
 	blkmv_imi L49C5, L49D1, $000C
 	ldi	$A3, $00
 	ldy     #$0C                            ; 4A19 A0 0C                    ..
@@ -1109,9 +1105,9 @@ sub_4AA5:
 	sta     ICBL+1,x
 	lda     $A6                             ; 4ABF A5 A6                    ..
 	beq     L4ACB                           ; 4AC1 F0 08                    ..
-	sta     $034A,x                         ; 4AC3 9D 4A 03                 .J.
+	sta     ICAX1,x
 	lda     $A7                             ; 4AC6 A5 A7                    ..
-	sta     $034B,x                         ; 4AC8 9D 4B 03                 .K.
+	sta     ICAX2,x
 L4ACB:  tya                                     ; 4ACB 98                       .
 	sta     ICBA+1,x
 	lda     $A1                             ; 4ACF A5 A1                    ..
