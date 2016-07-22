@@ -36,6 +36,7 @@ CH		:= $02FC
 CHBAS		:= $02F4
 ICCOM		:= $0342
 ICBA		:= $0344
+ICBL		:= $0348
 L05C0		:= $05C0
 L3272           := $3272
 L4253           := $4253
@@ -108,9 +109,9 @@ XIOstr:
 	sta     $034B,x                         ; 4373 9D 4B 03                 .K.
 	lda     #$00                            ; 4376 A9 00                    ..
 L4378:  tay                                     ; 4378 A8                       .
-	sta     $0349,x                         ; 4379 9D 49 03                 .I.
+	sta     ICBL+1,x
 	lda     ($A5),y                         ; 437C B1 A5                    ..
-	sta     $0348,x                         ; 437E 9D 48 03                 .H.
+	sta     ICBL,x
 	beq     L4395                           ; 4381 F0 12                    ..
 	clc                                     ; 4383 18                       .
 	lda     $A5                             ; 4384 A5 A5                    ..
@@ -450,7 +451,7 @@ Close:
 sub_4575:  
 	jsr     In
 	sty     $A0                             ; 4578 84 A0                    ..
-	lda     $0348,x                         ; 457A BD 48 03                 .H.
+	lda     ICBL,x
 	beq     L4582                           ; 457D F0 03                    ..
 	sec                                     ; 457F 38                       8
 	sbc     #$01                            ; 4580 E9 01                    ..
@@ -488,8 +489,8 @@ L45A5:  stx     $A4                             ; 45A5 86 A4                    
 	lda     $A4                             ; 45AC A5 A4                    ..
 	sta     ICCOM,x                         ; 45AE 9D 42 03                 .B.
 	lda     #$00                            ; 45B1 A9 00                    ..
-	sta     $0348,x                         ; 45B3 9D 48 03                 .H.
-	sta     $0349,x                         ; 45B6 9D 49 03                 .I.
+	sta     ICBL,x
+	sta     ICBL+1,x
 	tya                                     ; 45B9 98                       .
 	jsr     CIOV
 	sta     $A0                             ; 45BD 85 A0                    ..
@@ -1103,9 +1104,9 @@ sub_4AA5:
 	lda     $A5                             ; 4AB0 A5 A5                    ..
 	sta     ICCOM,x                         ; 4AB2 9D 42 03                 .B.
 	lda     $A3                             ; 4AB5 A5 A3                    ..
-	sta     $0348,x                         ; 4AB7 9D 48 03                 .H.
+	sta     ICBL,x
 	lda     $A4                             ; 4ABA A5 A4                    ..
-	sta     $0349,x                         ; 4ABC 9D 49 03                 .I.
+	sta     ICBL+1,x
 	lda     $A6                             ; 4ABF A5 A6                    ..
 	beq     L4ACB                           ; 4AC1 F0 08                    ..
 	sta     $034A,x                         ; 4AC3 9D 4A 03                 .J.
