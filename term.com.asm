@@ -827,10 +827,8 @@ L483E:	pcode	""		; "i"
 L4841:	pcode	"D"		; "H"
 L4845:	pcode	"BBD"		; "e"
 L484B:	pcode	"B"		; "I"
-L484F:	.byte	$00		; "0"
-L4850:	.addr	L484F
-L4852:	.byte	$00		; "1"
-L4853:	.addr	L4852
+L484F:	pcode	""		; "0"
+L4852:	pcode	""		; "1"
 L4855:	pcode	"DDs"		; "2"
 L485B:	pcode	"D"		; "3"
 L485F:	pcode	"BDDR"		; "4"
@@ -840,18 +838,15 @@ L4872:	pcode	"Ds"		; "7"
 L4877:	pcode	"Ds"		; "8"
 L487C:	pcode	"BDB"		; "9"
 L4882:	pcode	"C"		; "n"
-L4886:	.byte	$00		; $07
-L4887:	.addr	L4886
+L4886:	pcode	""		; $07
 L4889:	pcode	"BBB"		; "#"
 L488F:	pcode	"B"		; "*"
 L4893:	pcode	"BBB"		; "="
 L4899:	pcode	"CS"		; "$"
 L489E:	pcode	"B"		; "%"
-L48A2:	.byte	$00		; "&"
-L48A3:	.addr	L48A2
+L48A2:	pcode	""		; "&"
 L48A5:	pcode	"BB"		; "@"
-L48AA:	.byte	$00		; "."
-L48AB:	.addr	L48AA
+L48AA:	pcode	""		; "."
 L48AD:	pcode	"DB"		; ":"
 L48B2:	pcode	"BB"		; "u"
 L48B7:	pcode	"BB"		; "v"
