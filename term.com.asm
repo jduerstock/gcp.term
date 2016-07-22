@@ -99,7 +99,7 @@ XIOstr:
 	asl     a                               ; 4364 0A                       .
 	tax                                     ; 4365 AA                       .
 	tya                                     ; 4366 98                       .
-	sta     $0342,x                         ; 4367 9D 42 03                 .B.
+	sta     ICCOM,x                         ; 4367 9D 42 03                 .B.
 	lda     $A3                             ; 436A A5 A3                    ..
 	beq     L4378                           ; 436C F0 0A                    ..
 	sta     $034A,x                         ; 436E 9D 4A 03                 .J.
@@ -140,7 +140,7 @@ Prt:
 	jsr     XIOstr
 	bne     L43B8                           ; 43AC D0 0A                    ..
 	lda     #$0B                            ; 43AE A9 0B                    ..
-	sta     $0342,x                         ; 43B0 9D 42 03                 .B.
+	sta     ICCOM,x                         ; 43B0 9D 42 03                 .B.
 	lda     #$9B                            ; 43B3 A9 9B                    ..
 	jmp     CIOV
 
@@ -1100,7 +1100,7 @@ sub_4AA5:
 	asl     a                               ; 4AAE 0A                       .
 	tax                                     ; 4AAF AA                       .
 	lda     $A5                             ; 4AB0 A5 A5                    ..
-	sta     $0342,x                         ; 4AB2 9D 42 03                 .B.
+	sta     ICCOM,x                         ; 4AB2 9D 42 03                 .B.
 	lda     $A3                             ; 4AB5 A5 A3                    ..
 	sta     $0348,x                         ; 4AB7 9D 48 03                 .H.
 	lda     $A4                             ; 4ABA A5 A4                    ..
