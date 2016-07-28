@@ -1,4 +1,22 @@
 
+.ifndef MONOLITH
+	.include "action.inc"
+
+	.import off_AC: zeropage
+	.import off_AE: zeropage
+
+	.import	sub_7035
+	.import	sub_8521
+
+	.import L466D
+
+	.import memset
+	.import blockmove
+
+	.import SArgs
+	.import MultI
+.endif
+
 ; ----------------------------------------------------------------------------
 L8550:	.byte	$9D                             ; 8550 9D                       .
 L8551:  .byte	$48

@@ -1,4 +1,38 @@
 
+.ifndef MONOLITH
+	.include "action.inc"
+
+	.import	off_AC: zeropage
+	.import	off_AE: zeropage
+
+	.import	CH
+
+	.import blockmove
+	.import	cmd_07
+	.import	cmd_2a
+
+	.import sub_45A3
+	.import sub_4983
+	.import sub_4B7B
+	.import sub_4EB1
+	.import sub_55A0
+	.import sub_9146
+	.import sub_925D
+	.import sub_936A
+	.import sub_9427
+	.import sub_961E
+
+	.import L464E
+	.import L9050
+	.import L9051
+	.import L9053
+	.import L9059
+	.import L905D
+	.import L905E
+	.import	L9060
+	.import	L9061
+.endif
+
 ; ----------------------------------------------------------------------------
 L979C:  .byte	$00
 L979D:  .byte	$00

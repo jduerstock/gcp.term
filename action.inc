@@ -347,3 +347,54 @@ ptr:
 	.addr	ptr
 .endmacro
 
+.ifndef MONOLITH
+.macro	blkmv_imi s1, d1, c1
+	mv	$A3, d1+1
+	rdldi	$A4, c1
+	ldy     d1
+	ldxai	s1
+	jsr     blockmove
+.endmacro
+
+.macro	blkmv_mii s1, d1, c1
+	ldi	$A3, >d1
+	rdldi	$A4, c1
+	ldy     #<d1
+	ldxa	s1
+	jsr     blockmove
+.endmacro
+
+.macro	blkmv_mmi s1, d1, c1
+	mv	$A3, d1+1
+	rdldi	$A4, c1
+	ldy     d1
+	ldxa	s1
+	jsr     blockmove
+.endmacro
+
+.macro	blkmv_mm8 s1, d1, c1
+	mv	$A3, d1+1
+	ldi	$A5, $00
+	mv	$A4, c1
+	ldy     d1
+	ldxa	s1
+	jsr	blockmove
+.endmacro
+
+.macro	blkmv_mm16 s1, d1, c1
+	mv	$A3, d1+1
+	mv	$A5, c1+1
+	mv	$A4, c1
+	ldy     d1
+	ldxa	s1
+	jsr	blockmove
+.endmacro
+
+.macro	blkmv_iii s1, d1, c1
+	ldi	$A3, >d1
+	rdldi	$A4, c1
+	ldy     #<d1
+	ldxai	s1
+	jsr     blockmove
+.endmacro
+.endif
