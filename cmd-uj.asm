@@ -1,4 +1,18 @@
 
+.ifndef MONOLITH
+	.include "action.inc"
+
+	.import cmd_us
+	.import blockmove
+
+	.import L46E6
+	.import L46E9
+	.import L46EB
+	.import L46ED
+
+	.import SArgs
+.endif
+
 ; ----------------------------------------------------------------------------
 L9C16:  .byte	$00
 L9C17:  .byte	$00,$00
