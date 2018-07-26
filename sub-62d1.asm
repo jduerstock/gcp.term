@@ -7,17 +7,17 @@ L62D0:  .byte	$00
 ; ----------------------------------------------------------------------------
 sub_62D1:
 	prolog
-	mv	L62D0, $022F
-	yldi	$022F, $00
+	mv	L62D0, SDMCTL
+	yldi	SDMCTL, $00
 	shladdi	off_AE, L466F, $0001
 	iny                                     ; 62F2 C8                       .
 	lda     ($AE),y                         ; 62F3 B1 AE                    ..
-	sta     $0231                           ; 62F5 8D 31 02                 .1.
+	sta     DLIST+1
 	dey                                     ; 62F8 88                       .
 	lda     ($AE),y                         ; 62F9 B1 AE                    ..
-	sta     $0230                           ; 62FB 8D 30 02                 .0.
+	sta     DLIST
 	lda     L62D0                           ; 62FE AD D0 62                 ..b
-	sta     $022F                           ; 6301 8D 2F 02                 ./.
+	sta     SDMCTL
 	ldi	$D40E, $C0
 	shladdi off_AE, L466F, $0001
 	iny                                     ; 631C C8                       .

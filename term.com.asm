@@ -21,6 +21,7 @@ CDTMA2		:= $0228
 CDTMF3		:= $022A
 SRTIMR		:= $022B
 CDTMF5		:= $022E
+SDMCTL		:= $022F
 DLIST		:= $0230
 INVFLG		:= $02B6
 SHFLOK		:= $02BE
@@ -557,12 +558,12 @@ memset:
 	lda     $A4                             ; 4604 A5 A4                    ..
 	ldx     $A3                             ; 4606 A6 A3                    ..
 	beq     L461A                           ; 4608 F0 10                    ..
-L460A:  sta     ($A0),y                         ; 460A 91 A0                    ..
+:	sta     ($A0),y                         ; 460A 91 A0                    ..
 	iny                                     ; 460C C8                       .
-	bne     L460A                           ; 460D D0 FB                    ..
+	bne     :-
 	inc     $A1                             ; 460F E6 A1                    ..
 	dec     $A3                             ; 4611 C6 A3                    ..
-	bne     L460A                           ; 4613 D0 F5                    ..
+	bne     :-
 	beq     L461A                           ; 4615 F0 03                    ..
 L4617:  sta     ($A0),y                         ; 4617 91 A0                    ..
 	iny                                     ; 4619 C8                       .
@@ -1035,11 +1036,13 @@ sub_49D3:
 L49EE:	addi16m8 L49D1, LB380, L499F
 	blkmv_imi L49C5, L49D1, $000C
 	ldi	$A3, $00
+;	bzero(&L49D1, $0C);
 	ldy     #$0C                            ; 4A19 A0 0C                    ..
 	ldxa	L49D1
 	jsr     bzero
-	lda     L49C4                           ; 4A24 AD C4 49                 ..I
-	sta     L499F                           ; 4A27 8D 9F 49                 ..I
+;	L499F = L49C4;
+	mv	L499F, L49C4
+;	A0 = &LB380 + L499F;
 	clc                                     ; 4A2A 18                       .
 	lda     #<LB380
 	adc     L499F                           ; 4A2D 6D 9F 49                 m.I
@@ -1047,6 +1050,7 @@ L49EE:	addi16m8 L49D1, LB380, L499F
 	lda     #>LB380
 	adc     #$00                            ; 4A34 69 00                    i.
 	sta     $A1                             ; 4A36 85 A1                    ..
+;	memcpy();
 	blkmv_mii $A0, L49C5, $000C
 	rts                                     ; 4A4D 60                       `
 

@@ -9,5 +9,5 @@ cmd_up:  					; "P" "DB"
 	dmv	L474F, L8001
 	ldxai	$0000
 	jsr     sub_49D3
-	rts                                     ; 801F 60                       `
+	rts
 

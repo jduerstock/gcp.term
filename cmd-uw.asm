@@ -36,6 +36,7 @@ L664B:	.byte	$00
 
 ; ----------------------------------------------------------------------------
 L664C:	shladdm8 off_AE, L65DE, L65DD
+	;
 	clc                                     ; 6660 18                       .
 	ldy     #$00                            ; 6661 A0 00                    ..
 	lda     ($AE),y                         ; 6663 B1 AE                    ..
@@ -50,6 +51,7 @@ L664C:	shladdm8 off_AE, L65DE, L65DD
 	ldy     L65DC                           ; 667A AC DC 65                 ..e
 	ldxa	$A0
 	jsr     memset
+	; 
 	inc     L65DD                           ; 6684 EE DD 65                 ..e
 	jmp     L6640                           ; 6687 4C 40 66                 L@f
 

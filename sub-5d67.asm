@@ -51,7 +51,7 @@ L5DE0:  lda     #$00                            ; 5DE0 A9 00                    
 	lda     #$02                            ; 5DF4 A9 02                    ..
 	jsr     XIO
 L5DF9:  jsr     sub_5D64
-	ldi	$022F, $2A
+	ldi	SDMCTL, $2A
 	lda     #$02                            ; 5E01 A9 02                    ..
 	jsr     sub_4F6D
 	yldi	L4653, $00
