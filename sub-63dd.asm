@@ -20,23 +20,23 @@ sub_63DD:
 	ldp16	L63D9
 	shladdi off_AE, L466F, $0001
 	iny                                     ; 641A C8                       .
-	lda     ($AE),y                         ; 641B B1 AE                    ..
+	lda     (off_AE),y
 	sta     L63D4                           ; 641D 8D D4 63                 ..c
 	dey                                     ; 6420 88                       .
-	lda     ($AE),y                         ; 6421 B1 AE                    ..
+	lda     (off_AE),y
 	sta     L63D3                           ; 6423 8D D3 63                 ..c
 	add16i	L63D7, L63D3, $0006
 	dmv	off_AE, L63D9
-	lda     ($AE),y                         ; 6441 B1 AE                    ..
+	lda     (off_AE),y
 	sta     L63DC                           ; 6443 8D DC 63                 ..c
 	add16i	off_AE, L63D3, $0003
-	lda     ($AE),y                         ; 6455 B1 AE                    ..
+	lda     (off_AE),y
 	and     #$F0                            ; 6457 29 F0                    ).
 	sta     $AC                             ; 6459 85 AC                    ..
 	add8m	L63D6, $AC, L63DC
 	add16i	off_AE, L63D3, $0003
 	lda     L63D6                           ; 6473 AD D6 63                 ..c
-	sta     ($AE),y                         ; 6476 91 AE                    ..
+	sta     (off_AE),y
 	ldi	$A3, $00
 	mv	$A4, L63DC
 	ldy     #$17                            ; 6481 A0 17                    ..
@@ -44,7 +44,7 @@ sub_63DD:
 	jsr     memset
 	add16i	off_AE, L63D9, $0001
 	ldy     #$00                            ; 649B A0 00                    ..
-	lda     ($AE),y                         ; 649D B1 AE                    ..
+	lda     (off_AE),y
 	sta     $A0                             ; 649F 85 A0                    ..
 	ldx     #$02                            ; 64A1 A2 02                    ..
 	lda     $A0                             ; 64A3 A5 A0                    ..
@@ -66,13 +66,13 @@ L64B5:  lda     #$05                            ; 64B5 A9 05                    
 L64D5:	shladdm8 off_AE, L46F5, L63DB
 	ldp16	L63D9
 	dmv	off_AE, L63D9
-	lda     ($AE),y                         ; 6500 B1 AE                    ..
+	lda     (off_AE),y
 	sta     L63DC                           ; 6502 8D DC 63                 ..c
 	sec                                     ; 6505 38                       8
 	lda     L63D5                           ; 6506 AD D5 63                 ..c
 	sbc     #$01                            ; 6509 E9 01                    ..
-	sta     $AE                             ; 650B 85 AE                    ..
-	add16m8	$AC, L63D7, $AE
+	sta     off_AE
+	add16m8	$AC, L63D7, off_AE
 	lda     ($AC),y                         ; 651C B1 AC                    ..
 	ora     #$80                            ; 651E 09 80                    ..
 	sta     ($AC),y                         ; 6520 91 AC                    ..
@@ -91,7 +91,7 @@ L64D5:	shladdm8 off_AE, L46F5, L63DB
 	clc                                     ; 6562 18                       .
 	lda     L63D5                           ; 6563 AD D5 63                 ..c
 	ldy     #$00                            ; 6566 A0 00                    ..
-	adc     ($AE),y                         ; 6568 71 AE                    q.
+	adc     (off_AE),y
 	sta     L63D5                           ; 656A 8D D5 63                 ..c
 	lda     L63D5                           ; 656D AD D5 63                 ..c
 	cmp     #$18                            ; 6570 C9 18                    ..

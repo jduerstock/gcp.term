@@ -41,12 +41,12 @@ L7DA5:	add16i	off_AE, L7D4B, $0002
 	dmv	off_AE, L7D4B
 	lda     L7D4A                           ; 7DE2 AD 4A 7D                 .J}
 	ldy     #$00                            ; 7DE5 A0 00                    ..
-	sta     ($AE),y                         ; 7DE7 91 AE                    ..
+	sta     (off_AE),y
 	add16i	off_AE, L7D4B, $0001
 	lda     L7D46                           ; 7DF8 AD 46 7D                 .F}
-	sta     ($AE),y                         ; 7DFB 91 AE                    ..
+	sta     (off_AE),y
 	add16i	off_AE, L7D4B, $0002
 	lda     L7D47                           ; 7E0C AD 47 7D                 .G}
-	sta     ($AE),y                         ; 7E0F 91 AE                    ..
+	sta     (off_AE),y
 	rts                                     ; 7E11 60                       `
 

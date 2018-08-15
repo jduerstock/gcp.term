@@ -57,8 +57,7 @@ L6AFF:  ldx     #$00                            ; 6AFF A2 00                    
 	lda     L6AC0                           ; 6BAE AD C0 6A                 ..j
 	asl     a                               ; 6BB1 0A                       .
 	sta     $A0                             ; 6BB2 85 A0                    ..
-	lda     #$00                            ; 6BB4 A9 00                    ..
-	sta     $A1                             ; 6BB6 85 A1                    ..
+	ldi	$A1, $00
 	ldxa	$A0
 	jsr     sub_606E
 	pull16	off_AE

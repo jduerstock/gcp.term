@@ -110,7 +110,7 @@ L7CD6:	add16i	$A0, L7B56, $0006
 	add16i	off_AE, L7B56, $0004
 	lda     L7B4F                           ; 7D38 AD 4F 7B                 .O{
 	ldy     #$00                            ; 7D3B A0 00                    ..
-	sta     ($AE),y                         ; 7D3D 91 AE                    ..
+	sta     (off_AE),y
 	iny                                     ; 7D3F C8                       .
 	sty     L4656                           ; 7D40 8C 56 46                 .VF
 	rts                                     ; 7D43 60                       `

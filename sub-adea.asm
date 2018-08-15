@@ -11,10 +11,10 @@ sub_ADEA:
 	lda     DLIST+1
 	sbc     #$04                            ; AE22 E9 04                    ..
 	iny                                     ; AE24 C8                       .
-	sta     ($AE),y                         ; AE25 91 AE                    ..
+	sta     (off_AE),y
 	lda     $AC                             ; AE27 A5 AC                    ..
 	dey                                     ; AE29 88                       .
-	sta     ($AE),y                         ; AE2A 91 AE                    ..
+	sta     (off_AE),y
 	rdldi	MEMTOP, L4327
 	rdmv	sub_4749+1, sub_AB6A+1
 	rdmv	sub_5D64+1, cmd_26+1

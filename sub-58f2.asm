@@ -55,14 +55,14 @@ L591F:	add16m8	off_AE, L58E7, L58ED
 	dmv	off_AE, L58E9
 	lda     L58EC                           ; 595A AD EC 58                 ..X
 	iny                                     ; 595D C8                       .
-	sta     ($AE),y                         ; 595E 91 AE                    ..
+	sta     (off_AE),y
 	lda     L58EB                           ; 5960 AD EB 58                 ..X
 	dey                                     ; 5963 88                       .
-	sta     ($AE),y                         ; 5964 91 AE                    ..
+	sta     (off_AE),y
 	add16i	L58E9, L58E9, $0002
 	inc     L58ED                           ; 5977 EE ED 58                 ..X
 	add16m8	off_AE, L58E7, L58ED
-	lda     ($AE),y                         ; 598A B1 AE                    ..
+	lda     (off_AE),y
 	sta     $A0                             ; 598C 85 A0                    ..
 	lda     $A0                             ; 598E A5 A0                    ..
 	jsr     sub_4B39
@@ -145,7 +145,7 @@ L5ADD:  lda     L58EE                           ; 5ADD AD EE 58                 
 	pull16	off_AE
 	lda     $A0                             ; 5B1E A5 A0                    ..
 	ldy     #$00                            ; 5B20 A0 00                    ..
-	sta     ($AE),y                         ; 5B22 91 AE                    ..
+	sta     (off_AE),y
 	inc     L4654                           ; 5B24 EE 54 46                 .TF
 	jmp     L5CF5                           ; 5B27 4C F5 5C                 L.\
 
@@ -157,10 +157,10 @@ L5B2A:  lda     L58EE                           ; 5B2A AD EE 58                 
 	dmv	off_AE, L58E9
 	lda     L58EC                           ; 5B4E AD EC 58                 ..X
 	iny                                     ; 5B51 C8                       .
-	sta     ($AE),y                         ; 5B52 91 AE                    ..
+	sta     (off_AE),y
 	lda     L58EB                           ; 5B54 AD EB 58                 ..X
 	dey                                     ; 5B57 88                       .
-	sta     ($AE),y                         ; 5B58 91 AE                    ..
+	sta     (off_AE),y
 	add16i	L58E9, L58E9, $0002
 	sty     L58EF                           ; 5B6B 8C EF 58                 ..X
 L5B6E:  lda     #$03                            ; 5B6E A9 03                    ..
@@ -174,7 +174,7 @@ L5B6E:  lda     #$03                            ; 5B6E A9 03                    
 	pull16	off_AE
 	lda     $A0                             ; 5BA9 A5 A0                    ..
 	ldy     #$00                            ; 5BAB A0 00                    ..
-	sta     ($AE),y                         ; 5BAD 91 AE                    ..
+	sta     (off_AE),y
 	add8i	L4654, L4654, $02
 	inc     L58EF                           ; 5BB8 EE EF 58                 ..X
 	jmp     L5B6E                           ; 5BBB 4C 6E 5B                 Ln[
@@ -260,10 +260,10 @@ L5CC5:  ldx     L58EF                           ; 5CC5 AE EF 58                 
 L5CE0:	dmv	off_AE, L58E9
 	lda     #$B2                            ; 5CEA A9 B2                    ..
 	ldy     #$01                            ; 5CEC A0 01                    ..
-	sta     ($AE),y                         ; 5CEE 91 AE                    ..
+	sta     (off_AE),y
 	lda     #$24                            ; 5CF0 A9 24                    .$
 	dey                                     ; 5CF2 88                       .
-	sta     ($AE),y                         ; 5CF3 91 AE                    ..
+	sta     (off_AE),y
 L5CF5:  inc     L58ED                           ; 5CF5 EE ED 58                 ..X
 	jmp     L5913                           ; 5CF8 4C 13 59                 L.Y
 

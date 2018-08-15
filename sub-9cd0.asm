@@ -48,16 +48,16 @@ L9D46:	mv	L9CC2, L9CC1
 	add16m8	off_AC, L46EB, L9CC1
 	ldy     #$00                            ; 9D66 A0 00                    ..
 	lda     ($AC),y                         ; 9D68 B1 AC                    ..
-	sta     ($AE),y                         ; 9D6A 91 AE                    ..
+	sta     (off_AE),y
 	dmv	off_AE, L9CBC
 	add16m8	off_AC, L46ED, L9CC1
 	lda     ($AC),y                         ; 9D86 B1 AC                    ..
-	sta     ($AE),y                         ; 9D88 91 AE                    ..
+	sta     (off_AE),y
 	dmv	off_AE, L9CBA
-	lda     ($AE),y                         ; 9D94 B1 AE                    ..
+	lda     (off_AE),y
 	lbne	L9DB4
 	dmv	off_AE, L9CBC
-	lda     ($AE),y                         ; 9DA5 B1 AE                    ..
+	lda     (off_AE),y
 	lbne	L9DB4
 	ldi	$A0, $00
 	rts                                     ; 9DB0 60                       `

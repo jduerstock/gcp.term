@@ -51,11 +51,11 @@ sub_AB6A:
 	mv	LAB68, LB224
 LAB94:	add16m8 off_AE, LAB56, LAB69
 	ldy     #$00                            ; ABA4 A0 00                    ..
-	lda     ($AE),y                         ; ABA6 B1 AE                    ..
+	lda     (off_AE),y
 	eor     LAB68                           ; ABA8 4D 68 AB                 Mh.
 	lbeq	LABEE
 	add16m8 off_AE, LAB56, LAB69
-	lda     ($AE),y                         ; ABC0 B1 AE                    ..
+	lda     (off_AE),y
 	lbne	LABE8
 LABC7:  jmp     LABCD                           ; ABC7 4C CD AB                 L..
 
@@ -81,17 +81,17 @@ LABEE:	shladdm8 off_AE, LAB5A, LAB69
 	ldp16	LAB5C
 	shladdm8 off_AE, LAB58, LAB69
 	iny                                     ; AC23 C8                       .
-	lda     ($AE),y                         ; AC24 B1 AE                    ..
+	lda     (off_AE),y
 	sta     sub_AB0B+2
 	dey                                     ; AC29 88                       .
-	lda     ($AE),y                         ; AC2A B1 AE                    ..
+	lda     (off_AE),y
 	sta     sub_AB0B+1
 	dmv	off_AE, LAB5C
 	iny                                     ; AC39 C8                       .
-	lda     ($AE),y                         ; AC3A B1 AE                    ..
+	lda     (off_AE),y
 	sta     $A1                             ; AC3C 85 A1                    ..
 	dey                                     ; AC3E 88                       .
-	lda     ($AE),y                         ; AC3F B1 AE                    ..
+	lda     (off_AE),y
 	sta     $A0                             ; AC41 85 A0                    ..
 	ldi	$A3, >LAB60
 	ldy     #<LAB60

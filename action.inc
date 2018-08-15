@@ -398,3 +398,32 @@ ptr:
 	jsr     blockmove
 .endmacro
 .endif
+
+.macro	ifm8eqi	a1, a2, a3
+	lda     a1
+	eor     #a2
+	lbne	a3
+.endmacro
+
+.macro	ifm8eqm	a1, a2, a3
+	lda     a1
+	eor     a2
+	lbne	a3
+.endmacro
+
+.macro	ifm8nei	a1, a2, a3
+	lda     a1
+	eor     #a2
+	lbeq	a3
+.endmacro
+
+.macro	ifm8nz	a1, a2
+	lda     a1
+	lbeq	a2
+.endmacro
+
+.macro	ifm8z	a1, a2
+	lda     a1
+	lbne	a2
+.endmacro
+
