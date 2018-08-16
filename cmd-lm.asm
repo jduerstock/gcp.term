@@ -16,7 +16,7 @@ cmd_lm:  					; "m" "BBBB"
 	lbeq	L75D9
 	add16i	off_AE, L758A, $0003
 	lda     L7589                           ; 75D4 AD 89 75                 ..u
-	sta     ($AE),y                         ; 75D7 91 AE                    ..
+	sta     (off_AE),y
 L75D9:  lda     L7588                           ; 75D9 AD 88 75                 ..u
 	eor     #$80                            ; 75DC 49 80                    I.
 	lbeq	L75F9

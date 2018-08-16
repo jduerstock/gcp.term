@@ -19,7 +19,7 @@ cmd_lp:						; "p" "BB"
 L784F:	add16i	off_AE, L7828, $000C
 	lda     L7825                           ; 785E AD 25 78                 .%x
 	ldy     #$00                            ; 7861 A0 00                    ..
-	sta     ($AE),y                         ; 7863 91 AE                    ..
+	sta     (off_AE),y
 	sty     L7826                           ; 7865 8C 26 78                 .&x
 L7868:  lda     #$13                            ; 7868 A9 13                    ..
 	cmp     L7826                           ; 786A CD 26 78                 .&x
@@ -60,7 +60,7 @@ L78B1:  lda     #$12                            ; 78B1 A9 12                    
 	beq     L78F5                           ; 78D8 F0 1B                    ..
 	add16i	off_AE, L7828, $000C
 	ldy     #$00                            ; 78E9 A0 00                    ..
-	lda     ($AE),y                         ; 78EB B1 AE                    ..
+	lda     (off_AE),y
 	cmp     L7825                           ; 78ED CD 25 78                 .%x
 	lbcc	L78F8
 L78F5:  jmp     L78FE                           ; 78F5 4C FE 78                 L.x

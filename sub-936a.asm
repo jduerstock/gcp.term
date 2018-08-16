@@ -15,7 +15,7 @@ sub_936A:
 	prolog
 	yldi	L9363, $00
 	add16i	off_AE, P9055, $0002
-	lda     ($AE),y                         ; 9381 B1 AE                    ..
+	lda     (off_AE),y
 	sta     L9361                           ; 9383 8D 61 93                 .a.
 	add16i	$A2, P9055, $0016
 	rdldi	$A4, $0004

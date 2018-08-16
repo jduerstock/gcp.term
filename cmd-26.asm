@@ -37,17 +37,17 @@ L8D94:  .byte	$00
 
 ; ----------------------------------------------------------------------------
 L8D95:	sub8i	off_AE, L8CF9, $01
-	ldx     $AE                             ; 8D9D A6 AE                    ..
+	ldx     off_AE
 	lda     L4659,x                         ; 8D9F BD 59 46                 .YF
 	sta     L8CFA                           ; 8DA2 8D FA 8C                 ...
 	func16_8 sub_7035, L8CFB, L8CFA
 	add16i	off_AE, L8CFB, $000C
 	ldy     #$00                            ; 8DC4 A0 00                    ..
-	lda     ($AE),y                         ; 8DC6 B1 AE                    ..
+	lda     (off_AE),y
 	eor     #$FF                            ; 8DC8 49 FF                    I.
 	lbeq	L8DF8
 	add16i	off_AE, L8CFB, $000A
-	lda     ($AE),y                         ; 8DDE B1 AE                    ..
+	lda     (off_AE),y
 	eor     #$01                            ; 8DE0 49 01                    I.
 	lbne	L8DF8
 	test16	L8CFB

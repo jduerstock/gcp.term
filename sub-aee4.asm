@@ -11,7 +11,7 @@ sub_AEE4:
 	prolog
 	lda	CONSOL
 	eor     #$FF                            ; AEEA 49 FF                    I.
-	sta     $AE                             ; AEEC 85 AE                    ..
+	sta     off_AE
 	and8i	LAEE2, off_AE, $07
 	lda     LAEE3                           ; AEF5 AD E3 AE                 ...
 	eor     #$01                            ; AEF8 49 01                    I.

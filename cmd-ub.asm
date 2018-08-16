@@ -34,11 +34,11 @@ cmd_ub:  					; "B" "BDBBBB"
 	shladdm8 off_AE, L6E5F, L6E43
 	clc                                     ; 6EBC 18                       .
 	ldy     #$00                            ; 6EBD A0 00                    ..
-	lda     ($AE),y                         ; 6EBF B1 AE                    ..
+	lda     (off_AE),y
 	adc     L6E42                           ; 6EC1 6D 42 6E                 mBn
 	sta     L6E4B                           ; 6EC4 8D 4B 6E                 .Kn
 	iny                                     ; 6EC7 C8                       .
-	lda     ($AE),y                         ; 6EC8 B1 AE                    ..
+	lda     (off_AE),y
 	adc     #$00                            ; 6ECA 69 00                    i.
 	sta     L6E4C                           ; 6ECC 8D 4C 6E                 .Ln
 	rdmv	L6E4D, L6E53

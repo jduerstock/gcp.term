@@ -26,13 +26,13 @@ L8F9C:  lda     #$09                            ; 8F9C A9 09                    
 L8FDE:	dmv	off_AE, L4678
 	lda     #$E0                            ; 8FE8 A9 E0                    ..
 	ldy     #$00                            ; 8FEA A0 00                    ..
-	sta     ($AE),y                         ; 8FEC 91 AE                    ..
+	sta     (off_AE),y
 	add16i	off_AE, L4678, $0001
 	ldi	$84, $08
 	ld2xa	L4674
 	jsr     RShift
 	ldy     #$00                            ; 900B A0 00                    ..
-	sta     ($AE),y                         ; 900D 91 AE                    ..
+	sta     (off_AE),y
 	blkmv_mii L4674, LE000, $0400
 	ldy     #$18                            ; 9026 A0 18                    ..
 	ldx     #$02                            ; 9028 A2 02                    ..

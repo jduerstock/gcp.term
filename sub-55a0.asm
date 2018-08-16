@@ -56,11 +56,11 @@ L55B4:	shladdi	off_AE, L466F, $0001
 	add16i	L559C, L559A, $0004
 	dmv	off_AE, L559C
 	clc                                     ; 55EF 18                       .
-	lda     ($AE),y                         ; 55F0 B1 AE                    ..
+	lda     (off_AE),y
 	adc     #$02                            ; 55F2 69 02                    i.
 	sta     L559E                           ; 55F4 8D 9E 55                 ..U
 	iny                                     ; 55F7 C8                       .
-	lda     ($AE),y                         ; 55F8 B1 AE                    ..
+	lda     (off_AE),y
 	adc     #$00                            ; 55FA 69 00                    i.
 	sta     L559E+1
 	rdldi	L558C, L5580
@@ -70,7 +70,7 @@ L55B4:	shladdi	off_AE, L466F, $0001
 	sty     L5590                           ; 560E 8C 90 55                 ..U
 	dmv	off_AE, L557E
 	dey                                     ; 561B 88                       .
-	lda     ($AE),y                         ; 561C B1 AE                    ..
+	lda     (off_AE),y
 	sta     L562C                           ; 561E 8D 2C 56                 .,V
 L5621:  lda     L562C                           ; 5621 AD 2C 56                 .,V
 	cmp     L5590                           ; 5624 CD 90 55                 ..U
@@ -107,7 +107,7 @@ L5672:  lda     L5591                           ; 5672 AD 91 55                 
 	pull16	off_AE
 	lda     $A0                             ; 56AB A5 A0                    ..
 	ldy     #$00                            ; 56AD A0 00                    ..
-	sta     ($AE),y                         ; 56AF 91 AE                    ..
+	sta     (off_AE),y
 	inc     L5594                           ; 56B1 EE 94 55                 ..U
 	jmp     L5867                           ; 56B4 4C 67 58                 LgX
 
@@ -158,10 +158,10 @@ L5774:  lda     L5591                           ; 5774 AD 91 55                 
 	lbne	L5867
 L5785:	dmv	off_AE, L558C
 	ldy     #$00                            ; 578F A0 00                    ..
-	lda     ($AE),y                         ; 5791 B1 AE                    ..
+	lda     (off_AE),y
 	sta     L5592                           ; 5793 8D 92 55                 ..U
 	dmv	off_AE, L558C
-	lda     ($AE),y                         ; 57A0 B1 AE                    ..
+	lda     (off_AE),y
 	sta     $A0                             ; 57A2 85 A0                    ..
 	add16m8	$A1, L559E, L5594
 	ldy     $A2                             ; 57B4 A4 A2                    ..

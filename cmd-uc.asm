@@ -43,7 +43,7 @@ L6AFF:  ldx     #$00                            ; 6AFF A2 00                    
 	stp8	L6ABF
 	add16i	off_AE, L6AC4, $0001
 	lda     L6AC0                           ; 6B60 AD C0 6A                 ..j
-	sta     ($AE),y                         ; 6B63 91 AE                    ..
+	sta     (off_AE),y
 	ldi	$85, $00
 	mv	$84, L6AC0
 	lda     L6ABF                           ; 6B6E AD BF 6A                 ..j
@@ -96,10 +96,10 @@ L6C5C:	mv	$A3, L6ACE+1
 	add16i	off_AE, L6AC4, $0007
 	lda     #$00                            ; 6C96 A9 00                    ..
 	iny                                     ; 6C98 C8                       .
-	sta     ($AE),y                         ; 6C99 91 AE                    ..
+	sta     (off_AE),y
 	lda     #$00                            ; 6C9B A9 00                    ..
 	dey                                     ; 6C9D 88                       .
-	sta     ($AE),y                         ; 6C9E 91 AE                    ..
+	sta     (off_AE),y
 	lda     #$00                            ; 6CA0 A9 00                    ..
 	cmp     L6AC1                           ; 6CA2 CD C1 6A                 ..j
 	lbcs	L6D5B
@@ -131,10 +131,10 @@ L6D1A:	.byte	$4C                             ; 6D1A 4C                       L
 L6D1B:	add16i	off_AE, L6AD3, $0004
 	lda     #$FF                            ; 6D2A A9 FF                    ..
 	ldy     #$00                            ; 6D2C A0 00                    ..
-	sta     ($AE),y                         ; 6D2E 91 AE                    ..
+	sta     (off_AE),y
 	add16i	off_AE, L6AD3, $0001
 	lda     L6AD0                           ; 6D3F AD D0 6A                 ..j
-	sta     ($AE),y                         ; 6D42 91 AE                    ..
+	sta     (off_AE),y
 	add16i	L6AD3, L6AD3, $0006
 	inc     L6AD0                           ; 6D55 EE D0 6A                 ..j
 	jmp     L6D0F                           ; 6D58 4C 0F 6D                 L.m
@@ -143,13 +143,13 @@ L6D1B:	add16i	off_AE, L6AD3, $0004
 L6D5B:	add16i	off_AE, L6AC4, $0009
 	lda     #$00                            ; 6D6A A9 00                    ..
 	ldy     #$01                            ; 6D6C A0 01                    ..
-	sta     ($AE),y                         ; 6D6E 91 AE                    ..
+	sta     (off_AE),y
 	lda     #$00                            ; 6D70 A9 00                    ..
 	dey                                     ; 6D72 88                       .
-	sta     ($AE),y                         ; 6D73 91 AE                    ..
+	sta     (off_AE),y
 	dmv	off_AE, L6AC2
 	lda     #$00                            ; 6D7F A9 00                    ..
-	cmp     ($AE),y                         ; 6D81 D1 AE                    ..
+	cmp     (off_AE),y
 	lbcs	L6E3B
 L6D88:  ldx     #$00                            ; 6D88 A2 00                    ..
 	lda     #$1A                            ; 6D8A A9 1A                    ..
@@ -166,7 +166,7 @@ L6D88:  ldx     #$00                            ; 6D88 A2 00                    
 	dmv	off_AE, L6AC2
 	clc                                     ; 6DDE 18                       .
 	ldy     #$00                            ; 6DDF A0 00                    ..
-	lda     ($AE),y                         ; 6DE1 B1 AE                    ..
+	lda     (off_AE),y
 	adc     #$01                            ; 6DE3 69 01                    i.
 	sta     $A0                             ; 6DE5 85 A0                    ..
 	ldi	$A1, $00
@@ -176,10 +176,10 @@ L6D88:  ldx     #$00                            ; 6D88 A2 00                    
 	stp16	$A0
 	dmv	off_AE, L6AC8
 	iny                                     ; 6E0D C8                       .
-	lda     ($AE),y                         ; 6E0E B1 AE                    ..
+	lda     (off_AE),y
 	sta     $A1                             ; 6E10 85 A1                    ..
 	dey                                     ; 6E12 88                       .
-	lda     ($AE),y                         ; 6E13 B1 AE                    ..
+	lda     (off_AE),y
 	sta     $A0                             ; 6E15 85 A0                    ..
 	mv	$A3, L6AC2+1
 	dmv	off_AC, L6AC2

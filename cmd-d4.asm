@@ -40,11 +40,11 @@ LA3E2:  jsr     cmd_d0
 	shladdm8 off_AE, LA3BB, LA3B4
 	clc                                     ; A438 18                       .
 	ldy     #$00                            ; A439 A0 00                    ..
-	lda     ($AE),y                         ; A43B B1 AE                    ..
+	lda     (off_AE),y
 	adc     LA3B3                           ; A43D 6D B3 A3                 m..
 	sta     $AC                             ; A440 85 AC                    ..
 	iny                                     ; A442 C8                       .
-	lda     ($AE),y                         ; A443 B1 AE                    ..
+	lda     (off_AE),y
 	adc     #$00                            ; A445 69 00                    i.
 	sta     $AD                             ; A447 85 AD                    ..
 	sub16i	LA3AA, off_AC, $0001

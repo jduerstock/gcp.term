@@ -58,7 +58,7 @@ L7E69:	dmv	off_AE, L7E1E
 L7ED7:	dmv	off_AE, L7E1C
 	add8m	$AC, L7E23, L7E22
 	ldy     #$00                            ; 7EEA A0 00                    ..
-	lda     ($AE),y                         ; 7EEC B1 AE                    ..
+	lda     (off_AE),y
 	cmp     $AC                             ; 7EEE C5 AC                    ..
 	lbcs	L7EFA
 L7EF5:	ldi	$A0, $00
@@ -82,7 +82,7 @@ L7F35:  .byte	$00
 ; ----------------------------------------------------------------------------
 L7F36:  add16m8 off_AE, L7E17, L7E20
 	ldy     #$00                            ; 7F46 A0 00                    ..
-	lda     ($AE),y                         ; 7F48 B1 AE                    ..
+	lda     (off_AE),y
 	eor     L7E14                           ; 7F4A 4D 14 7E                 M.~
 	lbne	L7F59
 	iny                                     ; 7F52 C8                       .

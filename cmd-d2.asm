@@ -28,7 +28,7 @@ LA2CE:  lda     #$00                            ; A2CE A9 00                    
 	lbne	LA30A
 	add16i	off_AE, LA2A4, $0002
 	lda     L464A                           ; A305 AD 4A 46                 .JF
-	sta     ($AE),y                         ; A308 91 AE                    ..
+	sta     (off_AE),y
 LA30A:  lda     LA2A6                           ; A30A AD A6 A2                 ...
 	sta     $A3                             ; A30D 85 A3                    ..
 	lda     #$00                            ; A30F A9 00                    ..
@@ -43,7 +43,7 @@ LA30A:  lda     LA2A6                           ; A30A AD A6 A2                 
 	add16i	off_AE, LA2A4, $0002
 	lda     #$3F                            ; A338 A9 3F                    .?
 	ldy     #$00                            ; A33A A0 00                    ..
-	sta     ($AE),y                         ; A33C 91 AE                    ..
+	sta     (off_AE),y
 LA33E:  lda     LA2A3                           ; A33E AD A3 A2                 ...
 	eor     #$01                            ; A341 49 01                    I.
 	lbeq	LA36C

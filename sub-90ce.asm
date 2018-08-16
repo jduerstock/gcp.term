@@ -33,10 +33,10 @@ sub_90CE:
 	jsr     blockmove
 	shladdm8 off_AE, L90CC, L90C2
 	ldy     #$01
-	lda     ($AE),y                         ; 9114 B1 AE                    ..
+	lda     (off_AE),y
 	sta     L90C6                           ; 9116 8D C6 90                 ...
 	dey                                     ; 9119 88                       .
-	lda     ($AE),y                         ; 911A B1 AE                    ..
+	lda     (off_AE),y
 	sta     L90C5                           ; 911C 8D C5 90                 ...
 	ldy     L90C8                           ; 911F AC C8 90                 ...
 	ldxa	L90C5

@@ -45,10 +45,10 @@ sub_925D:
 	sta     L9253                           ; 92DA 8D 53 92                 .S.
 	shladdm8 off_AE, L925B, L924D
 	iny                                     ; 92F1 C8                       .
-	lda     ($AE),y                         ; 92F2 B1 AE                    ..
+	lda     (off_AE),y
 	sta     L9252                           ; 92F4 8D 52 92                 .R.
 	dey                                     ; 92F7 88                       .
-	lda     ($AE),y                         ; 92F8 B1 AE                    ..
+	lda     (off_AE),y
 	sta     L9251                           ; 92FA 8D 51 92                 .Q.
 	sec                                     ; 92FD 38                       8
 	lda     L9258                           ; 92FE AD 58 92                 .X.

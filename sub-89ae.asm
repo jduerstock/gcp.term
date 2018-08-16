@@ -156,7 +156,7 @@ L8B4E:	add16i	off_AE, L898D, $0007
 	yldi	L8992, $01
 	add16i	off_AE, L898D, $0006
 	dey                                     ; 8B9B 88                       .
-	lda     ($AE),y                         ; 8B9C B1 AE                    ..
+	lda     (off_AE),y
 	sta     L8BAC                           ; 8B9E 8D AC 8B                 ...
 L8BA1:  lda     L8BAC                           ; 8BA1 AD AC 8B                 ...
 	cmp     L8992                           ; 8BA4 CD 92 89                 ...
@@ -179,12 +179,12 @@ L8BD1:	func16_8 sub_65B0, L898F, L89A9
 	dmv	off_AE, L898F
 	sec                                     ; 8BEF 38                       8
 	ldy     #$00                            ; 8BF0 A0 00                    ..
-	lda     ($AE),y                         ; 8BF2 B1 AE                    ..
+	lda     (off_AE),y
 	sbc     #$01                            ; 8BF4 E9 01                    ..
 	sta     $A4                             ; 8BF6 85 A4                    ..
 	add16i	off_AE, L898F, $0001
 	sec                                     ; 8C07 38                       8
-	lda     ($AE),y                         ; 8C08 B1 AE                    ..
+	lda     (off_AE),y
 	sbc     #$01                            ; 8C0A E9 01                    ..
 	sta     $A5                             ; 8C0C 85 A5                    ..
 	ldy     #$00                            ; 8C0E A0 00                    ..

@@ -15,12 +15,12 @@ sub_7368:
 	sec                                     ; 738B 38                       8
 	lda     L7362                           ; 738C AD 62 73                 .bs
 	ldy     #$00                            ; 738F A0 00                    ..
-	sbc     ($AE),y                         ; 7391 F1 AE                    ..
+	sbc     (off_AE),y
 	sta     L7362                           ; 7393 8D 62 73                 .bs
 	add16i	off_AE, L7365, $0001
 	sec                                     ; 73A5 38                       8
 	lda     L7363                           ; 73A6 AD 63 73                 .cs
-	sbc     ($AE),y                         ; 73A9 F1 AE                    ..
+	sbc     (off_AE),y
 	sta     L7363                           ; 73AB 8D 63 73                 .cs
 	add16i	$A2, L7365, $001A
 	ldy     $A2                             ; 73BD A4 A2                    ..

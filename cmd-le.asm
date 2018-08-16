@@ -45,10 +45,10 @@ cmd_le:						; "e" "BBD"
 	ldp16	L9689
 	dmv	off_AE, L9689
 	iny                                     ; 977B C8                       .
-	lda     ($AE),y                         ; 977C B1 AE                    ..
+	lda     (off_AE),y
 	sta     L905A                           ; 977E 8D 5A 90                 .Z.
 	dey                                     ; 9781 88                       .
-	lda     ($AE),y                         ; 9782 B1 AE                    ..
+	lda     (off_AE),y
 	sta     L9059                           ; 9784 8D 59 90                 .Y.
 	sty     L9051                           ; 9787 8C 51 90                 .Q.
 	sty     L9050                           ; 978A 8C 50 90                 .P.

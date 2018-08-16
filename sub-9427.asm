@@ -116,9 +116,9 @@ L95DC:	mv	$A3, L9051
 	jsr     cmd_lm
 	yldi	L9050, $00
 	add16m8	off_AE, L9059, L905E
-	lda     ($AE),y                         ; 9612 B1 AE                    ..
+	lda     (off_AE),y
 	eor     #$80                            ; 9614 49 80                    I.
-	sta     ($AE),y                         ; 9616 91 AE                    ..
+	sta     (off_AE),y
 	iny                                     ; 9618 C8                       .
 	sty     L4656                           ; 9619 8C 56 46                 .VF
 	rts                                     ; 961C 60                       `

@@ -16,7 +16,7 @@ L4D03:  lda     #$01                            ; 4D03 A9 01                    
 	add16m8	off_AE, L4CEE, L4CF4
 	ldp8	$A0
 	add16m8 off_AE, L4CF0, L4CF4
-	lda     ($AE),y                         ; 4D49 B1 AE                    ..
+	lda     (off_AE),y
 	sta     $A1                             ; 4D4B 85 A1                    ..
 	ldxa	$A0
 	jsr     sub_4983
@@ -46,7 +46,7 @@ L4D03:  lda     #$01                            ; 4D03 A9 01                    
 L4DCC:  dmv	$AE, L4CF2
 	ldp8	$A0
 	add16i	off_AE, L4CF2, $0002
-	lda     ($AE),y                         ; 4DEB B1 AE                    ..
+	lda     (off_AE),y
 	sta     $A1                             ; 4DED 85 A1                    ..
 	ldxa	$A0
 	jsr     sub_496E
@@ -59,7 +59,7 @@ L4DCC:  dmv	$AE, L4CF2
 L4E02:	add16i	off_AE, L4CF2, $0001
 	ldp8	$A0
 	add16i	off_AE, L4CF2, $0003
-	lda     ($AE),y                         ; 4E26 B1 AE                    ..
+	lda     (off_AE),y
 	sta     $A1                             ; 4E28 85 A1                    ..
 	ldxa	$A0
 	jsr     sub_496E

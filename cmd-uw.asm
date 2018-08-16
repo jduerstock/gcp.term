@@ -39,11 +39,11 @@ L664C:	shladdm8 off_AE, L65DE, L65DD
 	;
 	clc                                     ; 6660 18                       .
 	ldy     #$00                            ; 6661 A0 00                    ..
-	lda     ($AE),y                         ; 6663 B1 AE                    ..
+	lda     (off_AE),y
 	adc	L65D7
 	sta	$A0
 	iny
-	lda     ($AE),y                         ; 666B B1 AE                    ..
+	lda     (off_AE),y
 	adc     #$00                            ; 666D 69 00                    i.
 	sta     $A1                             ; 666F 85 A1                    ..
 	ldi	$A3, $00

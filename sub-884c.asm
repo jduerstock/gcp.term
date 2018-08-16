@@ -33,11 +33,11 @@ sub_884C:
 	shladdm8 off_AE, L884A, L883F
 	clc                                     ; 88AE 18                       .
 	ldy     #$00                            ; 88AF A0 00                    ..
-	lda     ($AE),y                         ; 88B1 B1 AE                    ..
+	lda     (off_AE),y
 	adc     L883E                           ; 88B3 6D 3E 88                 m>.
 	sta     L8839                           ; 88B6 8D 39 88                 .9.
 	iny                                     ; 88B9 C8                       .
-	lda     ($AE),y                         ; 88BA B1 AE                    ..
+	lda     (off_AE),y
 	adc     #$00                            ; 88BC 69 00                    i.
 	sta     L8839+1
 	ldi	$85, $00

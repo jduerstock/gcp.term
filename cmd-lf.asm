@@ -25,21 +25,21 @@ cmd_lf:						; "f" "BR"
 	add16i	off_AE, L70DD, $0002
 	clc                                     ; 7171 18                       .
 	ldy     #$00                            ; 7172 A0 00                    ..
-	lda     ($AE),y                         ; 7174 B1 AE                    ..
+	lda     (off_AE),y
 	adc     L70E0                           ; 7176 6D E0 70                 m.p
 	sta     $AC                             ; 7179 85 AC                    ..
 	sec                                     ; 717B 38                       8
 	lda     $AC                             ; 717C A5 AC                    ..
 	sbc     #$01                            ; 717E E9 01                    ..
-	sta     ($AE),y                         ; 7180 91 AE                    ..
+	sta     (off_AE),y
 	add16i	off_AE, L70DD, $0003
 	clc                                     ; 7191 18                       .
-	lda     ($AE),y                         ; 7192 B1 AE                    ..
+	lda     (off_AE),y
 	adc     L70E1                           ; 7194 6D E1 70                 m.p
 	sta     $AC                             ; 7197 85 AC                    ..
 	sec                                     ; 7199 38                       8
 	lda     $AC                             ; 719A A5 AC                    ..
 	sbc     #$01                            ; 719C E9 01                    ..
-	sta     ($AE),y                         ; 719E 91 AE                    ..
+	sta     (off_AE),y
 	rts                                     ; 71A0 60                       `
 

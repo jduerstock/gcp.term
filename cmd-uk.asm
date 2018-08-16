@@ -50,10 +50,10 @@ L69B7:	blkmv_imi L698A, L6983, $000B
 	shladdm8 off_AE, L46E2, L6982
 	lda     #$00                            ; 6A2E A9 00                    ..
 	ldy     #$01                            ; 6A30 A0 01                    ..
-	sta     ($AE),y                         ; 6A32 91 AE                    ..
+	sta     (off_AE),y
 	lda     #$00                            ; 6A34 A9 00                    ..
 	dey                                     ; 6A36 88                       .
-	sta     ($AE),y                         ; 6A37 91 AE                    ..
+	sta     (off_AE),y
 	test16	L6991
 	lbeq	L6A67
 	rdldi	$84, $0006
@@ -72,7 +72,7 @@ L6A67:	test16	L6993
 	ldp16	L6988
 	dmv	off_AE, L6988
 	clc                                     ; 6A93 18                       .
-	lda     ($AE),y                         ; 6A94 B1 AE                    ..
+	lda     (off_AE),y
 	adc     #$01                            ; 6A96 69 01                    i.
 	sta     $A2                             ; 6A98 85 A2                    ..
 	lda     #$00                            ; 6A9A A9 00                    ..

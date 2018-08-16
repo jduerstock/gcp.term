@@ -33,7 +33,7 @@ L73FE:	sub8m	off_AE, L4673, L73D6
 	func16_8 sub_7035, L73D8, L73D5
 	add16i	off_AE, L73D8, $000C
 	ldy     #$00                            ; 742E A0 00                    ..
-	lda     ($AE),y                         ; 7430 B1 AE                    ..
+	lda     (off_AE),y
 	cmp     #$FF                            ; 7432 C9 FF                    ..
 	lbcs	L7461
 	lda     L73D8                           ; 7439 AD D8 73                 ..s

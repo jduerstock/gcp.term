@@ -28,7 +28,7 @@ cmd_40:						; "@" "BB"
 	ldp16	LA88B
 LA8E6:	dmv	off_AE, LA88B
 	ldy     #$00                            ; A8F0 A0 00                    ..
-	lda     ($AE),y                         ; A8F2 B1 AE                    ..
+	lda     (off_AE),y
 	eor     #$1E                            ; A8F4 49 1E                    I.
 	lbne	LA8FE
 	jmp     LA958                           ; A8FB 4C 58 A9                 LX.

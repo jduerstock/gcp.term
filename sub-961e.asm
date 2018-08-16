@@ -8,9 +8,9 @@ sub_961E:
 	sta     L961D                           ; 9621 8D 1D 96                 ...
 	add16m8	off_AE, L9059, L905E
 	ldy     #$00                            ; 9634 A0 00                    ..
-	lda     ($AE),y                         ; 9636 B1 AE                    ..
+	lda     (off_AE),y
 	eor     #$80                            ; 9638 49 80                    I.
-	sta     ($AE),y                         ; 963A 91 AE                    ..
+	sta     (off_AE),y
 	lda     #$7F                            ; 963C A9 7F                    ..
 	cmp     L961D                           ; 963E CD 1D 96                 ...
 	lbcs	L964C
@@ -25,9 +25,9 @@ L964C:  lda     L961D                           ; 964C AD 1D 96                 
 L9660:	mv	L905E, L961D
 	add16m8	off_AE, L9059, L905E
 	ldy     #$00                            ; 9676 A0 00                    ..
-	lda     ($AE),y                         ; 9678 B1 AE                    ..
+	lda     (off_AE),y
 	eor     #$80                            ; 967A 49 80                    I.
-	sta     ($AE),y                         ; 967C 91 AE                    ..
+	sta     (off_AE),y
 	jsr     sub_936A
 	rts                                     ; 9681 60                       `
 

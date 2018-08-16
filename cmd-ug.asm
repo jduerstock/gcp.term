@@ -11,10 +11,10 @@ cmd_ug:						; "G" "DDB"
 	ldp16	L8EFB
 	dmv	off_AE, L8EFB
 	lda     L8EF9                           ; 8F31 AD F9 8E                 ...
-	sta     ($AE),y                         ; 8F34 91 AE                    ..
+	sta     (off_AE),y
 	add16i	off_AE, L8EFB, $0001
 	lda     L8EFA                           ; 8F45 AD FA 8E                 ...
-	sta     ($AE),y                         ; 8F48 91 AE                    ..
+	sta     (off_AE),y
 	iny                                     ; 8F4A C8                       .
 	sty	L4656
 	rts                                     ; 8F4E 60                       `
