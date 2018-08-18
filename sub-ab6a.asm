@@ -34,7 +34,7 @@ LAB56:	.addr	LAB14
 LAB58:  .addr	$0000
 LAB5A:  .addr	$0000
 LAB5C:  .byte	$00
-LAB5D:  .byte	$00
+	.byte	$00
 	.byte	$00
 	.byte	$00
 LAB60:	.byte	$D6,$1E,$08,$00,$00,$00,$00,$00
@@ -57,7 +57,7 @@ LAB94:	add16m8 off_AE, LAB56, LAB69
 	add16m8 off_AE, LAB56, LAB69
 	lda     (off_AE),y
 	lbne	LABE8
-LABC7:  jmp     LABCD                           ; ABC7 4C CD AB                 L..
+	jmp     LABCD                           ; ABC7 4C CD AB                 L..
 
 ; ----------------------------------------------------------------------------
 LABCA:	.byte	$02,"CC"
