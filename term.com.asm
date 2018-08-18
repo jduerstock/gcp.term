@@ -1040,13 +1040,7 @@ L49EE:	addi16m8 L49D1, LB380, L499F
 ;	L499F = L49C4;
 	mv	L499F, L49C4
 ;	A0 = &LB380 + L499F;
-	clc                                     ; 4A2A 18                       .
-	lda     #<LB380
-	adc     L499F                           ; 4A2D 6D 9F 49                 m.I
-	sta     $A0                             ; 4A30 85 A0                    ..
-	lda     #>LB380
-	adc     #$00                            ; 4A34 69 00                    i.
-	sta     $A1                             ; 4A36 85 A1                    ..
+	addi16m8 $A0, LB380, L499F
 ;	memcpy();
 	blkmv_mii $A0, L49C5, $000C
 	rts                                     ; 4A4D 60                       `
