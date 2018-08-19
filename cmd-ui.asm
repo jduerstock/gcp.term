@@ -61,9 +61,7 @@ L97E4:  jmp     L97EC                           ; 97E4 4C EC 97                 
 
 ; ----------------------------------------------------------------------------
 L97E7:	ldi	CH, $FF
-L97EC:  lda     L979D                           ; 97EC AD 9D 97                 ...
-	eor     #$9B                            ; 97EF 49 9B                    I.
-	lbne	L9810
+L97EC:	ifm8eqi L979D, $9B, L9810
 	add8i	$A0, L9051, $01
 	proc8	sub_9427, $A0
 	proc8i	sub_961E, $00
@@ -71,84 +69,63 @@ L97EC:  lda     L979D                           ; 97EC AD 9D 97                 
 	jmp     L9BCE                           ; 980D 4C CE 9B                 L..
 
 ; ----------------------------------------------------------------------------
-L9810:  lda     L979C                           ; 9810 AD 9C 97                 ...
-	eor     #$2C                            ; tab
-	lbne	L9830
+L9810:	ifm8eqi L979C, $2C, L9830
 	add8i	off_AE, L905E, $04
 	and8i	$A0, off_AE, $FC
 	proc8	sub_961E, $A0
 	jmp     L9BCE                           ; 982D 4C CE 9B                 L..
 
 ; ----------------------------------------------------------------------------
-L9830:  lda     L979C                           ; 9830 AD 9C 97                 ...
-	eor     #$87                            ; ctrl-*
-	lbne	L984A
+L9830:	ifm8eqi	L979C, $87, L984A		; ctrl-*
 	add8i	$A0, L905E, $01
 	proc8	sub_961E, $A0
 	jmp     L9BCE                           ; 9847 4C CE 9B                 L..
 
 ; ----------------------------------------------------------------------------
-L984A:  lda     L979C                           ; 984A AD 9C 97                 ...
-	eor     #$86                            ; ctrl-+
-	lbne	L9864
+L984A:	ifm8eqi L979C, $86, L9864		; ctrl-+
 	sub8i	$A0, L905E, $01
 	proc8	sub_961E, $A0
 	jmp     L9BCE                           ; 9861 4C CE 9B                 L..
 
 ; ----------------------------------------------------------------------------
-L9864:  lda     L979C                           ; 9864 AD 9C 97                 ...
-	eor     #$F6                            ; ctrl-shift-<
-	lbne	L9876
-	lda     #$00                            ; 986E A9 00                    ..
-	jsr     sub_961E
+L9864:	ifm8eqi	L979C, $F6, L9876		; ctrl-shift-<
+	proc8i	sub_961E, $00
 	jmp     L9BCE                           ; 9873 4C CE 9B                 L..
 
 ; ----------------------------------------------------------------------------
-L9876:  lda     L979C                           ; 9876 AD 9C 97                 ...
-	eor     #$F7                            ; ctrl-shift->
-	lbne	L9889
+L9876:	ifm8eqi	L979C, $F7, L9889		; ctrl-shift->
 	proc8	sub_961E, L905D
 	jmp     L9BCE                           ; 9886 4C CE 9B                 L..
 
 ; ----------------------------------------------------------------------------
-L9889:  lda     L979C                           ; 9889 AD 9C 97                 ...
-	eor     #$8E                            ; ctrl--
-	lbne	L98A9
+L9889:	ifm8eqi	L979C, $8E, L98A9		; ctrl--
 	sub8i	$A0, L9051, $01
 	proc8	sub_9427, $A0
 	proc8	sub_961E, L905E
 	jmp     L9BCE                           ; 98A6 4C CE 9B                 L..
 
 ; ----------------------------------------------------------------------------
-L98A9:  lda     L979C                           ; 98A9 AD 9C 97                 ...
-	eor     #$8F                            ; ctrl-=
-	lbne	L98C9
+L98A9:	ifm8eqi	L979C, $8F, L98C9		; ctrl-=
 	add8i	$A0, L9051, $01
 	proc8	sub_9427, $A0
 	proc8	sub_961E, L905E
 	jmp     L9BCE                           ; 98C6 4C CE 9B                 L..
 
 ; ----------------------------------------------------------------------------
-L98C9:  lda     L979C                           ; 98C9 AD 9C 97                 ...
-	eor     #$CE                            ; ctrl-shift--
-	lbne	L98E0
+L98C9:	ifm8eqi	L979C, $CE, L98E0		; ctrl-shift--
 	proc8i	sub_9427, $00
 	proc8i	sub_961E, $00
 	jmp     L9BCE                           ; 98DD 4C CE 9B                 L..
 
 ; ----------------------------------------------------------------------------
-L98E0:  lda     L979C                           ; 98E0 AD 9C 97                 ...
-	eor     #$CF                            ; ctrl-shift-=
-	lbne	L98FF
+L98E0:	ifm8eqi	L979C, $CF, L98FF		; ctrl-shfit-=
 	sub8i	$A0, L9061, $01
 	proc8	sub_9427, $A0
 	proc8i	sub_961E, $00
 	jmp     L9BCE                           ; 98FC 4C CE 9B                 L..
 
 ; ----------------------------------------------------------------------------
-L98FF:  lda     L979C                           ; 98FF AD 9C 97                 ...
-	eor     #$B4                            ; ctrl-backspace
-	lbne	L999C
+L98FF:	ifm8eqi	L979C, $B4, L999C		; ctrl-backspace
 	lda     L905E                           ; 9909 AD 5E 90                 .^.
 	cmp     L905D                           ; 990C CD 5D 90                 .].
 	lbcc	L991A
@@ -256,9 +233,7 @@ L9AA0:  ldx     L9051                           ; 9AA0 AE 51 90                 
 	jsr     sub_925D
 	lda     $A0                             ; 9AA9 A5 A0                    ..
 	sta     L979E                           ; 9AAB 8D 9E 97                 ...
-	lda     L979E                           ; 9AAE AD 9E 97                 ...
-	eor     #$01                            ; 9AB1 49 01                    I.
-	lbne	L9AE5
+	ifm8eqi	L979E, $01, L9AE5
 	proc8	sub_9427, L9051
 	jmp     L9AC4                           ; 9ABE 4C C4 9A                 L..
 
