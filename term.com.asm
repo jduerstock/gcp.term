@@ -503,16 +503,18 @@ CCIO:
 	jmp     ChkErr
 
 ; ----------------------------------------------------------------------------
+; PutE
 	lda     #$9B                            ; 45C2 A9 9B                    ..
 
-sub_45C4:
+Put:
 	tax                                     ; 45C4 AA                       .
 	lda     $B7                             ; 45C5 A5 B7                    ..
 
-sub_45C7:
-;--	void sub_45c7(uint8_t iocb,chr)		; put character
+PutD:	
+;--	void PutD(uint8_t iocb, char chr)	; put character to iocb
 	stx     $A1                             ; 45C7 86 A1                    ..
 	ldy     $A1                             ; 45C9 A4 A1                    ..
+; PutD1
 	ldx     #$0B				; put buffer
 	jmp	CCIO
 

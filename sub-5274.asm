@@ -31,13 +31,13 @@ L52B2:	add16m8	off_AE, L5272, L526E
 	ldp8	L5271
 	ldx     L5271                           ; 52C9 AE 71 52                 .qR
 	lda     #$02                            ; 52CC A9 02                    ..
-	jsr     sub_45C7
+	jsr     PutD
 	inc     L526E                           ; 52D1 EE 6E 52                 .nR
 	jmp     L52A6                           ; 52D4 4C A6 52                 L.R
 
 ; ----------------------------------------------------------------------------
 L52D7:  ldx     #$0A                            ; 52D7 A2 0A                    ..
 	lda     #$02                            ; 52D9 A9 02                    ..
-	jsr	sub_45C7
+	jsr	PutD
 	rts					; 52DE 60
 

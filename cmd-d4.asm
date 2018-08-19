@@ -85,7 +85,7 @@ LA4B3:	add16m8	off_AE, LA3AA, LA3B0
 	func8_8	sub_4BC9, LA3B2, LA3B2
 LA4DD:  ldx     LA3B2                           ; A4DD AE B2 A3                 ...
 	lda     LA3A6                           ; A4E0 AD A6 A3                 ...
-	jsr     sub_45C7
+	jsr     PutD
 	lda     L464D                           ; A4E6 AD 4D 46                 .MF
 	lbeq	LA4F1
 LA4EE:  jmp     LA4F7                           ; A4EE 4C F7 A4                 L..
@@ -99,7 +99,7 @@ LA4F7:  lda     LA3A7                           ; A4F7 AD A7 A3                 
 	lbeq	LA507
 LA4FF:  ldx     #$9B                            ; A4FF A2 9B                    ..
 	lda     LA3A6                           ; A501 AD A6 A3                 ...
-	jsr     sub_45C7
+	jsr     PutD
 LA507:  lda     L464D                           ; A507 AD 4D 46                 .MF
 	lbeq	LA512
 	jmp     LA52A                           ; A50F 4C 2A A5                 L*.
