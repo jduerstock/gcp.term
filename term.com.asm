@@ -451,24 +451,25 @@ Close:
 	jmp     ChkErr
 
 ; ----------------------------------------------------------------------------
-sub_4575:  
+InS:  
 	jsr     In
 	sty     $A0                             ; 4578 84 A0                    ..
 	lda     ICBL,x
-	beq     L4582                           ; 457D F0 03                    ..
+	beq     :+
 	sec                                     ; 457F 38                       8
 	sbc     #$01                            ; 4580 E9 01                    ..
-L4582:  ldy     #$00                            ; 4582 A0 00                    ..
+:	ldy     #$00                            ; 4582 A0 00                    ..
 	sta     ($A5),y                         ; 4584 91 A5                    ..
 	ldy     $A0                             ; 4586 A4 A0                    ..
 	rts                                     ; 4588 60                       `
 
 ; ----------------------------------------------------------------------------
+;InputSD
 	pha                                     ; 4589 48                       H
 	ldi	$A3, $FF
 	pla                                     ; 458E 68                       h
 
-sub_458F:
+InputMD:
 	pha                                     ; 458F 48                       H
 	stx     $A1                             ; 4590 86 A1                    ..
 	sty     $A2                             ; 4592 84 A2                    ..
@@ -477,13 +478,15 @@ sub_458F:
 	sta     ($A1),y                         ; 4598 91 A1                    ..
 	pla                                     ; 459A 68                       h
 	ldy     $A2                             ; 459B A4 A2                    ..
-	jsr     sub_4575
+;InputD
+	jsr     InS
 	jmp     ChkErr
 
 ; ----------------------------------------------------------------------------
-sub_45A3:
+GetD:
 	ldx     #$07                            ; get binary record
-L45A5:  stx     $A4                             ; 45A5 86 A4                    ..
+CCIO:
+	stx     $A4                             ; 45A5 86 A4                    ..
 	asl     a                               ; 45A7 0A                       .
 	asl     a                               ; 45A8 0A                       .
 	asl     a                               ; 45A9 0A                       .
@@ -511,7 +514,7 @@ sub_45C7:
 	stx     $A1                             ; 45C7 86 A1                    ..
 	ldy     $A1                             ; 45C9 A4 A1                    ..
 	ldx     #$0B				; put buffer
-	jmp     L45A5                           ; 45CD 4C A5 45                 L.E
+	jmp	CCIO
 
 ; ----------------------------------------------------------------------------
 XIO:
@@ -519,13 +522,13 @@ XIO:
 	jmp     ChkErr
 
 ; ----------------------------------------------------------------------------
-read_stick:
+Stick:
 	ldx     #$00                            ; 45D6 A2 00                    ..
 	cmp     #$02                            ; 45D8 C9 02                    ..
-	bmi     L45DF                           ; 45DA 30 03                    0.
+	bmi     :+
 	inx                                     ; 45DC E8                       .
 	and     #$01                            ; 45DD 29 01                    ).
-L45DF:  tay                                     ; 45DF A8                       .
+:	tay                                     ; 45DF A8                       .
 	lda     $D300,x                         ; 45E0 BD 00 D3                 ...
 	dey                                     ; 45E3 88                       .
 	bne     L45EA                           ; 45E4 D0 04                    ..
@@ -1098,11 +1101,11 @@ sub_4AA5:
 	jsr     CIOV
 	sty     L4AA4                           ; 4AD7 8C A4 4A                 ..J
 	cpy     #$88                            ; 4ADA C0 88                    ..
-	bne     L4AE4                           ; 4ADC D0 06                    ..
+	bne	:+
 	tya                                     ; 4ADE 98                       .
 	ldy     $A0                             ; 4ADF A4 A0                    ..
 	sta     L05C0,y                         ; 4AE1 99 C0 05                 ...
-L4AE4:  rts                                     ; 4AE4 60                       `
+:	rts                                     ; 4AE4 60                       `
 
 	.include "sub-4ae6.asm"
 	.include "modem-status.asm"

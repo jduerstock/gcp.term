@@ -21,7 +21,7 @@ sub_9CD0:
 	rts                                     ; 9CEA 60                       `
 
 ; ----------------------------------------------------------------------------
-L9CEB:	proc8i	read_stick, $00
+L9CEB:	proc8i	Stick, $00
 	sub8i	L9CC1, $A0, $05
 	add16m8	off_AE, L9CCE, L9CC1
 	ldp8	L9CC1
@@ -47,11 +47,11 @@ L9D46:	mv	L9CC2, L9CC1
 	dmv	off_AE, L9CBA
 	add16m8	off_AC, L46EB, L9CC1
 	ldy     #$00                            ; 9D66 A0 00                    ..
-	lda     ($AC),y                         ; 9D68 B1 AC                    ..
+	lda     (off_AC),y
 	sta     (off_AE),y
 	dmv	off_AE, L9CBC
 	add16m8	off_AC, L46ED, L9CC1
-	lda     ($AC),y                         ; 9D86 B1 AC                    ..
+	lda     (off_AC),y
 	sta     (off_AE),y
 	dmv	off_AE, L9CBA
 	lda     (off_AE),y

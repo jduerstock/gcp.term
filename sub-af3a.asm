@@ -72,7 +72,7 @@ LAF63:	lda     L4652                           ; AF63 AD 52 46                 .
 	ldy     #>LB223
 	ldx     #<LB223
 	lda     L4652                           ; AF75 AD 52 46                 .RF
-	jsr     sub_458F
+	jsr     InputMD
 	ldx     L4652                           ; AF7B AE 52 46                 .RF
 	lda     L05C0,x                         ; AF7E BD C0 05                 ...
 	bne     LAF8B                           ; AF81 D0 08                    ..

@@ -43,7 +43,7 @@ LA748:  ldx     LA6D9                           ; A748 AE D9 A6                 
 	ldy     #>LB224
 	ldx     #<LB224
 	lda     LA6D9                           ; A75B AD D9 A6                 ...
-	jsr     sub_458F
+	jsr     InputMD
 	lda     LB224                           ; A761 AD 24 B2                 .$.
 	sta     LA6E0                           ; A764 8D E0 A6                 ...
 	ldy     #$01                            ; A767 A0 01                    ..

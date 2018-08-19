@@ -22,7 +22,7 @@ sub_4FC5:
 	rts                                     ; 4FE4 60                       `
 
 ; ----------------------------------------------------------------------------
-L4FE5:	func8_8i sub_45A3, L4FBB, $02
+L4FE5:	func8_8i GetD, L4FBB, $02
 	lda     L4FBE                           ; 4FEF AD BE 4F                 ..O
 	eor     #$01                            ; 4FF2 49 01                    I.
 	lbne	L5015
@@ -70,7 +70,7 @@ L5040:	mv	LB1C6, L4FBB
 	rts                                     ; 507A 60                       `
 
 ; ----------------------------------------------------------------------------
-L507B:	func8_8i sub_45A3, L4FBB, $02
+L507B:	func8_8i GetD, L4FBB, $02
 L5085:  lda     L4FBF                           ; 5085 AD BF 4F                 ..O
 	eor     #$01                            ; 5088 49 01                    I.
 	lbne	L50EF
@@ -95,7 +95,7 @@ L50A4:	add16m8 off_AE, L4FC2, L4FBF
 	rts                                     ; 50E4 60                       `
 
 ; ----------------------------------------------------------------------------
-L50E5:	func8_8i sub_45A3, L4FBB, $02
+L50E5:	func8_8i GetD, L4FBB, $02
 L50EF:	add16m8	off_AE, L4FC2, L4FBF
 	stp8	L4FBB
 	add8m	L4FC1, L4FC1, L4FBB
@@ -142,7 +142,7 @@ L5161:  jsr     modem_status
 	sbc     L4FBD                           ; 5175 ED BD 4F                 ..O
 	lbcs	L5187
 	lda     #$02                            ; 517D A9 02                    ..
-	jsr     sub_45A3
+	jsr     GetD
 	lda     $A0                             ; 5182 A5 A0                    ..
 	sta     L4FBB                           ; 5184 8D BB 4F                 ..O
 L5187:  test16	L4FBC
