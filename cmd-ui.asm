@@ -51,9 +51,7 @@ cmd_ui:						; "I" "B"
 L97B2:	yldi	L979D, $00
 	and8i	off_AE, L979C, $C0
 	ifm8nei	$AE, $C0, L97E7
-	lda	CH
-	eor     #$FF                            ; 97CA 49 FF                    I.
-	lbeq	L97DE
+	ifm8nei	CH, $FF, L97DE
 	func8_8i GetD, L979D, $07
 	jmp     L97E4                           ; 97DB 4C E4 97                 L..
 
