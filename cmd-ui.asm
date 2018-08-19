@@ -50,9 +50,7 @@ cmd_ui:						; "I" "B"
 ; ----------------------------------------------------------------------------
 L97B2:	yldi	L979D, $00
 	and8i	off_AE, L979C, $C0
-	lda     $AE                             ; 97BE A5 AE                    ..
-	eor     #$C0                            ; 97C0 49 C0                    I.
-	lbeq	L97E7
+	ifm8nei	$AE, $C0, L97E7
 	lda	CH
 	eor     #$FF                            ; 97CA 49 FF                    I.
 	lbeq	L97DE
