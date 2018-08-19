@@ -37,6 +37,7 @@ LA56C:	blkmv_imi LA53D, LA530, $0004
 LA58C:	add8i	LA536, off_AE, $01
 	blkmv_imi LA541, LA534, $0006
 	shladdm8 off_AE, LA545, LA53E
+;
 	clc                                     ; A5BF 18                       .
 	ldy     #$00                            ; A5C0 A0 00                    ..
 	lda     (off_AE),y
@@ -46,6 +47,7 @@ LA58C:	add8i	LA536, off_AE, $01
 	lda     (off_AE),y
 	adc     #$00                            ; A5CC 69 00                    i.
 	sta     $AD                             ; A5CE 85 AD                    ..
+;
 	sub16i	LA532, off_AC, $0001
 	jsr     cmd_d0
 	ldy     #$00                            ; A5E2 A0 00                    ..

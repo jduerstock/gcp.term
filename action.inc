@@ -19,9 +19,13 @@
 	untrue:
 .endmacro
 
-.macro	lbcc	addr
+.macro	lbcc	addr, ofs
 	.local	untrue
-	bcs	untrue
+	.if	.paramcount = 2
+		bcs	untrue+ofs
+	.else
+		bcs	untrue
+	.endif
 	jmp	addr
 	untrue:
 .endmacro

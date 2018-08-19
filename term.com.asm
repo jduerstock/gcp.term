@@ -1202,6 +1202,7 @@ L4AE4:  rts                                     ; 4AE4 60                       
 	.include "sub-840c.asm"
 	.include "sub-8521.asm"
 	.include "sub-8573.asm"
+	.include "sub-8819.asm"
 	.include "sub-884c.asm"
 	.include "sub-89ae.asm"
 	.include "cmd-26.asm"
