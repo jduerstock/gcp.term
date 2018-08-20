@@ -12,7 +12,7 @@ cmd_25:						; "%" "B"
 	jsr     MultI
 	sta     $A0                             ; 4FB3 85 A0                    ..
 	lda     $A0                             ; 4FB5 A5 A0                    ..
-	jsr     sub_4F6D
+	jsr     delay
 	rts                                     ; 4FBA 60                       `
 
 ; --	void cmd_25(u_uint8_t a)

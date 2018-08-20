@@ -53,7 +53,7 @@ L5DE0:  lda     #$00                            ; 5DE0 A9 00                    
 L5DF9:  jsr     sub_5D64
 	ldi	SDMCTL, $2A
 	lda     #$02                            ; 5E01 A9 02                    ..
-	jsr     sub_4F6D
+	jsr     delay
 	yldi	L4653, $00
 	jmp     L5E10                           ; 5E0B 4C 10 5E                 L.^
 

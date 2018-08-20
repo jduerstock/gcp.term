@@ -39,12 +39,12 @@ L5D11:  lda     L4650                           ; 5D11 AD 50 46                 
 ; ----------------------------------------------------------------------------
 L5D1F:	yldi	SDMCTL, $00
 	lda     #$03                            ; 5D24 A9 03                    ..
-	jsr     sub_4F6D
+	jsr     delay
 L5D29:  jsr     modem_status
 	lda     $A0                             ; 5D2C A5 A0                    ..
 	lbeq	L5D40
 L5D33:	proc8i	GetD, $02
-	proc8i	sub_4F6D, $02
+	proc8i	delay, $02
 	jmp     L5D29                           ; 5D3D 4C 29 5D                 L)]
 
 ; ----------------------------------------------------------------------------
