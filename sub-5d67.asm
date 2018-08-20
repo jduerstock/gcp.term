@@ -2,8 +2,7 @@
 sub_5D67:  
 	prolog
 	ifm8nei	$B148, $01, L5DB9
-	lda     #$02                            ; 5D74 A9 02                    ..
-	jsr     Close
+	proc8i	Close, $02
 	ldi	$A3, $0D
 	ldy     #>L4AA1
 	ldx     #<L4AA1
@@ -31,9 +30,7 @@ L5DB9:	ldi	$A4, $00
 	ldx     #$00                            ; 5DCF A2 00                    ..
 	lda     #$02                            ; 5DD1 A9 02                    ..
 	jsr     sub_4AA5
-	lda     $B148                           ; 5DD6 AD 48 B1                 .H.
-	eor     #$01                            ; 5DD9 49 01                    I.
-	lbne	L5DF9
+	ifm8eqi	$B148, $01, L5DF9
 L5DE0:  lda     #$00                            ; 5DE0 A9 00                    ..
 	sta     $A3                             ; 5DE2 85 A3                    ..
 	lda     #$00                            ; 5DE4 A9 00                    ..
