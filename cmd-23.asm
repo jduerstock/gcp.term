@@ -8,7 +8,7 @@ cmd_23:						; "#" "BBB"
 	lda     $A0                             ; A961 A5 A0                    ..
 	sta     LB14A,x                         ; A963 9D 4A B1                 .J.
 	tya                                     ; A966 98                       .
-	sta     $BC00,x                         ; A967 9D 00 BC                 ...
+	sta     LBC00,x                         ; A967 9D 00 BC                 ...
 	rts                                     ; A96A 60                       `
 
 ;--	void cmd_23(uint8_t a, uint8_t x, uint8_t y)

@@ -14,7 +14,7 @@ LAE8C:  lda     #$1F                            ; AE8C A9 1F                    
 	cmp     LAE7E                           ; AE8E CD 7E AE                 .~.
 	lbcc	LAED6
 	ldx     LAE7E                           ; AE96 AE 7E AE                 .~.
-	lda     $B14A,x                         ; AE99 BD 4A B1                 .J.
+	lda     LB14A,x                         ; AE99 BD 4A B1                 .J.
 	sta     LAE7F                           ; AE9C 8D 7F AE                 ...
 	ldx     LAE7E                           ; AE9F AE 7E AE                 .~.
 	lda     LB800,x                         ; AEA2 BD 00 B8                 ...
@@ -24,7 +24,7 @@ LAE8C:  lda     #$1F                            ; AE8C A9 1F                    
 	cmp     #$80                            ; AEAF C9 80                    ..
 	lbcs	LAED0
 	ldx     LAE7E                           ; AEB6 AE 7E AE                 .~.
-	lda     $BC00,x                         ; AEB9 BD 00 BC                 ...
+	lda     LBC00,x                         ; AEB9 BD 00 BC                 ...
 	sta     LAE80                           ; AEBC 8D 80 AE                 ...
 	ldxa	LAE7F
 	jsr     cmd_40
