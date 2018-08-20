@@ -52,7 +52,7 @@ sub_AF3A:
 ;--	void sub_AF3A()
 	prolog
 ;--	{
-	rdmv	sub_43BA+1, sub_5E5E+1
+	rdmv	Error+1, sub_5E5E+1
 ;--		ptr_43BA = &sub_5E5E;
 	jsr     sub_ADEA
 ;--		sub_ADEA();
