@@ -26,13 +26,9 @@ sub_5F16:
 	lda     L5F07                           ; 5F34 AD 07 5F                 .._
 	and     #$07                            ; 5F37 29 07                    ).
 	sta     L5F13                           ; 5F39 8D 13 5F                 .._
-	lda     L5F0B                           ; 5F3C AD 0B 5F                 .._
-	eor     #$01                            ; 5F3F 49 01                    I.
-	lbne	L5F4B
-	lda     #$FF                            ; 5F46 A9 FF                    ..
-	sta     L5F0B                           ; 5F48 8D 0B 5F                 .._
-L5F4B:  lda     L5F13                           ; 5F4B AD 13 5F                 .._
-	sta     $84                             ; 5F4E 85 84                    ..
+	ifm8eqi	L5F0B, $01, L5F4B
+	ldi	L5F0B, $FF
+L5F4B:	mv	$84, L5F13
 	lda     #$80                            ; 5F50 A9 80                    ..
 	ldx     #$00                            ; 5F52 A2 00                    ..
 	jsr     RShift

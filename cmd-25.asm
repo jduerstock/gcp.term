@@ -15,3 +15,8 @@ cmd_25:						; "%" "B"
 	jsr     sub_4F6D
 	rts                                     ; 4FBA 60                       `
 
+; --	void cmd_25(u_uint8_t a)
+; --	{
+; --		sub_4f6d(a*6);
+; --	}
+; --

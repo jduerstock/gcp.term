@@ -3,8 +3,7 @@
 L5FF0:  .byte	$00
 L5FF1:  .byte	$00
 L5FF2:  .byte	$00
-L5FF3:  .byte	$00
-L5FF4:  .byte	$00
+L5FF3:  .word	$0000
 
 sub_5FF5:  
 	stack_prolog L5FF0, $04

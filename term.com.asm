@@ -9,6 +9,7 @@
 MONOLITH=1
 
 ; ----------------------------------------------------------------------------
+RTCLOK		:= $0012
 ATRACT		:= $004D
 off_82		:= $0082
 off_84		:= $0084
@@ -744,7 +745,10 @@ L4755:	.byte	$D6,$1E,$0D,$00,$00
 L4762:  .byte	$00
 L4763:  .byte	$D8
 L4764:  .byte	$00
-L4765:	pcode	"BBBBS"		; "C"
+;
+;
+;
+L4765:	pcode	"BBBBS"		; "C"	cmd-uc.asm
 L476D:	pcode	"B"		; "K"
 L4771:	pcode	"BBBBS"		; "D"
 L4779:	pcode	"BC"		; "F"
