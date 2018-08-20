@@ -13,9 +13,7 @@ sub_AEE4:
 	eor     #$FF                            ; AEEA 49 FF                    I.
 	sta     off_AE
 	and8i	LAEE2, off_AE, $07
-	lda     LAEE3                           ; AEF5 AD E3 AE                 ...
-	eor     #$01                            ; AEF8 49 01                    I.
-	lbne	LAF08
+	ifm8eqi	LAEE3, $01, LAF08
 	lda     LAEE2                           ; AEFF AD E2 AE                 ...
 	lbeq	LAF08
 	rts                                     ; AF07 60                       `
@@ -27,8 +25,7 @@ LAF08:	yldi	LAEE3, $00
 	sta     LAEE1                           ; AF1F 8D E1 AE                 ...
 	lda     LAEE1                           ; AF22 AD E1 AE                 ...
 	lbeq	LAF35
-	lda     LAEE1                           ; AF2A AD E1 AE                 ...
-	jsr     cmd_2a
+	proc8	cmd_2a, LAEE1
 	yldi	LAEE3, $01
 LAF35:  rts                                     ; AF35 60                       `
 

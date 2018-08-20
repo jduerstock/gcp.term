@@ -717,59 +717,10 @@ L46EF:  .byte	$00
 L46F5:	.byte	$C0                             ; 46F5 C0                       .
 L46F6:	.byte	$B0,$14
 	.byte	$00
-L46F9:	.addr	$1ED6
-	.byte	$50,$00
-	.byte   $52                             ; 46FD 52                       R
-	eor     #$50                            ; 46FE 49 50                    IP
-	.byte   $54                             ; 4700 54                       T
-	eor     #$4F                            ; 4701 49 4F                    IO
-	.byte	$4E,$3A,$44
-	.byte   $1F                             ; 4706 1F                       .
-	.byte   $4F                             ; 4707 4F                       O
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	"*;      "
-	.byte   $63                             ; 4713 63                       c
-	.byte   $6F                             ; 4714 6F                       o
-	;ror     L6576                           ; 4715 6E 76 65                 nve
-	.byte	$6E,$76,$65
-	.byte   $72                             ; 4718 72                       r
-	.byte   $74                             ; 4719 74                       t
-	.byte	$20,$41,$54
-	eor     ($53,x)                         ; 471D 41 53                    AS
-	.byte   $43                             ; 471F 43                       C
-	eor     #$49                            ; 4720 49 49                    II
-	.byte	$20,$63,$6F
-	.byte   $64                             ; 4725 64                       d
-	adc     $20                             ; 4726 65 20                    e 
-	.byte   $74                             ; 4728 74                       t
-	.byte   $6F                             ; 4729 6F                       o
-	.byte	$20,$41,$53
-	.byte   $43                             ; 472D 43                       C
-	eor     #$49                            ; 472E 49 49                    II
-	.byte	$20,$76,$61
-	;jmp     (L6575)                         ; 4733 6C 75 65                 lue
-	.byte	$6C,$75,$65
-
-; ----------------------------------------------------------------------------
-	.byte   $44                             ; 4736 44                       D
-	.byte   $1F                             ; 4737 1F                       .
-	asl     a:$00,x                         ; 4738 1E 00 00                 ...
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte	$00
-	.byte   $44                             ; 4741 44                       D
-	.byte   $1F                             ; 4742 1F                       .
-	.byte   $13                             ; 4743 13                       .
-	.byte	$00
-	.byte   $A7                             ; 4745 A7                       .
-	.byte   $04                             ; 4746 04                       .
-	.byte   $0C                             ; 4747 0C                       .
-	.byte   $20                             ; 4748 20                        
+L46F9:	.byte	$D6,$1E,$50,$00,$52,$49,$50,$54,$49,$4F,$4E,$3A,$44,$1F,$4F,$00
+	.byte	$00,$00,"*;      convert ATASCII code to ASCII value"
+	.byte	$44,$1F,$1E,$00,$00,$00,$00,$00,$00,$00,$00,$44,$1F,$13,$00,$A7
+	.byte	$04,$0C,$20
 
 sub_4749:  
 	jmp	L474C
