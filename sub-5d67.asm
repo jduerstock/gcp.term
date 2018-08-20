@@ -24,16 +24,11 @@ sub_5D67:
 	ldx     #$00                            ; 5DB2 A2 00                    ..
 	lda     #$02                            ; 5DB4 A9 02                    ..
 	jsr     XIO
-L5DB9:  lda     #$00                            ; 5DB9 A9 00                    ..
-	sta     $A4                             ; 5DBB 85 A4                    ..
-	lda     #$80                            ; 5DBD A9 80                    ..
-	sta     $A3                             ; 5DBF 85 A3                    ..
-	lda     #$28                            ; 5DC1 A9 28                    .(
-	sta     $A5                             ; 5DC3 85 A5                    ..
-	lda     #$0D                            ; 5DC5 A9 0D                    ..
-	sta     $A6                             ; 5DC7 85 A6                    ..
-	lda     #$00                            ; 5DC9 A9 00                    ..
-	sta     $A7                             ; 5DCB 85 A7                    ..
+L5DB9:	ldi	$A4, $00
+	ldi	$A3, $80
+	ldi	$A5, $28
+	ldi	$A6, $0D
+	ldi	$A7, $00
 	ldy     #$06                            ; 5DCD A0 06                    ..
 	ldx     #$00                            ; 5DCF A2 00                    ..
 	lda     #$02                            ; 5DD1 A9 02                    ..
