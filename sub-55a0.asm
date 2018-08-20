@@ -55,6 +55,7 @@ L55B4:	shladdi	off_AE, L466F, $0001
 	ldp16	L559A
 	add16i	L559C, L559A, $0004
 	dmv	off_AE, L559C
+;
 	clc                                     ; 55EF 18                       .
 	lda     (off_AE),y
 	adc     #$02                            ; 55F2 69 02                    i.
@@ -63,6 +64,7 @@ L55B4:	shladdi	off_AE, L466F, $0001
 	lda     (off_AE),y
 	adc     #$00                            ; 55FA 69 00                    i.
 	sta     L559E+1
+;
 	rdldi	L558C, L5580
 	dey                                     ; 5609 88                       .
 	sty     L5594                           ; 560A 8C 94 55                 ..U
@@ -83,9 +85,7 @@ L562C:	.byte	$30                             ; 562C 30                       0
 ; ----------------------------------------------------------------------------
 L562D:	add16m8	off_AE, L557E, L5590
 	ldp8	L5591
-	lda     L5591                           ; 5644 AD 91 55                 ..U
-	eor     #'C'
-	lbne	L5672
+	ifm8eqi	L5591, 'C', L5672
 	add16m8	off_AE, L559E, L5594
 	dmv	off_AC, L558C
 	lda     (off_AC),y
@@ -94,9 +94,7 @@ L562D:	add16m8	off_AE, L557E, L5590
 	jmp     L5867                           ; 566F 4C 67 58                 LgX
 
 ; ----------------------------------------------------------------------------
-L5672:  lda     L5591                           ; 5672 AD 91 55                 ..U
-	eor     #'c'
-	lbne	L56B7
+L5672:	ifm8eqi	L5591, 'c', L56B7
 	add16m8	off_AE, L559E, L5594
 	push16	off_AE
 	dmv	off_AE, L558C
@@ -112,9 +110,7 @@ L5672:  lda     L5591                           ; 5672 AD 91 55                 
 	jmp     L5867                           ; 56B4 4C 67 58                 LgX
 
 ; ----------------------------------------------------------------------------
-L56B7:  lda     L5591                           ; 56B7 AD 91 55                 ..U
-	eor     #'B'
-	lbne	L56F4
+L56B7:	ifm8eqi	L5591, 'B', L56F4
 	dmv	off_AE, L558C
 	lda     (off_AE),y
 	sta     $A0                             ; 56CD 85 A0                    ..
@@ -126,9 +122,7 @@ L56B7:  lda     L5591                           ; 56B7 AD 91 55                 
 	jmp     L5867                           ; 56F1 4C 67 58                 LgX
 
 ; ----------------------------------------------------------------------------
-L56F4:  lda     L5591                           ; 56F4 AD 91 55                 ..U
-	eor     #'H'
-	lbne	L5774
+L56F4:	ifm8eqi	L5591, 'H', L5774
 	add16i	L558E, L558C, $0001
 	dmv	off_AE, L558E
 	lda     (off_AE),y
@@ -153,9 +147,7 @@ L56F4:  lda     L5591                           ; 56F4 AD 91 55                 
 L5774:  lda     L5591                           ; 5774 AD 91 55                 ..U
 	eor     #'S'
 	beq     L5785                           ; 5779 F0 0A                    ..
-	lda     L5591                           ; 577B AD 91 55                 ..U
-	eor     #'s'
-	lbne	L5867
+	ifm8eqi	L5591, 's', L5867
 L5785:	dmv	off_AE, L558C
 	ldy     #$00                            ; 578F A0 00                    ..
 	lda     (off_AE),y
@@ -196,9 +188,7 @@ L581A:	.byte	$73
 ; ----------------------------------------------------------------------------
 L581B:	add16m8 off_AE, L5598, L5593
 	ldp8	L5595
-	lda     L5591                           ; 5832 AD 91 55                 ..U
-	eor     #'S'
-	lbne	L5847
+	ifm8eqi	L5591, 'S', L5847
 	lda     L5595                           ; 583C AD 95 55                 ..U
 	jsr     sub_4BC9
 	mv	L5595, $A0
