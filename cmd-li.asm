@@ -35,7 +35,7 @@ LAA28:	ldi	$A3, $00
 	ldi	$A3, $00
 	ldy     #$10                            ; AA6A A0 10                    ..
 	ldxai	LB118
-	jsr     bzero
+	jsr	Zero
 	ldi	L4647, $FF
 	ldi	L4648, $FF
 	proc8i	cmd_ue, $01

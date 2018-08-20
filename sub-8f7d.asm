@@ -10,7 +10,7 @@ sub_8F7D:
 	ldi	$A3, $00
 	ldy     #$50                            ; 8F84 A0 50                    .P
 	ldxai	L46F9
-	jsr     bzero
+	jsr     Zero
 	rdldi	L8F7B, L46F9
 	yldi	L8F7A, $00
 L8F9C:  lda     #$09                            ; 8F9C A9 09                    ..

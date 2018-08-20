@@ -12,7 +12,7 @@ sub_747D:
 	sta     $A3                             ; 7487 85 A3                    ..
 	ldy     $A2                             ; 7489 A4 A2                    ..
 	ldxa	L46A2
-	jsr     bzero
+	jsr     Zero
 	ldy     #$00                            ; 7494 A0 00                    ..
 	sty     L747C                           ; 7496 8C 7C 74                 .|t
 L7499:  lda     #$13                            ; 7499 A9 13                    ..

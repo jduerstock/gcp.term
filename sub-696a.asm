@@ -8,6 +8,6 @@ sub_696A:
 	ldi	$A3, $00
 	ldy     $A2                             ; 6976 A4 A2                    ..
 	ldxa	L46E2
-	jsr     bzero
+	jsr     Zero
 	rts                                     ; 6981 60                       `
 

@@ -67,13 +67,9 @@ L9E94:  lda     L46E6                           ; 9E94 AD E6 46                 
 	jmp     L9F69                           ; 9ED4 4C 69 9F                 Li.
 
 ; ----------------------------------------------------------------------------
-L9ED7:  lda     L46E6                           ; 9ED7 AD E6 46                 ..F
-	eor     #$03                            ; 9EDA 49 03                    I.
-	lbne	L9F69
+L9ED7:	ifm8eqi	L46E6, $03, L9F69
 	dmv	L9E19, L4751
-	lda     L474F                           ; 9EED AD 4F 47                 .OG
-	eor     #$02                            ; 9EF0 49 02                    I.
-	lbne	L9F69
+	ifm8eqi	L474F, $02, L9F69
 	func16_8 sub_7035, L9E10, L4750
 	blkmv_imi L9E1D, L9E10, $0005
 	func16_8 sub_65B0, L9E12, L9E21

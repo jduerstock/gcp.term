@@ -551,7 +551,7 @@ STrig:
 	rts                                     ; 45F5 60                       `
 
 ; ----------------------------------------------------------------------------
-bzero:
+Zero:
 	pha                                     ; 45F6 48                       H
 	ldi	$A4, $00
 	pla                                     ; 45FB 68                       h
@@ -717,8 +717,7 @@ L46EF:  .byte	$00
 L46F5:	.byte	$C0                             ; 46F5 C0                       .
 L46F6:	.byte	$B0,$14
 	.byte	$00
-L46F9:	dec     $1E,x                           ; 46F9 D6 1E                    ..
-	;bvc     L46FD                           ; 46FB 50 00                    P.
+L46F9:	.addr	$1ED6
 	.byte	$50,$00
 	.byte   $52                             ; 46FD 52                       R
 	eor     #$50                            ; 46FE 49 50                    IP
@@ -1039,10 +1038,10 @@ sub_49D3:
 L49EE:	addi16m8 L49D1, LB380, L499F
 	blkmv_imi L49C5, L49D1, $000C
 	ldi	$A3, $00
-;	bzero(&L49D1, $0C);
+;	zero(&L49D1, $0C);
 	ldy     #$0C                            ; 4A19 A0 0C                    ..
 	ldxa	L49D1
-	jsr     bzero
+	jsr     Zero
 ;	L499F = L49C4;
 	mv	L499F, L49C4
 ;	A0 = &LB380 + L499F;
@@ -1064,7 +1063,7 @@ sub_4A53:
 	ldi	$A3, $00
 	ldy     #$80                            ; 4A60 A0 80                    ..
 	ldxai	LB380
-	jsr     bzero
+	jsr     Zero
 	addi16m8 $A0, LB380, L4A52
 	blkmv_mm8 $A0, L4A4E, L4A50
 	ldi	SIZEP3, $02

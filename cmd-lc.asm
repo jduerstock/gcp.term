@@ -4,8 +4,7 @@ L74B8:	.byte	$32                             ; 74B8 32                       2
 L74B9:	.byte	$F0                             ; 74B9 F0                       .
 L74BA:	.byte	$91                             ; 74BA 91                       .
 L74BB:	.byte	$47                             ; 74BB 47                       G
-L74BC:  .byte	$18
-L74BD:  .byte	$A5
+L74BC:  .addr	$A518
 
 cmd_lc:						; "c" "BCS"
 	stack_prolog L74B8, $03
@@ -20,7 +19,7 @@ cmd_lc:						; "c" "BCS"
 	ldi	$A3, $00
 	ldy     #$26                            ; 7518 A0 26                    .&
 	ldxa	L74BC
-	jsr     bzero
+	jsr     Zero
 	inc     L4673                           ; 7523 EE 73 46                 .sF
 	add16i	off_AE, L74BC, $000C
 	lda     #$FF                            ; 7535 A9 FF                    ..

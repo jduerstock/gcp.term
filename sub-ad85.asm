@@ -13,7 +13,7 @@ sub_AD85:
 	ldi	$A3, $00
 	ldy     #$06                            ; ADA0 A0 06                    ..
 	ldxa	LAD83
-	jsr     bzero
+	jsr     Zero
 	rdldi	$0208, $AC7E
 	rdldi	LAD81, sub_AD59
 	ldi	$84, $08
