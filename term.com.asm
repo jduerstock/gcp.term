@@ -426,11 +426,11 @@ Open:
 	tay                                     ; 454A A8                       .
 	iny                                     ; 454B C8                       .
 	lda     #$9B                            ; 454C A9 9B                    ..
-	bne     L4552                           ; 454E D0 02                    ..
-L4550:  lda     ($A1),y                         ; 4550 B1 A1                    ..
-L4552:  sta     $0500,y                         ; 4552 99 00 05                 ...
+	bne	:++
+:	lda     ($A1),y                         ; 4550 B1 A1                    ..
+:	sta     $0500,y                         ; 4552 99 00 05                 ...
 	dey                                     ; 4555 88                       .
-	bne     L4550                           ; 4556 D0 F8                    ..
+	bne	:--
 	pla                                     ; 4558 68                       h
 	ldx     #$00                            ; 4559 A2 00                    ..
 	ldy     #$05                            ; 455B A0 05                    ..
@@ -447,6 +447,7 @@ Close:
 	jmp     ChkErr
 
 ; ----------------------------------------------------------------------------
+PrintD:
 	jsr     Output
 	jmp     ChkErr
 
@@ -533,17 +534,17 @@ Stick:
 :	tay                                     ; 45DF A8                       .
 	lda     $D300,x                         ; 45E0 BD 00 D3                 ...
 	dey                                     ; 45E3 88                       .
-	bne     L45EA                           ; 45E4 D0 04                    ..
+	bne	:+
 	lsr     a                               ; 45E6 4A                       J
 	lsr     a                               ; 45E7 4A                       J
 	lsr     a                               ; 45E8 4A                       J
 	lsr     a                               ; 45E9 4A                       J
-L45EA:  and     #$0F                            ; 45EA 29 0F                    ).
+:	and     #$0F                            ; 45EA 29 0F                    ).
 	sta     $A0                             ; 45EC 85 A0                    ..
 	rts                                     ; 45EE 60                       `
 
 ; ----------------------------------------------------------------------------
-read_trig:
+STrig:
 	tax                                     ; 45EF AA                       .
 	lda     TRIG0,x                         ; 45F0 BD 10 D0                 ...
 	sta     $A0                             ; 45F3 85 A0                    ..
