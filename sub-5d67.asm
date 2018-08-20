@@ -1,9 +1,7 @@
 
 sub_5D67:  
 	prolog
-	lda     $B148                           ; 5D6A AD 48 B1                 .H.
-	eor     #$01                            ; 5D6D 49 01                    I.
-	lbeq	L5DB9
+	ifm8nei	$B148, $01, L5DB9
 	lda     #$02                            ; 5D74 A9 02                    ..
 	jsr     Close
 	ldi	$A3, $0D
