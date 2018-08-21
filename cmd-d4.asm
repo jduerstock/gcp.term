@@ -65,7 +65,7 @@ LA476:  lda     LA3A7                           ; A476 AD A7 A3                 
 	add16i	$A0, LA3AA, $0001
 	ldy     LA3AE                           ; A48D AC AE A3                 ...
 	ldxa	$A0
-	jsr     sub_4B97
+	jsr     rtrim_null
 	mv	LA3B1, $A0
 LA49C:	yldi	LA3B0, $01
 	mv	LA4B2, LA3B1

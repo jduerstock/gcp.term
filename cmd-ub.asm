@@ -61,7 +61,7 @@ L6F07:  lda     L6E41                           ; 6F07 AD 41 6E                 
 	lbne	L6F22
 	ldy     L6E49                           ; 6F11 AC 49 6E                 .In
 	ldxa	L6E4B
-	jsr     sub_4B97
+	jsr     rtrim_null
 	mv	L6E4A, $A0
 L6F22:	ldi	$A3, $00
 	ldi	$A5, $00
