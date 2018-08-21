@@ -43,21 +43,22 @@ cmd_2b:						; "+" "C"
 	lda     L46E6                           ; 9E69 AD E6 46                 ..F
 	eor     #$02                            ; 9E6C 49 02                    I.
 	lbne	L9E94
-L9E73:  sec                                     ; 9E73 38                       8
+L9E73:
+	sec                                     ; 9E73 38                       8
 	lda     #$00                            ; 9E74 A9 00                    ..
 	sbc     L9E1D                           ; 9E76 ED 1D 9E                 ...
 	sta     L9E19                           ; 9E79 8D 19 9E                 ...
+	;
 	sec                                     ; 9E7C 38                       8
 	lda     #$00                            ; 9E7D A9 00                    ..
 	sbc     L9E1E                           ; 9E7F ED 1E 9E                 ...
 	sta     L9E1A                           ; 9E82 8D 1A 9E                 ...
+	;
 	dmv	L9E1B, L9E1F
 	jmp     L9F69                           ; 9E91 4C 69 9F                 Li.
 
 ; ----------------------------------------------------------------------------
-L9E94:  lda     L46E6                           ; 9E94 AD E6 46                 ..F
-	eor     #$04                            ; 9E97 49 04                    I.
-	lbne	L9ED7
+L9E94:	ifm8eqi	L46E6, $04, L9ED7
 	ldx     L46EA                           ; 9E9E AE EA 46                 ..F
 	lda     L46E9                           ; 9EA1 AD E9 46                 ..F
 	jsr     sub_799B
