@@ -13,7 +13,7 @@
 
 	.import sub_45A3
 	.import sub_4983
-	.import sub_4B7B
+	.import cvt_atascii_from_antic
 	.import sub_4EB1
 	.import sub_55A0
 	.import sub_9146
@@ -264,7 +264,7 @@ L9AE8:  lda     L979C                           ; 9AE8 AD 9C 97                 
 
 ; ----------------------------------------------------------------------------
 L9B05:  lda     L979D                           ; 9B05 AD 9D 97                 ...
-	jsr     sub_4B7B
+	jsr     cvt_atascii_from_antic
 	lda     $A0                             ; 9B0B A5 A0                    ..
 	and     #$7F                            ; 9B0D 29 7F                    ).
 	sta     L979D                           ; 9B0F 8D 9D 97                 ...

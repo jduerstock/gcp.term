@@ -34,16 +34,16 @@ sub_9146:
 	add8i	off_AE, L9137, $01
 	shladdm8 off_AC, L9144, off_AE
 	iny                                     ; 91BD C8                       .
-	lda     ($AC),y                         ; 91BE B1 AC                    ..
+	lda     (off_AC),y
 	sta     L913B                           ; 91C0 8D 3B 91                 .;.
 	dey                                     ; 91C3 88                       .
-	lda     ($AC),y                         ; 91C4 B1 AC                    ..
+	lda     (off_AC),y
 	sta     L913A                           ; 91C6 8D 3A 91                 .:.
 	sub8m	off_AE, L9141, L9137
 	sub8i	off_AC, off_AE, $01
 	ldi	$85, $00
 	mv	$84, L9140
-	lda     $AC                             ; 91E2 A5 AC                    ..
+	lda     off_AC
 	ldx     #$00                            ; 91E4 A2 00                    ..
 	jsr     MultI
 	st2xa	L913E
@@ -51,7 +51,7 @@ sub_9146:
 	sub8i	off_AE, L9141, $01
 	shladdm8 off_AC, L9144, off_AE
 	ldy     #$01                            ; 9226 A0 01                    ..
-	lda     ($AC),y                         ; 9228 B1 AC                    ..
+	lda     (off_AC),y
 	sta     $A1                             ; 922A 85 A1                    ..
 	dey                                     ; 922C 88                       .
 	lda     ($AC),y                         ; 922D B1 AC                    ..

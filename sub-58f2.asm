@@ -12,7 +12,7 @@
 
 	.import sub_4B39
 	.import sub_4B47
-	.import sub_4B7B
+	.import cvt_atascii_from_antic
 .endif
 
 ; ----------------------------------------------------------------------------
@@ -124,7 +124,7 @@ L5AAE:	dmv	off_AE, L58EB
 	ldx     L4654                           ; 5ABE AE 54 46                 .TF
 	lda     LB224,x
 	sta     $A0                             ; 5AC4 85 A0                    ..
-	proc8	sub_4B7B, $A0
+	proc8	cvt_atascii_from_antic, $A0
 	pull16	off_AE
 	stp8	$A0
 	inc     L4654                           ; 5AD7 EE 54 46                 .TF
@@ -218,7 +218,7 @@ L5C54:  ldx     L4654                           ; 5C54 AE 54 46                 
 	lda     L58EE                           ; 5C5D AD EE 58                 ..X
 	eor     #'S'
 	lbne	L5C72
-	func8_8	sub_4B7B, L58F1, L58F1
+	func8_8	cvt_atascii_from_antic, L58F1, L58F1
 L5C72:	add16m8 off_AE, L58EB, L58EF
 	stp8	L58F1
 	inc     L4654                           ; 5C89 EE 54 46                 .TF
@@ -249,7 +249,7 @@ L5CC5:  ldx     L58EF                           ; 5CC5 AE EF 58                 
 	lda     LB224,x                         ; 5CC8 BD 24 B2                 .$.
 	sta     $A0                             ; 5CCB 85 A0                    ..
 	lda     $A0                             ; 5CCD A5 A0                    ..
-	jsr     sub_4B7B
+	jsr     cvt_atascii_from_antic
 	lda     $A0                             ; 5CD2 A5 A0                    ..
 	ldx     L58EF                           ; 5CD4 AE EF 58                 ..X
 	sta     LB224,x                         ; 5CD7 9D 24 B2                 .$.

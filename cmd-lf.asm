@@ -28,10 +28,10 @@ cmd_lf:						; "f" "BR"
 	ldy     #$00                            ; 7172 A0 00                    ..
 	lda     (off_AE),y
 	adc     L70E0                           ; 7176 6D E0 70                 m.p
-	sta     $AC                             ; 7179 85 AC                    ..
+	sta     off_AC
 ;
 	sec                                     ; 717B 38                       8
-	lda     $AC                             ; 717C A5 AC                    ..
+	lda     off_AC
 	sbc     #$01                            ; 717E E9 01                    ..
 	sta     (off_AE),y
 ;
@@ -40,10 +40,10 @@ cmd_lf:						; "f" "BR"
 	clc                                     ; 7191 18                       .
 	lda     (off_AE),y
 	adc     L70E1                           ; 7194 6D E1 70                 m.p
-	sta     $AC                             ; 7197 85 AC                    ..
+	sta     off_AC
 ;
 	sec                                     ; 7199 38                       8
-	lda     $AC                             ; 719A A5 AC                    ..
+	lda     off_AC
 	sbc     #$01                            ; 719C E9 01                    ..
 	sta     (off_AE),y
 	rts                                     ; 71A0 60                       `

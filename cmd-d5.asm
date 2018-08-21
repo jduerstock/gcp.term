@@ -42,11 +42,11 @@ LA58C:	add8i	LA536, off_AE, $01
 	ldy     #$00                            ; A5C0 A0 00                    ..
 	lda     (off_AE),y
 	adc     LA53D                           ; A5C4 6D 3D A5                 m=.
-	sta     $AC                             ; A5C7 85 AC                    ..
+	sta     off_AC
 	iny                                     ; A5C9 C8                       .
 	lda     (off_AE),y
 	adc     #$00                            ; A5CC 69 00                    i.
-	sta     $AD                             ; A5CE 85 AD                    ..
+	sta     off_AC+1
 ;
 	sub16i	LA532, off_AC, $0001
 	jsr     cmd_d0

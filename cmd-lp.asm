@@ -91,8 +91,8 @@ L7918:  sec                                     ; 7918 38                       
 	sec                                     ; 7920 38                       8
 	lda     #$14                            ; 7921 A9 14                    ..
 	sbc     L7827                           ; 7923 ED 27 78                 .'x
-	sta     $AC                             ; 7926 85 AC                    ..
-	sub8i	$AA, $AC, $01
+	sta     off_AC
+	sub8i	$AA, off_AC, $01
 	ldx     $AA                             ; 792F A6 AA                    ..
 	lda     L4659,x                         ; 7931 BD 59 46                 .YF
 	ldx     $AE                             ; 7934 A6 AE                    ..

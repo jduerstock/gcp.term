@@ -27,18 +27,18 @@ L4D03:  lda     #$01                            ; 4D03 A9 01                    
 	push16	off_AC
 	add8i	off_AE, L4CF4, $02
 	add16m8	off_AC, L4CEE, off_AE
-	lda     ($AC),y                         ; 4D94 B1 AC                    ..
+	lda     (off_AC),y
 	sta     $A0                             ; 4D96 85 A0                    ..
 	add8i	off_AE, L4CF4, $02
 	add16m8	off_AC, L4CF0, off_AE
-	lda     ($AC),y                         ; 4DAF B1 AC                    ..
+	lda     (off_AC),y
 	sta     $A1                             ; 4DB1 85 A1                    ..
 	ldxa	$A0
 	jsr     sub_4990
 	pull16	off_AC
 	lda     $A0                             ; 4DC0 A5 A0                    ..
 	ldy     #$00                            ; 4DC2 A0 00                    ..
-	sta     ($AC),y                         ; 4DC4 91 AC                    ..
+	sta     (off_AC),y
 	inc     L4CF4                           ; 4DC6 EE F4 4C                 ..L
 	jmp     L4D03                           ; 4DC9 4C 03 4D                 L.M
 

@@ -24,12 +24,9 @@ cmd_d6:						; "6" "BDs"
 LA70D:	add16i	off_AE, LA6DC, $0001
 	ldp8	LA6DE
 	jsr     cmd_d0
-	lda     LA6D9                           ; A726 AD D9 A6                 ...
-	jsr     sub_A28D
-	lda     #$06                            ; A72C A9 06                    ..
-	sta     $A3                             ; A72E 85 A3                    ..
-	lda     #$00                            ; A730 A9 00                    ..
-	sta     $A4                             ; A732 85 A4                    ..
+	proc8	sub_A28D, LA6D9
+	ldi	$A3, $06
+	ldi	$A4, $00
 	rdmv	$A5, LA6DA
 	ldy     #$03                            ; A73E A0 03                    ..
 	ldx     #$00                            ; A740 A2 00                    ..
@@ -38,18 +35,14 @@ LA70D:	add16i	off_AE, LA6DC, $0001
 LA748:  ldx     LA6D9                           ; A748 AE D9 A6                 ...
 	lda     L05C0,x                         ; A74B BD C0 05                 ...
 	lbne	LA7B7
-	lda     #$5C                            ; A753 A9 5C                    .\
-	sta     $A3                             ; A755 85 A3                    ..
+	ldi	$A3, $5C
 	ldy     #>LB224
 	ldx     #<LB224
 	lda     LA6D9                           ; A75B AD D9 A6                 ...
 	jsr     InputMD
-	lda     LB224                           ; A761 AD 24 B2                 .$.
-	sta     LA6E0                           ; A764 8D E0 A6                 ...
-	ldy     #$01                            ; A767 A0 01                    ..
-	sty     LA6DF                           ; A769 8C DF A6                 ...
-	lda     LA6E0                           ; A76C AD E0 A6                 ...
-	sta     LA77D                           ; A76F 8D 7D A7                 .}.
+	mv	LA6E0, LB224
+	yldi	LA6DF, $01
+	mv	LA77D, LA6E0
 LA772:  lda     LA77D                           ; A772 AD 7D A7                 .}.
 	cmp     LA6DF                           ; A775 CD DF A6                 ...
 	bcs     LA77E                           ; A778 B0 04                    ..
@@ -62,8 +55,7 @@ LA77D:  .byte	$00
 LA77E:  ldx     LA6DF                           ; A77E AE DF A6                 ...
 	lda     LB224,x                         ; A781 BD 24 B2                 .$.
 	sta     $A0                             ; A784 85 A0                    ..
-	lda     $A0                             ; A786 A5 A0                    ..
-	jsr     sub_4B7B
+	proc8	cvt_atascii_from_antic, $A0
 	lda     $A0                             ; A78B A5 A0                    ..
 	ldx     LA6DF                           ; A78D AE DF A6                 ...
 	sta     LB224,x                         ; A790 9D 24 B2                 .$.
