@@ -11,23 +11,15 @@ sub_5394:
 	jsr     sub_4FC5
 	mv	L5391, $A0
 	mv	L5393, LB1C9
-	lda     L5391                           ; 53AA AD 91 53                 ..S
-	eor     #$04                            ; 53AD 49 04                    I.
-	lbne	L53BE
+	ifm8eqi	L5391, $04, L53BE
 	ldxai	LB16A
 	jsr     sub_52E1
 	jmp     L545B                           ; 53BB 4C 5B 54                 L[T
 
 ; ----------------------------------------------------------------------------
-L53BE:  lda     L5391                           ; 53BE AD 91 53                 ..S
-	eor     #$01                            ; 53C1 49 01                    I.
-	lbne	L544C
-	lda     L5393                           ; 53C8 AD 93 53                 ..S
-	eor     #$06                            ; 53CB 49 06                    I.
-	lbne	L5421
-	lda     LB1C8                           ; 53D2 AD C8 B1                 ...
-	eor     LB16C                           ; 53D5 4D 6C B1                 Ml.
-	lbne	L541E
+L53BE:	ifm8eqi	L5391, $01, L544C
+	ifm8eqi	L5393, $06, L5421
+	ifm8eqm	LB1C8, LB16C, L541E
 	sub8m	L4650, L4650, LB16A
 	addi16m8 $A2, LB16A, LB16A
 	sec                                     ; 53F5 38                       8
@@ -46,9 +38,7 @@ L53BE:  lda     L5391                           ; 53BE AD 91 53                 
 L541E:  jmp     L5449                           ; 541E 4C 49 54                 LIT
 
 ; ----------------------------------------------------------------------------
-L5421:  lda     L5393                           ; 5421 AD 93 53                 ..S
-	eor     #$15                            ; 5424 49 15                    I.
-	lbne	L5435
+L5421:	ifm8eqi	L5393, $15, L5435
 	ldxai	LB16A
 	jsr     sub_52E1
 	jmp     L5449                           ; 5432 4C 49 54                 LIT

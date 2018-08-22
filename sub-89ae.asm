@@ -221,30 +221,34 @@ L8BD1:	func16_8 sub_65B0, L898F, L89A9
 	lda     L8999                           ; 8C8D AD 99 89                 ...
 	sbc     L89AB                           ; 8C90 ED AB 89                 ...
 	sta     $A4                             ; 8C93 85 A4                    ..
+	;
 	sec                                     ; 8C95 38                       8
 	lda     L899A                           ; 8C96 AD 9A 89                 ...
 	sbc     L89AC                           ; 8C99 ED AC 89                 ...
 	sta     $A5                             ; 8C9C 85 A5                    ..
+	;
 	ldy     #$79                            ; 8C9E A0 79                    .y
 	ldxai	L8981
 	jsr     sub_4C1D
+	;
 	ldi	$A3, >L8981
 	ldi	$A5, >L8975
 	ldi	$A4, <L8975
 	ldy     #<L8981
 	ldxa	L898F
 	jsr     sub_884C
+	;
 L8CBE:	add16i	L8969, L8969, $0006
 	inc     L8992                           ; 8CCF EE 92 89                 ...
 	jmp     L8BA1                           ; 8CD2 4C A1 8B                 L..
 
 ; ----------------------------------------------------------------------------
-L8CD5:  lda     L896C                           ; 8CD5 AD 6C 89                 .l.
-	sta     $A3                             ; 8CD8 85 A3                    ..
+L8CD5:	mv	$A3, L896C
 	dmv	$A4, L8997
 	ldy     L896B                           ; 8CE4 AC 6B 89                 .k.
 	ldxai	L897D
 	jsr     sub_4C1D
+	;
 	ldyxi	L897D
 	lda     L8961                           ; 8CF2 AD 61 89                 .a.
 	jsr     sub_8573
