@@ -40,9 +40,7 @@ cmd_2b:						; "+" "C"
 	sty     L9E1C                           ; 9E3F 8C 1C 9E                 ...
 	func16_8 sub_7035, L9E10, L46E9
 	blkmv_imi L9E1D, L9E10, $0005
-	lda     L46E6                           ; 9E69 AD E6 46                 ..F
-	eor     #$02                            ; 9E6C 49 02                    I.
-	lbne	L9E94
+	ifm8eqi	L46E6, $02, L9E94
 L9E73:
 	sec                                     ; 9E73 38                       8
 	lda     #$00                            ; 9E74 A9 00                    ..
