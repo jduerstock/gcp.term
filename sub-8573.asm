@@ -10,7 +10,7 @@
 
 	.import L466D
 
-	.import memset
+	.import SetBlock
 	.import blockmove
 
 	.import SArgs
@@ -114,7 +114,7 @@ L8648:	rdldi	$84, $0028
 	mv	$A4, L856C
 	ldy     $A2                             ; 86BD A4 A2                    ..
 	ldxa	L855A
-	jsr     memset
+	jsr     SetBlock
 L86C8:	add16m8	$A2, L8558, L8553
 	ldy     $A2                             ; 86D8 A4 A2                    ..
 	ldx     L856B                           ; 86DA AE 6B 85                 .k.
@@ -158,22 +158,20 @@ L8777:	add8m	off_AE, L8565, L856A
 	lda     L855F                           ; 8791 AD 5F 85                 ._.
 	lbeq	L87AA
 	sub16i	L8558, L8558, $0028
-L87AA:  lda     L8570                           ; 87AA AD 70 85                 .p.
-	eor     #$41                            ; 87AD 49 41                    IA
-	lbeq	L87E2
+L87AA:	ifm8nei	L8570, $41, L87E2
 	add16m8	L855A, L8558, L8553
 	add8i	$A2, L8555, $01
 	ldi	$A3, $00
 	mv	$A4, L8570
 	ldy     $A2                             ; 87D7 A4 A2                    ..
 	ldxa	L855A
-	jsr     memset
+	jsr     SetBlock
 L87E2:	add16m8	$A2, L8558, L8553
 	ldy     $A2                             ; 87F2 A4 A2                    ..
 	ldx     L8571                           ; 87F4 AE 71 85                 .q.
 	lda     L855D                           ; 87F7 AD 5D 85                 .].
 	jsr     sub_8521
-	add16m8 $a2, L8558, L8554
+	add16m8 $A2, L8558, L8554
 	ldy     $A2                             ; 880D A4 A2                    ..
 	ldx     L856F                           ; 880F AE 6F 85                 .o.
 	lda     L855E                           ; 8812 AD 5E 85                 .^.

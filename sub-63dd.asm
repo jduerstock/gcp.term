@@ -41,7 +41,7 @@ sub_63DD:
 	mv	$A4, L63DC
 	ldy     #$17                            ; 6481 A0 17                    ..
 	ldxa	L63D7
-	jsr     memset
+	jsr     SetBlock
 	add16i	off_AE, L63D9, $0001
 	ldy     #$00                            ; 649B A0 00                    ..
 	lda     (off_AE),y
@@ -86,7 +86,7 @@ L64D5:	shladdm8 off_AE, L46F5, L63DB
 	mv	$A4, L63DC
 	ldy     $A2                             ; 654A A4 A2                    ..
 	ldxa	$A0
-	jsr     memset
+	jsr     SetBlock
 	add16i	off_AE, L63D9, $0001
 	clc                                     ; 6562 18                       .
 	lda     L63D5                           ; 6563 AD D5 63                 ..c

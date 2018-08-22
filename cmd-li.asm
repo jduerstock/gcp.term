@@ -31,7 +31,7 @@ LAA28:	ldi	$A3, $00
 	ldi	$A4, $FF
 	ldy     #$20                            ; AA5D A0 20                    . 
 	ldxai	LB14A
-	jsr     memset
+	jsr     SetBlock
 	ldi	$A3, $00
 	ldy     #$10                            ; AA6A A0 10                    ..
 	ldxai	LB118

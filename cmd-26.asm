@@ -24,7 +24,7 @@ L8D0D:	ifm8eqi	L4656, $01, L8E06
 	dldi	$A3, $0003
 	ldy     #$C0                            ; 8D73 A0 C0                    ..
 	ldxa	L466D
-	jsr     memset
+	jsr     SetBlock
 	yldi	L8CF9, $01
 	mv	L8D94, L4673
 L8D89:  lda     L8D94                           ; 8D89 AD 94 8D                 ...

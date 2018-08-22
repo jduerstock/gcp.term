@@ -114,15 +114,13 @@ L8AAD:	ldi	$A3, $00
 	mv	$A4, L89A4
 	ldy     L8968                           ; 8AB6 AC 68 89                 .h.
 	ldxa	L8964
-	jsr     memset
+	jsr     SetBlock
 	add16i	L8964, L8964, $0028
 	inc     L8992                           ; 8AD3 EE 92 89                 ...
 	jmp     L8AA1                           ; 8AD6 4C A1 8A                 L..
 
 ; ----------------------------------------------------------------------------
-L8AD9:  lda     L89A2                           ; 8AD9 AD A2 89                 ...
-	eor     #$01                            ; 8ADC 49 01                    I.
-	lbne	L8B4E
+L8AD9:	ifm8eqi	L89A2, $01, L8B4E
 	add16i	$A0, L8962, $0016
 	mv	$A3, L896C
 	rdldi	$A4, L896D

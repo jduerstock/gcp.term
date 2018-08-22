@@ -46,11 +46,12 @@ L664C:	shladdm8 off_AE, L65DE, L65DD
 	lda     (off_AE),y
 	adc     #$00                            ; 666D 69 00                    i.
 	sta     $A1                             ; 666F 85 A1                    ..
+	;
 	ldi	$A3, $00
 	mv	$A4, L65DB
 	ldy     L65DC                           ; 667A AC DC 65                 ..e
 	ldxa	$A0
-	jsr     memset
+	jsr     SetBlock
 	; 
 	inc     L65DD                           ; 6684 EE DD 65                 ..e
 	jmp     L6640                           ; 6687 4C 40 66                 L@f

@@ -90,7 +90,7 @@ L6C5C:	mv	$A3, L6ACE+1
 	ldi	$A4, $00
 	ldy     L6ACE                           ; 6C65 AC CE 6A                 ..j
 	ldxa	L6AC6
-	jsr     memset
+	jsr     SetBlock
 	add16i	off_AE, L6AC4, $0006
 	stp8	L6AC1
 	add16i	off_AE, L6AC4, $0007

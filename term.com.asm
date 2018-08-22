@@ -558,7 +558,7 @@ Zero:
 	ldi	$A4, $00
 	pla                                     ; 45FB 68                       h
 
-memset:
+SetBlock:
 	sta     $A0                             ; 45FC 85 A0                    ..
 	stx     $A1                             ; 45FE 86 A1                    ..
 	sty     $A2                             ; 4600 84 A2                    ..
