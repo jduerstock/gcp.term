@@ -3,8 +3,7 @@
 L6064:  .word	$0000
 L6066:  .byte	$00
 L6067:  .byte	$00
-L6068:  .byte	$00
-L6069:  .byte	$00
+L6068:  .word	$0000
 L606A:  .byte	$00
 L606B:  .byte	$00
 L606C:  .byte	$00
@@ -19,27 +18,29 @@ sub_606E:
 	jsr     RShift
 	st2xa	L6066
 	ldy     #$00                            ; 6099 A0 00                    ..
-	sty     L6069                           ; 609B 8C 69 60                 .i`
+	sty     L6068+1
 	sty     L6068                           ; 609E 8C 68 60                 .h`
 L60A1:	lda     L6068                           ; 60A1 AD 68 60                 .h`
 	cmp     #$F8                            ; 60A4 C9 F8                    ..
-	lda     L6069                           ; 60A6 AD 69 60                 .i`
+	lda     L6068+1
 	sbc     #$07                            ; 60A9 E9 07                    ..
 	lbcs	L6177
+;
 	sec                                     ; 60B0 38                       8
 	lda     #$F8                            ; 60B1 A9 F8                    ..
 	sbc     L6068                           ; 60B3 ED 68 60                 .h`
 	sta     $AE                             ; 60B6 85 AE                    ..
 	lda     #$07                            ; 60B8 A9 07                    ..
-	sbc     L6069                           ; 60BA ED 69 60                 .i`
+	sbc     L6068+1
 	sta     $AF                             ; 60BD 85 AF                    ..
+;
 	ldy     $A2                             ; 60BF A4 A2                    ..
 	ldxa	L6068
 	jsr     sub_6026
 	add16m	L6068, L6068, $A0
 	lda     L6068                           ; 60DB AD 68 60                 .h`
 	cmp     #$F8                            ; 60DE C9 F8                    ..
-	lda     L6069                           ; 60E0 AD 69 60                 .i`
+	lda     L6068+1
 	sbc     #$07                            ; 60E3 E9 07                    ..
 	lbcc	L60ED
 	jmp     L6177                           ; 60EA 4C 77 61                 Lwa

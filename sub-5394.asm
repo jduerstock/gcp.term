@@ -22,10 +22,12 @@ L53BE:	ifm8eqi	L5391, $01, L544C
 	ifm8eqm	LB1C8, LB16C, L541E
 	sub8m	L4650, L4650, LB16A
 	addi16m8 $A2, LB16A, LB16A
+;
 	sec                                     ; 53F5 38                       8
 	lda     #$5A                            ; 53F6 A9 5A                    .Z
 	sbc     LB16A                           ; 53F8 ED 6A B1                 .j.
 	sta     $A4                             ; 53FB 85 A4                    ..
+;
 	ldi	$A5, $00
 	ldy     $A2                             ; 5401 A4 A2                    ..
 	ldxai	LB16A
