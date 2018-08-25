@@ -11,9 +11,7 @@ L6F90:  .byte	$00
 cmd_ly:						; "y" "X"
 	prolog
 	stxa	L6F8B
-	lda     L4647                           ; 6F9A AD 47 46                 .GF
-	eor     #$FF                            ; 6F9D 49 FF                    I.
-	lbne	L6FA5
+	ifm8eqi	L4647, $FF, L6FA5
 	rts                                     ; 6FA4 60                       `
 
 ; ----------------------------------------------------------------------------
