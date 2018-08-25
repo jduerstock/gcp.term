@@ -19,9 +19,9 @@ L6FA5:	func16_8 sub_65B0, L6F8D, L4647
 	blkmv_imi L6F8F, L6F8D, $0002
 	mv	$A3, L6F8F
 	rdmv	$A4, L6F8B
-L6FDB:  ldy     L6F90                           ; 6FDB AC 90 6F                 ..o
-	ldx     #$00                            ; 6FDE A2 00                    ..
-	lda     L4647                           ; 6FE0 AD 47 46                 .GF
-	jsr     cmd_ud
+	ldy	L6F90                           ; 6FDB AC 90 6F                 ..o
+	ldx	#$00                            ; 6FDE A2 00                    ..
+	lda	L4647                           ; 6FE0 AD 47 46                 .GF
+	jsr	cmd_ud
 	rts                                     ; 6FE6 60                       `
 
