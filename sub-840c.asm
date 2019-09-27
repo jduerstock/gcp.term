@@ -39,14 +39,10 @@ sub_840C:
 	stxa	L83E3
 	add8m	L83E5, L4751, L83E3
 	add8m	L83E6, L4752, L83E4
-	lda     L474F                           ; 8429 AD 4F 47                 .OG
-	eor     #$01                            ; 842C 49 01                    I.
-	lbne	L843C
+	ifm8eqi L474F, $01, L843C
 	ldxa	L83E5
 	jsr     sub_8047
-L843C:  lda     L474F                           ; 843C AD 4F 47                 .OG
-	eor     #$02                            ; 843F 49 02                    I.
-	lbeq	L8447
+L843C:	ifm8nei L474F, $02, L8447
 	rts                                     ; 8446 60                       `
 
 ; ----------------------------------------------------------------------------

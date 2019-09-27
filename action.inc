@@ -421,6 +421,12 @@ ptr:
 	lbeq	a3
 .endmacro
 
+.macro	ifm8nem	a1, a2, a3
+	lda     a1
+	eor     a2
+	lbeq	a3
+.endmacro
+
 .macro	ifm8nz	a1, a2
 	lda     a1
 	lbeq	a2
