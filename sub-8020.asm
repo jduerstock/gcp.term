@@ -12,6 +12,7 @@ sub_8020:
 	ldy     #$0E                            ; 8034 A0 0E                    ..
 	ldxai	L4753
 	jsr     Zero
+;	cmd_up(0);
 	ldx     #$00                            ; 803D A2 00                    ..
 	lda     #$00                            ; 803F A9 00                    ..
 	jsr     cmd_up

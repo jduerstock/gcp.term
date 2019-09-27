@@ -8,9 +8,7 @@ L6FEA:	.byte	$F0
 cmd_lz:						; "z" "X"
 	prolog
 	stxa	L6FE7
-	lda     L4648                           ; 6FF4 AD 48 46                 .HF
-	eor     #$FF                            ; 6FF7 49 FF                    I.
-	lbne	L6FFF
+	ifm8eqi	L4648, $FF, L6FFF
 L6FFE:  rts                                     ; 6FFE 60                       `
 
 ; ----------------------------------------------------------------------------

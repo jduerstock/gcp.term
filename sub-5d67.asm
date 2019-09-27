@@ -23,7 +23,7 @@ sub_5D67:
 	jsr     XIO
 L5DB9:	ldi	$A4, $00
 	ldi	$A3, $80
-	ldi	$A5, $28
+	ldi	$A5, $28			; concurrent mode
 	ldi	$A6, $0D
 	ldi	$A7, $00
 	ldy     #$06                            ; 5DCD A0 06                    ..
@@ -31,7 +31,7 @@ L5DB9:	ldi	$A4, $00
 	lda     #$02                            ; 5DD1 A9 02                    ..
 	jsr     sub_4AA5
 	ifm8eqi	$B148, $01, L5DF9
-L5DE0:  lda     #$00                            ; 5DE0 A9 00                    ..
+	lda     #$00                            ; 5DE0 A9 00                    ..
 	sta     $A3                             ; 5DE2 85 A3                    ..
 	lda     #$00                            ; 5DE4 A9 00                    ..
 	sta     $A4                             ; 5DE6 85 A4                    ..
