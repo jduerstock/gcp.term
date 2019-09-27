@@ -3,7 +3,7 @@
 modem_status:  
 	prolog
 	lda     #$02                            ; 4B0A A9 02                    ..
-	jsr     sub_4AE6
+	jsr     cio_status
 	mv	$A0, DVSTAT+1
 	rts                                     ; 4B14 60                       `
 

@@ -98,9 +98,7 @@ L59E1:  lda     L58EF                           ; 59E1 AD EF 58                 
 L5A32:  jmp     L5CF5                           ; 5A32 4C F5 5C                 L.\
 
 ; ----------------------------------------------------------------------------
-L5A35:  lda     L58EE                           ; 5A35 AD EE 58                 ..X
-	eor     #'B'
-	lbne	L5A90
+L5A35:	ifm8eqi L58EE, 'B', L5A90
 	rdmv	L58EB, L58E9
 	inc16	L58E9
 L5A53:	dmv	off_AE, L58EB
@@ -114,9 +112,7 @@ L5A53:	dmv	off_AE, L58EB
 	jmp     L5CF5                           ; 5A8D 4C F5 5C                 L.\
 
 ; ----------------------------------------------------------------------------
-L5A90:  lda     L58EE                           ; 5A90 AD EE 58                 ..X
-	eor     #'C'
-	lbne	L5ADD
+L5A90:	ifm8eqi L58EE, 'C', L5ADD
 	rdmv	L58EB, L58E9
 	inc16	L58E9
 L5AAE:	dmv	off_AE, L58EB
@@ -131,9 +127,7 @@ L5AAE:	dmv	off_AE, L58EB
 	jmp     L5CF5                           ; 5ADA 4C F5 5C                 L.\
 
 ; ----------------------------------------------------------------------------
-L5ADD:  lda     L58EE                           ; 5ADD AD EE 58                 ..X
-	eor     #'D'
-	lbne	L5B2A
+L5ADD:	ifm8eqi L58EE, 'D', L5B2A
 	rdmv	L58EB, L58E9
 	inc16	L58E9
 	dmv	off_AE, L58EB
@@ -150,9 +144,7 @@ L5ADD:  lda     L58EE                           ; 5ADD AD EE 58                 
 	jmp     L5CF5                           ; 5B27 4C F5 5C                 L.\
 
 ; ----------------------------------------------------------------------------
-L5B2A:  lda     L58EE                           ; 5B2A AD EE 58                 ..X
-	eor     #'R'
-	lbne	L5BC1
+L5B2A:	ifm8eqi L58EE, 'R', L5BC1
 	addi16m8 L58EB, LB224, L4654
 	dmv	off_AE, L58E9
 	lda     L58EC                           ; 5B4E AD EC 58                 ..X
@@ -186,9 +178,7 @@ L5BBE:  jmp     L5CF5                           ; 5BBE 4C F5 5C                 
 L5BC1:  lda     L58EE                           ; 5BC1 AD EE 58                 ..X
 	eor     #'S'
 	beq     L5BD2                           ; 5BC6 F0 0A                    ..
-	lda     L58EE                           ; 5BC8 AD EE 58                 ..X
-	eor     #'s'
-	lbne	L5C95
+	ifm8eqi L58EE, 's', L5C95
 L5BD2:	addi16m8 L58EB, LB224, L4654
 	dmv	off_AE, L58E9
 	stp16	L58EB
@@ -215,9 +205,7 @@ L5C53:  .byte	$00
 L5C54:  ldx     L4654                           ; 5C54 AE 54 46                 .TF
 	lda     LB224,x                         ; 5C57 BD 24 B2                 .$.
 	sta     L58F1                           ; 5C5A 8D F1 58                 ..X
-	lda     L58EE                           ; 5C5D AD EE 58                 ..X
-	eor     #'S'
-	lbne	L5C72
+	ifm8eqi L58EE, 'S', L5C72
 	func8_8	cvt_atascii_from_antic, L58F1, L58F1
 L5C72:	add16m8 off_AE, L58EB, L58EF
 	stp8	L58F1
@@ -229,9 +217,7 @@ L5C72:	add16m8 off_AE, L58EB, L58EF
 L5C92:  jmp     L5CF5                           ; 5C92 4C F5 5C                 L.\
 
 ; ----------------------------------------------------------------------------
-L5C95:  lda     L58EE                           ; 5C95 AD EE 58                 ..X
-	eor     #'X'
-	lbne	L5CF5
+L5C95:	ifm8eqi L58EE, 'X', L5CF5
 	sub8i	L58F0, L4649, $01
 	mv	LB224, L58F0
 	yldi	L58EF, $01
@@ -258,10 +244,10 @@ L5CC5:  ldx     L58EF                           ; 5CC5 AE EF 58                 
 
 ; ----------------------------------------------------------------------------
 L5CE0:	dmv	off_AE, L58E9
-	lda     #$B2                            ; 5CEA A9 B2                    ..
+	lda     #>LB224
 	ldy     #$01                            ; 5CEC A0 01                    ..
 	sta     (off_AE),y
-	lda     #$24                            ; 5CF0 A9 24                    .$
+	lda     #<LB224
 	dey                                     ; 5CF2 88                       .
 	sta     (off_AE),y
 L5CF5:  inc     L58ED                           ; 5CF5 EE ED 58                 ..X

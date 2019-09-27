@@ -38,8 +38,7 @@ L5D11:  lda     L4650                           ; 5D11 AD 50 46                 
 
 ; ----------------------------------------------------------------------------
 L5D1F:	yldi	SDMCTL, $00
-	lda     #$03                            ; 5D24 A9 03                    ..
-	jsr     delay
+	proc8i	delay, $03
 L5D29:  jsr     modem_status
 	lda     $A0                             ; 5D2C A5 A0                    ..
 	lbeq	L5D40
@@ -51,10 +50,8 @@ L5D33:	proc8i	GetD, $02
 L5D40:  lda     $B148                           ; 5D40 AD 48 B1                 .H.
 	eor     #$01                            ; 5D43 49 01                    I.
 	lbne	L5D5E
-	lda     #$00                            ; 5D4A A9 00                    ..
-	sta     $A3                             ; 5D4C 85 A3                    ..
-	lda     #$A1                            ; 5D4E A9 A1                    ..
-	sta     $A4                             ; 5D50 85 A4                    ..
+	ldi	$A3, $00
+	ldi	$A4, $A1
 	ldy     #$5A                            ; 5D52 A0 5A                    .Z
 	ldx     #$00                            ; 5D54 A2 00                    ..
 	lda     #$02                            ; 5D56 A9 02                    ..
@@ -62,7 +59,6 @@ L5D40:  lda     $B148                           ; 5D40 AD 48 B1                 
 	jmp     L5D63                           ; 5D5B 4C 63 5D                 Lc]
 
 ; ----------------------------------------------------------------------------
-L5D5E:	lda     #$02                            ; 5D5E A9 02                    ..
-	jsr     Close
+L5D5E:	proc8i Close, $02
 L5D63:  rts                                     ; 5D63 60                       `
 
