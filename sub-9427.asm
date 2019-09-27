@@ -90,9 +90,7 @@ L94E8:	shladdm8 off_AE, L9064, L9416
 	ldx     L9419                           ; 9591 AE 19 94                 ...
 	lda     L9051                           ; 9594 AD 51 90                 .Q.
 	jsr     sub_4955
-	lda     $A0                             ; 959A A5 A0                    ..
-	eor     #$01                            ; 959C 49 01                    I.
-	lbne	L95B8
+	ifm8eqi	$A0, $01, L95B8
 	sub8m	off_AE, L9419, L9051
 	sub8m	L941F, L941F, off_AE
 	jmp     L95DC                           ; 95B5 4C DC 95                 L..

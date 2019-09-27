@@ -42,9 +42,7 @@ L73FE:	sub8m	off_AE, L4673, L73D6
 L7444:  ldy     L73D5                           ; 7444 AC D5 73                 ..s
 	ldxa	L73D3
 	jsr     sub_7368
-	lda     $A0                             ; 7450 A5 A0                    ..
-	eor     #$01                            ; 7452 49 01                    I.
-	lbne	L7461
+	ifm8eqi	$A0, $01, L7461
 	yldi	L73D7, $01
 	jmp     L7467                           ; 745E 4C 67 74                 Lgt
 
