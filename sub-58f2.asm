@@ -137,9 +137,10 @@ L5ADD:	ifm8eqi L58EE, 'D', L5B2A
 	sta     $A0                             ; 5B11 85 A0                    ..
 	proc8	sub_4B39, $A0
 	pull16	off_AE
-	lda     $A0                             ; 5B1E A5 A0                    ..
-	ldy     #$00                            ; 5B20 A0 00                    ..
-	sta     (off_AE),y
+	stp8	$A0
+;	lda     $A0                             ; 5B1E A5 A0                    ..
+;	ldy     #$00                            ; 5B20 A0 00                    ..
+;	sta     (off_AE),y
 	inc     L4654                           ; 5B24 EE 54 46                 .TF
 	jmp     L5CF5                           ; 5B27 4C F5 5C                 L.\
 

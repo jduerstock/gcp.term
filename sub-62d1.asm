@@ -10,22 +10,11 @@ sub_62D1:
 	mv	L62D0, SDMCTL
 	yldi	SDMCTL, $00
 	shladdi	off_AE, L466F, $0001
-	iny                                     ; 62F2 C8                       .
-	lda     (off_AE),y
-	sta     DLIST+1
-	dey                                     ; 62F8 88                       .
-	lda     (off_AE),y
-	sta     DLIST
-	lda     L62D0                           ; 62FE AD D0 62                 ..b
-	sta     SDMCTL
+	ldp16y0	DLIST
+	mv	SDMCTL, L62D0
 	ldi	$D40E, $C0
 	shladdi off_AE, L466F, $0001
-	iny                                     ; 631C C8                       .
-	lda     (off_AE),y
-	sta     L62CF                           ; 631F 8D CF 62                 ..b
-	dey                                     ; 6322 88                       .
-	lda     (off_AE),y
-	sta     L62CE                           ; 6325 8D CE 62                 ..b
+	ldp16y0	L62CE
 L6328:	shladdi	off_AE, L466F, $0001
 	dmv	off_AC, L466F
 	iny                                     ; 6345 C8                       .

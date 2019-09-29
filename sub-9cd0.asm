@@ -25,9 +25,7 @@ L9CEB:	proc8i	Stick, $00
 	sub8i	L9CC1, $A0, $05
 	add16m8	off_AE, L9CCE, L9CC1
 	ldp8	L9CC1
-	lda     L9CC1                           ; 9D0F AD C1 9C                 ...
-	eor     L9CC2                           ; 9D12 4D C2 9C                 M..
-	lbne	L9D40
+	ifm8eqm L9CC1, L9CC2, L9D40
 	lda     #$00                            ; 9D1A A9 00                    ..
 	cmp     CDTMF5
 	lbcs	L9D29

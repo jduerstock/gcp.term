@@ -30,9 +30,7 @@ sub_936A:
 	jsr     sub_4955
 	lda     $A0                             ; 93C9 A5 A0                    ..
 	sta     L9364                           ; 93CB 8D 64 93                 .d.
-	lda     L9364                           ; 93CE AD 64 93                 .d.
-	eor     #$01                            ; 93D1 49 01                    I.
-	lbne	L93E5
+	ifm8eqi	L9364, $01, L93E5
 	sub8m	L9363, L9366, L9362
 	jmp     L9405                           ; 93E2 4C 05 94                 L..
 

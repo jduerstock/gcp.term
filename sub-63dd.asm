@@ -19,12 +19,7 @@ sub_63DD:
 	shladdm8 off_AE, L46F5, L63DB
 	ldp16	L63D9
 	shladdi off_AE, L466F, $0001
-	iny                                     ; 641A C8                       .
-	lda     (off_AE),y
-	sta     L63D4                           ; 641D 8D D4 63                 ..c
-	dey                                     ; 6420 88                       .
-	lda     (off_AE),y
-	sta     L63D3                           ; 6423 8D D3 63                 ..c
+	ldp16y0	L63D3
 	add16i	L63D7, L63D3, $0006
 	dmv	off_AE, L63D9
 	lda     (off_AE),y

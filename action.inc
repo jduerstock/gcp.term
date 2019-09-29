@@ -265,6 +265,11 @@
 	jsr	p1
 .endmacro
 
+.macro	func8 f1, a1
+	jsr     f1
+	mv	a1, $A0
+.endmacro
+
 .macro	func8_8i f1, a1, i1
 	lda     #i1
 	jsr     f1
@@ -283,6 +288,15 @@
 
 .macro	ldp16	a1
 	ldy	#$01
+	lda	(off_AE),y
+	sta	a1+1
+	dey
+	lda	(off_AE),y
+	sta	a1
+.endmacro
+
+.macro	ldp16y0	a1
+	iny
 	lda	(off_AE),y
 	sta	a1+1
 	dey

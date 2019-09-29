@@ -149,8 +149,7 @@ LB062:	ifm8eqi	L46E6, $04, LB07D
 	ldy     LAF37                           ; B071 AC 37 AF                 .7.
 	ldxa	L46E9
 	jsr     sub_A027
-LB07D:  jsr     sub_54FF
-	mv	LAF36, $A0
+LB07D:  func8	sub_54FF, LAF36
 	ifm8eqi	LAF36, $01, LB092
 	jsr     sub_AB6A
 LB092:  jsr     sub_9DCB

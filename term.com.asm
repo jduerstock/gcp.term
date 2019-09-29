@@ -716,8 +716,8 @@ L46EF:  .byte	$00
 	.byte	$00
 	.byte	$00
 	.byte	$00
-L46F5:	.byte	$C0                             ; 46F5 C0                       .
-L46F6:	.byte	$B0,$14
+L46F5:	.byte	$C0
+	.byte	$B0,$14
 	.byte	$00
 L46F9:	.byte	$D6,$1E,$50,$00,$52,$49,$50,$54,$49,$4F,$4E,$3A,$44,$1F,$4F,$00
 	.byte	$00,$00,"*;      convert ATASCII code to ASCII value"
