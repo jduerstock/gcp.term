@@ -5,8 +5,7 @@ L7E13:	.byte	$00
 L7E14:  .byte	$00
 L7E15:  .byte	$00
 L7E16:  .byte	$00
-L7E17:  .byte	$00
-L7E18:  .byte	$00
+L7E17:  .byte	$00,$00
 L7E19:  .byte	$00
 L7E1A:  .byte	$00
 L7E1B:  .byte	$00
@@ -35,10 +34,8 @@ L7E64:	ldi	$A0, $00
 L7E69:	dmv	off_AE, L7E1E
 	ldp16	L7E1C
 	add16i	off_AE, L7E1E, $0002
-	lda     #$00                            ; 7E8F A9 00                    ..
-	sta     $85                             ; 7E91 85 85                    ..
-	lda     #$03                            ; 7E93 A9 03                    ..
-	sta     $84                             ; 7E95 85 84                    ..
+	ldi	$85, $00
+	ldi	$84, $03
 	lda     L7E12                           ; 7E97 AD 12 7E                 ..~
 	ldx     #$00                            ; 7E9A A2 00                    ..
 	jsr     MultI

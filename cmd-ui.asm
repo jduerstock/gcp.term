@@ -152,14 +152,11 @@ L991A:	add16m8 L979F, L9059, L905E
 	sta     (off_AE),y
 	iny                                     ; 998F C8                       .
 	sty     L9050                           ; 9990 8C 50 90                 .P.
-	lda     L905E                           ; 9993 AD 5E 90                 .^.
-	jsr     sub_961E
+	proc8	sub_961E, L905E
 L9999:  jmp     L9BCE                           ; 9999 4C CE 9B                 L..
 
 ; ----------------------------------------------------------------------------
-L999C:  lda     L979C                           ; 999C AD 9C 97                 ...
-	eor     #$34                            ; 999F 49 34                    I4
-	lbne	L9A45
+L999C:	ifm8eqi	L979C, $34, L9A45
 	lda     L905E                           ; 99A6 AD 5E 90                 .^.
 	lbne	L99B4
 	jsr     cmd_07
