@@ -85,9 +85,7 @@ LAF8E:  jsr     sub_AB6A
 LAF94:	proc8	sub_A28D, L4652
 	ldi	L4652, $02
 	jsr     cmd_d1
-LAFA2:  lda	CH
-	eor     #$FF                            ; AFA5 49 FF                    I.
-	lbne	LAFCB
+LAFA2:	ifm8eqi	CH, $FF, LAFCB
 	ifm8nem L474D, L474E, LAFCB
 	ldx     L474E                           ; AFB7 AE 4E 47                 .NG
 	lda     $B138,x                         ; AFBA BD 38 B1                 .8.
@@ -96,8 +94,7 @@ LAFA2:  lda	CH
 	lda     L474E                           ; AFC3 AD 4E 47                 .NG
 	and     #$0F                            ; AFC6 29 0F                    ).
 	sta     L474E                           ; AFC8 8D 4E 47                 .NG
-LAFCB:  lda	CH
-	jsr     sub_907D
+LAFCB:	proc8	sub_907D, CH
 	ifm8eqi	$A0, $01, LAFE2
 	ldi	CH, $FF
 	jmp     LB01A                           ; AFDF 4C 1A B0                 L..
@@ -108,17 +105,14 @@ LAFE2:	and8i	SHFLOK, SHFLOK, $40
 	lda	CH
 	and     #$3F                            ; AFF2 29 3F                    )?
 	sta     LAF39                           ; AFF4 8D 39 AF                 .9.
-	lda     LAF39                           ; AFF7 AD 39 AF                 .9.
-	eor     #$3C                            ; AFFA 49 3C                    I<
-	lbne	LB00C
+	ifm8eqi	LAF39, $3C, LB00C
 	lda	CH
 	and     #$40                            ; B004 29 40                    )@
 	sta     SHFLOK
 	jmp     LB012                           ; B009 4C 12 B0                 L..
 
 ; ----------------------------------------------------------------------------
-LB00C:  lda	CH
-	jsr     cmd_ui
+LB00C:	proc8	cmd_ui, CH
 LB012:  ldi	CH, $FF
 	jmp     LAFA2                           ; B017 4C A2 AF                 L..
 
