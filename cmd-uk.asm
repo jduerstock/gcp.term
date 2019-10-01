@@ -34,18 +34,15 @@ L69B7:	blkmv_imi L698A, L6983, $000B
 	lda     L698B                           ; 69E5 AD 8B 69                 ..i
 	asl     a                               ; 69E8 0A                       .
 	sta     $A2                             ; 69E9 85 A2                    ..
-	lda     #$00                            ; 69EB A9 00                    ..
-	sta     $A3                             ; 69ED 85 A3                    ..
+	ldi	$A3, $00
 	ldy     $A2                             ; 69EF A4 A2                    ..
 	ldxa	L698E
 	jsr     sub_619A
-	lda     L698D                           ; 69FA AD 8D 69                 ..i
-	sta     $A3                             ; 69FD 85 A3                    ..
+	mv	$A3, L698D
 	ldy     L698C                           ; 69FF AC 8C 69                 ..i
 	ldxa	L6985
 	jsr     sub_619A
-	lda     #$00                            ; 6A0B A9 00                    ..
-	sta     $A3                             ; 6A0D 85 A3                    ..
+	ldi	$A3, $00
 	ldy     #$0B                            ; 6A0F A0 0B                    ..
 	ldxa	L6983
 	jsr     sub_619A
@@ -63,8 +60,7 @@ L69B7:	blkmv_imi L698A, L6983, $000B
 	ldx     #$00                            ; 6A4F A2 00                    ..
 	jsr     MultI
 	sta     L6987                           ; 6A54 8D 87 69                 ..i
-	lda     #$00                            ; 6A57 A9 00                    ..
-	sta     $A3                             ; 6A59 85 A3                    ..
+	ldi	$A3, $00
 	ldy     L6987                           ; 6A5B AC 87 69                 ..i
 	ldxa	L6991
 	jsr     sub_619A
@@ -77,8 +73,7 @@ L6A67:	test16	L6993
 	lda     (off_AE),y
 	adc     #$01                            ; 6A96 69 01                    i.
 	sta     $A2                             ; 6A98 85 A2                    ..
-	lda     #$00                            ; 6A9A A9 00                    ..
-	sta     $A3                             ; 6A9C 85 A3                    ..
+	ldi	$A3, $00
 	ldy     $A2                             ; 6A9E A4 A2                    ..
 	ldxa	L6988
 	jsr     sub_619A
