@@ -58,8 +58,7 @@ L5F88:	add16m	$A1, L5F14, L5F0C
 	ldx     $A1                             ; 5FA0 A6 A1                    ..
 	lda     L5F12                           ; 5FA2 AD 12 5F                 .._
 	jsr     sub_5EFE
-	lda     $A0                             ; 5FA8 A5 A0                    ..
-	lbne	L5FBA
+	ifm8z	$A0, L5FBA
 	rdmv	$A0, L5F0E
 	rts                                     ; 5FB9 60                       `
 

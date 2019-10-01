@@ -56,9 +56,7 @@ L6EFB:	lda     L6F06                           ; 6EFB AD 06 6F                 .
 L6F06:  .byte	$00				; 6F06 00                       .
 
 ; ----------------------------------------------------------------------------
-L6F07:  lda     L6E41                           ; 6F07 AD 41 6E                 .An
-	eor     #$01                            ; 6F0A 49 01                    I.
-	lbne	L6F22
+L6F07:	ifm8eqi	L6E41, $01, L6F22
 	ldy     L6E49                           ; 6F11 AC 49 6E                 .In
 	ldxa	L6E4B
 	jsr     rtrim_null
