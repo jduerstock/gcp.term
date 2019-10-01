@@ -46,6 +46,7 @@ L05C0		:= $05C0
 L3272           := $3272
 L4253           := $4253
 LB118		:= $B118
+LB138		:= $B138
 LB14A		:= $B14A
 LB16A		:= $B16A
 LB16C		:= $B16C
@@ -692,7 +693,7 @@ L466F:	.addr	$B0D4
 	.byte	$04
 	.byte	$00
 L4673:  .byte	$00
-L4674:  .addr	$B400
+L4674:  .addr	$B400				; character set address
 L4676:  cpx     #$E0                            ; 4676 E0 E0                    ..
 L4678:	.addr	L4676
 L467A:	.res	40, $00
@@ -729,8 +730,8 @@ sub_4749:
 	jmp	L474C
 
 L474C:  .byte	$00
-L474D:  .byte	$00
-L474E:  .byte	$00
+L474D:  .byte	$00				; keyboard buffer head
+L474E:  .byte	$00				; keyboard buffer tail
 L474F:  .byte	$00
 L4750:  .byte	$00
 L4751:  .byte	$28
@@ -750,11 +751,11 @@ L4764:  .byte	$00
 ;
 ;
 L4765:	pcode	"BBBBS"		; "C"	cmd-uc.asm
-L476D:	pcode	"B"		; "K"
-L4771:	pcode	"BBBBS"		; "D"
-L4779:	pcode	"BC"		; "F"
-L477E:	pcode	"BBBBBC"	; "W"
-L4787:	pcode	"BDBB"		; "Y"
+L476D:	pcode	"B"		; "K"	cmd-uk.asm
+L4771:	pcode	"BBBBS"		; "D"	cmd-ud.asm
+L4779:	pcode	"BC"		; "F"	cmd-uf.asm
+L477E:	pcode	"BBBBBC"	; "W"	cmd-uw.asm
+L4787:	pcode	"BDBB"		; "Y"	cmd-uy.asm
 L478E:	pcode	"BDBBBB"	; "B"
 L4797:	pcode	"DB"		; "x"
 L479C:	pcode	"X"		; "y"

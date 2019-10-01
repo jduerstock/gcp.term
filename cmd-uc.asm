@@ -22,13 +22,15 @@ L6AD3:	.byte	$31
 L6AD4:	.byte	$3A
 
 ; ----------------------------------------------------------------------------
+; C "aa" "bb" "cc" "dd" "string"
+; dd = string length
+;
 cmd_uc:						; "C","BBBBS"
 	stack_prolog L6ABE, $05
 	func16_8 sub_65B0, L6AC4, L6ABE
 	test16	L6AC4
 	lbeq	L6AFF
-	lda     L6ABE                           ; 6AF9 AD BE 6A                 ..j
-	jsr     cmd_uk
+	proc8	cmd_uk, L6ABE
 L6AFF:  ldx     #$00                            ; 6AFF A2 00                    ..
 	lda     #$0B                            ; 6B01 A9 0B                    ..
 	jsr     sub_606E

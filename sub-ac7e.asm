@@ -11,10 +11,10 @@ sub_AC7E:
 	bne     LAC8D                           ; AC86 D0 05                    ..
 	lda     KEYDEL
 	bne     LACA9                           ; AC8B D0 1C                    ..
-LAC8D:  lda     $D209                           ; AC8D AD 09 D2                 ...
+LAC8D:  lda	KBCODE
 	sta     CH1
 	ldx     L474D                           ; AC93 AE 4D 47                 .MG
-	sta     $B138,x                         ; AC96 9D 38 B1                 .8.
+	sta     LB138,x                         ; AC96 9D 38 B1                 .8.
 	inc     L474D                           ; AC99 EE 4D 47                 .MG
 	and8i	L474D, L474D, $0F
 	ldx     #$01                            ; ACA4 A2 01                    ..

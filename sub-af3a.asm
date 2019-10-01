@@ -88,15 +88,15 @@ LAF94:	proc8	sub_A28D, L4652
 LAFA2:	ifm8eqi	CH, $FF, LAFCB
 	ifm8nem L474D, L474E, LAFCB
 	ldx     L474E                           ; AFB7 AE 4E 47                 .NG
-	lda     $B138,x                         ; AFBA BD 38 B1                 .8.
+	lda     LB138,x                         ; AFBA BD 38 B1                 .8.
 	sta	CH
 	inc     L474E                           ; AFC0 EE 4E 47                 .NG
 	lda     L474E                           ; AFC3 AD 4E 47                 .NG
 	and     #$0F                            ; AFC6 29 0F                    ).
 	sta     L474E                           ; AFC8 8D 4E 47                 .NG
-LAFCB:	proc8	sub_907D, CH
+LAFCB:	proc8	sub_907D, CH			; ignore this keystroke?
 	ifm8eqi	$A0, $01, LAFE2
-	ldi	CH, $FF
+	ldi	CH, $FF				; yes, set CH to empty
 	jmp     LB01A                           ; AFDF 4C 1A B0                 L..
 
 ; ----------------------------------------------------------------------------

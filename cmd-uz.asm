@@ -7,6 +7,8 @@ L8E22:  .byte	$00
 L8E23:  .byte	$00
 
 ; ----------------------------------------------------------------------------
+; update character set
+;
 cmd_uz:						; "Z" "CA8"
 	stack_prolog L8E1F, $02
 	and8i	L8E22, L8E1F, $7F
