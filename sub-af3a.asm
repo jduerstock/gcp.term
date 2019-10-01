@@ -82,8 +82,7 @@ LAF8E:  jsr     sub_AB6A
 
 ; ----------------------------------------------------------------------------
 ;--		}
-LAF94:  lda     L4652                           ; AF94 AD 52 46                 .RF
-	jsr     sub_A28D
+LAF94:	proc8	sub_A28D, L4652
 	ldi	L4652, $02
 	jsr     cmd_d1
 LAFA2:  lda	CH

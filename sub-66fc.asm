@@ -30,10 +30,10 @@ L6742:	dmv	off_AE, L66FA
 	ldp16	$A0
 	shladdm8 off_AC, L66FA, L66F3
 	iny                                     ; 676B C8                       .
-	lda     ($AC),y                         ; 676C B1 AC                    ..
+	lda     (off_AC),y
 	sta     $A3                             ; 676E 85 A3                    ..
 	dey                                     ; 6770 88                       .
-	lda     ($AC),y                         ; 6771 B1 AC                    ..
+	lda     (off_AC),y
 	sta     $A2                             ; 6773 85 A2                    ..
 	sub8m	$AA, L66F7, L66F3
 	ldi	$85, $00

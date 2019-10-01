@@ -27,8 +27,8 @@ sub_63DD:
 	add16i	off_AE, L63D3, $0003
 	lda     (off_AE),y
 	and     #$F0                            ; 6457 29 F0                    ).
-	sta     $AC                             ; 6459 85 AC                    ..
-	add8m	L63D6, $AC, L63DC
+	sta     off_AC
+	add8m	L63D6, off_AC, L63DC
 	add16i	off_AE, L63D3, $0003
 	lda     L63D6                           ; 6473 AD D6 63                 ..c
 	sta     (off_AE),y
@@ -67,15 +67,15 @@ L64D5:	shladdm8 off_AE, L46F5, L63DB
 	lda     L63D5                           ; 6506 AD D5 63                 ..c
 	sbc     #$01                            ; 6509 E9 01                    ..
 	sta     off_AE
-	add16m8	$AC, L63D7, off_AE
-	lda     ($AC),y                         ; 651C B1 AC                    ..
+	add16m8	off_AC, L63D7, off_AE
+	lda     (off_AC),y
 	ora     #$80                            ; 651E 09 80                    ..
-	sta     ($AC),y                         ; 6520 91 AC                    ..
+	sta     (off_AC),y
 	add16m8	$A0, L63D7, L63D5
 	sec                                     ; 6532 38                       8
 	lda     #$18                            ; 6533 A9 18                    ..
 	sbc     L63D5                           ; 6535 ED D5 63                 ..c
-	sta     $AC                             ; 6538 85 AC                    ..
+	sta     off_AC
 	sub8i	$A2, off_AC, $01
 	ldi	$A3, $00
 	mv	$A4, L63DC

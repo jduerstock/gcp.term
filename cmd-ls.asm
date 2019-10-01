@@ -20,11 +20,11 @@ cmd_ls:  					; "s" "BBB"
 	lda     L779F                           ; 77FE AD 9F 77                 ..w
 	ldx     #$00                            ; 7801 A2 00                    ..
 	jsr     MultI
-	sta     $AC                             ; 7806 85 AC                    ..
+	sta     off_AC
 	txa                                     ; 7808 8A                       .
 	ldy     #$01                            ; 7809 A0 01                    ..
 	sta     (off_AE),y
-	lda     $AC                             ; 780D A5 AC                    ..
+	lda     off_AC
 	dey                                     ; 780F 88                       .
 	sta     (off_AE),y
 	proc8	sub_71B5, L779E

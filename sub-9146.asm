@@ -54,7 +54,7 @@ sub_9146:
 	lda     (off_AC),y
 	sta     $A1                             ; 922A 85 A1                    ..
 	dey                                     ; 922C 88                       .
-	lda     ($AC),y                         ; 922D B1 AC                    ..
+	lda     (off_AC),y
 	sta     $A0                             ; 922F 85 A0                    ..
 	ldi	$A3, $00
 	ldy     L9140                           ; 9235 AC 40 91                 .@.

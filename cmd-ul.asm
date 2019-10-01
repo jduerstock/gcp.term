@@ -13,7 +13,6 @@ cmd_ul:						; "L" "B"
 	lsr     a                               ; 7FF5 4A                       J
 	sta     $A0                             ; 7FF6 85 A0                    ..
 	ldx     L7FE8                           ; 7FF8 AE E8 7F                 ...
-	lda     $A0                             ; 7FFB A5 A0                    ..
-	jsr     sub_49A2
+	proc8	sub_49A2, $A0
 	rts                                     ; 8000 60                       `
 

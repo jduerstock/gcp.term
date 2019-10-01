@@ -20,7 +20,7 @@ sub_4E4A:
 	add8i	$AA, off_AE, $01
 	ldi	$85, $00
 	mv	$84, $AA
-	lda     $AC                             ; 4E92 A5 AC                    ..
+	lda     off_AC
 	ldx     #$00                            ; 4E94 A2 00                    ..
 	jsr     MultI
 	st2xa	L4E44

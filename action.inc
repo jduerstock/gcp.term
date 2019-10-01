@@ -451,3 +451,15 @@ ptr:
 	lbne	a2
 .endmacro
 
+.macro	ifm8gei	a1, a2, a3
+	lda     a1
+	eor     #a2
+	lbcs	a3
+.endmacro
+
+.macro	ifm8gem	a1, a2, a3
+	lda     a1
+	eor     a2
+	lbcs	a3
+.endmacro
+

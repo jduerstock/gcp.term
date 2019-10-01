@@ -93,11 +93,11 @@ L68F4:	add8m	off_AE, L67D1, L67C6
 	shladdm8 off_AC, L67D6, off_AE
 	clc                                     ; 6910 18                       .
 	ldy     #$00                            ; 6911 A0 00                    ..
-	lda     ($AC),y                         ; 6913 B1 AC                    ..
+	lda     (off_AC),y
 	adc     L67C5                           ; 6915 6D C5 67                 m.g
 	sta     $A0                             ; 6918 85 A0                    ..
 	iny                                     ; 691A C8                       .
-	lda     ($AC),y                         ; 691B B1 AC                    ..
+	lda     (off_AC),y
 	adc     #$00                            ; 691D 69 00                    i.
 	sta     $A1                             ; 691F 85 A1                    ..
 	add16i	$A2, L67C8, $01

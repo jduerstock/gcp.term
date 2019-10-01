@@ -12,7 +12,7 @@ sub_ADEA:
 	sbc     #$04                            ; AE22 E9 04                    ..
 	iny                                     ; AE24 C8                       .
 	sta     (off_AE),y
-	lda     $AC                             ; AE27 A5 AC                    ..
+	lda     off_AC
 	dey                                     ; AE29 88                       .
 	sta     (off_AE),y
 	rdldi	MEMTOP, L4327

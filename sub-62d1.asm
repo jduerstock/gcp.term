@@ -15,13 +15,13 @@ sub_62D1:
 	ldi	$D40E, $C0
 	shladdi off_AE, L466F, $0001
 	ldp16y0	L62CE
-L6328:	shladdi	off_AE, L466F, $0001
+	shladdi	off_AE, L466F, $0001
 	dmv	off_AC, L466F
 	iny                                     ; 6345 C8                       .
-	lda     ($AC),y                         ; 6346 B1 AC                    ..
+	lda     (off_AC),y
 	sta     (off_AE),y
 	dey                                     ; 634A 88                       .
-	lda     ($AC),y                         ; 634B B1 AC                    ..
+	lda     (off_AC),y
 	sta     (off_AE),y
 	dmv	off_AE, L466F
 	lda     L62CF                           ; 6359 AD CF 62                 ..b

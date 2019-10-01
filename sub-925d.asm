@@ -38,10 +38,10 @@ sub_925D:
 	add8i	off_AE, L924D, $01
 	shladdm8 off_AC, L925B, off_AE
 	ldy     #$01                            ; 92D0 A0 01                    ..
-	lda     ($AC),y                         ; 92D2 B1 AC                    ..
+	lda     (off_AC),y
 	sta     L9254                           ; 92D4 8D 54 92                 .T.
 	dey                                     ; 92D7 88                       .
-	lda     ($AC),y                         ; 92D8 B1 AC                    ..
+	lda     (off_AC),y
 	sta     L9253                           ; 92DA 8D 53 92                 .S.
 	shladdm8 off_AE, L925B, L924D
 	iny                                     ; 92F1 C8                       .
@@ -57,7 +57,7 @@ sub_925D:
 	sub8i	off_AC, off_AE, $01
 	ldi	$85, $00
 	mv	$84, L9257
-	lda     $AC                             ; 9316 A5 AC                    ..
+	lda     off_AC
 	ldx     #$00                            ; 9318 A2 00                    ..
 	jsr     MultI
 	st2xa	L9255

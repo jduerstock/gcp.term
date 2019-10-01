@@ -20,7 +20,7 @@ sub_6203:
 	shladdi	off_AE, L466F, $0001
 	ldp16	$A0
 	dmv	off_AC, L466F
-	ld2p16	$A2, $AC
+	ld2p16	$A2, off_AC
 	rdldi	$A4, $0020
 	ldy     $A2                             ; 6240 A4 A2                    ..
 	ldxa	$A0
@@ -34,12 +34,12 @@ sub_6203:
 	clc                                     ; 6291 18                       .
 	lda     L61FF                           ; 6292 AD FF 61                 ..a
 	adc     #$20                            ; 6295 69 20                    i 
-	sta     $AC                             ; 6297 85 AC                    ..
+	sta     off_AC
 	lda     L61FF+1
 	adc     #$00                            ; 629C 69 00                    i.
 	iny                                     ; 629E C8                       .
 	sta     (off_AE),y
-	lda     $AC                             ; 62A1 A5 AC                    ..
+	lda     off_AC
 	dey                                     ; 62A3 88                       .
 	sta     (off_AE),y
 ;--

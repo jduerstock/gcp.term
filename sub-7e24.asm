@@ -40,7 +40,7 @@ L7E69:	dmv	off_AE, L7E1E
 	ldx     #$00                            ; 7E9A A2 00                    ..
 	jsr     MultI
 	st2xa	off_AC
-	add16m	L7E1A, $AE, $AC
+	add16m	L7E1A, off_AE, off_AC
 	mv	$A3, L7E1A+1
 	rdldi	$A4, $0003
 	ldy     L7E1A                           ; 7EC0 AC 1A 7E                 ..~
@@ -53,10 +53,10 @@ L7E69:	dmv	off_AE, L7E1E
 
 ; ----------------------------------------------------------------------------
 L7ED7:	dmv	off_AE, L7E1C
-	add8m	$AC, L7E23, L7E22
+	add8m	off_AC, L7E23, L7E22
 	ldy     #$00                            ; 7EEA A0 00                    ..
 	lda     (off_AE),y
-	cmp     $AC                             ; 7EEE C5 AC                    ..
+	cmp     off_AC
 	lbcs	L7EFA
 L7EF5:	ldi	$A0, $00
 	rts                                     ; 7EF9 60                       `

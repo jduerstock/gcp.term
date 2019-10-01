@@ -14,7 +14,7 @@ sub_AD85:
 	ldy     #$06                            ; ADA0 A0 06                    ..
 	ldxa	LAD83
 	jsr     Zero
-	rdldi	$0208, $AC7E
+	rdldi	VKEYBD, sub_AC7E
 	rdldi	LAD81, sub_AD59
 	ldi	$84, $08
 	lda     LAD82                           ; ADC3 AD 82 AD                 ...

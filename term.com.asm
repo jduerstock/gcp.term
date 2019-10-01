@@ -16,6 +16,7 @@ off_84		:= $0084
 off_AC		:= $00AC
 off_AE		:= $00AE
 VDSLST		:= $0200
+VKEYBD		:= $0208
 CDTMV3		:= $021C
 CDTMV5		:= $0220
 CDTMA2		:= $0228
@@ -962,12 +963,12 @@ sub_49A2:
 	asl     a                               ; 49AF 0A                       .
 	asl     a                               ; 49B0 0A                       .
 	asl     a                               ; 49B1 0A                       .
-	sta     $AE                             ; 49B2 85 AE                    ..
+	sta     off_AE
 	lda     L49A1                           ; 49B4 AD A1 49                 ..I
 	and     #$0F                            ; 49B7 29 0F                    ).
-	sta     $AC                             ; 49B9 85 AC                    ..
-	lda     $AE                             ; 49BB A5 AE                    ..
-	ora     $AC                             ; 49BD 05 AC                    ..
+	sta     off_AC
+	lda     off_AE
+	ora     off_AC
 	sta	PCOLR3
 	rts                                     ; 49C2 60                       `
 

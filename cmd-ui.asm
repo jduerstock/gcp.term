@@ -144,7 +144,7 @@ L991A:	add16m8 L979F, L9059, L905E
 	add16m8	off_AC, L9059, off_AE
 	lda     #$00                            ; 996A A9 00                    ..
 	ldy     #$00                            ; 996C A0 00                    ..
-	sta     ($AC),y                         ; 996E 91 AC                    ..
+	sta     (off_AC),y
 	sub8i	L905D, L905D, $01
 	add16m8	off_AE, L9059, L905E
 	lda     (off_AE),y
@@ -178,7 +178,7 @@ L99B4:  lda     L905D                           ; 99B4 AD 5D 90                 
 	add16m8	off_AC, L9059, off_AE
 	lda     #$00                            ; 9A13 A9 00                    ..
 	ldy     #$00                            ; 9A15 A0 00                    ..
-	sta     ($AC),y                         ; 9A17 91 AC                    ..
+	sta     (off_AC),y
 	iny                                     ; 9A19 C8                       .
 	sty     L9050                           ; 9A1A 8C 50 90                 .P.
 	sub8i	L905D, L905D, $01
@@ -289,7 +289,7 @@ L9B57:	add16m8	L979F, L9059, L905E
 	add16i	$A0, L979F, $0001
 	mv	$A3, L97A0
 	sub8m	off_AC, L9060, L905E
-	sub8i	$A4, $AC, $01
+	sub8i	$A4, off_AC, $01
 	ldi	$A5, $00
 	ldy     L979F                           ; 9B91 AC 9F 97                 ...
 	ldxa	$A0

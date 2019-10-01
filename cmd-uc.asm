@@ -184,7 +184,7 @@ L6D88:  ldx     #$00                            ; 6D88 A2 00                    
 	mv	$A3, L6AC2+1
 	dmv	off_AC, L6AC2
 	clc                                     ; 6E26 18                       .
-	lda     ($AC),y                         ; 6E27 B1 AC                    ..
+	lda     (off_AC),y
 	adc     #$01                            ; 6E29 69 01                    i.
 	sta     $A4                             ; 6E2B 85 A4                    ..
 	ldi	$A5, $00

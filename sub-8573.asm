@@ -85,7 +85,7 @@ L85FD:	yldi	L855D, $00
 L8611:	yldi	L855E, $00
 	add8m	off_AE, L8564, L8569
 	sub8i	off_AC, off_AE, $01
-	lda     $AC                             ; 8626 A5 AC                    ..
+	lda     off_AC
 	eor     L8562                           ; 8628 4D 62 85                 Mb.
 	lbne	L8634
 	iny                                     ; 8630 C8                       .
@@ -154,7 +154,7 @@ L872A:	add16m8 $A2, L8558, L8553
 ; ----------------------------------------------------------------------------
 L8777:	add8m	off_AE, L8565, L856A
 	sub8i	off_AC, off_AE, $01
-	ifm8eqm	$AC, L8563, L8818
+	ifm8eqm	off_AC, L8563, L8818
 	lda     L855F                           ; 8791 AD 5F 85                 ._.
 	lbeq	L87AA
 	sub16i	L8558, L8558, $0028
