@@ -62,9 +62,7 @@ L6861:	sub8i	off_AE, L67CA, $01
 	jsr     sub_496E
 	lda     $A0                             ; 689D A5 A0                    ..
 	sta     L67CE                           ; 689F 8D CE 67                 ..g
-	lda     L67CE                           ; 68A2 AD CE 67                 ..g
-	eor     #$01                            ; 68A5 49 01                    I.
-	lbne	L68C6
+	ifm8eqi	L67CE, $01, L68C6
 	ldx     L67CD                           ; 68AC AE CD 67                 ..g
 	lda     L67C4                           ; 68AF AD C4 67                 ..g
 	jsr     sub_66FC

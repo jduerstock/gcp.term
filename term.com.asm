@@ -709,9 +709,8 @@ L46E7:	.byte	$1E                             ; 46E7 1E                       .
 L46E8:	.byte	$10                             ; 46E8 10                       .
 L46E9:  .byte	$00
 L46EA:	.byte	$54                             ; 46EA 54                       T
-L46EB:  .word   $416F                             ; 46EB 6F                       o
-L46ED:	.byte	$73                             ; 46ED 73                       s
-L46EE:	.byte	$63                             ; 46EE 63                       c
+L46EB:  .word   $416F
+L46ED:	.word	$6373
 L46EF:  .byte	$00
 	.byte	$00
 	.byte	$00

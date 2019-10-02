@@ -8,15 +8,15 @@ L9CBE:	.byte	$0C                             ; 9CBE 0C                       .
 L9CBF:	.byte	$0C                             ; 9CBF 0C                       .
 L9CC0:	.byte	$02                             ; 9CC0 02                       .
 L9CC1:	.byte	$00
-L9CC2:	.byte	$00
+L9CC2:	.byte	$00				; last joystick result
+; joystick table
 L9CC3:	.byte   $04,$02,$03,$FF,$06,$08,$07,$FF,$05,$01,$00
 L9CCE:	.addr	L9CC3
 
 sub_9CD0:
 	stack_prolog L9CBA, $03
-	lda     L46E7                           ; 9CD9 AD E7 46                 ..F
-	lbne	L9CEB
-	yldi	L9CC2, $00
+	ifm8z	L46E7, L9CEB
+	yldi	L9CC2, $00			; clear last joystick read
 	ldi	$A0, $00
 	rts                                     ; 9CEA 60                       `
 

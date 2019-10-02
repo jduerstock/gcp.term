@@ -31,8 +31,7 @@ cmd_uj:						; "J" "DBB"
 	rdldi	L46ED, L9C38
 	blkmv_imi L9C2F, L9C22, $0009
 	blkmv_imi L9C38, L9C2D, $0009
-	lda     L46E6                           ; 9C9E AD E6 46                 ..F
-	lbne	L9CAB
+	ifm8z	L46E6, L9CAB
 	proc8i	cmd_us, $00
 L9CAB:  rts                                     ; 9CAB 60                       `
 

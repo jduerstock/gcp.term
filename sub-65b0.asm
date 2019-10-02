@@ -12,6 +12,6 @@ sub_65B0:
 
 ;--	uint16_t sub_65b0(uint8_t a)
 ;--	{
-;--		return(L46E2+a*2);
+;--		return(L46E2[a*2]);
 ;--	}
 ;--
