@@ -43,14 +43,14 @@ L683B:  lda     L67CA                           ; 683B AD CA 67                 
 
 ; ----------------------------------------------------------------------------
 L6844:	sub8m	off_AE, L67D2, L67C5
-	lda     $AE                             ; 684D A5 AE                    ..
+	lda     off_AE
 	cmp     L67C7                           ; 684F CD C7 67                 ..g
 	lbcs	L6861
 	sub8m	L67C7, L67D2, L67C5
 L6861:	sub8i	off_AE, L67CA, $01 
 	ldi	$85, $00
 	mv	$84, L67C7
-	lda     $AE                             ; 6872 A5 AE                    ..
+	lda     off_AE
 	ldx     #$00                            ; 6874 A2 00                    ..
 	jsr     DivI
 	sta     L67CC                           ; 6879 8D CC 67                 ..g
@@ -68,10 +68,11 @@ L6861:	sub8i	off_AE, L67CA, $01
 	ldx     L67CD                           ; 68AC AE CD 67                 ..g
 	lda     L67C4                           ; 68AF AD C4 67                 ..g
 	jsr     sub_66FC
-	sec                                     ; 68B5 38                       8
-	lda     L67D3                           ; 68B6 AD D3 67                 ..g
-	sbc     #$01                            ; 68B9 E9 01                    ..
-	sta     $AE                             ; 68BB 85 AE                    ..
+	sub8i	off_AE, L67D3, $01
+;	sec                                     ; 68B5 38                       8
+;	lda     L67D3                           ; 68B6 AD D3 67                 ..g
+;	sbc     #$01                            ; 68B9 E9 01                    ..
+;	sta     off_AE
 	sub8m	L67C6, off_AE, L67CC
 L68C6:	mv	L67CB, L67C7
 	yldi	L67D1, $00
