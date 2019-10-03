@@ -31,8 +31,7 @@ cmd_uc:						; "C","BBBBS"
 	test16	L6AC4
 	lbeq	L6AFF
 	proc8	cmd_uk, L6ABE
-L6AFF:  ldx     #$00                            ; 6AFF A2 00                    ..
-	lda     #$0B                            ; 6B01 A9 0B                    ..
+L6AFF:	ldxai	$000B
 	jsr     sub_606E
 	rdmv	L6AC4, $A0
 	shladdm8 off_AE, L46E2, L6ABE
@@ -153,8 +152,7 @@ L6D5B:	add16i	off_AE, L6AC4, $0009
 	lda     #$00                            ; 6D7F A9 00                    ..
 	cmp     (off_AE),y
 	lbcs	L6E3B
-L6D88:  ldx     #$00                            ; 6D88 A2 00                    ..
-	lda     #$1A                            ; 6D8A A9 1A                    ..
+L6D88:	ldxai	$001A
 	jsr     sub_606E
 	rdmv	L6AC8, $A0
 	add16i	off_AE, L6AC4, $0009
@@ -177,18 +175,22 @@ L6D88:  ldx     #$00                            ; 6D88 A2 00                    
 	pull16	off_AE
 	stp16	$A0
 	dmv	off_AE, L6AC8
+;
 	iny                                     ; 6E0D C8                       .
 	lda     (off_AE),y
 	sta     $A1                             ; 6E10 85 A1                    ..
 	dey                                     ; 6E12 88                       .
 	lda     (off_AE),y
 	sta     $A0                             ; 6E15 85 A0                    ..
+;
 	mv	$A3, L6AC2+1
 	dmv	off_AC, L6AC2
+;
 	clc                                     ; 6E26 18                       .
 	lda     (off_AC),y
 	adc     #$01                            ; 6E29 69 01                    i.
 	sta     $A4                             ; 6E2B 85 A4                    ..
+;
 	ldi	$A5, $00
 	ldy     L6AC2                           ; 6E31 AC C2 6A                 ..j
 	ldxa	$A0

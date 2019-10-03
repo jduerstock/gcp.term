@@ -333,6 +333,11 @@
 	sta	(off_AE),y
 .endmacro
 
+.macro	stp8a	a1
+	lda	a1
+	sta	(off_AE),y
+.endmacro
+
 .macro	stp16	a1
 	lda     a1+1
 	ldy     #$01

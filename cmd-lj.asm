@@ -10,7 +10,6 @@ cmd_lj:						; "j" "DBB"
 	add16m8 off_AE, L46EB, L9BDD
 	stp8	L9BDE
 	add16m8 off_AE, L46ED, L9BDD
-	lda     L9BDF                           ; 9C10 AD DF 9B                 ...
-	sta     (off_AE),y
+	stp8a	L9BDF
 	rts                                     ; 9C15 60                       `
 

@@ -3,8 +3,7 @@
 L766A:	.byte	$EB                             ; 766A EB                       .
 L766B:	.byte	$20                             ; 766B 20                        
 L766C:	.byte	$53                             ; 766C 53                       S
-L766D:	.byte	$EC                             ; 766D EC                       .
-L766E:	.byte	$90                             ; 766E 90                       .
+L766D:	.byte	$EC,$90
 L766F:  .byte	$B8
 L7670:	.byte	$4C                             ; 7670 4C                       L
 L7671:	.byte	$11                             ; 7671 11                       .
@@ -38,8 +37,7 @@ sub_768A:
 	jsr     blockmove
 L76BA:  lda     L7688                           ; 76BA AD 88 76                 ..v
 	beq     L76C7                           ; 76BD F0 08                    ..
-	lda     L7687                           ; 76BF AD 87 76                 ..v
-	lbne	L76CC
+	ifm8z	L7687, L76CC
 L76C7:  ldi	$A0, $00
 	rts                                     ; 76CB 60                       `
 

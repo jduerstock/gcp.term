@@ -29,10 +29,10 @@ L60A1:	lda     L6068                           ; 60A1 AD 68 60                 .
 	sec                                     ; 60B0 38                       8
 	lda     #$F8                            ; 60B1 A9 F8                    ..
 	sbc     L6068                           ; 60B3 ED 68 60                 .h`
-	sta     $AE                             ; 60B6 85 AE                    ..
+	sta     off_AE
 	lda     #$07                            ; 60B8 A9 07                    ..
 	sbc     L6068+1
-	sta     $AF                             ; 60BD 85 AF                    ..
+	sta     off_AE+1
 ;
 	ldy     $A2                             ; 60BF A4 A2                    ..
 	ldxa	L6068
