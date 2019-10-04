@@ -99,7 +99,7 @@ L8648:	rdldi	$84, $0028
 	ldx     #$00                            ; 8653 A2 00                    ..
 	jsr     MultI
 	st2xa	off_AE
-	add16m	L8558, L466D, $AE
+	add16m	L8558, L466D, off_AE
 	sub8m	L8555, L8562, L8560
 	mv	L8553, L8560
 	add8m	L8554, L8553, L8555

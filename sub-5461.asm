@@ -9,12 +9,12 @@ sub_5461:
 	rts                                     ; 5470 60                       `
 
 ; ----------------------------------------------------------------------------
-L5471:	add8i	$AE, L531D, $01
-	ifm8eqm	LB1C8, $AE, L54E3
+L5471:	add8i	off_AE, L531D, $01
+	ifm8eqm	LB1C8, off_AE, L54E3
 	jsr     sub_537F
 	mv	L531D, LB1C8
 	and8i	off_AE, LB1C6, $80
-	lda     $AE                             ; 5493 A5 AE                    ..
+	lda     off_AE
 	lbeq	L54B8
 	ldi	$A3, >LB1C9
 	and8i	off_AE, LB1C6, $7F

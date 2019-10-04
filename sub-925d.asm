@@ -50,10 +50,7 @@ sub_925D:
 	dey                                     ; 92F7 88                       .
 	lda     (off_AE),y
 	sta     L9251                           ; 92FA 8D 51 92                 .Q.
-	sec                                     ; 92FD 38                       8
-	lda     L9258                           ; 92FE AD 58 92                 .X.
-	sbc     L924D                           ; 9301 ED 4D 92                 .M.
-	sta     $AE                             ; 9304 85 AE                    ..
+	sub8m	off_AE, L9258, L924D
 	sub8i	off_AC, off_AE, $01
 	ldi	$85, $00
 	mv	$84, L9257

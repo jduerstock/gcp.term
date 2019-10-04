@@ -43,7 +43,7 @@ L4D03:  lda     #$01                            ; 4D03 A9 01                    
 	jmp     L4D03                           ; 4DC9 4C 03 4D                 L.M
 
 ; ----------------------------------------------------------------------------
-L4DCC:  dmv	$AE, L4CF2
+L4DCC:  dmv	off_AE, L4CF2
 	ldp8	$A0
 	add16i	off_AE, L4CF2, $0002
 	lda     (off_AE),y

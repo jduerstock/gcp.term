@@ -105,7 +105,7 @@ L50EF:	add16m8	off_AE, L4FC2, L4FBF
 	lbne	L514C
 	add8i	off_AE, L4FC0, $01
 	lda     L4FBF                           ; 5125 AD BF 4F                 ..O
-	eor     $AE                             ; 5128 45 AE                    E.
+	eor     off_AE
 	lbne	L514C
 	sty     L464F                           ; 512F 8C 4F 46                 .OF
 	sty     L4FBF                           ; 5132 8C BF 4F                 ..O

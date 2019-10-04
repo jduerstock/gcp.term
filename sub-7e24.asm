@@ -93,8 +93,8 @@ L7F59:  inc     L7E20                           ; 7F59 EE 20 7E                 
 ; ----------------------------------------------------------------------------
 L7F5F:  lda     L7E21                           ; 7F5F AD 21 7E                 .!~
 	eor     L7E19                           ; 7F62 4D 19 7E                 M.~
-	sta     $AE                             ; 7F65 85 AE                    ..
-	lda     $AE                             ; 7F67 A5 AE                    ..
+	sta     off_AE
+	lda     off_AE
 	eor     #$01                            ; 7F69 49 01                    I.
 	sta     L7E19                           ; 7F6B 8D 19 7E                 ..~
 	mv	$A0, L7E19
