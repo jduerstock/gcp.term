@@ -74,8 +74,7 @@ LA799:  lda     LA6E0                           ; A799 AD E0 A6                 
 	jmp     LA748                           ; A7B4 4C 48 A7                 LH.
 
 ; ----------------------------------------------------------------------------
-LA7B7:  lda     LA6D9                           ; A7B7 AD D9 A6                 ...
-	jsr     sub_A28D
+LA7B7:	proc8	sub_A28D, LA6D9
 	jsr     cmd_d1
 	rts                                     ; A7C0 60                       `
 

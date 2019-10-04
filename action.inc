@@ -323,7 +323,7 @@
 
 .macro	ldp8	a1
 	ldy	#$00
-	lda	($AE),y
+	lda	(off_AE),y
 	sta	a1
 .endmacro
 
@@ -341,10 +341,10 @@
 .macro	stp16	a1
 	lda     a1+1
 	ldy     #$01
-	sta     ($AE),y
+	sta     (off_AE),y
 	lda     a1
 	dey
-	sta     ($AE),y
+	sta     (off_AE),y
 .endmacro
 
 .macro	test16	a1

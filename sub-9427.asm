@@ -27,9 +27,7 @@ sub_9427:
 	lda     (off_AE),y                      ; 943F B1 AE                    ..
 	eor     #$80                            ; 9441 49 80                    I.
 	sta     (off_AE),y                      ; 9443 91 AE                    ..
-	lda     L9050                           ; 9445 AD 50 90                 .P.
-	eor     #$01                            ; 9448 49 01                    I.
-	lbne	L9499
+	ifm8eqi	L9050, $01, L9499
 	blkmv_mm8 L905B, L9059, L9060
 	jmp     L9470                           ; 9469 4C 70 94                 Lp.
 
@@ -54,16 +52,11 @@ L9499:  lda     #$7F                            ; 9499 A9 7F                    
 
 ; ----------------------------------------------------------------------------
 L94AB:	sub8i	off_AE, L9061, $01
-	lda     $AE                             ; 94B3 A5 AE                    ..
+	lda     off_AE
 	cmp     L9416                           ; 94B5 CD 16 94                 ...
 	lbcs	L94E8
-	lda     L905F                           ; 94BD AD 5F 90                 ._.
-	eor     #$01                            ; 94C0 49 01                    I.
-	lbne	L94DF
-	sec                                     ; 94C7 38                       8
-	lda     L9416                           ; 94C8 AD 16 94                 ...
-	sbc     L9061                           ; 94CB ED 61 90                 .a.
-	sta     $AE                             ; 94CE 85 AE                    ..
+	ifm8eqi	L905F, $01, L94DF
+	sub8m	off_AE, L9416, L9061
 	add8i	$A1, off_AE, $01
 	ldx     $A1                             ; 94D7 A6 A1                    ..
 	lda     L9053                           ; 94D9 AD 53 90                 .S.

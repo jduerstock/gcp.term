@@ -39,7 +39,7 @@ L7889:  lda     L7826                           ; 7889 AD 26 78                 
 	cmp     #$14                            ; 788C C9 14                    ..
 	lbcs	L78AC
 	add8i	off_AE, L7826, $01
-	ldx     $AE                             ; 789B A6 AE                    ..
+	ldx     off_AE
 	lda     L4659,x                         ; 789D BD 59 46                 .YF
 	ldx     L7826                           ; 78A0 AE 26 78                 .&x
 	sta     L4659,x                         ; 78A3 9D 59 46                 .YF
@@ -87,7 +87,7 @@ L7917:	.byte	$2E
 L7918:  sec                                     ; 7918 38                       8
 	lda     #$14                            ; 7919 A9 14                    ..
 	sbc     L7827                           ; 791B ED 27 78                 .'x
-	sta     $AE                             ; 791E 85 AE                    ..
+	sta     off_AE
 	sec                                     ; 7920 38                       8
 	lda     #$14                            ; 7921 A9 14                    ..
 	sbc     L7827                           ; 7923 ED 27 78                 .'x
@@ -95,7 +95,7 @@ L7918:  sec                                     ; 7918 38                       
 	sub8i	$AA, off_AC, $01
 	ldx     $AA                             ; 792F A6 AA                    ..
 	lda     L4659,x                         ; 7931 BD 59 46                 .YF
-	ldx     $AE                             ; 7934 A6 AE                    ..
+	ldx     off_AE
 	sta     L4659,x                         ; 7936 9D 59 46                 .YF
 	inc     L7827                           ; 7939 EE 27 78                 .'x
 	jmp     L790C                           ; 793C 4C 0C 79                 L.y

@@ -208,8 +208,8 @@ L587E:	add8i	L5592, L5594, $04
 L5887:  sec                                     ; 5887 38                       8
 	lda     #$59                            ; 5888 A9 59                    .Y
 	sbc     L4650                           ; 588A ED 50 46                 .PF
-	sta     $AE                             ; 588D 85 AE                    ..
-	lda     $AE                             ; 588F A5 AE                    ..
+	sta     off_AE
+	lda     off_AE
 	cmp     L5592                           ; 5891 CD 92 55                 ..U
 	lbcs	L589F
 	jsr     sub_5394

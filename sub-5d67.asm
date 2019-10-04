@@ -31,10 +31,8 @@ L5DB9:	ldi	$A4, $00
 	lda     #$02                            ; 5DD1 A9 02                    ..
 	jsr     sub_4AA5
 	ifm8eqi	$B148, $01, L5DF9
-	lda     #$00                            ; 5DE0 A9 00                    ..
-	sta     $A3                             ; 5DE2 85 A3                    ..
-	lda     #$00                            ; 5DE4 A9 00                    ..
-	sta     $A4                             ; 5DE6 85 A4                    ..
+	ldi	$A3, $00
+	ldi	$A4, $00
 	rdldi	$A5, L4AA1
 	ldy     #$59                            ; 5DF0 A0 59                    .Y
 	ldx     #$00                            ; 5DF2 A2 00                    ..
@@ -42,8 +40,7 @@ L5DB9:	ldi	$A4, $00
 	jsr     XIO
 L5DF9:  jsr     sub_5D64
 	ldi	SDMCTL, $2A
-	lda     #$02                            ; 5E01 A9 02                    ..
-	jsr     delay
+	proc8i	delay, $02
 	yldi	L4653, $00
 	jmp     L5E10                           ; 5E0B 4C 10 5E                 L.^
 
